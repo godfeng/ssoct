@@ -1,0 +1,134 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 224 208)
+	(text "WIRE4_INTERFACE" (rect 5 0 108 12)(font "Arial" ))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "iCLK" (rect 0 0 23 12)(font "Arial" ))
+		(text "iCLK" (rect 21 27 44 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "iRST_n" (rect 0 0 35 12)(font "Arial" ))
+		(text "iRST_n" (rect 21 43 56 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "iREAD" (rect 0 0 33 12)(font "Arial" ))
+		(text "iREAD" (rect 21 59 54 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "iWRITE" (rect 0 0 37 12)(font "Arial" ))
+		(text "iWRITE" (rect 21 75 58 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "iWDATA[7..0]" (rect 0 0 67 12)(font "Arial" ))
+		(text "iWDATA[7..0]" (rect 21 91 88 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "iADDR[7..0]" (rect 0 0 60 12)(font "Arial" ))
+		(text "iADDR[7..0]" (rect 21 107 81 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 3))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "iJVC_DATAIN" (rect 0 0 69 12)(font "Arial" ))
+		(text "iJVC_DATAIN" (rect 21 123 90 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 208 32)
+		(output)
+		(text "oRDATA[7..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "oRDATA[7..0]" (rect 119 27 187 39)(font "Arial" ))
+		(line (pt 208 32)(pt 192 32)(line_width 3))
+	)
+	(port
+		(pt 208 48)
+		(output)
+		(text "oRDATA_VALID" (rect 0 0 80 12)(font "Arial" ))
+		(text "oRDATA_VALID" (rect 107 43 187 55)(font "Arial" ))
+		(line (pt 208 48)(pt 192 48)(line_width 1))
+	)
+	(port
+		(pt 208 64)
+		(output)
+		(text "oJVC_CLK" (rect 0 0 54 12)(font "Arial" ))
+		(text "oJVC_CLK" (rect 133 59 187 71)(font "Arial" ))
+		(line (pt 208 64)(pt 192 64)(line_width 1))
+	)
+	(port
+		(pt 208 80)
+		(output)
+		(text "oJVC_CS" (rect 0 0 48 12)(font "Arial" ))
+		(text "oJVC_CS" (rect 139 75 187 87)(font "Arial" ))
+		(line (pt 208 80)(pt 192 80)(line_width 1))
+	)
+	(port
+		(pt 208 96)
+		(output)
+		(text "oJVC_DATAOUT" (rect 0 0 83 12)(font "Arial" ))
+		(text "oJVC_DATAOUT" (rect 104 91 187 103)(font "Arial" ))
+		(line (pt 208 96)(pt 192 96)(line_width 1))
+	)
+	(port
+		(pt 208 112)
+		(output)
+		(text "oSET_REG_ERR" (rect 0 0 84 12)(font "Arial" ))
+		(text "oSET_REG_ERR" (rect 103 107 187 119)(font "Arial" ))
+		(line (pt 208 112)(pt 192 112)(line_width 1))
+	)
+	(port
+		(pt 208 128)
+		(output)
+		(text "oDONE" (rect 0 0 37 12)(font "Arial" ))
+		(text "oDONE" (rect 150 123 187 135)(font "Arial" ))
+		(line (pt 208 128)(pt 192 128)(line_width 1))
+	)
+	(port
+		(pt 208 144)
+		(output)
+		(text "jvc_state[5..0]" (rect 0 0 71 12)(font "Arial" ))
+		(text "jvc_state[5..0]" (rect 116 139 187 151)(font "Arial" ))
+		(line (pt 208 144)(pt 192 144)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 192 176)(line_width 1))
+	)
+)

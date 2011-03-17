@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="DE4_DCC_HSMB">
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_altqmcpipe:ux000|lpm_add_sub:acc" CBX_FILE_NAME="add_sub_s1i.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_nco_as_m_dp_cen:ux0220|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_7bb2.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|mac_i_lpmd:m0|lmsd:m_1|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_4gu.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_altqmcpipe:ux000|lpm_add_sub:acc" CBX_FILE_NAME="add_sub_s1i.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_nco_as_m_dp_cen:ux0220|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_n9b2.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|mac_i_lpmd:m0|lmsd:m_1|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_4gu.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|pll:pll_inst|altpll:altpll_component" CBX_FILE_NAME="pll_altpll.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_opc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_counter:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_idi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|FIR_3MHz_low:FIR_3MHz_low_inst|FIR_3MHz_low_ast:FIR_3MHz_low_ast_inst|auk_dspip_avalon_streaming_sink_fir_91:sink|scfifo:\normal_fifo:fifo_eab_on:in_fifo" CBX_FILE_NAME="scfifo_8bh1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_counter:read_pointer_counter" CBX_FILE_NAME="cntr_d6j.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_nco_as_m_cen:ux0123|altsyncram:altsyncram_component0" CBX_FILE_NAME="altsyncram_q2d1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|mac_i_lpmd:m0|las:a_0|lpm_add_sub:lpm_add_sub_component" CBX_FILE_NAME="add_sub_dti.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|mac_i_lpmd:m0|lmsd:m_0|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_4gu.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_nco_as_m_cen:ux0123|altsyncram:altsyncram_component0" CBX_FILE_NAME="altsyncram_a1d1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|mac_i_lpmd:m0|las:a_0|lpm_add_sub:lpm_add_sub_component" CBX_FILE_NAME="add_sub_dti.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|mac_i_lpmd:m0|lmsd:m_0|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_4gu.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_0us3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_counter:status_advance_pointer_counter" CBX_FILE_NAME="cntr_bdi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_nco_isdr:ux710isdr|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_loi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_nco_mob_w:blk0|lpm_add_sub:lpm_add_sub_component" CBX_FILE_NAME="add_sub_f4l.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_nco_isdr:ux710isdr|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_loi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_nco_mob_w:blk0|lpm_add_sub:lpm_add_sub_component" CBX_FILE_NAME="add_sub_f4l.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_asf.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_counter:status_read_pointer_counter" CBX_FILE_NAME="cntr_vvi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|asj_nco_as_m_cen:ux0122|altsyncram:altsyncram_component0" CBX_FILE_NAME="altsyncram_v2d1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE4_DCC_HSMB|NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|asj_nco_as_m_cen:ux0122|altsyncram:altsyncram_component0" CBX_FILE_NAME="altsyncram_f1d1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

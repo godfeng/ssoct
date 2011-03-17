@@ -1,0 +1,484 @@
+<sld_project_info>
+  <hub_info ir_width="8" node_count="7"/>
+  <node_info>
+    <node hpath="OneBigTap:inst1|sld_signaltap:sld_signaltap_component" instance_id="0" mfg_id="110" node_id="2" sld_node_info="0x30106E00" version="6">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="sld_signaltap"/>
+        <parameter name="sld_node_info" type="dec" value="1076736"/>
+        <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
+        <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
+        <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
+        <parameter name="sld_data_bits" type="dec" value="66"/>
+        <parameter name="sld_trigger_bits" type="dec" value="1"/>
+        <parameter name="sld_node_crc_bits" type="dec" value="32"/>
+        <parameter name="sld_node_crc_hiword" type="dec" value="17301"/>
+        <parameter name="sld_node_crc_loword" type="dec" value="3828"/>
+        <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
+        <parameter name="sld_sample_depth" type="dec" value="0"/>
+        <parameter name="SLD_SEGMENT_SIZE" type="dec" value="0"/>
+        <parameter name="sld_ram_block_type" type="string" value="Auto"/>
+        <parameter name="SLD_STATE_BITS" type="dec" value="11"/>
+        <parameter name="SLD_BUFFER_FULL_STOP" type="dec" value="1"/>
+        <parameter name="sld_mem_address_bits" type="dec" value="0"/>
+        <parameter name="sld_data_bit_cntr_bits" type="dec" value="8"/>
+        <parameter name="sld_trigger_level" type="dec" value="1"/>
+        <parameter name="sld_trigger_in_enabled" type="dec" value="0"/>
+        <parameter name="sld_advanced_trigger_entity" type="string" value="basic,1,"/>
+        <parameter name="sld_trigger_level_pipeline" type="dec" value="1"/>
+        <parameter name="sld_enable_advanced_trigger" type="dec" value="0"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_1" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_2" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_3" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_4" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_5" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_6" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_7" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
+        <parameter name="SLD_INVERSION_MASK_LENGTH" type="dec" value="1"/>
+        <parameter name="SLD_INVERSION_MASK" type="ubin" value="0"/>
+        <parameter name="SLD_POWER_UP_TRIGGER" type="dec" value="0"/>
+        <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
+        <parameter name="SLD_STATE_FLOW_USE_GENERATED" type="dec" value="0"/>
+        <parameter name="SLD_CURRENT_RESOURCE_WIDTH" type="dec" value="0"/>
+        <parameter name="SLD_ATTRIBUTE_MEM_MODE" type="string" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_BITS" type="dec" value="1"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_GAP_RECORD" type="dec" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_MODE" type="string" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ENABLE_ADVANCED_CONDITION" type="dec" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH" type="dec" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ADVANCED_CONDITION_ENTITY" type="string" value="basic"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_PIPELINE" type="dec" value="0"/>
+      </parameters>
+      <inputs>
+        <port name="acq_clk" source="OneBigTap:inst1|acq_clk"/>
+        <port name="acq_data_in[0]" source="OneBigTap:inst1|acq_data_in[0]"/>
+        <port name="acq_data_in[1]" source="OneBigTap:inst1|acq_data_in[1]"/>
+        <port name="acq_data_in[2]" source="OneBigTap:inst1|acq_data_in[2]"/>
+        <port name="acq_data_in[3]" source="OneBigTap:inst1|acq_data_in[3]"/>
+        <port name="acq_data_in[4]" source="OneBigTap:inst1|acq_data_in[4]"/>
+        <port name="acq_data_in[5]" source="OneBigTap:inst1|acq_data_in[5]"/>
+        <port name="acq_data_in[6]" source="OneBigTap:inst1|acq_data_in[6]"/>
+        <port name="acq_data_in[7]" source="OneBigTap:inst1|acq_data_in[7]"/>
+        <port name="acq_data_in[8]" source="OneBigTap:inst1|acq_data_in[8]"/>
+        <port name="acq_data_in[9]" source="OneBigTap:inst1|acq_data_in[9]"/>
+        <port name="acq_data_in[10]" source="OneBigTap:inst1|acq_data_in[10]"/>
+        <port name="acq_data_in[11]" source="OneBigTap:inst1|acq_data_in[11]"/>
+        <port name="acq_data_in[12]" source="OneBigTap:inst1|acq_data_in[12]"/>
+        <port name="acq_data_in[13]" source="OneBigTap:inst1|acq_data_in[13]"/>
+        <port name="acq_data_in[14]" source="OneBigTap:inst1|acq_data_in[14]"/>
+        <port name="acq_data_in[15]" source="OneBigTap:inst1|acq_data_in[15]"/>
+        <port name="acq_data_in[16]" source="OneBigTap:inst1|acq_data_in[16]"/>
+        <port name="acq_data_in[17]" source="OneBigTap:inst1|acq_data_in[17]"/>
+        <port name="acq_data_in[18]" source="OneBigTap:inst1|acq_data_in[18]"/>
+        <port name="acq_data_in[19]" source="OneBigTap:inst1|acq_data_in[19]"/>
+        <port name="acq_data_in[20]" source="OneBigTap:inst1|acq_data_in[20]"/>
+        <port name="acq_data_in[21]" source="OneBigTap:inst1|acq_data_in[21]"/>
+        <port name="acq_data_in[22]" source="OneBigTap:inst1|acq_data_in[22]"/>
+        <port name="acq_data_in[23]" source="OneBigTap:inst1|acq_data_in[23]"/>
+        <port name="acq_data_in[24]" source="OneBigTap:inst1|acq_data_in[24]"/>
+        <port name="acq_data_in[25]" source="OneBigTap:inst1|acq_data_in[25]"/>
+        <port name="acq_data_in[26]" source="OneBigTap:inst1|acq_data_in[26]"/>
+        <port name="acq_data_in[27]" source="OneBigTap:inst1|acq_data_in[27]"/>
+        <port name="acq_data_in[28]" source="OneBigTap:inst1|acq_data_in[28]"/>
+        <port name="acq_data_in[29]" source="OneBigTap:inst1|acq_data_in[29]"/>
+        <port name="acq_data_in[30]" source="OneBigTap:inst1|acq_data_in[30]"/>
+        <port name="acq_data_in[31]" source="OneBigTap:inst1|acq_data_in[31]"/>
+        <port name="acq_data_in[32]" source="OneBigTap:inst1|acq_data_in[32]"/>
+        <port name="acq_data_in[33]" source="OneBigTap:inst1|acq_data_in[33]"/>
+        <port name="acq_data_in[34]" source="OneBigTap:inst1|acq_data_in[34]"/>
+        <port name="acq_data_in[35]" source="OneBigTap:inst1|acq_data_in[35]"/>
+        <port name="acq_data_in[36]" source="OneBigTap:inst1|acq_data_in[36]"/>
+        <port name="acq_data_in[37]" source="OneBigTap:inst1|acq_data_in[37]"/>
+        <port name="acq_data_in[38]" source="OneBigTap:inst1|acq_data_in[38]"/>
+        <port name="acq_data_in[39]" source="OneBigTap:inst1|acq_data_in[39]"/>
+        <port name="acq_data_in[40]" source="OneBigTap:inst1|acq_data_in[40]"/>
+        <port name="acq_data_in[41]" source="OneBigTap:inst1|acq_data_in[41]"/>
+        <port name="acq_data_in[42]" source="OneBigTap:inst1|acq_data_in[42]"/>
+        <port name="acq_data_in[43]" source="OneBigTap:inst1|acq_data_in[43]"/>
+        <port name="acq_data_in[44]" source="OneBigTap:inst1|acq_data_in[44]"/>
+        <port name="acq_data_in[45]" source="OneBigTap:inst1|acq_data_in[45]"/>
+        <port name="acq_data_in[46]" source="OneBigTap:inst1|acq_data_in[46]"/>
+        <port name="acq_data_in[47]" source="OneBigTap:inst1|acq_data_in[47]"/>
+        <port name="acq_data_in[48]" source="OneBigTap:inst1|acq_data_in[48]"/>
+        <port name="acq_data_in[49]" source="OneBigTap:inst1|acq_data_in[49]"/>
+        <port name="acq_data_in[50]" source="OneBigTap:inst1|acq_data_in[50]"/>
+        <port name="acq_data_in[51]" source="OneBigTap:inst1|acq_data_in[51]"/>
+        <port name="acq_data_in[52]" source="OneBigTap:inst1|acq_data_in[52]"/>
+        <port name="acq_data_in[53]" source="OneBigTap:inst1|acq_data_in[53]"/>
+        <port name="acq_data_in[54]" source="OneBigTap:inst1|acq_data_in[54]"/>
+        <port name="acq_data_in[55]" source="OneBigTap:inst1|acq_data_in[55]"/>
+        <port name="acq_data_in[56]" source="OneBigTap:inst1|acq_data_in[56]"/>
+        <port name="acq_data_in[57]" source="OneBigTap:inst1|acq_data_in[57]"/>
+        <port name="acq_data_in[58]" source="OneBigTap:inst1|acq_data_in[58]"/>
+        <port name="acq_data_in[59]" source="OneBigTap:inst1|acq_data_in[59]"/>
+        <port name="acq_data_in[60]" source="OneBigTap:inst1|acq_data_in[60]"/>
+        <port name="acq_data_in[61]" source="OneBigTap:inst1|acq_data_in[61]"/>
+        <port name="acq_data_in[62]" source="OneBigTap:inst1|acq_data_in[62]"/>
+        <port name="acq_data_in[63]" source="OneBigTap:inst1|acq_data_in[63]"/>
+        <port name="acq_data_in[64]" source="OneBigTap:inst1|acq_data_in[64]"/>
+        <port name="acq_data_in[65]" source="OneBigTap:inst1|acq_data_in[65]"/>
+        <port name="acq_trigger_in[0]" source="OneBigTap:inst1|acq_trigger_in[0]"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_raw_tck" source="jtag.bp.inst1_sld_signaltap_component_raw_tck"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_tdi" source="jtag.bp.inst1_sld_signaltap_component_tdi"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_usr1" source="jtag.bp.inst1_sld_signaltap_component_usr1"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_rti" source="jtag.bp.inst1_sld_signaltap_component_rti"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_shift" source="jtag.bp.inst1_sld_signaltap_component_shift"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_update" source="jtag.bp.inst1_sld_signaltap_component_update"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_jtag_state_cdr" source="jtag.bp.inst1_sld_signaltap_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_jtag_state_sdr" source="jtag.bp.inst1_sld_signaltap_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_jtag_state_e1dr" source="jtag.bp.inst1_sld_signaltap_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_jtag_state_udr" source="jtag.bp.inst1_sld_signaltap_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_jtag_state_uir" source="jtag.bp.inst1_sld_signaltap_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_clr" source="jtag.bp.inst1_sld_signaltap_component_clr"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ena" source="jtag.bp.inst1_sld_signaltap_component_ena"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_0_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_0_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_1_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_1_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_2_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_2_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_3_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_3_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_4_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_4_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_5_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_5_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_6_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_6_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_in_7_" source="jtag.bp.inst1_sld_signaltap_component_ir_in_7_"/>
+      </inputs>
+      <outputs>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_0_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_1_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_2_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_3_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_4_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_5_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_6_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_ir_out_7_"/>
+        <port name="jtag.bp.inst1_sld_signaltap_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="sine_1:inst35|altsource_probe:altsource_probe_component" instance_id="0" mfg_id="110" node_id="9" sld_node_info="0x486E00" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="sin1"/>
+        <parameter name="probe_width" type="dec" value="13"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value="0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="sine_1:inst35|probe[0]"/>
+        <port name="probe[1]" source="sine_1:inst35|probe[1]"/>
+        <port name="probe[2]" source="sine_1:inst35|probe[2]"/>
+        <port name="probe[3]" source="sine_1:inst35|probe[3]"/>
+        <port name="probe[4]" source="sine_1:inst35|probe[4]"/>
+        <port name="probe[5]" source="sine_1:inst35|probe[5]"/>
+        <port name="probe[6]" source="sine_1:inst35|probe[6]"/>
+        <port name="probe[7]" source="sine_1:inst35|probe[7]"/>
+        <port name="probe[8]" source="sine_1:inst35|probe[8]"/>
+        <port name="probe[9]" source="sine_1:inst35|probe[9]"/>
+        <port name="probe[10]" source="sine_1:inst35|probe[10]"/>
+        <port name="probe[11]" source="sine_1:inst35|probe[11]"/>
+        <port name="probe[12]" source="sine_1:inst35|probe[12]"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_raw_tck" source="jtag.bp.inst35_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_tdi" source="jtag.bp.inst35_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_usr1" source="jtag.bp.inst35_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_cdr" source="jtag.bp.inst35_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_sdr" source="jtag.bp.inst35_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.inst35_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_udr" source="jtag.bp.inst35_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_cir" source="jtag.bp.inst35_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_uir" source="jtag.bp.inst35_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_jtag_state_tlr" source="jtag.bp.inst35_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_clrn" source="jtag.bp.inst35_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ena" source="jtag.bp.inst35_altsource_probe_component_ena"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_in_0_" source="jtag.bp.inst35_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_in_1_" source="jtag.bp.inst35_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_in_2_" source="jtag.bp.inst35_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_in_3_" source="jtag.bp.inst35_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.inst35_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="sine_10:inst36|altsource_probe:altsource_probe_component" instance_id="1" mfg_id="110" node_id="9" sld_node_info="0x486E01" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="si10"/>
+        <parameter name="probe_width" type="dec" value="13"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value="0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="sine_10:inst36|probe[0]"/>
+        <port name="probe[1]" source="sine_10:inst36|probe[1]"/>
+        <port name="probe[2]" source="sine_10:inst36|probe[2]"/>
+        <port name="probe[3]" source="sine_10:inst36|probe[3]"/>
+        <port name="probe[4]" source="sine_10:inst36|probe[4]"/>
+        <port name="probe[5]" source="sine_10:inst36|probe[5]"/>
+        <port name="probe[6]" source="sine_10:inst36|probe[6]"/>
+        <port name="probe[7]" source="sine_10:inst36|probe[7]"/>
+        <port name="probe[8]" source="sine_10:inst36|probe[8]"/>
+        <port name="probe[9]" source="sine_10:inst36|probe[9]"/>
+        <port name="probe[10]" source="sine_10:inst36|probe[10]"/>
+        <port name="probe[11]" source="sine_10:inst36|probe[11]"/>
+        <port name="probe[12]" source="sine_10:inst36|probe[12]"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_raw_tck" source="jtag.bp.inst36_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_tdi" source="jtag.bp.inst36_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_usr1" source="jtag.bp.inst36_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_cdr" source="jtag.bp.inst36_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_sdr" source="jtag.bp.inst36_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.inst36_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_udr" source="jtag.bp.inst36_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_cir" source="jtag.bp.inst36_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_uir" source="jtag.bp.inst36_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_jtag_state_tlr" source="jtag.bp.inst36_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_clrn" source="jtag.bp.inst36_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ena" source="jtag.bp.inst36_altsource_probe_component_ena"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_in_0_" source="jtag.bp.inst36_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_in_1_" source="jtag.bp.inst36_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_in_2_" source="jtag.bp.inst36_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_in_3_" source="jtag.bp.inst36_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.inst36_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="p_sine:inst37|altsource_probe:altsource_probe_component" instance_id="2" mfg_id="110" node_id="9" sld_node_info="0x486E02" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="sine"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value="0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="p_sine:inst37|probe[0]"/>
+        <port name="probe[1]" source="p_sine:inst37|probe[1]"/>
+        <port name="probe[2]" source="p_sine:inst37|probe[2]"/>
+        <port name="probe[3]" source="p_sine:inst37|probe[3]"/>
+        <port name="probe[4]" source="p_sine:inst37|probe[4]"/>
+        <port name="probe[5]" source="p_sine:inst37|probe[5]"/>
+        <port name="probe[6]" source="p_sine:inst37|probe[6]"/>
+        <port name="probe[7]" source="p_sine:inst37|probe[7]"/>
+        <port name="probe[8]" source="p_sine:inst37|probe[8]"/>
+        <port name="probe[9]" source="p_sine:inst37|probe[9]"/>
+        <port name="probe[10]" source="p_sine:inst37|probe[10]"/>
+        <port name="probe[11]" source="p_sine:inst37|probe[11]"/>
+        <port name="probe[12]" source="p_sine:inst37|probe[12]"/>
+        <port name="probe[13]" source="p_sine:inst37|probe[13]"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_raw_tck" source="jtag.bp.inst37_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_tdi" source="jtag.bp.inst37_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_usr1" source="jtag.bp.inst37_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_cdr" source="jtag.bp.inst37_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_sdr" source="jtag.bp.inst37_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.inst37_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_udr" source="jtag.bp.inst37_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_cir" source="jtag.bp.inst37_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_uir" source="jtag.bp.inst37_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_jtag_state_tlr" source="jtag.bp.inst37_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_clrn" source="jtag.bp.inst37_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ena" source="jtag.bp.inst37_altsource_probe_component_ena"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_in_0_" source="jtag.bp.inst37_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_in_1_" source="jtag.bp.inst37_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_in_2_" source="jtag.bp.inst37_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_in_3_" source="jtag.bp.inst37_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.inst37_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="a2d_data:inst38|altsource_probe:altsource_probe_component" instance_id="3" mfg_id="110" node_id="9" sld_node_info="0x486E03" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="a2dd"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value="0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="a2d_data:inst38|probe[0]"/>
+        <port name="probe[1]" source="a2d_data:inst38|probe[1]"/>
+        <port name="probe[2]" source="a2d_data:inst38|probe[2]"/>
+        <port name="probe[3]" source="a2d_data:inst38|probe[3]"/>
+        <port name="probe[4]" source="a2d_data:inst38|probe[4]"/>
+        <port name="probe[5]" source="a2d_data:inst38|probe[5]"/>
+        <port name="probe[6]" source="a2d_data:inst38|probe[6]"/>
+        <port name="probe[7]" source="a2d_data:inst38|probe[7]"/>
+        <port name="probe[8]" source="a2d_data:inst38|probe[8]"/>
+        <port name="probe[9]" source="a2d_data:inst38|probe[9]"/>
+        <port name="probe[10]" source="a2d_data:inst38|probe[10]"/>
+        <port name="probe[11]" source="a2d_data:inst38|probe[11]"/>
+        <port name="probe[12]" source="a2d_data:inst38|probe[12]"/>
+        <port name="probe[13]" source="a2d_data:inst38|probe[13]"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_raw_tck" source="jtag.bp.inst38_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_tdi" source="jtag.bp.inst38_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_usr1" source="jtag.bp.inst38_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_cdr" source="jtag.bp.inst38_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_sdr" source="jtag.bp.inst38_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.inst38_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_udr" source="jtag.bp.inst38_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_cir" source="jtag.bp.inst38_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_uir" source="jtag.bp.inst38_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_jtag_state_tlr" source="jtag.bp.inst38_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_clrn" source="jtag.bp.inst38_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ena" source="jtag.bp.inst38_altsource_probe_component_ena"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_in_0_" source="jtag.bp.inst38_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_in_1_" source="jtag.bp.inst38_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_in_2_" source="jtag.bp.inst38_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_in_3_" source="jtag.bp.inst38_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.inst38_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="fir_out:inst39|altsource_probe:altsource_probe_component" instance_id="4" mfg_id="110" node_id="9" sld_node_info="0x486E04" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="fir0"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value="0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="fir_out:inst39|probe[0]"/>
+        <port name="probe[1]" source="fir_out:inst39|probe[1]"/>
+        <port name="probe[2]" source="fir_out:inst39|probe[2]"/>
+        <port name="probe[3]" source="fir_out:inst39|probe[3]"/>
+        <port name="probe[4]" source="fir_out:inst39|probe[4]"/>
+        <port name="probe[5]" source="fir_out:inst39|probe[5]"/>
+        <port name="probe[6]" source="fir_out:inst39|probe[6]"/>
+        <port name="probe[7]" source="fir_out:inst39|probe[7]"/>
+        <port name="probe[8]" source="fir_out:inst39|probe[8]"/>
+        <port name="probe[9]" source="fir_out:inst39|probe[9]"/>
+        <port name="probe[10]" source="fir_out:inst39|probe[10]"/>
+        <port name="probe[11]" source="fir_out:inst39|probe[11]"/>
+        <port name="probe[12]" source="fir_out:inst39|probe[12]"/>
+        <port name="probe[13]" source="fir_out:inst39|probe[13]"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_raw_tck" source="jtag.bp.inst39_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_tdi" source="jtag.bp.inst39_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_usr1" source="jtag.bp.inst39_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_cdr" source="jtag.bp.inst39_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_sdr" source="jtag.bp.inst39_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.inst39_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_udr" source="jtag.bp.inst39_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_cir" source="jtag.bp.inst39_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_uir" source="jtag.bp.inst39_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_jtag_state_tlr" source="jtag.bp.inst39_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_clrn" source="jtag.bp.inst39_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ena" source="jtag.bp.inst39_altsource_probe_component_ena"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_in_0_" source="jtag.bp.inst39_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_in_1_" source="jtag.bp.inst39_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_in_2_" source="jtag.bp.inst39_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_in_3_" source="jtag.bp.inst39_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.inst39_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="sld_signaltap:auto_signaltap_0" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="sld_signaltap"/>
+        <parameter name="sld_node_info" type="unknown" value="805334528"/>
+        <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
+        <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
+        <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
+        <parameter name="sld_data_bits" type="unknown" value="68"/>
+        <parameter name="sld_trigger_bits" type="unknown" value="68"/>
+        <parameter name="SLD_NODE_CRC_BITS" type="dec" value="32"/>
+        <parameter name="sld_node_crc_hiword" type="unknown" value="4469"/>
+        <parameter name="sld_node_crc_loword" type="unknown" value="25412"/>
+        <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
+        <parameter name="sld_sample_depth" type="unknown" value="2048"/>
+        <parameter name="sld_segment_size" type="unknown" value="2048"/>
+        <parameter name="sld_ram_block_type" type="unknown" value="AUTO"/>
+        <parameter name="sld_state_bits" type="unknown" value="11"/>
+        <parameter name="sld_buffer_full_stop" type="unknown" value="1"/>
+        <parameter name="SLD_MEM_ADDRESS_BITS" type="dec" value="7"/>
+        <parameter name="SLD_DATA_BIT_CNTR_BITS" type="dec" value="4"/>
+        <parameter name="sld_trigger_level" type="unknown" value="1"/>
+        <parameter name="sld_trigger_in_enabled" type="unknown" value="1"/>
+        <parameter name="sld_advanced_trigger_entity" type="unknown" value="basic,1,"/>
+        <parameter name="sld_trigger_level_pipeline" type="unknown" value="1"/>
+        <parameter name="sld_enable_advanced_trigger" type="unknown" value="0"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_1" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_2" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_3" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_4" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_5" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_6" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_7" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
+        <parameter name="sld_inversion_mask_length" type="unknown" value="229"/>
+        <parameter name="sld_inversion_mask" type="unknown" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+        <parameter name="sld_power_up_trigger" type="unknown" value="0"/>
+        <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
+        <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>
+        <parameter name="sld_current_resource_width" type="unknown" value="1"/>
+        <parameter name="sld_attribute_mem_mode" type="unknown" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_BITS" type="dec" value="1"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_GAP_RECORD" type="dec" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_MODE" type="string" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ENABLE_ADVANCED_CONDITION" type="dec" value="0"/>
+        <parameter name="sld_storage_qualifier_inversion_mask_length" type="unknown" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ADVANCED_CONDITION_ENTITY" type="string" value="basic"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_PIPELINE" type="dec" value="0"/>
+      </parameters>
+      <inputs/>
+      <outputs/>
+    </node>
+  </node_info>
+</sld_project_info>

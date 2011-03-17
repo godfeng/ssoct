@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pin_planner>
+	<pin_info>
+		<pin name="PLL_CLKIN_p" source="Assignments" diff_pair_node="PLL_CLKIN_p(n)" >
+		</pin>
+		<pin name="ETH_RX_p[0]" source="Assignments" diff_pair_node="ETH_RX_p[0](n)" >
+		</pin>
+		<pin name="ETH_TX_p[0]" source="Assignments" diff_pair_node="ETH_TX_p[0](n)" >
+		</pin>
+		<pin name="ETH_RX_p[1]" source="Assignments" diff_pair_node="ETH_RX_p[1](n)" >
+		</pin>
+		<pin name="ETH_TX_p[1]" source="Assignments" diff_pair_node="ETH_TX_p[1](n)" >
+		</pin>
+		<pin name="ETH_RX_p[2]" source="Assignments" diff_pair_node="ETH_RX_p[2](n)" >
+		</pin>
+		<pin name="ETH_TX_p[2]" source="Assignments" diff_pair_node="ETH_TX_p[2](n)" >
+		</pin>
+		<pin name="ETH_RX_p[3]" source="Assignments" diff_pair_node="ETH_RX_p[3](n)" >
+		</pin>
+		<pin name="ETH_TX_p[3]" source="Assignments" diff_pair_node="ETH_TX_p[3](n)" >
+		</pin>
+	</pin_info>
+	<buses>
+	</buses>
+	<group_file_association>
+	</group_file_association>
+	<pin_planner_file_specifies>
+	</pin_planner_file_specifies>
+</pin_planner>

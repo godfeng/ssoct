@@ -1,0 +1,9 @@
+set_global_assignment -name VHDL_FILE [file join C:/altera/72sp3/ip/fir_compiler/lib "auk_dspip_lib_pkg_fir_72.vhd"]
+set_global_assignment -name VHDL_FILE [file join C:/altera/72sp3/ip/fir_compiler/lib "auk_dspip_math_pkg_fir_72.vhd"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "fir_3mhz_low_st.v"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) "fir_3mhz_low_ast.vhd"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "fir_3mhz_low.v"]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) "FIR_3mhz_low_ast.vhd"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "FIR_3mhz_low_st.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "FIR_3mhz_low.v"]
+set_global_assignment -name SEARCH_PATH  C:/altera/72sp3/ip/fir_compiler/lib

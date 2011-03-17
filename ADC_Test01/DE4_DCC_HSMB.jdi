@@ -1,0 +1,386 @@
+<sld_project_info>
+  <hub_info ir_width="8" node_count="7"/>
+  <node_info>
+    <node hpath="sine_1:sin1_inst|altsource_probe:altsource_probe_component" instance_id="0" mfg_id="110" node_id="9" sld_node_info="0x486E00" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="sin1"/>
+        <parameter name="probe_width" type="dec" value="13"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="sine_1:sin1_inst|probe[0]"/>
+        <port name="probe[1]" source="sine_1:sin1_inst|probe[1]"/>
+        <port name="probe[2]" source="sine_1:sin1_inst|probe[2]"/>
+        <port name="probe[3]" source="sine_1:sin1_inst|probe[3]"/>
+        <port name="probe[4]" source="sine_1:sin1_inst|probe[4]"/>
+        <port name="probe[5]" source="sine_1:sin1_inst|probe[5]"/>
+        <port name="probe[6]" source="sine_1:sin1_inst|probe[6]"/>
+        <port name="probe[7]" source="sine_1:sin1_inst|probe[7]"/>
+        <port name="probe[8]" source="sine_1:sin1_inst|probe[8]"/>
+        <port name="probe[9]" source="sine_1:sin1_inst|probe[9]"/>
+        <port name="probe[10]" source="sine_1:sin1_inst|probe[10]"/>
+        <port name="probe[11]" source="sine_1:sin1_inst|probe[11]"/>
+        <port name="probe[12]" source="sine_1:sin1_inst|probe[12]"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_raw_tck" source="jtag.bp.sin1_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_tdi" source="jtag.bp.sin1_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_usr1" source="jtag.bp.sin1_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.sin1_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_clrn" source="jtag.bp.sin1_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ena" source="jtag.bp.sin1_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.sin1_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.sin1_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.sin1_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.sin1_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.sin1_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="sine_10:sin10_inst|altsource_probe:altsource_probe_component" instance_id="1" mfg_id="110" node_id="9" sld_node_info="0x486E01" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="si10"/>
+        <parameter name="probe_width" type="dec" value="13"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="sine_10:sin10_inst|probe[0]"/>
+        <port name="probe[1]" source="sine_10:sin10_inst|probe[1]"/>
+        <port name="probe[2]" source="sine_10:sin10_inst|probe[2]"/>
+        <port name="probe[3]" source="sine_10:sin10_inst|probe[3]"/>
+        <port name="probe[4]" source="sine_10:sin10_inst|probe[4]"/>
+        <port name="probe[5]" source="sine_10:sin10_inst|probe[5]"/>
+        <port name="probe[6]" source="sine_10:sin10_inst|probe[6]"/>
+        <port name="probe[7]" source="sine_10:sin10_inst|probe[7]"/>
+        <port name="probe[8]" source="sine_10:sin10_inst|probe[8]"/>
+        <port name="probe[9]" source="sine_10:sin10_inst|probe[9]"/>
+        <port name="probe[10]" source="sine_10:sin10_inst|probe[10]"/>
+        <port name="probe[11]" source="sine_10:sin10_inst|probe[11]"/>
+        <port name="probe[12]" source="sine_10:sin10_inst|probe[12]"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_raw_tck" source="jtag.bp.sin10_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_tdi" source="jtag.bp.sin10_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_usr1" source="jtag.bp.sin10_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.sin10_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_clrn" source="jtag.bp.sin10_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ena" source="jtag.bp.sin10_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.sin10_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.sin10_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.sin10_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.sin10_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.sin10_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="p_sine:p_sine_inst|altsource_probe:altsource_probe_component" instance_id="2" mfg_id="110" node_id="9" sld_node_info="0x486E02" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="sine"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="p_sine:p_sine_inst|probe[0]"/>
+        <port name="probe[1]" source="p_sine:p_sine_inst|probe[1]"/>
+        <port name="probe[2]" source="p_sine:p_sine_inst|probe[2]"/>
+        <port name="probe[3]" source="p_sine:p_sine_inst|probe[3]"/>
+        <port name="probe[4]" source="p_sine:p_sine_inst|probe[4]"/>
+        <port name="probe[5]" source="p_sine:p_sine_inst|probe[5]"/>
+        <port name="probe[6]" source="p_sine:p_sine_inst|probe[6]"/>
+        <port name="probe[7]" source="p_sine:p_sine_inst|probe[7]"/>
+        <port name="probe[8]" source="p_sine:p_sine_inst|probe[8]"/>
+        <port name="probe[9]" source="p_sine:p_sine_inst|probe[9]"/>
+        <port name="probe[10]" source="p_sine:p_sine_inst|probe[10]"/>
+        <port name="probe[11]" source="p_sine:p_sine_inst|probe[11]"/>
+        <port name="probe[12]" source="p_sine:p_sine_inst|probe[12]"/>
+        <port name="probe[13]" source="p_sine:p_sine_inst|probe[13]"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_raw_tck" source="jtag.bp.p_sine_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_tdi" source="jtag.bp.p_sine_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_usr1" source="jtag.bp.p_sine_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.p_sine_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_clrn" source="jtag.bp.p_sine_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ena" source="jtag.bp.p_sine_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.p_sine_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.p_sine_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="a2d_data_a:a2d_data_a_inst|altsource_probe:altsource_probe_component" instance_id="3" mfg_id="110" node_id="9" sld_node_info="0x486E03" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="a2da"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="a2d_data_a:a2d_data_a_inst|probe[0]"/>
+        <port name="probe[1]" source="a2d_data_a:a2d_data_a_inst|probe[1]"/>
+        <port name="probe[2]" source="a2d_data_a:a2d_data_a_inst|probe[2]"/>
+        <port name="probe[3]" source="a2d_data_a:a2d_data_a_inst|probe[3]"/>
+        <port name="probe[4]" source="a2d_data_a:a2d_data_a_inst|probe[4]"/>
+        <port name="probe[5]" source="a2d_data_a:a2d_data_a_inst|probe[5]"/>
+        <port name="probe[6]" source="a2d_data_a:a2d_data_a_inst|probe[6]"/>
+        <port name="probe[7]" source="a2d_data_a:a2d_data_a_inst|probe[7]"/>
+        <port name="probe[8]" source="a2d_data_a:a2d_data_a_inst|probe[8]"/>
+        <port name="probe[9]" source="a2d_data_a:a2d_data_a_inst|probe[9]"/>
+        <port name="probe[10]" source="a2d_data_a:a2d_data_a_inst|probe[10]"/>
+        <port name="probe[11]" source="a2d_data_a:a2d_data_a_inst|probe[11]"/>
+        <port name="probe[12]" source="a2d_data_a:a2d_data_a_inst|probe[12]"/>
+        <port name="probe[13]" source="a2d_data_a:a2d_data_a_inst|probe[13]"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_raw_tck" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_tdi" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_usr1" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_clrn" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ena" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.a2d_data_a_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="a2d_data_b:a2d_data_b_inst|altsource_probe:altsource_probe_component" instance_id="4" mfg_id="110" node_id="9" sld_node_info="0x486E04" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="a2db"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="a2d_data_b:a2d_data_b_inst|probe[0]"/>
+        <port name="probe[1]" source="a2d_data_b:a2d_data_b_inst|probe[1]"/>
+        <port name="probe[2]" source="a2d_data_b:a2d_data_b_inst|probe[2]"/>
+        <port name="probe[3]" source="a2d_data_b:a2d_data_b_inst|probe[3]"/>
+        <port name="probe[4]" source="a2d_data_b:a2d_data_b_inst|probe[4]"/>
+        <port name="probe[5]" source="a2d_data_b:a2d_data_b_inst|probe[5]"/>
+        <port name="probe[6]" source="a2d_data_b:a2d_data_b_inst|probe[6]"/>
+        <port name="probe[7]" source="a2d_data_b:a2d_data_b_inst|probe[7]"/>
+        <port name="probe[8]" source="a2d_data_b:a2d_data_b_inst|probe[8]"/>
+        <port name="probe[9]" source="a2d_data_b:a2d_data_b_inst|probe[9]"/>
+        <port name="probe[10]" source="a2d_data_b:a2d_data_b_inst|probe[10]"/>
+        <port name="probe[11]" source="a2d_data_b:a2d_data_b_inst|probe[11]"/>
+        <port name="probe[12]" source="a2d_data_b:a2d_data_b_inst|probe[12]"/>
+        <port name="probe[13]" source="a2d_data_b:a2d_data_b_inst|probe[13]"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_raw_tck" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_tdi" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_usr1" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_clrn" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ena" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.a2d_data_b_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="fir_out:fir_out_inst|altsource_probe:altsource_probe_component" instance_id="5" mfg_id="110" node_id="9" sld_node_info="0x486E05" version="0">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="altsource_probe"/>
+        <parameter name="lpm_hint" type="string" value="UNUSED"/>
+        <parameter name="sld_auto_instance_index" type="string" value="YES"/>
+        <parameter name="sld_instance_index" type="dec" value="0"/>
+        <parameter name="SLD_NODE_INFO" type="dec" value="4746752"/>
+        <parameter name="sld_ir_width" type="dec" value="4"/>
+        <parameter name="instance_id" type="string" value="fir0"/>
+        <parameter name="probe_width" type="dec" value="14"/>
+        <parameter name="source_width" type="dec" value="1"/>
+        <parameter name="source_initial_value" type="string" value=" 0"/>
+        <parameter name="enable_metastability" type="string" value="NO"/>
+      </parameters>
+      <inputs>
+        <port name="probe[0]" source="fir_out:fir_out_inst|probe[0]"/>
+        <port name="probe[1]" source="fir_out:fir_out_inst|probe[1]"/>
+        <port name="probe[2]" source="fir_out:fir_out_inst|probe[2]"/>
+        <port name="probe[3]" source="fir_out:fir_out_inst|probe[3]"/>
+        <port name="probe[4]" source="fir_out:fir_out_inst|probe[4]"/>
+        <port name="probe[5]" source="fir_out:fir_out_inst|probe[5]"/>
+        <port name="probe[6]" source="fir_out:fir_out_inst|probe[6]"/>
+        <port name="probe[7]" source="fir_out:fir_out_inst|probe[7]"/>
+        <port name="probe[8]" source="fir_out:fir_out_inst|probe[8]"/>
+        <port name="probe[9]" source="fir_out:fir_out_inst|probe[9]"/>
+        <port name="probe[10]" source="fir_out:fir_out_inst|probe[10]"/>
+        <port name="probe[11]" source="fir_out:fir_out_inst|probe[11]"/>
+        <port name="probe[12]" source="fir_out:fir_out_inst|probe[12]"/>
+        <port name="probe[13]" source="fir_out:fir_out_inst|probe[13]"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_raw_tck" source="jtag.bp.fir_out_inst_altsource_probe_component_raw_tck"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_tdi" source="jtag.bp.fir_out_inst_altsource_probe_component_tdi"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_usr1" source="jtag.bp.fir_out_inst_altsource_probe_component_usr1"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_cdr" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_cdr"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_sdr" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_sdr"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_e1dr" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_udr" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_udr"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_cir" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_cir"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_uir" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_uir"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_tlr" source="jtag.bp.fir_out_inst_altsource_probe_component_jtag_state_tlr"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_clrn" source="jtag.bp.fir_out_inst_altsource_probe_component_clrn"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ena" source="jtag.bp.fir_out_inst_altsource_probe_component_ena"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_0_" source="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_0_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_1_" source="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_1_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_2_" source="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_2_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_3_" source="jtag.bp.fir_out_inst_altsource_probe_component_ir_in_3_"/>
+      </inputs>
+      <outputs>
+        <port name="source[0]"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_out_0_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_out_1_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_out_2_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_ir_out_3_"/>
+        <port name="jtag.bp.fir_out_inst_altsource_probe_component_tdo"/>
+      </outputs>
+    </node>
+    <node hpath="sld_signaltap:auto_signaltap_0" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
+      <parameters>
+        <parameter name="lpm_type" type="string" value="sld_signaltap"/>
+        <parameter name="sld_node_info" type="unknown" value="805334528"/>
+        <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
+        <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
+        <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
+        <parameter name="sld_data_bits" type="unknown" value="82"/>
+        <parameter name="sld_trigger_bits" type="unknown" value="82"/>
+        <parameter name="SLD_NODE_CRC_BITS" type="dec" value="32"/>
+        <parameter name="sld_node_crc_hiword" type="unknown" value="20997"/>
+        <parameter name="sld_node_crc_loword" type="unknown" value="16720"/>
+        <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
+        <parameter name="sld_sample_depth" type="unknown" value="2048"/>
+        <parameter name="sld_segment_size" type="unknown" value="2048"/>
+        <parameter name="sld_ram_block_type" type="unknown" value="AUTO"/>
+        <parameter name="sld_state_bits" type="unknown" value="11"/>
+        <parameter name="sld_buffer_full_stop" type="unknown" value="1"/>
+        <parameter name="SLD_MEM_ADDRESS_BITS" type="dec" value="7"/>
+        <parameter name="SLD_DATA_BIT_CNTR_BITS" type="dec" value="4"/>
+        <parameter name="sld_trigger_level" type="unknown" value="1"/>
+        <parameter name="sld_trigger_in_enabled" type="unknown" value="0"/>
+        <parameter name="sld_advanced_trigger_entity" type="unknown" value="basic,1,"/>
+        <parameter name="sld_trigger_level_pipeline" type="unknown" value="1"/>
+        <parameter name="sld_enable_advanced_trigger" type="unknown" value="0"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_1" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_2" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_3" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_4" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_5" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_6" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_7" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
+        <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
+        <parameter name="sld_inversion_mask_length" type="unknown" value="271"/>
+        <parameter name="sld_inversion_mask" type="unknown" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+        <parameter name="sld_power_up_trigger" type="unknown" value="0"/>
+        <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
+        <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>
+        <parameter name="sld_current_resource_width" type="unknown" value="1"/>
+        <parameter name="sld_attribute_mem_mode" type="unknown" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_BITS" type="dec" value="1"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_GAP_RECORD" type="dec" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_MODE" type="string" value="OFF"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ENABLE_ADVANCED_CONDITION" type="dec" value="0"/>
+        <parameter name="sld_storage_qualifier_inversion_mask_length" type="unknown" value="0"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_ADVANCED_CONDITION_ENTITY" type="string" value="basic"/>
+        <parameter name="SLD_STORAGE_QUALIFIER_PIPELINE" type="dec" value="0"/>
+      </parameters>
+      <inputs/>
+      <outputs/>
+    </node>
+  </node_info>
+</sld_project_info>

@@ -1,0 +1,5 @@
+PLL_Name	altpll0:inst|altpll:altpll_component|altpll_ams2:auto_generated|pll1
+PLLJITTER	28
+PLLSPEmax	40
+PLLSPEmin	-40
+
