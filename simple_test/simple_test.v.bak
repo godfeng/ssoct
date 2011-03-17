@@ -6,7 +6,7 @@
 module simple_test(
 
 	//////////// CLOCK //////////
-	GCLKIN,
+	GCLKIN,									// 50 KHz Sweep Trigger
 	GCLKOUT_FPGA,
 	OSC_50_BANK2,
 	OSC_50_BANK3,
@@ -62,20 +62,6 @@ module simple_test(
 	SSRAM_OE_n,
 	SSRAM_WE_n,
 
-	//////////// 3-Ports High-Speed USB OTG //////////
-	OTG_A,
-	OTG_CS_n,
-	OTG_D,
-	OTG_DC_DACK,
-	OTG_DC_DREQ,
-	OTG_DC_IRQ,
-	OTG_HC_DACK,
-	OTG_HC_DREQ,
-	OTG_HC_IRQ,
-	OTG_OE_n,
-	OTG_RESET_n,
-	OTG_WE_n,
-
 	//////////// HSMC-B, HSMC-B connect to None //////////
 	AD_SCLK,
 	AD_SDIO,
@@ -123,7 +109,7 @@ module simple_test(
 //=======================================================
 
 //////////// CLOCK //////////
-input		          		GCLKIN;
+input		          		GCLKIN;			// 50 KHz Sweep Trigger
 output		          		GCLKOUT_FPGA;
 input		          		OSC_50_BANK2;
 input		          		OSC_50_BANK3;
@@ -179,20 +165,6 @@ output		          		SSRAM_CLK;
 output		          		SSRAM_OE_n;
 output		          		SSRAM_WE_n;
 
-//////////// 3-Ports High-Speed USB OTG //////////
-output		    [17:1]		OTG_A;
-output		          		OTG_CS_n;
-inout		    [31:0]		OTG_D;
-output		          		OTG_DC_DACK;
-input		          		OTG_DC_DREQ;
-input		          		OTG_DC_IRQ;
-output		          		OTG_HC_DACK;
-input		          		OTG_HC_DREQ;
-input		          		OTG_HC_IRQ;
-output		          		OTG_OE_n;
-output		          		OTG_RESET_n;
-output		          		OTG_WE_n;
-
 //////////// HSMC-B, HSMC-B connect to None //////////
 inout		          		AD_SCLK;
 inout		          		AD_SDIO;
@@ -238,7 +210,6 @@ wire						sys_clk;
 wire						heartbeat;
 
 
-
 //=======================================================
 //  External PLL Configuration ==========================
 //=======================================================
@@ -253,9 +224,9 @@ reg   [7:0]  auto_set_counter;
 reg          conf_wr;
 
 //  Structural coding
-assign clk1_set_wr = 4'd4; //100 MHZ
-assign clk2_set_wr = 4'd4; //100 MHZ
-assign clk3_set_wr = 4'd4; //100 MHZ
+assign clk1_set_wr = 4'd0; //Unchange MHZ
+assign clk2_set_wr = 4'd0; //Unchange MHZ
+assign clk3_set_wr = 4'd0; //Unchange MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -306,30 +277,30 @@ ext_pll_ctrl ext_pll_ctrl_Inst(
 //=======================================================
 //  Structural coding
 //=======================================================
-
 //--- globa signal assign
 //assign	reset_n			= CPU_RESET_n;
 assign	FAN_CTRL		= 1'bz;
-assign	heartbeat		= count[24];		// heartbeat (bit24)
+assign	heartbeat		= count[15];		// heartbeat (bit15)
 assign	LED[7] 			= heartbeat;		// heartbeat wire
 // 7 Segment Display dot
 assign	SEG0_DP 		= ~heartbeat;		// LED[7] inverted
 
 // 7 segment module 0 (faster count)
-SevenSegmentDisplayDecoder(SEG0_D, count[27:24]);
+SevenSegmentDisplayDecoder(SEG0_D, count[12:9]);
 
 // 7 segment module 1 (slower count)
-SevenSegmentDisplayDecoder(SEG1_D, count[31:28]);
-//--- count for Heartbeat
+SevenSegmentDisplayDecoder(SEG1_D, count[8:5]);
+//--- count for Heartbeat (decreasing)
 reg		[31:0]				count;
-always @(negedge rstn or posedge OSC_50_BANK2)
+always @(negedge rstn or negedge GCLKIN)
 begin
 	if (!rstn) begin
 		count	<= 0;
 	end
 	else begin
-		count	<= count + 1'b1;
+		count	<= count - 1'b1;
 	end
 end
+
 
 endmodule

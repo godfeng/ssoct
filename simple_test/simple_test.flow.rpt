@@ -1,5 +1,5 @@
 Flow report for simple_test
-Tue Mar 15 17:01:59 2011
+Thu Mar 17 15:38:09 2011
 Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +-----------------------------------+-----------------------------------------------+
-; Flow Status                       ; Successful - Tue Mar 15 17:01:59 2011         ;
+; Flow Status                       ; Successful - Thu Mar 17 15:38:09 2011         ;
 ; Quartus II 64-Bit Version         ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
 ; Revision Name                     ; simple_test                                   ;
 ; Top-level Entity Name             ; simple_test                                   ;
@@ -47,11 +47,11 @@ applicable agreement for further details.
 ; Timing Models                     ; Final                                         ;
 ; Met timing requirements           ; N/A                                           ;
 ; Logic utilization                 ; < 1 %                                         ;
-;     Combinational ALUTs           ; 90 / 182,400 ( < 1 % )                        ;
+;     Combinational ALUTs           ; 82 / 182,400 ( < 1 % )                        ;
 ;     Memory ALUTs                  ; 0 / 91,200 ( 0 % )                            ;
-;     Dedicated logic registers     ; 62 / 182,400 ( < 1 % )                        ;
-; Total registers                   ; 62                                            ;
-; Total pins                        ; 263 / 888 ( 30 % )                            ;
+;     Dedicated logic registers     ; 54 / 182,400 ( < 1 % )                        ;
+; Total registers                   ; 54                                            ;
+; Total pins                        ; 204 / 888 ( 23 % )                            ;
 ; Total virtual pins                ; 0                                             ;
 ; Total block memory bits           ; 0 / 14,625,792 ( 0 % )                        ;
 ; DSP block 18-bit elements         ; 0 / 1,288 ( 0 % )                             ;
@@ -69,21 +69,24 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/15/2011 17:00:26 ;
+; Start date & time ; 03/17/2011 15:36:32 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simple_test         ;
 +-------------------+---------------------+
 
 
-+--------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                 ;
-+------------------------+------------------------------+---------------+-------------+------------+
-; Assignment Name        ; Value                        ; Default Value ; Entity Name ; Section Id ;
-+------------------------+------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID  ; 156974615306.130022282603516 ; --            ; --          ; --         ;
-; PARTITION_COLOR        ; 16764057                     ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE ; SOURCE                       ; --            ; --          ; Top        ;
-+------------------------+------------------------------+---------------+-------------+------------+
++------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                 ;
++------------------------+----------------------------------------------+---------------+-------------+------------+
+; Assignment Name        ; Value                                        ; Default Value ; Entity Name ; Section Id ;
++------------------------+----------------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID  ; 156974615306.130039059103220                 ; --            ; --          ; --         ;
+; ENABLE_SIGNALTAP       ; Off                                          ; --            ; --          ; --         ;
+; PARTITION_COLOR        ; 16764057                                     ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE ; SOURCE                                       ; --            ; --          ; Top        ;
+; SEARCH_PATH            ; c:/altera/91/quartus/libraries/megafunctions ; --            ; --          ; --         ;
+; USE_SIGNALTAP_FILE     ; GCLKIN_monitor                               ; --            ; --          ; --         ;
++------------------------+----------------------------------------------+---------------+-------------+------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -91,11 +94,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:07     ; 1.0                     ; 324 MB              ; 00:00:06                           ;
-; Fitter                    ; 00:00:59     ; 2.2                     ; 776 MB              ; 00:01:06                           ;
-; Assembler                 ; 00:00:25     ; 1.0                     ; 803 MB              ; 00:00:25                           ;
-; TimeQuest Timing Analyzer ; 00:00:12     ; 1.9                     ; 516 MB              ; 00:00:10                           ;
-; Total                     ; 00:01:31     ; --                      ; --                  ; 00:01:37                           ;
+; Analysis & Synthesis      ; 00:00:08     ; 1.0                     ; 323 MB              ; 00:00:06                           ;
+; Fitter                    ; 00:01:01     ; 2.8                     ; 776 MB              ; 00:01:06                           ;
+; Assembler                 ; 00:00:27     ; 1.0                     ; 802 MB              ; 00:00:26                           ;
+; TimeQuest Timing Analyzer ; 00:00:12     ; 1.0                     ; 515 MB              ; 00:00:10                           ;
+; Total                     ; 00:01:36     ; --                      ; --                  ; 00:01:38                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Tue Mar 15 17:00:32 2011
+Analysis & Synthesis Status : Successful - Thu Mar 17 15:36:38 2011
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : simple_test
 Top-level Entity Name : simple_test
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 90
+    Combinational ALUTs : 82
     Memory ALUTs : 0
-    Dedicated logic registers : 62
-Total registers : 62
-Total pins : 254
+    Dedicated logic registers : 54
+Total registers : 54
+Total pins : 195
 Total virtual pins : 0
 Total block memory bits : 0
 DSP block 18-bit elements : 0

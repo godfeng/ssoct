@@ -3,11 +3,11 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 900mV 85C Model Setup 'OSC_50_BANK2'
-Slack : 18.014
+Slack : 18.373
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'OSC_50_BANK2'
-Slack : 0.214
+Slack : 0.234
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'OSC_50_BANK2'
@@ -15,27 +15,27 @@ Slack : 9.327
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'OSC_50_BANK2'
-Slack : 18.071
+Slack : 18.432
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'OSC_50_BANK2'
-Slack : 0.208
+Slack : 0.231
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'OSC_50_BANK2'
-Slack : 9.328
+Slack : 9.330
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'OSC_50_BANK2'
-Slack : 18.872
+Slack : 19.070
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'OSC_50_BANK2'
-Slack : 0.114
+Slack : 0.121
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'OSC_50_BANK2'
-Slack : 9.291
+Slack : 9.293
 TNS   : 0.000
 
 ------------------------------------------------------------

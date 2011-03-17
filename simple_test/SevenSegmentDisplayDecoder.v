@@ -4,9 +4,12 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module SevenSegmentDisplayDecoder ( 
+module SevenSegmentDisplayDecoder( 
     ssOut,
     nIn);
+//=======================================================
+//  Port declarations
+//=======================================================    
   output reg [6:0] ssOut;
   input [3:0] nIn;
 

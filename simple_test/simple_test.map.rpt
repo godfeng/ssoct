@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simple_test
-Tue Mar 15 17:00:32 2011
+Thu Mar 17 15:36:38 2011
 Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
 
 
@@ -44,17 +44,17 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +-----------------------------------+-----------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Tue Mar 15 17:00:32 2011         ;
+; Analysis & Synthesis Status       ; Successful - Thu Mar 17 15:36:38 2011         ;
 ; Quartus II 64-Bit Version         ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
 ; Revision Name                     ; simple_test                                   ;
 ; Top-level Entity Name             ; simple_test                                   ;
 ; Family                            ; Stratix IV                                    ;
 ; Logic utilization                 ; N/A                                           ;
-;     Combinational ALUTs           ; 90                                            ;
+;     Combinational ALUTs           ; 82                                            ;
 ;     Memory ALUTs                  ; 0                                             ;
-;     Dedicated logic registers     ; 62                                            ;
-; Total registers                   ; 62                                            ;
-; Total pins                        ; 254                                           ;
+;     Dedicated logic registers     ; 54                                            ;
+; Total registers                   ; 54                                            ;
+; Total pins                        ; 195                                           ;
 ; Total virtual pins                ; 0                                             ;
 ; Total block memory bits           ; 0                                             ;
 ; DSP block 18-bit elements         ; 0                                             ;
@@ -164,61 +164,61 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                   ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                         ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+
-; SevenSegmentDisplayDecoder.v     ; yes             ; User Verilog HDL File        ; D:/Edgar/Documents/OCT/Code/simple_test/SevenSegmentDisplayDecoder.v ;
-; simple_test.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/Edgar/Documents/OCT/Code/simple_test/simple_test.v                ;
-; ext_pll_ctrl.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/Edgar/Documents/OCT/Code/simple_test/ext_pll_ctrl.v               ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                    ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                          ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+
+; SevenSegmentDisplayDecoder.v     ; yes             ; User Verilog HDL File        ; D:/Edgar/Documents/OCT/ssoct/simple_test/SevenSegmentDisplayDecoder.v ;
+; simple_test.v                    ; yes             ; Auto-Found Verilog HDL File  ; D:/Edgar/Documents/OCT/ssoct/simple_test/simple_test.v                ;
+; ext_pll_ctrl.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/Edgar/Documents/OCT/ssoct/simple_test/ext_pll_ctrl.v               ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                        ;
-+-----------------------------------------------+--------------------+
-; Resource                                      ; Usage              ;
-+-----------------------------------------------+--------------------+
-; Estimated ALUTs Used                          ; 90                 ;
-;     -- Combinational ALUTs                    ; 90                 ;
-;     -- Memory ALUTs                           ; 0                  ;
-;     -- LUT_REGs                               ; 0                  ;
-; Dedicated logic registers                     ; 62                 ;
-;                                               ;                    ;
-; Estimated ALUTs Unavailable                   ; 4                  ;
-;     -- Due to unpartnered combinational logic ; 4                  ;
-;     -- Due to Memory ALUTs                    ; 0                  ;
-;                                               ;                    ;
-; Total combinational functions                 ; 90                 ;
-; Combinational ALUT usage by number of inputs  ;                    ;
-;     -- 7 input functions                      ; 0                  ;
-;     -- 6 input functions                      ; 6                  ;
-;     -- 5 input functions                      ; 12                 ;
-;     -- 4 input functions                      ; 16                 ;
-;     -- <=3 input functions                    ; 56                 ;
-;                                               ;                    ;
-; Combinational ALUTs by mode                   ;                    ;
-;     -- normal mode                            ; 39                 ;
-;     -- extended LUT mode                      ; 0                  ;
-;     -- arithmetic mode                        ; 51                 ;
-;     -- shared arithmetic mode                 ; 0                  ;
-;                                               ;                    ;
-; Estimated ALUT/register pairs used            ; 97                 ;
-;                                               ;                    ;
-; Total registers                               ; 62                 ;
-;     -- Dedicated logic registers              ; 62                 ;
-;     -- I/O registers                          ; 0                  ;
-;     -- LUT_REGs                               ; 0                  ;
-;                                               ;                    ;
-; Estimated ALMs:  partially or completely used ; 49                 ;
-;                                               ;                    ;
-; I/O pins                                      ; 254                ;
-; Maximum fan-out node                          ; OSC_50_BANK2~input ;
-; Maximum fan-out                               ; 62                 ;
-; Total fan-out                                 ; 801                ;
-; Average fan-out                               ; 1.10               ;
-+-----------------------------------------------+--------------------+
++-------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                       ;
++-----------------------------------------------+-------------------+
+; Resource                                      ; Usage             ;
++-----------------------------------------------+-------------------+
+; Estimated ALUTs Used                          ; 82                ;
+;     -- Combinational ALUTs                    ; 82                ;
+;     -- Memory ALUTs                           ; 0                 ;
+;     -- LUT_REGs                               ; 0                 ;
+; Dedicated logic registers                     ; 54                ;
+;                                               ;                   ;
+; Estimated ALUTs Unavailable                   ; 5                 ;
+;     -- Due to unpartnered combinational logic ; 5                 ;
+;     -- Due to Memory ALUTs                    ; 0                 ;
+;                                               ;                   ;
+; Total combinational functions                 ; 82                ;
+; Combinational ALUT usage by number of inputs  ;                   ;
+;     -- 7 input functions                      ; 0                 ;
+;     -- 6 input functions                      ; 7                 ;
+;     -- 5 input functions                      ; 11                ;
+;     -- 4 input functions                      ; 16                ;
+;     -- <=3 input functions                    ; 48                ;
+;                                               ;                   ;
+; Combinational ALUTs by mode                   ;                   ;
+;     -- normal mode                            ; 40                ;
+;     -- extended LUT mode                      ; 0                 ;
+;     -- arithmetic mode                        ; 42                ;
+;     -- shared arithmetic mode                 ; 0                 ;
+;                                               ;                   ;
+; Estimated ALUT/register pairs used            ; 90                ;
+;                                               ;                   ;
+; Total registers                               ; 54                ;
+;     -- Dedicated logic registers              ; 54                ;
+;     -- I/O registers                          ; 0                 ;
+;     -- LUT_REGs                               ; 0                 ;
+;                                               ;                   ;
+; Estimated ALMs:  partially or completely used ; 45                ;
+;                                               ;                   ;
+; I/O pins                                      ; 195               ;
+; Maximum fan-out node                          ; CPU_RESET_n~input ;
+; Maximum fan-out                               ; 54                ;
+; Total fan-out                                 ; 670               ;
+; Average fan-out                               ; 1.20              ;
++-----------------------------------------------+-------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -226,10 +226,10 @@ applicable agreement for further details.
 +-----------------------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+-----------+------+--------------+-------------------------------------------------+--------------+
 ; Compilation Hierarchy Node              ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 12x12 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                             ; Library Name ;
 +-----------------------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+-----------+------+--------------+-------------------------------------------------+--------------+
-; |simple_test                            ; 90 (51)           ; 62 (41)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 254  ; 0            ; |simple_test                                    ; work         ;
+; |simple_test                            ; 82 (42)           ; 54 (32)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 195  ; 0            ; |simple_test                                    ; work         ;
 ;    |SevenSegmentDisplayDecoder:comb_61| ; 7 (7)             ; 0 (0)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |simple_test|SevenSegmentDisplayDecoder:comb_61 ;              ;
 ;    |SevenSegmentDisplayDecoder:comb_62| ; 7 (7)             ; 0 (0)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |simple_test|SevenSegmentDisplayDecoder:comb_62 ;              ;
-;    |ext_pll_ctrl:ext_pll_ctrl_Inst|     ; 25 (25)           ; 21 (21)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |simple_test|ext_pll_ctrl:ext_pll_ctrl_Inst     ;              ;
+;    |ext_pll_ctrl:ext_pll_ctrl_Inst|     ; 26 (26)           ; 22 (22)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |simple_test|ext_pll_ctrl:ext_pll_ctrl_Inst     ;              ;
 +-----------------------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+-----------+------+--------------+-------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -244,8 +244,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ext_pll_ctrl:ext_pll_ctrl_Inst|conf_wr_p2s     ; Stuck at VCC due to stuck port data_in ;
 ; ext_pll_ctrl:ext_pll_ctrl_Inst|s2p_act_pre     ; Stuck at GND due to stuck port data_in ;
 ; ext_pll_ctrl:ext_pll_ctrl_Inst|s2p_act[0..1]   ; Stuck at GND due to stuck port data_in ;
-; ext_pll_ctrl:ext_pll_ctrl_Inst|slow_counter[0] ; Merged with count[0]                   ;
-; Total Number of Removed Registers = 8          ;                                        ;
+; count[23..31]                                  ; Lost fanout                            ;
+; Total Number of Removed Registers = 16         ;                                        ;
 +------------------------------------------------+----------------------------------------+
 
 
@@ -267,10 +267,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 62    ;
+; Total registers                              ; 54    ;
 ; Number of registers using Synchronous Clear  ; 5     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 62    ;
+; Number of registers using Asynchronous Clear ; 54    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
@@ -289,26 +289,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ext_pll_ctrl:ext_pll_ctrl_Inst"                                                                  ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port              ; Type   ; Severity ; Details                                                                             ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
-; clk1_set_wr[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk1_set_wr[3]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk1_set_wr[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; clk1_set_rd       ; Output ; Info     ; Explicitly unconnected                                                              ;
-; clk2_set_wr[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk2_set_wr[3]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk2_set_wr[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; clk2_set_rd       ; Output ; Info     ; Explicitly unconnected                                                              ;
-; clk3_set_wr[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk3_set_wr[3]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; clk3_set_wr[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; clk3_set_rd       ; Output ; Info     ; Explicitly unconnected                                                              ;
-; conf_rd           ; Input  ; Info     ; Explicitly unconnected                                                              ;
-; conf_ready        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ext_pll_ctrl:ext_pll_ctrl_Inst"                                                            ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; clk1_set_wr ; Input  ; Info     ; Stuck at GND                                                                        ;
+; clk1_set_rd ; Output ; Info     ; Explicitly unconnected                                                              ;
+; clk2_set_wr ; Input  ; Info     ; Stuck at GND                                                                        ;
+; clk2_set_rd ; Output ; Info     ; Explicitly unconnected                                                              ;
+; clk3_set_wr ; Input  ; Info     ; Stuck at GND                                                                        ;
+; clk3_set_rd ; Output ; Info     ; Explicitly unconnected                                                              ;
+; conf_rd     ; Input  ; Info     ; Explicitly unconnected                                                              ;
+; conf_ready  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -317,49 +311,42 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
-    Info: Processing started: Tue Mar 15 17:00:26 2011
+    Info: Processing started: Thu Mar 17 15:36:31 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off simple_test -c simple_test
 Info: Parallel compilation is enabled and will use 8 of the 8 processors detected
 Info: Found 1 design units, including 1 entities, in source file sevensegmentdisplaydecoder.v
     Info: Found entity 1: SevenSegmentDisplayDecoder
 Warning: Using design file simple_test.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: simple_test
-Critical Warning (10846): Verilog HDL Instantiation warning at simple_test.v(319): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at simple_test.v(322): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at simple_test.v(289): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at simple_test.v(292): instance has no name
 Info: Elaborating entity "simple_test" for the top level hierarchy
-Warning (10034): Output port "LED[6..0]" at simple_test.v(141) has no driver
-Warning (10034): Output port "ETH_MDC" at simple_test.v(162) has no driver
-Warning (10034): Output port "ETH_TX_p" at simple_test.v(166) has no driver
-Warning (10034): Output port "FSM_A" at simple_test.v(169) has no driver
-Warning (10034): Output port "OTG_A" at simple_test.v(183) has no driver
-Warning (10034): Output port "DA" at simple_test.v(218) has no driver
-Warning (10034): Output port "DB" at simple_test.v(219) has no driver
-Warning (10034): Output port "GCLKOUT_FPGA" at simple_test.v(127) has no driver
-Warning (10034): Output port "SEG1_DP" at simple_test.v(155) has no driver
-Warning (10034): Output port "ETH_RST_n" at simple_test.v(164) has no driver
-Warning (10034): Output port "SSRAM_ADV" at simple_test.v(173) has no driver
-Warning (10034): Output port "SSRAM_BWA_n" at simple_test.v(174) has no driver
-Warning (10034): Output port "SSRAM_BWB_n" at simple_test.v(175) has no driver
-Warning (10034): Output port "SSRAM_CE_n" at simple_test.v(176) has no driver
-Warning (10034): Output port "SSRAM_CKE_n" at simple_test.v(177) has no driver
-Warning (10034): Output port "SSRAM_CLK" at simple_test.v(178) has no driver
-Warning (10034): Output port "SSRAM_OE_n" at simple_test.v(179) has no driver
-Warning (10034): Output port "SSRAM_WE_n" at simple_test.v(180) has no driver
-Warning (10034): Output port "OTG_CS_n" at simple_test.v(184) has no driver
-Warning (10034): Output port "OTG_DC_DACK" at simple_test.v(186) has no driver
-Warning (10034): Output port "OTG_HC_DACK" at simple_test.v(189) has no driver
-Warning (10034): Output port "OTG_OE_n" at simple_test.v(192) has no driver
-Warning (10034): Output port "OTG_RESET_n" at simple_test.v(193) has no driver
-Warning (10034): Output port "OTG_WE_n" at simple_test.v(194) has no driver
-Warning (10034): Output port "ADA_OE" at simple_test.v(201) has no driver
-Warning (10034): Output port "ADA_SPI_CS" at simple_test.v(203) has no driver
-Warning (10034): Output port "ADB_OE" at simple_test.v(206) has no driver
-Warning (10034): Output port "ADB_SPI_CS" at simple_test.v(208) has no driver
-Warning (10034): Output port "AIC_DIN" at simple_test.v(210) has no driver
-Warning (10034): Output port "AIC_SPI_CS" at simple_test.v(214) has no driver
-Warning (10034): Output port "AIC_XCLK" at simple_test.v(215) has no driver
-Warning (10034): Output port "CLKOUT0" at simple_test.v(217) has no driver
-Warning (10034): Output port "HSMC_SCL" at simple_test.v(229) has no driver
+Warning (10034): Output port "LED[6..0]" at simple_test.v(127) has no driver
+Warning (10034): Output port "ETH_MDC" at simple_test.v(148) has no driver
+Warning (10034): Output port "ETH_TX_p" at simple_test.v(152) has no driver
+Warning (10034): Output port "FSM_A" at simple_test.v(155) has no driver
+Warning (10034): Output port "DA" at simple_test.v(190) has no driver
+Warning (10034): Output port "DB" at simple_test.v(191) has no driver
+Warning (10034): Output port "GCLKOUT_FPGA" at simple_test.v(113) has no driver
+Warning (10034): Output port "SEG1_DP" at simple_test.v(141) has no driver
+Warning (10034): Output port "ETH_RST_n" at simple_test.v(150) has no driver
+Warning (10034): Output port "SSRAM_ADV" at simple_test.v(159) has no driver
+Warning (10034): Output port "SSRAM_BWA_n" at simple_test.v(160) has no driver
+Warning (10034): Output port "SSRAM_BWB_n" at simple_test.v(161) has no driver
+Warning (10034): Output port "SSRAM_CE_n" at simple_test.v(162) has no driver
+Warning (10034): Output port "SSRAM_CKE_n" at simple_test.v(163) has no driver
+Warning (10034): Output port "SSRAM_CLK" at simple_test.v(164) has no driver
+Warning (10034): Output port "SSRAM_OE_n" at simple_test.v(165) has no driver
+Warning (10034): Output port "SSRAM_WE_n" at simple_test.v(166) has no driver
+Warning (10034): Output port "ADA_OE" at simple_test.v(173) has no driver
+Warning (10034): Output port "ADA_SPI_CS" at simple_test.v(175) has no driver
+Warning (10034): Output port "ADB_OE" at simple_test.v(178) has no driver
+Warning (10034): Output port "ADB_SPI_CS" at simple_test.v(180) has no driver
+Warning (10034): Output port "AIC_DIN" at simple_test.v(182) has no driver
+Warning (10034): Output port "AIC_SPI_CS" at simple_test.v(186) has no driver
+Warning (10034): Output port "AIC_XCLK" at simple_test.v(187) has no driver
+Warning (10034): Output port "CLKOUT0" at simple_test.v(189) has no driver
+Warning (10034): Output port "HSMC_SCL" at simple_test.v(201) has no driver
 Warning: Using design file ext_pll_ctrl.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: ext_pll_ctrl
 Info: Elaborating entity "ext_pll_ctrl" for hierarchy "ext_pll_ctrl:ext_pll_ctrl_Inst"
@@ -388,38 +375,6 @@ Warning: The following bidir pins have no drivers
     Warning: Bidir "FSM_D[13]" has no driver
     Warning: Bidir "FSM_D[14]" has no driver
     Warning: Bidir "FSM_D[15]" has no driver
-    Warning: Bidir "OTG_D[0]" has no driver
-    Warning: Bidir "OTG_D[1]" has no driver
-    Warning: Bidir "OTG_D[2]" has no driver
-    Warning: Bidir "OTG_D[3]" has no driver
-    Warning: Bidir "OTG_D[4]" has no driver
-    Warning: Bidir "OTG_D[5]" has no driver
-    Warning: Bidir "OTG_D[6]" has no driver
-    Warning: Bidir "OTG_D[7]" has no driver
-    Warning: Bidir "OTG_D[8]" has no driver
-    Warning: Bidir "OTG_D[9]" has no driver
-    Warning: Bidir "OTG_D[10]" has no driver
-    Warning: Bidir "OTG_D[11]" has no driver
-    Warning: Bidir "OTG_D[12]" has no driver
-    Warning: Bidir "OTG_D[13]" has no driver
-    Warning: Bidir "OTG_D[14]" has no driver
-    Warning: Bidir "OTG_D[15]" has no driver
-    Warning: Bidir "OTG_D[16]" has no driver
-    Warning: Bidir "OTG_D[17]" has no driver
-    Warning: Bidir "OTG_D[18]" has no driver
-    Warning: Bidir "OTG_D[19]" has no driver
-    Warning: Bidir "OTG_D[20]" has no driver
-    Warning: Bidir "OTG_D[21]" has no driver
-    Warning: Bidir "OTG_D[22]" has no driver
-    Warning: Bidir "OTG_D[23]" has no driver
-    Warning: Bidir "OTG_D[24]" has no driver
-    Warning: Bidir "OTG_D[25]" has no driver
-    Warning: Bidir "OTG_D[26]" has no driver
-    Warning: Bidir "OTG_D[27]" has no driver
-    Warning: Bidir "OTG_D[28]" has no driver
-    Warning: Bidir "OTG_D[29]" has no driver
-    Warning: Bidir "OTG_D[30]" has no driver
-    Warning: Bidir "OTG_D[31]" has no driver
     Warning: Bidir "AD_SCLK" has no driver
     Warning: Bidir "AD_SDIO" has no driver
     Warning: Bidir "AIC_BCLK" has no driver
@@ -480,29 +435,6 @@ Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "SSRAM_CLK" is stuck at GND
     Warning (13410): Pin "SSRAM_OE_n" is stuck at GND
     Warning (13410): Pin "SSRAM_WE_n" is stuck at GND
-    Warning (13410): Pin "OTG_A[1]" is stuck at GND
-    Warning (13410): Pin "OTG_A[2]" is stuck at GND
-    Warning (13410): Pin "OTG_A[3]" is stuck at GND
-    Warning (13410): Pin "OTG_A[4]" is stuck at GND
-    Warning (13410): Pin "OTG_A[5]" is stuck at GND
-    Warning (13410): Pin "OTG_A[6]" is stuck at GND
-    Warning (13410): Pin "OTG_A[7]" is stuck at GND
-    Warning (13410): Pin "OTG_A[8]" is stuck at GND
-    Warning (13410): Pin "OTG_A[9]" is stuck at GND
-    Warning (13410): Pin "OTG_A[10]" is stuck at GND
-    Warning (13410): Pin "OTG_A[11]" is stuck at GND
-    Warning (13410): Pin "OTG_A[12]" is stuck at GND
-    Warning (13410): Pin "OTG_A[13]" is stuck at GND
-    Warning (13410): Pin "OTG_A[14]" is stuck at GND
-    Warning (13410): Pin "OTG_A[15]" is stuck at GND
-    Warning (13410): Pin "OTG_A[16]" is stuck at GND
-    Warning (13410): Pin "OTG_A[17]" is stuck at GND
-    Warning (13410): Pin "OTG_CS_n" is stuck at GND
-    Warning (13410): Pin "OTG_DC_DACK" is stuck at GND
-    Warning (13410): Pin "OTG_HC_DACK" is stuck at GND
-    Warning (13410): Pin "OTG_OE_n" is stuck at GND
-    Warning (13410): Pin "OTG_RESET_n" is stuck at GND
-    Warning (13410): Pin "OTG_WE_n" is stuck at GND
     Warning (13410): Pin "ADA_OE" is stuck at GND
     Warning (13410): Pin "ADA_SPI_CS" is stuck at GND
     Warning (13410): Pin "ADB_OE" is stuck at GND
@@ -541,10 +473,18 @@ Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "DB[13]" is stuck at GND
     Warning (13410): Pin "HSMC_SCL" is stuck at GND
 Info: Timing-Driven Synthesis is running
-Info: 1 registers lost all their fanouts during netlist optimizations. The first 1 are displayed below.
+Info: 10 registers lost all their fanouts during netlist optimizations. The first 10 are displayed below.
     Info: Register "ext_pll_ctrl:ext_pll_ctrl_Inst|conf_rd_d[2]" lost all its fanouts during netlist optimizations.
-Warning: Design contains 63 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "GCLKIN"
+    Info: Register "count[23]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[24]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[25]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[26]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[27]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[28]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[29]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[30]" lost all its fanouts during netlist optimizations.
+    Info: Register "count[31]" lost all its fanouts during netlist optimizations.
+Warning: Design contains 58 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "OSC_50_BANK3"
     Warning (15610): No output dependent on input pin "OSC_50_BANK4"
     Warning (15610): No output dependent on input pin "OSC_50_BANK5"
@@ -567,10 +507,6 @@ Warning: Design contains 63 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ETH_RX_p[1]"
     Warning (15610): No output dependent on input pin "ETH_RX_p[2]"
     Warning (15610): No output dependent on input pin "ETH_RX_p[3]"
-    Warning (15610): No output dependent on input pin "OTG_DC_DREQ"
-    Warning (15610): No output dependent on input pin "OTG_DC_IRQ"
-    Warning (15610): No output dependent on input pin "OTG_HC_DREQ"
-    Warning (15610): No output dependent on input pin "OTG_HC_IRQ"
     Warning (15610): No output dependent on input pin "ADA_D[0]"
     Warning (15610): No output dependent on input pin "ADA_D[1]"
     Warning (15610): No output dependent on input pin "ADA_D[2]"
@@ -607,15 +543,15 @@ Warning: Design contains 63 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "CLKIN1"
     Warning (15610): No output dependent on input pin "XT_IN_N"
     Warning (15610): No output dependent on input pin "XT_IN_P"
-Info: Implemented 348 device resources after synthesis - the final resource count might be different
-    Info: Implemented 65 input pins
-    Info: Implemented 124 output pins
-    Info: Implemented 65 bidirectional pins
-    Info: Implemented 94 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 277 warnings
-    Info: Peak virtual memory: 324 megabytes
-    Info: Processing ended: Tue Mar 15 17:00:32 2011
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+Info: Implemented 281 device resources after synthesis - the final resource count might be different
+    Info: Implemented 61 input pins
+    Info: Implemented 101 output pins
+    Info: Implemented 33 bidirectional pins
+    Info: Implemented 86 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 210 warnings
+    Info: Peak virtual memory: 323 megabytes
+    Info: Processing ended: Thu Mar 17 15:36:38 2011
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
 
 
