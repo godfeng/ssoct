@@ -16,7 +16,8 @@ zr = zr_air / n;                        % Axial resolution in tissue
 EP = [4e-3 4e-3 4e-3];                  % Entrance pupil diameter
 beamWaist = [3.4 3.4 3.4]*1e-3;         % F280APC-C beam diameter
 EFL = [18 36 54]*1e-3;                  % Effective Focal Length
-NA = sqrt(1 ./ (1 + (2.*EFL./beamWaist).^2));  % Numerical Aperture
+% Numerical Aperture
+NA = sqrt(1 ./ (1 + (2.*EFL./beamWaist).^2));  
 rr = (2/pi)*lambda0./NA;                % Transverse (lateral) resolution
 
 %% Maximum path difference (Field Of View of a FDOCT) (Penetration depth)
