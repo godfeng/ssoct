@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for simple_test
-Thu Mar 17 15:37:53 2011
+Thu Mar 17 15:50:24 2011
 Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
 
 
@@ -108,7 +108,7 @@ applicable agreement for further details.
 +-----------------+--------+--------------------------+
 ; SDC File Path   ; Status ; Read at                  ;
 +-----------------+--------+--------------------------+
-; simple_test.SDC ; OK     ; Thu Mar 17 15:37:45 2011 ;
+; simple_test.SDC ; OK     ; Thu Mar 17 15:50:16 2011 ;
 +-----------------+--------+--------------------------+
 
 
@@ -1117,7 +1117,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
-    Info: Processing started: Thu Mar 17 15:37:42 2011
+    Info: Processing started: Thu Mar 17 15:50:13 2011
 Info: Command: quartus_sta simple_test -c simple_test
 Info: qsta_default_script.tcl version: #1
 Info: Parallel compilation is enabled and will use 8 of the 8 processors detected
@@ -1208,7 +1208,7 @@ Info: Design is not fully constrained for setup requirements
 Info: Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 3 warnings
     Info: Peak virtual memory: 515 megabytes
-    Info: Processing ended: Thu Mar 17 15:37:53 2011
+    Info: Processing ended: Thu Mar 17 15:50:24 2011
     Info: Elapsed time: 00:00:11
     Info: Total CPU time (on all processors): 00:00:10
 

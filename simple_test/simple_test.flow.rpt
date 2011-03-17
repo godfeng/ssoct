@@ -1,5 +1,5 @@
 Flow report for simple_test
-Thu Mar 17 15:38:09 2011
+Thu Mar 17 15:50:40 2011
 Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +-----------------------------------+-----------------------------------------------+
-; Flow Status                       ; Successful - Thu Mar 17 15:38:09 2011         ;
+; Flow Status                       ; Successful - Thu Mar 17 15:50:40 2011         ;
 ; Quartus II 64-Bit Version         ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
 ; Revision Name                     ; simple_test                                   ;
 ; Top-level Entity Name             ; simple_test                                   ;
@@ -69,7 +69,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/17/2011 15:36:32 ;
+; Start date & time ; 03/17/2011 15:49:08 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simple_test         ;
 +-------------------+---------------------+
@@ -80,7 +80,7 @@ applicable agreement for further details.
 +------------------------+----------------------------------------------+---------------+-------------+------------+
 ; Assignment Name        ; Value                                        ; Default Value ; Entity Name ; Section Id ;
 +------------------------+----------------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID  ; 156974615306.130039059103220                 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID  ; 156974615306.130039134805876                 ; --            ; --          ; --         ;
 ; ENABLE_SIGNALTAP       ; Off                                          ; --            ; --          ; --         ;
 ; PARTITION_COLOR        ; 16764057                                     ; --            ; --          ; Top        ;
 ; PARTITION_NETLIST_TYPE ; SOURCE                                       ; --            ; --          ; Top        ;
@@ -94,11 +94,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:08     ; 1.0                     ; 323 MB              ; 00:00:06                           ;
-; Fitter                    ; 00:01:01     ; 2.8                     ; 776 MB              ; 00:01:06                           ;
+; Analysis & Synthesis      ; 00:00:07     ; 1.0                     ; 322 MB              ; 00:00:06                           ;
+; Fitter                    ; 00:00:57     ; 2.5                     ; 776 MB              ; 00:01:04                           ;
 ; Assembler                 ; 00:00:27     ; 1.0                     ; 802 MB              ; 00:00:26                           ;
-; TimeQuest Timing Analyzer ; 00:00:12     ; 1.0                     ; 515 MB              ; 00:00:10                           ;
-; Total                     ; 00:01:36     ; --                      ; --                  ; 00:01:38                           ;
+; TimeQuest Timing Analyzer ; 00:00:11     ; 1.0                     ; 515 MB              ; 00:00:10                           ;
+; Total                     ; 00:01:31     ; --                      ; --                  ; 00:01:36                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simple_test
-Thu Mar 17 15:36:38 2011
+Thu Mar 17 15:49:14 2011
 Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
 
 
@@ -44,7 +44,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +-----------------------------------+-----------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Thu Mar 17 15:36:38 2011         ;
+; Analysis & Synthesis Status       ; Successful - Thu Mar 17 15:49:14 2011         ;
 ; Quartus II 64-Bit Version         ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
 ; Revision Name                     ; simple_test                                   ;
 ; Top-level Entity Name             ; simple_test                                   ;
@@ -311,7 +311,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
-    Info: Processing started: Thu Mar 17 15:36:31 2011
+    Info: Processing started: Thu Mar 17 15:49:08 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off simple_test -c simple_test
 Info: Parallel compilation is enabled and will use 8 of the 8 processors detected
 Info: Found 1 design units, including 1 entities, in source file sevensegmentdisplaydecoder.v
@@ -549,9 +549,9 @@ Info: Implemented 281 device resources after synthesis - the final resource coun
     Info: Implemented 33 bidirectional pins
     Info: Implemented 86 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 210 warnings
-    Info: Peak virtual memory: 323 megabytes
-    Info: Processing ended: Thu Mar 17 15:36:38 2011
-    Info: Elapsed time: 00:00:07
+    Info: Peak virtual memory: 322 megabytes
+    Info: Processing ended: Thu Mar 17 15:49:14 2011
+    Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:07
 
 
