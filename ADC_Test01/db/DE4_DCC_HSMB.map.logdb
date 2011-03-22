@@ -1,5 +1,0 @@
-v1
-DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|mac_i_lpmd:m0|lmsd:m_0|lpm_mult:lpm_mult_component|mult_4gu:auto_generated|mac_out1,
-DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,NCO_10MHz:NCO_10MHz_inst|NCO_10MHz_st:NCO_10MHz_st_inst|mac_i_lpmd:m0|lmsd:m_1|lpm_mult:lpm_mult_component|mult_4gu:auto_generated|mac_out1,
-DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|mac_i_lpmd:m0|lmsd:m_0|lpm_mult:lpm_mult_component|mult_4gu:auto_generated|mac_out1,
-DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,NCO_1MHz:NCO_1MHz_inst|NCO_1MHz_st:NCO_1MHz_st_inst|mac_i_lpmd:m0|lmsd:m_1|lpm_mult:lpm_mult_component|mult_4gu:auto_generated|mac_out1,
