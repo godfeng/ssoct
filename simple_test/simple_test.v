@@ -286,13 +286,14 @@ assign	LED[7] 			= heartbeat;		// heartbeat wire
 assign	SEG0_DP 		= ~heartbeat;		// LED[7] inverted
 
 // 7 segment module 0 (faster count)
-SevenSegmentDisplayDecoder(SEG0_D, count[18:15]);
+SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst1(SEG0_D, count[18:15]);
 
 // 7 segment module 1 (slower count)
-SevenSegmentDisplayDecoder(SEG1_D, count[22:19]);
+SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst2(SEG1_D, count[22:19]);
 //--- count for Heartbeat (decreasing)
 reg		[31:0]				count;
-always @(negedge rstn or negedge GCLKIN)
+
+always @(negedge rstn or posedge GCLKIN)// 50 kHz A-line (sweep) Trigger
 begin
 	if (!rstn) begin
 		count	<= 0;

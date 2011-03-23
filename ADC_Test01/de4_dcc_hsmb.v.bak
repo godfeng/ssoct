@@ -69,7 +69,7 @@
 module DE4_DCC_HSMB(
 
 	//////// CLOCK //////////
-	GCLKIN,
+	GCLKIN,				// 50 kHz A-line (sweep) Trigger
 	GCLKOUT_FPGA,
 	OSC_50_BANK2,
 	OSC_50_BANK3,
@@ -142,14 +142,14 @@ module DE4_DCC_HSMB(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-
+parameter	NSAMPLES		= 1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
 //=======================================================
 
 //////////// CLOCK //////////
-input		          		GCLKIN;
+input		          		GCLKIN;			// 50 kHz A-line (sweep) Trigger
 output		          		GCLKOUT_FPGA;
 input		          		OSC_50_BANK2;
 input		          		OSC_50_BANK3;
@@ -252,8 +252,10 @@ wire		[13:0]			fir_data;
 
 wire						heartbeat;
 
-// Temporary register for testing purposes
-//wire		[13:0]			tempo_reg;
+reg 		[13:0] 			A_line 			[0:NSAMPLES-1];  
+// The above describes an A-line of 1170 Elements, each 14 bits wide 
+
+
 
 //=======================================================
 //  Structural coding
@@ -268,6 +270,7 @@ assign	FPGA_CLK_A_N	= ~sys_clk_180deg;
 assign	FPGA_CLK_B_P	=  sys_clk_270deg;
 assign	FPGA_CLK_B_N	= ~sys_clk_270deg;
 
+// Assign for indicators
 assign	LED[0]			= ~pll_locked;		// pll locked
 assign	LED[1]			= ~SLIDE_SW[0];		// (DFS)Data Format Select indicator
 assign	LED[2]			= ~SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select indicator
@@ -275,10 +278,10 @@ assign	LED[3]			= !SLIDE_SW[3] ? ~ADA_OR : ~ADB_OR;	// Out-of-Range indicator
 assign	LED[4]			= BUTTON[0];		// reset 1MHz NCO output indicator
 assign	LED[5]			= BUTTON[1];		// reset 10MHz NCO output indicator
 assign	LED[6] 			= ~SLIDE_SW[3];		// channel A or B indicator
-assign	heartbeat		= count[24];		// heartbeat (bit24)
+assign	heartbeat		= count[15];		// heartbeat (bit15)
 assign	LED[7] 			= heartbeat;		// heartbeat wire
 
- // assign for ADC control signal
+// assign for ADC control signal
 assign	AD_SCLK			= SLIDE_SW[0];		// (DFS)Data Format Select
 assign	AD_SDIO			= SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select
 assign	ADA_OE			= 1'b0;				// enable ADA output
@@ -286,22 +289,19 @@ assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
 assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
- // assign for DAC output data
+// assign for DAC output data
 assign	DA = o_sine_p;
-//assign	DB = o_sine_n;
-// Map ADC channel A to DAC channel B
-//assign	DB = tempo_reg;
-//assign tempo_reg = ADA_D;
-assign DB 				= ADA_D;			// Map ADC channel A to DAC channel B
+assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
 
 // 7 Segment Display dot
 assign	SEG0_DP 		= ~heartbeat;		// LED[7] inverted
+assign	SEG1_DP 		= 1'b1;				// Segment 1 dot OFF = 1
 
 // 7 segment module 0 (faster count)
-SevenSegmentDisplayDecoder(SEG0_D, count[27:24]);
+SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst(SEG0_D, count[18:15]);
 
 // 7 segment module 1 (slower count)
-SevenSegmentDisplayDecoder(SEG1_D, count[31:28]);
+SevenSegmentDisplayDecoder(SEG1_D, count[22:19]);
 
 
 //--- pll
@@ -441,7 +441,8 @@ FIR_3MHz_low	FIR_3MHz_low_inst (
 
 //--- count for Heartbeat
 reg		[31:0]				count;
-always @(negedge reset_n or posedge sys_clk)
+always @(negedge reset_n or posedge GCLKIN)
+// 50 kHz A-line (sweep) Trigger
 begin
 	if (!reset_n) begin
 		count	<= 0;
