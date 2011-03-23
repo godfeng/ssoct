@@ -4,14 +4,14 @@
 
 set_global_assignment -name FAMILY "Stratix IV"
 set_global_assignment -name DEVICE EP4SGX230KF40C2
-set_global_assignment -name TOP_LEVEL_ENTITY "DE4_DCC_HSMB"
+set_global_assignment -name TOP_LEVEL_ENTITY "ADC_Test01"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:50:36 JUNE 29,2010"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
-set_global_assignment -name SDC_FILE DE4_DCC_HSMB.SDC
+set_global_assignment -name SDC_FILE ADC_Test01.SDC
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_AF25 -to termination_blk0~_rup_pad
 set_location_assignment PIN_AG25 -to termination_blk0~_rdn_pad
@@ -338,7 +338,7 @@ set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE add.qip
-set_global_assignment -name MISC_FILE DE4_DCC_HSMB.dpf
+set_global_assignment -name MISC_FILE ADC_Test01.dpf
 set_global_assignment -name QIP_FILE FIR_3MHz_low.qip
 set_global_assignment -name QIP_FILE sine_1.qip
 set_global_assignment -name QIP_FILE sine_10.qip

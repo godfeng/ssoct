@@ -182,7 +182,7 @@ output		          		SEG1_DP;
 //////////// Fan //////////
 output		          		FAN_CTRL;
 
-//////////// HSMC-A //////////
+//////////// HSMC-B //////////
 inout		          		AD_SCLK;
 inout		          		AD_SDIO;
 input		    [13:0]		ADA_D;
@@ -254,6 +254,7 @@ wire						heartbeat;
 
 reg 		[13:0] 			A_line 			[0:NSAMPLES-1];  
 // The above describes an A-line of 1170 Elements, each 14 bits wide 
+wire						sweepTrigger;
 
 
 
@@ -293,15 +294,18 @@ assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 assign	DA = o_sine_p;
 assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
 
+// Assign sweep Trigger
+assign	sweepTrigger	= GCLKIN;
+
 // 7 Segment Display dot
 assign	SEG0_DP 		= ~heartbeat;		// LED[7] inverted
 assign	SEG1_DP 		= 1'b1;				// Segment 1 dot OFF = 1
 
 // 7 segment module 0 (faster count)
-SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst(SEG0_D, count[18:15]);
+SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst1(SEG0_D, count[18:15]);
 
 // 7 segment module 1 (slower count)
-SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst(SEG1_D, count[22:19]);
+SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst2(SEG1_D, count[22:19]);
 
 
 //--- pll
@@ -441,7 +445,7 @@ FIR_3MHz_low	FIR_3MHz_low_inst (
 
 //--- count for Heartbeat
 reg		[31:0]				count;
-always @(negedge reset_n or posedge GCLKIN)
+always @(negedge reset_n or posedge sweepTrigger)
 // 50 kHz A-line (sweep) Trigger
 begin
 	if (!reset_n) begin
