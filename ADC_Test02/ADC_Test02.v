@@ -321,7 +321,7 @@ wire						heartbeat;
 reg 		[13:0] 			A_line 			[0:NSAMPLES-1];  
 wire						sweepTrigger;
 reg			[31:0]			count;			// Count for heartbeat
-reg			[10:0]			sample_position;
+wire		[10:0]			sample_position;// Position of the ADC sample in the A-line
 
 
 
@@ -547,9 +547,10 @@ end
 //			.result(o_sine)
 //			);
 
-// Only assign 10 MHz sign to DAC
+// Only assign 10 MHz signal to register
 assign o_sine = iu_sine10;
 
+// generation of positive & negative sinus
 always @(negedge reset_n or posedge sys_clk)
 begin
 	if (!reset_n) begin
@@ -562,4 +563,52 @@ begin
 	end
 end
 
+// Synchronization of sampling with sweep trigger
+sample_addressing	sample_addressing_inst (
+	.clock ( ADA_DCO ),						// k-clock (positive edge)
+	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
+	.q ( sample_position )					// Indicates position of the sample in the A-line
+	);
+
+// Indexing samples in the A-line array
+always @(negedge reset_n or posedge ADA_DCO)
+begin
+	A_line[sample_position] <= a2da_data;
+end
+
+// Probing A-line contents
+// TO VERIFY!!!!
+Aline_mon	Aline_mon_inst (
+	.acq_clk ( ADA_DCO ),
+	.acq_data_in ( A_line ),
+	.acq_trigger_in ( sweepTrigger )
+	);
+
+// FFT of A-line
+wire	[5:0]		ifft_source_exp;
+wire	[15:0]		ifft_source_real;
+wire	[15:0]		ifft_source_imag;
+reg 	[16:0]		inputReal;
+inputReal	<= 		{ 2b'00, A_line[sample_position] };
+fft_Aline fft_Aline_inst1(
+	.clk ( ADA_DCO ),
+	.reset_n ( reset_n ),
+	.inverse ( 1'b0 ),
+	.sink_valid ( 1'b1 ),
+	.sink_sop ( 1'b0 ),
+	.sink_eop ( 1'b0 ),
+	.sink_real ( ),
+	.sink_imag ( 16b'0 ),
+	.sink_error ( 2b'0 ),
+	.source_ready ( 1'b1 ),
+	.sink_ready ( 1'b1 ),
+	.source_error ( 2b'0 ),
+	.source_sop ( 1b'0 ),
+	.source_eop ( 1b'0 ),
+	.source_valid ( 1b'1 ),
+	.source_exp ( ifft_source_exp ),
+	.source_real ( inputReal ),
+	.source_imag ( 16'b0 )
+	);
+	
 endmodule

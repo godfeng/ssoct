@@ -27,7 +27,7 @@
 # ========================
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 5.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:49:15  JUNE 20, 2005"
-set_global_assignment -name LAST_QUARTUS_VERSION 5.0
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name VERILOG_FILE ../source/clk_pll.v
 set_global_assignment -name VERILOG_FILE ../source/twiddle_rom_add.v
 set_global_assignment -name VERILOG_FILE ../source/comb_final_fft_res.v
