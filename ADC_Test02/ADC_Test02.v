@@ -447,6 +447,8 @@ begin
 	end
 	else begin
 		per_a2da_d	<= ADA_D;
+		// Indexing samples in the A-line array
+		A_line[sample_position] <= a2da_data;
 	end
 end
 
@@ -570,45 +572,46 @@ sample_addressing	sample_addressing_inst (
 	.q ( sample_position )					// Indicates position of the sample in the A-line
 	);
 
-// Indexing samples in the A-line array
-always @(negedge reset_n or posedge ADA_DCO)
-begin
-	A_line[sample_position] <= a2da_data;
-end
-
 // Probing A-line contents
 // TO VERIFY!!!!
 Aline_mon	Aline_mon_inst (
 	.acq_clk ( ADA_DCO ),
-	.acq_data_in ( A_line ),
+	.acq_data_in ( A_line[sample_position] ),
 	.acq_trigger_in ( sweepTrigger )
 	);
 
-// FFT of A-line
-wire	[5:0]		ifft_source_exp;
-wire	[15:0]		ifft_source_real;
-wire	[15:0]		ifft_source_imag;
-reg 	[16:0]		inputReal;
-inputReal	<= 		{ 2b'00, A_line[sample_position] };
+// --- FFT of A-line
+// Real input to the fft (16-bit)
+wire	[15:0]		fft_sink_real;
+assign	fft_sink_real	= { 2'b00, A_line[sample_position] };
+wire				sink_ready_sig;
+wire				source_error_sig;
+wire				source_sop_sig;
+wire				source_eop_sig;
+wire				source_valid_sig;
+wire	[5:0] 		source_exp_sig;
+wire	[15:0] 		source_real_sig;
+wire	[15:0] 		source_imag_sig;
+
 fft_Aline fft_Aline_inst1(
-	.clk ( ADA_DCO ),
-	.reset_n ( reset_n ),
-	.inverse ( 1'b0 ),
-	.sink_valid ( 1'b1 ),
-	.sink_sop ( 1'b0 ),
-	.sink_eop ( 1'b0 ),
-	.sink_real ( ),
-	.sink_imag ( 16b'0 ),
-	.sink_error ( 2b'0 ),
-	.source_ready ( 1'b1 ),
-	.sink_ready ( 1'b1 ),
-	.source_error ( 2b'0 ),
-	.source_sop ( 1b'0 ),
-	.source_eop ( 1b'0 ),
-	.source_valid ( 1b'1 ),
-	.source_exp ( ifft_source_exp ),
-	.source_real ( inputReal ),
-	.source_imag ( 16'b0 )
+	.clk ( ADA_DCO ),					// input  clk_sig
+	.reset_n ( reset_n ),				// input  reset_n_sig
+	.inverse ( 1'b0 ),					// input  inverse_sig
+	.sink_valid (sweepTrigger & ADA_DCO),// input  sink_valid_sig
+	.sink_sop ( sweepTrigger ),			// input  sink_sop_sig
+	.sink_eop ( ~sweepTrigger ),		// input  sink_eop_sig
+	.sink_real ( fft_sink_real ),		// input [15:0] sink_real_sig
+	.sink_imag ( 16'b0 ),				// input [15:0] sink_imag_sig
+	.sink_error ( 2'b0 ),				// input [1:0] sink_error_sig
+	.source_ready ( 1'b1 ),				// input  source_ready_sig
+	.sink_ready ( sink_ready_sig ),		// output  sink_ready_sig
+	.source_error ( source_error_sig ),	// output [1:0] source_error_sig
+	.source_sop ( source_sop_sig ),		// output  source_sop_sig
+	.source_eop ( source_eop_sig ),		// output  source_eop_sig
+	.source_valid ( source_valid_sig ),	// output  source_valid_sig
+	.source_exp ( source_exp_sig ),		// output [5:0] source_exp_sig
+	.source_real ( source_real_sig ),	// output [15:0] source_real_sig
+	.source_imag ( source_imag_sig )	// output [15:0] source_imag_sig
 	);
-	
+
 endmodule
