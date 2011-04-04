@@ -1,3 +1,0 @@
-set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "nc0_10mhz_st.v"]
-set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "nc0_10mhz.v"]
-set_global_assignment -name SEARCH_PATH  C:/altera/72sp3/ip/nco/lib
