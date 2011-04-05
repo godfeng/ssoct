@@ -1,0 +1,13 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.ui.externaltools,3.2.0.v20080514-1542,org.eclipse.ui.externaltools,1301942714529
+stopped,bundle,org.eclipse.debug.ui,3.4.1.v20080811_r341,org.eclipse.debug.ui,1301942714530
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.1.R34x_v20080818,org.eclipse.equinox.p2.ui.sdk,1301942714530
+stopped,bundle,org.eclipse.equinox.p2.ui,1.0.1.R34x_v20080909,org.eclipse.equinox.p2.ui,1301942714530
+stopped,bundle,org.eclipse.equinox.security.ui,1.0.0.v20080603-1810,org.eclipse.equinox.security.ui,1301942714530
+stopped,bundle,org.eclipse.cdt,5.0.1.200809120802,org.eclipse.cdt,1301942714531
+stopped,bundle,org.eclipse.cdt.doc.user,5.0.1.200809120802,org.eclipse.cdt.doc.user,1301942714531
+stopped,bundle,org.eclipse.ui.cheatsheets,3.3.101.v20080702_34x,org.eclipse.ui.cheatsheets,1301942714532
+stopped,bundle,org.eclipse.help.ui,3.3.101.M20080715_34x,org.eclipse.help.ui,1301942714532
+stopped,bundle,org.eclipse.jsch.ui,1.1.100.I20080415,org.eclipse.jsch.ui,1301942714533
+stopped,bundle,org.eclipse.mylyn.monitor.ui,3.0.2.v20080918-1100-e3x,org.eclipse.mylyn.monitor.ui,1301942714578
+stopped,bundle,org.eclipse.ui.browser,3.2.201.v20080708_34x,org.eclipse.ui.browser,1301942714579
