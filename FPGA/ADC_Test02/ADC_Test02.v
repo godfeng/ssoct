@@ -6,7 +6,11 @@
 // ============================================================================
 // Major Functions/Design Description:
 //
-//   DE4 Development Board + DCC(AD/DA Data Conversion Card) demo
+//  DE4 Development Board + DCC(AD/DA Data Conversion Card) demo
+//	Generates 1 or 10 MHz sinewave from DAC A
+//  Acquisition of this sinewave is done through ADC A
+//	k-clock from laser connected to EXT_CLK_IN_P in the AD/DA Data Conversion Card
+//	Sweep Trigger from Swept Source connected to SMA_CLKIN in DE4 board
 //
 //   user interface define
 //     LED :
@@ -549,8 +553,12 @@ end
 //			.result(o_sine)
 //			);
 
-// Only assign 10 MHz signal to register
-assign o_sine = iu_sine10;
+// Assign 10 MHz signal to register
+//assign o_sine = iu_sine10;
+
+// Assign 1 MHz signal to register
+assign o_sine = iu_sine1;
+
 
 // generation of positive & negative sinus
 always @(negedge reset_n or posedge sys_clk)
@@ -573,12 +581,14 @@ sample_addressing	sample_addressing_inst (
 	);
 
 // Probing A-line contents
-// TO VERIFY!!!!
-Aline_mon	Aline_mon_inst (
+// Don't forget: 
+// File -> Create/Update -> Create SignalTap II file from design instances
+Aline_monitor	Aline_monitor_inst (
 	.acq_clk ( ADA_DCO ),
 	.acq_data_in ( A_line[sample_position] ),
 	.acq_trigger_in ( sweepTrigger )
 	);
+
 
 // --- FFT of A-line
 // Real input to the fft (16-bit)

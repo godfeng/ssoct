@@ -1,0 +1,118 @@
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP4SGX230/ES (0x024090DD)" sof_file="ADC_Test02.sof">
+  <display_tree>
+    <display_branch instance="signaltap_megafunction_0" signal_set="signal_set: 2011/04/07 14:14:31  #0" trigger="trigger: 2011/04/07 14:14:31  #1"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_expanded="true" name="signaltap_megafunction_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="2" version="6"/>
+    <signal_set is_expanded="true" name="signal_set: 2011/04/07 14:14:31  #0">
+      <clock name="Aline_monitor:Aline_monitor_inst|acq_clk" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="AUTO" reserved_data_nodes="14" reserved_trigger_nodes="1" sample_depth="2048" trigger_in_enable="no" trigger_in_node="" trigger_in_tap_mode="classic" trigger_out_enable="no" trigger_out_node=""/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_trigger_in[0]" name="acq_trigger_in[0]" tap_mode="classic" type="unknown"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[0]" name="acq_data_in[0]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[1]" name="acq_data_in[1]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[2]" name="acq_data_in[2]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[3]" name="acq_data_in[3]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[4]" name="acq_data_in[4]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[5]" name="acq_data_in[5]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[6]" name="acq_data_in[6]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[7]" name="acq_data_in[7]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[8]" name="acq_data_in[8]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[9]" name="acq_data_in[9]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[10]" name="acq_data_in[10]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[11]" name="acq_data_in[11]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[12]" name="acq_data_in[12]" tap_mode="classic" type="unknown"/>
+          <wire alias="Aline_monitor:Aline_monitor_inst|acq_data_in[13]" name="acq_data_in[13]" tap_mode="classic" type="unknown"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec/>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus is_signal_inverted="no" link="all" name="acq_data_in[0..13]" order="lsb_to_msb" radix="hex" state="collapse" type="unknown">
+            <net is_signal_inverted="no" name="acq_data_in[0]"/>
+            <net is_signal_inverted="no" name="acq_data_in[1]"/>
+            <net is_signal_inverted="no" name="acq_data_in[2]"/>
+            <net is_signal_inverted="no" name="acq_data_in[3]"/>
+            <net is_signal_inverted="no" name="acq_data_in[4]"/>
+            <net is_signal_inverted="no" name="acq_data_in[5]"/>
+            <net is_signal_inverted="no" name="acq_data_in[6]"/>
+            <net is_signal_inverted="no" name="acq_data_in[7]"/>
+            <net is_signal_inverted="no" name="acq_data_in[8]"/>
+            <net is_signal_inverted="no" name="acq_data_in[9]"/>
+            <net is_signal_inverted="no" name="acq_data_in[10]"/>
+            <net is_signal_inverted="no" name="acq_data_in[11]"/>
+            <net is_signal_inverted="no" name="acq_data_in[12]"/>
+            <net is_signal_inverted="no" name="acq_data_in[13]"/>
+          </bus>
+        </data_view>
+        <setup_view>
+          <bus is_signal_inverted="no" link="all" name="acq_data_in[0..13]" order="lsb_to_msb" radix="hex" state="collapse" type="unknown">
+            <net is_signal_inverted="no" name="acq_data_in[0]"/>
+            <net is_signal_inverted="no" name="acq_data_in[1]"/>
+            <net is_signal_inverted="no" name="acq_data_in[2]"/>
+            <net is_signal_inverted="no" name="acq_data_in[3]"/>
+            <net is_signal_inverted="no" name="acq_data_in[4]"/>
+            <net is_signal_inverted="no" name="acq_data_in[5]"/>
+            <net is_signal_inverted="no" name="acq_data_in[6]"/>
+            <net is_signal_inverted="no" name="acq_data_in[7]"/>
+            <net is_signal_inverted="no" name="acq_data_in[8]"/>
+            <net is_signal_inverted="no" name="acq_data_in[9]"/>
+            <net is_signal_inverted="no" name="acq_data_in[10]"/>
+            <net is_signal_inverted="no" name="acq_data_in[11]"/>
+            <net is_signal_inverted="no" name="acq_data_in[12]"/>
+            <net is_signal_inverted="no" name="acq_data_in[13]"/>
+          </bus>
+          <net is_signal_inverted="no" name="acq_trigger_in[0]"/>
+        </setup_view>
+      </presentation>
+      <trigger CRC="78507E01" gap_record="true" is_expanded="true" name="trigger: 2011/04/07 14:14:31  #1" record_data_gap="true" storage_mode="off" storage_qualifier_port_is_pin="false" storage_qualifier_port_tap_mode="classic">
+        <power_up_trigger/>
+        <events use_custom_flow_control="no">
+          <level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </level>
+        </events>
+        <storage_qualifier>
+          <transitional>
+            <pwr_up_transitional/>
+          </transitional>
+        </storage_qualifier>
+        <storage_qualifier_events>
+          <storage_qualifier_level>
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level>
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level>
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <transitional>
+            <pwr_up_transitional/>
+          </transitional>
+        </storage_qualifier_events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+    </position_info>
+  </instance>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <single attribute="lock mode" value="36112"/>
+    <multi attribute="window position" size="9" value="1920,980,398,124,356,50,124,0,50"/>
+  </global_info>
+  <mnemonics/>
+</session>

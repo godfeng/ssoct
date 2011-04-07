@@ -1,7 +1,7 @@
 <sld_project_info>
   <hub_info ir_width="8" node_count="1"/>
   <node_info>
-    <node hpath="Aline_mon:Aline_mon_inst|sld_signaltap:sld_signaltap_component" instance_id="0" mfg_id="110" node_id="2" sld_node_info="0x30106E00" version="6">
+    <node hpath="Aline_monitor:Aline_monitor_inst|sld_signaltap:sld_signaltap_component" instance_id="0" mfg_id="110" node_id="2" sld_node_info="0x30106E00" version="6">
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
         <parameter name="sld_node_info" type="dec" value="1076736"/>
@@ -11,8 +11,8 @@
         <parameter name="sld_data_bits" type="dec" value="14"/>
         <parameter name="sld_trigger_bits" type="dec" value="1"/>
         <parameter name="sld_node_crc_bits" type="dec" value="32"/>
-        <parameter name="sld_node_crc_hiword" type="dec" value="19742"/>
-        <parameter name="sld_node_crc_loword" type="dec" value="10633"/>
+        <parameter name="sld_node_crc_hiword" type="dec" value="30800"/>
+        <parameter name="sld_node_crc_loword" type="dec" value="32257"/>
         <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
         <parameter name="sld_sample_depth" type="dec" value="2048"/>
         <parameter name="SLD_SEGMENT_SIZE" type="dec" value="0"/>
@@ -52,54 +52,54 @@
         <parameter name="SLD_STORAGE_QUALIFIER_PIPELINE" type="dec" value="0"/>
       </parameters>
       <inputs>
-        <port name="acq_clk" source="Aline_mon:Aline_mon_inst|acq_clk"/>
-        <port name="acq_data_in[0]" source="Aline_mon:Aline_mon_inst|acq_data_in[0]"/>
-        <port name="acq_data_in[1]" source="Aline_mon:Aline_mon_inst|acq_data_in[1]"/>
-        <port name="acq_data_in[2]" source="Aline_mon:Aline_mon_inst|acq_data_in[2]"/>
-        <port name="acq_data_in[3]" source="Aline_mon:Aline_mon_inst|acq_data_in[3]"/>
-        <port name="acq_data_in[4]" source="Aline_mon:Aline_mon_inst|acq_data_in[4]"/>
-        <port name="acq_data_in[5]" source="Aline_mon:Aline_mon_inst|acq_data_in[5]"/>
-        <port name="acq_data_in[6]" source="Aline_mon:Aline_mon_inst|acq_data_in[6]"/>
-        <port name="acq_data_in[7]" source="Aline_mon:Aline_mon_inst|acq_data_in[7]"/>
-        <port name="acq_data_in[8]" source="Aline_mon:Aline_mon_inst|acq_data_in[8]"/>
-        <port name="acq_data_in[9]" source="Aline_mon:Aline_mon_inst|acq_data_in[9]"/>
-        <port name="acq_data_in[10]" source="Aline_mon:Aline_mon_inst|acq_data_in[10]"/>
-        <port name="acq_data_in[11]" source="Aline_mon:Aline_mon_inst|acq_data_in[11]"/>
-        <port name="acq_data_in[12]" source="Aline_mon:Aline_mon_inst|acq_data_in[12]"/>
-        <port name="acq_data_in[13]" source="Aline_mon:Aline_mon_inst|acq_data_in[13]"/>
-        <port name="acq_trigger_in[0]" source="Aline_mon:Aline_mon_inst|acq_trigger_in[0]"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_raw_tck" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_raw_tck"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_tdi" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_tdi"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_usr1" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_usr1"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_rti" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_rti"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_shift" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_shift"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_update" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_update"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_cdr" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_cdr"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_sdr" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_sdr"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_e1dr" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_e1dr"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_udr" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_udr"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_uir" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_jtag_state_uir"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_clr" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_clr"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ena" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ena"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_0_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_0_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_1_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_1_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_2_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_2_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_3_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_3_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_4_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_4_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_5_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_5_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_6_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_6_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_7_" source="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_in_7_"/>
+        <port name="acq_clk" source="Aline_monitor:Aline_monitor_inst|acq_clk"/>
+        <port name="acq_data_in[0]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[0]"/>
+        <port name="acq_data_in[1]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[1]"/>
+        <port name="acq_data_in[2]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[2]"/>
+        <port name="acq_data_in[3]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[3]"/>
+        <port name="acq_data_in[4]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[4]"/>
+        <port name="acq_data_in[5]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[5]"/>
+        <port name="acq_data_in[6]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[6]"/>
+        <port name="acq_data_in[7]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[7]"/>
+        <port name="acq_data_in[8]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[8]"/>
+        <port name="acq_data_in[9]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[9]"/>
+        <port name="acq_data_in[10]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[10]"/>
+        <port name="acq_data_in[11]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[11]"/>
+        <port name="acq_data_in[12]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[12]"/>
+        <port name="acq_data_in[13]" source="Aline_monitor:Aline_monitor_inst|acq_data_in[13]"/>
+        <port name="acq_trigger_in[0]" source="Aline_monitor:Aline_monitor_inst|acq_trigger_in[0]"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_raw_tck" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_raw_tck"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_tdi" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_tdi"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_usr1" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_usr1"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_rti" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_rti"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_shift" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_shift"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_update" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_update"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_cdr" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_cdr"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_sdr" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_sdr"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_e1dr" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_e1dr"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_udr" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_udr"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_uir" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_jtag_state_uir"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_clr" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_clr"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ena" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ena"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_0_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_0_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_1_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_1_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_2_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_2_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_3_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_3_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_4_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_4_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_5_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_5_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_6_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_6_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_7_" source="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_in_7_"/>
       </inputs>
       <outputs>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_0_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_1_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_2_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_3_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_4_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_5_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_6_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_ir_out_7_"/>
-        <port name="jtag.bp.Aline_mon_inst_sld_signaltap_component_tdo"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_0_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_1_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_2_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_3_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_4_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_5_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_6_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_ir_out_7_"/>
+        <port name="jtag.bp.Aline_monitor_inst_sld_signaltap_component_tdo"/>
       </outputs>
     </node>
   </node_info>

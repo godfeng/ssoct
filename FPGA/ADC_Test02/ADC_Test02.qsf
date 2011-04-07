@@ -549,7 +549,6 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name SEARCH_PATH "nco-library"
-set_global_assignment -name SIGNALTAP_FILE Aline_mon.stp
 set_global_assignment -name VERILOG_FILE pll.v
 set_global_assignment -name VERILOG_FILE NCO_1MHz_st.v
 set_global_assignment -name VERILOG_FILE NCO_10MHz_st.v
@@ -566,7 +565,7 @@ set_global_assignment -name VERILOG_FILE ADC_Test02.v
 set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
 set_global_assignment -name SDC_FILE ADC_Test02.SDC
 set_global_assignment -name QIP_FILE sample_addressing.qip
-set_global_assignment -name QIP_FILE Aline_mon.qip
 set_global_assignment -name QIP_FILE fft_Aline.qip
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING_AND_HIGH_SPEED_TILES -section_id Top
+set_global_assignment -name QIP_FILE Aline_monitor.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
