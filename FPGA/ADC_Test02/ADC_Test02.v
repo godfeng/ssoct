@@ -582,36 +582,36 @@ Aline_mon	Aline_mon_inst (
 
 // --- FFT of A-line
 // Real input to the fft (16-bit)
-wire	[15:0]		fft_sink_real;
-assign	fft_sink_real	= { 2'b00, A_line[sample_position] };
-wire				sink_ready_sig;
-wire				source_error_sig;
-wire				source_sop_sig;
-wire				source_eop_sig;
-wire				source_valid_sig;
-wire	[5:0] 		source_exp_sig;
-wire	[15:0] 		source_real_sig;
-wire	[15:0] 		source_imag_sig;
-
-fft_Aline fft_Aline_inst1(
-	.clk ( ADA_DCO ),					// input  clk_sig
-	.reset_n ( reset_n ),				// input  reset_n_sig
-	.inverse ( 1'b0 ),					// input  inverse_sig
-	.sink_valid (sweepTrigger & ADA_DCO),// input  sink_valid_sig
-	.sink_sop ( sweepTrigger ),			// input  sink_sop_sig
-	.sink_eop ( ~sweepTrigger ),		// input  sink_eop_sig
-	.sink_real ( fft_sink_real ),		// input [15:0] sink_real_sig
-	.sink_imag ( 16'b0 ),				// input [15:0] sink_imag_sig
-	.sink_error ( 2'b0 ),				// input [1:0] sink_error_sig
-	.source_ready ( 1'b1 ),				// input  source_ready_sig
-	.sink_ready ( sink_ready_sig ),		// output  sink_ready_sig
-	.source_error ( source_error_sig ),	// output [1:0] source_error_sig
-	.source_sop ( source_sop_sig ),		// output  source_sop_sig
-	.source_eop ( source_eop_sig ),		// output  source_eop_sig
-	.source_valid ( source_valid_sig ),	// output  source_valid_sig
-	.source_exp ( source_exp_sig ),		// output [5:0] source_exp_sig
-	.source_real ( source_real_sig ),	// output [15:0] source_real_sig
-	.source_imag ( source_imag_sig )	// output [15:0] source_imag_sig
-	);
+//wire	[15:0]		fft_sink_real;
+//assign	fft_sink_real	= { 2'b00, A_line[sample_position] };
+//wire				sink_ready_sig;
+//wire				source_error_sig;
+//wire				source_sop_sig;
+//wire				source_eop_sig;
+//wire				source_valid_sig;
+//wire	[5:0] 		source_exp_sig;
+//wire	[15:0] 		source_real_sig;
+//wire	[15:0] 		source_imag_sig;
+//
+//fft_Aline fft_Aline_inst1(
+//	.clk ( ADA_DCO ),					// input  clk_sig
+//	.reset_n ( reset_n ),				// input  reset_n_sig
+//	.inverse ( 1'b0 ),					// input  inverse_sig
+//	.sink_valid (sweepTrigger & ADA_DCO),// input  sink_valid_sig
+//	.sink_sop ( sweepTrigger ),			// input  sink_sop_sig
+//	.sink_eop ( ~sweepTrigger ),		// input  sink_eop_sig
+//	.sink_real ( fft_sink_real ),		// input [15:0] sink_real_sig
+//	.sink_imag ( 16'b0 ),				// input [15:0] sink_imag_sig
+//	.sink_error ( 2'b0 ),				// input [1:0] sink_error_sig
+//	.source_ready ( 1'b1 ),				// input  source_ready_sig
+//	.sink_ready ( sink_ready_sig ),		// output  sink_ready_sig
+//	.source_error ( source_error_sig ),	// output [1:0] source_error_sig
+//	.source_sop ( source_sop_sig ),		// output  source_sop_sig
+//	.source_eop ( source_eop_sig ),		// output  source_eop_sig
+//	.source_valid ( source_valid_sig ),	// output  source_valid_sig
+//	.source_exp ( source_exp_sig ),		// output [5:0] source_exp_sig
+//	.source_real ( source_real_sig ),	// output [15:0] source_real_sig
+//	.source_imag ( source_imag_sig )	// output [15:0] source_imag_sig
+//	);
 
 endmodule
