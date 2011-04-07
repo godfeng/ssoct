@@ -1,3 +1,4 @@
+% Some data about OCT resolution, data acquisition parameters, etc.
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -25,3 +26,13 @@ Ns = 1170;                              % Number of samples (Ns_max = 1286)
 delta_Z_Nq = lambda0^2 * Ns / (4*delta_lambda*n);
 n_air = 1;                              % Index of refraction of air
 delta_Z_Nq_air = lambda0^2 * Ns / (4*delta_lambda*n_air);
+
+%% Data acquisition parameters
+nSamples = 1170;                        % Fixed by the swept source
+nBits = 16;                             % ADC = 14 bits
+freq = 50e3;                            % Sweep Trigger frequency
+nBytes = nSamples*nBits/8;              % Bytes acquired every Sweep Trigger
+nBytesPerSec = freq*nBytes;             % Bytes/sec
+nKbytesPerSec = nBytesPerSec/1024;      % KBytes/sec
+nMegsPerSec = nKbytesPerSec/1024;       % Mbytes/sec
+nMbitsPerSec = nMegsPerSec*8;           % Mbits/sec < 1 Gbit/sec

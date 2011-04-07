@@ -511,25 +511,38 @@ pll		pll_inst(
 			);
 			
 //--- NCO function 1.001MHz
-NCO_1MHz	NCO_1MHz_inst(
-			.phi_inc_i(32'd42992623),
-			.clk(sys_clk),
-			.reset_n(BUTTON[0]),
-			.clken(1'b1),
-			.fsin_o(i_sine1),
-			.out_valid()
-			);
+// for 100kHz phi_inc_i = 32'd4294967
+// for 1MHz phi_inc_i = 32'd42992623
+//NCO_1MHz	NCO_1MHz_inst(
+//			.phi_inc_i(32'd4294967),
+//			.clk(sys_clk),
+//			.reset_n(BUTTON[0]),
+//			.clken(1'b1),
+//			.fsin_o(i_sine1),
+//			.out_valid()
+//			);
 
 //--- NCO function 10.01MHz
-NCO_10MHz	NCO_10MHz_inst(
-			.phi_inc_i(32'd429926226),
-			.clk(sys_clk),
-			.reset_n(BUTTON[1]),
-			.clken(1'b1),
-			.fsin_o(i_sine10),
-			.out_valid()
-			);
+//NCO_10MHz	NCO_10MHz_inst(
+//			.phi_inc_i(32'd429926226),
+//			.clk(sys_clk),
+//			.reset_n(BUTTON[1]),
+//			.clken(1'b1),
+//			.fsin_o(i_sine10),
+//			.out_valid()
+//			);
 
+//--- NCO function 100kHz
+// for 100kHz phi_inc_i = 32'd4294967
+NCO_1MHz_st NCO1(
+	.phi_inc_i(32'd4294967),
+	.clk(sys_clk),
+	.reset_n(BUTTON[1]),
+	.clken(1'b1),
+	.fsin_o(i_sine1),
+	.out_valid()
+	);
+	
 always @(negedge reset_n or posedge sys_clk)
 begin
 	if (!reset_n) begin
