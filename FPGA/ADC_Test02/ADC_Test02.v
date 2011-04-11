@@ -466,26 +466,34 @@ begin
 	end
 end
 
+// Synchronization of sampling with sweep trigger
+sample_addressing	sample_addressing_inst (
+	.clock ( ADA_DCO ),						// k-clock (positive edge)
+	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
+	.q ( sample_position )					// Indicates position of the sample in the A-line
+	);
+	
 	//--- Channel B
-always @(negedge reset_n or posedge ADB_DCO)
-begin
-	if (!reset_n) begin
-		per_a2db_d	<= 14'd0;
-	end
-	else begin
-		per_a2db_d	<= ADB_D;
-	end
-end
-
-always @(negedge reset_n or posedge sys_clk)
-begin
-	if (!reset_n) begin
-		a2db_data	<= 14'd0;
-	end
-	else begin
-		a2db_data	<= per_a2db_d;
-	end
-end
+	// DISABLED
+//always @(negedge reset_n or posedge ADB_DCO)
+//begin
+//	if (!reset_n) begin
+//		per_a2db_d	<= 14'd0;
+//	end
+//	else begin
+//		per_a2db_d	<= ADB_D;
+//	end
+//end
+//
+//always @(negedge reset_n or posedge sys_clk)
+//begin
+//	if (!reset_n) begin
+//		a2db_data	<= 14'd0;
+//	end
+//	else begin
+//		a2db_data	<= per_a2db_d;
+//	end
+//end
 
 //--- count for Heartbeat
 always @(negedge reset_n or posedge sweepTrigger)
@@ -523,6 +531,7 @@ pll		pll_inst(
 //			);
 
 //--- NCO function 10.01MHz
+// DISABLED
 //NCO_10MHz	NCO_10MHz_inst(
 //			.phi_inc_i(32'd429926226),
 //			.clk(sys_clk),
@@ -534,11 +543,12 @@ pll		pll_inst(
 
 //--- NCO function 100kHz
 // for 100kHz phi_inc_i = 32'd4294967
+// for 200kHz phi_inc_i = 32'd8589935
 NCO_1MHz_st NCO1(
-	.phi_inc_i(32'd4294967),
+	.phi_inc_i(32'd8589935),
 	.clk(sys_clk),
 	.reset_n(BUTTON[1]),
-	.clken(1'b1),
+	.clken(sweepTrigger),
 	.fsin_o(i_sine1),
 	.out_valid()
 	);
@@ -586,15 +596,8 @@ begin
 	end
 end
 
-// Synchronization of sampling with sweep trigger
-sample_addressing	sample_addressing_inst (
-	.clock ( ADA_DCO ),						// k-clock (positive edge)
-	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
-	.q ( sample_position )					// Indicates position of the sample in the A-line
-	);
-
 // Probing A-line contents
-// Don't forget: 
+// Don't forget after compilation: 
 // File -> Create/Update -> Create SignalTap II file from design instances
 Aline_monitor	Aline_monitor_inst (
 	.acq_clk ( ADA_DCO ),
