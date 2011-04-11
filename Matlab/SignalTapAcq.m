@@ -6,4 +6,6 @@
 % 2011/04/07
 
 %% 
-alt_signaltap_run
+% acqData = alt_signaltap_run('D:\Edgar\Documents\ssoct\FPGA\ADC_Test02\Aline_monitor.stp',...
+%     'signed','Aline_monitor_inst','acq_data_in','sweepTrigger');
+acqData = alt_signaltap_run('D:\Edgar\Documents\ssoct\FPGA\ADC_Test02\Aline_monitor.stp');
