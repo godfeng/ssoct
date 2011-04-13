@@ -41,7 +41,7 @@
 module OCT_acq01(
 
 	//////////// CLOCK //////////
-	GCLKIN,
+	GCLKIN,					// 50 kHz Sweep Trigger
 	GCLKOUT_FPGA,
 	OSC_50_BANK2,
 	OSC_50_BANK3,
@@ -171,7 +171,7 @@ parameter	NSAMPLES		= 1170;			// Number of samples per A-line
 //=======================================================
 
 //////////// CLOCK //////////
-input		          		GCLKIN;
+input		          		GCLKIN;			// 50 kHz Sweep Trigger
 output		          		GCLKOUT_FPGA;
 input		          		OSC_50_BANK2;
 input		          		OSC_50_BANK3;
@@ -401,12 +401,12 @@ assign	reset_n			= CPU_RESET_n;
 
 assign	FAN_CTRL		= 1'bz;
 
-assign	FPGA_CLK_A_P	=  sys_clk_180deg;
-assign	FPGA_CLK_A_N	= ~sys_clk_180deg;
-assign	FPGA_CLK_B_P	=  sys_clk_270deg;
-assign	FPGA_CLK_B_N	= ~sys_clk_270deg;
-
-assign	sys_clk			= PLL_CLKIN_p;
+//assign	FPGA_CLK_A_P	=  sys_clk_180deg;
+//assign	FPGA_CLK_A_N	= ~sys_clk_180deg;
+//assign	FPGA_CLK_B_P	=  sys_clk_270deg;
+//assign	FPGA_CLK_B_N	= ~sys_clk_270deg;
+assign	FPGA_CLK_A_P	=  sys_clk;
+assign	FPGA_CLK_A_N	= ~sys_clk;
 
 // Assign for indicators
 assign	LED[0]			= ~pll_locked;		// pll locked
@@ -428,11 +428,14 @@ assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
 // assign for DAC output data
-assign	DA 				= o_sine_p;			// Output 10MHz sine to DAC channel A
+assign	DA 				= o_sine_p;			// Output sine to DAC channel A
 assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
 
-// Assign sweep Trigger
+// Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
+
+// Assign 100 MHz clock PLL_CLKIN_p to sys_clk
+assign	sys_clk			= PLL_CLKIN_p;
 
 // 7 Segment Display dot
 assign	SEG0_DP 		= ~heartbeat;		// LED[7] inverted
