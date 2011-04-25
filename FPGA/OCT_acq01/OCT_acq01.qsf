@@ -7,10 +7,11 @@ set_global_assignment -name DEVICE EP4SGX230KF40C2
 set_global_assignment -name TOP_LEVEL_ENTITY "OCT_acq01"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:33:03 APRIL 12,2011"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:23:29 APRIL 15,2011"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
+set_global_assignment -name SDC_FILE OCT_acq01.SDC
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_AF25 -to termination_blk0~_rup_pad
 set_location_assignment PIN_AG25 -to termination_blk0~_rdn_pad
@@ -544,17 +545,10 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to HSMC_SDA
 #============================================================
 
 
-set_global_assignment -name VERILOG_FILE OCT_acq01.v
-set_global_assignment -name VERILOG_FILE Aline_monitor.v
-set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
-set_global_assignment -name VERILOG_FILE p_sine.v
-set_global_assignment -name VERILOG_FILE pll.v
-set_global_assignment -name VERILOG_FILE sample_addressing.v
-set_global_assignment -name VERILOG_FILE SevenSegmentDisplayDecoder.v
-set_global_assignment -name SDC_FILE OCT_acq01.SDC
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name QIP_FILE NCO_1MHz.qip
+set_global_assignment -name QIP_FILE Aline_monitor.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

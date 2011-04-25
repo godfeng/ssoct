@@ -12,8 +12,13 @@
 
 clc                                     % Clear scren
 command = 's';
+
+% Server machine (FPGA)
+serverAddress = '192.168.1.234';
+portNumber = 30;
+
 % Create TCP/IP object 't'. Specify server machine and port number. 
-t = tcpip('192.168.1.234', 30); 
+t = tcpip(serverAddress, portNumber); 
 
 % Set size of receiving buffer, if needed. 
 set(t, 'InputBufferSize', 2^16); 
@@ -33,7 +38,7 @@ pause(0.1)
 % while (get(t, 'BytesAvailable') > 0)
 
 fprintf('DataReceived = \n')
-while ~strcmp(command,'q')
+while ~strcmp(command,'q')              % quits if command equals 'q'
 %     command = input('Enter Command: ','s');
     command = getkey;
     % Transmit data to the server (or a request for data from the server). 
@@ -42,12 +47,13 @@ while ~strcmp(command,'q')
     pause(0.125)
 end
 
-% Close connection from the FPGA
+% Closed connection from the FPGA
 fprintf(t, 'q'); 
 
 % Disconnect and clean up the server connection. 
 % fclose(t); 
 
+% Deletes object t
 delete(t); 
 clear t 
 fprintf('Connection successfully closed\n')

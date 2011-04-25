@@ -30,15 +30,15 @@ reg reset_n;
 reg clken;
 reg clk;
 
-parameter CYCLE = 5000;
-parameter HALF_CYCLE = 2500;
+parameter CYCLE = 10000;
+parameter HALF_CYCLE = 5000;
 initial
   begin
     $dumpvars;
     #0 clk = 1'b0;
     #0 reset_n = 1'b0;
     #0 clken = 1'b1;
-    #0 phi = 32'b00000000100000110001001001101111;
+    #0 phi = 32'b00000001000001100010010011011101;
     #(14*HALF_CYCLE) reset_n = 1'b1;
   end
 

@@ -55,13 +55,13 @@ module Aline_monitor (
 		sld_signaltap_component.sld_data_bits = 14,
 		sld_signaltap_component.sld_data_bit_cntr_bits = 5,
 		sld_signaltap_component.sld_enable_advanced_trigger = 0,
-		sld_signaltap_component.sld_mem_address_bits = 11,
+		sld_signaltap_component.sld_mem_address_bits = 13,
 		sld_signaltap_component.sld_node_crc_bits = 32,
-		sld_signaltap_component.sld_node_crc_hiword = 30800,
-		sld_signaltap_component.sld_node_crc_loword = 32257,
+		sld_signaltap_component.sld_node_crc_hiword = 12388,
+		sld_signaltap_component.sld_node_crc_loword = 13358,
 		sld_signaltap_component.sld_node_info = 1076736,
 		sld_signaltap_component.sld_ram_block_type = "Auto",
-		sld_signaltap_component.sld_sample_depth = 2048,
+		sld_signaltap_component.sld_sample_depth = 8192,
 		sld_signaltap_component.sld_storage_qualifier_gap_record = 0,
 		sld_signaltap_component.sld_storage_qualifier_mode = "OFF",
 		sld_signaltap_component.sld_trigger_bits = 1,
@@ -78,7 +78,7 @@ endmodule
 // Retrieval info: PRIVATE: DATA_WIDTH_EDIT STRING "14"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Stratix IV"
 // Retrieval info: PRIVATE: RAM_TYPE_COMBO STRING "Auto"
-// Retrieval info: PRIVATE: SAMPLE_DEPTH_COMBO STRING "2 K"
+// Retrieval info: PRIVATE: SAMPLE_DEPTH_COMBO STRING "8 K"
 // Retrieval info: PRIVATE: SLD_TRIGGER_OUT_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: TRIGGER_LEVELS_COMBO STRING "1"
 // Retrieval info: PRIVATE: TRIGGER_LEVEL_0_COMBO STRING "Basic"
@@ -97,13 +97,13 @@ endmodule
 // Retrieval info: CONSTANT: SLD_DATA_BITS NUMERIC "14"
 // Retrieval info: CONSTANT: SLD_DATA_BIT_CNTR_BITS NUMERIC "5"
 // Retrieval info: CONSTANT: SLD_ENABLE_ADVANCED_TRIGGER NUMERIC "0"
-// Retrieval info: CONSTANT: SLD_MEM_ADDRESS_BITS NUMERIC "11"
+// Retrieval info: CONSTANT: SLD_MEM_ADDRESS_BITS NUMERIC "13"
 // Retrieval info: CONSTANT: SLD_NODE_CRC_BITS NUMERIC "32"
-// Retrieval info: CONSTANT: SLD_NODE_CRC_HIWORD NUMERIC "30800"
-// Retrieval info: CONSTANT: SLD_NODE_CRC_LOWORD NUMERIC "32257"
+// Retrieval info: CONSTANT: SLD_NODE_CRC_HIWORD NUMERIC "12388"
+// Retrieval info: CONSTANT: SLD_NODE_CRC_LOWORD NUMERIC "13358"
 // Retrieval info: CONSTANT: SLD_NODE_INFO NUMERIC "1076736"
 // Retrieval info: CONSTANT: SLD_RAM_BLOCK_TYPE STRING "Auto"
-// Retrieval info: CONSTANT: SLD_SAMPLE_DEPTH NUMERIC "2048"
+// Retrieval info: CONSTANT: SLD_SAMPLE_DEPTH NUMERIC "8192"
 // Retrieval info: CONSTANT: SLD_STORAGE_QUALIFIER_GAP_RECORD NUMERIC "0"
 // Retrieval info: CONSTANT: SLD_STORAGE_QUALIFIER_MODE STRING "OFF"
 // Retrieval info: CONSTANT: SLD_TRIGGER_BITS NUMERIC "1"
@@ -119,6 +119,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor.bsf TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor_inst.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Aline_monitor_bb.v FALSE

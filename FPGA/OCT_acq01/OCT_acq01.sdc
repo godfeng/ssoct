@@ -12,9 +12,6 @@ create_clock -period 20 [get_ports OSC_50_BANK4]
 create_clock -period 20 [get_ports OSC_50_BANK5]
 create_clock -period 20 [get_ports OSC_50_BANK6]
 create_clock -period 20 [get_ports OSC_50_BANK7]
-create_clock -period 6.666 -name ADC_clk [get_ports {ADA_DCO}]
-#create_clock -period 5 -name SYS_clk [get_registers {ext_pll_ctrl:ext_pll_ctrl_Inst|sclk}]
-
 
 #**************************************************************
 # Create Generated Clock

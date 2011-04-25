@@ -86,7 +86,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "CK_VALUE" value="10"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "CK_UNIT" value="ns"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "CK_MULT" value="e-9"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "FSAMP_VALUE" value="200"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "FSAMP_VALUE" value="100"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "FREQ_VALUE" value="400"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "MPR" value="13"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "APR" value="32"  type="STRING"  enable="1" />
@@ -109,7 +109,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "WANT_VHDL_SIM" value="YES"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "WANT_MATLAB" value="YES"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "WANT_VEC" value="YES"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "PHI_INC" value="8589935"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "PHI_INC" value="17179869"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "MODULE_NAME" value="NCO_1MHz_st"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "NETLIST_FILE_NAME" value="NCO_1MHz_st.v"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "PHASE_INC" value="4096"  type="STRING"  enable="1" />
