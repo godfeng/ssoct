@@ -17,43 +17,43 @@ command = 's';
 serverAddress = '192.168.1.234';
 portNumber = 30;
 
-% Create TCP/IP object 't'. Specify server machine and port number. 
-t = tcpip(serverAddress, portNumber); 
+% Create TCP/IP object 'TCP_IP_object'. Specify server machine and port number. 
+TCP_IP_object = tcpip(serverAddress, portNumber); 
 
 % Set size of receiving buffer, if needed. 
-set(t, 'InputBufferSize', 2^16); 
+set(TCP_IP_object, 'InputBufferSize', 2^16); 
 
 % Open connection to the server. 
-fopen(t); 
+fopen(TCP_IP_object); 
 
 % Read Welcome message (9 lines)
 for i=1:9,
-	disp(fscanf(t))
+	disp(fscanf(TCP_IP_object))
     pause(0.125)
 end
 
 % Pause for the communication delay, if needed. 
 pause(0.5)
 
-% while (get(t, 'BytesAvailable') > 0)
+% while (get(TCP_IP_object, 'BytesAvailable') > 0)
 
 fprintf('DataReceived = \n')
 while ~strcmp(command,'q')              % quits if command equals 'q'
     command = input('Enter Command: ','s');
 %     command = getkey;                   % Open hidden window (sort of getche())
     % Transmit data to the server (or a request for data from the server). 
-    fprintf(t, num2str(command)); 
-    disp(fscanf(t))
+    fprintf(TCP_IP_object, num2str(command)); 
+    disp(fscanf(TCP_IP_object))
     pause(0.125)
 end
 
 % Closed connection from the FPGA
-fprintf(t, 'q'); 
+fprintf(TCP_IP_object, 'q'); 
 
 % Disconnect and clean up the server connection. 
-% fclose(t); 
+% fclose(TCP_IP_object); 
 
-% Deletes object t
-delete(t); 
-clear t 
+% Deletes object TCP_IP_object
+delete(TCP_IP_object); 
+clear TCP_IP_object 
 fprintf('Connection successfully closed\n')
