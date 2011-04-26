@@ -26,19 +26,18 @@ set(TCP_IP_object, 'InputBufferSize', 2^16);
 % Open connection to the server. 
 fopen(TCP_IP_object); 
 
-% Read Welcome message (9 lines)
-for i=1:9,
+% Read Welcome message (8 lines)
+for i=1:8,
 	disp(fscanf(TCP_IP_object))
-    pause(0.125)
 end
 
 % Pause for the communication delay, if needed. 
-pause(0.5)
+% pause(0.5)
 
-% while (get(TCP_IP_object, 'BytesAvailable') > 0)
+% while 
 
 fprintf('DataReceived = \n')
-while ~strcmp(command,'q')              % quits if command equals 'q'
+while (get(TCP_IP_object, 'BytesAvailable') > 0) && ~strcmp(command,'q')              % quits if command equals 'q'
     command = input('Enter Command: ','s');
 %     command = getkey;                   % Open hidden window (sort of getche())
     % Transmit data to the server (or a request for data from the server). 
@@ -48,10 +47,10 @@ while ~strcmp(command,'q')              % quits if command equals 'q'
 end
 
 % Closed connection from the FPGA
-fprintf(TCP_IP_object, 'q'); 
+% fprintf(TCP_IP_object, 'q'); 
 
 % Disconnect and clean up the server connection. 
-% fclose(TCP_IP_object); 
+fclose(TCP_IP_object); 
 
 % Deletes object TCP_IP_object
 delete(TCP_IP_object); 
