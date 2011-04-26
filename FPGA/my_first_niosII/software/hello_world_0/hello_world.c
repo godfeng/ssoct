@@ -25,7 +25,8 @@ int delay;
 IOWR_ALTERA_AVALON_PIO_DATA(PIO_LED_BASE, 0xFF);        // Turn LEDs Off
 while(1)
 {
-    IOWR_ALTERA_AVALON_PIO_DATA(PIO_LED_BASE, count & 0x01);
+//    IOWR_ALTERA_AVALON_PIO_DATA(PIO_LED_BASE, count & 0x01);
+    IOWR_ALTERA_AVALON_PIO_DATA(PIO_LED_BASE, count);
     delay = 0;
     while(delay < 2000000)
         {

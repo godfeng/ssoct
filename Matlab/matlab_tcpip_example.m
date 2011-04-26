@@ -33,14 +33,14 @@ for i=1:9,
 end
 
 % Pause for the communication delay, if needed. 
-pause(0.1)
+pause(0.5)
 
 % while (get(t, 'BytesAvailable') > 0)
 
 fprintf('DataReceived = \n')
 while ~strcmp(command,'q')              % quits if command equals 'q'
-%     command = input('Enter Command: ','s');
-    command = getkey;
+    command = input('Enter Command: ','s');
+%     command = getkey;                   % Open hidden window (sort of getche())
     % Transmit data to the server (or a request for data from the server). 
     fprintf(t, num2str(command)); 
     disp(fscanf(t))
