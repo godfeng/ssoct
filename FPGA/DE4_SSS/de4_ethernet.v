@@ -148,7 +148,43 @@ module DE4_Ethernet(
 	SSRAM_CKE_n,
 	SSRAM_CLK,
 	SSRAM_OE_n,
-	SSRAM_WE_n 
+	SSRAM_WE_n, 
+	
+	//////////// HSMC-B, HSMC-B connect to None //////////
+	AD_SCLK,
+	AD_SDIO,
+	ADA_D,
+	ADA_DCO,
+	ADA_OE,
+	ADA_OR,
+	ADA_SPI_CS,
+	ADB_D,
+	ADB_DCO,
+	ADB_OE,
+	ADB_OR,
+	ADB_SPI_CS,
+	AIC_BCLK,
+	AIC_DIN,
+	AIC_DOUT,
+	AIC_LRCIN,
+	AIC_LRCOUT,
+	AIC_SPI_CS,
+	AIC_XCLK,
+	CLKIN1,
+	CLKOUT0,
+	DA,
+	DB,
+	FPGA_CLK_A_N,
+	FPGA_CLK_A_P,
+	FPGA_CLK_B_N,
+	FPGA_CLK_B_P,
+	J1_152,
+	XT_IN_N,
+	XT_IN_P,
+
+	//////////// HSMC I2C //////////
+	HSMC_SCL,
+	HSMC_SDA 
 );
 
 //=======================================================
@@ -257,6 +293,41 @@ output		          		SSRAM_CLK;
 output		          		SSRAM_OE_n;
 output		          		SSRAM_WE_n;
 
+//////////// HSMC-B, HSMC-B connect to None //////////
+inout		          		AD_SCLK;
+inout		          		AD_SDIO;
+input		    [13:0]		ADA_D;
+input		          		ADA_DCO;
+output		          		ADA_OE;
+input		          		ADA_OR;
+output		          		ADA_SPI_CS;
+input		    [13:0]		ADB_D;
+input		          		ADB_DCO;
+output		          		ADB_OE;
+input		          		ADB_OR;
+output		          		ADB_SPI_CS;
+inout		          		AIC_BCLK;
+output		          		AIC_DIN;
+input		          		AIC_DOUT;
+inout		          		AIC_LRCIN;
+inout		          		AIC_LRCOUT;
+output		          		AIC_SPI_CS;
+output		          		AIC_XCLK;
+input		          		CLKIN1;
+output		          		CLKOUT0;
+output		    [13:0]		DA;
+output		    [13:0]		DB;
+inout		          		FPGA_CLK_A_N;
+inout		          		FPGA_CLK_A_P;
+inout		          		FPGA_CLK_B_N;
+inout		          		FPGA_CLK_B_P;
+inout		          		J1_152;
+input		          		XT_IN_N;
+input		          		XT_IN_P;
+
+//////////// HSMC I2C //////////
+output		          		HSMC_SCL;
+inout		          		HSMC_SDA;
 
 //=======================================================
 //  REG/WIRE declarations
@@ -504,7 +575,7 @@ assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
 
-//--- analog to digital converter capture and sync
+//--- analog to digital converter capturing
 	//--- Channel A
 always @(negedge global_reset_n or posedge ADA_DCO)
 begin
@@ -518,7 +589,7 @@ begin
 	end
 end
 
-// Synchronization of sampling with sweep trigger
+// Synchronization of sampling with sweep trigger with a 11-bit counter
 sample_addressing	sample_addressing_inst (
 	.clock ( ADA_DCO ),						// k-clock (positive edge)
 	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
