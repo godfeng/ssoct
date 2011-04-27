@@ -36,3 +36,16 @@ nBytesPerSec = freq*nBytes;             % Bytes/sec
 nKbytesPerSec = nBytesPerSec/1024;      % KBytes/sec
 nMegsPerSec = nKbytesPerSec/1024;       % Mbytes/sec
 nMbitsPerSec = nMegsPerSec*8;           % Mbits/sec < 1 Gbit/sec
+
+%% Required Pathlength match (Axsun)
+c = 299792458;                          % Speed of light in air
+nFiber = 1.47;                          % effective index of refraction of the fiber
+redPath = nFiber*(1181+1180+1056+1058+1056+(1058+27+43)*2+1056+1179+1185)+...
+    (15+20+35+43+30)*2;                 % Red Path in mm
+% Electrical delay (in m)
+electricalDelay = (redPath + 1060 - 2620) / 1000;
+minElectricalDelay = 28.3e-9;           % Minimum electrical clock delay
+stepSizeClockDelay = 0.575e-9;          % the step size of clock delay
+timeDelay = electricalDelay / c;        % Time delay between the clock and signal
+% Number to use in the "Set clock delay" window
+setClockDelay = round((timeDelay - minElectricalDelay) / stepSizeClockDelay);

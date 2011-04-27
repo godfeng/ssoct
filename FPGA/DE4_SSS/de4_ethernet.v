@@ -150,7 +150,8 @@ module DE4_Ethernet(
 	SSRAM_OE_n,
 	SSRAM_WE_n, 
 	
-	//////////// HSMC-B, HSMC-B connect to None //////////
+	//////////// HSMC-B, HSMC-B connect to DCC //////////
+	// Data Conversion Card
 	AD_SCLK,
 	AD_SDIO,
 	ADA_D,
@@ -293,7 +294,8 @@ output		          		SSRAM_CLK;
 output		          		SSRAM_OE_n;
 output		          		SSRAM_WE_n;
 
-//////////// HSMC-B, HSMC-B connect to None //////////
+//////////// HSMC-B, HSMC-B connect to DCC //////////
+// Data Conversion Card
 inout		          		AD_SCLK;
 inout		          		AD_SDIO;
 input		    [13:0]		ADA_D;
@@ -359,6 +361,8 @@ reg 		[13:0] 			A_line 			[0:NSAMPLES-1];
 wire						sweepTrigger;
 //reg			[31:0]			count;			// Count for heartbeat
 wire		[10:0]			sample_position;// Position of the ADC sample in the A-line
+wire		[6:0]			dummyLEDs;			// not connected
+//reg			[6:0]			LEDwire;			// wire to LEDs
 
 
 //=======================================================
@@ -500,6 +504,7 @@ gen_reset_n	net_gen_reset_n(
 				.reset_n_out(enet_reset_n)
 				);
 
+// SOPC module
 DE4_SOPC	SOPC_INST (
 				// 1) global signals:
 				.ext_clk(OSC_50_BANK6),
@@ -539,7 +544,8 @@ DE4_SOPC	SOPC_INST (
 				.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 
 				// the_led_pio
-				.out_port_from_the_led_pio({dummy_LED,LED[6:0]})
+				//.out_port_from_the_led_pio({dummy_LED,LED[6:0]})
+				.out_port_from_the_led_pio({dummy_LED,dummyLEDs[6:0]})
                 );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -568,9 +574,8 @@ assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
 assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
-// assign for DAC output data
-//assign	DA 				= o_sine_p;			// Output sine to DAC channel A
 assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
+//assign 	LED[6:0]		= LEDwire[6:0];		// connect wire to LEDs	
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
@@ -586,6 +591,7 @@ begin
 		per_a2da_d	<= ADA_D;
 		// Indexing samples in the A-line array
 		A_line[sample_position] <= a2da_data;
+		//LEDwire[6:0] <= ~a2da_data[13:7];		// Map ADC channel A MSB to LEDs
 	end
 end
 

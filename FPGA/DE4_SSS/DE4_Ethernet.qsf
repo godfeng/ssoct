@@ -11,7 +11,6 @@ set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:30:05 MAY 24,2010"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
-set_global_assignment -name SDC_FILE DE4_Ethernet.SDC
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_AF25 -to termination_blk0~_rup_pad
 set_location_assignment PIN_AG25 -to termination_blk0~_rdn_pad
@@ -393,7 +392,7 @@ set_location_assignment PIN_H35 -to SSRAM_ADV
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SSRAM_ADV
 
 #============================================================
-# HSMC-B, HSMC-B connect to None
+# HSMC-B, HSMC-B connect to DCC
 #============================================================
 set_location_assignment PIN_L8 -to CLKOUT0
 set_instance_assignment -name IO_STANDARD "2.5 V" -to CLKOUT0
@@ -577,10 +576,15 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
-set_global_assignment -name QIP_FILE DE4_SOPC.qip
 set_instance_assignment -name GLOBAL_SIGNAL ON -to ref_clk
 set_instance_assignment -name IO_STANDARD LVDS -to ref_clk
 set_instance_assignment -name IO_STANDARD LVDS -to txp
 set_instance_assignment -name IO_STANDARD LVDS -to rxp
 set_instance_assignment -name VIRTUAL_PIN ON -to FSM_A[0]
+set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_SSS/DE4_Ethernet.dpf"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE sample_addressing.v
+set_global_assignment -name SDC_FILE DE4_Ethernet.SDC
+set_global_assignment -name QIP_FILE DE4_SOPC.qip
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON

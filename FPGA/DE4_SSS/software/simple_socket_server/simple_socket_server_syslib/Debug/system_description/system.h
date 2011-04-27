@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * D:\Edgar\Documents\ssoct\FPGA\DE4_SSS\DE4_SOPC.ptf
  *
- * Generated: 2011-04-26 11:57:36.278
+ * Generated: 2011-04-27 14:52:58.247
  *
  */
 
@@ -631,7 +631,6 @@ DO NOT MODIFY THIS FILE
  *
  */
 
-#define DHCP_CLIENT 1
 #define IP_FRAGMENTS 1
 #define INCLUDE_TCP 1
 #define INICHE_DEFAULT_IF "tse_mac"
