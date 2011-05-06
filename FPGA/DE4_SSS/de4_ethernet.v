@@ -337,6 +337,7 @@ inout		          		HSMC_SDA;
 
 wire						global_reset_n;
 wire						enet_reset_n;
+wire						sys_clk;
 
 //// Ethernet
 wire						enet_mdc;
@@ -350,9 +351,7 @@ wire						lvds_txp;
 
 // ADC registers
 reg			[13:0]			per_a2da_d;
-reg			[13:0]			per_a2db_d;
 reg			[13:0]			a2da_data;
-reg			[13:0]			a2db_data;
 
 wire						heartbeat;
 
@@ -363,6 +362,9 @@ wire						sweepTrigger;
 wire		[10:0]			sample_position;// Position of the ADC sample in the A-line
 wire		[6:0]			dummyLEDs;			// not connected
 //reg			[6:0]			LEDwire;			// wire to LEDs
+reg			[13:0]			DAC_output;
+reg			[13:0]			o_sine;
+wire		[13:0]			raw_sine;
 
 
 //=======================================================
@@ -379,9 +381,9 @@ reg   [7:0]  auto_set_counter;
 reg          conf_wr;
 
 //  Structural coding
-assign clk1_set_wr = 4'd4; //100 MHZ
-assign clk2_set_wr = 4'd4; //100 MHZ
-assign clk3_set_wr = 4'd4; //100 MHZ
+assign clk1_set_wr = 4'd11; //312.5 MHZ
+assign clk2_set_wr = 4'd11; //312.5 MHZ
+assign clk3_set_wr = 4'd11; //312.5 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -555,33 +557,38 @@ always @ (negedge global_reset_n or posedge OSC_50_BANK3)
 begin
 	if (!global_reset_n) begin
 		count	<= 0;
-		a2da_data	<= 14'd0;
 	end
 	else begin
 		count	<= count + 1;
-		//--- analog to digital converter capture and sync
-		a2da_data	<= per_a2da_d;
 	end
 end
 
 ///////////////////////////////////////////////////////////////////////////////
 
+assign	FPGA_CLK_A_P	=  sys_clk;
+assign	FPGA_CLK_A_N	= ~sys_clk;
+
 // assign for ADC control signal
-assign	AD_SCLK			= SLIDE_SW[0];		// (DFS)Data Format Select
-assign	AD_SDIO			= SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select
+assign	AD_SCLK			= 1'b0;				// (DFS)Data Format Select = binary (0)
+assign	AD_SDIO			= 1'b1;				// (DCS)Duty Cycle Stabilizer ON
 assign	ADA_OE			= 1'b0;				// enable ADA output
 assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
 assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
-assign 	DB 				= a2da_data;		// Map ADC channel A to DAC channel B
+// Map acquisition to DAC B
+assign DB 				= DAC_output;
+// 400 kHz sinus at DAC A
+assign DA				= o_sine;
 //assign 	LED[6:0]		= LEDwire[6:0];		// connect wire to LEDs	
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
 
-//--- analog to digital converter capturing
-	//--- Channel A
+// Assign 312.5 MHz clock PLL_CLKIN_p to sys_clk
+assign	sys_clk			= PLL_CLKIN_p;
+
+//--- Channel A
 always @(negedge global_reset_n or posedge ADA_DCO)
 begin
 	if (!global_reset_n) begin
@@ -589,18 +596,43 @@ begin
 	end
 	else begin
 		per_a2da_d	<= ADA_D;
-		// Indexing samples in the A-line array
-		A_line[sample_position] <= a2da_data;
-		//LEDwire[6:0] <= ~a2da_data[13:7];		// Map ADC channel A MSB to LEDs
 	end
 end
 
-// Synchronization of sampling with sweep trigger with a 11-bit counter
-sample_addressing	sample_addressing_inst (
-	.clock ( ADA_DCO ),						// k-clock (positive edge)
-	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
-	.q ( sample_position )					// Indicates position of the sample in the A-line
-	);
+always @(negedge global_reset_n or posedge sys_clk)
+begin
+	if (!global_reset_n) begin
+		a2da_data	<= 14'd0;
+		o_sine		<= 14'd0;
+	end
+	else begin
+		a2da_data	<= per_a2da_d;
+		// Indexing samples in the A-line array
+		A_line[sample_position] <= a2da_data;
+		// Map acquisition to DAC B
+		DAC_output 	<= A_line[sample_position];
+		// Invert sign bit (MSB) to have offset binary
+		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
+	end
+end
 
+// Synchronization of sampling with sweep trigger
+sample_addressing_custom sample_addressing_custom_inst
+(
+	.clock(ADA_DCO) ,		// input  clock_sig
+	.sclr(~sweepTrigger) ,	// input  sclr_sig
+	.q(sample_position) 	// output [10:0] q_sig
+);
+
+// 400 kHz sinus at DAC channel A
+sin400k_st sin400k_st_inst
+(
+	.clk(sys_clk) ,	// input  clk_sig 312.5 MHz clock
+	.reset_n(global_reset_n) ,	// input  reset_n_sig
+	.clken(1'b1) ,	// input  clken_sig
+	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
+	.fsin_o(raw_sine) ,	// output [mpr-1:0] fsin_o_sig
+	.out_valid() 	// output  out_valid_sig
+);
 
 endmodule

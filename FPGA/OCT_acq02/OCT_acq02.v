@@ -307,7 +307,6 @@ reg			[13:0]			per_a2da_d;
 reg			[13:0]			a2da_data;
 
 wire						heartbeat;
-
 // A-line of 1170 Elements, each 14 bits wide
 reg 		[13:0] 			A_line 			[0:NSAMPLES-1];  
 wire						sweepTrigger;
@@ -400,24 +399,21 @@ assign	FPGA_CLK_A_P	=  sys_clk;
 assign	FPGA_CLK_A_N	= ~sys_clk;
 
 // Assign for indicators
-assign	LED[0]			= 1'b1;				// LED off
-assign	LED[1]			= ~SLIDE_SW[0];		// (DFS)Data Format Select indicator
-assign	LED[2]			= ~SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select indicator
-assign	LED[3]			= ~ADA_OR;			// Out-of-Range indicator
-assign	LED[4]			= BUTTON[0];		// reset 1MHz NCO output indicator
-assign	LED[5]			= BUTTON[1];		// reset 10MHz NCO output indicator
-//assign	LED[6] 			= ~SLIDE_SW[3];		// channel A or B indicator
-assign	LED[6]			= 1'b1;				// LED off
-assign	heartbeat		= heartBeatCounter[15];		// heartbeat (bit15)
-assign	LED[7] 			= heartbeat;		// heartbeat wire
+//assign	LED[0]			= 1'b1;				// LED off
+//assign	LED[1]			= ~SLIDE_SW[0];		// (DFS)Data Format Select indicator
+//assign	LED[2]			= ~SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select indicator
+//assign	LED[3]			= ~ADA_OR;			// Out-of-Range indicator
+//assign	LED[4]			= BUTTON[0];		// reset 1MHz NCO output indicator
+//assign	LED[5]			= BUTTON[1];		// reset 10MHz NCO output indicator
+//assign	LED[6]			= 1'b1;				// LED off
+//assign	LED[7] 			= heartbeat;		// heartbeat wire
+
+// heartbeat (bit15)
+assign	heartbeat		= heartBeatCounter[15];
 
 // assign for ADC control signal
-//assign	AD_SCLK			= SLIDE_SW[0];		// (DFS)Data Format Select
 assign	AD_SCLK			= 1'b0;				// (DFS)Data Format Select = binary (0)
-
-//assign	AD_SDIO			= SLIDE_SW[1];		// (DCS)Duty Cycle Stabilizer Select (1)
 assign	AD_SDIO			= 1'b1;				// (DCS)Duty Cycle Stabilizer ON
-
 assign	ADA_OE			= 1'b0;				// enable ADA output
 assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
 assign	ADB_OE			= 1'b0;				// enable ADB output
@@ -462,6 +458,7 @@ begin
 		A_line[sample_position] <= a2da_data;
 		// Map acquisition to DAC B
 		DAC_output 	<= A_line[sample_position];
+		// Invert sign bit (MSB) to have offset binary
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
 	end
 end
@@ -474,12 +471,6 @@ sample_addressing_custom sample_addressing_custom_inst
 	.q(sample_position) 	// output [10:0] q_sig
 );
 
-//sample_addressing	sample_addressing_inst (
-//	.clock ( ADA_DCO ),						// k-clock (positive edge)
-//	.sclr ( ~sweepTrigger ),				// When Sweep Trigger = 0, counter is cleared
-//	.q ( sample_position )					// Indicates position of the sample in the A-line
-//	);
-	
 //--- count for Heartbeat
 always @(negedge reset_n or posedge sweepTrigger)
 // 50 kHz A-line (sweep) Trigger
@@ -504,14 +495,12 @@ ADC_OOR ADC_OOR_inst
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst
 (
-	.clk(sys_clk) ,	// input  clk_sig
+	.clk(sys_clk) ,	// input  clk_sig 312.5 MHz clock
 	.reset_n(reset_n) ,	// input  reset_n_sig
 	.clken(1'b1) ,	// input  clken_sig
-	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig
+	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
 	.fsin_o(raw_sine) ,	// output [mpr-1:0] fsin_o_sig
 	.out_valid() 	// output  out_valid_sig
 );
-
-
 
 endmodule
