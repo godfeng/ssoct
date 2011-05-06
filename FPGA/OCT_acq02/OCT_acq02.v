@@ -318,7 +318,7 @@ wire		[10:0]			sample_position;
 reg			[6:0]			seg7w0;
 reg			[6:0]			seg7w1;
 reg			[13:0]			DAC_output;
-reg			[12:0]			o_sine;
+reg			[13:0]			o_sine;
 wire		[13:0]			raw_sine;
 
 
@@ -454,7 +454,7 @@ always @(negedge reset_n or posedge sys_clk)
 begin
 	if (!reset_n) begin
 		a2da_data	<= 14'd0;
-		o_sine		<= 13'd0;
+		o_sine		<= 14'd0;
 	end
 	else begin
 		a2da_data	<= per_a2da_d;
@@ -462,7 +462,7 @@ begin
 		A_line[sample_position] <= a2da_data;
 		// Map acquisition to DAC B
 		DAC_output 	<= A_line[sample_position];
-		o_sine		<= {~raw_sine[12],raw_sine[11:0]};
+		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
 	end
 end
 
