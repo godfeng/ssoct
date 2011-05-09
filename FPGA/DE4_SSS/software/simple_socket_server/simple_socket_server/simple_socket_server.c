@@ -1,3 +1,4 @@
+// OCT acquisition and data transfer via TCP/IP
 /******************************************************************************
 * Copyright (c) 2006 Altera Corporation, San Jose, California, USA.           *
 * All rights reserved. All use of this software and documentation is          *
