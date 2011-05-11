@@ -1,3 +1,4 @@
+// OCT acquisition and data transfer via TCP/IP
 // ============================================================================
 // Copyright (c) 2010 by Terasic Technologies Inc. 
 // ============================================================================
@@ -191,7 +192,7 @@ module DE4_Ethernet(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-parameter	NSAMPLES		= 1170;			// Number of samples per A-line
+parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
@@ -486,6 +487,13 @@ assign	FLASH_RESET_n	= global_reset_n;
 
 //// Fan Control
 assign	FAN_CTRL	= 1'bz;	// don't control
+PWM_control PWM_control_inst
+(
+	.clk(sys_clk) ,	// input  clk_sig
+	.reset_n(global_reset_n) ,	// input  reset_n_sig
+	.sel(2'd2) ,	// input [1:0] sel_sig
+	.PWM(LED[6]) 	// output  PWM_sig
+);
 
 
 // === Ethernet clock PLL
