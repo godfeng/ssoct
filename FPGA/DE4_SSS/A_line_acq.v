@@ -1,23 +1,131 @@
 module A_line_acq(
-	);
+	clk_system,
+	clk50MHz,
+	ADC_data_out_clk,
+	trigger50kHz,
+	ADC_chanA,
+	global_reset,
+	sample_pos,
+	DAC_output,
+	o_sine,
+	A_line_acq,
+	LED7,
+	FANpin,
+	acq_started,
+	acq_done);
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-//parameter
+parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
 //=======================================================
-//input
-//input
-//output	reg
+input						clk_system;
+input						clk50MHz;
+input						global_reset;
+input						ADC_data_out_clk;
+input						trigger50kHz;
+input		[13:0]			ADC_chanA;
+output		[10:0]			sample_pos;
+output		[13:0]			DAC_output;
+output		[13:0]			o_sine;
+// A-line of 1170 Elements, each 14 bits wide
+output  	[13:0] 			A_line_acq; 
+output						LED7;
+output						FANpin;
+output						acq_started;
+output						acq_done;
+
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-//reg
-//wire
+wire						global_reset_n;
+wire						sys_clk;
+// ADC registers
+reg			[13:0]			per_a2da_d;
+reg			[13:0]			a2da_data;
+// A-line of 1170 Elements, each 14 bits wide
+reg  	[13:0] 				A_line; 
+wire						sweepTrigger;
+// Position of the ADC sample in the A-line
+wire		[10:0]			sample_position;
+reg			[13:0]			DAC_output;
+reg			[13:0]			o_sine;
+wire		[13:0]			raw_sine;
+
 //=======================================================
 //  Structural coding
 //=======================================================	
+assign		global_reset_n	= global_reset;
+assign		sys_clk			= clk_system;
+assign		A_line_acq		= A_line;
+assign		sample_pos		= sample_position;
 
+//--- Channel A
+always @(negedge global_reset_n or posedge ADC_data_out_clk)
+begin
+	if (!global_reset_n) begin
+		per_a2da_d	<= 14'd0;
+	end
+	else begin
+		per_a2da_d	<= ADC_chanA;
+	end
+end
+
+
+always @(negedge global_reset_n or posedge sys_clk)
+begin
+	if (!global_reset_n) begin
+		a2da_data	<= 14'd0;
+		o_sine		<= 14'd0;
+	end
+	else begin
+		a2da_data	<= per_a2da_d;
+		// Indexing samples in the A-line array
+		//A_line[sample_position] <= a2da_data;
+		A_line <= a2da_data;
+		// Map acquisition to DAC B
+		//DAC_output 	<= A_line[sample_position];
+		DAC_output 	<= A_line;
+		// Invert sign bit (MSB) to have offset binary
+		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
+	end
+end
+
+// Synchronization of sampling with sweep trigger
+sample_addressing_custom sample_addressing_custom_inst
+(
+	.clock(ADC_data_out_clk) ,	// input  clock_sig
+	.sclr(~sweepTrigger) ,		// input  sclr_sig
+	.q(sample_position) 		// output [10:0] q_sig
+);
+
+// 400 kHz sinus at DAC channel A
+sin400k_st sin400k_st_inst
+(
+	.clk(sys_clk) ,				// input  clk_sig 312.5 MHz clock
+	.reset_n(global_reset_n) ,	// input  reset_n_sig
+	.clken(1'b1) ,				// input  clken_sig
+	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
+	.fsin_o(raw_sine) ,			// output [mpr-1:0] fsin_o_sig
+	.out_valid() 				// output  out_valid_sig
+);
+
+// Heartbeat with glowing LED
+LED_glow LED_glow_inst
+(
+	.clk(clk50MHz) ,		// input  clk_sig
+	.LED(LED7) 				// output  LED_sig
+);
+
+//// Fan Control
+FAN_PWM FAN_PWM_inst
+(
+	.clk(clk50MHz) ,		// input  clk_sig
+	.PWM_input(4'hC) ,		// input [3:0] PWM_input_sig
+	.FAN(FANpin) 			// output  FAN_sig
+);
+
+///////////////////////////////////////////////////////////////////////////////
 endmodule

@@ -192,7 +192,7 @@ module DE4_Ethernet(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
+
 
 //=======================================================
 //  PORT declarations
@@ -357,15 +357,17 @@ reg			[13:0]			a2da_data;
 wire						heartbeat;
 
 // A-line of 1170 Elements, each 14 bits wide
-reg 		[13:0] 			A_line 			[0:NSAMPLES-1];  
+wire		[13:0] 			A_line;  
 wire						sweepTrigger;
 //reg			[31:0]			count;			// Count for heartbeat
 wire		[10:0]			sample_position;// Position of the ADC sample in the A-line
-wire		[6:0]			dummyLEDs;			// not connected
+//wire		[6:0]			dummyLEDs;			// not connected
 //reg			[6:0]			LEDwire;			// wire to LEDs
-reg			[13:0]			DAC_output;
-reg			[13:0]			o_sine;
-wire		[13:0]			raw_sine;
+//reg			[13:0]			DAC_output;
+//reg			[13:0]			o_sine;
+//wire		[13:0]			raw_sine;
+wire						acq_started;
+wire						acq_done;
 
 
 //=======================================================
@@ -485,13 +487,6 @@ assign	FLASH_RESET_n	= global_reset_n;
 //// SSRAM
 
 
-//// Fan Control
-FAN_PWM FAN_PWM_inst
-(
-	.clk(OSC_50_BANK2) ,	// input  clk_sig
-	.PWM_input(4'hC) ,	// input [3:0] PWM_input_sig
-	.FAN(FAN_CTRL) 	// output  FAN_sig
-);
 
 
 // === Ethernet clock PLL
@@ -552,18 +547,9 @@ DE4_SOPC	SOPC_INST (
 				.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 
 				// the_led_pio
-				//.out_port_from_the_led_pio({dummy_LED,LED[6:0]})
-				.out_port_from_the_led_pio({dummy_LED,dummyLEDs[6:0]})
+				.out_port_from_the_led_pio({dummy_LED,LED[6:0]})
+				//.out_port_from_the_led_pio({dummy_LED,LEDs[6:0]})
                 );
-
-///////////////////////////////////////////////////////////////////////////////
-// Heartbeat
-LED_glow LED_glow_inst
-(
-	.clk(OSC_50_BANK2) ,	// input  clk_sig
-	.LED(LED[7]) 	// output  LED_sig
-);
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -579,9 +565,9 @@ assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
 // Map acquisition to DAC B
-assign DB 				= DAC_output;
+//assign DB 				= DAC_output;
 // 400 kHz sinus at DAC A
-assign DA				= o_sine;
+//assign DA				= o_sine;
 //assign 	LED[6:0]		= LEDwire[6:0];		// connect wire to LEDs	
 
 // Assign 50 kHz Sweep Trigger
@@ -590,51 +576,27 @@ assign	sweepTrigger	= GCLKIN;
 // Assign 312.5 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 
-//--- Channel A
-always @(negedge global_reset_n or posedge ADA_DCO)
-begin
-	if (!global_reset_n) begin
-		per_a2da_d	<= 14'd0;
-	end
-	else begin
-		per_a2da_d	<= ADA_D;
-	end
-end
+// ADC channel A
+//assign	ADA_D			= ADC_chanA;
 
-always @(negedge global_reset_n or posedge sys_clk)
-begin
-	if (!global_reset_n) begin
-		a2da_data	<= 14'd0;
-		o_sine		<= 14'd0;
-	end
-	else begin
-		a2da_data	<= per_a2da_d;
-		// Indexing samples in the A-line array
-		A_line[sample_position] <= a2da_data;
-		// Map acquisition to DAC B
-		DAC_output 	<= A_line[sample_position];
-		// Invert sign bit (MSB) to have offset binary
-		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
-	end
-end
-
-// Synchronization of sampling with sweep trigger
-sample_addressing_custom sample_addressing_custom_inst
+// A_line acquisition block
+A_line_acq A_line_acq_inst
 (
-	.clock(ADA_DCO) ,		// input  clock_sig
-	.sclr(~sweepTrigger) ,	// input  sclr_sig
-	.q(sample_position) 	// output [10:0] q_sig
+	.clk_system(sys_clk) ,	// input  clk_system_sig
+	.clk50MHz(OSC_50_BANK2) ,	// input  clk50MHz_sig
+	.ADC_data_out_clk(ADC_data_out_clk_sig) ,	// input  ADC_data_out_clk_sig
+	.trigger50kHz(sweepTrigger) ,	// input  trigger50kHz_sig
+	.ADC_chanA(ADA_D) ,	// input [13:0] ADC_chanA_sig
+	.global_reset(global_reset_n) ,	// input  global_reset_sig
+	.sample_pos(sample_position) ,	// output [10:0] sample_pos_sig
+	.DAC_output(DB) ,	// output [13:0] DAC_output_sig
+	.o_sine(DA) ,	// output [13:0] o_sine_sig
+	.A_line_acq(A_line) ,	// output [13:0] A_line_acq_sig
+	.LED7(LED[7]) ,	// output  LED7_sig
+	.FANpin(FAN_CTRL) ,	// output  FANpin_sig
+	.acq_started(acq_started) ,	// output  acq_started_sig
+	.acq_done(acq_started) 	// output  acq_done_sig
 );
 
-// 400 kHz sinus at DAC channel A
-sin400k_st sin400k_st_inst
-(
-	.clk(sys_clk) ,	// input  clk_sig 312.5 MHz clock
-	.reset_n(global_reset_n) ,	// input  reset_n_sig
-	.clken(1'b1) ,	// input  clken_sig
-	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
-	.fsin_o(raw_sine) ,	// output [mpr-1:0] fsin_o_sig
-	.out_valid() 	// output  out_valid_sig
-);
 
 endmodule
