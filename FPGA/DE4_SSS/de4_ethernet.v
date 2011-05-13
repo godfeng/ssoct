@@ -486,13 +486,11 @@ assign	FLASH_RESET_n	= global_reset_n;
 
 
 //// Fan Control
-assign	FAN_CTRL	= 1'bz;	// don't control
-PWM_control PWM_control_inst
+FAN_PWM FAN_PWM_inst
 (
-	.clk(sys_clk) ,	// input  clk_sig
-	.reset_n(global_reset_n) ,	// input  reset_n_sig
-	.sel(2'd2) ,	// input [1:0] sel_sig
-	.PWM(LED[6]) 	// output  PWM_sig
+	.clk(OSC_50_BANK2) ,	// input  clk_sig
+	.PWM_input(4'hC) ,	// input [3:0] PWM_input_sig
+	.FAN(FAN_CTRL) 	// output  FAN_sig
 );
 
 
@@ -559,17 +557,13 @@ DE4_SOPC	SOPC_INST (
                 );
 
 ///////////////////////////////////////////////////////////////////////////////
-assign	LED[7] = count[21];
-reg	[31:0]		count;
-always @ (negedge global_reset_n or posedge OSC_50_BANK3)
-begin
-	if (!global_reset_n) begin
-		count	<= 0;
-	end
-	else begin
-		count	<= count + 1;
-	end
-end
+// Heartbeat
+LED_glow LED_glow_inst
+(
+	.clk(OSC_50_BANK2) ,	// input  clk_sig
+	.LED(LED[7]) 	// output  LED_sig
+);
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
