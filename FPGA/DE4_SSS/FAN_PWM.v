@@ -4,6 +4,7 @@
 module FAN_PWM(
 	clk,						// 50MHz OSC_50_BANK2
 	PWM_input,					// 16 speed levels
+	clk_div_out,				// 8 bit frequency divider
 	FAN);						// Fan control pin
 	
 //=======================================================
@@ -14,14 +15,13 @@ input 	[3:0]	PWM_input;		// 16 speed levels
 								// 4'hF -> ON
 								// 4'h0 -> OFF
 output 			FAN;			// Fan control pin
+output	[7:0]	clk_div_out;	// 8 bit frequency divider
 
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
 reg 	[4:0] 	PWM;
-wire	[7:0]	clk_div_out;
 wire			fan_clk;
-
 
 //=======================================================
 //  Structural coding

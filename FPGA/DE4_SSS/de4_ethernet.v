@@ -350,22 +350,13 @@ wire						enet_refclk_125MHz;
 wire						lvds_rxp;
 wire						lvds_txp;
 
-// ADC registers
-reg			[13:0]			per_a2da_d;
-reg			[13:0]			a2da_data;
-
-wire						heartbeat;
-
 // A-line of 1170 Elements, each 14 bits wide
-wire		[13:0] 			A_line;  
+wire			[13:0]		A_line; 
+// 50 kHz A-line trigger
 wire						sweepTrigger;
-//reg			[31:0]			count;			// Count for heartbeat
-wire		[10:0]			sample_position;// Position of the ADC sample in the A-line
-//wire		[6:0]			dummyLEDs;			// not connected
-//reg			[6:0]			LEDwire;			// wire to LEDs
-//reg			[13:0]			DAC_output;
-//reg			[13:0]			o_sine;
-//wire		[13:0]			raw_sine;
+// Position of the ADC sample in the A-line
+wire			[10:0]		sample_position;
+
 wire						acq_started;
 wire						acq_done;
 
@@ -564,39 +555,40 @@ assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
 assign	ADB_OE			= 1'b0;				// enable ADB output
 assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
 
-// Map acquisition to DAC B
-//assign DB 				= DAC_output;
-// 400 kHz sinus at DAC A
-//assign DA				= o_sine;
-//assign 	LED[6:0]		= LEDwire[6:0];		// connect wire to LEDs	
-
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
 
 // Assign 312.5 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 
-// ADC channel A
-//assign	ADA_D			= ADC_chanA;
 
 // A_line acquisition block
 A_line_acq A_line_acq_inst
 (
-	.clk_system(sys_clk) ,	// input  clk_system_sig
-	.clk50MHz(OSC_50_BANK2) ,	// input  clk50MHz_sig
-	.ADC_data_out_clk(ADC_data_out_clk_sig) ,	// input  ADC_data_out_clk_sig
-	.trigger50kHz(sweepTrigger) ,	// input  trigger50kHz_sig
-	.ADC_chanA(ADA_D) ,	// input [13:0] ADC_chanA_sig
-	.global_reset(global_reset_n) ,	// input  global_reset_sig
-	.sample_pos(sample_position) ,	// output [10:0] sample_pos_sig
-	.DAC_output(DB) ,	// output [13:0] DAC_output_sig
-	.o_sine(DA) ,	// output [13:0] o_sine_sig
-	.A_line_acq(A_line) ,	// output [13:0] A_line_acq_sig
-	.LED7(LED[7]) ,	// output  LED7_sig
-	.FANpin(FAN_CTRL) ,	// output  FANpin_sig
-	.acq_started(acq_started) ,	// output  acq_started_sig
-	.acq_done(acq_started) 	// output  acq_done_sig
+	.clk_system(sys_clk) ,					// input  clk_system_sig
+	.clk50MHz(OSC_50_BANK2) ,				// input  clk50MHz_sig
+	.ADC_data_out_clk(ADA_DCO) ,			// input  ADC_data_out_clk_sig
+	.trigger50kHz(sweepTrigger) ,			// input  trigger50kHz_sig
+	.ADC_chanA(ADA_D) ,						// input [13:0] ADC_chanA_sig
+	.global_reset(global_reset_n) ,			// input  global_reset_sig
+	.sample_pos(sample_position) ,			// output [10:0] sample_pos_sig
+	.DAC_output(DB) ,						// output [13:0] DAC_output_sig
+	.o_sine(DA) ,							// output [13:0] o_sine_sig
+	.A_line_acq(A_line) ,					// output [13:0] A_line_acq_sig
+	.LED7(LED[7]) ,							// output  LED7_sig
+	.FANpin(FAN_CTRL) ,						// output  FANpin_sig
+	.acq_started(acq_started) ,				// output  acq_started_sig
+	.acq_done(acq_started) 					// output  acq_done_sig
 );
 
-
+// 2048 words (32-bit) RAM
+RAM	RAM_inst (
+	.clock ( sys_clk ),
+	.data ( data_sig ),
+	.rdaddress ( rdaddress_sig ),
+	.wraddress ( wraddress_sig ),
+	.wren ( wren_sig ),
+	.q ( q_sig )
+	);
+	
 endmodule

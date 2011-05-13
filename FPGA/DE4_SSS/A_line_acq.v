@@ -53,6 +53,7 @@ wire		[10:0]			sample_position;
 reg			[13:0]			DAC_output;
 reg			[13:0]			o_sine;
 wire		[13:0]			raw_sine;
+wire		[7:0]			clk_div_out_sig;
 
 //=======================================================
 //  Structural coding
@@ -115,16 +116,24 @@ sin400k_st sin400k_st_inst
 // Heartbeat with glowing LED
 LED_glow LED_glow_inst
 (
-	.clk(clk50MHz) ,		// input  clk_sig
-	.LED(LED7) 				// output  LED_sig
+	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
+	.LED(LED7) 					// output  LED_sig
 );
 
 //// Fan Control
+//FAN_PWM FAN_PWM_inst
+//(
+//	.clk(clk50MHz) ,			// input  clk_sig
+//	.PWM_input(4'hC) ,			// input [3:0] PWM_input_sig
+//	.FAN(FANpin) 				// output  FAN_sig
+//);
+
 FAN_PWM FAN_PWM_inst
 (
-	.clk(clk50MHz) ,		// input  clk_sig
-	.PWM_input(4'hC) ,		// input [3:0] PWM_input_sig
-	.FAN(FANpin) 			// output  FAN_sig
+	.clk(clk50MHz) ,			// input  clk_sig
+	.PWM_input(4'hC) ,			// input [3:0] PWM_input_sig
+	.clk_div_out(clk_div_out_sig) ,	// output [7:0] clk_div_out_sig
+	.FAN(FANpin) 				// output  FAN_sig
 );
 
 ///////////////////////////////////////////////////////////////////////////////
