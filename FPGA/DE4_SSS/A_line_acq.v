@@ -8,7 +8,7 @@ module A_line_acq(
 	sample_pos,
 	DAC_output,
 	o_sine,
-	A_line_acq,
+	A_line_out,
 	LED7,
 	FANpin,
 	acq_started,
@@ -31,7 +31,7 @@ output		[10:0]			sample_pos;
 output		[13:0]			DAC_output;
 output		[13:0]			o_sine;
 // A-line of 1170 Elements, each 14 bits wide
-output  	[13:0] 			A_line_acq; 
+output  	[13:0] 			A_line_out; 
 output						LED7;
 output						FANpin;
 output						acq_started;
@@ -44,9 +44,9 @@ wire						global_reset_n;
 wire						sys_clk;
 // ADC registers
 reg			[13:0]			per_a2da_d;
-reg			[13:0]			a2da_data;
+//reg			[13:0]			a2da_data;
 // A-line of 1170 Elements, each 14 bits wide
-reg  	[13:0] 				A_line; 
+reg  		[13:0]			A_line; 
 wire						sweepTrigger;
 // Position of the ADC sample in the A-line
 wire		[10:0]			sample_position;
@@ -60,7 +60,7 @@ wire		[7:0]			clk_div_out_sig;
 //=======================================================	
 assign		global_reset_n	= global_reset;
 assign		sys_clk			= clk_system;
-assign		A_line_acq		= A_line;
+assign		A_line_out		= A_line;
 assign		sample_pos		= sample_position;
 
 //--- Channel A
@@ -78,14 +78,15 @@ end
 always @(negedge global_reset_n or posedge sys_clk)
 begin
 	if (!global_reset_n) begin
-		a2da_data	<= 14'd0;
+		//a2da_data	<= 14'd0;
+		A_line		<= 14'd0;
 		o_sine		<= 14'd0;
 	end
 	else begin
-		a2da_data	<= per_a2da_d;
+		A_line		<= per_a2da_d;
 		// Indexing samples in the A-line array
 		//A_line[sample_position] <= a2da_data;
-		A_line <= a2da_data;
+		//A_line <= a2da_data;
 		// Map acquisition to DAC B
 		//DAC_output 	<= A_line[sample_position];
 		DAC_output 	<= A_line;
@@ -102,32 +103,29 @@ sample_addressing_custom sample_addressing_custom_inst
 	.q(sample_position) 		// output [10:0] q_sig
 );
 
+// Acquisition started acq_started;
+assign acq_started	= (sample_position != 0) ? 1'b1 : 1'b0;
+
+// Acquisition done acq_done;
+//assign acq_done		= ~sample_position & sweepTrigger ? 1'b1 : 1'b0;
+assign acq_done		= sweepTrigger ? 1'b1 : 1'b0;
+
+///////////////////////////////////////////////////////////////////////////////
+// Optional modules
+///////////////////////////////////////////////////////////////////////////////
+
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst
 (
 	.clk(sys_clk) ,				// input  clk_sig 312.5 MHz clock
 	.reset_n(global_reset_n) ,	// input  reset_n_sig
 	.clken(1'b1) ,				// input  clken_sig
-	.phi_inc_i(32'd5497558) ,	// input [apr-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
-	.fsin_o(raw_sine) ,			// output [mpr-1:0] fsin_o_sig
+	.phi_inc_i(32'd5497558) ,	// input [anglePrec-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
+	.fsin_o(raw_sine) ,			// output [magnitudePrec-1:0] fsin_o_sig
 	.out_valid() 				// output  out_valid_sig
 );
 
-// Heartbeat with glowing LED
-LED_glow LED_glow_inst
-(
-	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
-	.LED(LED7) 					// output  LED_sig
-);
-
-//// Fan Control
-//FAN_PWM FAN_PWM_inst
-//(
-//	.clk(clk50MHz) ,			// input  clk_sig
-//	.PWM_input(4'hC) ,			// input [3:0] PWM_input_sig
-//	.FAN(FANpin) 				// output  FAN_sig
-//);
-
+// Fan Control
 FAN_PWM FAN_PWM_inst
 (
 	.clk(clk50MHz) ,			// input  clk_sig
@@ -136,5 +134,10 @@ FAN_PWM FAN_PWM_inst
 	.FAN(FANpin) 				// output  FAN_sig
 );
 
-///////////////////////////////////////////////////////////////////////////////
+// Heartbeat with glowing LED
+LED_glow LED_glow_inst
+(
+	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
+	.LED(LED7) 					// output  LED_sig
+);
 endmodule

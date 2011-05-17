@@ -197,6 +197,7 @@ void sss_send_menu(SSSConn* conn)
   tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"0-6 : Toggle board LEDs LED0 - LED6\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"S   : 7-Segment LED Light Show\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"A   : Send a single A-line to PC\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Q   : Terminate session\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:\n\r");

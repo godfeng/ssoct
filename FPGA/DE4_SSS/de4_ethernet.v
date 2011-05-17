@@ -355,7 +355,7 @@ wire			[13:0]		A_line;
 // 50 kHz A-line trigger
 wire						sweepTrigger;
 // Position of the ADC sample in the A-line
-wire			[10:0]		sample_position;
+wire				[10:0]		sample_position;
 
 wire						acq_started;
 wire						acq_done;
@@ -565,8 +565,8 @@ assign	sys_clk			= PLL_CLKIN_p;
 // A_line acquisition block
 A_line_acq A_line_acq_inst
 (
-	.clk_system(sys_clk) ,					// input  clk_system_sig
-	.clk50MHz(OSC_50_BANK2) ,				// input  clk50MHz_sig
+	.clk_system(sys_clk) ,					// input  clk_system_sig (312.5 MHz)
+	.clk50MHz(OSC_50_BANK2) ,				// input  clk50MHz_sig (internal oscillator)
 	.ADC_data_out_clk(ADA_DCO) ,			// input  ADC_data_out_clk_sig
 	.trigger50kHz(sweepTrigger) ,			// input  trigger50kHz_sig
 	.ADC_chanA(ADA_D) ,						// input [13:0] ADC_chanA_sig
@@ -574,20 +574,20 @@ A_line_acq A_line_acq_inst
 	.sample_pos(sample_position) ,			// output [10:0] sample_pos_sig
 	.DAC_output(DB) ,						// output [13:0] DAC_output_sig
 	.o_sine(DA) ,							// output [13:0] o_sine_sig
-	.A_line_acq(A_line) ,					// output [13:0] A_line_acq_sig
+	.A_line_out(A_line) ,					// output [13:0] A_line_acq_sig
 	.LED7(LED[7]) ,							// output  LED7_sig
 	.FANpin(FAN_CTRL) ,						// output  FANpin_sig
 	.acq_started(acq_started) ,				// output  acq_started_sig
-	.acq_done(acq_started) 					// output  acq_done_sig
+	.acq_done(acq_done) 					// output  acq_done_sig
 );
 
 // 2048 words (32-bit) RAM
 RAM	RAM_inst (
 	.clock ( sys_clk ),
-	.data ( data_sig ),
+	.data ( {18'b0, A_line} ),
 	.rdaddress ( rdaddress_sig ),
-	.wraddress ( wraddress_sig ),
-	.wren ( wren_sig ),
+	.wraddress ( sample_position ),
+	.wren ( GCLKIN ),
 	.q ( q_sig )
 	);
 	
