@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * D:\Edgar\Documents\ssoct\FPGA\DE4_SSS\DE4_SOPC.ptf
  *
- * Generated: 2011-05-17 12:09:26.874
+ * Generated: 2011-05-17 16:34:09.191
  *
  */
 
@@ -190,8 +190,8 @@ DO NOT MODIFY THIS FILE
 #define SYSID_TYPE "altera_avalon_sysid"
 #define SYSID_BASE 0x05101ce0
 #define SYSID_SPAN 8
-#define SYSID_ID 844146667u
-#define SYSID_TIMESTAMP 1305647423u
+#define SYSID_ID 1306474855u
+#define SYSID_TIMESTAMP 1305651299u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 
@@ -593,6 +593,30 @@ DO NOT MODIFY THIS FILE
 #define ACQ_STARTED_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define ACQ_STARTED_PIO_FREQ 50000000
 #define ALT_MODULE_CLASS_acq_started_pio altera_avalon_pio
+
+/*
+ * ADC_data_pio configuration
+ *
+ */
+
+#define ADC_DATA_PIO_NAME "/dev/ADC_data_pio"
+#define ADC_DATA_PIO_TYPE "altera_avalon_pio"
+#define ADC_DATA_PIO_BASE 0x04000060
+#define ADC_DATA_PIO_SPAN 16
+#define ADC_DATA_PIO_DO_TEST_BENCH_WIRING 0
+#define ADC_DATA_PIO_DRIVEN_SIM_VALUE 0
+#define ADC_DATA_PIO_HAS_TRI 0
+#define ADC_DATA_PIO_HAS_OUT 0
+#define ADC_DATA_PIO_HAS_IN 1
+#define ADC_DATA_PIO_CAPTURE 0
+#define ADC_DATA_PIO_DATA_WIDTH 16
+#define ADC_DATA_PIO_RESET_VALUE 0
+#define ADC_DATA_PIO_EDGE_TYPE "NONE"
+#define ADC_DATA_PIO_IRQ_TYPE "NONE"
+#define ADC_DATA_PIO_BIT_CLEARING_EDGE_REGISTER 0
+#define ADC_DATA_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ADC_DATA_PIO_FREQ 50000000
+#define ALT_MODULE_CLASS_ADC_data_pio altera_avalon_pio
 
 /*
  * MicroC/OS-II configuration
