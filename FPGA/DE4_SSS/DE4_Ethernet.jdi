@@ -135,22 +135,22 @@
       </outputs>
     </node>
     <node hpath="pzdyqx:nabboc" instance_id="0" mfg_id="110" node_id="1" sld_node_info="0x86E00" version="0"/>
-    <node hpath="sld_signaltap:signalMonitor" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
+    <node hpath="sld_signaltap:auto_signaltap_0" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
         <parameter name="sld_node_info" type="unknown" value="805334528"/>
         <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
         <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
         <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
-        <parameter name="sld_data_bits" type="unknown" value="26"/>
-        <parameter name="sld_trigger_bits" type="unknown" value="26"/>
+        <parameter name="sld_data_bits" type="unknown" value="44"/>
+        <parameter name="sld_trigger_bits" type="unknown" value="44"/>
         <parameter name="SLD_NODE_CRC_BITS" type="dec" value="32"/>
-        <parameter name="sld_node_crc_hiword" type="unknown" value="52261"/>
-        <parameter name="sld_node_crc_loword" type="unknown" value="64262"/>
+        <parameter name="sld_node_crc_hiword" type="unknown" value="35433"/>
+        <parameter name="sld_node_crc_loword" type="unknown" value="10487"/>
         <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
-        <parameter name="sld_sample_depth" type="unknown" value="4096"/>
-        <parameter name="sld_segment_size" type="unknown" value="4096"/>
-        <parameter name="sld_ram_block_type" type="unknown" value="M9K"/>
+        <parameter name="sld_sample_depth" type="unknown" value="8192"/>
+        <parameter name="sld_segment_size" type="unknown" value="8192"/>
+        <parameter name="sld_ram_block_type" type="unknown" value="AUTO"/>
         <parameter name="sld_state_bits" type="unknown" value="11"/>
         <parameter name="sld_buffer_full_stop" type="unknown" value="1"/>
         <parameter name="SLD_MEM_ADDRESS_BITS" type="dec" value="7"/>
@@ -170,8 +170,8 @@
         <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
         <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
         <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
-        <parameter name="sld_inversion_mask_length" type="unknown" value="104"/>
-        <parameter name="sld_inversion_mask" type="unknown" value="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+        <parameter name="sld_inversion_mask_length" type="unknown" value="159"/>
+        <parameter name="sld_inversion_mask" type="unknown" value="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
         <parameter name="sld_power_up_trigger" type="unknown" value="0"/>
         <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
         <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>

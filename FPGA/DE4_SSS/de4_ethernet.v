@@ -184,6 +184,10 @@ module DE4_Ethernet(
 	XT_IN_N,
 	XT_IN_P,
 
+	// Virtual Pins
+//	acq_started_status,
+//	acq_started_done,
+
 	//////////// HSMC I2C //////////
 	HSMC_SCL,
 	HSMC_SDA 
@@ -192,7 +196,7 @@ module DE4_Ethernet(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-
+parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
@@ -332,6 +336,10 @@ input		          		XT_IN_P;
 output		          		HSMC_SCL;
 inout		          		HSMC_SDA;
 
+// Virtual Pins
+//output reg					acq_started_status;
+//output reg					acq_started_done;
+
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
@@ -351,14 +359,17 @@ wire						lvds_rxp;
 wire						lvds_txp;
 
 // A-line of 1170 Elements, each 14 bits wide
-wire			[13:0]		A_line; 
+reg  		[13:0]			A_line_array	[0:NSAMPLES-1];
+wire		[13:0]			A_line; 
 // 50 kHz A-line trigger
 wire						sweepTrigger;
 // Position of the ADC sample in the A-line
-wire				[10:0]		sample_position;
+wire		[10:0]			sample_position;
 
 wire						acq_started;
+
 wire						acq_done;
+reg							acq_done_status;
 
 
 //=======================================================
@@ -538,9 +549,18 @@ DE4_SOPC	SOPC_INST (
 				.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 
 				// the_led_pio
-				.out_port_from_the_led_pio({dummy_LED,LED[6:0]})
-				//.out_port_from_the_led_pio({dummy_LED,LEDs[6:0]})
-                );
+				.out_port_from_the_led_pio({dummy_LED,LED[6:0]}),
+				
+				// Acquisition started
+				.in_port_to_the_acq_started_pio(acq_started) ,	// input  in_port_to_the_acq_started_pio_sig
+				
+				// Acquisition done
+				.in_port_to_the_acq_done_pio(acq_done) ,	// input  in_port_to_the_acq_done_pio_sig
+				
+				// data from the ADC
+				.in_port_to_the_ADC_data_pio({2'b0, A_line})	// input [15:0] in_port_to_the_ADC_data_pio_sig
+				
+				);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -561,6 +581,22 @@ assign	sweepTrigger	= GCLKIN;
 // Assign 312.5 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 
+always @(negedge global_reset_n or posedge sys_clk)
+begin
+if (!global_reset_n) begin
+		A_line_array[sample_position]	<= 14'd0;
+		//acq_started_status 				<= 1'b0;
+		//acq_done_status 				<= 1'b0;
+	end
+	else begin
+	// 14-bit array, 1170 elements wide
+	A_line_array[sample_position] 	<= A_line;
+	// Signal acquisition started
+	//acq_started_status 				<= acq_started;
+	// Signal acquisition started
+	//acq_done_status 				<= acq_done;
+	end
+end
 
 // A_line acquisition block
 A_line_acq A_line_acq_inst
@@ -581,13 +617,13 @@ A_line_acq A_line_acq_inst
 	.acq_done(acq_done) 					// output  acq_done_sig
 );
 
-// 2048 words (32-bit) RAM
+// 2048 words (16-bit) RAM
 RAM	RAM_inst (
 	.clock ( sys_clk ),
-	.data ( {18'b0, A_line} ),
+	.data ( {2'b0, A_line} ),
 	.rdaddress ( rdaddress_sig ),
 	.wraddress ( sample_position ),
-	.wren ( GCLKIN ),
+	.wren ( sweepTrigger ),
 	.q ( q_sig )
 	);
 	

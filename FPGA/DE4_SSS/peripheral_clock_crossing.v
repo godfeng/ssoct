@@ -1,4 +1,4 @@
-//Legal Notice: (C)2010 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2011 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -34,17 +34,17 @@ module peripheral_clock_crossing_downstream_fifo (
                                                  )
 ;
 
-  output  [ 45: 0] q;
+  output  [ 47: 0] q;
   output           rdempty;
   output           wrfull;
   input            aclr;
-  input   [ 45: 0] data;
+  input   [ 47: 0] data;
   input            rdclk;
   input            rdreq;
   input            wrclk;
   input            wrreq;
 
-  wire    [ 45: 0] q;
+  wire    [ 47: 0] q;
   wire             rdempty;
   wire             wrfull;
   dcfifo downstream_fifo
@@ -64,7 +64,7 @@ module peripheral_clock_crossing_downstream_fifo (
            downstream_fifo.lpm_numwords = 16,
            downstream_fifo.lpm_showahead = "OFF",
            downstream_fifo.lpm_type = "dcfifo",
-           downstream_fifo.lpm_width = 46,
+           downstream_fifo.lpm_width = 48,
            downstream_fifo.lpm_widthu = 4,
            downstream_fifo.overflow_checking = "ON",
            downstream_fifo.rdsync_delaypipe = 5,
@@ -175,9 +175,9 @@ module peripheral_clock_crossing (
                                  )
 ;
 
-  output  [  5: 0] master_address;
+  output  [  6: 0] master_address;
   output  [  3: 0] master_byteenable;
-  output  [  3: 0] master_nativeaddress;
+  output  [  4: 0] master_nativeaddress;
   output           master_read;
   output           master_write;
   output  [ 31: 0] master_writedata;
@@ -191,32 +191,32 @@ module peripheral_clock_crossing (
   input            master_readdatavalid;
   input            master_reset_n;
   input            master_waitrequest;
-  input   [  3: 0] slave_address;
+  input   [  4: 0] slave_address;
   input   [  3: 0] slave_byteenable;
   input            slave_clk;
-  input   [  3: 0] slave_nativeaddress;
+  input   [  4: 0] slave_nativeaddress;
   input            slave_read;
   input            slave_reset_n;
   input            slave_write;
   input   [ 31: 0] slave_writedata;
 
-  wire    [ 45: 0] downstream_data_in;
-  wire    [ 45: 0] downstream_data_out;
+  wire    [ 47: 0] downstream_data_in;
+  wire    [ 47: 0] downstream_data_out;
   wire             downstream_rdempty;
   reg              downstream_rdempty_delayed_n;
   wire             downstream_rdreq;
   wire             downstream_wrfull;
   wire             downstream_wrreq;
   reg              downstream_wrreq_delayed;
-  wire    [  3: 0] internal_master_address;
+  wire    [  4: 0] internal_master_address;
   wire             internal_master_read;
   wire             internal_master_write;
-  wire    [  5: 0] master_address;
-  wire    [  5: 0] master_byte_address;
+  wire    [  6: 0] master_address;
+  wire    [  6: 0] master_byte_address;
   wire    [  3: 0] master_byteenable;
   wire             master_hold_read;
   wire             master_hold_write;
-  wire    [  3: 0] master_nativeaddress;
+  wire    [  4: 0] master_nativeaddress;
   wire             master_new_read;
   wire             master_new_read_term_one;
   wire             master_new_read_term_two;

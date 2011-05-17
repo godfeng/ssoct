@@ -62,6 +62,7 @@ assign		global_reset_n	= global_reset;
 assign		sys_clk			= clk_system;
 assign		A_line_out		= A_line;
 assign		sample_pos		= sample_position;
+assign		sweepTrigger	= trigger50kHz;
 
 //--- Channel A
 always @(negedge global_reset_n or posedge ADC_data_out_clk)
@@ -92,6 +93,19 @@ begin
 		DAC_output 	<= A_line;
 		// Invert sign bit (MSB) to have offset binary
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
+
+//		if (sample_position != 0) begin
+//			acq_started	<= 1'b1;
+//		end
+//		else begin
+//			acq_started	<= 1'b0;
+//			end
+//		if (sample_position == 11'b0 && sweepTrigger) begin
+//			acq_done	<= 1'b1;
+//		end
+//		else begin
+//			acq_done	<= 1'b0;
+//			end
 	end
 end
 
@@ -104,11 +118,11 @@ sample_addressing_custom sample_addressing_custom_inst
 );
 
 // Acquisition started acq_started;
-assign acq_started	= (sample_position != 0) ? 1'b1 : 1'b0;
+assign acq_started	= (sample_pos != 0) ? 1'b1 : 1'b0;
 
 // Acquisition done acq_done;
-//assign acq_done		= ~sample_position & sweepTrigger ? 1'b1 : 1'b0;
-assign acq_done		= sweepTrigger ? 1'b1 : 1'b0;
+assign acq_done		= (sample_position == 11'b0 && sweepTrigger) ? 1'b1 : 1'b0;
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Optional modules

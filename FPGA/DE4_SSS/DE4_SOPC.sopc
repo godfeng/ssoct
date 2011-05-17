@@ -2,8 +2,47 @@
 <system name="DE4_SOPC">
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element ADC_data_pio
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
    element DE4_SOPC
    {
+   }
+   element acq_done_pio
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
+   element acq_started_pio
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
    }
    element jtag_uart.avalon_jtag_slave
    {
@@ -228,11 +267,19 @@
          type = "long";
       }
    }
-   element pll.s1
+   element acq_done_pio.s1
    {
       datum baseAddress
       {
-         value = "84941952";
+         value = "80";
+         type = "long";
+      }
+   }
+   element ADC_data_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "96";
          type = "long";
       }
    }
@@ -248,31 +295,28 @@
    {
       datum baseAddress
       {
-         value = "48";
+         value = "64";
          type = "long";
       }
    }
-   element descriptor_memory.s1
+   element acq_started_pio.s1
    {
-      datum baseAddress
+      datum _lockedAddress
       {
-         value = "84938752";
-         type = "long";
+         value = "1";
+         type = "boolean";
       }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "84941984";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
       datum baseAddress
       {
          value = "16";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "84941952";
          type = "long";
       }
    }
@@ -296,7 +340,7 @@
    {
       datum baseAddress
       {
-         value = "32";
+         value = "48";
          type = "long";
       }
    }
@@ -305,6 +349,30 @@
       datum baseAddress
       {
          value = "0";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "84941984";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84938752";
          type = "long";
       }
    }
@@ -317,7 +385,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
       }
    }
@@ -356,7 +424,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
       }
    }
@@ -405,9 +473,9 @@
  <parameter name="generateLegacySim" value="false" />
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
- <parameter name="projectName">DE4_230_Ethernet.qpf</parameter>
- <parameter name="systemHash" value="-42382216516" />
- <parameter name="timeStamp" value="1274840696718" />
+ <parameter name="projectName" value="DE4_Ethernet.qpf" />
+ <parameter name="systemHash" value="-42108664148" />
+ <parameter name="timeStamp" value="1305651299194" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -960,6 +1028,57 @@
    enabled="1">
   <parameter name="registerIncomingSignals" value="true" />
  </module>
+ <module
+   name="acq_done_pio"
+   kind="altera_avalon_pio"
+   version="9.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
+   name="acq_started_pio"
+   kind="altera_avalon_pio"
+   version="9.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
+   name="ADC_data_pio"
+   kind="altera_avalon_pio"
+   version="9.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="16" />
+ </module>
  <connection
    kind="avalon"
    version="6.1"
@@ -1207,7 +1326,7 @@
    start="peripheral_clock_crossing.m1"
    end="sw_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0010" />
+  <parameter name="baseAddress" value="0x0020" />
  </connection>
  <connection
    kind="avalon"
@@ -1215,9 +1334,8 @@
    start="peripheral_clock_crossing.m1"
    end="pb_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="baseAddress" value="0x0030" />
  </connection>
- <connection kind="clock" version="9.1" start="pll.c1" end="sw_pio.clk" />
  <connection kind="clock" version="9.1" start="pll.c1" end="pb_pio.clk" />
  <connection
    kind="avalon"
@@ -1225,7 +1343,7 @@
    start="peripheral_clock_crossing.m1"
    end="seven_seg_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0030" />
+  <parameter name="baseAddress" value="0x0040" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c1" end="seven_seg_pio.clk" />
  <connection kind="clock" version="9.1" start="pll.c0" end="ext_flash.clk" />
@@ -1257,5 +1375,33 @@
    end="ext_flash.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x02000000" />
+ </connection>
+ <connection kind="clock" version="9.1" start="pll.c1" end="sw_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c0" end="acq_done_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c0" end="acq_started_pio.clk" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="peripheral_clock_crossing.m1"
+   end="acq_done_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0050" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="peripheral_clock_crossing.m1"
+   end="acq_started_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0010" />
+ </connection>
+ <connection kind="clock" version="9.1" start="pll.c0" end="ADC_data_pio.clk" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="peripheral_clock_crossing.m1"
+   end="ADC_data_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0060" />
  </connection>
 </system>
