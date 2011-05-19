@@ -6,13 +6,13 @@ module A_line_acq(
 	ADC_chanA,
 	global_reset,
 	sample_pos,
+	read_RAM_address,
 	DAC_output,
 	o_sine,
 	A_line_out,
 	LED7,
 	FANpin,
-	acq_started,
-	acq_done);
+	acq_busy);
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
@@ -28,14 +28,15 @@ input						ADC_data_out_clk;
 input						trigger50kHz;
 input		[13:0]			ADC_chanA;
 output		[10:0]			sample_pos;
+output		[10:0]			read_RAM_address;
 output		[13:0]			DAC_output;
 output		[13:0]			o_sine;
 // A-line of 1170 Elements, each 14 bits wide
 output  	[13:0] 			A_line_out; 
 output						LED7;
 output						FANpin;
-output						acq_started;
-output						acq_done;
+output						acq_busy;
+//output						acq_done;
 
 //=======================================================
 //  REG/WIRE declarations
@@ -50,6 +51,8 @@ reg  		[13:0]			A_line;
 wire						sweepTrigger;
 // Position of the ADC sample in the A-line
 wire		[10:0]			sample_position;
+// Position of the A-line sample in the RAM
+wire		[10:0]			RAM_addr;
 reg			[13:0]			DAC_output;
 reg			[13:0]			o_sine;
 wire		[13:0]			raw_sine;
@@ -62,7 +65,9 @@ assign		global_reset_n	= global_reset;
 assign		sys_clk			= clk_system;
 assign		A_line_out		= A_line;
 assign		sample_pos		= sample_position;
+assign		read_RAM_address= RAM_addr;
 assign		sweepTrigger	= trigger50kHz;
+
 
 //--- Channel A
 always @(negedge global_reset_n or posedge ADC_data_out_clk)
@@ -95,10 +100,10 @@ begin
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
 
 //		if (sample_position != 0) begin
-//			acq_started	<= 1'b1;
+//			acq_busy	<= 1'b1;
 //		end
 //		else begin
-//			acq_started	<= 1'b0;
+//			acq_busy	<= 1'b0;
 //			end
 //		if (sample_position == 11'b0 && sweepTrigger) begin
 //			acq_done	<= 1'b1;
@@ -117,11 +122,18 @@ sample_addressing_custom sample_addressing_custom_inst
 	.q(sample_position) 		// output [10:0] q_sig
 );
 
-// Acquisition started acq_started;
-assign acq_started	= (sample_pos != 0) ? 1'b1 : 1'b0;
+// Acquisition started acq_busy;
+assign acq_busy	= (sample_pos != 0) ? 1'b1 : 1'b0;
 
 // Acquisition done acq_done;
-assign acq_done		= (sample_position == 11'b0 && sweepTrigger) ? 1'b1 : 1'b0;
+//assign acq_done		= (~acq_busy && sweepTrigger) ? 1'b1 : 1'b0;
+
+sample_addressing_custom sample_addressing_custom_inst2
+(
+	.clock(ADC_data_out_clk) ,	// input  clock_sig
+	.sclr(acq_busy) ,		// input  sclr_sig
+	.q(RAM_addr) 		// output [10:0] q_sig
+);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -151,7 +163,7 @@ FAN_PWM FAN_PWM_inst
 // Heartbeat with glowing LED
 LED_glow LED_glow_inst
 (
-	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
+	.clk(clk_div_out_sig[2]) ,	// input  clk_sig
 	.LED(LED7) 					// output  LED_sig
 );
 endmodule

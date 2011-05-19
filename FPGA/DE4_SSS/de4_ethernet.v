@@ -185,8 +185,8 @@ module DE4_Ethernet(
 	XT_IN_P,
 
 	// Virtual Pins
-//	acq_started_status,
-//	acq_started_done,
+//	acq_busy_status,
+//	acq_busy_done,
 
 	//////////// HSMC I2C //////////
 	HSMC_SCL,
@@ -337,8 +337,8 @@ output		          		HSMC_SCL;
 inout		          		HSMC_SDA;
 
 // Virtual Pins
-//output reg					acq_started_status;
-//output reg					acq_started_done;
+//output reg					acq_busy_status;
+//output reg					acq_busy_done;
 
 //=======================================================
 //  REG/WIRE declarations
@@ -366,7 +366,10 @@ wire						sweepTrigger;
 // Position of the ADC sample in the A-line
 wire		[10:0]			sample_position;
 
-wire						acq_started;
+// Position of the ADC sample in the RAM
+wire		[10:0]			read_RAM_address;
+
+wire						acq_busy;
 
 wire						acq_done;
 reg							acq_done_status;
@@ -551,15 +554,13 @@ DE4_SOPC	SOPC_INST (
 				// the_led_pio
 				.out_port_from_the_led_pio({dummy_LED,LED[6:0]}),
 				
-				// Acquisition started
-				.in_port_to_the_acq_started_pio(acq_started) ,	// input  in_port_to_the_acq_started_pio_sig
-				
-				// Acquisition done
-				.in_port_to_the_acq_done_pio(acq_done) ,	// input  in_port_to_the_acq_done_pio_sig
+				// Busy acquiring data
+				.in_port_to_the_acq_busy_pio(acq_busy) ,	// input  in_port_to_the_acq_busy_pio_sig
 				
 				// data from the ADC
-				.in_port_to_the_ADC_data_pio({2'b0, A_line})	// input [15:0] in_port_to_the_ADC_data_pio_sig
+				.in_port_to_the_ADC_data_pio({2'b0, A_line}),	// input [15:0] in_port_to_the_ADC_data_pio_sig
 				
+				.out_port_from_the_read_RAM_address(read_RAM_address) ,	// output [10:0] out_port_from_the_read_RAM_address_sig
 				);
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -570,10 +571,10 @@ assign	FPGA_CLK_A_N	= ~sys_clk;
 // assign for ADC control signal
 assign	AD_SCLK			= 1'b0;				// (DFS)Data Format Select = binary (0)
 assign	AD_SDIO			= 1'b1;				// (DCS)Duty Cycle Stabilizer ON
-assign	ADA_OE			= 1'b0;				// enable ADA output
-assign	ADA_SPI_CS		= 1'b1;				// disable ADA_SPI_CS (CSB)
-assign	ADB_OE			= 1'b0;				// enable ADB output
-assign	ADB_SPI_CS		= 1'b1;				// disable ADB_SPI_CS (CSB)
+assign	ADA_OE			= 1'b0;				// enable ADA output (active LOW)
+assign	ADA_SPI_CS		= 1'b1;				// disable serial port interface A
+assign	ADB_OE			= 1'b0;				// enable ADB output (active LOW)
+assign	ADB_SPI_CS		= 1'b1;				// disable serial port interface B
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
@@ -585,14 +586,14 @@ always @(negedge global_reset_n or posedge sys_clk)
 begin
 if (!global_reset_n) begin
 		A_line_array[sample_position]	<= 14'd0;
-		//acq_started_status 				<= 1'b0;
+		//acq_busy_status 				<= 1'b0;
 		//acq_done_status 				<= 1'b0;
 	end
 	else begin
 	// 14-bit array, 1170 elements wide
 	A_line_array[sample_position] 	<= A_line;
 	// Signal acquisition started
-	//acq_started_status 				<= acq_started;
+	//acq_busy_status 				<= acq_busy;
 	// Signal acquisition started
 	//acq_done_status 				<= acq_done;
 	end
@@ -608,22 +609,22 @@ A_line_acq A_line_acq_inst
 	.ADC_chanA(ADA_D) ,						// input [13:0] ADC_chanA_sig
 	.global_reset(global_reset_n) ,			// input  global_reset_sig
 	.sample_pos(sample_position) ,			// output [10:0] sample_pos_sig
+	.read_RAM_address() ,					// output [10:0] read_RAM_address_sig
 	.DAC_output(DB) ,						// output [13:0] DAC_output_sig
 	.o_sine(DA) ,							// output [13:0] o_sine_sig
 	.A_line_out(A_line) ,					// output [13:0] A_line_acq_sig
 	.LED7(LED[7]) ,							// output  LED7_sig
 	.FANpin(FAN_CTRL) ,						// output  FANpin_sig
-	.acq_started(acq_started) ,				// output  acq_started_sig
-	.acq_done(acq_done) 					// output  acq_done_sig
+	.acq_busy(acq_busy) ,					// output  acq_busy_sig
 );
 
 // 2048 words (16-bit) RAM
 RAM	RAM_inst (
 	.clock ( sys_clk ),
 	.data ( {2'b0, A_line} ),
-	.rdaddress ( rdaddress_sig ),
+	.rdaddress ( read_RAM_address ),
 	.wraddress ( sample_position ),
-	.wren ( sweepTrigger ),
+	.wren ( acq_busy ),
 	.q ( q_sig )
 	);
 	

@@ -1,4 +1,4 @@
-// Custom 11-bit counter to point acquisition data to corresponding register. Starts counting from 0 by signal GCLKIN, finishes at fixed NSAMPLES - 1.
+// Custom 11-bit counter to point acquisition data to corresponding register. Starts counting from 0 by signal GCLKIN, finishes at fixed NSAMPLES.
 module sample_addressing_custom (
 	clock,
 	sclr,
@@ -35,7 +35,7 @@ begin
 		q		<= 0;
 	end
 	else
-	if (count >= NSAMPLES)	begin
+	if (count > NSAMPLES)	begin
 		q		<= 0;
 	end
 	else	begin
