@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * D:\Edgar\Documents\ssoct\FPGA\DE4_SSS\DE4_SOPC.ptf
  *
- * Generated: 2011-05-17 16:34:09.191
+ * Generated: 2011-05-19 19:06:42.238
  *
  */
 
@@ -190,8 +190,8 @@ DO NOT MODIFY THIS FILE
 #define SYSID_TYPE "altera_avalon_sysid"
 #define SYSID_BASE 0x05101ce0
 #define SYSID_SPAN 8
-#define SYSID_ID 1306474855u
-#define SYSID_TIMESTAMP 1305651299u
+#define SYSID_ID 2051501639u
+#define SYSID_TIMESTAMP 1305756156u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 
@@ -455,7 +455,7 @@ DO NOT MODIFY THIS FILE
 
 #define SW_PIO_NAME "/dev/sw_pio"
 #define SW_PIO_TYPE "altera_avalon_pio"
-#define SW_PIO_BASE 0x04000020
+#define SW_PIO_BASE 0x04000010
 #define SW_PIO_SPAN 16
 #define SW_PIO_DO_TEST_BENCH_WIRING 0
 #define SW_PIO_DRIVEN_SIM_VALUE 0
@@ -479,7 +479,7 @@ DO NOT MODIFY THIS FILE
 
 #define PB_PIO_NAME "/dev/pb_pio"
 #define PB_PIO_TYPE "altera_avalon_pio"
-#define PB_PIO_BASE 0x04000030
+#define PB_PIO_BASE 0x04000020
 #define PB_PIO_SPAN 16
 #define PB_PIO_DO_TEST_BENCH_WIRING 0
 #define PB_PIO_DRIVEN_SIM_VALUE 0
@@ -503,7 +503,7 @@ DO NOT MODIFY THIS FILE
 
 #define SEVEN_SEG_PIO_NAME "/dev/seven_seg_pio"
 #define SEVEN_SEG_PIO_TYPE "altera_avalon_pio"
-#define SEVEN_SEG_PIO_BASE 0x04000040
+#define SEVEN_SEG_PIO_BASE 0x04000030
 #define SEVEN_SEG_PIO_SPAN 16
 #define SEVEN_SEG_PIO_DO_TEST_BENCH_WIRING 0
 #define SEVEN_SEG_PIO_DRIVEN_SIM_VALUE 0
@@ -547,52 +547,28 @@ DO NOT MODIFY THIS FILE
 #define ALT_MODULE_CLASS_flash_tristate_bridge altera_avalon_tri_state_bridge
 
 /*
- * acq_done_pio configuration
+ * acq_busy_pio configuration
  *
  */
 
-#define ACQ_DONE_PIO_NAME "/dev/acq_done_pio"
-#define ACQ_DONE_PIO_TYPE "altera_avalon_pio"
-#define ACQ_DONE_PIO_BASE 0x04000050
-#define ACQ_DONE_PIO_SPAN 16
-#define ACQ_DONE_PIO_DO_TEST_BENCH_WIRING 0
-#define ACQ_DONE_PIO_DRIVEN_SIM_VALUE 0
-#define ACQ_DONE_PIO_HAS_TRI 0
-#define ACQ_DONE_PIO_HAS_OUT 0
-#define ACQ_DONE_PIO_HAS_IN 1
-#define ACQ_DONE_PIO_CAPTURE 0
-#define ACQ_DONE_PIO_DATA_WIDTH 1
-#define ACQ_DONE_PIO_RESET_VALUE 0
-#define ACQ_DONE_PIO_EDGE_TYPE "NONE"
-#define ACQ_DONE_PIO_IRQ_TYPE "NONE"
-#define ACQ_DONE_PIO_BIT_CLEARING_EDGE_REGISTER 0
-#define ACQ_DONE_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define ACQ_DONE_PIO_FREQ 50000000
-#define ALT_MODULE_CLASS_acq_done_pio altera_avalon_pio
-
-/*
- * acq_started_pio configuration
- *
- */
-
-#define ACQ_STARTED_PIO_NAME "/dev/acq_started_pio"
-#define ACQ_STARTED_PIO_TYPE "altera_avalon_pio"
-#define ACQ_STARTED_PIO_BASE 0x04000010
-#define ACQ_STARTED_PIO_SPAN 16
-#define ACQ_STARTED_PIO_DO_TEST_BENCH_WIRING 0
-#define ACQ_STARTED_PIO_DRIVEN_SIM_VALUE 0
-#define ACQ_STARTED_PIO_HAS_TRI 0
-#define ACQ_STARTED_PIO_HAS_OUT 0
-#define ACQ_STARTED_PIO_HAS_IN 1
-#define ACQ_STARTED_PIO_CAPTURE 0
-#define ACQ_STARTED_PIO_DATA_WIDTH 1
-#define ACQ_STARTED_PIO_RESET_VALUE 0
-#define ACQ_STARTED_PIO_EDGE_TYPE "NONE"
-#define ACQ_STARTED_PIO_IRQ_TYPE "NONE"
-#define ACQ_STARTED_PIO_BIT_CLEARING_EDGE_REGISTER 0
-#define ACQ_STARTED_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define ACQ_STARTED_PIO_FREQ 50000000
-#define ALT_MODULE_CLASS_acq_started_pio altera_avalon_pio
+#define ACQ_BUSY_PIO_NAME "/dev/acq_busy_pio"
+#define ACQ_BUSY_PIO_TYPE "altera_avalon_pio"
+#define ACQ_BUSY_PIO_BASE 0x04000040
+#define ACQ_BUSY_PIO_SPAN 16
+#define ACQ_BUSY_PIO_DO_TEST_BENCH_WIRING 0
+#define ACQ_BUSY_PIO_DRIVEN_SIM_VALUE 0
+#define ACQ_BUSY_PIO_HAS_TRI 0
+#define ACQ_BUSY_PIO_HAS_OUT 0
+#define ACQ_BUSY_PIO_HAS_IN 1
+#define ACQ_BUSY_PIO_CAPTURE 0
+#define ACQ_BUSY_PIO_DATA_WIDTH 1
+#define ACQ_BUSY_PIO_RESET_VALUE 0
+#define ACQ_BUSY_PIO_EDGE_TYPE "NONE"
+#define ACQ_BUSY_PIO_IRQ_TYPE "NONE"
+#define ACQ_BUSY_PIO_BIT_CLEARING_EDGE_REGISTER 0
+#define ACQ_BUSY_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ACQ_BUSY_PIO_FREQ 50000000
+#define ALT_MODULE_CLASS_acq_busy_pio altera_avalon_pio
 
 /*
  * ADC_data_pio configuration
@@ -601,7 +577,7 @@ DO NOT MODIFY THIS FILE
 
 #define ADC_DATA_PIO_NAME "/dev/ADC_data_pio"
 #define ADC_DATA_PIO_TYPE "altera_avalon_pio"
-#define ADC_DATA_PIO_BASE 0x04000060
+#define ADC_DATA_PIO_BASE 0x04000050
 #define ADC_DATA_PIO_SPAN 16
 #define ADC_DATA_PIO_DO_TEST_BENCH_WIRING 0
 #define ADC_DATA_PIO_DRIVEN_SIM_VALUE 0
@@ -617,6 +593,30 @@ DO NOT MODIFY THIS FILE
 #define ADC_DATA_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define ADC_DATA_PIO_FREQ 50000000
 #define ALT_MODULE_CLASS_ADC_data_pio altera_avalon_pio
+
+/*
+ * read_RAM_address configuration
+ *
+ */
+
+#define READ_RAM_ADDRESS_NAME "/dev/read_RAM_address"
+#define READ_RAM_ADDRESS_TYPE "altera_avalon_pio"
+#define READ_RAM_ADDRESS_BASE 0x04000060
+#define READ_RAM_ADDRESS_SPAN 16
+#define READ_RAM_ADDRESS_DO_TEST_BENCH_WIRING 0
+#define READ_RAM_ADDRESS_DRIVEN_SIM_VALUE 0
+#define READ_RAM_ADDRESS_HAS_TRI 0
+#define READ_RAM_ADDRESS_HAS_OUT 1
+#define READ_RAM_ADDRESS_HAS_IN 0
+#define READ_RAM_ADDRESS_CAPTURE 0
+#define READ_RAM_ADDRESS_DATA_WIDTH 11
+#define READ_RAM_ADDRESS_RESET_VALUE 0
+#define READ_RAM_ADDRESS_EDGE_TYPE "NONE"
+#define READ_RAM_ADDRESS_IRQ_TYPE "NONE"
+#define READ_RAM_ADDRESS_BIT_CLEARING_EDGE_REGISTER 0
+#define READ_RAM_ADDRESS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define READ_RAM_ADDRESS_FREQ 50000000
+#define ALT_MODULE_CLASS_read_RAM_address altera_avalon_pio
 
 /*
  * MicroC/OS-II configuration

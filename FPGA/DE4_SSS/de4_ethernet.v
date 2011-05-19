@@ -389,9 +389,9 @@ reg   [7:0]  auto_set_counter;
 reg          conf_wr;
 
 //  Structural coding
-assign clk1_set_wr = 4'd11; //312.5 MHZ
-assign clk2_set_wr = 4'd11; //312.5 MHZ
-assign clk3_set_wr = 4'd11; //312.5 MHZ
+assign clk1_set_wr = 4'd6; //150 MHZ
+assign clk2_set_wr = 4'd6; //150 MHZ
+assign clk3_set_wr = 4'd6; //150 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -579,7 +579,7 @@ assign	ADB_SPI_CS		= 1'b1;				// disable serial port interface B
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
 
-// Assign 312.5 MHz clock PLL_CLKIN_p to sys_clk
+// Assign 150 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 
 always @(negedge global_reset_n or posedge sys_clk)
@@ -602,7 +602,7 @@ end
 // A_line acquisition block
 A_line_acq A_line_acq_inst
 (
-	.clk_system(sys_clk) ,					// input  clk_system_sig (312.5 MHz)
+	.clk_system(sys_clk) ,					// input  clk_system_sig (150 MHz)
 	.clk50MHz(OSC_50_BANK2) ,				// input  clk50MHz_sig (internal oscillator)
 	.ADC_data_out_clk(ADA_DCO) ,			// input  ADC_data_out_clk_sig
 	.trigger50kHz(sweepTrigger) ,			// input  trigger50kHz_sig

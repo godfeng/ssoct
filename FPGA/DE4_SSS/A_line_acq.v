@@ -143,10 +143,10 @@ sample_addressing_custom sample_addressing_custom_inst2
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst
 (
-	.clk(sys_clk) ,				// input  clk_sig 312.5 MHz clock
+	.clk(sys_clk) ,				// input  clk_sig 150 MHz clock
 	.reset_n(global_reset_n) ,	// input  reset_n_sig
 	.clken(1'b1) ,				// input  clken_sig
-	.phi_inc_i(32'd5497558) ,	// input [anglePrec-1:0] phi_inc_i_sig 32'd5497558 for 400 kHz sinus
+	.phi_inc_i(32'd17179869) ,	// input [anglePrec-1:0] phi_inc_i_sig @150 MHz->d17179869 for 400 kHz sinus 
 	.fsin_o(raw_sine) ,			// output [magnitudePrec-1:0] fsin_o_sig
 	.out_valid() 				// output  out_valid_sig
 );
