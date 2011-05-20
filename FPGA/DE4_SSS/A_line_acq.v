@@ -128,11 +128,12 @@ assign acq_busy	= (sample_pos != 0) ? 1'b1 : 1'b0;
 // Acquisition done acq_done;
 //assign acq_done		= (~acq_busy && sweepTrigger) ? 1'b1 : 1'b0;
 
+// RAM address counter active when not acquiring
 sample_addressing_custom sample_addressing_custom_inst2
 (
-	.clock(ADC_data_out_clk) ,	// input  clock_sig
-	.sclr(acq_busy) ,		// input  sclr_sig
-	.q(RAM_addr) 		// output [10:0] q_sig
+	.clock(clk_system) ,		// input  clock_sig
+	.sclr(acq_busy) ,			// input  sclr_sig
+	.q(RAM_addr) 				// output [10:0] q_sig
 );
 
 

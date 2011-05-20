@@ -369,10 +369,13 @@ wire		[10:0]			sample_position;
 // Position of the ADC sample in the RAM
 wire		[10:0]			read_RAM_address;
 
+// Data from RAM
+wire		[13:0]			RAMdata;
+
 wire						acq_busy;
 
-wire						acq_done;
-reg							acq_done_status;
+//wire						acq_done;
+//reg							acq_done_status;
 
 
 //=======================================================
@@ -389,9 +392,9 @@ reg   [7:0]  auto_set_counter;
 reg          conf_wr;
 
 //  Structural coding
-assign clk1_set_wr = 4'd6; //150 MHZ
-assign clk2_set_wr = 4'd6; //150 MHZ
-assign clk3_set_wr = 4'd6; //150 MHZ
+assign clk1_set_wr = 4'd1; //Disable
+assign clk2_set_wr = 4'd1; //150 MHZ
+assign clk3_set_wr = 4'd6; //Disable
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -558,7 +561,7 @@ DE4_SOPC	SOPC_INST (
 				.in_port_to_the_acq_busy_pio(acq_busy) ,	// input  in_port_to_the_acq_busy_pio_sig
 				
 				// data from the ADC
-				.in_port_to_the_ADC_data_pio({2'b0, A_line}),	// input [15:0] in_port_to_the_ADC_data_pio_sig
+				.in_port_to_the_ADC_data_pio(RAMdata),	// input [15:0] in_port_to_the_ADC_data_pio_sig
 				
 				.out_port_from_the_read_RAM_address(read_RAM_address) ,	// output [10:0] out_port_from_the_read_RAM_address_sig
 				);
@@ -625,7 +628,7 @@ RAM	RAM_inst (
 	.rdaddress ( read_RAM_address ),
 	.wraddress ( sample_position ),
 	.wren ( acq_busy ),
-	.q ( q_sig )
+	.q ( RAMdata )
 	);
 	
 endmodule

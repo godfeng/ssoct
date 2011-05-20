@@ -7,7 +7,7 @@ module sample_addressing_custom (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-parameter	NSAMPLES		= 1170;			// Number of samples per A-line
+parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
@@ -18,7 +18,7 @@ output	reg [10:0]	q;
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-reg 	[16:0]	count;
+reg 	[10:0]	count;
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -37,9 +37,10 @@ begin
 	else
 	if (count > NSAMPLES)	begin
 		q		<= 0;
+		count	<= 0;
 	end
 	else	begin
-		q		<= count[10:0];
+	q			<= count[10:0];
 	end
 end
 endmodule
