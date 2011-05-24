@@ -27,7 +27,7 @@ assign clk1_set_wr = 4'd9; //200 MHZ
 
 assign clk2_set_wr = 4'd10; //250 MHZ
 
-assign clk3_set_wr = 4'd11; //312.5 MHZ
+assign clk1_set_wr = 4'd11; //312.5 MHZ
 
 assign clk1_set_wr = 4'd12; //625 MHZ
 assign clk2_set_wr = 4'd12; //625 MHZ

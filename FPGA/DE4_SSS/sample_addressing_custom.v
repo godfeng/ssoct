@@ -14,11 +14,11 @@ parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 //=======================================================
 input			clock;
 input			sclr;
-output	reg [10:0]	q;
+output reg [10:0] q;
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-reg 	[10:0]	count;
+reg 	[25:0]	count;
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -27,20 +27,21 @@ initial
 	q			= 0;
     count		= 0;
   end
-always @(posedge clock)
+always @(posedge clock or posedge sclr)
 begin
-	count = count + 1;
 	if (sclr == 1)	begin
 		count	<= 0;
-		q		<= 0;
+		//q		<= 0;
 	end
 	else
+	count = count + 1'b1;
 	if (count > NSAMPLES)	begin
-		q		<= 0;
+		//q		<= 0;
 		count	<= 0;
 	end
-	else	begin
-	q			<= count[10:0];
-	end
+	//else	begin
+		
+	//end
 end
+assign q = count[10:0];
 endmodule
