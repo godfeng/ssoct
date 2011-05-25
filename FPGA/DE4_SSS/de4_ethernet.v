@@ -41,8 +41,8 @@
 //   V1.0  |EricChen  |10/06/30      |
 // ============================================================================
 
-
-`define NET0
+`include "my_incl.v"			// Verilog include file
+`define NET0					// Ethernet PHY 0
 //`define NET1
 //`define NET2
 //`define NET3
@@ -184,10 +184,6 @@ module DE4_Ethernet(
 	XT_IN_N,
 	XT_IN_P,
 
-	// Virtual Pins
-//	acq_busy_status,
-//	acq_busy_done,
-
 	//////////// HSMC I2C //////////
 	HSMC_SCL,
 	HSMC_SDA 
@@ -196,7 +192,7 @@ module DE4_Ethernet(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
+
 
 //=======================================================
 //  PORT declarations
@@ -336,10 +332,6 @@ input		          		XT_IN_P;
 output		          		HSMC_SCL;
 inout		          		HSMC_SDA;
 
-// Virtual Pins
-//output reg					acq_busy_status;
-//output reg					acq_busy_done;
-
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
@@ -359,7 +351,7 @@ wire						lvds_rxp;
 wire						lvds_txp;
 
 // A-line of 1170 Elements, each 14 bits wide
-reg  		[13:0]			A_line_array	[0:NSAMPLES-1];
+reg  		[13:0]			A_line_array	[0:`NSAMPLES-1];
 wire		[13:0]			A_line; 
 // 50 kHz A-line trigger
 wire						sweepTrigger;
@@ -372,11 +364,8 @@ wire		[10:0]			read_RAM_address;
 // Data from RAM
 wire		[13:0]			RAMdata;
 
+// Acquiring 1170 samples
 wire						acq_busy;
-
-//wire						acq_done;
-//reg							acq_done_status;
-
 
 //=======================================================
 //  External PLL Configuration ==========================
@@ -394,7 +383,7 @@ reg          conf_wr;
 //  Structural coding
 assign clk1_set_wr = 4'd1; //Disable
 assign clk2_set_wr = 4'd1; //Disable
-assign clk3_set_wr = 4'd8; //187.5 MHZ
+assign clk3_set_wr = 4'd7; //156.25 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -589,16 +578,10 @@ always @(negedge global_reset_n or posedge sys_clk)
 begin
 if (!global_reset_n) begin
 		A_line_array[sample_position]	<= 14'd0;
-		//acq_busy_status 				<= 1'b0;
-		//acq_done_status 				<= 1'b0;
 	end
 	else begin
 	// 14-bit array, 1170 elements wide
-	A_line_array[sample_position] 	<= A_line;
-	// Signal acquisition started
-	//acq_busy_status 				<= acq_busy;
-	// Signal acquisition started
-	//acq_done_status 				<= acq_done;
+	A_line_array[sample_position] 		<= A_line;
 	end
 end
 

@@ -585,14 +585,6 @@ set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_SSS/DE4
 set_global_assignment -name VECTOR_COMPARE_TRIGGER_MODE INPUT_EDGE
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE counterMonitor.stp
-set_global_assignment -name VERILOG_FILE FAN_PWM.v
-set_global_assignment -name VERILOG_FILE LED_glow.v
-set_global_assignment -name QIP_FILE sin400k.qip
-set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
-set_global_assignment -name SDC_FILE DE4_Ethernet.SDC
-set_global_assignment -name QIP_FILE DE4_SOPC.qip
-set_global_assignment -name VERILOG_FILE A_line_acq.v
-set_global_assignment -name QIP_FILE RAM.qip
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name RAPID_RECOMPILE_MODE COMPATIBLE_PLACEMENT_AND_ROUTING
@@ -613,7 +605,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLE
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
-set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
 set_global_assignment -name INCREMENTAL_COMPILATION FULL_INCREMENTAL_COMPILATION
 set_global_assignment -name SAVE_DISK_SPACE OFF
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_0
@@ -736,4 +727,14 @@ set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
 set_global_assignment -name FITTER_EFFORT "FAST FIT"
+set_global_assignment -name VERILOG_FILE my_incl.v
+set_global_assignment -name VERILOG_FILE FAN_PWM.v
+set_global_assignment -name VERILOG_FILE LED_glow.v
+set_global_assignment -name QIP_FILE sin400k.qip
+set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
+set_global_assignment -name SDC_FILE DE4_Ethernet.SDC
+set_global_assignment -name QIP_FILE DE4_SOPC.qip
+set_global_assignment -name VERILOG_FILE A_line_acq.v
+set_global_assignment -name QIP_FILE RAM.qip
+set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

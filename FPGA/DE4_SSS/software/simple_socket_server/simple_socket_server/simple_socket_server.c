@@ -38,6 +38,14 @@
 /* Nichestack definitions */
 #include "ipport.h"
 #include "tcpport.h"
+
+// Altera Avalon registers
+#include "altera_avalon_pio_regs.h" 
+//#include "altera_avalon_uart_regs.h"
+
+// Global variables
+char acq_busy_signal;
+
  
 /*
  * Global handles (pointers) to our MicroC/OS-II resources. All of resources 
@@ -305,6 +313,22 @@ void sss_exec_command(SSSConn* conn)
             error_code = OSQPost(SSSLEDCommandQ, (void *)SSSCommand);    
 
             alt_SSSErrorHandler(error_code, 0);
+            if (SSSCommand == 65)
+            {
+            // Read command Q (ASCII code = 65)
+            tx_wr_pos += sprintf(tx_wr_pos,
+                              "--> Acquiring data %c.\n\r",
+                              (char)SSSCommand);
+            do
+            {
+            acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
+            // look definitions in system.h
+            }
+            while (acq_busy_signal == 1);
+            
+            tx_wr_pos += sprintf(tx_wr_pos,
+                            "-->Acquisition finished \n");
+            } // END if (SSSCommand == 65)
          }
       }
    }             

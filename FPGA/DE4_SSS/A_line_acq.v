@@ -1,3 +1,4 @@
+`include "my_incl.v"			// Verilog include file
 module A_line_acq(
 	clk_system,
 	clk50MHz,
@@ -16,7 +17,7 @@ module A_line_acq(
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
+//parameter	NSAMPLES		= 11'd1170;			// Number of samples per A-line
 
 //=======================================================
 //  PORT declarations
@@ -95,7 +96,7 @@ begin
 		//A_line <= a2da_data;
 		// Map acquisition to DAC B
 		//DAC_output 	<= A_line[sample_position];
-		DAC_output 	<= A_line;
+		DAC_output 	<= per_a2da_d;
 		// Invert sign bit (MSB) to have offset binary
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
 
@@ -128,6 +129,10 @@ assign acq_busy	= (sample_pos != 0) ? 1'b1 : 1'b0;
 // Acquisition done acq_done;
 //assign acq_done		= (~acq_busy && sweepTrigger) ? 1'b1 : 1'b0;
 
+///////////////////////////////////////////////////////////////////////////////
+// Optional modules
+///////////////////////////////////////////////////////////////////////////////
+
 // RAM address counter active when not acquiring
 sample_addressing_custom sample_addressing_custom_inst2
 (
@@ -135,11 +140,6 @@ sample_addressing_custom sample_addressing_custom_inst2
 	.sclr(acq_busy) ,			// input  sclr_sig
 	.q(RAM_addr) 				// output [10:0] q_sig
 );
-
-
-///////////////////////////////////////////////////////////////////////////////
-// Optional modules
-///////////////////////////////////////////////////////////////////////////////
 
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst
