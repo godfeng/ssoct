@@ -39,12 +39,16 @@
 #include "ipport.h"
 #include "tcpport.h"
 
-// Altera Avalon registers
+/* Altera Avalon registers */
 #include "altera_avalon_pio_regs.h" 
-//#include "altera_avalon_uart_regs.h"
 
-// Global variables
-char acq_busy_signal;
+/* Constants */
+#define NSAMPLES    64
+
+/* Global variables */
+char    acq_busy_signal;
+int     ADC_data;
+int     RAM_address;
 
  
 /*
@@ -310,14 +314,17 @@ void sss_exec_command(SSSConn* conn)
          }
          else
          {
+            if (SSSCommand != 65)
+            {
             error_code = OSQPost(SSSLEDCommandQ, (void *)SSSCommand);    
 
             alt_SSSErrorHandler(error_code, 0);
-            if (SSSCommand == 65)
+            }
+            else
             {
-            // Read command Q (ASCII code = 65)
+            // Read command A (ASCII code = 65)
             tx_wr_pos += sprintf(tx_wr_pos,
-                              "--> Acquiring data %c.\n\r",
+                              "--> Acquiring single %c-line...\n\r",
                               (char)SSSCommand);
             do
             {
@@ -326,8 +333,21 @@ void sss_exec_command(SSSConn* conn)
             }
             while (acq_busy_signal == 1);
             
-            tx_wr_pos += sprintf(tx_wr_pos,
-                            "-->Acquisition finished \n");
+            // Do the transfer
+            RAM_address = 1;
+            if (acq_busy_signal == 0)
+            {
+                for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
+                {
+                IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address);
+                ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
+                tx_wr_pos += sprintf(tx_wr_pos,
+                            "%05d\t%04d\n\r",ADC_data,RAM_address);
+                }
+                //RAM_address++;
+            }
+            RAM_address = 1;    // Reset RAM address
+            tx_wr_pos += sprintf(tx_wr_pos, "-->A-line acquisition done! \n\r");
             } // END if (SSSCommand == 65)
          }
       }

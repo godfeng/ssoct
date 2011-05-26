@@ -27,12 +27,12 @@ set(TCP_IP_object, 'InputBufferSize', 2^16);
 fopen(TCP_IP_object); 
 
 % Read Welcome message (8 lines)
-for i=1:8,
+for i=1:9,
 	disp(fscanf(TCP_IP_object))
 end
 
 % Pause for the communication delay, if needed. 
-% pause(0.5)
+pause(0.5)
 
 % while 
 
