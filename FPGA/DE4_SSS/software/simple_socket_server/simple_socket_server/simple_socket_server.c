@@ -43,7 +43,7 @@
 #include "altera_avalon_pio_regs.h" 
 
 /* Constants */
-#define NSAMPLES    64
+#define NSAMPLES    110
 
 /* Global variables */
 char    acq_busy_signal;

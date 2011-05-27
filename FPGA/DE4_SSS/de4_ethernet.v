@@ -610,7 +610,7 @@ RAM	RAM_inst (
 	.data ( {2'b0, A_line} ),
 	.rdaddress ( read_RAM_address ),
 	.wraddress ( sample_position ),
-	.wren ( acq_busy ),
+	.wren ( acq_busy ),						// acq_busy
 	.q ( RAMdata )
 	);
 	

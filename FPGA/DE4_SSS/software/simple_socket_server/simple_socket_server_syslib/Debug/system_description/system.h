@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * D:\Edgar\Documents\ssoct\FPGA\DE4_SSS\DE4_SOPC.ptf
  *
- * Generated: 2011-05-19 19:06:42.238
+ * Generated: 2011-05-27 16:08:29.515
  *
  */
 
@@ -191,7 +191,7 @@ DO NOT MODIFY THIS FILE
 #define SYSID_BASE 0x05101ce0
 #define SYSID_SPAN 8
 #define SYSID_ID 2051501639u
-#define SYSID_TIMESTAMP 1305756156u
+#define SYSID_TIMESTAMP 1306526005u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 

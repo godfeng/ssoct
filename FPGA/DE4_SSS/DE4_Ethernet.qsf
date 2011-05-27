@@ -721,11 +721,7 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=183" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=44096" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=53532" -section_id auto_signaltap_0
-set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
-set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
 set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
-set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
-set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
 set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name VERILOG_FILE my_incl.v
 set_global_assignment -name VERILOG_FILE FAN_PWM.v
@@ -737,4 +733,5 @@ set_global_assignment -name QIP_FILE DE4_SOPC.qip
 set_global_assignment -name VERILOG_FILE A_line_acq.v
 set_global_assignment -name QIP_FILE RAM.qip
 set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
+set_global_assignment -name VERILOG_FILE one_shot.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

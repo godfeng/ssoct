@@ -259,43 +259,6 @@
          type = "String";
       }
    }
-   element acq_busy_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "64";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "67108864";
-         type = "long";
-      }
-   }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "84410368";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "84941952";
-         type = "long";
-      }
-   }
    element ADC_data_pio.s1
    {
       datum _tags
@@ -309,11 +272,11 @@
          type = "long";
       }
    }
-   element high_res_timer.s1
+   element ext_flash.s1
    {
       datum baseAddress
       {
-         value = "84941984";
+         value = "33554432";
          type = "long";
       }
    }
@@ -333,19 +296,11 @@
          type = "long";
       }
    }
-   element seven_seg_pio.s1
+   element onchip_memory.s1
    {
       datum baseAddress
       {
-         value = "48";
-         type = "long";
-      }
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "33554432";
+         value = "84410368";
          type = "long";
       }
    }
@@ -354,6 +309,51 @@
       datum baseAddress
       {
          value = "84938752";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "84941984";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "84941952";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "16";
+         type = "long";
+      }
+   }
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
+         type = "long";
+      }
+   }
+   element acq_busy_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "64";
          type = "long";
       }
    }
@@ -373,11 +373,11 @@
          type = "long";
       }
    }
-   element sw_pio.s1
+   element peripheral_clock_crossing.s1
    {
       datum baseAddress
       {
-         value = "16";
+         value = "67108864";
          type = "long";
       }
    }
@@ -480,7 +480,7 @@
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
  <parameter name="systemHash" value="-34263756344" />
- <parameter name="timeStamp" value="1305756156010" />
+ <parameter name="timeStamp" value="1306520252220" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
