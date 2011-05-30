@@ -43,7 +43,7 @@
 #include "altera_avalon_pio_regs.h" 
 
 /* Constants */
-#define NSAMPLES    110
+#define NSAMPLES    1170
 
 /* Global variables */
 char    acq_busy_signal;
@@ -335,25 +335,28 @@ void sss_exec_command(SSSConn* conn)
             
             // Do the transfer
             RAM_address = 1;
-            if (acq_busy_signal == 0)
+           if (acq_busy_signal == 0)
             {
                 for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                 {
                 IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address);
                 ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
                 tx_wr_pos += sprintf(tx_wr_pos,
-                            "%05d\t%04d\n\r",ADC_data,RAM_address);
+                            "%04d\t%05d\n\r", RAM_address, ADC_data);
+                //send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
                 }
                 //RAM_address++;
             }
             RAM_address = 1;    // Reset RAM address
             tx_wr_pos += sprintf(tx_wr_pos, "-->A-line acquisition done! \n\r");
+            //send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
             } // END if (SSSCommand == 65)
          }
       }
    }             
-
-  send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);  
+    
+  send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+  // ORIGINAL POSITION OF SEND COMMAND!!!  
   
   return;
 }

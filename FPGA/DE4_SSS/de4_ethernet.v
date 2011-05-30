@@ -571,7 +571,7 @@ assign	ADB_SPI_CS		= 1'b1;				// disable serial port interface B
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger	= GCLKIN;
 
-// Assign 150 MHz clock PLL_CLKIN_p to sys_clk
+// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 
 always @(negedge global_reset_n or posedge sys_clk)
@@ -588,7 +588,7 @@ end
 // A_line acquisition block
 A_line_acq A_line_acq_inst
 (
-	.clk_system(sys_clk) ,					// input  clk_system_sig (150 MHz)
+	.clk_system(sys_clk) ,					// input  clk_system_sig (156.25 MHz)
 	.clk50MHz(OSC_50_BANK2) ,				// input  clk50MHz_sig (internal oscillator)
 	.ADC_data_out_clk(ADA_DCO) ,			// input  ADC_data_out_clk_sig
 	.trigger50kHz(sweepTrigger) ,			// input  trigger50kHz_sig

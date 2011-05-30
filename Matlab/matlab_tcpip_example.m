@@ -56,3 +56,5 @@ fclose(TCP_IP_object);
 delete(TCP_IP_object); 
 clear TCP_IP_object 
 fprintf('Connection successfully closed\n')
+
+% EOF
