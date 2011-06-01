@@ -43,7 +43,7 @@
 #include "altera_avalon_pio_regs.h" 
 
 /* Constants */
-#define NSAMPLES    40
+#define NSAMPLES    1170
 
 /* Global variables */
 char    acq_busy_signal;
@@ -280,6 +280,7 @@ void sss_handle_accept(int listen_socket, SSSConn* conn)
  */
 void sss_exec_command(SSSConn* conn)
 {
+   int pos_ini = 0;
    int bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
    INT8U tx_buf[SSS_TX_BUF_SIZE];
    INT8U *tx_wr_pos = tx_buf;
@@ -325,9 +326,10 @@ void sss_exec_command(SSSConn* conn)
             else
             {
             // Read command A (ASCII code = 65)
-            tx_wr_pos += sprintf(tx_wr_pos,
-                              "--> Acquiring single %c-line...\n\r",
-                              (char)SSSCommand);
+//            tx_wr_pos += sprintf(tx_wr_pos,
+//                              "--> Acquiring single %c-line...\n\r",
+//                              (char)SSSCommand);
+            printf("--> Acquiring single %c-line...\n",(char)SSSCommand);
             do
             {
             acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
@@ -336,24 +338,23 @@ void sss_exec_command(SSSConn* conn)
             while (acq_busy_signal == 1);
             
             // Do the transfer
-            int pos_ini = tx_wr_pos; 
+            pos_ini = tx_wr_pos; 
             RAM_address = 1;
             buffer_position = 0;
-            if (acq_busy_signal == 0)
+            if (1)//(acq_busy_signal == 0)
             {
                 for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                 {
                 IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address);
                 ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
 //                tx_wr_pos += sprintf(tx_wr_pos,
-//                            "%04d\t%05d\n\r", RAM_address, ADC_data);
+//                            "%04d\t%05d\n\r", RAM_address, ADC_data); //Write string to terminal
                 dataPointer = &ADC_data;
                 tx_buf[buffer_position    ] = dataPointer[0];
                 tx_buf[buffer_position + 1] = dataPointer[1];
-//                tx_buf[buffer_position + 2] = dataPointer[2];
-//                tx_buf[buffer_position + 3] = dataPointer[3]; 
-                tx_wr_pos += 2;
-                if (RAM_address % NSAMPLES == 0 && RAM_address != 0)
+                tx_wr_pos += 2;                     // 2 bytes
+                if (RAM_address % 500 == 0 && RAM_address != 0)
+                // Send data every 500*2 bytes
                         {
                             send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
                             buffer_position = 0;
@@ -362,14 +363,13 @@ void sss_exec_command(SSSConn* conn)
                         }
                         else
                         {
-                            buffer_position = (RAM_address  % NSAMPLES) * 2;
-                        }   
+                            buffer_position = (RAM_address  % 500) * 2;
+                        }
                 }
-                
             }
             RAM_address = 1;    // Reset RAM address
-            tx_wr_pos += sprintf(tx_wr_pos, "\n\r-->A-line acquisition done! \n\r");
-            printf("-->A-line sent! \n\r");
+            //tx_wr_pos += sprintf(tx_wr_pos, "\n\r-->A-line acquisition done! \n\r");
+            printf("--> A-line sent!\n");
             } // END if (SSSCommand == 65)
          }
       }
@@ -377,6 +377,9 @@ void sss_exec_command(SSSConn* conn)
     
   send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
   // ORIGINAL POSITION OF SEND COMMAND!!!  
+  buffer_position = 0;
+  *tx_wr_pos = 0;
+  tx_wr_pos = pos_ini;  
   
   return;
 }
