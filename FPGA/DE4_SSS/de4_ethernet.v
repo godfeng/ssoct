@@ -577,11 +577,10 @@ assign	sys_clk			= PLL_CLKIN_p;
 always @(negedge global_reset_n or posedge sys_clk)
 begin
 if (!global_reset_n) begin
-		A_line_array[sample_position]	<= 14'd0;
+		A_line_array[sample_position]		<= 14'd0;
 	end
 	else begin
-	// 14-bit array, 1170 elements wide
-	A_line_array[sample_position] 		<= A_line;
+		A_line_array[sample_position] 		<= A_line;
 	end
 end
 

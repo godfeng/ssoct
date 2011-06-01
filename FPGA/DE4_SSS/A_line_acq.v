@@ -90,28 +90,18 @@ begin
 		o_sine		<= 14'd0;
 	end
 	else begin
-		A_line		<= per_a2da_d;
-		// Indexing samples in the A-line array
-		//A_line[sample_position] <= a2da_data;
-		//A_line <= a2da_data;
 		// Map acquisition to DAC B
-		//DAC_output 	<= A_line[sample_position];
 		DAC_output 	<= per_a2da_d;
 		// Invert sign bit (MSB) to have offset binary
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
-
-//		if (sample_position != 0) begin
-//			acq_busy	<= 1'b1;
-//		end
-//		else begin
-//			acq_busy	<= 1'b0;
-//			end
-//		if (sample_position == 11'b0 && sweepTrigger) begin
-//			acq_done	<= 1'b1;
-//		end
-//		else begin
-//			acq_done	<= 1'b0;
-//			end
+		if (sample_position == 0) begin
+			// 14-bit array, 1170 elements wide
+			A_line				<= 14'd0;
+		end
+		else begin
+			// 14-bit array, 1170 elements wide
+			A_line				<= per_a2da_d;
+		end
 	end
 end
 
@@ -126,8 +116,6 @@ sample_addressing_custom sample_addressing_custom_inst
 // Acquisition started acq_busy;
 assign acq_busy	= (sample_pos != 0) ? 1'b1 : 1'b0;
 
-// Acquisition done acq_done;
-//assign acq_done		= (~acq_busy && sweepTrigger) ? 1'b1 : 1'b0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Optional modules

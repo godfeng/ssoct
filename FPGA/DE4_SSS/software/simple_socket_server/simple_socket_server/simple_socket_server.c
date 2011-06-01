@@ -43,12 +43,14 @@
 #include "altera_avalon_pio_regs.h" 
 
 /* Constants */
-#define NSAMPLES    1170
+#define NSAMPLES    40
 
 /* Global variables */
 char    acq_busy_signal;
 int     ADC_data;
 int     RAM_address;
+int     *dataPointer;
+int     buffer_position;
 
  
 /*
@@ -334,22 +336,40 @@ void sss_exec_command(SSSConn* conn)
             while (acq_busy_signal == 1);
             
             // Do the transfer
+            int pos_ini = tx_wr_pos; 
             RAM_address = 1;
-           if (acq_busy_signal == 0)
+            buffer_position = 0;
+            if (acq_busy_signal == 0)
             {
                 for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                 {
                 IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address);
                 ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                tx_wr_pos += sprintf(tx_wr_pos,
-                            "%04d\t%05d\n\r", RAM_address, ADC_data);
-                //send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+//                tx_wr_pos += sprintf(tx_wr_pos,
+//                            "%04d\t%05d\n\r", RAM_address, ADC_data);
+                dataPointer = &ADC_data;
+                tx_buf[buffer_position    ] = dataPointer[0];
+                tx_buf[buffer_position + 1] = dataPointer[1];
+//                tx_buf[buffer_position + 2] = dataPointer[2];
+//                tx_buf[buffer_position + 3] = dataPointer[3]; 
+                tx_wr_pos += 2;
+                if (RAM_address % NSAMPLES == 0 && RAM_address != 0)
+                        {
+                            send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                            buffer_position = 0;
+                            *tx_wr_pos = 0;
+                            tx_wr_pos = pos_ini;    
+                        }
+                        else
+                        {
+                            buffer_position = (RAM_address  % NSAMPLES) * 2;
+                        }   
                 }
-                //RAM_address++;
+                
             }
             RAM_address = 1;    // Reset RAM address
-            tx_wr_pos += sprintf(tx_wr_pos, "-->A-line acquisition done! \n\r");
-            //send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+            tx_wr_pos += sprintf(tx_wr_pos, "\n\r-->A-line acquisition done! \n\r");
+            printf("-->A-line sent! \n\r");
             } // END if (SSSCommand == 65)
          }
       }

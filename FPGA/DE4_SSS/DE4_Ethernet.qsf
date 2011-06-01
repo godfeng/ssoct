@@ -572,7 +572,7 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to HSMC_SDA
 #============================================================
 
 
-set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
@@ -588,7 +588,7 @@ set_global_assignment -name USE_SIGNALTAP_FILE counterMonitor.stp
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name RAPID_RECOMPILE_MODE COMPATIBLE_PLACEMENT_AND_ROUTING
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING_AND_HIGH_SPEED_TILES -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL COMPATIBLE_PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to PLL_CLKIN_p -section_id auto_signaltap_0
