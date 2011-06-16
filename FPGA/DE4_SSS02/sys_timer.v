@@ -76,7 +76,7 @@ module sys_timer (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          internal_counter <= 32'h7A11F;
+          internal_counter <= 32'hF423F;
       else if (counter_is_running || force_reload)
           if (counter_is_zero    || force_reload)
               internal_counter <= counter_load_value;
@@ -162,7 +162,7 @@ module sys_timer (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          period_l_register <= 41247;
+          period_l_register <= 16959;
       else if (period_l_wr_strobe)
           period_l_register <= writedata;
     end
@@ -171,7 +171,7 @@ module sys_timer (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          period_h_register <= 7;
+          period_h_register <= 15;
       else if (period_h_wr_strobe)
           period_h_register <= writedata;
     end

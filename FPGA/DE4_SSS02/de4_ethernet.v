@@ -386,7 +386,7 @@ reg          conf_wr;
 //  Structural coding
 assign clk1_set_wr = 4'd1; //Disable
 assign clk2_set_wr = 4'd1; //Disable
-assign clk3_set_wr = 4'd7; //156.25 MHZ
+assign clk3_set_wr = 4'd9; //200 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;

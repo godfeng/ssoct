@@ -5169,10 +5169,10 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
   reg              d1_reasons_to_wait;
   reg              enable_nonzero_assertions;
   wire             end_xfer_arb_share_counter_term_flash_tristate_bridge_avalon_slave;
-  wire    [  2: 0] ext_flash_s1_counter_load_value;
+  wire    [  3: 0] ext_flash_s1_counter_load_value;
   wire             ext_flash_s1_in_a_read_cycle;
   wire             ext_flash_s1_in_a_write_cycle;
-  reg     [  2: 0] ext_flash_s1_wait_counter;
+  reg     [  3: 0] ext_flash_s1_wait_counter;
   wire             ext_flash_s1_wait_counter_eq_0;
   wire             ext_flash_s1_waits_for_read;
   wire             ext_flash_s1_waits_for_write;
@@ -5536,7 +5536,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_readn assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 5));
+  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 10));
 
   //~flash_tristate_bridge_writen of type write to ~p1_flash_tristate_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -5549,7 +5549,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_writen assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 1) & (ext_flash_s1_wait_counter < 6));
+  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 12));
 
   //flash_tristate_bridge_address of type address to p1_flash_tristate_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -5607,8 +5607,8 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 5 :
-    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 6 :
+  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 11 :
+    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 13 :
     (~ext_flash_s1_wait_counter_eq_0)? ext_flash_s1_wait_counter - 1 :
     0;
 
@@ -16482,12 +16482,15 @@ module test_bench
   initial
     ext_clk = 1'b0;
   always
+     if (ext_clk == 1'b1) 
+    #2 ext_clk <= ~ext_clk;
+     else 
     #3 ext_clk <= ~ext_clk;
   
   initial 
     begin
       reset_n <= 0;
-      #65 reset_n <= 1;
+      #50 reset_n <= 1;
     end
 
 endmodule

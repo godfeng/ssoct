@@ -3,7 +3,7 @@
 # Machine generated for a CPU named "cpu" as defined in:
 # D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\DE4_SOPC.ptf
 #
-# Generated: 2011-06-07 12:25:21.036
+# Generated: 2011-06-16 16:58:40.65
 
 # DO NOT MODIFY THIS FILE
 #
@@ -67,7 +67,7 @@ $(SIMDIR)/dummy_file: $(ELF)
 	touch $(SIMDIR)/dummy_file
 
 dummy_verifysysid_file:
-	nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1432450264 --timestamp=1307462438
+	nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1728012115 --timestamp=1308255902
 .PHONY: dummy_verifysysid_file
 
 $(EXT_FLASH_FLASHTARGET_ALT_SIM_PREFIX)ext_flash.flash: $(ELF)

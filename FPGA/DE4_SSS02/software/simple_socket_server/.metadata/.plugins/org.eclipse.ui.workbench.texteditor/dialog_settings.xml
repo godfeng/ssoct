@@ -6,12 +6,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="A-line" key="selection"/>
+		<item value="buffer" key="selection"/>
 		<list key="findhistory">
+			<item value="buffer"/>
 			<item value="                            // Wait to finish writing acquired data to the RAM"/>
 			<item value="a-line"/>
 			<item value="pos_ini"/>
@@ -19,7 +20,6 @@
 			<item value="busy"/>
 			<item value="send("/>
 			<item value="send"/>
-			<item value="ram"/>
 		</list>
 		<list key="replacehistory">
 		</list>
