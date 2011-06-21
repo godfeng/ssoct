@@ -1,16 +1,28 @@
-Analysis & Synthesis Status : Successful - Thu Jun 16 17:04:39 2011
+<<<<<<< .mine
+Analysis & Synthesis Status : Successful - Fri Jun 17 11:53:21 2011
+=======
+Analysis & Synthesis Status : Successful - Tue Jun 07 13:05:43 2011
+>>>>>>> .r91
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : DE4_Ethernet
 Top-level Entity Name : DE4_Ethernet
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 9,932
+<<<<<<< .mine
+    Combinational ALUTs : 9,719
+=======
+    Combinational ALUTs : 9,915
+>>>>>>> .r91
     Memory ALUTs : 0
-    Dedicated logic registers : 10,207
-Total registers : 10207
+    Dedicated logic registers : 9,979
+Total registers : 9979
 Total pins : 231
 Total virtual pins : 1
-Total block memory bits : 5,861,492
+<<<<<<< .mine
+Total block memory bits : 5,309,812
+=======
+Total block memory bits : 4,800,628
+>>>>>>> .r91
 DSP block 18-bit elements : 4
 Total GXB Receiver Channel PCS : 0
 Total GXB Receiver Channel PMA : 0

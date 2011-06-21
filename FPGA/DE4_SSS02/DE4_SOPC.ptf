@@ -15,7 +15,7 @@ SYSTEM DE4_SOPC
       {
          CLOCK ext_clk
          {
-            frequency = "200000000";
+            frequency = "156250000";
             source = "External";
             Is_Clock_Source = "0";
             display_name = "ext_clk";
@@ -24,7 +24,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "100000000";
+            frequency = "50000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -33,15 +33,14 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "100000000";
+            frequency = "50000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
-            pipeline = "0";
          }
          CLOCK pll_c1
          {
-            frequency = "100000000";
+            frequency = "10000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c1 from pll";
@@ -50,15 +49,14 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_peripheral_clk
          {
-            frequency = "100000000";
+            frequency = "10000000";
             source = "pll_c1";
             Is_Clock_Source = "0";
             display_name = "pll_peripheral_clk";
-            pipeline = "0";
          }
       }
-      clock_freq = "200000000";
-      clock_freq = "200000000";
+      clock_freq = "156250000";
+      clock_freq = "156250000";
       board_class = "";
       view_master_columns = "1";
       view_master_priorities = "0";
@@ -439,7 +437,7 @@ SYSTEM DE4_SOPC
             Data_Width = "32";
             Address_Width = "27";
             Maximum_Burst_Size = "1";
-            Register_Incoming_Signals = "0";
+            Register_Incoming_Signals = "1";
             Register_Outgoing_Signals = "0";
             Interleave_Bursts = "0";
             Linewrap_Bursts = "0";
@@ -495,7 +493,7 @@ SYSTEM DE4_SOPC
                type = "readdatavalid";
                width = "1";
                direction = "input";
-               Is_Enabled = "1";
+               Is_Enabled = "0";
             }
             PORT d_waitrequest
             {
@@ -658,9 +656,15 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
+<<<<<<< .mine
+         cache_has_dcache = "0";
+         cache_dcache_size = "0";
+         cache_dcache_line_size = "0";
+=======
          cache_has_dcache = "1";
-         cache_dcache_size = "65536";
+         cache_dcache_size = "2048";
          cache_dcache_line_size = "32";
+>>>>>>> .r91
          cache_dcache_bursts = "0";
          cache_dcache_ram_block_type = "AUTO";
          num_tightly_coupled_data_masters = "0";
@@ -668,7 +672,7 @@ SYSTEM DE4_SOPC
          gui_include_tightly_coupled_data_masters = "0";
          gui_omit_avalon_data_master = "0";
          cache_has_icache = "1";
-         cache_icache_size = "65536";
+         cache_icache_size = "4096";
          cache_icache_line_size = "32";
          cache_icache_ram_block_type = "AUTO";
          cache_icache_bursts = "0";
@@ -707,7 +711,7 @@ SYSTEM DE4_SOPC
          hbreak_test = "0";
          allow_full_address_range = "0";
          extra_exc_info = "0";
-         branch_prediction_type = "Dynamic";
+         branch_prediction_type = "Static";
          bht_ptr_sz = "8";
          bht_index_pc_only = "0";
          gui_branch_prediction_type = "Automatic";
@@ -737,8 +741,8 @@ SYSTEM DE4_SOPC
          mpu_min_data_region_size_log2 = "12";
          mpu_min_inst_region_size_log2 = "12";
          mpu_use_limit = "0";
-         hardware_divide_present = "0";
-         gui_hardware_divide_setting = "0";
+         hardware_divide_present = "1";
+         gui_hardware_divide_setting = "1";
          hardware_multiply_present = "1";
          hardware_multiply_impl = "dsp_mul";
          shift_rot_impl = "dsp_shift";
@@ -750,8 +754,8 @@ SYSTEM DE4_SOPC
          break_offset = "0x00000020";
          exc_offset = "0x00000020";
          cpu_reset = "0";
-         CPU_Implementation = "fast";
-         cpu_selection = "f";
+         CPU_Implementation = "small";
+         cpu_selection = "s";
          device_family_id = "STRATIXIV";
          address_stall_present = "1";
          dsp_block_supports_shift = "1";
@@ -826,7 +830,7 @@ SYSTEM DE4_SOPC
             }
             CONSTANT nasys_icache_size
             {
-               value = "65536";
+               value = "4096";
                comment = "Size in bytes of instruction cache";
             }
             CONSTANT nasys_icache_line_size
@@ -841,26 +845,30 @@ SYSTEM DE4_SOPC
             }
             CONSTANT nasys_has_dcache
             {
-               value = "1";
+               value = "0";
                comment = "True if instruction cache present";
             }
             CONSTANT nasys_dcache_size
             {
-               value = "65536";
+<<<<<<< .mine
+               value = "0";
+=======
+               value = "2048";
+>>>>>>> .r91
                comment = "Size in bytes of data cache";
             }
             CONSTANT nasys_dcache_line_size
             {
-               value = "32";
+               value = "0";
                comment = "Size in bytes of each dcache line";
             }
             CONSTANT nasys_dcache_line_size_log2
             {
-               value = "5";
+               value = "-Infinity";
                comment = "Log2 size in bytes of each dcache line";
             }
          }
-         license_status = "ocp";
+         license_status = "encrypted";
          mainmem_slave = "ext_flash/s1";
          datamem_slave = "ext_flash/s1";
          maincomm_slave = "";
@@ -881,9 +889,14 @@ SYSTEM DE4_SOPC
          Top_Level_Ports_Are_Enumerated = "1";
          View 
          {
-            Settings_Summary = "Nios II/f
+            Settings_Summary = "Nios II/s
+<<<<<<< .mine
             <br>&nbsp;&nbsp;64-Kbyte Instruction Cache
-            <br>&nbsp;&nbsp;64-Kbyte Data Cache
+            
+=======
+            <br>&nbsp;&nbsp;4-Kbyte Instruction Cache
+            <br>&nbsp;&nbsp;2-Kbyte Data Cache
+>>>>>>> .r91
             <br>&nbsp;&nbsp;JTAG Debug Module
             ";
             MESSAGES 
@@ -1191,433 +1204,289 @@ SYSTEM DE4_SOPC
             SIGNAL aaj
             {
                format = "Logic";
-               name = "d_address";
+               name = "d_irq";
                radix = "hexadecimal";
             }
             SIGNAL aak
             {
                format = "Logic";
-               name = "d_byteenable";
+               name = "d_address";
                radix = "hexadecimal";
             }
             SIGNAL aal
             {
                format = "Logic";
-               name = "d_read";
+               name = "d_byteenable";
                radix = "hexadecimal";
             }
             SIGNAL aam
             {
                format = "Logic";
-               name = "d_write";
+               name = "d_read";
                radix = "hexadecimal";
             }
             SIGNAL aan
             {
                format = "Logic";
-               name = "d_writedata";
+               name = "d_write";
                radix = "hexadecimal";
             }
             SIGNAL aao
             {
                format = "Logic";
-               name = "d_irq";
+               name = "d_writedata";
                radix = "hexadecimal";
             }
             SIGNAL aap
-            {
-               format = "Logic";
-               name = "d_readdatavalid";
-               radix = "hexadecimal";
-            }
-            SIGNAL aaq
             {
                format = "Divider";
                name = "base pipeline";
                radix = "";
             }
-            SIGNAL aar
+            SIGNAL aaq
             {
                format = "Logic";
                name = "clk";
                radix = "hexadecimal";
             }
-            SIGNAL aas
+            SIGNAL aar
             {
                format = "Logic";
                name = "reset_n";
                radix = "hexadecimal";
             }
+            SIGNAL aas
+            {
+               format = "Logic";
+               name = "M_stall";
+               radix = "hexadecimal";
+            }
             SIGNAL aat
-            {
-               format = "Logic";
-               name = "D_stall";
-               radix = "hexadecimal";
-            }
-            SIGNAL aau
-            {
-               format = "Logic";
-               name = "A_stall";
-               radix = "hexadecimal";
-            }
-            SIGNAL aav
             {
                format = "Logic";
                name = "F_pcb_nxt";
                radix = "hexadecimal";
             }
-            SIGNAL aaw
+            SIGNAL aau
             {
                format = "Logic";
                name = "F_pcb";
                radix = "hexadecimal";
             }
-            SIGNAL aax
+            SIGNAL aav
             {
                format = "Logic";
                name = "D_pcb";
                radix = "hexadecimal";
             }
-            SIGNAL aay
+            SIGNAL aaw
             {
                format = "Logic";
                name = "E_pcb";
                radix = "hexadecimal";
             }
-            SIGNAL aaz
+            SIGNAL aax
             {
                format = "Logic";
                name = "M_pcb";
                radix = "hexadecimal";
             }
-            SIGNAL aba
-            {
-               format = "Logic";
-               name = "A_pcb";
-               radix = "hexadecimal";
-            }
-            SIGNAL abb
+            SIGNAL aay
             {
                format = "Logic";
                name = "W_pcb";
                radix = "hexadecimal";
             }
-            SIGNAL abc
+            SIGNAL aaz
             {
                format = "Logic";
                name = "F_vinst";
                radix = "ascii";
             }
-            SIGNAL abd
+            SIGNAL aba
             {
                format = "Logic";
                name = "D_vinst";
                radix = "ascii";
             }
-            SIGNAL abe
+            SIGNAL abb
             {
                format = "Logic";
                name = "E_vinst";
                radix = "ascii";
             }
-            SIGNAL abf
+            SIGNAL abc
             {
                format = "Logic";
                name = "M_vinst";
                radix = "ascii";
             }
-            SIGNAL abg
-            {
-               format = "Logic";
-               name = "A_vinst";
-               radix = "ascii";
-            }
-            SIGNAL abh
+            SIGNAL abd
             {
                format = "Logic";
                name = "W_vinst";
                radix = "ascii";
             }
-            SIGNAL abi
+            SIGNAL abe
             {
                format = "Logic";
                name = "F_inst_ram_hit";
                radix = "hexadecimal";
             }
-            SIGNAL abj
+            SIGNAL abf
             {
                format = "Logic";
                name = "F_iw_valid";
                radix = "hexadecimal";
             }
-            SIGNAL abk
+            SIGNAL abg
             {
                format = "Logic";
                name = "F_issue";
                radix = "hexadecimal";
             }
-            SIGNAL abl
+            SIGNAL abh
             {
                format = "Logic";
                name = "F_kill";
                radix = "hexadecimal";
             }
-            SIGNAL abm
+            SIGNAL abi
             {
                format = "Logic";
                name = "D_kill";
                radix = "hexadecimal";
             }
-            SIGNAL abn
+            SIGNAL abj
             {
                format = "Logic";
                name = "D_refetch";
                radix = "hexadecimal";
             }
-            SIGNAL abo
+            SIGNAL abk
             {
                format = "Logic";
                name = "D_issue";
                radix = "hexadecimal";
             }
-            SIGNAL abp
+            SIGNAL abl
             {
                format = "Logic";
                name = "D_valid";
                radix = "hexadecimal";
             }
-            SIGNAL abq
-            {
-               format = "Logic";
-               name = "D_rdprs_stall";
-               radix = "hexadecimal";
-            }
-            SIGNAL abr
-            {
-               format = "Logic";
-               name = "D_rdprs_stall_done";
-               radix = "hexadecimal";
-            }
-            SIGNAL abs
+            SIGNAL abm
             {
                format = "Logic";
                name = "E_valid";
                radix = "hexadecimal";
             }
-            SIGNAL abt
+            SIGNAL abn
             {
                format = "Logic";
                name = "M_valid";
                radix = "hexadecimal";
             }
-            SIGNAL abu
-            {
-               format = "Logic";
-               name = "A_valid";
-               radix = "hexadecimal";
-            }
-            SIGNAL abv
+            SIGNAL abo
             {
                format = "Logic";
                name = "W_valid";
                radix = "hexadecimal";
             }
-            SIGNAL abw
+            SIGNAL abp
             {
                format = "Logic";
                name = "W_wr_dst_reg";
                radix = "hexadecimal";
             }
-            SIGNAL abx
+            SIGNAL abq
             {
                format = "Logic";
                name = "W_dst_regnum";
                radix = "hexadecimal";
             }
-            SIGNAL aby
+            SIGNAL abr
             {
                format = "Logic";
                name = "W_wr_data";
                radix = "hexadecimal";
             }
-            SIGNAL abz
+            SIGNAL abs
+            {
+               format = "Logic";
+               name = "F_en";
+               radix = "hexadecimal";
+            }
+            SIGNAL abt
             {
                format = "Logic";
                name = "D_en";
                radix = "hexadecimal";
             }
-            SIGNAL aca
+            SIGNAL abu
             {
                format = "Logic";
                name = "E_en";
                radix = "hexadecimal";
             }
-            SIGNAL acb
+            SIGNAL abv
             {
                format = "Logic";
                name = "M_en";
                radix = "hexadecimal";
             }
-            SIGNAL acc
-            {
-               format = "Logic";
-               name = "A_en";
-               radix = "hexadecimal";
-            }
-            SIGNAL acd
+            SIGNAL abw
             {
                format = "Logic";
                name = "F_iw";
                radix = "hexadecimal";
             }
-            SIGNAL ace
+            SIGNAL abx
             {
                format = "Logic";
                name = "D_iw";
                radix = "hexadecimal";
             }
-            SIGNAL acf
+            SIGNAL aby
             {
                format = "Logic";
                name = "E_iw";
                radix = "hexadecimal";
             }
-            SIGNAL acg
-            {
-               format = "Logic";
-               name = "M_pipe_flush";
-               radix = "hexadecimal";
-            }
-            SIGNAL ach
-            {
-               format = "Logic";
-               name = "M_pipe_flush_baddr";
-               radix = "hexadecimal";
-            }
-            SIGNAL aci
-            {
-               format = "Logic";
-               name = "norm_intr_req";
-               radix = "hexadecimal";
-            }
-            SIGNAL acj
-            {
-               format = "Logic";
-               name = "A_status_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL ack
-            {
-               format = "Logic";
-               name = "A_status_reg_pie";
-               radix = "hexadecimal";
-            }
-            SIGNAL acl
-            {
-               format = "Logic";
-               name = "A_estatus_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL acm
-            {
-               format = "Logic";
-               name = "A_estatus_reg_pie";
-               radix = "hexadecimal";
-            }
-            SIGNAL acn
-            {
-               format = "Logic";
-               name = "A_bstatus_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL aco
-            {
-               format = "Logic";
-               name = "A_bstatus_reg_pie";
-               radix = "hexadecimal";
-            }
-            SIGNAL acp
-            {
-               format = "Logic";
-               name = "A_ienable_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL acq
-            {
-               format = "Logic";
-               name = "A_ienable_reg_irq0";
-               radix = "hexadecimal";
-            }
-            SIGNAL acr
-            {
-               format = "Logic";
-               name = "A_ienable_reg_irq1";
-               radix = "hexadecimal";
-            }
-            SIGNAL acs
-            {
-               format = "Logic";
-               name = "A_ienable_reg_irq2";
-               radix = "hexadecimal";
-            }
-            SIGNAL act
-            {
-               format = "Logic";
-               name = "A_ienable_reg_irq3";
-               radix = "hexadecimal";
-            }
-            SIGNAL acu
-            {
-               format = "Logic";
-               name = "A_ienable_reg_irq4";
-               radix = "hexadecimal";
-            }
-            SIGNAL acv
-            {
-               format = "Logic";
-               name = "A_ipending_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL acw
-            {
-               format = "Logic";
-               name = "A_ipending_reg_irq0";
-               radix = "hexadecimal";
-            }
-            SIGNAL acx
-            {
-               format = "Logic";
-               name = "A_ipending_reg_irq1";
-               radix = "hexadecimal";
-            }
-            SIGNAL acy
-            {
-               format = "Logic";
-               name = "A_ipending_reg_irq2";
-               radix = "hexadecimal";
-            }
-            SIGNAL acz
-            {
-               format = "Logic";
-               name = "A_ipending_reg_irq3";
-               radix = "hexadecimal";
-            }
-            SIGNAL ada
-            {
-               format = "Logic";
-               name = "A_ipending_reg_irq4";
-               radix = "hexadecimal";
-            }
-            SIGNAL adb
-            {
-               format = "Logic";
-               name = "A_cpuid_reg";
-               radix = "hexadecimal";
-            }
-            SIGNAL adc
+            SIGNAL abz
             {
                format = "Logic";
                name = "E_valid_prior_to_hbreak";
+               radix = "hexadecimal";
+            }
+            SIGNAL aca
+            {
+               format = "Logic";
+               name = "M_pipe_flush_nxt";
+               radix = "hexadecimal";
+            }
+            SIGNAL acb
+            {
+               format = "Logic";
+               name = "M_pipe_flush_baddr_nxt";
+               radix = "hexadecimal";
+            }
+            SIGNAL acc
+            {
+               format = "Logic";
+               name = "M_status_reg_pie";
+               radix = "hexadecimal";
+            }
+            SIGNAL acd
+            {
+               format = "Logic";
+               name = "M_ienable_reg";
+               radix = "hexadecimal";
+            }
+            SIGNAL ace
+            {
+               format = "Logic";
+               name = "intr_req";
                radix = "hexadecimal";
             }
          }
@@ -1857,23 +1726,23 @@ SYSTEM DE4_SOPC
          {
             CLOCK c0
             {
-               DIVIDE_BY = "2";
+               DIVIDE_BY = "25";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "1";
+               MULTIPLY_BY = "8";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "100000000";
+               clock_freq = "50000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
             CLOCK c1
             {
-               DIVIDE_BY = "2";
+               DIVIDE_BY = "125";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "1";
+               MULTIPLY_BY = "8";
                PHASE_SHIFT = "0";
                clk_index = "1";
-               clock_freq = "100000000";
+               clock_freq = "10000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1882,7 +1751,7 @@ SYSTEM DE4_SOPC
          {
             CLOCK inclk0
             {
-               clock_freq = "200000000";
+               clock_freq = "156250000";
                clock_unit = "MHz";
                type = "in_clk";
             }
@@ -1947,17 +1816,17 @@ SYSTEM DE4_SOPC
                }
                NUMERIC 
                {
-                  CLK0_DIVIDE_BY = "2";
+                  CLK0_DIVIDE_BY = "25";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "1";
-                  CLK1_DIVIDE_BY = "2";
+                  CLK0_MULTIPLY_BY = "8";
+                  CLK1_DIVIDE_BY = "125";
                   CLK1_DUTY_CYCLE = "50";
-                  CLK1_MULTIPLY_BY = "1";
-                  INCLK0_INPUT_FREQUENCY = "5000";
+                  CLK1_MULTIPLY_BY = "8";
+                  INCLK0_INPUT_FREQUENCY = "6400";
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1980,15 +1849,19 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "100.000000";
-                  EFF_OUTPUT_FREQ_VALUE1 = "100.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "50.000000";
+                  EFF_OUTPUT_FREQ_VALUE1 = "10.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
                   GLOCKED_COUNTER_EDIT_CHANGED = "1";
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "200.000";
+<<<<<<< .mine
+                  INCLK0_FREQ_EDIT = "200.0";
+=======
+                  INCLK0_FREQ_EDIT = "156.25";
+>>>>>>> .r91
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2003,8 +1876,8 @@ SYSTEM DE4_SOPC
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "100.00000000";
-                  OUTPUT_FREQ1 = "100.00000000";
+                  OUTPUT_FREQ0 = "50.00000000";
+                  OUTPUT_FREQ1 = "10.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
                   OUTPUT_FREQ_UNIT0 = "MHz";
@@ -2480,7 +2353,11 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>6B4AC772</b>    (unique ID tag) <br> <b>4DFA7339</b> (timestamp: Thu Jun 16, 2011 @5:18 PM)";
+<<<<<<< .mine
+            Settings_Summary = "System ID (at last Generate):<br> <b>573C76A7</b>    (unique ID tag) <br> <b>4DFB7604</b> (timestamp: Fri Jun 17, 2011 @11:43 AM)";
+=======
+            Settings_Summary = "System ID (at last Generate):<br> <b>556174D8</b>    (unique ID tag) <br> <b>4DEE4B26</b> (timestamp: Tue Jun 7, 2011 @12:00 AM)";
+>>>>>>> .r91
             MESSAGES 
             {
             }
@@ -2488,8 +2365,13 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "1800062834u";
-         timestamp = "1308259129u";
+<<<<<<< .mine
+         id = "1463580327u";
+         timestamp = "1308325380u";
+=======
+         id = "1432450264u";
+         timestamp = "1307462438u";
+>>>>>>> .r91
          regenerate_values = "0";
          MAKE 
          {
@@ -2498,7 +2380,11 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1800062834 --timestamp=1308259129";
+<<<<<<< .mine
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1463580327 --timestamp=1308325380";
+=======
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1432450264 --timestamp=1307462438";
+>>>>>>> .r91
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2899,7 +2785,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "99999";
+         load_value = "49999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -3049,7 +2935,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "999999";
+         load_value = "499999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";

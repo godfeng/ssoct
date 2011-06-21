@@ -68,7 +68,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2011.06.16.17:18:57</td>
+<<<<<<< .mine
+    <td class="l">2011.06.17.11:43:11</td>
+=======
+    <td class="l">2011.06.07.12:11:04</td>
+>>>>>>> .r91
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -803,7 +807,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">clockFrequency</td>
-        <td class="parametervalue">200000000</td>
+        <td class="parametervalue">156250000</td>
        </tr>
        <tr>
         <td class="parametername">clockFrequencyKnown</td>
@@ -1255,7 +1259,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">muldiv_divider</td>
-        <td class="parametervalue">false</td>
+        <td class="parametervalue">true</td>
        </tr>
        <tr>
         <td class="parametername">mpu_useLimit</td>
@@ -1323,11 +1327,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">impl</td>
-        <td class="parametervalue">Fast</td>
+        <td class="parametervalue">Small</td>
        </tr>
        <tr>
         <td class="parametername">icache_size</td>
-        <td class="parametervalue">_65536</td>
+        <td class="parametervalue">_4096</td>
        </tr>
        <tr>
         <td class="parametername">icache_ramBlockType</td>
@@ -1379,7 +1383,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">dcache_size</td>
-        <td class="parametervalue">_65536</td>
+        <td class="parametervalue">_2048</td>
        </tr>
        <tr>
         <td class="parametername">dcache_ramBlockType</td>
@@ -1411,7 +1415,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockFrequency</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">breakSlave</td>
@@ -1440,7 +1444,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">CPU_IMPLEMENTATION</td>
-        <td class="parametervalue">"fast"</td>
+        <td class="parametervalue">"small"</td>
        </tr>
        <tr>
         <td class="parametername">BIG_ENDIAN</td>
@@ -1448,7 +1452,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">CPU_FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
        <tr>
         <td class="parametername">ICACHE_LINE_SIZE</td>
@@ -1460,23 +1464,23 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">ICACHE_SIZE</td>
-        <td class="parametervalue">65536</td>
+        <td class="parametervalue">4096</td>
        </tr>
        <tr>
         <td class="parametername">DCACHE_LINE_SIZE</td>
-        <td class="parametervalue">32</td>
+        <td class="parametervalue">0</td>
        </tr>
        <tr>
         <td class="parametername">DCACHE_LINE_SIZE_LOG2</td>
-        <td class="parametervalue">5</td>
+        <td class="parametervalue">0</td>
        </tr>
        <tr>
         <td class="parametername">DCACHE_SIZE</td>
-        <td class="parametervalue">65536</td>
-       </tr>
-       <tr>
-        <td class="parametername">INITDA_SUPPORTED</td>
-        <td class="parametervalue"></td>
+<<<<<<< .mine
+        <td class="parametervalue">0</td>
+=======
+        <td class="parametervalue">2048</td>
+>>>>>>> .r91
        </tr>
        <tr>
         <td class="parametername">FLUSHDA_SUPPORTED</td>
@@ -1516,7 +1520,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">HARDWARE_DIVIDE_PRESENT</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">HARDWARE_MULTIPLY_PRESENT</td>
@@ -1533,10 +1537,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <tr>
         <td class="parametername">DATA_ADDR_WIDTH</td>
         <td class="parametervalue">27</td>
-       </tr>
-       <tr>
-        <td class="parametername">NUM_OF_SHADOW_REG_SETS</td>
-        <td class="parametervalue">0</td>
        </tr>
       </table>
      </td>
@@ -1946,12 +1946,12 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">c0</td>
-        <td class="parametervalue"><![CDATA[tap c0 mult 1 div 2 phase 0 enabled true inputfreq 200000000 outputfreq 100000000 
+        <td class="parametervalue"><![CDATA[tap c0 mult 8 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 50000000 
 ]]></td>
        </tr>
        <tr>
         <td class="parametername">c1</td>
-        <td class="parametervalue"><![CDATA[tap c1 mult 1 div 2 phase 0 enabled true inputfreq 200000000 outputfreq 100000000 
+        <td class="parametervalue"><![CDATA[tap c1 mult 8 div 125 phase 0 enabled true inputfreq 156250000 outputfreq 10000000 
 ]]></td>
        </tr>
        <tr>
@@ -2020,11 +2020,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">inputClockFrequency</td>
-        <td class="parametervalue">200000000</td>
+        <td class="parametervalue">156250000</td>
        </tr>
        <tr>
         <td class="parametername">inputClockRate</td>
-        <td class="parametervalue">200000000</td>
+        <td class="parametervalue">156250000</td>
        </tr>
        <tr>
         <td class="parametername">lockedOutputPortOption</td>
@@ -2064,8 +2064,8 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
 // Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "100.000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "100.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "50.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "10.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 // Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -2073,7 +2073,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "200.000"
+<<<<<<< .mine
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "200.0"
+=======
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
+>>>>>>> .r91
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -2091,8 +2095,8 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
-// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "100.00000000"
-// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "100.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "50.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "10.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -2136,16 +2140,16 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
 // Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
-// Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "2"
+// Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "25"
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "1"
+// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "8"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
-// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "2"
+// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "1"
+// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "8"
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
-// Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "5000"
+// Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "6400"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix IV"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
@@ -2535,11 +2539,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">id</td>
-        <td class="parametervalue">1800062834</td>
+<<<<<<< .mine
+        <td class="parametervalue">1463580327</td>
+=======
+        <td class="parametervalue">1432450264</td>
+>>>>>>> .r91
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1308259129</td>
+<<<<<<< .mine
+        <td class="parametervalue">1308325380</td>
+=======
+        <td class="parametervalue">1307462438</td>
+>>>>>>> .r91
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -2560,11 +2572,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">ID</td>
-        <td class="parametervalue">1800062834u</td>
+<<<<<<< .mine
+        <td class="parametervalue">1463580327u</td>
+=======
+        <td class="parametervalue">1432450264u</td>
+>>>>>>> .r91
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1308259129u</td>
+<<<<<<< .mine
+        <td class="parametervalue">1308325380u</td>
+=======
+        <td class="parametervalue">1307462438u</td>
+>>>>>>> .r91
        </tr>
       </table>
      </td>
@@ -2771,7 +2791,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">systemFrequency</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">timeoutPulseOutput</td>
@@ -2828,11 +2848,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
        <tr>
         <td class="parametername">LOAD_VALUE</td>
-        <td class="parametervalue">99999ULL</td>
+        <td class="parametervalue">49999ULL</td>
        </tr>
        <tr>
         <td class="parametername">COUNTER_SIZE</td>
@@ -2925,7 +2945,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">systemFrequency</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">timeoutPulseOutput</td>
@@ -2982,11 +3002,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
        <tr>
         <td class="parametername">LOAD_VALUE</td>
-        <td class="parametervalue">999999ULL</td>
+        <td class="parametervalue">499999ULL</td>
        </tr>
        <tr>
         <td class="parametername">COUNTER_SIZE</td>
@@ -4272,7 +4292,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">10000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -4373,7 +4393,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">10000000u</td>
        </tr>
       </table>
      </td>
@@ -4660,7 +4680,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">10000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -4761,7 +4781,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">10000000u</td>
        </tr>
       </table>
      </td>
@@ -4820,7 +4840,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">10000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -4921,7 +4941,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">10000000u</td>
        </tr>
       </table>
      </td>
@@ -4980,7 +5000,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">10000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -5081,7 +5101,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">10000000u</td>
        </tr>
       </table>
      </td>
@@ -5132,7 +5152,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">actualSetupTime</td>
-        <td class="parametervalue">30.0</td>
+        <td class="parametervalue">40.0</td>
        </tr>
        <tr>
         <td class="parametername">actualWaitTime</td>
@@ -5144,7 +5164,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">corePreset</td>
@@ -5348,7 +5368,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -5449,7 +5469,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
       </table>
      </td>
@@ -5508,7 +5528,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -5609,7 +5629,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
       </table>
      </td>
@@ -5668,7 +5688,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -5769,7 +5789,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
       </table>
      </td>
@@ -5828,7 +5848,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">clockRate</td>
-        <td class="parametervalue">100000000</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">direction</td>
@@ -5929,7 +5949,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">FREQ</td>
-        <td class="parametervalue">100000000u</td>
+        <td class="parametervalue">50000000u</td>
        </tr>
       </table>
      </td>
@@ -5939,7 +5959,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 9.65 seconds</td>
+<<<<<<< .mine
+    <td class="r">rendering took 9.17 seconds</td>
+=======
+    <td class="r">rendering took 9.89 seconds</td>
+>>>>>>> .r91
    </tr>
   </table>
  </body>

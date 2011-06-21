@@ -746,6 +746,7 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.altera.ide.core 1 0 2011-06-15 11:58:48.713
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+<<<<<<< .mine
 !SESSION 2011-06-16 10:15:31.328 -----------------------------------------------
 eclipse.buildId=M20060629-1905
 java.version=1.6.0_14
@@ -860,3 +861,14 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.altera.ide.core 1 0 2011-06-16 16:48:32.007
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-06-17 11:23:22.005 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-06-17 11:23:23.725
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+=======
+>>>>>>> .r91
