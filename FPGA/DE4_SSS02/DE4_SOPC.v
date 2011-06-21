@@ -5536,7 +5536,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_readn assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 10));
+  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 8));
 
   //~flash_tristate_bridge_writen of type write to ~p1_flash_tristate_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -5549,7 +5549,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_writen assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 12));
+  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 10));
 
   //flash_tristate_bridge_address of type address to p1_flash_tristate_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -5607,8 +5607,8 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 11 :
-    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 13 :
+  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 8 :
+    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 10 :
     (~ext_flash_s1_wait_counter_eq_0)? ext_flash_s1_wait_counter - 1 :
     0;
 
@@ -10286,13 +10286,13 @@ module read_RAM_busy_pio_s1_arbitrator (
     end
 
 
-  //DE4_SOPC_clock_4/out read_RAM_busy__pio/s1 arbiterlock, which is an e_assign
+  //DE4_SOPC_clock_4/out read_RAM_busy_pio/s1 arbiterlock, which is an e_assign
   assign DE4_SOPC_clock_4_out_arbiterlock = read_RAM_busy_pio_s1_slavearbiterlockenable & DE4_SOPC_clock_4_out_continuerequest;
 
   //read_RAM_busy_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
   assign read_RAM_busy_pio_s1_slavearbiterlockenable2 = |read_RAM_busy_pio_s1_arb_share_counter_next_value;
 
-  //DE4_SOPC_clock_4/out read_RAM_busy__pio/s1 arbiterlock2, which is an e_assign
+  //DE4_SOPC_clock_4/out read_RAM_busy_pio/s1 arbiterlock2, which is an e_assign
   assign DE4_SOPC_clock_4_out_arbiterlock2 = read_RAM_busy_pio_s1_slavearbiterlockenable2 & DE4_SOPC_clock_4_out_continuerequest;
 
   //read_RAM_busy_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
@@ -10308,10 +10308,10 @@ module read_RAM_busy_pio_s1_arbitrator (
   //master is always granted when requested
   assign DE4_SOPC_clock_4_out_granted_read_RAM_busy_pio_s1 = DE4_SOPC_clock_4_out_qualified_request_read_RAM_busy_pio_s1;
 
-  //DE4_SOPC_clock_4/out saved-grant read_RAM_busy__pio/s1, which is an e_assign
+  //DE4_SOPC_clock_4/out saved-grant read_RAM_busy_pio/s1, which is an e_assign
   assign DE4_SOPC_clock_4_out_saved_grant_read_RAM_busy_pio_s1 = DE4_SOPC_clock_4_out_requests_read_RAM_busy_pio_s1;
 
-  //allow new arb cycle for read_RAM_busy__pio/s1, which is an e_assign
+  //allow new arb cycle for read_RAM_busy_pio/s1, which is an e_assign
   assign read_RAM_busy_pio_s1_allow_new_arb_cycle = 1;
 
   //placeholder chosen master
@@ -10381,7 +10381,7 @@ module read_RAM_busy_pio_s1_arbitrator (
 
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
-  //read_RAM_busy__pio/s1 enable non-zero assertions, which is an e_register
+  //read_RAM_busy_pio/s1 enable non-zero assertions, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
@@ -13684,8 +13684,8 @@ module DE4_SOPC (
                   // the_read_RAM_address
                    out_port_from_the_read_RAM_address,
 
-                  // the_read_RAM_busy__pio
-                   out_port_from_the_read_RAM_busy__pio,
+                  // the_read_RAM_busy_pio
+                   out_port_from_the_read_RAM_busy_pio,
 
                   // the_seven_seg_pio
                    out_port_from_the_seven_seg_pio,
@@ -13725,7 +13725,7 @@ module DE4_SOPC (
   output           mdio_out_from_the_tse_mac;
   output  [  7: 0] out_port_from_the_led_pio;
   output  [ 10: 0] out_port_from_the_read_RAM_address;
-  output           out_port_from_the_read_RAM_busy__pio;
+  output           out_port_from_the_read_RAM_busy_pio;
   output  [ 15: 0] out_port_from_the_seven_seg_pio;
   output           pll_peripheral_clk;
   output           pll_sys_clk;
@@ -14080,7 +14080,7 @@ module DE4_SOPC (
   wire             out_clk_pll_c1;
   wire    [  7: 0] out_port_from_the_led_pio;
   wire    [ 10: 0] out_port_from_the_read_RAM_address;
-  wire             out_port_from_the_read_RAM_busy__pio;
+  wire             out_port_from_the_read_RAM_busy_pio;
   wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire    [  1: 0] pb_pio_s1_address;
   wire    [  3: 0] pb_pio_s1_readdata;
@@ -15515,12 +15515,12 @@ module DE4_SOPC (
       .reset_n                                                     (pll_sys_clk_reset_n)
     );
 
-  read_RAM_busy__pio the_read_RAM_busy__pio
+  read_RAM_busy_pio the_read_RAM_busy_pio
     (
       .address    (read_RAM_busy_pio_s1_address),
       .chipselect (read_RAM_busy_pio_s1_chipselect),
       .clk        (pll_sys_clk),
-      .out_port   (out_port_from_the_read_RAM_busy__pio),
+      .out_port   (out_port_from_the_read_RAM_busy_pio),
       .readdata   (read_RAM_busy_pio_s1_readdata),
       .reset_n    (read_RAM_busy_pio_s1_reset_n),
       .write_n    (read_RAM_busy_pio_s1_write_n),
@@ -16344,10 +16344,10 @@ endmodule
 `include "C:/altera/91/quartus/eda/sim_lib/stratixiv_hssi_atoms.v"
 `include "tse_mac.vo"
 `include "tse_mac_loopback.v"
+`include "read_RAM_busy_pio.v"
 `include "descriptor_memory.v"
 `include "pll.v"
 `include "altpllpll.v"
-`include "read_RAM_busy__pio.v"
 `include "sysid.v"
 `include "DE4_SOPC_clock_1.v"
 `include "high_res_timer.v"
@@ -16412,7 +16412,7 @@ module test_bench
   wire             mdio_out_from_the_tse_mac;
   wire    [  7: 0] out_port_from_the_led_pio;
   wire    [ 10: 0] out_port_from_the_read_RAM_address;
-  wire             out_port_from_the_read_RAM_busy__pio;
+  wire             out_port_from_the_read_RAM_busy_pio;
   wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             peripheral_clock_crossing_s1_endofpacket_from_sa;
   wire             pll_peripheral_clk;
@@ -16431,36 +16431,36 @@ module test_bench
   //Set us up the Dut
   DE4_SOPC DUT
     (
-      .ext_clk                              (ext_clk),
-      .flash_tristate_bridge_address        (flash_tristate_bridge_address),
-      .flash_tristate_bridge_data           (flash_tristate_bridge_data),
-      .flash_tristate_bridge_readn          (flash_tristate_bridge_readn),
-      .flash_tristate_bridge_writen         (flash_tristate_bridge_writen),
-      .in_port_to_the_ADC_data_pio          (in_port_to_the_ADC_data_pio),
-      .in_port_to_the_acq_busy_pio          (in_port_to_the_acq_busy_pio),
-      .in_port_to_the_pb_pio                (in_port_to_the_pb_pio),
-      .in_port_to_the_sw_pio                (in_port_to_the_sw_pio),
-      .led_an_from_the_tse_mac              (led_an_from_the_tse_mac),
-      .led_char_err_from_the_tse_mac        (led_char_err_from_the_tse_mac),
-      .led_col_from_the_tse_mac             (led_col_from_the_tse_mac),
-      .led_crs_from_the_tse_mac             (led_crs_from_the_tse_mac),
-      .led_disp_err_from_the_tse_mac        (led_disp_err_from_the_tse_mac),
-      .led_link_from_the_tse_mac            (led_link_from_the_tse_mac),
-      .mdc_from_the_tse_mac                 (mdc_from_the_tse_mac),
-      .mdio_in_to_the_tse_mac               (mdio_in_to_the_tse_mac),
-      .mdio_oen_from_the_tse_mac            (mdio_oen_from_the_tse_mac),
-      .mdio_out_from_the_tse_mac            (mdio_out_from_the_tse_mac),
-      .out_port_from_the_led_pio            (out_port_from_the_led_pio),
-      .out_port_from_the_read_RAM_address   (out_port_from_the_read_RAM_address),
-      .out_port_from_the_read_RAM_busy__pio (out_port_from_the_read_RAM_busy__pio),
-      .out_port_from_the_seven_seg_pio      (out_port_from_the_seven_seg_pio),
-      .pll_peripheral_clk                   (pll_peripheral_clk),
-      .pll_sys_clk                          (pll_sys_clk),
-      .ref_clk_to_the_tse_mac               (ref_clk_to_the_tse_mac),
-      .reset_n                              (reset_n),
-      .rxp_to_the_tse_mac                   (rxp_to_the_tse_mac),
-      .select_n_to_the_ext_flash            (select_n_to_the_ext_flash),
-      .txp_from_the_tse_mac                 (txp_from_the_tse_mac)
+      .ext_clk                             (ext_clk),
+      .flash_tristate_bridge_address       (flash_tristate_bridge_address),
+      .flash_tristate_bridge_data          (flash_tristate_bridge_data),
+      .flash_tristate_bridge_readn         (flash_tristate_bridge_readn),
+      .flash_tristate_bridge_writen        (flash_tristate_bridge_writen),
+      .in_port_to_the_ADC_data_pio         (in_port_to_the_ADC_data_pio),
+      .in_port_to_the_acq_busy_pio         (in_port_to_the_acq_busy_pio),
+      .in_port_to_the_pb_pio               (in_port_to_the_pb_pio),
+      .in_port_to_the_sw_pio               (in_port_to_the_sw_pio),
+      .led_an_from_the_tse_mac             (led_an_from_the_tse_mac),
+      .led_char_err_from_the_tse_mac       (led_char_err_from_the_tse_mac),
+      .led_col_from_the_tse_mac            (led_col_from_the_tse_mac),
+      .led_crs_from_the_tse_mac            (led_crs_from_the_tse_mac),
+      .led_disp_err_from_the_tse_mac       (led_disp_err_from_the_tse_mac),
+      .led_link_from_the_tse_mac           (led_link_from_the_tse_mac),
+      .mdc_from_the_tse_mac                (mdc_from_the_tse_mac),
+      .mdio_in_to_the_tse_mac              (mdio_in_to_the_tse_mac),
+      .mdio_oen_from_the_tse_mac           (mdio_oen_from_the_tse_mac),
+      .mdio_out_from_the_tse_mac           (mdio_out_from_the_tse_mac),
+      .out_port_from_the_led_pio           (out_port_from_the_led_pio),
+      .out_port_from_the_read_RAM_address  (out_port_from_the_read_RAM_address),
+      .out_port_from_the_read_RAM_busy_pio (out_port_from_the_read_RAM_busy_pio),
+      .out_port_from_the_seven_seg_pio     (out_port_from_the_seven_seg_pio),
+      .pll_peripheral_clk                  (pll_peripheral_clk),
+      .pll_sys_clk                         (pll_sys_clk),
+      .ref_clk_to_the_tse_mac              (ref_clk_to_the_tse_mac),
+      .reset_n                             (reset_n),
+      .rxp_to_the_tse_mac                  (rxp_to_the_tse_mac),
+      .select_n_to_the_ext_flash           (select_n_to_the_ext_flash),
+      .txp_from_the_tse_mac                (txp_from_the_tse_mac)
     );
 
   ext_flash the_ext_flash
@@ -16482,15 +16482,12 @@ module test_bench
   initial
     ext_clk = 1'b0;
   always
-     if (ext_clk == 1'b1) 
-    #2 ext_clk <= ~ext_clk;
-     else 
     #3 ext_clk <= ~ext_clk;
   
   initial 
     begin
       reset_n <= 0;
-      #50 reset_n <= 1;
+      #65 reset_n <= 1;
     end
 
 endmodule

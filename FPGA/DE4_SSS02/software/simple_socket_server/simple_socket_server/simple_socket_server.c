@@ -331,7 +331,7 @@ void sss_exec_command(SSSConn* conn)
 
                     // Indicate that we are busy reading RAM contents
                     read_RAM_busy = 1;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY__PIO_BASE, read_RAM_busy);
+                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
 
                     // Do the transfer
 
@@ -383,7 +383,7 @@ void sss_exec_command(SSSConn* conn)
 
                     // Indicate that we are done reading RAM contents
                     read_RAM_busy = 0;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY__PIO_BASE, read_RAM_busy);
+                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
                 } // END if (SSSCommand == 65)
                 
                 else
@@ -403,7 +403,7 @@ void sss_exec_command(SSSConn* conn)
 
                     // Indicate that we are busy reading RAM contents
                     read_RAM_busy = 1;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY__PIO_BASE, read_RAM_busy);
+                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
 
                     // Do the transfer
 
@@ -435,7 +435,7 @@ void sss_exec_command(SSSConn* conn)
 
                     // Indicate that we are done reading RAM contents
                     read_RAM_busy = 0;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY__PIO_BASE, read_RAM_busy);
+                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
                         } // END while (SSSCommand != CMD_QUIT)
                     } // END if (SSSCommand == 67)
                     else

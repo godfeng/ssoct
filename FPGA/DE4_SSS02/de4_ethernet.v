@@ -386,7 +386,7 @@ reg          conf_wr;
 //  Structural coding
 assign clk1_set_wr = 4'd1; //Disable
 assign clk2_set_wr = 4'd1; //Disable
-assign clk3_set_wr = 4'd9; //200 MHZ
+assign clk3_set_wr = 4'd7; //156.25 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -553,7 +553,7 @@ DE4_SOPC	SOPC_INST (
 				.in_port_to_the_acq_busy_pio(acq_busy) ,	// input  in_port_to_the_acq_busy_pio_sig
 				
 				// Busy reading from RAM
-				.out_port_from_the_read_RAM_busy__pio(read_RAM_busy) ,	// output  out_port_from_the_read_RAM_busy__pio_sig
+				.out_port_from_the_read_RAM_busy_pio(read_RAM_busy) ,	// output  out_port_from_the_read_RAM_busy__pio_sig
 				
 				// data from the ADC
 				.in_port_to_the_ADC_data_pio(RAMdata),	// input [15:0] in_port_to_the_ADC_data_pio_sig

@@ -10,9 +10,9 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="buffer" key="selection"/>
+		<item value="read_RAM_busy" key="selection"/>
 		<list key="findhistory">
-			<item value="buffer"/>
+			<item value="READ_RAM_BUSY"/>
 			<item value="                            // Wait to finish writing acquired data to the RAM"/>
 			<item value="a-line"/>
 			<item value="pos_ini"/>

@@ -132,8 +132,8 @@
 (port
 (pt 472 336)
 (output)
-(text "out_port_from_the_read_RAM_busy__pio " (rect 0 0 202 16)(font "Arial" (font_size 8)))
-(text "out_port_from_the_read_RAM_busy__pio " (rect 243 329 445 345)(font "Arial" (font_size 8)))
+(text "out_port_from_the_read_RAM_busy_pio " (rect 0 0 196 16)(font "Arial" (font_size 8)))
+(text "out_port_from_the_read_RAM_busy_pio " (rect 249 329 445 345)(font "Arial" (font_size 8)))
 (line (pt 456 336)(pt 472 336)(line_width 1))
 )
 (port
