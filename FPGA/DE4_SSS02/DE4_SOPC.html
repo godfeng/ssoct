@@ -68,11 +68,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-<<<<<<< .mine
-    <td class="l">2011.06.17.11:43:11</td>
-=======
-    <td class="l">2011.06.07.12:11:04</td>
->>>>>>> .r91
+    <td class="l">2011.06.23.09:34:14</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -260,7 +256,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <a href="#module_read_RAM_address"><b>read_RAM_address</b>
      </a> altera_avalon_pio 9.1
      <br></br>&#160;&#160;
-     <a href="#module_read_RAM_busy__pio"><b>read_RAM_busy__pio</b>
+     <a href="#module_read_RAM_busy_pio"><b>read_RAM_busy_pio</b>
      </a> altera_avalon_pio 9.1</span>
    </div>
   </div>
@@ -769,7 +765,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </tr>
    <tr>
     <td class="slavemodule">&#160;
-     <a href="#module_read_RAM_busy__pio"><b>read_RAM_busy__pio</b>
+     <a href="#module_read_RAM_busy_pio"><b>read_RAM_busy_pio</b>
      </a>
     </td>
     <td class="empty"></td>
@@ -1259,7 +1255,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">muldiv_divider</td>
-        <td class="parametervalue">true</td>
+        <td class="parametervalue">false</td>
        </tr>
        <tr>
         <td class="parametername">mpu_useLimit</td>
@@ -1327,7 +1323,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">impl</td>
-        <td class="parametervalue">Small</td>
+        <td class="parametervalue">Fast</td>
        </tr>
        <tr>
         <td class="parametername">icache_size</td>
@@ -1444,7 +1440,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">CPU_IMPLEMENTATION</td>
-        <td class="parametervalue">"small"</td>
+        <td class="parametervalue">"fast"</td>
        </tr>
        <tr>
         <td class="parametername">BIG_ENDIAN</td>
@@ -1468,19 +1464,19 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">DCACHE_LINE_SIZE</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">32</td>
        </tr>
        <tr>
         <td class="parametername">DCACHE_LINE_SIZE_LOG2</td>
-        <td class="parametervalue">0</td>
+        <td class="parametervalue">5</td>
        </tr>
        <tr>
         <td class="parametername">DCACHE_SIZE</td>
-<<<<<<< .mine
-        <td class="parametervalue">0</td>
-=======
         <td class="parametervalue">2048</td>
->>>>>>> .r91
+       </tr>
+       <tr>
+        <td class="parametername">INITDA_SUPPORTED</td>
+        <td class="parametervalue"></td>
        </tr>
        <tr>
         <td class="parametername">FLUSHDA_SUPPORTED</td>
@@ -1520,7 +1516,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">HARDWARE_DIVIDE_PRESENT</td>
-        <td class="parametervalue">1</td>
+        <td class="parametervalue">0</td>
        </tr>
        <tr>
         <td class="parametername">HARDWARE_MULTIPLY_PRESENT</td>
@@ -1537,6 +1533,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <tr>
         <td class="parametername">DATA_ADDR_WIDTH</td>
         <td class="parametervalue">27</td>
+       </tr>
+       <tr>
+        <td class="parametername">NUM_OF_SHADOW_REG_SETS</td>
+        <td class="parametervalue">0</td>
        </tr>
       </table>
      </td>
@@ -1927,7 +1927,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">c0&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_read_RAM_busy__pio">read_RAM_busy__pio</a>
+       <a href="#module_read_RAM_busy_pio">read_RAM_busy_pio</a>
       </td>
      </tr>
      <tr>
@@ -2073,11 +2073,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-<<<<<<< .mine
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "200.0"
-=======
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
->>>>>>> .r91
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.250"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -2539,19 +2535,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">id</td>
-<<<<<<< .mine
-        <td class="parametervalue">1463580327</td>
-=======
-        <td class="parametervalue">1432450264</td>
->>>>>>> .r91
+        <td class="parametervalue">1270204753</td>
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-<<<<<<< .mine
-        <td class="parametervalue">1308325380</td>
-=======
-        <td class="parametervalue">1307462438</td>
->>>>>>> .r91
+        <td class="parametervalue">1308836030</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -2572,19 +2560,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">ID</td>
-<<<<<<< .mine
-        <td class="parametervalue">1463580327u</td>
-=======
-        <td class="parametervalue">1432450264u</td>
->>>>>>> .r91
+        <td class="parametervalue">1270204753u</td>
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-<<<<<<< .mine
-        <td class="parametervalue">1308325380u</td>
-=======
-        <td class="parametervalue">1307462438u</td>
->>>>>>> .r91
+        <td class="parametervalue">1308836030u</td>
        </tr>
       </table>
      </td>
@@ -4552,7 +4532,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">m1&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_read_RAM_busy__pio">read_RAM_busy__pio</a>
+       <a href="#module_read_RAM_busy_pio">read_RAM_busy_pio</a>
       </td>
      </tr>
      <tr>
@@ -5796,10 +5776,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_read_RAM_busy__pio"> </a>
+  <a name="module_read_RAM_busy_pio"> </a>
   <div>
    <hr></hr>
-   <h2>read_RAM_busy__pio</h2>altera_avalon_pio v9.1
+   <h2>read_RAM_busy_pio</h2>altera_avalon_pio v9.1
    <br></br>
    <div class="greydiv">
     <table class="connectionboxes">
@@ -5808,7 +5788,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_pll">pll</a>
       </td>
       <td class="from">c0&#160;&#160;</td>
-      <td class="main" rowspan="5">read_RAM_busy__pio</td>
+      <td class="main" rowspan="5">read_RAM_busy_pio</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -5959,11 +5939,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-<<<<<<< .mine
-    <td class="r">rendering took 9.17 seconds</td>
-=======
-    <td class="r">rendering took 9.89 seconds</td>
->>>>>>> .r91
+    <td class="r">rendering took 9.73 seconds</td>
    </tr>
   </table>
  </body>

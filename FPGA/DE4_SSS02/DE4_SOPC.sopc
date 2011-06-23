@@ -6,18 +6,13 @@
    {
       datum _sortIndex
       {
-         value = "21";
+         value = "20";
          type = "int";
       }
       datum megawizard_uipreferences
       {
          value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element DE4_SOPC
@@ -34,11 +29,6 @@
       {
          value = "{}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element jtag_uart.avalon_jtag_slave
@@ -93,11 +83,6 @@
          value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\System_Builder\\CodeGenerated\\DE4\\DE4_230_Ethernet_0}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element sgdma_tx.csr
    {
@@ -127,11 +112,6 @@
          value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet_phy0}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element ext_clk
    {
@@ -139,11 +119,6 @@
       {
          value = "5";
          type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element ext_flash
@@ -158,11 +133,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element flash_tristate_bridge
    {
@@ -176,11 +146,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element high_res_timer
    {
@@ -193,11 +158,6 @@
       {
          value = "{}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element cpu.jtag_debug_module
@@ -220,11 +180,6 @@
          value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_golden_top}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element led_pio
    {
@@ -238,11 +193,6 @@
          value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element onchip_memory
    {
@@ -253,13 +203,8 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element pb_pio
@@ -274,11 +219,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element peripheral_clock_crossing
    {
@@ -289,13 +229,8 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         value = "{}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element pll
@@ -310,13 +245,21 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element read_RAM_address
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         type = "String";
+      }
+   }
+   element read_RAM_busy_pio
    {
       datum _sortIndex
       {
@@ -328,198 +271,16 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
-   element read_RAM_busy__pio
-   {
-      datum _sortIndex
-      {
-         value = "20";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
-<<<<<<< .mine
-   element high_res_timer.s1
-=======
-   element acq_busy_pio.s1
->>>>>>> .r91
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "84941984";
-=======
-         value = "64";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element sys_timer.s1
-=======
-   element ext_flash.s1
->>>>>>> .r91
+   element pb_pio.s1
    {
       datum baseAddress
       {
-<<<<<<< .mine
-         value = "84942016";
-=======
-         value = "33554432";
->>>>>>> .r91
+         value = "32";
          type = "long";
       }
    }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "84941952";
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element peripheral_clock_crossing.s1
-=======
-   element sys_timer.s1
->>>>>>> .r91
-   {
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "67108864";
-=======
-         value = "84942016";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element onchip_memory.s1
-=======
-   element peripheral_clock_crossing.s1
->>>>>>> .r91
-   {
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "84410368";
-=======
-         value = "67108864";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element read_RAM_address.s1
-=======
-   element seven_seg_pio.s1
->>>>>>> .r91
-   {
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "96";
-=======
-         value = "48";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element acq_busy_pio.s1
-=======
-   element sw_pio.s1
->>>>>>> .r91
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "64";
-=======
-         value = "16";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element sw_pio.s1
-=======
-   element led_pio.s1
->>>>>>> .r91
-   {
-<<<<<<< .mine
-      datum baseAddress
-      {
-         value = "16";
-         type = "long";
-      }
-=======
->>>>>>> .r91
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "48";
-=======
-         value = "0";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element read_RAM_busy__pio.s1
-=======
-   element onchip_memory.s1
->>>>>>> .r91
-   {
-<<<<<<< .mine
-      datum baseAddress
-      {
-         value = "112";
-         type = "long";
-      }
-=======
->>>>>>> .r91
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-<<<<<<< .mine
-         value = "33554432";
-=======
-         value = "84410368";
->>>>>>> .r91
-         type = "long";
-      }
-   }
-<<<<<<< .mine
-   element led_pio.s1
-=======
    element ADC_data_pio.s1
->>>>>>> .r91
    {
       datum _tags
       {
@@ -528,72 +289,55 @@
       }
       datum baseAddress
       {
-<<<<<<< .mine
-         value = "0";
-=======
          value = "80";
->>>>>>> .r91
          type = "long";
       }
    }
-<<<<<<< .mine
-   element ADC_data_pio.s1
-=======
-   element pb_pio.s1
->>>>>>> .r91
+   element sw_pio.s1
    {
-      datum _tags
+      datum baseAddress
       {
-<<<<<<< .mine
-         value = "";
-         type = "String";
-=======
-         value = "32";
+         value = "16";
          type = "long";
->>>>>>> .r91
       }
-<<<<<<< .mine
-=======
+   }
+   element acq_busy_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "64";
+         type = "long";
+      }
    }
    element high_res_timer.s1
    {
->>>>>>> .r91
       datum baseAddress
       {
-<<<<<<< .mine
-         value = "80";
-=======
          value = "84941984";
->>>>>>> .r91
          type = "long";
       }
    }
-   element read_RAM_busy__pio.s1
+   element led_pio.s1
    {
       datum baseAddress
       {
-         value = "112";
+         value = "0";
          type = "long";
       }
    }
-<<<<<<< .mine
-   element pb_pio.s1
-=======
-   element pll.s1
->>>>>>> .r91
+   element seven_seg_pio.s1
    {
       datum baseAddress
       {
-<<<<<<< .mine
-         value = "32";
-=======
-         value = "84941952";
->>>>>>> .r91
+         value = "48";
          type = "long";
       }
    }
-<<<<<<< .mine
-=======
    element descriptor_memory.s1
    {
       datum baseAddress
@@ -602,7 +346,62 @@
          type = "long";
       }
    }
->>>>>>> .r91
+   element read_RAM_address.s1
+   {
+      datum baseAddress
+      {
+         value = "96";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84410368";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "84941952";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "84942016";
+         type = "long";
+      }
+   }
+   element peripheral_clock_crossing.s1
+   {
+      datum baseAddress
+      {
+         value = "67108864";
+         type = "long";
+      }
+   }
+   element ext_flash.s1
+   {
+      datum baseAddress
+      {
+         value = "33554432";
+         type = "long";
+      }
+   }
+   element read_RAM_busy_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "long";
+      }
+   }
    element seven_seg_pio
    {
       datum _sortIndex
@@ -614,11 +413,6 @@
       {
          value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element sgdma_rx
@@ -633,11 +427,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element sgdma_tx
    {
@@ -650,11 +439,6 @@
       {
          value = "{}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element sw_pio
@@ -669,11 +453,6 @@
          value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element sys_timer
    {
@@ -686,11 +465,6 @@
       {
          value = "{}";
          type = "String";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
       }
    }
    element sysid
@@ -705,11 +479,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
    element tse_mac
    {
@@ -723,11 +492,6 @@
          value = "{}";
          type = "String";
       }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
    }
 }
 ]]></parameter>
@@ -736,13 +500,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
-<<<<<<< .mine
- <parameter name="systemHash" value="-33675835032" />
- <parameter name="timeStamp" value="1308325380436" />
-=======
- <parameter name="systemHash" value="-40087155910" />
- <parameter name="timeStamp" value="1307462438447" />
->>>>>>> .r91
+ <parameter name="systemHash" value="-39924910399" />
+ <parameter name="timeStamp" value="1308836029725" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="156250000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -782,7 +541,7 @@
   <parameter name="resetSlave" value="onchip_memory.s1" />
   <parameter name="resetOffset" value="0" />
   <parameter name="muldiv_multiplierType" value="DSPBlock" />
-  <parameter name="muldiv_divider" value="true" />
+  <parameter name="muldiv_divider" value="false" />
   <parameter name="mpu_useLimit" value="false" />
   <parameter name="mpu_numOfInstRegion" value="8" />
   <parameter name="mpu_numOfDataRegion" value="8" />
@@ -799,7 +558,7 @@
   <parameter name="mmu_TLBMissExcSlave" value="" />
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="manuallyAssignCpuID" value="false" />
-  <parameter name="impl" value="Small" />
+  <parameter name="impl" value="Fast" />
   <parameter name="icache_size" value="_4096" />
   <parameter name="icache_ramBlockType" value="Automatic" />
   <parameter name="icache_numTCIM" value="_0" />
@@ -894,11 +653,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-<<<<<<< .mine
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "200.0"
-=======
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
->>>>>>> .r91
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.250"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -1351,7 +1106,7 @@
   <parameter name="width" value="11" />
  </module>
  <module
-   name="read_RAM_busy__pio"
+   name="read_RAM_busy_pio"
    kind="altera_avalon_pio"
    version="9.1"
    enabled="1">
@@ -1692,16 +1447,12 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0060" />
  </connection>
- <connection
-   kind="clock"
-   version="9.1"
-   start="pll.c0"
-   end="read_RAM_busy__pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c0" end="read_RAM_busy_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
    start="peripheral_clock_crossing.m1"
-   end="read_RAM_busy__pio.s1">
+   end="read_RAM_busy_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0070" />
  </connection>
