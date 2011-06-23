@@ -23,7 +23,7 @@
 #####################################################################################
 # Altera Triple-Speed Ethernet Megacore TCL constraint file
 #
-# Generated on Thu Jun 23 14:16:00 EDT 2011
+# Generated on Thu Jun 23 15:32:23 EDT 2011
 #
 #####################################################################################
 # General Option

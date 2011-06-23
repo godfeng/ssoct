@@ -24,7 +24,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "75000000";
+            frequency = "80000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -33,7 +33,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "75000000";
+            frequency = "80000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
@@ -1855,12 +1855,12 @@ SYSTEM DE4_SOPC
          {
             CLOCK c0
             {
-               DIVIDE_BY = "25";
+               DIVIDE_BY = "125";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "12";
+               MULTIPLY_BY = "64";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "75000000";
+               clock_freq = "80000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1945,9 +1945,9 @@ SYSTEM DE4_SOPC
                }
                NUMERIC 
                {
-                  CLK0_DIVIDE_BY = "25";
+                  CLK0_DIVIDE_BY = "125";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "12";
+                  CLK0_MULTIPLY_BY = "64";
                   CLK1_DIVIDE_BY = "125";
                   CLK1_DUTY_CYCLE = "50";
                   CLK1_MULTIPLY_BY = "8";
@@ -1955,7 +1955,7 @@ SYSTEM DE4_SOPC
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1978,7 +1978,7 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "75.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "80.000000";
                   EFF_OUTPUT_FREQ_VALUE1 = "10.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
@@ -1986,7 +1986,7 @@ SYSTEM DE4_SOPC
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "156.25";
+                  INCLK0_FREQ_EDIT = "156.250";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2001,7 +2001,7 @@ SYSTEM DE4_SOPC
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "75.00000000";
+                  OUTPUT_FREQ0 = "80.00000000";
                   OUTPUT_FREQ1 = "10.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>63FAD8C7</b>    (unique ID tag) <br> <b>4E0382AB</b> (timestamp: Thu Jun 23, 2011 @2:15 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>1FB72CC4</b>    (unique ID tag) <br> <b>4E0394AC</b> (timestamp: Thu Jun 23, 2011 @3:31 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "1677383879u";
-         timestamp = "1308852907u";
+         id = "532098244u";
+         timestamp = "1308857516u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1677383879 --timestamp=1308852907";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=532098244 --timestamp=1308857516";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2897,7 +2897,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "74999";
+         load_value = "79999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -3047,7 +3047,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "749999";
+         load_value = "799999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";
