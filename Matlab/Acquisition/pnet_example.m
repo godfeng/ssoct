@@ -29,29 +29,33 @@ pnet(tcpConn,'setreadtimeout',0.5);
 
 %% Write command to send A-line 'A\n\r'
 tic
-for iComm = 1:100,
+acqSamples = 100;
+for iComm = 1:acqSamples,
     pnet(tcpConn,'write',uint8([65 10 13]));
     % Reads an array of NSAMPLES+1 elements from a connection
     dataReceived = pnet(tcpConn,'read',[NSAMPLES+1 1],'int16');
     plot(dataReceived)
 end
+elapsedTime = toc;
+disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,toc),'HH:MM:SS')])
+fprintf('Estimated speed %.2f lines/sec\n',acqSamples/elapsedTime)
 % Reads an array of elements from a connection
 % reception = uint32(swapbytes(pnet(tcpConn,'read',[3*nombre_echantillon 1],'uint32')));
 
 
 %% Continuous acquisition 'C\n\r'
- pnet(tcpConn,'write',uint8([67 10 13]));
- acqSamples = 10000;
- tic
- for iComm = 1:acqSamples,
+pnet(tcpConn,'write',uint8([67 10 13]));
+acqSamples = 10000;
+tic
+for iComm = 1:acqSamples,
     % Reads an array of NSAMPLES+1 elements from a connection
     dataReceived = pnet(tcpConn,'read',[NSAMPLES+1 1],'int16');
-%     plot(dataReceived)
- end
- elapsedTime = toc;
- disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
- fprintf('Estimated speed %.2f lines/sec\n',acqSamples/elapsedTime)
+    %     plot(dataReceived)
+end
+elapsedTime = toc;
+disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
+fprintf('Estimated speed %.2f lines/sec\n',acqSamples/elapsedTime)
  
 %% Closes a tcpconnection (send first a 'Q\n\r')
 pnet(tcpConn,'write',[uint8(81) uint8(10) uint8(13)]);

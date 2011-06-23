@@ -80,16 +80,8 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\System_Builder\\CodeGenerated\\DE4\\DE4_230_Ethernet_0}";
+         value = "{}";
          type = "String";
-      }
-   }
-   element sgdma_tx.csr
-   {
-      datum baseAddress
-      {
-         value = "84941824";
-         type = "long";
       }
    }
    element sgdma_rx.csr
@@ -97,6 +89,14 @@
       datum baseAddress
       {
          value = "84941888";
+         type = "long";
+      }
+   }
+   element sgdma_tx.csr
+   {
+      datum baseAddress
+      {
+         value = "84941824";
          type = "long";
       }
    }
@@ -272,69 +272,11 @@
          type = "String";
       }
    }
-   element pb_pio.s1
+   element sys_timer.s1
    {
       datum baseAddress
       {
-         value = "32";
-         type = "long";
-      }
-   }
-   element ADC_data_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "80";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "16";
-         type = "long";
-      }
-   }
-   element acq_busy_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "64";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "84941984";
-         type = "long";
-      }
-   }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
+         value = "84942016";
          type = "long";
       }
    }
@@ -346,19 +288,11 @@
          type = "long";
       }
    }
-   element read_RAM_address.s1
+   element seven_seg_pio.s1
    {
       datum baseAddress
       {
-         value = "96";
-         type = "long";
-      }
-   }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "84410368";
+         value = "48";
          type = "long";
       }
    }
@@ -370,11 +304,11 @@
          type = "long";
       }
    }
-   element sys_timer.s1
+   element pb_pio.s1
    {
       datum baseAddress
       {
-         value = "84942016";
+         value = "32";
          type = "long";
       }
    }
@@ -394,11 +328,77 @@
          type = "long";
       }
    }
+   element ADC_data_pio.s1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "80";
+         type = "long";
+      }
+   }
+   element read_RAM_address.s1
+   {
+      datum baseAddress
+      {
+         value = "96";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84410368";
+         type = "long";
+      }
+   }
    element read_RAM_busy_pio.s1
    {
       datum baseAddress
       {
          value = "112";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "16";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "84941984";
+         type = "long";
+      }
+   }
+   element acq_busy_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "64";
          type = "long";
       }
    }
@@ -489,7 +489,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -500,8 +500,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="-39924910399" />
- <parameter name="timeStamp" value="1308836029725" />
+ <parameter name="systemHash" value="-31742154937" />
+ <parameter name="timeStamp" value="1308852907353" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="156250000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -559,7 +559,7 @@
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="manuallyAssignCpuID" value="false" />
   <parameter name="impl" value="Fast" />
-  <parameter name="icache_size" value="_4096" />
+  <parameter name="icache_size" value="_65536" />
   <parameter name="icache_ramBlockType" value="Automatic" />
   <parameter name="icache_numTCIM" value="_0" />
   <parameter name="icache_burstType" value="None" />
@@ -572,7 +572,7 @@
   <parameter name="debug_debugReqSignals" value="false" />
   <parameter name="debug_assignJtagInstanceID" value="false" />
   <parameter name="debug_OCIOnchipTrace" value="_128" />
-  <parameter name="dcache_size" value="_2048" />
+  <parameter name="dcache_size" value="_65536" />
   <parameter name="dcache_ramBlockType" value="Automatic" />
   <parameter name="dcache_omitDataMaster" value="false" />
   <parameter name="dcache_numTCDM" value="_0" />
@@ -584,7 +584,7 @@
   <parameter name="breakOffset" value="32" />
  </module>
  <module name="pll" kind="altera_avalon_pll" version="9.1" enabled="1">
-  <parameter name="c0"><![CDATA[tap c0 mult 8 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 50000000 
+  <parameter name="c0"><![CDATA[tap c0 mult 12 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 75000000 
 ]]></parameter>
   <parameter name="c1"><![CDATA[tap c1 mult 8 div 125 phase 0 enabled true inputfreq 156250000 outputfreq 10000000 
 ]]></parameter>
@@ -644,7 +644,7 @@
 // Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "50.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "75.000000"
 // Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "10.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
@@ -653,7 +653,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.250"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -671,7 +671,7 @@
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
-// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "50.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "75.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "10.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
@@ -718,7 +718,7 @@
 // Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
 // Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "25"
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "8"
+// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "12"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
@@ -1228,11 +1228,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x05101800" />
  </connection>
- <connection
-   kind="clock"
-   version="9.1"
-   start="pll.c0"
-   end="tse_mac.control_port_clock_connection" />
  <connection kind="clock" version="9.1" start="pll.c0" end="sgdma_tx.clk" />
  <connection
    kind="avalon"
@@ -1420,7 +1415,6 @@
   <parameter name="baseAddress" value="0x02000000" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c1" end="sw_pio.clk" />
- <connection kind="clock" version="9.1" start="pll.c0" end="acq_busy_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1429,7 +1423,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0040" />
  </connection>
- <connection kind="clock" version="9.1" start="pll.c0" end="ADC_data_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1438,7 +1431,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0050" />
  </connection>
- <connection kind="clock" version="9.1" start="pll.c0" end="read_RAM_address.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1447,7 +1439,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0060" />
  </connection>
- <connection kind="clock" version="9.1" start="pll.c0" end="read_RAM_busy_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1456,4 +1447,13 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0070" />
  </connection>
+ <connection kind="clock" version="9.1" start="pll.c1" end="acq_busy_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="ADC_data_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="read_RAM_address.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="read_RAM_busy_pio.clk" />
+ <connection
+   kind="clock"
+   version="9.1"
+   start="pll.c0"
+   end="tse_mac.control_port_clock_connection" />
 </system>
