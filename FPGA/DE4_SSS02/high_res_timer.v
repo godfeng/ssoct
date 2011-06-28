@@ -76,7 +76,7 @@ module high_res_timer (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          internal_counter <= 32'h1387F;
+          internal_counter <= 32'h124F7;
       else if (counter_is_running || force_reload)
           if (counter_is_zero    || force_reload)
               internal_counter <= counter_load_value;
@@ -162,7 +162,7 @@ module high_res_timer (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          period_l_register <= 14463;
+          period_l_register <= 9463;
       else if (period_l_wr_strobe)
           period_l_register <= writedata;
     end

@@ -55,7 +55,7 @@ for iComm = 1:acqSamples,
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
-fprintf('Estimated speed %.2f lines/sec\n',acqSamples/elapsedTime)
+fprintf('Estimated speed: %.2f lines/sec\n',acqSamples/elapsedTime)
  
 %% Closes a tcpconnection (send first a 'Q\n\r')
 pnet(tcpConn,'write',[uint8(81) uint8(10) uint8(13)]);

@@ -80,16 +80,8 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         value = "{}";
          type = "String";
-      }
-   }
-   element sgdma_tx.csr
-   {
-      datum baseAddress
-      {
-         value = "84941824";
-         type = "long";
       }
    }
    element sgdma_rx.csr
@@ -97,6 +89,14 @@
       datum baseAddress
       {
          value = "84941888";
+         type = "long";
+      }
+   }
+   element sgdma_tx.csr
+   {
+      datum baseAddress
+      {
+         value = "84941824";
          type = "long";
       }
    }
@@ -203,7 +203,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
+         value = "{}";
          type = "String";
       }
    }
@@ -229,7 +229,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -272,6 +272,22 @@
          type = "String";
       }
    }
+   element read_RAM_address.s1
+   {
+      datum baseAddress
+      {
+         value = "96";
+         type = "long";
+      }
+   }
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
+         type = "long";
+      }
+   }
    element acq_busy_pio.s1
    {
       datum _lockedAddress
@@ -285,32 +301,11 @@
          type = "long";
       }
    }
-   element pb_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "32";
-         type = "long";
-      }
-   }
    element sys_timer.s1
    {
       datum baseAddress
       {
          value = "84942016";
-         type = "long";
-      }
-   }
-   element ADC_data_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "80";
          type = "long";
       }
    }
@@ -322,11 +317,27 @@
          type = "long";
       }
    }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84938752";
+         type = "long";
+      }
+   }
    element ext_flash.s1
    {
       datum baseAddress
       {
          value = "33554432";
+         type = "long";
+      }
+   }
+   element pb_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
          type = "long";
       }
    }
@@ -346,11 +357,24 @@
          type = "long";
       }
    }
-   element read_RAM_address.s1
+   element ADC_data_pio.s1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "80";
+         type = "long";
+      }
+   }
+   element led_pio.s1
    {
       datum baseAddress
       {
-         value = "96";
+         value = "0";
          type = "long";
       }
    }
@@ -367,30 +391,6 @@
       datum baseAddress
       {
          value = "67108864";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
-         type = "long";
-      }
-   }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "84938752";
          type = "long";
       }
    }
@@ -489,7 +489,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         value = "{}";
          type = "String";
       }
    }
@@ -500,8 +500,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="-24154418361" />
- <parameter name="timeStamp" value="1308857516080" />
+ <parameter name="systemHash" value="-35838503895" />
+ <parameter name="timeStamp" value="1309222361596" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="156250000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -584,9 +584,9 @@
   <parameter name="breakOffset" value="32" />
  </module>
  <module name="pll" kind="altera_avalon_pll" version="9.1" enabled="1">
-  <parameter name="c0"><![CDATA[tap c0 mult 64 div 125 phase 0 enabled true inputfreq 156250000 outputfreq 80000000 
+  <parameter name="c0"><![CDATA[tap c0 mult 12 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 75000000 
 ]]></parameter>
-  <parameter name="c1"><![CDATA[tap c1 mult 8 div 125 phase 0 enabled true inputfreq 156250000 outputfreq 10000000 
+  <parameter name="c1"><![CDATA[tap c1 mult 8 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 50000000 
 ]]></parameter>
   <parameter name="c2"><![CDATA[tap c2 mult 1 div 1 phase 0 enabled false inputfreq 0 outputfreq 0 
 ]]></parameter>
@@ -644,8 +644,8 @@
 // Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "80.000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "10.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "75.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "50.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 // Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -653,7 +653,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.250"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -671,8 +671,8 @@
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
-// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "80.00000000"
-// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "10.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "75.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "50.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -716,11 +716,11 @@
 // Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
-// Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "125"
+// Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "25"
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "64"
+// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "12"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
-// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
+// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "25"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
 // Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "8"
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
@@ -789,7 +789,7 @@
   <parameter name="blockType" value="M9K" />
   <parameter name="dataWidth" value="32" />
   <parameter name="dualPort" value="false" />
-  <parameter name="initMemContent" value="true" />
+  <parameter name="initMemContent" value="false" />
   <parameter name="initializationFileName" value="onchip_memory" />
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="512000" />
@@ -897,7 +897,7 @@
   <parameter name="max_channels" value="1" />
   <parameter name="mdio_clk_div" value="40" />
   <parameter name="phy_identifier" value="0" />
-  <parameter name="ramType" value="AUTO" />
+  <parameter name="ramType" value="M9K" />
   <parameter name="reset_level" value="1" />
   <parameter name="stat_cnt_ena" value="true" />
   <parameter name="timingAdapterName" value="timingAdapter" />
