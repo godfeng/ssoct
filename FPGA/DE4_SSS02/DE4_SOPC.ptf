@@ -40,7 +40,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c1
          {
-            frequency = "50000000";
+            frequency = "40000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c1 from pll";
@@ -49,7 +49,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_peripheral_clk
          {
-            frequency = "50000000";
+            frequency = "40000000";
             source = "pll_c1";
             Is_Clock_Source = "0";
             display_name = "pll_peripheral_clk";
@@ -1866,12 +1866,12 @@ SYSTEM DE4_SOPC
             }
             CLOCK c1
             {
-               DIVIDE_BY = "25";
+               DIVIDE_BY = "125";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "8";
+               MULTIPLY_BY = "32";
                PHASE_SHIFT = "0";
                clk_index = "1";
-               clock_freq = "50000000";
+               clock_freq = "40000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1948,14 +1948,14 @@ SYSTEM DE4_SOPC
                   CLK0_DIVIDE_BY = "25";
                   CLK0_DUTY_CYCLE = "50";
                   CLK0_MULTIPLY_BY = "12";
-                  CLK1_DIVIDE_BY = "25";
+                  CLK1_DIVIDE_BY = "125";
                   CLK1_DUTY_CYCLE = "50";
-                  CLK1_MULTIPLY_BY = "8";
+                  CLK1_MULTIPLY_BY = "32";
                   INCLK0_INPUT_FREQUENCY = "6400";
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1974,19 +1974,19 @@ SYSTEM DE4_SOPC
                   CREATE_CLKBAD_CHECK = "0";
                   CREATE_INCLK1_CHECK = "0";
                   CUR_DEDICATED_CLK = "c0";
-                  CUR_FBIN_CLK = "e0";
+                  CUR_FBIN_CLK = "c0";
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
                   EFF_OUTPUT_FREQ_VALUE0 = "75.000000";
-                  EFF_OUTPUT_FREQ_VALUE1 = "50.000000";
+                  EFF_OUTPUT_FREQ_VALUE1 = "40.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
                   GLOCKED_COUNTER_EDIT_CHANGED = "1";
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "156.25";
+                  INCLK0_FREQ_EDIT = "156.250";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2002,7 +2002,7 @@ SYSTEM DE4_SOPC
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
                   OUTPUT_FREQ0 = "75.00000000";
-                  OUTPUT_FREQ1 = "50.00000000";
+                  OUTPUT_FREQ1 = "40.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
                   OUTPUT_FREQ_UNIT0 = "MHz";
@@ -2040,12 +2040,12 @@ SYSTEM DE4_SOPC
                }
                NUMERIC 
                {
-                  DIV_FACTOR0 = "1";
-                  DIV_FACTOR1 = "1";
+                  DIV_FACTOR0 = "2";
+                  DIV_FACTOR1 = "125";
                   GLOCK_COUNTER_EDIT = "1048575";
                   LVDS_MODE_DATA_RATE_DIRTY = "0";
                   MULT_FACTOR0 = "1";
-                  MULT_FACTOR1 = "1";
+                  MULT_FACTOR1 = "32";
                   PLL_AUTOPLL_CHECK = "1";
                   PLL_ENHPLL_CHECK = "0";
                   PLL_FASTPLL_CHECK = "0";
@@ -2257,7 +2257,7 @@ SYSTEM DE4_SOPC
          Size_Value = "512000";
          Size_Multiple = "1";
          use_shallow_mem_blocks = "0";
-         init_mem_content = "0";
+         init_mem_content = "1";
          allow_in_system_memory_content_editor = "0";
          instance_id = "NONE";
          read_during_write_mode = "DONT_CARE";
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>58242BE7</b>    (unique ID tag) <br> <b>4E0925DA</b> (timestamp: Mon Jun 27, 2011 @8:52 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>6E52299A</b>    (unique ID tag) <br> <b>4E0A4324</b> (timestamp: Tue Jun 28, 2011 @5:09 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "1478765543u";
-         timestamp = "1309222362u";
+         id = "1850878362u";
+         timestamp = "1309295396u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1478765543 --timestamp=1309222362";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1850878362 --timestamp=1309295396";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }

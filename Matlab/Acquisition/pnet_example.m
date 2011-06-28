@@ -34,7 +34,8 @@ for iComm = 1:acqSamples,
     pnet(tcpConn,'write',uint8([65 10 13]));
     % Reads an array of NSAMPLES+1 elements from a connection
     dataReceived = pnet(tcpConn,'read',[NSAMPLES+1 1],'int16');
-    plot(dataReceived)
+    ylim([0 2^14]);
+    plot(dataReceived);
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])

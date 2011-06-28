@@ -1,4 +1,4 @@
-Fitter Status : Successful - Mon Jun 27 21:08:05 2011
+Fitter Status : Successful - Tue Jun 28 18:02:32 2011
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : DE4_Ethernet
 Top-level Entity Name : DE4_Ethernet
@@ -6,7 +6,7 @@ Family : Stratix IV
 Device : EP4SGX230KF40C2
 Timing Models : Final
 Logic utilization : 7 %
-    Combinational ALUTs : 8,486 / 182,400 ( 5 % )
+    Combinational ALUTs : 8,491 / 182,400 ( 5 % )
     Memory ALUTs : 53 / 91,200 ( < 1 % )
     Dedicated logic registers : 9,819 / 182,400 ( 5 % )
 Total registers : 9894

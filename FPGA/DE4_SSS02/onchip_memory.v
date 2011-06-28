@@ -90,7 +90,7 @@ module onchip_memory (
 //    );
 //
 //  defparam the_altsyncram.byte_size = 8,
-//           the_altsyncram.init_file = "UNUSED",
+//           the_altsyncram.init_file = "onchip_memory.hex",
 //           the_altsyncram.lpm_type = "altsyncram",
 //           the_altsyncram.maximum_depth = 128000,
 //           the_altsyncram.numwords_a = 128000,

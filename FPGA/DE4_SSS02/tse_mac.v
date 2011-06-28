@@ -178,7 +178,7 @@ module tse_mac (
 		altera_tse_mac_pcs_pma_inst.ING_FIFO = 2048,
 		altera_tse_mac_pcs_pma_inst.ENABLE_ENA = 32,
 		altera_tse_mac_pcs_pma_inst.ING_ADDR = 11,
-		altera_tse_mac_pcs_pma_inst.RAM_TYPE = "M9K",
+		altera_tse_mac_pcs_pma_inst.RAM_TYPE = "AUTO",
 		altera_tse_mac_pcs_pma_inst.INSERT_TA = 1,
 		altera_tse_mac_pcs_pma_inst.ENABLE_MACLITE = 0,
 		altera_tse_mac_pcs_pma_inst.MACLITE_GIGE = 0,
@@ -256,7 +256,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "max_channels" value="1"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "mdio_clk_div" value="40"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "phy_identifier" value="0"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "ramType" value="M9K"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "ramType" value="AUTO"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "sopcSystemTopLevelName" value="system"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "stat_cnt_ena" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "timingAdapterName" value="timingAdapter"  type="STRING"  enable="1" />

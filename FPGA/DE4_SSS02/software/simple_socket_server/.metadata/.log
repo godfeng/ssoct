@@ -1163,14 +1163,14 @@ java.lang.NullPointerException
 	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
 	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
-!SESSION 2011-06-23 15:07:55.245 -----------------------------------------------
+!SESSION 2011-06-28 16:49:22.124 -----------------------------------------------
 eclipse.buildId=M20060629-1905
 java.version=1.6.0_14
 java.vendor=Sun Microsystems Inc.
 BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
 Command-line arguments:  -os win32 -ws win32 -arch x86
 
-!ENTRY org.eclipse.jface 2 0 2011-06-23 15:07:58.841
+!ENTRY org.eclipse.jface 2 0 2011-06-28 16:49:25.111
 !MESSAGE The image could not be loaded: URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
 !STACK 0
 org.eclipse.jface.resource.DeviceResourceException: Unable to create resource URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
@@ -1233,16 +1233,17 @@ org.eclipse.jface.resource.DeviceResourceException: Unable to create resource UR
 	at org.eclipse.core.launcher.Main.run(Main.java:977)
 	at org.eclipse.core.launcher.Main.main(Main.java:952)
 
-!ENTRY com.altera.ide.core 1 0 2011-06-23 15:08:01.484
-!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
-!SESSION 2011-06-27 13:36:30.210 -----------------------------------------------
+!ENTRY com.altera.ide.core 4 0 2011-06-28 16:49:32.086
+!MESSAGE Error: creation of local folder bin failed
+
+!SESSION 2011-06-28 16:49:44.729 -----------------------------------------------
 eclipse.buildId=M20060629-1905
 java.version=1.6.0_14
 java.vendor=Sun Microsystems Inc.
 BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
-Command-line arguments:  -os win32 -ws win32 -arch x86
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\ -os win32 -ws win32 -arch x86
 
-!ENTRY org.eclipse.jface 2 0 2011-06-27 13:36:33.850
+!ENTRY org.eclipse.jface 2 0 2011-06-28 16:49:47.781
 !MESSAGE The image could not be loaded: URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
 !STACK 0
 org.eclipse.jface.resource.DeviceResourceException: Unable to create resource URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
@@ -1305,124 +1306,5 @@ org.eclipse.jface.resource.DeviceResourceException: Unable to create resource UR
 	at org.eclipse.core.launcher.Main.run(Main.java:977)
 	at org.eclipse.core.launcher.Main.main(Main.java:952)
 
-!ENTRY com.altera.ide.core 1 0 2011-06-27 13:52:28.537
+!ENTRY com.altera.ide.core 1 0 2011-06-28 16:51:06.803
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
-
-!ENTRY org.eclipse.core.resources 4 4 2011-06-27 16:03:58.809
-!MESSAGE Exception occurred while saving project preferences: /altera.components/.settings/org.eclipse.cdt.core.prefs.
-!STACK 1
-org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\altera.components\.settings.
-	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:45)
-	at org.eclipse.core.internal.resources.Folder.create(Folder.java:88)
-	at org.eclipse.core.internal.resources.ProjectPreferences$2.run(ProjectPreferences.java:566)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1737)
-	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:581)
-	at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:352)
-	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:379)
-	at org.eclipse.cdt.internal.core.pdom.PDOMManager$SavePrefs.run(PDOMManager.java:227)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
-!SUBENTRY 1 org.eclipse.core.resources 4 272 2011-06-27 16:03:58.809
-!MESSAGE A resource already exists on disk D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\altera.components\.settings.
-!SESSION 2011-06-27 21:10:03.440 -----------------------------------------------
-eclipse.buildId=M20060629-1905
-java.version=1.6.0_14
-java.vendor=Sun Microsystems Inc.
-BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
-Command-line arguments:  -os win32 -ws win32 -arch x86
-
-!ENTRY org.eclipse.core.resources 2 10035 2011-06-27 21:10:04.953
-!MESSAGE A workspace crash was detected. The previous session did not exit normally.
-
-!ENTRY org.eclipse.jface 2 0 2011-06-27 21:10:09.884
-!MESSAGE The image could not be loaded: URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
-!STACK 0
-org.eclipse.jface.resource.DeviceResourceException: Unable to create resource URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
-	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:173)
-	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
-	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:87)
-	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:83)
-	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:87)
-	at org.eclipse.jface.resource.ResourceManager.createImageWithDefault(ResourceManager.java:114)
-	at org.eclipse.jface.action.ActionContributionItem.updateImages(ActionContributionItem.java:936)
-	at org.eclipse.jface.action.ActionContributionItem.update(ActionContributionItem.java:709)
-	at org.eclipse.jface.action.ActionContributionItem.fill(ActionContributionItem.java:330)
-	at org.eclipse.jface.action.ToolBarManager.update(ToolBarManager.java:317)
-	at org.eclipse.ui.internal.ViewPane.updateActionBars(ViewPane.java:443)
-	at org.eclipse.ui.internal.ViewActionBars.updateActionBars(ViewActionBars.java:59)
-	at org.eclipse.ui.internal.ViewReference.createPartHelper(ViewReference.java:363)
-	at org.eclipse.ui.internal.ViewReference.createPart(ViewReference.java:197)
-	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:566)
-	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:290)
-	at org.eclipse.ui.internal.ViewPane.setVisible(ViewPane.java:525)
-	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:140)
-	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:268)
-	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
-	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:394)
-	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1144)
-	at org.eclipse.ui.internal.PartStack.createControl(PartStack.java:620)
-	at org.eclipse.ui.internal.PartStack.createControl(PartStack.java:532)
-	at org.eclipse.ui.internal.PartSashContainer.createControl(PartSashContainer.java:562)
-	at org.eclipse.ui.internal.PerspectiveHelper.activate(PerspectiveHelper.java:244)
-	at org.eclipse.ui.internal.Perspective.onActivate(Perspective.java:815)
-	at org.eclipse.ui.internal.WorkbenchPage.onActivate(WorkbenchPage.java:2436)
-	at org.eclipse.ui.internal.WorkbenchWindow$6.run(WorkbenchWindow.java:2616)
-	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
-	at org.eclipse.ui.internal.WorkbenchWindow.setActivePage(WorkbenchWindow.java:2597)
-	at org.eclipse.ui.internal.WorkbenchWindow.restoreState(WorkbenchWindow.java:1982)
-	at org.eclipse.ui.internal.Workbench.doRestoreState(Workbench.java:2857)
-	at org.eclipse.ui.internal.Workbench.restoreState(Workbench.java:1665)
-	at org.eclipse.ui.internal.Workbench.access$12(Workbench.java:1650)
-	at org.eclipse.ui.internal.Workbench$17.run(Workbench.java:1529)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
-	at org.eclipse.ui.internal.Workbench.restoreState(Workbench.java:1473)
-	at org.eclipse.ui.internal.WorkbenchConfigurer.restoreState(WorkbenchConfigurer.java:183)
-	at org.eclipse.ui.application.WorkbenchAdvisor.openWindows(WorkbenchAdvisor.java:702)
-	at org.eclipse.ui.internal.Workbench.init(Workbench.java:1085)
-	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1847)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:419)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
-	at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
-	at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:78)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:92)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:68)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:177)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
-	at org.eclipse.core.launcher.Main.basicRun(Main.java:280)
-	at org.eclipse.core.launcher.Main.run(Main.java:977)
-	at org.eclipse.core.launcher.Main.main(Main.java:952)
-
-!ENTRY com.altera.ide.core 1 0 2011-06-27 21:10:24.155
-!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
-
-!ENTRY org.eclipse.debug.core 4 2 2011-06-27 21:25:57.301
-!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
-!STACK 0
-java.lang.NullPointerException
-	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:377)
-	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:356)
-	at org.eclipse.debug.internal.core.LaunchConfiguration.getAttribute(LaunchConfiguration.java:285)
-	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getProjectName(AbstractCLaunchDelegate.java:177)
-	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getCProject(AbstractCLaunchDelegate.java:162)
-	at org.eclipse.cdt.launch.internal.ui.LaunchUIPlugin.handleDebugEvents(LaunchUIPlugin.java:213)
-	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1076)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
-	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
-	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
-
-!ENTRY org.eclipse.core.jobs 4 2 2011-06-27 21:25:57.303
-!MESSAGE An internal error occurred during: "Debug Event Dispatch".
-!STACK 0
-java.lang.NullPointerException
-	at org.eclipse.debug.core.DebugPlugin.log(DebugPlugin.java:860)
-	at org.eclipse.debug.core.DebugPlugin$EventNotifier.handleException(DebugPlugin.java:1062)
-	at org.eclipse.core.runtime.SafeRunner.handleException(SafeRunner.java:68)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:39)
-	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
-	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

@@ -611,7 +611,7 @@ A_line_acq A_line_acq_inst
 
 // 2048 words (16-bit) RAM
 RAM	RAM_inst (
-	.clock ( sys_clk ),
+	.clock ( ADA_DCO ),
 	.data ( {2'b0, A_line} ),
 	.rdaddress ( read_RAM_address ),
 	.wraddress ( sample_position ),

@@ -84,19 +84,19 @@
          type = "String";
       }
    }
-   element sgdma_rx.csr
-   {
-      datum baseAddress
-      {
-         value = "84941888";
-         type = "long";
-      }
-   }
    element sgdma_tx.csr
    {
       datum baseAddress
       {
          value = "84941824";
+         type = "long";
+      }
+   }
+   element sgdma_rx.csr
+   {
+      datum baseAddress
+      {
+         value = "84941888";
          type = "long";
       }
    }
@@ -109,7 +109,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet_phy0}";
+         value = "{}";
          type = "String";
       }
    }
@@ -130,7 +130,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -156,7 +156,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -203,7 +203,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
          type = "String";
       }
    }
@@ -229,7 +229,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         value = "{}";
          type = "String";
       }
    }
@@ -272,11 +272,27 @@
          type = "String";
       }
    }
-   element read_RAM_address.s1
+   element peripheral_clock_crossing.s1
    {
       datum baseAddress
       {
-         value = "96";
+         value = "67108864";
+         type = "long";
+      }
+   }
+   element read_RAM_busy_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84410368";
          type = "long";
       }
    }
@@ -309,19 +325,24 @@
          type = "long";
       }
    }
-   element onchip_memory.s1
+   element sw_pio.s1
    {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
       datum baseAddress
       {
-         value = "84410368";
+         value = "16";
          type = "long";
       }
    }
-   element descriptor_memory.s1
+   element high_res_timer.s1
    {
       datum baseAddress
       {
-         value = "84938752";
+         value = "84941984";
          type = "long";
       }
    }
@@ -333,27 +354,27 @@
          type = "long";
       }
    }
-   element pb_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "32";
-         type = "long";
-      }
-   }
-   element read_RAM_busy_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "112";
-         type = "long";
-      }
-   }
    element pll.s1
    {
       datum baseAddress
       {
          value = "84941952";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "84938752";
          type = "long";
       }
    }
@@ -370,35 +391,24 @@
          type = "long";
       }
    }
-   element led_pio.s1
+   element pb_pio.s1
    {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
       datum baseAddress
       {
-         value = "0";
+         value = "32";
          type = "long";
       }
    }
-   element high_res_timer.s1
+   element read_RAM_address.s1
    {
       datum baseAddress
       {
-         value = "84941984";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "67108864";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "16";
+         value = "96";
          type = "long";
       }
    }
@@ -437,7 +447,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -463,7 +473,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -489,7 +499,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -500,8 +510,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="-35838503895" />
- <parameter name="timeStamp" value="1309222361596" />
+ <parameter name="systemHash" value="-38358100361" />
+ <parameter name="timeStamp" value="1309295395813" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="156250000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -586,7 +596,7 @@
  <module name="pll" kind="altera_avalon_pll" version="9.1" enabled="1">
   <parameter name="c0"><![CDATA[tap c0 mult 12 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 75000000 
 ]]></parameter>
-  <parameter name="c1"><![CDATA[tap c1 mult 8 div 25 phase 0 enabled true inputfreq 156250000 outputfreq 50000000 
+  <parameter name="c1"><![CDATA[tap c1 mult 32 div 125 phase 0 enabled true inputfreq 156250000 outputfreq 40000000 
 ]]></parameter>
   <parameter name="c2"><![CDATA[tap c2 mult 1 div 1 phase 0 enabled false inputfreq 0 outputfreq 0 
 ]]></parameter>
@@ -638,14 +648,14 @@
 // Retrieval info: PRIVATE: CREATE_CLKBAD_CHECK STRING "0"
 // Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
 // Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c0"
-// Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "e0"
+// Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
 // Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "Any"
-// Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "1"
-// Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
+// Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "2"
+// Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "125"
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
 // Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "75.000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "50.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "40.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 // Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -653,7 +663,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.25"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "156.250"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -669,10 +679,10 @@
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "ps"
 // Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
-// Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
+// Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "32"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "75.00000000"
-// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "50.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "40.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -720,9 +730,9 @@
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
 // Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "12"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
-// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "25"
+// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "8"
+// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "32"
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 // Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "6400"
@@ -789,7 +799,7 @@
   <parameter name="blockType" value="M9K" />
   <parameter name="dataWidth" value="32" />
   <parameter name="dualPort" value="false" />
-  <parameter name="initMemContent" value="false" />
+  <parameter name="initMemContent" value="true" />
   <parameter name="initializationFileName" value="onchip_memory" />
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="512000" />
@@ -897,7 +907,7 @@
   <parameter name="max_channels" value="1" />
   <parameter name="mdio_clk_div" value="40" />
   <parameter name="phy_identifier" value="0" />
-  <parameter name="ramType" value="M9K" />
+  <parameter name="ramType" value="AUTO" />
   <parameter name="reset_level" value="1" />
   <parameter name="stat_cnt_ena" value="true" />
   <parameter name="timingAdapterName" value="timingAdapter" />
