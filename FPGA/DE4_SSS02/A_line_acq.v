@@ -81,7 +81,6 @@ begin
 	end
 end
 
-
 always @(negedge global_reset_n or posedge sys_clk)
 begin
 	if (!global_reset_n) begin
@@ -108,7 +107,7 @@ end
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst
 (
-	.clock(ADC_data_out_clk) ,	// input  clock_sig
+	.clock(sys_clk) ,	// input  clock_sig (ADC_data_out_clk)
 	.sclr(~sweepTrigger) ,		// input  sclr_sig
 	.q(sample_position) 		// output [10:0] q_sig
 );

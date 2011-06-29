@@ -722,6 +722,43 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=4
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=53532" -section_id auto_signaltap_0
 set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING ON
+set_global_assignment -name VERILOG_FILE altpllpll.v
+set_global_assignment -name VERILOG_FILE led_pio.v
+set_global_assignment -name VERILOG_FILE onchip_memory.v
+set_global_assignment -name VERILOG_FILE pb_pio.v
+set_global_assignment -name VERILOG_FILE peripheral_clock_crossing.v
+set_global_assignment -name VERILOG_FILE pll.v
+set_global_assignment -name VERILOG_FILE read_RAM_address.v
+set_global_assignment -name VERILOG_FILE read_RAM_busy_pio.v
+set_global_assignment -name VERILOG_FILE seven_seg_pio.v
+set_global_assignment -name VERILOG_FILE sgdma_rx.v
+set_global_assignment -name VERILOG_FILE sgdma_tx.v
+set_global_assignment -name VERILOG_FILE sw_pio.v
+set_global_assignment -name VERILOG_FILE sys_timer.v
+set_global_assignment -name VERILOG_FILE sysid.v
+set_global_assignment -name VERILOG_FILE acq_busy_pio.v
+set_global_assignment -name VERILOG_FILE ADC_data_pio.v
+set_global_assignment -name VERILOG_FILE cpu_jtag_debug_module_sysclk.v
+set_global_assignment -name VERILOG_FILE cpu_jtag_debug_module_tck.v
+set_global_assignment -name VERILOG_FILE cpu_jtag_debug_module_wrapper.v
+set_global_assignment -name VERILOG_FILE cpu_mult_cell.v
+set_global_assignment -name VERILOG_FILE cpu_oci_test_bench.v
+set_global_assignment -name VERILOG_FILE cpu_test_bench.v
+set_global_assignment -name VERILOG_FILE DE4_SOPC_clock_0.v
+set_global_assignment -name VERILOG_FILE DE4_SOPC_clock_1.v
+set_global_assignment -name VERILOG_FILE descriptor_memory.v
+set_global_assignment -name VERILOG_FILE high_res_timer.v
+set_global_assignment -name VERILOG_FILE jtag_uart.v
+set_global_assignment -name VERILOG_FILE DE4_SOPC.v
+set_global_assignment -name VERILOG_FILE gen_reset_n.v
+set_global_assignment -name VERILOG_FILE pll_125.v
+set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
+set_global_assignment -name VERILOG_FILE de4_ethernet.v
 set_global_assignment -name VERILOG_FILE my_incl.v
 set_global_assignment -name VERILOG_FILE FAN_PWM.v
 set_global_assignment -name VERILOG_FILE LED_glow.v
@@ -733,8 +770,3 @@ set_global_assignment -name VERILOG_FILE A_line_acq.v
 set_global_assignment -name QIP_FILE RAM.qip
 set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
 set_global_assignment -name VERILOG_FILE one_shot.v
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING ON

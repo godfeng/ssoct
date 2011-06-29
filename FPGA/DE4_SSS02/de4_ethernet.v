@@ -611,10 +611,11 @@ A_line_acq A_line_acq_inst
 
 // 2048 words (16-bit) RAM
 RAM	RAM_inst (
-	.clock ( ADA_DCO ),
-	.data ( {2'b0, A_line} ),
+	.data ( {2'b0, ADA_D} ),
 	.rdaddress ( read_RAM_address ),
+	.rdclock ( sys_clk ),
 	.wraddress ( sample_position ),
+	.wrclock ( ADA_DCO ),
 	.wren ( acq_busy & ~read_RAM_busy),		// acq_busy
 	.q ( RAMdata )
 	);

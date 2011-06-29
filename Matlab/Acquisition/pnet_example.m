@@ -47,12 +47,17 @@ fprintf('Estimated speed %.2f lines/sec\n',acqSamples/elapsedTime)
 
 %% Continuous acquisition 'C\n\r'
 pnet(tcpConn,'write',uint8([67 10 13]));
-acqSamples = 10000;
+nLinesPerFrame = 400;
+nFrames = 25;
+acqSamples = nLinesPerFrame*nFrames;
+rawData = zeros([NSAMPLES nLinesPerFrame nFrames]);
 tic
-for iComm = 1:acqSamples,
-    % Reads an array of NSAMPLES+1 elements from a connection
-    dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
-    %     plot(dataReceived)
+for iFrames = 1:nFrames,
+    for iLines = 1:nLinesPerFrame,
+        % Reads an array of NSAMPLES+1 elements from a connection
+        %     dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+        rawData(:,iFrames,iLines)= pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+    end
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
