@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Tue Jun 28 17:55:57 2011
+Analysis & Synthesis Status : Successful - Wed Jun 29 14:21:29 2011
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : DE4_Ethernet
 Top-level Entity Name : DE4_Ethernet
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 8,433
+    Combinational ALUTs : 8,451
     Memory ALUTs : 0
-    Dedicated logic registers : 9,760
-Total registers : 9760
+    Dedicated logic registers : 9,848
+Total registers : 9848
 Total pins : 231
 Total virtual pins : 0
 Total block memory bits : 5,861,712

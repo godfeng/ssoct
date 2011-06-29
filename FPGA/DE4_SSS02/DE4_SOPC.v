@@ -785,6 +785,517 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module DE4_SOPC_clock_1_in_arbitrator (
+                                        // inputs:
+                                         DE4_SOPC_clock_1_in_endofpacket,
+                                         DE4_SOPC_clock_1_in_readdata,
+                                         DE4_SOPC_clock_1_in_waitrequest,
+                                         clk,
+                                         cpu_data_master_address_to_slave,
+                                         cpu_data_master_byteenable,
+                                         cpu_data_master_latency_counter,
+                                         cpu_data_master_read,
+                                         cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register,
+                                         cpu_data_master_write,
+                                         cpu_data_master_writedata,
+                                         reset_n,
+
+                                        // outputs:
+                                         DE4_SOPC_clock_1_in_address,
+                                         DE4_SOPC_clock_1_in_byteenable,
+                                         DE4_SOPC_clock_1_in_endofpacket_from_sa,
+                                         DE4_SOPC_clock_1_in_nativeaddress,
+                                         DE4_SOPC_clock_1_in_read,
+                                         DE4_SOPC_clock_1_in_readdata_from_sa,
+                                         DE4_SOPC_clock_1_in_reset_n,
+                                         DE4_SOPC_clock_1_in_waitrequest_from_sa,
+                                         DE4_SOPC_clock_1_in_write,
+                                         DE4_SOPC_clock_1_in_writedata,
+                                         cpu_data_master_granted_DE4_SOPC_clock_1_in,
+                                         cpu_data_master_qualified_request_DE4_SOPC_clock_1_in,
+                                         cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in,
+                                         cpu_data_master_requests_DE4_SOPC_clock_1_in,
+                                         d1_DE4_SOPC_clock_1_in_end_xfer
+                                      )
+;
+
+  output  [  2: 0] DE4_SOPC_clock_1_in_address;
+  output  [  3: 0] DE4_SOPC_clock_1_in_byteenable;
+  output           DE4_SOPC_clock_1_in_endofpacket_from_sa;
+  output           DE4_SOPC_clock_1_in_nativeaddress;
+  output           DE4_SOPC_clock_1_in_read;
+  output  [ 31: 0] DE4_SOPC_clock_1_in_readdata_from_sa;
+  output           DE4_SOPC_clock_1_in_reset_n;
+  output           DE4_SOPC_clock_1_in_waitrequest_from_sa;
+  output           DE4_SOPC_clock_1_in_write;
+  output  [ 31: 0] DE4_SOPC_clock_1_in_writedata;
+  output           cpu_data_master_granted_DE4_SOPC_clock_1_in;
+  output           cpu_data_master_qualified_request_DE4_SOPC_clock_1_in;
+  output           cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in;
+  output           cpu_data_master_requests_DE4_SOPC_clock_1_in;
+  output           d1_DE4_SOPC_clock_1_in_end_xfer;
+  input            DE4_SOPC_clock_1_in_endofpacket;
+  input   [ 31: 0] DE4_SOPC_clock_1_in_readdata;
+  input            DE4_SOPC_clock_1_in_waitrequest;
+  input            clk;
+  input   [ 26: 0] cpu_data_master_address_to_slave;
+  input   [  3: 0] cpu_data_master_byteenable;
+  input   [  1: 0] cpu_data_master_latency_counter;
+  input            cpu_data_master_read;
+  input            cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register;
+  input            cpu_data_master_write;
+  input   [ 31: 0] cpu_data_master_writedata;
+  input            reset_n;
+
+  wire    [  2: 0] DE4_SOPC_clock_1_in_address;
+  wire             DE4_SOPC_clock_1_in_allgrants;
+  wire             DE4_SOPC_clock_1_in_allow_new_arb_cycle;
+  wire             DE4_SOPC_clock_1_in_any_bursting_master_saved_grant;
+  wire             DE4_SOPC_clock_1_in_any_continuerequest;
+  wire             DE4_SOPC_clock_1_in_arb_counter_enable;
+  reg     [  1: 0] DE4_SOPC_clock_1_in_arb_share_counter;
+  wire    [  1: 0] DE4_SOPC_clock_1_in_arb_share_counter_next_value;
+  wire    [  1: 0] DE4_SOPC_clock_1_in_arb_share_set_values;
+  wire             DE4_SOPC_clock_1_in_beginbursttransfer_internal;
+  wire             DE4_SOPC_clock_1_in_begins_xfer;
+  wire    [  3: 0] DE4_SOPC_clock_1_in_byteenable;
+  wire             DE4_SOPC_clock_1_in_end_xfer;
+  wire             DE4_SOPC_clock_1_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_1_in_firsttransfer;
+  wire             DE4_SOPC_clock_1_in_grant_vector;
+  wire             DE4_SOPC_clock_1_in_in_a_read_cycle;
+  wire             DE4_SOPC_clock_1_in_in_a_write_cycle;
+  wire             DE4_SOPC_clock_1_in_master_qreq_vector;
+  wire             DE4_SOPC_clock_1_in_nativeaddress;
+  wire             DE4_SOPC_clock_1_in_non_bursting_master_requests;
+  wire             DE4_SOPC_clock_1_in_read;
+  wire    [ 31: 0] DE4_SOPC_clock_1_in_readdata_from_sa;
+  reg              DE4_SOPC_clock_1_in_reg_firsttransfer;
+  wire             DE4_SOPC_clock_1_in_reset_n;
+  reg              DE4_SOPC_clock_1_in_slavearbiterlockenable;
+  wire             DE4_SOPC_clock_1_in_slavearbiterlockenable2;
+  wire             DE4_SOPC_clock_1_in_unreg_firsttransfer;
+  wire             DE4_SOPC_clock_1_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_1_in_waits_for_read;
+  wire             DE4_SOPC_clock_1_in_waits_for_write;
+  wire             DE4_SOPC_clock_1_in_write;
+  wire    [ 31: 0] DE4_SOPC_clock_1_in_writedata;
+  wire             cpu_data_master_arbiterlock;
+  wire             cpu_data_master_arbiterlock2;
+  wire             cpu_data_master_continuerequest;
+  wire             cpu_data_master_granted_DE4_SOPC_clock_1_in;
+  wire             cpu_data_master_qualified_request_DE4_SOPC_clock_1_in;
+  wire             cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in;
+  wire             cpu_data_master_requests_DE4_SOPC_clock_1_in;
+  wire             cpu_data_master_saved_grant_DE4_SOPC_clock_1_in;
+  reg              d1_DE4_SOPC_clock_1_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [ 26: 0] shifted_address_to_DE4_SOPC_clock_1_in_from_cpu_data_master;
+  wire             wait_for_DE4_SOPC_clock_1_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~DE4_SOPC_clock_1_in_end_xfer;
+    end
+
+
+  assign DE4_SOPC_clock_1_in_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_DE4_SOPC_clock_1_in));
+  //assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata;
+
+  assign cpu_data_master_requests_DE4_SOPC_clock_1_in = ({cpu_data_master_address_to_slave[26 : 3] , 3'b0} == 27'h5101ce8) & (cpu_data_master_read | cpu_data_master_write);
+  //assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest;
+
+  //DE4_SOPC_clock_1_in_arb_share_counter set values, which is an e_mux
+  assign DE4_SOPC_clock_1_in_arb_share_set_values = 1;
+
+  //DE4_SOPC_clock_1_in_non_bursting_master_requests mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_non_bursting_master_requests = cpu_data_master_requests_DE4_SOPC_clock_1_in;
+
+  //DE4_SOPC_clock_1_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_any_bursting_master_saved_grant = 0;
+
+  //DE4_SOPC_clock_1_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_in_arb_share_counter_next_value = DE4_SOPC_clock_1_in_firsttransfer ? (DE4_SOPC_clock_1_in_arb_share_set_values - 1) : |DE4_SOPC_clock_1_in_arb_share_counter ? (DE4_SOPC_clock_1_in_arb_share_counter - 1) : 0;
+
+  //DE4_SOPC_clock_1_in_allgrants all slave grants, which is an e_mux
+  assign DE4_SOPC_clock_1_in_allgrants = |DE4_SOPC_clock_1_in_grant_vector;
+
+  //DE4_SOPC_clock_1_in_end_xfer assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_in_end_xfer = ~(DE4_SOPC_clock_1_in_waits_for_read | DE4_SOPC_clock_1_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in = DE4_SOPC_clock_1_in_end_xfer & (~DE4_SOPC_clock_1_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //DE4_SOPC_clock_1_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign DE4_SOPC_clock_1_in_arb_counter_enable = (end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in & DE4_SOPC_clock_1_in_allgrants) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in & ~DE4_SOPC_clock_1_in_non_bursting_master_requests);
+
+  //DE4_SOPC_clock_1_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_in_arb_share_counter <= 0;
+      else if (DE4_SOPC_clock_1_in_arb_counter_enable)
+          DE4_SOPC_clock_1_in_arb_share_counter <= DE4_SOPC_clock_1_in_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_1_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_in_slavearbiterlockenable <= 0;
+      else if ((|DE4_SOPC_clock_1_in_master_qreq_vector & end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_1_in & ~DE4_SOPC_clock_1_in_non_bursting_master_requests))
+          DE4_SOPC_clock_1_in_slavearbiterlockenable <= |DE4_SOPC_clock_1_in_arb_share_counter_next_value;
+    end
+
+
+  //cpu/data_master DE4_SOPC_clock_1/in arbiterlock, which is an e_assign
+  assign cpu_data_master_arbiterlock = DE4_SOPC_clock_1_in_slavearbiterlockenable & cpu_data_master_continuerequest;
+
+  //DE4_SOPC_clock_1_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_1_in_slavearbiterlockenable2 = |DE4_SOPC_clock_1_in_arb_share_counter_next_value;
+
+  //cpu/data_master DE4_SOPC_clock_1/in arbiterlock2, which is an e_assign
+  assign cpu_data_master_arbiterlock2 = DE4_SOPC_clock_1_in_slavearbiterlockenable2 & cpu_data_master_continuerequest;
+
+  //DE4_SOPC_clock_1_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign DE4_SOPC_clock_1_in_any_continuerequest = 1;
+
+  //cpu_data_master_continuerequest continued request, which is an e_assign
+  assign cpu_data_master_continuerequest = 1;
+
+  assign cpu_data_master_qualified_request_DE4_SOPC_clock_1_in = cpu_data_master_requests_DE4_SOPC_clock_1_in & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0) | (|cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register))));
+  //local readdatavalid cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in, which is an e_mux
+  assign cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in = cpu_data_master_granted_DE4_SOPC_clock_1_in & cpu_data_master_read & ~DE4_SOPC_clock_1_in_waits_for_read;
+
+  //DE4_SOPC_clock_1_in_writedata mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_writedata = cpu_data_master_writedata;
+
+  //assign DE4_SOPC_clock_1_in_endofpacket_from_sa = DE4_SOPC_clock_1_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_1_in_endofpacket_from_sa = DE4_SOPC_clock_1_in_endofpacket;
+
+  //master is always granted when requested
+  assign cpu_data_master_granted_DE4_SOPC_clock_1_in = cpu_data_master_qualified_request_DE4_SOPC_clock_1_in;
+
+  //cpu/data_master saved-grant DE4_SOPC_clock_1/in, which is an e_assign
+  assign cpu_data_master_saved_grant_DE4_SOPC_clock_1_in = cpu_data_master_requests_DE4_SOPC_clock_1_in;
+
+  //allow new arb cycle for DE4_SOPC_clock_1/in, which is an e_assign
+  assign DE4_SOPC_clock_1_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign DE4_SOPC_clock_1_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign DE4_SOPC_clock_1_in_master_qreq_vector = 1;
+
+  //DE4_SOPC_clock_1_in_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_in_reset_n = reset_n;
+
+  //DE4_SOPC_clock_1_in_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_1_in_firsttransfer = DE4_SOPC_clock_1_in_begins_xfer ? DE4_SOPC_clock_1_in_unreg_firsttransfer : DE4_SOPC_clock_1_in_reg_firsttransfer;
+
+  //DE4_SOPC_clock_1_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_1_in_unreg_firsttransfer = ~(DE4_SOPC_clock_1_in_slavearbiterlockenable & DE4_SOPC_clock_1_in_any_continuerequest);
+
+  //DE4_SOPC_clock_1_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_in_reg_firsttransfer <= 1'b1;
+      else if (DE4_SOPC_clock_1_in_begins_xfer)
+          DE4_SOPC_clock_1_in_reg_firsttransfer <= DE4_SOPC_clock_1_in_unreg_firsttransfer;
+    end
+
+
+  //DE4_SOPC_clock_1_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign DE4_SOPC_clock_1_in_beginbursttransfer_internal = DE4_SOPC_clock_1_in_begins_xfer;
+
+  //DE4_SOPC_clock_1_in_read assignment, which is an e_mux
+  assign DE4_SOPC_clock_1_in_read = cpu_data_master_granted_DE4_SOPC_clock_1_in & cpu_data_master_read;
+
+  //DE4_SOPC_clock_1_in_write assignment, which is an e_mux
+  assign DE4_SOPC_clock_1_in_write = cpu_data_master_granted_DE4_SOPC_clock_1_in & cpu_data_master_write;
+
+  assign shifted_address_to_DE4_SOPC_clock_1_in_from_cpu_data_master = cpu_data_master_address_to_slave;
+  //DE4_SOPC_clock_1_in_address mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_address = shifted_address_to_DE4_SOPC_clock_1_in_from_cpu_data_master >> 2;
+
+  //slaveid DE4_SOPC_clock_1_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_nativeaddress = cpu_data_master_address_to_slave >> 2;
+
+  //d1_DE4_SOPC_clock_1_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_DE4_SOPC_clock_1_in_end_xfer <= 1;
+      else 
+        d1_DE4_SOPC_clock_1_in_end_xfer <= DE4_SOPC_clock_1_in_end_xfer;
+    end
+
+
+  //DE4_SOPC_clock_1_in_waits_for_read in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_1_in_waits_for_read = DE4_SOPC_clock_1_in_in_a_read_cycle & DE4_SOPC_clock_1_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_1_in_in_a_read_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_in_in_a_read_cycle = cpu_data_master_granted_DE4_SOPC_clock_1_in & cpu_data_master_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = DE4_SOPC_clock_1_in_in_a_read_cycle;
+
+  //DE4_SOPC_clock_1_in_waits_for_write in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_1_in_waits_for_write = DE4_SOPC_clock_1_in_in_a_write_cycle & DE4_SOPC_clock_1_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_1_in_in_a_write_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_in_in_a_write_cycle = cpu_data_master_granted_DE4_SOPC_clock_1_in & cpu_data_master_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = DE4_SOPC_clock_1_in_in_a_write_cycle;
+
+  assign wait_for_DE4_SOPC_clock_1_in_counter = 0;
+  //DE4_SOPC_clock_1_in_byteenable byte enable port mux, which is an e_mux
+  assign DE4_SOPC_clock_1_in_byteenable = (cpu_data_master_granted_DE4_SOPC_clock_1_in)? cpu_data_master_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_1/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_1_out_arbitrator (
+                                         // inputs:
+                                          DE4_SOPC_clock_1_out_address,
+                                          DE4_SOPC_clock_1_out_byteenable,
+                                          DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave,
+                                          DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave,
+                                          DE4_SOPC_clock_1_out_read,
+                                          DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave,
+                                          DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave,
+                                          DE4_SOPC_clock_1_out_write,
+                                          DE4_SOPC_clock_1_out_writedata,
+                                          clk,
+                                          d1_jtag_uart_avalon_jtag_slave_end_xfer,
+                                          jtag_uart_avalon_jtag_slave_readdata_from_sa,
+                                          jtag_uart_avalon_jtag_slave_waitrequest_from_sa,
+                                          reset_n,
+
+                                         // outputs:
+                                          DE4_SOPC_clock_1_out_address_to_slave,
+                                          DE4_SOPC_clock_1_out_readdata,
+                                          DE4_SOPC_clock_1_out_reset_n,
+                                          DE4_SOPC_clock_1_out_waitrequest
+                                       )
+;
+
+  output  [  2: 0] DE4_SOPC_clock_1_out_address_to_slave;
+  output  [ 31: 0] DE4_SOPC_clock_1_out_readdata;
+  output           DE4_SOPC_clock_1_out_reset_n;
+  output           DE4_SOPC_clock_1_out_waitrequest;
+  input   [  2: 0] DE4_SOPC_clock_1_out_address;
+  input   [  3: 0] DE4_SOPC_clock_1_out_byteenable;
+  input            DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave;
+  input            DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave;
+  input            DE4_SOPC_clock_1_out_read;
+  input            DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave;
+  input            DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
+  input            DE4_SOPC_clock_1_out_write;
+  input   [ 31: 0] DE4_SOPC_clock_1_out_writedata;
+  input            clk;
+  input            d1_jtag_uart_avalon_jtag_slave_end_xfer;
+  input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata_from_sa;
+  input            jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
+  input            reset_n;
+
+  reg     [  2: 0] DE4_SOPC_clock_1_out_address_last_time;
+  wire    [  2: 0] DE4_SOPC_clock_1_out_address_to_slave;
+  reg     [  3: 0] DE4_SOPC_clock_1_out_byteenable_last_time;
+  reg              DE4_SOPC_clock_1_out_read_last_time;
+  wire    [ 31: 0] DE4_SOPC_clock_1_out_readdata;
+  wire             DE4_SOPC_clock_1_out_reset_n;
+  wire             DE4_SOPC_clock_1_out_run;
+  wire             DE4_SOPC_clock_1_out_waitrequest;
+  reg              DE4_SOPC_clock_1_out_write_last_time;
+  reg     [ 31: 0] DE4_SOPC_clock_1_out_writedata_last_time;
+  reg              active_and_waiting_last_time;
+  wire             r_1;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & ((~DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave | ~(DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write)))) & ((~DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave | ~(DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write))));
+
+  //cascaded wait assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_out_run = r_1;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign DE4_SOPC_clock_1_out_address_to_slave = DE4_SOPC_clock_1_out_address;
+
+  //DE4_SOPC_clock_1/out readdata mux, which is an e_mux
+  assign DE4_SOPC_clock_1_out_readdata = jtag_uart_avalon_jtag_slave_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign DE4_SOPC_clock_1_out_waitrequest = ~DE4_SOPC_clock_1_out_run;
+
+  //DE4_SOPC_clock_1_out_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_1_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_1_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_out_address_last_time <= 0;
+      else 
+        DE4_SOPC_clock_1_out_address_last_time <= DE4_SOPC_clock_1_out_address;
+    end
+
+
+  //DE4_SOPC_clock_1/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= DE4_SOPC_clock_1_out_waitrequest & (DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write);
+    end
+
+
+  //DE4_SOPC_clock_1_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_1_out_address != DE4_SOPC_clock_1_out_address_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_1_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_1_out_byteenable check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_out_byteenable_last_time <= 0;
+      else 
+        DE4_SOPC_clock_1_out_byteenable_last_time <= DE4_SOPC_clock_1_out_byteenable;
+    end
+
+
+  //DE4_SOPC_clock_1_out_byteenable matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_1_out_byteenable != DE4_SOPC_clock_1_out_byteenable_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_1_out_byteenable did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_1_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_out_read_last_time <= 0;
+      else 
+        DE4_SOPC_clock_1_out_read_last_time <= DE4_SOPC_clock_1_out_read;
+    end
+
+
+  //DE4_SOPC_clock_1_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_1_out_read != DE4_SOPC_clock_1_out_read_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_1_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_1_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_out_write_last_time <= 0;
+      else 
+        DE4_SOPC_clock_1_out_write_last_time <= DE4_SOPC_clock_1_out_write;
+    end
+
+
+  //DE4_SOPC_clock_1_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_1_out_write != DE4_SOPC_clock_1_out_write_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_1_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_1_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_1_out_writedata_last_time <= 0;
+      else 
+        DE4_SOPC_clock_1_out_writedata_last_time <= DE4_SOPC_clock_1_out_writedata;
+    end
+
+
+  //DE4_SOPC_clock_1_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_1_out_writedata != DE4_SOPC_clock_1_out_writedata_last_time) & DE4_SOPC_clock_1_out_write)
+        begin
+          $write("%0d ns: DE4_SOPC_clock_1_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module acq_busy_pio_s1_arbitrator (
                                     // inputs:
                                      acq_busy_pio_s1_readdata,
@@ -1479,20 +1990,67 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module jtag_uart_avalon_jtag_slave_irq_from_sa_clock_crossing_cpu_data_master_module (
+                                                                                       // inputs:
+                                                                                        clk,
+                                                                                        data_in,
+                                                                                        reset_n,
+
+                                                                                       // outputs:
+                                                                                        data_out
+                                                                                     )
+;
+
+  output           data_out;
+  input            clk;
+  input            data_in;
+  input            reset_n;
+
+  reg              data_in_d1 /* synthesis ALTERA_ATTRIBUTE = "{-from \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg              data_out /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          data_in_d1 <= 0;
+      else 
+        data_in_d1 <= data_in;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          data_out <= 0;
+      else 
+        data_out <= data_in_d1;
+    end
+
+
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module cpu_data_master_arbitrator (
                                     // inputs:
                                      DE4_SOPC_clock_0_in_readdata_from_sa,
                                      DE4_SOPC_clock_0_in_waitrequest_from_sa,
+                                     DE4_SOPC_clock_1_in_readdata_from_sa,
+                                     DE4_SOPC_clock_1_in_waitrequest_from_sa,
                                      clk,
                                      cpu_data_master_address,
                                      cpu_data_master_byteenable,
                                      cpu_data_master_byteenable_ext_flash_s1,
                                      cpu_data_master_granted_DE4_SOPC_clock_0_in,
+                                     cpu_data_master_granted_DE4_SOPC_clock_1_in,
                                      cpu_data_master_granted_cpu_jtag_debug_module,
                                      cpu_data_master_granted_descriptor_memory_s1,
                                      cpu_data_master_granted_ext_flash_s1,
                                      cpu_data_master_granted_high_res_timer_s1,
-                                     cpu_data_master_granted_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_granted_onchip_memory_s1,
                                      cpu_data_master_granted_peripheral_clock_crossing_s1,
                                      cpu_data_master_granted_sgdma_rx_csr,
@@ -1501,11 +2059,11 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_granted_sysid_control_slave,
                                      cpu_data_master_granted_tse_mac_control_port,
                                      cpu_data_master_qualified_request_DE4_SOPC_clock_0_in,
+                                     cpu_data_master_qualified_request_DE4_SOPC_clock_1_in,
                                      cpu_data_master_qualified_request_cpu_jtag_debug_module,
                                      cpu_data_master_qualified_request_descriptor_memory_s1,
                                      cpu_data_master_qualified_request_ext_flash_s1,
                                      cpu_data_master_qualified_request_high_res_timer_s1,
-                                     cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_qualified_request_onchip_memory_s1,
                                      cpu_data_master_qualified_request_peripheral_clock_crossing_s1,
                                      cpu_data_master_qualified_request_sgdma_rx_csr,
@@ -1515,11 +2073,11 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_qualified_request_tse_mac_control_port,
                                      cpu_data_master_read,
                                      cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in,
+                                     cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in,
                                      cpu_data_master_read_data_valid_cpu_jtag_debug_module,
                                      cpu_data_master_read_data_valid_descriptor_memory_s1,
                                      cpu_data_master_read_data_valid_ext_flash_s1,
                                      cpu_data_master_read_data_valid_high_res_timer_s1,
-                                     cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_read_data_valid_onchip_memory_s1,
                                      cpu_data_master_read_data_valid_peripheral_clock_crossing_s1,
                                      cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register,
@@ -1529,11 +2087,11 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_read_data_valid_sysid_control_slave,
                                      cpu_data_master_read_data_valid_tse_mac_control_port,
                                      cpu_data_master_requests_DE4_SOPC_clock_0_in,
+                                     cpu_data_master_requests_DE4_SOPC_clock_1_in,
                                      cpu_data_master_requests_cpu_jtag_debug_module,
                                      cpu_data_master_requests_descriptor_memory_s1,
                                      cpu_data_master_requests_ext_flash_s1,
                                      cpu_data_master_requests_high_res_timer_s1,
-                                     cpu_data_master_requests_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_requests_onchip_memory_s1,
                                      cpu_data_master_requests_peripheral_clock_crossing_s1,
                                      cpu_data_master_requests_sgdma_rx_csr,
@@ -1545,11 +2103,11 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_writedata,
                                      cpu_jtag_debug_module_readdata_from_sa,
                                      d1_DE4_SOPC_clock_0_in_end_xfer,
+                                     d1_DE4_SOPC_clock_1_in_end_xfer,
                                      d1_cpu_jtag_debug_module_end_xfer,
                                      d1_descriptor_memory_s1_end_xfer,
                                      d1_flash_tristate_bridge_avalon_slave_end_xfer,
                                      d1_high_res_timer_s1_end_xfer,
-                                     d1_jtag_uart_avalon_jtag_slave_end_xfer,
                                      d1_onchip_memory_s1_end_xfer,
                                      d1_peripheral_clock_crossing_s1_end_xfer,
                                      d1_sgdma_rx_csr_end_xfer,
@@ -1563,11 +2121,11 @@ module cpu_data_master_arbitrator (
                                      high_res_timer_s1_readdata_from_sa,
                                      incoming_flash_tristate_bridge_data_with_Xs_converted_to_0,
                                      jtag_uart_avalon_jtag_slave_irq_from_sa,
-                                     jtag_uart_avalon_jtag_slave_readdata_from_sa,
-                                     jtag_uart_avalon_jtag_slave_waitrequest_from_sa,
                                      onchip_memory_s1_readdata_from_sa,
                                      peripheral_clock_crossing_s1_readdata_from_sa,
                                      peripheral_clock_crossing_s1_waitrequest_from_sa,
+                                     pll_sys_clk,
+                                     pll_sys_clk_reset_n,
                                      reset_n,
                                      sgdma_rx_csr_irq_from_sa,
                                      sgdma_rx_csr_readdata_from_sa,
@@ -1601,16 +2159,18 @@ module cpu_data_master_arbitrator (
   output           cpu_data_master_waitrequest;
   input   [ 15: 0] DE4_SOPC_clock_0_in_readdata_from_sa;
   input            DE4_SOPC_clock_0_in_waitrequest_from_sa;
+  input   [ 31: 0] DE4_SOPC_clock_1_in_readdata_from_sa;
+  input            DE4_SOPC_clock_1_in_waitrequest_from_sa;
   input            clk;
   input   [ 26: 0] cpu_data_master_address;
   input   [  3: 0] cpu_data_master_byteenable;
   input   [  1: 0] cpu_data_master_byteenable_ext_flash_s1;
   input            cpu_data_master_granted_DE4_SOPC_clock_0_in;
+  input            cpu_data_master_granted_DE4_SOPC_clock_1_in;
   input            cpu_data_master_granted_cpu_jtag_debug_module;
   input            cpu_data_master_granted_descriptor_memory_s1;
   input            cpu_data_master_granted_ext_flash_s1;
   input            cpu_data_master_granted_high_res_timer_s1;
-  input            cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_granted_onchip_memory_s1;
   input            cpu_data_master_granted_peripheral_clock_crossing_s1;
   input            cpu_data_master_granted_sgdma_rx_csr;
@@ -1619,11 +2179,11 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_granted_sysid_control_slave;
   input            cpu_data_master_granted_tse_mac_control_port;
   input            cpu_data_master_qualified_request_DE4_SOPC_clock_0_in;
+  input            cpu_data_master_qualified_request_DE4_SOPC_clock_1_in;
   input            cpu_data_master_qualified_request_cpu_jtag_debug_module;
   input            cpu_data_master_qualified_request_descriptor_memory_s1;
   input            cpu_data_master_qualified_request_ext_flash_s1;
   input            cpu_data_master_qualified_request_high_res_timer_s1;
-  input            cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_qualified_request_onchip_memory_s1;
   input            cpu_data_master_qualified_request_peripheral_clock_crossing_s1;
   input            cpu_data_master_qualified_request_sgdma_rx_csr;
@@ -1633,11 +2193,11 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_qualified_request_tse_mac_control_port;
   input            cpu_data_master_read;
   input            cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in;
+  input            cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in;
   input            cpu_data_master_read_data_valid_cpu_jtag_debug_module;
   input            cpu_data_master_read_data_valid_descriptor_memory_s1;
   input            cpu_data_master_read_data_valid_ext_flash_s1;
   input            cpu_data_master_read_data_valid_high_res_timer_s1;
-  input            cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_read_data_valid_onchip_memory_s1;
   input            cpu_data_master_read_data_valid_peripheral_clock_crossing_s1;
   input            cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register;
@@ -1647,11 +2207,11 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_read_data_valid_sysid_control_slave;
   input            cpu_data_master_read_data_valid_tse_mac_control_port;
   input            cpu_data_master_requests_DE4_SOPC_clock_0_in;
+  input            cpu_data_master_requests_DE4_SOPC_clock_1_in;
   input            cpu_data_master_requests_cpu_jtag_debug_module;
   input            cpu_data_master_requests_descriptor_memory_s1;
   input            cpu_data_master_requests_ext_flash_s1;
   input            cpu_data_master_requests_high_res_timer_s1;
-  input            cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_requests_onchip_memory_s1;
   input            cpu_data_master_requests_peripheral_clock_crossing_s1;
   input            cpu_data_master_requests_sgdma_rx_csr;
@@ -1663,11 +2223,11 @@ module cpu_data_master_arbitrator (
   input   [ 31: 0] cpu_data_master_writedata;
   input   [ 31: 0] cpu_jtag_debug_module_readdata_from_sa;
   input            d1_DE4_SOPC_clock_0_in_end_xfer;
+  input            d1_DE4_SOPC_clock_1_in_end_xfer;
   input            d1_cpu_jtag_debug_module_end_xfer;
   input            d1_descriptor_memory_s1_end_xfer;
   input            d1_flash_tristate_bridge_avalon_slave_end_xfer;
   input            d1_high_res_timer_s1_end_xfer;
-  input            d1_jtag_uart_avalon_jtag_slave_end_xfer;
   input            d1_onchip_memory_s1_end_xfer;
   input            d1_peripheral_clock_crossing_s1_end_xfer;
   input            d1_sgdma_rx_csr_end_xfer;
@@ -1681,11 +2241,11 @@ module cpu_data_master_arbitrator (
   input   [ 15: 0] high_res_timer_s1_readdata_from_sa;
   input   [ 15: 0] incoming_flash_tristate_bridge_data_with_Xs_converted_to_0;
   input            jtag_uart_avalon_jtag_slave_irq_from_sa;
-  input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata_from_sa;
-  input            jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
   input   [ 31: 0] onchip_memory_s1_readdata_from_sa;
   input   [ 31: 0] peripheral_clock_crossing_s1_readdata_from_sa;
   input            peripheral_clock_crossing_s1_waitrequest_from_sa;
+  input            pll_sys_clk;
+  input            pll_sys_clk_reset_n;
   input            reset_n;
   input            sgdma_rx_csr_irq_from_sa;
   input   [ 31: 0] sgdma_rx_csr_readdata_from_sa;
@@ -1727,19 +2287,20 @@ module cpu_data_master_arbitrator (
   wire    [  1: 0] next_dbs_address;
   wire    [  1: 0] p1_cpu_data_master_latency_counter;
   wire    [ 15: 0] p1_dbs_latent_16_reg_segment_0;
+  wire             pll_sys_clk_jtag_uart_avalon_jtag_slave_irq_from_sa;
   wire             pre_dbs_count_enable;
   wire             pre_flush_cpu_data_master_readdatavalid;
   wire             r_0;
   wire             r_1;
   wire             r_2;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~cpu_data_master_requests_DE4_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1) & (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1;
+  assign r_0 = 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~cpu_data_master_requests_DE4_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~cpu_data_master_requests_DE4_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1);
 
   //cascaded wait assignment, which is an e_assign
   assign cpu_data_master_run = r_0 & r_1 & r_2;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~cpu_data_master_requests_jtag_uart_avalon_jtag_slave) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
+  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
   assign r_2 = 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
@@ -1759,11 +2320,11 @@ module cpu_data_master_arbitrator (
 
   //some slave is getting selected, which is an e_mux
   assign cpu_data_master_is_granted_some_slave = cpu_data_master_granted_DE4_SOPC_clock_0_in |
+    cpu_data_master_granted_DE4_SOPC_clock_1_in |
     cpu_data_master_granted_cpu_jtag_debug_module |
     cpu_data_master_granted_descriptor_memory_s1 |
     cpu_data_master_granted_ext_flash_s1 |
     cpu_data_master_granted_high_res_timer_s1 |
-    cpu_data_master_granted_jtag_uart_avalon_jtag_slave |
     cpu_data_master_granted_onchip_memory_s1 |
     cpu_data_master_granted_peripheral_clock_crossing_s1 |
     cpu_data_master_granted_sgdma_rx_csr |
@@ -1784,6 +2345,9 @@ module cpu_data_master_arbitrator (
     cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
+    cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in |
+    cpu_data_master_read_but_no_slave_selected |
+    pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_cpu_jtag_debug_module |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
@@ -1792,9 +2356,6 @@ module cpu_data_master_arbitrator (
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_high_res_timer_s1 |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_but_no_slave_selected |
@@ -1817,12 +2378,12 @@ module cpu_data_master_arbitrator (
 
   //cpu/data_master readdata mux, which is an e_mux
   assign cpu_data_master_readdata = ({32 {~(cpu_data_master_qualified_request_DE4_SOPC_clock_0_in & cpu_data_master_read)}} | DE4_SOPC_clock_0_in_readdata_from_sa) &
+    ({32 {~(cpu_data_master_qualified_request_DE4_SOPC_clock_1_in & cpu_data_master_read)}} | DE4_SOPC_clock_1_in_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_cpu_jtag_debug_module & cpu_data_master_read)}} | cpu_jtag_debug_module_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_descriptor_memory_s1}} | descriptor_memory_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_ext_flash_s1}} | {incoming_flash_tristate_bridge_data_with_Xs_converted_to_0[15 : 0],
     dbs_latent_16_reg_segment_0}) &
     ({32 {~(cpu_data_master_qualified_request_high_res_timer_s1 & cpu_data_master_read)}} | high_res_timer_s1_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave & cpu_data_master_read)}} | jtag_uart_avalon_jtag_slave_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_onchip_memory_s1}} | onchip_memory_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_peripheral_clock_crossing_s1}} | peripheral_clock_crossing_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sgdma_rx_csr & cpu_data_master_read)}} | sgdma_rx_csr_readdata_from_sa) &
@@ -1953,7 +2514,16 @@ module cpu_data_master_arbitrator (
     sgdma_tx_csr_irq_from_sa,
     sys_timer_s1_irq_from_sa,
     high_res_timer_s1_irq_from_sa,
-    jtag_uart_avalon_jtag_slave_irq_from_sa};
+    pll_sys_clk_jtag_uart_avalon_jtag_slave_irq_from_sa};
+
+  //jtag_uart_avalon_jtag_slave_irq_from_sa from pll_peripheral_clk to pll_sys_clk
+  jtag_uart_avalon_jtag_slave_irq_from_sa_clock_crossing_cpu_data_master_module jtag_uart_avalon_jtag_slave_irq_from_sa_clock_crossing_cpu_data_master
+    (
+      .clk      (pll_sys_clk),
+      .data_in  (jtag_uart_avalon_jtag_slave_irq_from_sa),
+      .data_out (pll_sys_clk_jtag_uart_avalon_jtag_slave_irq_from_sa),
+      .reset_n  (pll_sys_clk_reset_n)
+    );
 
 
 //synthesis translate_off
@@ -2182,13 +2752,13 @@ module cpu_instruction_master_arbitrator (
   wire             r_0;
   wire             r_1;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read)));
+  assign r_0 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read)));
 
   //cascaded wait assignment, which is an e_assign
   assign cpu_instruction_master_run = r_0 & r_1;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
+  assign r_1 = 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_instruction_master_address_to_slave = cpu_instruction_master_address[26 : 0];
@@ -3570,7 +4140,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_readn assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 8));
+  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 7));
 
   //~flash_tristate_bridge_writen of type write to ~p1_flash_tristate_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -3583,7 +4153,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_writen assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 10));
+  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 9));
 
   //flash_tristate_bridge_address of type address to p1_flash_tristate_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -3641,8 +4211,8 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 8 :
-    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 10 :
+  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 7 :
+    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 9 :
     (~ext_flash_s1_wait_counter_eq_0)? ext_flash_s1_wait_counter - 1 :
     0;
 
@@ -4097,13 +4667,12 @@ endmodule
 
 module jtag_uart_avalon_jtag_slave_arbitrator (
                                                 // inputs:
+                                                 DE4_SOPC_clock_1_out_address_to_slave,
+                                                 DE4_SOPC_clock_1_out_nativeaddress,
+                                                 DE4_SOPC_clock_1_out_read,
+                                                 DE4_SOPC_clock_1_out_write,
+                                                 DE4_SOPC_clock_1_out_writedata,
                                                  clk,
-                                                 cpu_data_master_address_to_slave,
-                                                 cpu_data_master_latency_counter,
-                                                 cpu_data_master_read,
-                                                 cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register,
-                                                 cpu_data_master_write,
-                                                 cpu_data_master_writedata,
                                                  jtag_uart_avalon_jtag_slave_dataavailable,
                                                  jtag_uart_avalon_jtag_slave_irq,
                                                  jtag_uart_avalon_jtag_slave_readdata,
@@ -4112,10 +4681,10 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
                                                  reset_n,
 
                                                 // outputs:
-                                                 cpu_data_master_granted_jtag_uart_avalon_jtag_slave,
-                                                 cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave,
-                                                 cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave,
-                                                 cpu_data_master_requests_jtag_uart_avalon_jtag_slave,
+                                                 DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave,
+                                                 DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave,
+                                                 DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave,
+                                                 DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave,
                                                  d1_jtag_uart_avalon_jtag_slave_end_xfer,
                                                  jtag_uart_avalon_jtag_slave_address,
                                                  jtag_uart_avalon_jtag_slave_chipselect,
@@ -4131,10 +4700,10 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
                                               )
 ;
 
-  output           cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
-  output           cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
-  output           cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
-  output           cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
+  output           DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave;
+  output           DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave;
+  output           DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave;
+  output           DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
   output           d1_jtag_uart_avalon_jtag_slave_end_xfer;
   output           jtag_uart_avalon_jtag_slave_address;
   output           jtag_uart_avalon_jtag_slave_chipselect;
@@ -4147,13 +4716,12 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   output           jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
   output           jtag_uart_avalon_jtag_slave_write_n;
   output  [ 31: 0] jtag_uart_avalon_jtag_slave_writedata;
+  input   [  2: 0] DE4_SOPC_clock_1_out_address_to_slave;
+  input            DE4_SOPC_clock_1_out_nativeaddress;
+  input            DE4_SOPC_clock_1_out_read;
+  input            DE4_SOPC_clock_1_out_write;
+  input   [ 31: 0] DE4_SOPC_clock_1_out_writedata;
   input            clk;
-  input   [ 26: 0] cpu_data_master_address_to_slave;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register;
-  input            cpu_data_master_write;
-  input   [ 31: 0] cpu_data_master_writedata;
   input            jtag_uart_avalon_jtag_slave_dataavailable;
   input            jtag_uart_avalon_jtag_slave_irq;
   input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata;
@@ -4161,14 +4729,14 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   input            jtag_uart_avalon_jtag_slave_waitrequest;
   input            reset_n;
 
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_saved_grant_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_arbiterlock;
+  wire             DE4_SOPC_clock_1_out_arbiterlock2;
+  wire             DE4_SOPC_clock_1_out_continuerequest;
+  wire             DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_saved_grant_jtag_uart_avalon_jtag_slave;
   reg              d1_jtag_uart_avalon_jtag_slave_end_xfer;
   reg              d1_reasons_to_wait;
   reg              enable_nonzero_assertions;
@@ -4181,9 +4749,9 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   wire             jtag_uart_avalon_jtag_slave_any_bursting_master_saved_grant;
   wire             jtag_uart_avalon_jtag_slave_any_continuerequest;
   wire             jtag_uart_avalon_jtag_slave_arb_counter_enable;
-  reg     [  1: 0] jtag_uart_avalon_jtag_slave_arb_share_counter;
-  wire    [  1: 0] jtag_uart_avalon_jtag_slave_arb_share_counter_next_value;
-  wire    [  1: 0] jtag_uart_avalon_jtag_slave_arb_share_set_values;
+  reg              jtag_uart_avalon_jtag_slave_arb_share_counter;
+  wire             jtag_uart_avalon_jtag_slave_arb_share_counter_next_value;
+  wire             jtag_uart_avalon_jtag_slave_arb_share_set_values;
   wire             jtag_uart_avalon_jtag_slave_beginbursttransfer_internal;
   wire             jtag_uart_avalon_jtag_slave_begins_xfer;
   wire             jtag_uart_avalon_jtag_slave_chipselect;
@@ -4209,7 +4777,6 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   wire             jtag_uart_avalon_jtag_slave_waits_for_write;
   wire             jtag_uart_avalon_jtag_slave_write_n;
   wire    [ 31: 0] jtag_uart_avalon_jtag_slave_writedata;
-  wire    [ 26: 0] shifted_address_to_jtag_uart_avalon_jtag_slave_from_cpu_data_master;
   wire             wait_for_jtag_uart_avalon_jtag_slave_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -4220,11 +4787,11 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
     end
 
 
-  assign jtag_uart_avalon_jtag_slave_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave));
+  assign jtag_uart_avalon_jtag_slave_begins_xfer = ~d1_reasons_to_wait & ((DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave));
   //assign jtag_uart_avalon_jtag_slave_readdata_from_sa = jtag_uart_avalon_jtag_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_readdata_from_sa = jtag_uart_avalon_jtag_slave_readdata;
 
-  assign cpu_data_master_requests_jtag_uart_avalon_jtag_slave = ({cpu_data_master_address_to_slave[26 : 3] , 3'b0} == 27'h5101ce8) & (cpu_data_master_read | cpu_data_master_write);
+  assign DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave = (1) & (DE4_SOPC_clock_1_out_read | DE4_SOPC_clock_1_out_write);
   //assign jtag_uart_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_avalon_jtag_slave_dataavailable so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_avalon_jtag_slave_dataavailable;
 
@@ -4238,7 +4805,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   assign jtag_uart_avalon_jtag_slave_arb_share_set_values = 1;
 
   //jtag_uart_avalon_jtag_slave_non_bursting_master_requests mux, which is an e_mux
-  assign jtag_uart_avalon_jtag_slave_non_bursting_master_requests = cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
+  assign jtag_uart_avalon_jtag_slave_non_bursting_master_requests = DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
 
   //jtag_uart_avalon_jtag_slave_any_bursting_master_saved_grant mux, which is an e_mux
   assign jtag_uart_avalon_jtag_slave_any_bursting_master_saved_grant = 0;
@@ -4278,33 +4845,30 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
     end
 
 
-  //cpu/data_master jtag_uart/avalon_jtag_slave arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = jtag_uart_avalon_jtag_slave_slavearbiterlockenable & cpu_data_master_continuerequest;
+  //DE4_SOPC_clock_1/out jtag_uart/avalon_jtag_slave arbiterlock, which is an e_assign
+  assign DE4_SOPC_clock_1_out_arbiterlock = jtag_uart_avalon_jtag_slave_slavearbiterlockenable & DE4_SOPC_clock_1_out_continuerequest;
 
   //jtag_uart_avalon_jtag_slave_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_slavearbiterlockenable2 = |jtag_uart_avalon_jtag_slave_arb_share_counter_next_value;
 
-  //cpu/data_master jtag_uart/avalon_jtag_slave arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = jtag_uart_avalon_jtag_slave_slavearbiterlockenable2 & cpu_data_master_continuerequest;
+  //DE4_SOPC_clock_1/out jtag_uart/avalon_jtag_slave arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_1_out_arbiterlock2 = jtag_uart_avalon_jtag_slave_slavearbiterlockenable2 & DE4_SOPC_clock_1_out_continuerequest;
 
   //jtag_uart_avalon_jtag_slave_any_continuerequest at least one master continues requesting, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_any_continuerequest = 1;
 
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
+  //DE4_SOPC_clock_1_out_continuerequest continued request, which is an e_assign
+  assign DE4_SOPC_clock_1_out_continuerequest = 1;
 
-  assign cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave = cpu_data_master_requests_jtag_uart_avalon_jtag_slave & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0) | (|cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register))));
-  //local readdatavalid cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave, which is an e_mux
-  assign cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave = cpu_data_master_granted_jtag_uart_avalon_jtag_slave & cpu_data_master_read & ~jtag_uart_avalon_jtag_slave_waits_for_read;
-
+  assign DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave = DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
   //jtag_uart_avalon_jtag_slave_writedata mux, which is an e_mux
-  assign jtag_uart_avalon_jtag_slave_writedata = cpu_data_master_writedata;
+  assign jtag_uart_avalon_jtag_slave_writedata = DE4_SOPC_clock_1_out_writedata;
 
   //master is always granted when requested
-  assign cpu_data_master_granted_jtag_uart_avalon_jtag_slave = cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
+  assign DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave = DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave;
 
-  //cpu/data_master saved-grant jtag_uart/avalon_jtag_slave, which is an e_assign
-  assign cpu_data_master_saved_grant_jtag_uart_avalon_jtag_slave = cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
+  //DE4_SOPC_clock_1/out saved-grant jtag_uart/avalon_jtag_slave, which is an e_assign
+  assign DE4_SOPC_clock_1_out_saved_grant_jtag_uart_avalon_jtag_slave = DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
 
   //allow new arb cycle for jtag_uart/avalon_jtag_slave, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_allow_new_arb_cycle = 1;
@@ -4318,7 +4882,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   //jtag_uart_avalon_jtag_slave_reset_n assignment, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_reset_n = reset_n;
 
-  assign jtag_uart_avalon_jtag_slave_chipselect = cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
+  assign jtag_uart_avalon_jtag_slave_chipselect = DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave;
   //jtag_uart_avalon_jtag_slave_firsttransfer first transaction, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_firsttransfer = jtag_uart_avalon_jtag_slave_begins_xfer ? jtag_uart_avalon_jtag_slave_unreg_firsttransfer : jtag_uart_avalon_jtag_slave_reg_firsttransfer;
 
@@ -4339,14 +4903,13 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   assign jtag_uart_avalon_jtag_slave_beginbursttransfer_internal = jtag_uart_avalon_jtag_slave_begins_xfer;
 
   //~jtag_uart_avalon_jtag_slave_read_n assignment, which is an e_mux
-  assign jtag_uart_avalon_jtag_slave_read_n = ~(cpu_data_master_granted_jtag_uart_avalon_jtag_slave & cpu_data_master_read);
+  assign jtag_uart_avalon_jtag_slave_read_n = ~(DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave & DE4_SOPC_clock_1_out_read);
 
   //~jtag_uart_avalon_jtag_slave_write_n assignment, which is an e_mux
-  assign jtag_uart_avalon_jtag_slave_write_n = ~(cpu_data_master_granted_jtag_uart_avalon_jtag_slave & cpu_data_master_write);
+  assign jtag_uart_avalon_jtag_slave_write_n = ~(DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave & DE4_SOPC_clock_1_out_write);
 
-  assign shifted_address_to_jtag_uart_avalon_jtag_slave_from_cpu_data_master = cpu_data_master_address_to_slave;
   //jtag_uart_avalon_jtag_slave_address mux, which is an e_mux
-  assign jtag_uart_avalon_jtag_slave_address = shifted_address_to_jtag_uart_avalon_jtag_slave_from_cpu_data_master >> 2;
+  assign jtag_uart_avalon_jtag_slave_address = DE4_SOPC_clock_1_out_nativeaddress;
 
   //d1_jtag_uart_avalon_jtag_slave_end_xfer register, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -4362,7 +4925,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   assign jtag_uart_avalon_jtag_slave_waits_for_read = jtag_uart_avalon_jtag_slave_in_a_read_cycle & jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
 
   //jtag_uart_avalon_jtag_slave_in_a_read_cycle assignment, which is an e_assign
-  assign jtag_uart_avalon_jtag_slave_in_a_read_cycle = cpu_data_master_granted_jtag_uart_avalon_jtag_slave & cpu_data_master_read;
+  assign jtag_uart_avalon_jtag_slave_in_a_read_cycle = DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave & DE4_SOPC_clock_1_out_read;
 
   //in_a_read_cycle assignment, which is an e_mux
   assign in_a_read_cycle = jtag_uart_avalon_jtag_slave_in_a_read_cycle;
@@ -4371,7 +4934,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   assign jtag_uart_avalon_jtag_slave_waits_for_write = jtag_uart_avalon_jtag_slave_in_a_write_cycle & jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
 
   //jtag_uart_avalon_jtag_slave_in_a_write_cycle assignment, which is an e_assign
-  assign jtag_uart_avalon_jtag_slave_in_a_write_cycle = cpu_data_master_granted_jtag_uart_avalon_jtag_slave & cpu_data_master_write;
+  assign jtag_uart_avalon_jtag_slave_in_a_write_cycle = DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave & DE4_SOPC_clock_1_out_write;
 
   //in_a_write_cycle assignment, which is an e_mux
   assign in_a_write_cycle = jtag_uart_avalon_jtag_slave_in_a_write_cycle;
@@ -11792,6 +12355,34 @@ module DE4_SOPC (
   wire             DE4_SOPC_clock_0_out_waitrequest;
   wire             DE4_SOPC_clock_0_out_write;
   wire    [ 15: 0] DE4_SOPC_clock_0_out_writedata;
+  wire    [  2: 0] DE4_SOPC_clock_1_in_address;
+  wire    [  3: 0] DE4_SOPC_clock_1_in_byteenable;
+  wire             DE4_SOPC_clock_1_in_endofpacket;
+  wire             DE4_SOPC_clock_1_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_1_in_nativeaddress;
+  wire             DE4_SOPC_clock_1_in_read;
+  wire    [ 31: 0] DE4_SOPC_clock_1_in_readdata;
+  wire    [ 31: 0] DE4_SOPC_clock_1_in_readdata_from_sa;
+  wire             DE4_SOPC_clock_1_in_reset_n;
+  wire             DE4_SOPC_clock_1_in_waitrequest;
+  wire             DE4_SOPC_clock_1_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_1_in_write;
+  wire    [ 31: 0] DE4_SOPC_clock_1_in_writedata;
+  wire    [  2: 0] DE4_SOPC_clock_1_out_address;
+  wire    [  2: 0] DE4_SOPC_clock_1_out_address_to_slave;
+  wire    [  3: 0] DE4_SOPC_clock_1_out_byteenable;
+  wire             DE4_SOPC_clock_1_out_endofpacket;
+  wire             DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_nativeaddress;
+  wire             DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_read;
+  wire             DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave;
+  wire    [ 31: 0] DE4_SOPC_clock_1_out_readdata;
+  wire             DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave;
+  wire             DE4_SOPC_clock_1_out_reset_n;
+  wire             DE4_SOPC_clock_1_out_waitrequest;
+  wire             DE4_SOPC_clock_1_out_write;
+  wire    [ 31: 0] DE4_SOPC_clock_1_out_writedata;
   wire    [  1: 0] acq_busy_pio_s1_address;
   wire             acq_busy_pio_s1_readdata;
   wire             acq_busy_pio_s1_readdata_from_sa;
@@ -11804,11 +12395,11 @@ module DE4_SOPC (
   wire    [ 15: 0] cpu_data_master_dbs_write_16;
   wire             cpu_data_master_debugaccess;
   wire             cpu_data_master_granted_DE4_SOPC_clock_0_in;
+  wire             cpu_data_master_granted_DE4_SOPC_clock_1_in;
   wire             cpu_data_master_granted_cpu_jtag_debug_module;
   wire             cpu_data_master_granted_descriptor_memory_s1;
   wire             cpu_data_master_granted_ext_flash_s1;
   wire             cpu_data_master_granted_high_res_timer_s1;
-  wire             cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_granted_onchip_memory_s1;
   wire             cpu_data_master_granted_peripheral_clock_crossing_s1;
   wire             cpu_data_master_granted_sgdma_rx_csr;
@@ -11819,11 +12410,11 @@ module DE4_SOPC (
   wire    [ 31: 0] cpu_data_master_irq;
   wire    [  1: 0] cpu_data_master_latency_counter;
   wire             cpu_data_master_qualified_request_DE4_SOPC_clock_0_in;
+  wire             cpu_data_master_qualified_request_DE4_SOPC_clock_1_in;
   wire             cpu_data_master_qualified_request_cpu_jtag_debug_module;
   wire             cpu_data_master_qualified_request_descriptor_memory_s1;
   wire             cpu_data_master_qualified_request_ext_flash_s1;
   wire             cpu_data_master_qualified_request_high_res_timer_s1;
-  wire             cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_qualified_request_onchip_memory_s1;
   wire             cpu_data_master_qualified_request_peripheral_clock_crossing_s1;
   wire             cpu_data_master_qualified_request_sgdma_rx_csr;
@@ -11833,11 +12424,11 @@ module DE4_SOPC (
   wire             cpu_data_master_qualified_request_tse_mac_control_port;
   wire             cpu_data_master_read;
   wire             cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in;
+  wire             cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in;
   wire             cpu_data_master_read_data_valid_cpu_jtag_debug_module;
   wire             cpu_data_master_read_data_valid_descriptor_memory_s1;
   wire             cpu_data_master_read_data_valid_ext_flash_s1;
   wire             cpu_data_master_read_data_valid_high_res_timer_s1;
-  wire             cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_read_data_valid_onchip_memory_s1;
   wire             cpu_data_master_read_data_valid_peripheral_clock_crossing_s1;
   wire             cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register;
@@ -11849,11 +12440,11 @@ module DE4_SOPC (
   wire    [ 31: 0] cpu_data_master_readdata;
   wire             cpu_data_master_readdatavalid;
   wire             cpu_data_master_requests_DE4_SOPC_clock_0_in;
+  wire             cpu_data_master_requests_DE4_SOPC_clock_1_in;
   wire             cpu_data_master_requests_cpu_jtag_debug_module;
   wire             cpu_data_master_requests_descriptor_memory_s1;
   wire             cpu_data_master_requests_ext_flash_s1;
   wire             cpu_data_master_requests_high_res_timer_s1;
-  wire             cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_requests_onchip_memory_s1;
   wire             cpu_data_master_requests_peripheral_clock_crossing_s1;
   wire             cpu_data_master_requests_sgdma_rx_csr;
@@ -11898,6 +12489,7 @@ module DE4_SOPC (
   wire    [ 31: 0] cpu_jtag_debug_module_writedata;
   wire             d1_ADC_data_pio_s1_end_xfer;
   wire             d1_DE4_SOPC_clock_0_in_end_xfer;
+  wire             d1_DE4_SOPC_clock_1_in_end_xfer;
   wire             d1_acq_busy_pio_s1_end_xfer;
   wire             d1_cpu_jtag_debug_module_end_xfer;
   wire             d1_descriptor_memory_s1_end_xfer;
@@ -12330,6 +12922,85 @@ module DE4_SOPC (
       .slave_writedata      (DE4_SOPC_clock_0_in_writedata)
     );
 
+  DE4_SOPC_clock_1_in_arbitrator the_DE4_SOPC_clock_1_in
+    (
+      .DE4_SOPC_clock_1_in_address                                                 (DE4_SOPC_clock_1_in_address),
+      .DE4_SOPC_clock_1_in_byteenable                                              (DE4_SOPC_clock_1_in_byteenable),
+      .DE4_SOPC_clock_1_in_endofpacket                                             (DE4_SOPC_clock_1_in_endofpacket),
+      .DE4_SOPC_clock_1_in_endofpacket_from_sa                                     (DE4_SOPC_clock_1_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_1_in_nativeaddress                                           (DE4_SOPC_clock_1_in_nativeaddress),
+      .DE4_SOPC_clock_1_in_read                                                    (DE4_SOPC_clock_1_in_read),
+      .DE4_SOPC_clock_1_in_readdata                                                (DE4_SOPC_clock_1_in_readdata),
+      .DE4_SOPC_clock_1_in_readdata_from_sa                                        (DE4_SOPC_clock_1_in_readdata_from_sa),
+      .DE4_SOPC_clock_1_in_reset_n                                                 (DE4_SOPC_clock_1_in_reset_n),
+      .DE4_SOPC_clock_1_in_waitrequest                                             (DE4_SOPC_clock_1_in_waitrequest),
+      .DE4_SOPC_clock_1_in_waitrequest_from_sa                                     (DE4_SOPC_clock_1_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_1_in_write                                                   (DE4_SOPC_clock_1_in_write),
+      .DE4_SOPC_clock_1_in_writedata                                               (DE4_SOPC_clock_1_in_writedata),
+      .clk                                                                         (pll_sys_clk),
+      .cpu_data_master_address_to_slave                                            (cpu_data_master_address_to_slave),
+      .cpu_data_master_byteenable                                                  (cpu_data_master_byteenable),
+      .cpu_data_master_granted_DE4_SOPC_clock_1_in                                 (cpu_data_master_granted_DE4_SOPC_clock_1_in),
+      .cpu_data_master_latency_counter                                             (cpu_data_master_latency_counter),
+      .cpu_data_master_qualified_request_DE4_SOPC_clock_1_in                       (cpu_data_master_qualified_request_DE4_SOPC_clock_1_in),
+      .cpu_data_master_read                                                        (cpu_data_master_read),
+      .cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in                         (cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in),
+      .cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register (cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register),
+      .cpu_data_master_requests_DE4_SOPC_clock_1_in                                (cpu_data_master_requests_DE4_SOPC_clock_1_in),
+      .cpu_data_master_write                                                       (cpu_data_master_write),
+      .cpu_data_master_writedata                                                   (cpu_data_master_writedata),
+      .d1_DE4_SOPC_clock_1_in_end_xfer                                             (d1_DE4_SOPC_clock_1_in_end_xfer),
+      .reset_n                                                                     (pll_sys_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_1_out_arbitrator the_DE4_SOPC_clock_1_out
+    (
+      .DE4_SOPC_clock_1_out_address                                       (DE4_SOPC_clock_1_out_address),
+      .DE4_SOPC_clock_1_out_address_to_slave                              (DE4_SOPC_clock_1_out_address_to_slave),
+      .DE4_SOPC_clock_1_out_byteenable                                    (DE4_SOPC_clock_1_out_byteenable),
+      .DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave           (DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave (DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_read                                          (DE4_SOPC_clock_1_out_read),
+      .DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave   (DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_readdata                                      (DE4_SOPC_clock_1_out_readdata),
+      .DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave          (DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_reset_n                                       (DE4_SOPC_clock_1_out_reset_n),
+      .DE4_SOPC_clock_1_out_waitrequest                                   (DE4_SOPC_clock_1_out_waitrequest),
+      .DE4_SOPC_clock_1_out_write                                         (DE4_SOPC_clock_1_out_write),
+      .DE4_SOPC_clock_1_out_writedata                                     (DE4_SOPC_clock_1_out_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_jtag_uart_avalon_jtag_slave_end_xfer                            (d1_jtag_uart_avalon_jtag_slave_end_xfer),
+      .jtag_uart_avalon_jtag_slave_readdata_from_sa                       (jtag_uart_avalon_jtag_slave_readdata_from_sa),
+      .jtag_uart_avalon_jtag_slave_waitrequest_from_sa                    (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_1 the_DE4_SOPC_clock_1
+    (
+      .master_address       (DE4_SOPC_clock_1_out_address),
+      .master_byteenable    (DE4_SOPC_clock_1_out_byteenable),
+      .master_clk           (pll_peripheral_clk),
+      .master_endofpacket   (DE4_SOPC_clock_1_out_endofpacket),
+      .master_nativeaddress (DE4_SOPC_clock_1_out_nativeaddress),
+      .master_read          (DE4_SOPC_clock_1_out_read),
+      .master_readdata      (DE4_SOPC_clock_1_out_readdata),
+      .master_reset_n       (DE4_SOPC_clock_1_out_reset_n),
+      .master_waitrequest   (DE4_SOPC_clock_1_out_waitrequest),
+      .master_write         (DE4_SOPC_clock_1_out_write),
+      .master_writedata     (DE4_SOPC_clock_1_out_writedata),
+      .slave_address        (DE4_SOPC_clock_1_in_address),
+      .slave_byteenable     (DE4_SOPC_clock_1_in_byteenable),
+      .slave_clk            (pll_sys_clk),
+      .slave_endofpacket    (DE4_SOPC_clock_1_in_endofpacket),
+      .slave_nativeaddress  (DE4_SOPC_clock_1_in_nativeaddress),
+      .slave_read           (DE4_SOPC_clock_1_in_read),
+      .slave_readdata       (DE4_SOPC_clock_1_in_readdata),
+      .slave_reset_n        (DE4_SOPC_clock_1_in_reset_n),
+      .slave_waitrequest    (DE4_SOPC_clock_1_in_waitrequest),
+      .slave_write          (DE4_SOPC_clock_1_in_write),
+      .slave_writedata      (DE4_SOPC_clock_1_in_writedata)
+    );
+
   acq_busy_pio_s1_arbitrator the_acq_busy_pio_s1
     (
       .acq_busy_pio_s1_address                                        (acq_busy_pio_s1_address),
@@ -12401,6 +13072,8 @@ module DE4_SOPC (
     (
       .DE4_SOPC_clock_0_in_readdata_from_sa                                        (DE4_SOPC_clock_0_in_readdata_from_sa),
       .DE4_SOPC_clock_0_in_waitrequest_from_sa                                     (DE4_SOPC_clock_0_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_1_in_readdata_from_sa                                        (DE4_SOPC_clock_1_in_readdata_from_sa),
+      .DE4_SOPC_clock_1_in_waitrequest_from_sa                                     (DE4_SOPC_clock_1_in_waitrequest_from_sa),
       .clk                                                                         (pll_sys_clk),
       .cpu_data_master_address                                                     (cpu_data_master_address),
       .cpu_data_master_address_to_slave                                            (cpu_data_master_address_to_slave),
@@ -12409,11 +13082,11 @@ module DE4_SOPC (
       .cpu_data_master_dbs_address                                                 (cpu_data_master_dbs_address),
       .cpu_data_master_dbs_write_16                                                (cpu_data_master_dbs_write_16),
       .cpu_data_master_granted_DE4_SOPC_clock_0_in                                 (cpu_data_master_granted_DE4_SOPC_clock_0_in),
+      .cpu_data_master_granted_DE4_SOPC_clock_1_in                                 (cpu_data_master_granted_DE4_SOPC_clock_1_in),
       .cpu_data_master_granted_cpu_jtag_debug_module                               (cpu_data_master_granted_cpu_jtag_debug_module),
       .cpu_data_master_granted_descriptor_memory_s1                                (cpu_data_master_granted_descriptor_memory_s1),
       .cpu_data_master_granted_ext_flash_s1                                        (cpu_data_master_granted_ext_flash_s1),
       .cpu_data_master_granted_high_res_timer_s1                                   (cpu_data_master_granted_high_res_timer_s1),
-      .cpu_data_master_granted_jtag_uart_avalon_jtag_slave                         (cpu_data_master_granted_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_granted_onchip_memory_s1                                    (cpu_data_master_granted_onchip_memory_s1),
       .cpu_data_master_granted_peripheral_clock_crossing_s1                        (cpu_data_master_granted_peripheral_clock_crossing_s1),
       .cpu_data_master_granted_sgdma_rx_csr                                        (cpu_data_master_granted_sgdma_rx_csr),
@@ -12424,11 +13097,11 @@ module DE4_SOPC (
       .cpu_data_master_irq                                                         (cpu_data_master_irq),
       .cpu_data_master_latency_counter                                             (cpu_data_master_latency_counter),
       .cpu_data_master_qualified_request_DE4_SOPC_clock_0_in                       (cpu_data_master_qualified_request_DE4_SOPC_clock_0_in),
+      .cpu_data_master_qualified_request_DE4_SOPC_clock_1_in                       (cpu_data_master_qualified_request_DE4_SOPC_clock_1_in),
       .cpu_data_master_qualified_request_cpu_jtag_debug_module                     (cpu_data_master_qualified_request_cpu_jtag_debug_module),
       .cpu_data_master_qualified_request_descriptor_memory_s1                      (cpu_data_master_qualified_request_descriptor_memory_s1),
       .cpu_data_master_qualified_request_ext_flash_s1                              (cpu_data_master_qualified_request_ext_flash_s1),
       .cpu_data_master_qualified_request_high_res_timer_s1                         (cpu_data_master_qualified_request_high_res_timer_s1),
-      .cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave               (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_qualified_request_onchip_memory_s1                          (cpu_data_master_qualified_request_onchip_memory_s1),
       .cpu_data_master_qualified_request_peripheral_clock_crossing_s1              (cpu_data_master_qualified_request_peripheral_clock_crossing_s1),
       .cpu_data_master_qualified_request_sgdma_rx_csr                              (cpu_data_master_qualified_request_sgdma_rx_csr),
@@ -12438,11 +13111,11 @@ module DE4_SOPC (
       .cpu_data_master_qualified_request_tse_mac_control_port                      (cpu_data_master_qualified_request_tse_mac_control_port),
       .cpu_data_master_read                                                        (cpu_data_master_read),
       .cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in                         (cpu_data_master_read_data_valid_DE4_SOPC_clock_0_in),
+      .cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in                         (cpu_data_master_read_data_valid_DE4_SOPC_clock_1_in),
       .cpu_data_master_read_data_valid_cpu_jtag_debug_module                       (cpu_data_master_read_data_valid_cpu_jtag_debug_module),
       .cpu_data_master_read_data_valid_descriptor_memory_s1                        (cpu_data_master_read_data_valid_descriptor_memory_s1),
       .cpu_data_master_read_data_valid_ext_flash_s1                                (cpu_data_master_read_data_valid_ext_flash_s1),
       .cpu_data_master_read_data_valid_high_res_timer_s1                           (cpu_data_master_read_data_valid_high_res_timer_s1),
-      .cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave                 (cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_read_data_valid_onchip_memory_s1                            (cpu_data_master_read_data_valid_onchip_memory_s1),
       .cpu_data_master_read_data_valid_peripheral_clock_crossing_s1                (cpu_data_master_read_data_valid_peripheral_clock_crossing_s1),
       .cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register (cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register),
@@ -12454,11 +13127,11 @@ module DE4_SOPC (
       .cpu_data_master_readdata                                                    (cpu_data_master_readdata),
       .cpu_data_master_readdatavalid                                               (cpu_data_master_readdatavalid),
       .cpu_data_master_requests_DE4_SOPC_clock_0_in                                (cpu_data_master_requests_DE4_SOPC_clock_0_in),
+      .cpu_data_master_requests_DE4_SOPC_clock_1_in                                (cpu_data_master_requests_DE4_SOPC_clock_1_in),
       .cpu_data_master_requests_cpu_jtag_debug_module                              (cpu_data_master_requests_cpu_jtag_debug_module),
       .cpu_data_master_requests_descriptor_memory_s1                               (cpu_data_master_requests_descriptor_memory_s1),
       .cpu_data_master_requests_ext_flash_s1                                       (cpu_data_master_requests_ext_flash_s1),
       .cpu_data_master_requests_high_res_timer_s1                                  (cpu_data_master_requests_high_res_timer_s1),
-      .cpu_data_master_requests_jtag_uart_avalon_jtag_slave                        (cpu_data_master_requests_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_requests_onchip_memory_s1                                   (cpu_data_master_requests_onchip_memory_s1),
       .cpu_data_master_requests_peripheral_clock_crossing_s1                       (cpu_data_master_requests_peripheral_clock_crossing_s1),
       .cpu_data_master_requests_sgdma_rx_csr                                       (cpu_data_master_requests_sgdma_rx_csr),
@@ -12471,11 +13144,11 @@ module DE4_SOPC (
       .cpu_data_master_writedata                                                   (cpu_data_master_writedata),
       .cpu_jtag_debug_module_readdata_from_sa                                      (cpu_jtag_debug_module_readdata_from_sa),
       .d1_DE4_SOPC_clock_0_in_end_xfer                                             (d1_DE4_SOPC_clock_0_in_end_xfer),
+      .d1_DE4_SOPC_clock_1_in_end_xfer                                             (d1_DE4_SOPC_clock_1_in_end_xfer),
       .d1_cpu_jtag_debug_module_end_xfer                                           (d1_cpu_jtag_debug_module_end_xfer),
       .d1_descriptor_memory_s1_end_xfer                                            (d1_descriptor_memory_s1_end_xfer),
       .d1_flash_tristate_bridge_avalon_slave_end_xfer                              (d1_flash_tristate_bridge_avalon_slave_end_xfer),
       .d1_high_res_timer_s1_end_xfer                                               (d1_high_res_timer_s1_end_xfer),
-      .d1_jtag_uart_avalon_jtag_slave_end_xfer                                     (d1_jtag_uart_avalon_jtag_slave_end_xfer),
       .d1_onchip_memory_s1_end_xfer                                                (d1_onchip_memory_s1_end_xfer),
       .d1_peripheral_clock_crossing_s1_end_xfer                                    (d1_peripheral_clock_crossing_s1_end_xfer),
       .d1_sgdma_rx_csr_end_xfer                                                    (d1_sgdma_rx_csr_end_xfer),
@@ -12489,11 +13162,11 @@ module DE4_SOPC (
       .high_res_timer_s1_readdata_from_sa                                          (high_res_timer_s1_readdata_from_sa),
       .incoming_flash_tristate_bridge_data_with_Xs_converted_to_0                  (incoming_flash_tristate_bridge_data_with_Xs_converted_to_0),
       .jtag_uart_avalon_jtag_slave_irq_from_sa                                     (jtag_uart_avalon_jtag_slave_irq_from_sa),
-      .jtag_uart_avalon_jtag_slave_readdata_from_sa                                (jtag_uart_avalon_jtag_slave_readdata_from_sa),
-      .jtag_uart_avalon_jtag_slave_waitrequest_from_sa                             (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
       .onchip_memory_s1_readdata_from_sa                                           (onchip_memory_s1_readdata_from_sa),
       .peripheral_clock_crossing_s1_readdata_from_sa                               (peripheral_clock_crossing_s1_readdata_from_sa),
       .peripheral_clock_crossing_s1_waitrequest_from_sa                            (peripheral_clock_crossing_s1_waitrequest_from_sa),
+      .pll_sys_clk                                                                 (pll_sys_clk),
+      .pll_sys_clk_reset_n                                                         (pll_sys_clk_reset_n),
       .reset_n                                                                     (pll_sys_clk_reset_n),
       .sgdma_rx_csr_irq_from_sa                                                    (sgdma_rx_csr_irq_from_sa),
       .sgdma_rx_csr_readdata_from_sa                                               (sgdma_rx_csr_readdata_from_sa),
@@ -12709,35 +13382,34 @@ module DE4_SOPC (
 
   jtag_uart_avalon_jtag_slave_arbitrator the_jtag_uart_avalon_jtag_slave
     (
-      .clk                                                                         (pll_sys_clk),
-      .cpu_data_master_address_to_slave                                            (cpu_data_master_address_to_slave),
-      .cpu_data_master_granted_jtag_uart_avalon_jtag_slave                         (cpu_data_master_granted_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_latency_counter                                             (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave               (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_read                                                        (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave                 (cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register (cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register),
-      .cpu_data_master_requests_jtag_uart_avalon_jtag_slave                        (cpu_data_master_requests_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_write                                                       (cpu_data_master_write),
-      .cpu_data_master_writedata                                                   (cpu_data_master_writedata),
-      .d1_jtag_uart_avalon_jtag_slave_end_xfer                                     (d1_jtag_uart_avalon_jtag_slave_end_xfer),
-      .jtag_uart_avalon_jtag_slave_address                                         (jtag_uart_avalon_jtag_slave_address),
-      .jtag_uart_avalon_jtag_slave_chipselect                                      (jtag_uart_avalon_jtag_slave_chipselect),
-      .jtag_uart_avalon_jtag_slave_dataavailable                                   (jtag_uart_avalon_jtag_slave_dataavailable),
-      .jtag_uart_avalon_jtag_slave_dataavailable_from_sa                           (jtag_uart_avalon_jtag_slave_dataavailable_from_sa),
-      .jtag_uart_avalon_jtag_slave_irq                                             (jtag_uart_avalon_jtag_slave_irq),
-      .jtag_uart_avalon_jtag_slave_irq_from_sa                                     (jtag_uart_avalon_jtag_slave_irq_from_sa),
-      .jtag_uart_avalon_jtag_slave_read_n                                          (jtag_uart_avalon_jtag_slave_read_n),
-      .jtag_uart_avalon_jtag_slave_readdata                                        (jtag_uart_avalon_jtag_slave_readdata),
-      .jtag_uart_avalon_jtag_slave_readdata_from_sa                                (jtag_uart_avalon_jtag_slave_readdata_from_sa),
-      .jtag_uart_avalon_jtag_slave_readyfordata                                    (jtag_uart_avalon_jtag_slave_readyfordata),
-      .jtag_uart_avalon_jtag_slave_readyfordata_from_sa                            (jtag_uart_avalon_jtag_slave_readyfordata_from_sa),
-      .jtag_uart_avalon_jtag_slave_reset_n                                         (jtag_uart_avalon_jtag_slave_reset_n),
-      .jtag_uart_avalon_jtag_slave_waitrequest                                     (jtag_uart_avalon_jtag_slave_waitrequest),
-      .jtag_uart_avalon_jtag_slave_waitrequest_from_sa                             (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
-      .jtag_uart_avalon_jtag_slave_write_n                                         (jtag_uart_avalon_jtag_slave_write_n),
-      .jtag_uart_avalon_jtag_slave_writedata                                       (jtag_uart_avalon_jtag_slave_writedata),
-      .reset_n                                                                     (pll_sys_clk_reset_n)
+      .DE4_SOPC_clock_1_out_address_to_slave                              (DE4_SOPC_clock_1_out_address_to_slave),
+      .DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave           (DE4_SOPC_clock_1_out_granted_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_nativeaddress                                 (DE4_SOPC_clock_1_out_nativeaddress),
+      .DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave (DE4_SOPC_clock_1_out_qualified_request_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_read                                          (DE4_SOPC_clock_1_out_read),
+      .DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave   (DE4_SOPC_clock_1_out_read_data_valid_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave          (DE4_SOPC_clock_1_out_requests_jtag_uart_avalon_jtag_slave),
+      .DE4_SOPC_clock_1_out_write                                         (DE4_SOPC_clock_1_out_write),
+      .DE4_SOPC_clock_1_out_writedata                                     (DE4_SOPC_clock_1_out_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_jtag_uart_avalon_jtag_slave_end_xfer                            (d1_jtag_uart_avalon_jtag_slave_end_xfer),
+      .jtag_uart_avalon_jtag_slave_address                                (jtag_uart_avalon_jtag_slave_address),
+      .jtag_uart_avalon_jtag_slave_chipselect                             (jtag_uart_avalon_jtag_slave_chipselect),
+      .jtag_uart_avalon_jtag_slave_dataavailable                          (jtag_uart_avalon_jtag_slave_dataavailable),
+      .jtag_uart_avalon_jtag_slave_dataavailable_from_sa                  (jtag_uart_avalon_jtag_slave_dataavailable_from_sa),
+      .jtag_uart_avalon_jtag_slave_irq                                    (jtag_uart_avalon_jtag_slave_irq),
+      .jtag_uart_avalon_jtag_slave_irq_from_sa                            (jtag_uart_avalon_jtag_slave_irq_from_sa),
+      .jtag_uart_avalon_jtag_slave_read_n                                 (jtag_uart_avalon_jtag_slave_read_n),
+      .jtag_uart_avalon_jtag_slave_readdata                               (jtag_uart_avalon_jtag_slave_readdata),
+      .jtag_uart_avalon_jtag_slave_readdata_from_sa                       (jtag_uart_avalon_jtag_slave_readdata_from_sa),
+      .jtag_uart_avalon_jtag_slave_readyfordata                           (jtag_uart_avalon_jtag_slave_readyfordata),
+      .jtag_uart_avalon_jtag_slave_readyfordata_from_sa                   (jtag_uart_avalon_jtag_slave_readyfordata_from_sa),
+      .jtag_uart_avalon_jtag_slave_reset_n                                (jtag_uart_avalon_jtag_slave_reset_n),
+      .jtag_uart_avalon_jtag_slave_waitrequest                            (jtag_uart_avalon_jtag_slave_waitrequest),
+      .jtag_uart_avalon_jtag_slave_waitrequest_from_sa                    (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
+      .jtag_uart_avalon_jtag_slave_write_n                                (jtag_uart_avalon_jtag_slave_write_n),
+      .jtag_uart_avalon_jtag_slave_writedata                              (jtag_uart_avalon_jtag_slave_writedata),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
     );
 
   jtag_uart the_jtag_uart
@@ -12750,7 +13422,7 @@ module DE4_SOPC (
       .av_waitrequest (jtag_uart_avalon_jtag_slave_waitrequest),
       .av_write_n     (jtag_uart_avalon_jtag_slave_write_n),
       .av_writedata   (jtag_uart_avalon_jtag_slave_writedata),
-      .clk            (pll_sys_clk),
+      .clk            (pll_peripheral_clk),
       .dataavailable  (jtag_uart_avalon_jtag_slave_dataavailable),
       .readyfordata   (jtag_uart_avalon_jtag_slave_readyfordata),
       .rst_n          (jtag_uart_avalon_jtag_slave_reset_n)
@@ -13653,6 +14325,9 @@ module DE4_SOPC (
   //DE4_SOPC_clock_0_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign DE4_SOPC_clock_0_out_endofpacket = 0;
 
+  //DE4_SOPC_clock_1_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign DE4_SOPC_clock_1_out_endofpacket = 0;
+
   //peripheral_clock_crossing_m1_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign peripheral_clock_crossing_m1_endofpacket = 0;
 
@@ -13938,6 +14613,7 @@ endmodule
 `include "pll.v"
 `include "altpllpll.v"
 `include "sysid.v"
+`include "DE4_SOPC_clock_1.v"
 `include "high_res_timer.v"
 `include "read_RAM_address.v"
 `include "sys_timer.v"
@@ -13969,6 +14645,8 @@ module test_bench
 
   wire             DE4_SOPC_clock_0_in_endofpacket_from_sa;
   wire             DE4_SOPC_clock_0_out_endofpacket;
+  wire             DE4_SOPC_clock_1_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_1_out_endofpacket;
   wire             clk;
   reg              ext_clk;
   wire    [ 24: 0] flash_tristate_bridge_address;
@@ -14064,12 +14742,12 @@ module test_bench
   initial
     ext_clk = 1'b0;
   always
-    #3 ext_clk <= ~ext_clk;
+    #10 ext_clk <= ~ext_clk;
   
   initial 
     begin
       reset_n <= 0;
-      #65 reset_n <= 1;
+      #200 reset_n <= 1;
     end
 
 endmodule

@@ -510,7 +510,7 @@ gen_reset_n	net_gen_reset_n(
 // SOPC module
 DE4_SOPC	SOPC_INST (
 				// 1) global signals:
-				.ext_clk(sys_clk),		// OSC_50_BANK6
+				.ext_clk(OSC_50_BANK6),		// OSC_50_BANK6
 				.pll_peripheral_clk(),
 				.pll_sys_clk(),
 				.reset_n(global_reset_n),

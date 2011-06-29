@@ -28,7 +28,7 @@
 # command in the Quartus II TCL console:
 # set_global_assignment -name SDC_FILE "tse_mac"_constraints.sdc
 #
-# Generated on Tue Jun 28 17:10:36 EDT 2011
+# Generated on Wed Jun 29 14:13:22 EDT 2011
 #
 #####################################################################################
 # *************************************************************

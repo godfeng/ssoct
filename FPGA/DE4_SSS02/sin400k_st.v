@@ -20,7 +20,7 @@
 //	needed under any third party's intellectual property, are provided herein.
 
 
-module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, out_valid);
+module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, fcos_o, out_valid);
 
 parameter mpr = 14;
 parameter opr = 28;
@@ -61,6 +61,7 @@ input clken;
 input [apr-1:0] phi_inc_i; 
 
 output [mpr-1:0] fsin_o;
+output [mpr-1:0] fcos_o;
 output out_valid;
 wire reset; 
 assign reset = !reset_n;
@@ -86,6 +87,7 @@ wire select_c;
 wire [opr:0] result_i;	
 wire [opr:0] result_r;	
 wire [mpr-1:0] fsin_o_w;	
+wire [mpr-1:0] fcos_o_w;	
 
 assign phi_inc_i_w = phi_inc_i;
 
@@ -175,6 +177,19 @@ defparam m0.mpr = mpr;
 defparam m0.opr = opr;
 defparam m0.oprp1 = oprp1;
 
+mac_i_lpm m1(.clk(clk),
+                .reset(reset), 
+         .clken(clken), 
+         .a_or_s(select_s),
+         .dataa_0(rcy_c),
+         .dataa_1(rcy_s),
+         .datab_0(rfy_c),
+         .datab_1(rfy_s),
+         .result(result_r));
+defparam m1.mpr = mpr;
+defparam m1.opr = opr;
+defparam m1.oprp1 = oprp1;
+
 asj_nco_derot ux0136(.crwx_rc(rcx_c),
                      .crwx_rf(rfx_c),
                      .srwx_rc(rcx_s),
@@ -188,7 +203,6 @@ defparam ux0136.mpr = mpr;
 defparam ux0136.rxt = rdw;
 
 assign select_s = 1'b0; 
-assign select_c = 1'b1; 
 asj_nco_mob_w blk0( .clk(clk),
                     .reset(reset),
                     .clken(clken),
@@ -197,7 +211,17 @@ asj_nco_mob_w blk0( .clk(clk),
 
 defparam blk0.mpr = mpr;
 defparam blk0.opr = opr;
+assign select_c = 1'b1; 
+asj_nco_mob_w blk1( .clk(clk),
+                    .reset(reset),
+                    .clken(clken),
+                    .data_in(result_r),
+                    .data_out(fcos_o_w));
+
+defparam blk1.mpr = mpr;
+defparam blk1.opr = opr;
 assign fsin_o = fsin_o_w;
+assign fcos_o = fcos_o_w;
 
 
 asj_nco_isdr ux710isdr(.clk(clk),                              

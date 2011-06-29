@@ -25,20 +25,21 @@ module sin400k_tb;
 
 wire out_valid;
 wire [13:0] sin_val;
+wire [13:0] cos_val;
 reg [31:0] phi;
 reg reset_n;
 reg clken;
 reg clk;
 
-parameter CYCLE = 3200;
-parameter HALF_CYCLE = 1600;
+parameter CYCLE = 6400;
+parameter HALF_CYCLE = 3200;
 initial
   begin
     $dumpvars;
     #0 clk = 1'b0;
     #0 reset_n = 1'b0;
     #0 clken = 1'b1;
-    #0 phi = 32'b00000000010100111110001011010110;
+    #0 phi = 32'b00000000101001111100010110101100;
     #(14*HALF_CYCLE) reset_n = 1'b1;
   end
 
@@ -49,9 +50,11 @@ always
   end
 
 integer sin_ch, sin_print;
+integer cos_ch, cos_print;
 initial
   begin
     sin_ch = $fopen ("fsin_o_ver_sin400k.txt");
+    cos_ch = $fopen ("fcos_o_ver_sin400k.txt");
   end
 
 always @(posedge clk)
@@ -63,13 +66,20 @@ always @(posedge clk)
         else
           sin_print =  sin_val[13:0] - (1<<14);
 
+      if (cos_val[13:0] < (1<<13))
+        cos_print = cos_val[13:0];
+      else
+        cos_print =  cos_val[13:0] - (1<<14);
+
     $fdisplay (sin_ch, "%0d", sin_print);
+    $fdisplay (cos_ch, "%0d", cos_print);
       end
 end
 
 sin400k i_sin400k (
     .out_valid(out_valid),
     .fsin_o(sin_val[13:0]),
+    .fcos_o(cos_val[13:0]),
     .phi_inc_i(phi[31:0]),
     .reset_n(reset_n),
     .clken(clken),

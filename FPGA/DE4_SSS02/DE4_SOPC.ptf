@@ -15,7 +15,7 @@ SYSTEM DE4_SOPC
       {
          CLOCK ext_clk
          {
-            frequency = "156250000";
+            frequency = "50000000";
             source = "External";
             Is_Clock_Source = "0";
             display_name = "ext_clk";
@@ -24,7 +24,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "75000000";
+            frequency = "70000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -33,7 +33,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "75000000";
+            frequency = "70000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
@@ -55,8 +55,8 @@ SYSTEM DE4_SOPC
             display_name = "pll_peripheral_clk";
          }
       }
-      clock_freq = "156250000";
-      clock_freq = "156250000";
+      clock_freq = "50000000";
+      clock_freq = "50000000";
       board_class = "";
       view_master_columns = "1";
       view_master_priorities = "0";
@@ -1855,20 +1855,20 @@ SYSTEM DE4_SOPC
          {
             CLOCK c0
             {
-               DIVIDE_BY = "25";
+               DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "12";
+               MULTIPLY_BY = "7";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "75000000";
+               clock_freq = "70000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
             CLOCK c1
             {
-               DIVIDE_BY = "125";
+               DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "32";
+               MULTIPLY_BY = "4";
                PHASE_SHIFT = "0";
                clk_index = "1";
                clock_freq = "40000000";
@@ -1880,7 +1880,7 @@ SYSTEM DE4_SOPC
          {
             CLOCK inclk0
             {
-               clock_freq = "156250000";
+               clock_freq = "50000000";
                clock_unit = "MHz";
                type = "in_clk";
             }
@@ -1945,17 +1945,17 @@ SYSTEM DE4_SOPC
                }
                NUMERIC 
                {
-                  CLK0_DIVIDE_BY = "25";
+                  CLK0_DIVIDE_BY = "5";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "12";
-                  CLK1_DIVIDE_BY = "125";
+                  CLK0_MULTIPLY_BY = "7";
+                  CLK1_DIVIDE_BY = "5";
                   CLK1_DUTY_CYCLE = "50";
-                  CLK1_MULTIPLY_BY = "32";
-                  INCLK0_INPUT_FREQUENCY = "6400";
+                  CLK1_MULTIPLY_BY = "4";
+                  INCLK0_INPUT_FREQUENCY = "20000";
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1978,7 +1978,7 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "75.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "70.000000";
                   EFF_OUTPUT_FREQ_VALUE1 = "40.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
@@ -1986,7 +1986,7 @@ SYSTEM DE4_SOPC
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "156.250";
+                  INCLK0_FREQ_EDIT = "50.0";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -1996,12 +1996,12 @@ SYSTEM DE4_SOPC
                   INT_FEEDBACK__MODE_RADIO = "1";
                   LOCKED_OUTPUT_CHECK = "0";
                   LONG_SCAN_RADIO = "1";
-                  LVDS_MODE_DATA_RATE = "312.500";
+                  LVDS_MODE_DATA_RATE = "350.000";
                   LVDS_PHASE_SHIFT_UNIT0 = "ps";
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "75.00000000";
+                  OUTPUT_FREQ0 = "70.00000000";
                   OUTPUT_FREQ1 = "40.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>6E52299A</b>    (unique ID tag) <br> <b>4E0A4324</b> (timestamp: Tue Jun 28, 2011 @5:09 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>405DAF4A</b>    (unique ID tag) <br> <b>4E0B6B1E</b> (timestamp: Wed Jun 29, 2011 @2:12 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "1850878362u";
-         timestamp = "1309295396u";
+         id = "1079881546u";
+         timestamp = "1309371166u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1850878362 --timestamp=1309295396";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1079881546 --timestamp=1309371166";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2738,7 +2738,7 @@ SYSTEM DE4_SOPC
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
-         Clock_Source = "pll_sys_clk";
+         Clock_Source = "pll_peripheral_clk";
          Has_Clock = "1";
          Instantiate_In_System_Module = "1";
          Iss_Launch_Telnet = "0";
@@ -2897,7 +2897,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "74999";
+         load_value = "69999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -3047,7 +3047,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "749999";
+         load_value = "699999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";

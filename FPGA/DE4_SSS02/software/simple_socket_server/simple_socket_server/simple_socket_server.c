@@ -341,7 +341,7 @@ void sss_exec_command(SSSConn* conn)
 
                     if (acq_busy_signal == 0)//acq_busy_signal == 0
                     {
-                        for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
+                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                         {
                             // Read data port (from RAM)
                             ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
@@ -413,7 +413,7 @@ void sss_exec_command(SSSConn* conn)
 
                     if (acq_busy_signal == 0)//acq_busy_signal == 0
                     {
-                        for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
+                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                         {
                             // Read data port (from RAM)
                             ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
