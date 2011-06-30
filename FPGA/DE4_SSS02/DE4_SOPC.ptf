@@ -24,7 +24,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "70000000";
+            frequency = "80000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -33,14 +33,14 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "70000000";
+            frequency = "80000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
          }
          CLOCK pll_c1
          {
-            frequency = "40000000";
+            frequency = "60000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c1 from pll";
@@ -49,7 +49,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_peripheral_clk
          {
-            frequency = "40000000";
+            frequency = "60000000";
             source = "pll_c1";
             Is_Clock_Source = "0";
             display_name = "pll_peripheral_clk";
@@ -164,14 +164,14 @@ SYSTEM DE4_SOPC
          {
             Entry cpu/jtag_debug_module
             {
-               address = "0x05100800";
+               address = "0x05200800";
                span = "0x00000800";
                is_bridge = "0";
             }
             Entry onchip_memory/s1
             {
-               address = "0x05080000";
-               span = "0x0007d000";
+               address = "0x05100000";
+               span = "0x000fa000";
                is_bridge = "0";
             }
             Entry ext_flash/s1
@@ -320,14 +320,14 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/instruction_master
             {
                priority = "1";
-               Offset_Address = "0x05100800";
+               Offset_Address = "0x05200800";
             }
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05100800";
+               Offset_Address = "0x05200800";
             }
-            Base_Address = "0x05100800";
+            Base_Address = "0x05200800";
             Is_Readable = "1";
             Is_Writeable = "1";
             Uses_Tri_State_Data_Bus = "0";
@@ -528,67 +528,67 @@ SYSTEM DE4_SOPC
          {
             Entry cpu/jtag_debug_module
             {
-               address = "0x05100800";
+               address = "0x05200800";
                span = "0x00000800";
                is_bridge = "0";
             }
             Entry pll/s1
             {
-               address = "0x05101c80";
+               address = "0x05201c80";
                span = "0x00000020";
                is_bridge = "0";
             }
             Entry onchip_memory/s1
             {
-               address = "0x05080000";
-               span = "0x0007d000";
+               address = "0x05100000";
+               span = "0x000fa000";
                is_bridge = "0";
             }
             Entry sysid/control_slave
             {
-               address = "0x05101ce0";
+               address = "0x05201ce0";
                span = "0x00000008";
                is_bridge = "0";
             }
             Entry jtag_uart/avalon_jtag_slave
             {
-               address = "0x05101ce8";
+               address = "0x05201ce8";
                span = "0x00000008";
                is_bridge = "0";
             }
             Entry high_res_timer/s1
             {
-               address = "0x05101ca0";
+               address = "0x05201ca0";
                span = "0x00000020";
                is_bridge = "0";
             }
             Entry sys_timer/s1
             {
-               address = "0x05101cc0";
+               address = "0x05201cc0";
                span = "0x00000020";
                is_bridge = "0";
             }
             Entry tse_mac/control_port
             {
-               address = "0x05101800";
+               address = "0x05201800";
                span = "0x00000400";
                is_bridge = "0";
             }
             Entry sgdma_tx/csr
             {
-               address = "0x05101c00";
+               address = "0x05201c00";
                span = "0x00000040";
                is_bridge = "0";
             }
             Entry sgdma_rx/csr
             {
-               address = "0x05101c40";
+               address = "0x05201c40";
                span = "0x00000040";
                is_bridge = "0";
             }
             Entry descriptor_memory/s1
             {
-               address = "0x05101000";
+               address = "0x05201000";
                span = "0x00000800";
                is_bridge = "0";
             }
@@ -1744,11 +1744,11 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101c80";
+               Offset_Address = "0x05201c80";
             }
             Clock_Source = "ext_clk";
             Has_Clock = "1";
-            Base_Address = "0x05101c80";
+            Base_Address = "0x05201c80";
             Has_IRQ = "0";
             Date_Modified = "";
             Instantiate_In_System_Module = "1";
@@ -1857,10 +1857,10 @@ SYSTEM DE4_SOPC
             {
                DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "7";
+               MULTIPLY_BY = "8";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "70000000";
+               clock_freq = "80000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1868,10 +1868,10 @@ SYSTEM DE4_SOPC
             {
                DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "4";
+               MULTIPLY_BY = "6";
                PHASE_SHIFT = "0";
                clk_index = "1";
-               clock_freq = "40000000";
+               clock_freq = "60000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1947,15 +1947,15 @@ SYSTEM DE4_SOPC
                {
                   CLK0_DIVIDE_BY = "5";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "7";
+                  CLK0_MULTIPLY_BY = "8";
                   CLK1_DIVIDE_BY = "5";
                   CLK1_DUTY_CYCLE = "50";
-                  CLK1_MULTIPLY_BY = "4";
+                  CLK1_MULTIPLY_BY = "6";
                   INCLK0_INPUT_FREQUENCY = "20000";
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1978,15 +1978,15 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "70.000000";
-                  EFF_OUTPUT_FREQ_VALUE1 = "40.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "80.000000";
+                  EFF_OUTPUT_FREQ_VALUE1 = "60.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
                   GLOCKED_COUNTER_EDIT_CHANGED = "1";
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "50.0";
+                  INCLK0_FREQ_EDIT = "50.000";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2001,8 +2001,8 @@ SYSTEM DE4_SOPC
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "70.00000000";
-                  OUTPUT_FREQ1 = "40.00000000";
+                  OUTPUT_FREQ0 = "80.00000000";
+                  OUTPUT_FREQ1 = "60.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
                   OUTPUT_FREQ_UNIT0 = "MHz";
@@ -2135,7 +2135,7 @@ SYSTEM DE4_SOPC
             PORT address
             {
                type = "address";
-               width = "17";
+               width = "18";
                direction = "input";
                Is_Enabled = "1";
             }
@@ -2194,7 +2194,7 @@ SYSTEM DE4_SOPC
             Address_Alignment = "dynamic";
             Well_Behaved_Waitrequest = "0";
             Is_Nonvolatile_Storage = "0";
-            Address_Span = "512000";
+            Address_Span = "1024000";
             Read_Latency = "1";
             Is_Memory_Device = "1";
             Maximum_Pending_Read_Transactions = "0";
@@ -2203,7 +2203,7 @@ SYSTEM DE4_SOPC
             Write_Latency = "0";
             Is_Flash = "0";
             Data_Width = "32";
-            Address_Width = "17";
+            Address_Width = "18";
             Maximum_Burst_Size = "1";
             Register_Incoming_Signals = "0";
             Register_Outgoing_Signals = "0";
@@ -2216,24 +2216,24 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/instruction_master
             {
                priority = "1";
-               Offset_Address = "0x05080000";
+               Offset_Address = "0x05100000";
             }
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05080000";
+               Offset_Address = "0x05100000";
             }
             MASTERED_BY sgdma_rx/m_write
             {
                priority = "1";
-               Offset_Address = "0x05080000";
+               Offset_Address = "0x05100000";
             }
             MASTERED_BY sgdma_tx/m_read
             {
                priority = "1";
-               Offset_Address = "0x05080000";
+               Offset_Address = "0x05100000";
             }
-            Base_Address = "0x05080000";
+            Base_Address = "0x05100000";
             Address_Group = "0";
             Has_IRQ = "0";
             Is_Channel = "1";
@@ -2254,10 +2254,10 @@ SYSTEM DE4_SOPC
          gui_ram_block_type = "M9K";
          Writeable = "1";
          dual_port = "0";
-         Size_Value = "512000";
+         Size_Value = "1024000";
          Size_Multiple = "1";
          use_shallow_mem_blocks = "0";
-         init_mem_content = "1";
+         init_mem_content = "0";
          allow_in_system_memory_content_editor = "0";
          instance_id = "NONE";
          read_during_write_mode = "DONT_CARE";
@@ -2278,7 +2278,7 @@ SYSTEM DE4_SOPC
                onchip_memory 
                {
                   Command1 = "@echo Post-processing to create $(notdir $@)";
-                  Command2 = "elf2hex $(ELF) 0x05080000 0x50FCFFF --width=32 $(QUARTUS_PROJECT_DIR)/onchip_memory.hex --create-lanes=0 ";
+                  Command2 = "elf2hex $(ELF) 0x05100000 0x51F9FFF --width=32 $(QUARTUS_PROJECT_DIR)/onchip_memory.hex --create-lanes=0 ";
                   Dependency = "$(ELF)";
                   Target_File = "$(QUARTUS_PROJECT_DIR)/onchip_memory.hex";
                }
@@ -2371,12 +2371,12 @@ SYSTEM DE4_SOPC
             Is_Memory_Device = "1";
             Address_Group = "0";
             Address_Alignment = "dynamic";
-            Address_Width = "17";
+            Address_Width = "18";
             Data_Width = "32";
             Has_IRQ = "0";
             Read_Wait_States = "0";
             Write_Wait_States = "0";
-            Address_Span = "512000";
+            Address_Span = "1024000";
             Read_Latency = "1";
             Is_Channel = "1";
             Is_Enabled = "0";
@@ -2454,9 +2454,9 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101ce0";
+               Offset_Address = "0x05201ce0";
             }
-            Base_Address = "0x05101ce0";
+            Base_Address = "0x05201ce0";
             Has_IRQ = "0";
             Address_Group = "0";
             IRQ_MASTER cpu/data_master
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>405DAF4A</b>    (unique ID tag) <br> <b>4E0B6B1E</b> (timestamp: Wed Jun 29, 2011 @2:12 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>35738F88</b>    (unique ID tag) <br> <b>4E0CE826</b> (timestamp: Thu Jun 30, 2011 @5:18 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "1079881546u";
-         timestamp = "1309371166u";
+         id = "896765832u";
+         timestamp = "1309468710u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05101ce0 --id=1079881546 --timestamp=1309371166";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05201ce0 --id=896765832 --timestamp=1309468710";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2641,13 +2641,13 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101ce8";
+               Offset_Address = "0x05201ce8";
             }
             IRQ_MASTER cpu/data_master
             {
                IRQ_Number = "0";
             }
-            Base_Address = "0x05101ce8";
+            Base_Address = "0x05201ce8";
             Address_Group = "0";
          }
       }
@@ -2859,13 +2859,13 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101ca0";
+               Offset_Address = "0x05201ca0";
             }
             IRQ_MASTER cpu/data_master
             {
                IRQ_Number = "1";
             }
-            Base_Address = "0x05101ca0";
+            Base_Address = "0x05201ca0";
             Address_Group = "0";
          }
       }
@@ -2897,7 +2897,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "69999";
+         load_value = "79999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -3009,13 +3009,13 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101cc0";
+               Offset_Address = "0x05201cc0";
             }
             IRQ_MASTER cpu/data_master
             {
                IRQ_Number = "2";
             }
-            Base_Address = "0x05101cc0";
+            Base_Address = "0x05201cc0";
             Address_Group = "0";
          }
       }
@@ -3047,7 +3047,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "699999";
+         load_value = "799999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";
@@ -3302,11 +3302,11 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101800";
+               Offset_Address = "0x05201800";
             }
             Clock_Source = "pll_sys_clk";
             Has_Clock = "1";
-            Base_Address = "0x05101800";
+            Base_Address = "0x05201800";
             Address_Group = "1";
             IRQ_MASTER cpu/data_master
             {
@@ -3672,13 +3672,13 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101c00";
+               Offset_Address = "0x05201c00";
             }
             IRQ_MASTER cpu/data_master
             {
                IRQ_Number = "3";
             }
-            Base_Address = "0x05101c00";
+            Base_Address = "0x05201c00";
             Address_Group = "0";
          }
       }
@@ -3834,8 +3834,8 @@ SYSTEM DE4_SOPC
          {
             Entry onchip_memory/s1
             {
-               address = "0x05080000";
-               span = "0x0007d000";
+               address = "0x05100000";
+               span = "0x000fa000";
                is_bridge = "0";
             }
          }
@@ -3912,7 +3912,7 @@ SYSTEM DE4_SOPC
          {
             Entry descriptor_memory/s1
             {
-               address = "0x05101000";
+               address = "0x05201000";
                span = "0x00000800";
                is_bridge = "0";
             }
@@ -4004,7 +4004,7 @@ SYSTEM DE4_SOPC
          {
             Entry descriptor_memory/s1
             {
-               address = "0x05101000";
+               address = "0x05201000";
                span = "0x00000800";
                is_bridge = "0";
             }
@@ -4215,13 +4215,13 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101c40";
+               Offset_Address = "0x05201c40";
             }
             IRQ_MASTER cpu/data_master
             {
                IRQ_Number = "4";
             }
-            Base_Address = "0x05101c40";
+            Base_Address = "0x05201c40";
             Address_Group = "0";
          }
       }
@@ -4384,8 +4384,8 @@ SYSTEM DE4_SOPC
          {
             Entry onchip_memory/s1
             {
-               address = "0x05080000";
-               span = "0x0007d000";
+               address = "0x05100000";
+               span = "0x000fa000";
                is_bridge = "0";
             }
          }
@@ -4462,7 +4462,7 @@ SYSTEM DE4_SOPC
          {
             Entry descriptor_memory/s1
             {
-               address = "0x05101000";
+               address = "0x05201000";
                span = "0x00000800";
                is_bridge = "0";
             }
@@ -4554,7 +4554,7 @@ SYSTEM DE4_SOPC
          {
             Entry descriptor_memory/s1
             {
-               address = "0x05101000";
+               address = "0x05201000";
                span = "0x00000800";
                is_bridge = "0";
             }
@@ -4751,29 +4751,29 @@ SYSTEM DE4_SOPC
             MASTERED_BY cpu/data_master
             {
                priority = "1";
-               Offset_Address = "0x05101000";
+               Offset_Address = "0x05201000";
             }
             MASTERED_BY sgdma_rx/descriptor_read
             {
                priority = "1";
-               Offset_Address = "0x05101000";
+               Offset_Address = "0x05201000";
             }
             MASTERED_BY sgdma_rx/descriptor_write
             {
                priority = "1";
-               Offset_Address = "0x05101000";
+               Offset_Address = "0x05201000";
             }
             MASTERED_BY sgdma_tx/descriptor_read
             {
                priority = "1";
-               Offset_Address = "0x05101000";
+               Offset_Address = "0x05201000";
             }
             MASTERED_BY sgdma_tx/descriptor_write
             {
                priority = "1";
-               Offset_Address = "0x05101000";
+               Offset_Address = "0x05201000";
             }
-            Base_Address = "0x05101000";
+            Base_Address = "0x05201000";
             Address_Group = "0";
             Has_IRQ = "0";
             Is_Channel = "1";
@@ -4818,7 +4818,7 @@ SYSTEM DE4_SOPC
                descriptor_memory 
                {
                   Command1 = "@echo Post-processing to create $(notdir $@)";
-                  Command2 = "elf2hex $(ELF) 0x05101000 0x51017FF --width=32 $(QUARTUS_PROJECT_DIR)/descriptor_memory.hex --create-lanes=0 ";
+                  Command2 = "elf2hex $(ELF) 0x05201000 0x52017FF --width=32 $(QUARTUS_PROJECT_DIR)/descriptor_memory.hex --create-lanes=0 ";
                   Dependency = "$(ELF)";
                   Target_File = "$(QUARTUS_PROJECT_DIR)/descriptor_memory.hex";
                }
@@ -6008,7 +6008,7 @@ SYSTEM DE4_SOPC
                {
                   BOOT_COPIER = "boot_loader_cfi.srec";
                   CPU_CLASS = "altera_nios2";
-                  CPU_RESET_ADDRESS = "0x5080000";
+                  CPU_RESET_ADDRESS = "0x5100000";
                }
             }
             TARGET delete_placeholder_warning

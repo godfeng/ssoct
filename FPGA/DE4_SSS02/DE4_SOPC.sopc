@@ -35,7 +35,7 @@
    {
       datum baseAddress
       {
-         value = "84942056";
+         value = "85990632";
          type = "long";
       }
    }
@@ -59,7 +59,7 @@
    {
       datum baseAddress
       {
-         value = "84940800";
+         value = "85989376";
          type = "long";
       }
    }
@@ -67,7 +67,7 @@
    {
       datum baseAddress
       {
-         value = "84942048";
+         value = "85990624";
          type = "long";
       }
    }
@@ -80,7 +80,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
          type = "String";
       }
    }
@@ -88,7 +88,7 @@
    {
       datum baseAddress
       {
-         value = "84941888";
+         value = "85990464";
          type = "long";
       }
    }
@@ -96,7 +96,7 @@
    {
       datum baseAddress
       {
-         value = "84941824";
+         value = "85990400";
          type = "long";
       }
    }
@@ -164,7 +164,7 @@
    {
       datum baseAddress
       {
-         value = "84936704";
+         value = "85985280";
          type = "long";
       }
    }
@@ -203,7 +203,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
+         value = "{}";
          type = "String";
       }
    }
@@ -277,19 +277,56 @@
          type = "String";
       }
    }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
    element descriptor_memory.s1
    {
       datum baseAddress
       {
-         value = "84938752";
+         value = "85987328";
+         type = "long";
+      }
+   }
+   element pb_pio.s1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "32";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "85990592";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "85990560";
+         type = "long";
+      }
+   }
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
+         type = "long";
+      }
+   }
+   element ext_flash.s1
+   {
+      datum baseAddress
+      {
+         value = "33554432";
          type = "long";
       }
    }
@@ -297,20 +334,15 @@
    {
       datum baseAddress
       {
-         value = "84410368";
+         value = "84934656";
          type = "long";
       }
    }
-   element sw_pio.s1
+   element peripheral_clock_crossing.s1
    {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
       datum baseAddress
       {
-         value = "16";
+         value = "67108864";
          type = "long";
       }
    }
@@ -335,6 +367,43 @@
          type = "long";
       }
    }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "85990528";
+         type = "long";
+      }
+   }
+   element read_RAM_busy_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "16";
+         type = "long";
+      }
+   }
    element acq_busy_pio.s1
    {
       datum _lockedAddress
@@ -345,75 +414,6 @@
       datum baseAddress
       {
          value = "64";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "84941984";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
-         type = "long";
-      }
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "33554432";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "84942016";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "84941952";
-         type = "long";
-      }
-   }
-   element pb_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "32";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "67108864";
-         type = "long";
-      }
-   }
-   element read_RAM_busy_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "112";
          type = "long";
       }
    }
@@ -515,8 +515,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="-33292136251" />
- <parameter name="timeStamp" value="1309371166467" />
+ <parameter name="systemHash" value="-26666569596" />
+ <parameter name="timeStamp" value="1309468709918" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -599,9 +599,9 @@
   <parameter name="breakOffset" value="32" />
  </module>
  <module name="pll" kind="altera_avalon_pll" version="9.1" enabled="1">
-  <parameter name="c0"><![CDATA[tap c0 mult 7 div 5 phase 0 enabled true inputfreq 50000000 outputfreq 70000000 
+  <parameter name="c0"><![CDATA[tap c0 mult 8 div 5 phase 0 enabled true inputfreq 50000000 outputfreq 80000000 
 ]]></parameter>
-  <parameter name="c1"><![CDATA[tap c1 mult 4 div 5 phase 0 enabled true inputfreq 50000000 outputfreq 40000000 
+  <parameter name="c1"><![CDATA[tap c1 mult 6 div 5 phase 0 enabled true inputfreq 50000000 outputfreq 60000000 
 ]]></parameter>
   <parameter name="c2"><![CDATA[tap c2 mult 1 div 1 phase 0 enabled false inputfreq 0 outputfreq 0 
 ]]></parameter>
@@ -659,8 +659,8 @@
 // Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "125"
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "70.000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "40.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "80.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "60.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 // Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -668,7 +668,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.0"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.000"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -686,8 +686,8 @@
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
 // Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "32"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
-// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "70.00000000"
-// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "40.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "80.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "60.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -733,11 +733,11 @@
 // Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
 // Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "5"
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "7"
+// Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "8"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "5"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "4"
+// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "6"
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 // Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
@@ -804,10 +804,10 @@
   <parameter name="blockType" value="M9K" />
   <parameter name="dataWidth" value="32" />
   <parameter name="dualPort" value="false" />
-  <parameter name="initMemContent" value="true" />
+  <parameter name="initMemContent" value="false" />
   <parameter name="initializationFileName" value="onchip_memory" />
   <parameter name="instanceID" value="NONE" />
-  <parameter name="memorySize" value="512000" />
+  <parameter name="memorySize" value="1024000" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
   <parameter name="simAllowMRAMContentsFile" value="false" />
   <parameter name="slave1Latency" value="1" />
@@ -1143,7 +1143,7 @@
    start="cpu.instruction_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05100800" />
+  <parameter name="baseAddress" value="0x05200800" />
  </connection>
  <connection
    kind="avalon"
@@ -1151,11 +1151,11 @@
    start="cpu.data_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05100800" />
+  <parameter name="baseAddress" value="0x05200800" />
  </connection>
  <connection kind="avalon" version="6.1" start="cpu.data_master" end="pll.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101c80" />
+  <parameter name="baseAddress" value="0x05201c80" />
  </connection>
  <connection kind="clock" version="9.1" start="ext_clk.clk" end="pll.inclk0" />
  <connection kind="clock" version="9.1" start="pll.c0" end="cpu.clk" />
@@ -1166,7 +1166,7 @@
    start="cpu.instruction_master"
    end="onchip_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05080000" />
+  <parameter name="baseAddress" value="0x05100000" />
  </connection>
  <connection
    kind="avalon"
@@ -1174,7 +1174,7 @@
    start="cpu.data_master"
    end="onchip_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05080000" />
+  <parameter name="baseAddress" value="0x05100000" />
  </connection>
  <connection
    kind="avalon"
@@ -1182,7 +1182,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101ce0" />
+  <parameter name="baseAddress" value="0x05201ce0" />
  </connection>
  <connection
    kind="avalon"
@@ -1190,7 +1190,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101ce8" />
+  <parameter name="baseAddress" value="0x05201ce8" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
@@ -1203,7 +1203,7 @@
    start="cpu.data_master"
    end="high_res_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101ca0" />
+  <parameter name="baseAddress" value="0x05201ca0" />
  </connection>
  <connection
    kind="interrupt"
@@ -1219,7 +1219,7 @@
    start="cpu.data_master"
    end="sys_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101cc0" />
+  <parameter name="baseAddress" value="0x05201cc0" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="sys_timer.irq">
   <parameter name="irqNumber" value="2" />
@@ -1240,7 +1240,7 @@
    start="cpu.data_master"
    end="tse_mac.control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101800" />
+  <parameter name="baseAddress" value="0x05201800" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sgdma_tx.clk" />
  <connection
@@ -1249,7 +1249,7 @@
    start="cpu.data_master"
    end="sgdma_tx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101c00" />
+  <parameter name="baseAddress" value="0x05201c00" />
  </connection>
  <connection
    kind="interrupt"
@@ -1265,7 +1265,7 @@
    start="cpu.data_master"
    end="sgdma_rx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101c40" />
+  <parameter name="baseAddress" value="0x05201c40" />
  </connection>
  <connection
    kind="interrupt"
@@ -1280,7 +1280,7 @@
    start="sgdma_rx.m_write"
    end="onchip_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05080000" />
+  <parameter name="baseAddress" value="0x05100000" />
  </connection>
  <connection
    kind="avalon"
@@ -1288,7 +1288,7 @@
    start="sgdma_tx.m_read"
    end="onchip_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05080000" />
+  <parameter name="baseAddress" value="0x05100000" />
  </connection>
  <connection
    kind="clock"
@@ -1301,7 +1301,7 @@
    start="cpu.data_master"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101000" />
+  <parameter name="baseAddress" value="0x05201000" />
  </connection>
  <connection
    kind="avalon"
@@ -1309,7 +1309,7 @@
    start="sgdma_rx.descriptor_read"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101000" />
+  <parameter name="baseAddress" value="0x05201000" />
  </connection>
  <connection
    kind="avalon"
@@ -1317,7 +1317,7 @@
    start="sgdma_rx.descriptor_write"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101000" />
+  <parameter name="baseAddress" value="0x05201000" />
  </connection>
  <connection
    kind="avalon"
@@ -1325,7 +1325,7 @@
    start="sgdma_tx.descriptor_read"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101000" />
+  <parameter name="baseAddress" value="0x05201000" />
  </connection>
  <connection
    kind="avalon"
@@ -1333,7 +1333,7 @@
    start="sgdma_tx.descriptor_write"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x05101000" />
+  <parameter name="baseAddress" value="0x05201000" />
  </connection>
  <connection
    kind="avalon_streaming"
