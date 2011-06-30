@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="282" key="DIALOG_Y_ORIGIN"/>
-		<item value="-8" key="DIALOG_X_ORIGIN"/>
+		<item value="140" key="DIALOG_Y_ORIGIN"/>
+		<item value="615" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="tx_buf" key="selection"/>
 		<list key="findhistory">
+			<item value="tx_buf"/>
 			<item value="buffer"/>
 			<item value="tcp_no_delay"/>
 			<item value="main"/>
@@ -19,7 +20,6 @@
 			<item value="READ_RAM_BUSY"/>
 			<item value="                            // Wait to finish writing acquired data to the RAM"/>
 			<item value="a-line"/>
-			<item value="pos_ini"/>
 		</list>
 		<list key="replacehistory">
 		</list>

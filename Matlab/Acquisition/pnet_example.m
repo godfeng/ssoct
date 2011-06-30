@@ -12,7 +12,7 @@ pause(0.1);
 pnet(tcpConn,'setreadtimeout',0.5);
 disp('Connection established')
 
-%% Read 9000 elements at the beginning of connection
+%% Read BUFFERSIZE elements at the beginning of connection
 flush = pnet(tcpConn,'read',BUFFERSIZE,'uint8');
 % Show flushed data
 disp(char(flush))
@@ -29,34 +29,41 @@ pnet(tcpConn,'setreadtimeout',0.5);
 
 %% Write command to send A-line 'A\n\r'
 tic
-nAcqSamples = 100;
-for iComm = 1:nAcqSamples,
-    pnet(tcpConn,'write',uint8([65 10 13]));
-    % Reads an array of NSAMPLES+1 elements from a connection
-    dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
-    plot(dataReceived);
+nLinesPerFrame = 400;
+nFrames = 2;
+nAcqSamples = nLinesPerFrame*nFrames;
+rawData = zeros([NSAMPLES nLinesPerFrame nFrames],'int16');
+for iFrames = 1:nFrames,
+    for iLines = 1:nLinesPerFrame,
+        pnet(tcpConn,'write',uint8([65 10 13]));
+        % Reads an array of NSAMPLES+1 elements from a connection
+        rawData(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+    end
+    plot(squeeze(rawData(:,iLines,iFrames)));
     ylim([0 2^14]);
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
-disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,toc),'HH:MM:SS')])
 fprintf('Estimated speed %.2f lines/sec\n',nAcqSamples/elapsedTime)
 % Reads an array of elements from a connection
 % reception = uint32(swapbytes(pnet(tcpConn,'read',[3*nombre_echantillon 1],'uint32')));
 
 
 %% Continuous acquisition 'C\n\r'
+% DOES NOT WORK WELL!!!! CORRUPTED DATA!!!
 nLinesPerFrame = 400;
 nFrames = 25;
 nAcqSamples = nLinesPerFrame*nFrames;
-rawData = zeros([NSAMPLES nAcqSamples],'int16');
+rawData = zeros([NSAMPLES nLinesPerFrame nFrames],'int16');
 
 pnet(tcpConn,'write',uint8([67 10 13]));
 tic
-for iSamples = 1:nAcqSamples,
+for iFrames = 1:nFrames,
+    for iLines = 1:nLinesPerFrame,
         % Reads an array of NSAMPLES+1 elements from a connection
         %     dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
-        rawData(:,iSamples) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+        rawData(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+    end
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])

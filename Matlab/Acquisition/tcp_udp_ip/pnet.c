@@ -928,19 +928,10 @@ int readtype2buff(int len,mxClassID datatype,int newline,int noblock)
 /* Function Creating a tcpip connection and returns handler number  */
 int tcp_connect(const char *hostname,const int port)
 {
-int optval;
-int result=0;
-
     if(ipv4_lookup(hostname,port)==-1)
-return -1;
+	return -1;
     con[con_index].fid=socket(AF_INET, SOCK_STREAM, 0);
-
-optval=1;
-result = setsockopt(con[con_index].fid, +IPPROTO_TCP,TCP_NODELAY,(char *) &optval,sizeof(optval));
-optval = 512*1024;
-result = setsockopt(con[con_index].fid, SOL_SOCKET,SO_SNDBUF,(char *) &optval,sizeof(optval));
-result = setsockopt(con[con_index].fid, SOL_SOCKET,SO_RCVBUF,(char *) &optval,sizeof(optval)); 
-if(con[con_index].fid== CON_FREE){
+    if(con[con_index].fid== CON_FREE){
 	/*Can't open socket */
 	close_con();
 	return -1;
@@ -954,27 +945,6 @@ if(con[con_index].fid== CON_FREE){
     nonblockingsocket(con[con_index].fid); /* Non blocking read! */
     return con_index;
 }
-    
-// int tcp_connect(const char *hostname,const int port)
-// {
-//     if(ipv4_lookup(hostname,port)==-1)
-// 	return -1;
-//     con[con_index].fid=socket(AF_INET, SOCK_STREAM, 0);
-//     if(con[con_index].fid== CON_FREE){
-// 	/*Can't open socket */
-// 	close_con();
-// 	return -1;
-//     }
-//     if(connect(con[con_index].fid,(struct sockaddr *)&con[con_index].remote_addr,sizeof(struct sockaddr)) == -1){
-// 	/*Can't connect to remote host. */
-// 	close_con();
-// 	return -1;
-//     }
-//     con[con_index].status=STATUS_TCP_CLIENT;
-//     nonblockingsocket(con[con_index].fid); /* Non blocking read! */
-//     return con_index;
-// }
-
 
 /*******************************************************************     
  Function Creating a TCP server socket                                 
