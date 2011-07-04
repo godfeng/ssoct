@@ -384,7 +384,18 @@ ext_pll_ctrl ext_pll_ctrl_Inst(
 //=======================================================
 //  Structural coding
 //=======================================================
-
-
+// Need to connect a2d module to the real world
+a2d a2d_inst
+(
+	.adclk(adclk_sig) ,	// input  adclk_sig
+	.rdclk(rdclk_sig) ,	// input  rdclk_sig
+	.cs_n(cs_n_sig) ,	// input  cs_n_sig
+	.rst_n(rst_n_sig) ,	// input  rst_n_sig
+	.rd(rd_sig) ,	// input  rd_sig
+	.a2dc(a2dc_sig) ,	// input [11:0] a2dc_sig
+	.addr(addr_sig) ,	// input [9:0] addr_sig
+	.waitreq(waitreq_sig) ,	// output  waitreq_sig
+	.a2do(a2do_sig) 	// output [31:0] a2do_sig
+);
 
 endmodule

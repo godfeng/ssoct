@@ -5,13 +5,12 @@
 set_global_assignment -name FAMILY "Stratix IV"
 set_global_assignment -name DEVICE EP4SGX230KF40C2
 set_global_assignment -name TOP_LEVEL_ENTITY "OCTacq"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1"
-set_global_assignment -name LAST_QUARTUS_VERSION "9.1"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:00:29 JULY 04,2011"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
-set_global_assignment -name SDC_FILE OCTacq.SDC
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_AF25 -to termination_blk0~_rup_pad
 set_location_assignment PIN_AG25 -to termination_blk0~_rdn_pad
@@ -38,7 +37,7 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to GCLKOUT_FPGA
 set_location_assignment PIN_A21 -to GCLKIN
 set_instance_assignment -name IO_STANDARD "1.8 V" -to GCLKIN
 set_location_assignment PIN_B22 -to PLL_CLKIN_p
-set_instance_assignment -name IO_STANDARD "LVDS" -to PLL_CLKIN_p
+set_instance_assignment -name IO_STANDARD LVDS -to PLL_CLKIN_p
 
 #============================================================
 # External PLL
@@ -226,9 +225,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to UART_CTS
 # Ethernet x 4
 #============================================================
 set_location_assignment PIN_U31 -to ETH_RX_p[0]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_RX_p[0]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_RX_p[0]
 set_location_assignment PIN_T30 -to ETH_TX_p[0]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_TX_p[0]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_TX_p[0]
 set_location_assignment PIN_W32 -to ETH_MDIO[0]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDIO[0]
 set_location_assignment PIN_R30 -to ETH_MDC[0]
@@ -236,9 +235,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDC[0]
 set_location_assignment PIN_B20 -to ETH_INT_n[0]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to ETH_INT_n[0]
 set_location_assignment PIN_N33 -to ETH_RX_p[1]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_RX_p[1]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_RX_p[1]
 set_location_assignment PIN_R32 -to ETH_TX_p[1]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_TX_p[1]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_TX_p[1]
 set_location_assignment PIN_J5 -to ETH_MDIO[1]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDIO[1]
 set_location_assignment PIN_J6 -to ETH_MDC[1]
@@ -246,9 +245,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDC[1]
 set_location_assignment PIN_AG30 -to ETH_INT_n[1]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_INT_n[1]
 set_location_assignment PIN_K34 -to ETH_RX_p[2]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_RX_p[2]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_RX_p[2]
 set_location_assignment PIN_M32 -to ETH_TX_p[2]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_TX_p[2]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_TX_p[2]
 set_location_assignment PIN_K5 -to ETH_MDIO[2]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDIO[2]
 set_location_assignment PIN_K6 -to ETH_MDC[2]
@@ -256,9 +255,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDC[2]
 set_location_assignment PIN_AE30 -to ETH_INT_n[2]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_INT_n[2]
 set_location_assignment PIN_J34 -to ETH_RX_p[3]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_RX_p[3]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_RX_p[3]
 set_location_assignment PIN_P31 -to ETH_TX_p[3]
-set_instance_assignment -name IO_STANDARD "LVDS" -to ETH_TX_p[3]
+set_instance_assignment -name IO_STANDARD LVDS -to ETH_TX_p[3]
 set_location_assignment PIN_N8 -to ETH_MDIO[3]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to ETH_MDIO[3]
 set_location_assignment PIN_N7 -to ETH_MDC[3]
@@ -694,3 +693,17 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to HSMC_SDA
 # End of pin assignments by Terasic System Builder
 #============================================================
 
+
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE a2d.v
+set_global_assignment -name VERILOG_FILE OCTacq.v
+set_global_assignment -name SDC_FILE OCTacq.SDC
+set_global_assignment -name QIP_FILE swBUF.qip
+set_global_assignment -name QIP_FILE adFIFO.qip
+set_global_assignment -name QIP_FILE bufclk.qip
