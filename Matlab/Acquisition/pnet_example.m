@@ -72,6 +72,7 @@ for iFrames = 1:nFrames,
         % Reads an array of NSAMPLES elements from a connection
         %     dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
         rawDataCont(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+        pause(0.01);
     end
 end
 elapsedTime = toc;
@@ -85,7 +86,6 @@ for iFrames = 1:size(rawDataCont,3),
     for iLines = 1:nLinesPerFrame,
         plot(squeeze(rawDataCont(:,iLines,iFrames)))
         title(sprintf('Continuous Transfer. Frame %d. Line %d',iFrames,iLines))
-        pause(0.01)
     end
 end
 

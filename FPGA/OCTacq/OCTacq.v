@@ -384,7 +384,7 @@ ext_pll_ctrl ext_pll_ctrl_Inst(
 //=======================================================
 //  Structural coding
 //=======================================================
-// Need to connect a2d module to the real world
+// Need to connect a2d module to the real world...
 a2d a2d_inst
 (
 	.adclk(adclk_sig) ,	// input  adclk_sig
