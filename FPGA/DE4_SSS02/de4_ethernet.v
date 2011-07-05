@@ -432,7 +432,9 @@ ext_pll_ctrl ext_pll_ctrl_Inst(
 	.max_sdat(MAX_I2C_SDAT)
 
 );
-
+//=======================================================
+//  End of External PLL Configuration ===================
+//=======================================================
 
 //=======================================================
 //  Structural coding
@@ -562,10 +564,6 @@ DE4_SOPC	SOPC_INST (
 				);
 
 ///////////////////////////////////////////////////////////////////////////////
-
-assign	FPGA_CLK_A_P	=  sys_clk;
-assign	FPGA_CLK_A_N	= ~sys_clk;
-
 // assign for ADC control signal
 assign	AD_SCLK			= 1'b0;				// (DFS)Data Format Select = binary (0)
 assign	AD_SDIO			= 1'b1;				// (DCS)Duty Cycle Stabilizer ON
@@ -579,6 +577,8 @@ assign	sweepTrigger	= GCLKIN;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
+assign	FPGA_CLK_A_P	=  sys_clk;
+assign	FPGA_CLK_A_N	= ~sys_clk;
 
 //always @(negedge global_reset_n or posedge sys_clk)
 //begin
