@@ -1795,3 +1795,231 @@ org.eclipse.jface.resource.DeviceResourceException: Unable to create resource UR
 
 !ENTRY com.altera.ide.core 1 0 2011-07-04 15:23:38.405
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-07-05 12:32:58.262 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\ -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.jface 2 0 2011-07-05 12:33:07.421
+!MESSAGE The image could not be loaded: URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
+!STACK 0
+org.eclipse.jface.resource.DeviceResourceException: Unable to create resource URLImageDescriptor(bundleentry://36/icons/dtool16/target_filter.gif)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:173)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:56)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:87)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:83)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:87)
+	at org.eclipse.jface.resource.ResourceManager.createImageWithDefault(ResourceManager.java:114)
+	at org.eclipse.jface.action.ActionContributionItem.updateImages(ActionContributionItem.java:936)
+	at org.eclipse.jface.action.ActionContributionItem.update(ActionContributionItem.java:709)
+	at org.eclipse.jface.action.ActionContributionItem.fill(ActionContributionItem.java:330)
+	at org.eclipse.jface.action.ToolBarManager.update(ToolBarManager.java:317)
+	at org.eclipse.ui.internal.ViewPane.updateActionBars(ViewPane.java:443)
+	at org.eclipse.ui.internal.ViewActionBars.updateActionBars(ViewActionBars.java:59)
+	at org.eclipse.ui.internal.ViewReference.createPartHelper(ViewReference.java:363)
+	at org.eclipse.ui.internal.ViewReference.createPart(ViewReference.java:197)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:566)
+	at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:290)
+	at org.eclipse.ui.internal.ViewPane.setVisible(ViewPane.java:525)
+	at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:140)
+	at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:268)
+	at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:394)
+	at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1144)
+	at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1097)
+	at org.eclipse.ui.internal.PartStack.presentationSelectionChanged(PartStack.java:795)
+	at org.eclipse.ui.internal.PartStack.access$1(PartStack.java:781)
+	at org.eclipse.ui.internal.PartStack$1.selectPart(PartStack.java:123)
+	at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation$1.handleEvent(TabbedStackPresentation.java:126)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:267)
+	at org.eclipse.ui.internal.presentations.util.AbstractTabFolder.fireEvent(AbstractTabFolder.java:276)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder.access$1(DefaultTabFolder.java:1)
+	at org.eclipse.ui.internal.presentations.defaultpresentation.DefaultTabFolder$2.handleEvent(DefaultTabFolder.java:84)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:928)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:952)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:937)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:709)
+	at org.eclipse.swt.custom.CTabFolder.setSelection(CTabFolder.java:3171)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1953)
+	at org.eclipse.swt.custom.CTabFolder$1.handleEvent(CTabFolder.java:288)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:928)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3348)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2968)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1914)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1878)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:419)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
+	at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:78)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:92)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:68)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:177)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
+	at org.eclipse.core.launcher.Main.basicRun(Main.java:280)
+	at org.eclipse.core.launcher.Main.run(Main.java:977)
+	at org.eclipse.core.launcher.Main.main(Main.java:952)
+
+!ENTRY com.altera.ide.core 1 0 2011-07-05 12:33:14.548
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY org.eclipse.debug.core 4 2 2011-07-05 13:30:50.953
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:377)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:356)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getAttribute(LaunchConfiguration.java:285)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getProjectName(AbstractCLaunchDelegate.java:177)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getCProject(AbstractCLaunchDelegate.java:162)
+	at org.eclipse.cdt.launch.internal.ui.LaunchUIPlugin.handleDebugEvents(LaunchUIPlugin.java:213)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1076)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+
+!ENTRY org.eclipse.core.jobs 4 2 2011-07-05 13:30:50.955
+!MESSAGE An internal error occurred during: "Debug Event Dispatch".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.core.DebugPlugin.log(DebugPlugin.java:860)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.handleException(DebugPlugin.java:1062)
+	at org.eclipse.core.runtime.SafeRunner.handleException(SafeRunner.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:39)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SESSION 2011-07-05 17:04:06.925 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\ -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-07-05 17:43:22.240
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY org.eclipse.search 2 0 2011-07-05 18:43:06.339
+!MESSAGE Problems encountered during text search.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-05 18:43:06.339
+!MESSAGE File 'altera.components/bin/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/bin/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/bin/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:254)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-05 18:43:06.340
+!MESSAGE Resource is out of sync with the file system: /altera.components/bin/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-05 18:43:06.340
+!MESSAGE File 'altera.components/Newlib C Library/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-05 18:43:06.340
+!MESSAGE Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-05 18:43:06.340
+!MESSAGE File 'altera.components/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-05 18:43:06.341
+!MESSAGE Resource is out of sync with the file system: /altera.components/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-05 18:43:06.341
+!MESSAGE File 'altera.components/.settings/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-05 18:43:06.341
+!MESSAGE Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.
+
+!ENTRY org.eclipse.debug.core 4 2 2011-07-05 19:27:21.092
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:377)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:356)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getAttribute(LaunchConfiguration.java:285)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getProjectName(AbstractCLaunchDelegate.java:177)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.getCProject(AbstractCLaunchDelegate.java:162)
+	at org.eclipse.cdt.launch.internal.ui.LaunchUIPlugin.handleDebugEvents(LaunchUIPlugin.java:213)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1076)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+
+!ENTRY org.eclipse.core.jobs 4 2 2011-07-05 19:27:21.095
+!MESSAGE An internal error occurred during: "Debug Event Dispatch".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.core.DebugPlugin.log(DebugPlugin.java:860)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.handleException(DebugPlugin.java:1062)
+	at org.eclipse.core.runtime.SafeRunner.handleException(SafeRunner.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:39)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

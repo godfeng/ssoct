@@ -4,7 +4,7 @@ clear; clc;
 serverAddress = '192.168.1.234';
 portNumber = 30;
 NSAMPLES = 1170;
-BUFFERSIZE = 9000;
+BUFFERSIZE = 2378;
 % Creates tcp/ip connection to the specified 'hostname' and port
 tcpConn = pnet('tcpconnect',serverAddress,portNumber );
 pause(0.1);
@@ -53,7 +53,7 @@ for iFrames = 1:size(rawData,3),
         plot(squeeze(rawData(:,iLines,iFrames)))
         ylim([0 2^14])
         title(sprintf('Slow Transfer. Frame %d. Line %d',iFrames,iLines))
-        pause(0.05)
+        pause(0.01);
     end
 end
 
@@ -72,7 +72,6 @@ for iFrames = 1:nFrames,
         % Reads an array of NSAMPLES elements from a connection
         %     dataReceived = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
         rawDataCont(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
-        pause(0.01);
     end
 end
 elapsedTime = toc;
@@ -86,6 +85,7 @@ for iFrames = 1:size(rawDataCont,3),
     for iLines = 1:nLinesPerFrame,
         plot(squeeze(rawDataCont(:,iLines,iFrames)))
         title(sprintf('Continuous Transfer. Frame %d. Line %d',iFrames,iLines))
+        pause(0.01)
     end
 end
 

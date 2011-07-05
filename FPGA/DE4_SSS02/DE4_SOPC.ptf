@@ -1955,7 +1955,7 @@ SYSTEM DE4_SOPC
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1986,7 +1986,7 @@ SYSTEM DE4_SOPC
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "50.000";
+                  INCLK0_FREQ_EDIT = "50.0";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>35738F88</b>    (unique ID tag) <br> <b>4E0CE826</b> (timestamp: Thu Jun 30, 2011 @5:18 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>2E959BA8</b>    (unique ID tag) <br> <b>4E138D39</b> (timestamp: Tue Jul 5, 2011 @6:16 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "896765832u";
-         timestamp = "1309468710u";
+         id = "781556648u";
+         timestamp = "1309904185u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05201ce0 --id=896765832 --timestamp=1309468710";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05201ce0 --id=781556648 --timestamp=1309904185";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }

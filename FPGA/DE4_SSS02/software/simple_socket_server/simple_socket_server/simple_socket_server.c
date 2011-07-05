@@ -285,8 +285,8 @@ void sss_exec_command(SSSConn* conn)
 {
     int bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
     INT8U tx_buf[SSS_TX_BUF_SIZE];
-    INT8U *tx_wr_pos = tx_buf;
-    int pos_ini = tx_wr_pos;
+    INT8U* tx_wr_pos = tx_buf;
+    INT8U* pos_ini = tx_buf;
     INT8U error_code;
     /*
     * "SSSCommand" is declared static so that the data will reside 
@@ -336,9 +336,8 @@ void sss_exec_command(SSSConn* conn)
                     // Do the transfer
 
                     buffer_position = 0;
-                    *tx_wr_pos = 0;
+                   
                     tx_wr_pos = pos_ini;              
-
                     if (acq_busy_signal == 0)//acq_busy_signal == 0
                     {
                         for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
@@ -349,34 +348,10 @@ void sss_exec_command(SSSConn* conn)
                             IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
                             dataPointer = &ADC_data;
                             // Send 16-bit data
-                            tx_buf[buffer_position    ] = dataPointer[1];
-                            tx_buf[buffer_position + 1] = dataPointer[0];
-
-                            /*                If ADC_data == 32bits
-                            tx_buf[buffer_position    ] = dataPointer[1];
-                            tx_buf[buffer_position + 1] = dataPointer[0];
-                            tx_buf[buffer_position + 2] = dataPointer[1];
-                            tx_buf[buffer_position + 3] = dataPointer[0];
-                            tx_wr_pos += 4;                     // 4 bytes*/
-
-                            tx_wr_pos += 2;                     // 2 bytes increment
-                            buffer_position += 2;
-                            // Send data every 500*2 bytes                
-                            /*                if (RAM_address % 500 == 0 && RAM_address != 0)
-                            {
-                            send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                            buffer_position = 0;
-                            *tx_wr_pos = 0;
-                            tx_wr_pos = pos_ini;    
-                            }
-                            else
-                            {
-                            buffer_position = (RAM_address  % 500) * 2; //2 bytes
-                            }*/
+                            *tx_wr_pos++ = dataPointer[1]; 
+                            *tx_wr_pos++ = dataPointer[0];
                         } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
                         send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                        buffer_position = 0;
-                        *tx_wr_pos = 0;
                         tx_wr_pos = pos_ini;  
                         //printf("--> A-line sent!\n");
                     } // END if (acq_busy_signal == 0)
@@ -394,48 +369,48 @@ void sss_exec_command(SSSConn* conn)
                         while (SSSCommand != CMD_QUIT)
                         {
                             // Wait to finish writing acquired data to the RAM
-                    do
-                    {
-                        acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                        // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
-                    }
-                    while (acq_busy_signal == 1);
+                            do
+                            {
+                                acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
+                                // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
+                            }
+                            while (acq_busy_signal == 1);
 
-                    // Indicate that we are busy reading RAM contents
-                    read_RAM_busy = 1;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
+                            // Indicate that we are busy reading RAM contents
+                            read_RAM_busy = 1;
+                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
 
-                    // Do the transfer
+                            // Do the transfer
 
-                    buffer_position = 0;
-                    *tx_wr_pos = 0;
-                    tx_wr_pos = pos_ini;              
+                            buffer_position = 0;
+                            *tx_wr_pos = 0;
+                            tx_wr_pos = pos_ini;              
 
-                    if (acq_busy_signal == 0)//acq_busy_signal == 0
-                    {
-                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
-                        {
-                            // Read data port (from RAM)
-                            ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                            // Write address port (to RAM)
-                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
-                            dataPointer = &ADC_data;
-                            // Send 16-bit data
-                            tx_buf[buffer_position    ] = dataPointer[1];
-                            tx_buf[buffer_position + 1] = dataPointer[0];
+                            if (acq_busy_signal == 0)//acq_busy_signal == 0
+                            {
+                                for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
+                                {
+                                    // Read data port (from RAM)
+                                    ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
+                                    // Write address port (to RAM)
+                                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
+                                    dataPointer = &ADC_data;
+                                    // Send 16-bit data
+                                    tx_buf[buffer_position    ] = dataPointer[1];
+                                    tx_buf[buffer_position + 1] = dataPointer[0];
 
-                            tx_wr_pos += 2;                     // 2 bytes increment
-                            buffer_position += 2;
-                        } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
-                        send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                        buffer_position = 0;
-                        *tx_wr_pos = 0;
-                        tx_wr_pos = pos_ini;  
-                    } // END if (acq_busy_signal == 0)
+                                    tx_wr_pos += 2;                     // 2 bytes increment
+                                    buffer_position += 2;
+                                } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
+                                send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                                buffer_position = 0;
+                                *tx_wr_pos = 0;
+                                tx_wr_pos = pos_ini;  
+                            } // END if (acq_busy_signal == 0)
 
-                    // Indicate that we are done reading RAM contents
-                    read_RAM_busy = 0;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
+                            // Indicate that we are done reading RAM contents
+                            read_RAM_busy = 0;
+                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
                         } // END while (SSSCommand != CMD_QUIT)
                     } // END if (SSSCommand == 67)
                     else

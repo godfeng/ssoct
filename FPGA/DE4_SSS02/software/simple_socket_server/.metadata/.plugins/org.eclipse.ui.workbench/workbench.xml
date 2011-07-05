@@ -28,6 +28,7 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -35,10 +36,19 @@
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.c"/>
 </editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.h" partName="simple_socket_server.h" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/simple_socket_server.h" title="simple_socket_server.h" tooltip="simple_socket_server/simple_socket_server.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.h"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
 <viewState/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.sorting="2"/>
+</viewState>
 </view>
 <view id="org.eclipse.cdt.make.ui.views.MakeView" partName="Make Targets">
 <viewState/>
@@ -56,10 +66,16 @@
 <viewState/>
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
-<viewState horizontalPosition="0" verticalPosition="0">
-<selection>&#x0A;<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib"/>
+<viewState horizontalPosition="0" verticalPosition="6">
+<expanded>
+<element path="D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\simple_socket_server"/>
+</expanded>
+<selection>
+<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/network_utilities.h"/>
 </selection>
-<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
+<customFilters userDefinedPatternsEnabled="false">
+<xmlDefinedFilters>
+<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ExecutableFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.SharedFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ClosedProjectFilter" isEnabled="false"/>
@@ -121,6 +137,7 @@
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <view id="com.altera.nj.ui.Nios2CView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
 <layout>
 <mainWindow>
 <info part="org.eclipse.ui.editorss"/>
@@ -139,6 +156,7 @@
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.cdt.make.ui.views.MakeView" label="Make Targets"/>
 <page content="com.altera.nj.ui.Nios2CView" label="Nios II C/C++ Projects"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="5"/>
 <part id="0"/>
@@ -146,6 +164,7 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="6"/>
 </presentation>
 </folder>
 </info>
@@ -159,65 +178,33 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/altera_iniche/UCOSII/src/h/tcpport.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/IP Device Drivers/altera/triple_speed_ethernet/lib/sopc_builder/altera_triple_speed_ethernet/UCOSII/src/iniche/ins_tse_mac.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/altera_iniche/UCOSII/src/tcp/sockcall.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/altera_iniche/UCOSII/src/tcp/tcp_zio.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 </editors>
-<item historyLabel="simple_socket_server.c" index="0">
-<position/>
-</item>
 <item historyLabel="network_utilities.h" index="1">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position/>
-</item>
-<item historyLabel="network_utilities.c" index="2">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="566" y="0"/>
-</item>
-<item historyLabel="simple_socket_server.h" index="3">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="566" y="0"/>
-</item>
-<item historyLabel="simple_socket_server.h" index="4">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.h" index="5">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position/>
-</item>
-<item historyLabel="network_utilities.h" index="6">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="1786" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="17564" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6128" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="16731" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6128" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
@@ -229,29 +216,104 @@
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="13370" y="52"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6159" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="13370" y="52"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6675" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6675" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="6153" y="0"/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="0">
+<item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="1827" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="2227" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="13698" y="0"/>
+</item>
+<item historyLabel="tcpport.h" index="3">
+<position info="not_deleted" x="8935" y="8"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="16540" y="1"/>
+</item>
+<item historyLabel="tcpport.h" index="3">
+<position info="not_deleted" x="8935" y="8"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="16766" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="13297" y="0"/>
+</item>
+<item historyLabel="network_utilities.h" index="4">
+<position/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="13297" y="0"/>
+</item>
+<item historyLabel="tcpport.h" index="3">
+<position info="not_deleted" x="10176" y="6"/>
+</item>
+<item historyLabel="ins_tse_mac.c" index="5">
+<position info="not_deleted" x="6200" y="6"/>
+</item>
+<item historyLabel="sockcall.c" index="6">
+<position info="not_deleted" x="334" y="6"/>
+</item>
+<item historyLabel="tcp_zio.c" index="7">
+<position info="not_deleted" x="2907" y="6"/>
+</item>
+<item historyLabel="tcpport.h" index="3">
+<position info="not_deleted" x="10176" y="6"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="7760" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.h" index="8">
+<position info="not_deleted" x="6159" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="7760" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.h" index="8">
+<position info="not_deleted" x="6159" y="0"/>
+</item>
+<item active="true" historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="7760" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -271,14 +333,20 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c">
-<persistable path="/simple_socket_server/simple_socket_server.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.h" tooltip="simple_socket_server/simple_socket_server.h">
 <persistable path="/simple_socket_server/simple_socket_server.h"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ins_tse_mac.c" tooltip="altera.components/IP Device Drivers/altera/triple_speed_ethernet/lib/sopc_builder/altera_triple_speed_ethernet/UCOSII/src/iniche/ins_tse_mac.c">
+<persistable path="/altera.components/IP Device Drivers/altera/triple_speed_ethernet/lib/sopc_builder/altera_triple_speed_ethernet/UCOSII/src/iniche/ins_tse_mac.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="network_utilities.h" tooltip="simple_socket_server/network_utilities.h">
 <persistable path="/simple_socket_server/network_utilities.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tcpport.h" tooltip="altera.components/Nios II Software Packages/altera_iniche/UCOSII/src/h/tcpport.h">
+<persistable path="/altera.components/Nios II Software Packages/altera_iniche/UCOSII/src/h/tcpport.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c">
+<persistable path="/simple_socket_server/simple_socket_server.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="network_utilities.c" tooltip="simple_socket_server/network_utilities.c">
 <persistable path="/simple_socket_server/network_utilities.c"/>

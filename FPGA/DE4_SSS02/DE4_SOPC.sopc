@@ -80,16 +80,8 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
+         value = "{}";
          type = "String";
-      }
-   }
-   element sgdma_rx.csr
-   {
-      datum baseAddress
-      {
-         value = "85990464";
-         type = "long";
       }
    }
    element sgdma_tx.csr
@@ -97,6 +89,14 @@
       datum baseAddress
       {
          value = "85990400";
+         type = "long";
+      }
+   }
+   element sgdma_rx.csr
+   {
+      datum baseAddress
+      {
+         value = "85990464";
          type = "long";
       }
    }
@@ -277,11 +277,32 @@
          type = "String";
       }
    }
-   element descriptor_memory.s1
+   element ADC_data_pio.s1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "80";
+         type = "long";
+      }
+   }
+   element read_RAM_address.s1
    {
       datum baseAddress
       {
-         value = "85987328";
+         value = "96";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "85990560";
          type = "long";
       }
    }
@@ -298,35 +319,11 @@
          type = "long";
       }
    }
-   element sys_timer.s1
+   element led_pio.s1
    {
       datum baseAddress
       {
-         value = "85990592";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "85990560";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
-         type = "long";
-      }
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "33554432";
+         value = "0";
          type = "long";
       }
    }
@@ -346,24 +343,11 @@
          type = "long";
       }
    }
-   element read_RAM_address.s1
+   element ext_flash.s1
    {
       datum baseAddress
       {
-         value = "96";
-         type = "long";
-      }
-   }
-   element ADC_data_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "80";
+         value = "33554432";
          type = "long";
       }
    }
@@ -372,22 +356,6 @@
       datum baseAddress
       {
          value = "85990528";
-         type = "long";
-      }
-   }
-   element read_RAM_busy_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "112";
-         type = "long";
-      }
-   }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
          type = "long";
       }
    }
@@ -404,6 +372,30 @@
          type = "long";
       }
    }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "85987328";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "85990592";
+         type = "long";
+      }
+   }
+   element read_RAM_busy_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "long";
+      }
+   }
    element acq_busy_pio.s1
    {
       datum _lockedAddress
@@ -414,6 +406,14 @@
       datum baseAddress
       {
          value = "64";
+         type = "long";
+      }
+   }
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
          type = "long";
       }
    }
@@ -515,8 +515,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="-26666569596" />
- <parameter name="timeStamp" value="1309468709918" />
+ <parameter name="systemHash" value="-26551360412" />
+ <parameter name="timeStamp" value="1309904184516" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -668,7 +668,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.000"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.0"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench version="2.0">
 <workbenchAdvisor/>
-<window height="1000" maximized="true" width="934" x="362" y="-6">
+<window height="1036" width="960" x="960" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
 <coolbarLayout locked="0">
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="129" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="130" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="160" y="22"/>
+<coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="161" y="22"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="124" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="62" y="22"/>
-<coolItem id="org.eclipse.ui.WorkingSetActionSet" itemType="typeToolBarContribution" x="52" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="org.eclipse.ui.WorkingSetActionSet" itemType="typeToolBarContribution" x="50" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="183" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="185" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -33,7 +33,7 @@
 </folder>
 </info>
 </editorArea>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="H:/Project/Ethernet/software/simple_socket_server_0/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server_0/simple_socket_server.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/software/simple_socket_server_0/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server_0/simple_socket_server.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server_0/simple_socket_server.c"/>
 </editor>
 </editors>
@@ -45,7 +45,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="332" columnWidth1="99" columnWidth2="174" columnWidth3="84" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="493" columnWidth1="105" columnWidth2="180" columnWidth3="90" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -58,12 +58,8 @@
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
-<expanded>
-<element path="H:\Project\Ethernet\software\simple_socket_server_0"/>
-<element path="H:\Project\Ethernet\software\simple_socket_server_0_syslib"/>
-</expanded>
 <selection>
-<element path="H:/Project/Ethernet/software/simple_socket_server_0"/>
+<element path="D:/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/software/simple_socket_server_0"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
@@ -83,7 +79,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="com.altera.nj.ui.CPerspective">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="com.altera.nj.ui.CPerspective">
 <perspective editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.altera.nj.ui.Nios2CPerspectiveFactory" id="com.altera.nj.ui.CPerspective" label="Nios II C/C++"/>
 <alwaysOnActionSet id="com.altera.nj.doc.user.NiosIIDocumentation"/>
@@ -150,7 +146,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.17521705" ratioLeft="222" ratioRight="1045" relationship="2" relative="topLeft"/>
 <info folder="true" part="bottom" ratio="0.61627907" ratioLeft="530" ratioRight="330" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
