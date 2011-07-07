@@ -8,10 +8,10 @@
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include/w32api"/>
 <includePath path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib"/>
 <includePath path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib" removed="true"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description" removed="true"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib" removed="true"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description" removed="true"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/src/nios2"/>
 <includePath path="c:\altera\91\quartus\bin\cygwin\UCOSII\inc\iniche" removed="true"/>

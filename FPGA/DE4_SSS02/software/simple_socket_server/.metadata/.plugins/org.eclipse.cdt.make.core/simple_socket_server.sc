@@ -3,8 +3,8 @@
 
 <scannerInfo id="org.eclipse.cdt.make.core.discoveredScannerInfo">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server"/>
-<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server" removed="true"/>
+<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description" removed="true"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/src/nios2"/>
 <includePath path="c:\altera\91\quartus\bin\cygwin\UCOSII\inc\iniche" removed="true"/>
@@ -29,10 +29,10 @@
 <includePath path="c:/altera/91/quartus/bin/cygwin/lib/gcc/i686-pc-cygwin/3.4.4/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include/w32api"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Ethernet_0/software/simple_socket_server"/>
-<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
-<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server"/>
-<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Ethernet_0/software/simple_socket_server" removed="true"/>
+<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description" removed="true"/>
+<includePath path="D:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server" removed="true"/>
+<includePath path="d:/Work/Project/Proj_DE4/System_Builder/CodeGenerated/DE4/DE4_230/DE4_Simple_Socket_Server/DE4_Ethernet_0/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description" removed="true"/>
 <includePath path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server"/>
 <includePath path="d:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib/Debug/system_description"/>
 <definedSymbol symbol="ALTERA_INCLUDES"/>
