@@ -2092,3 +2092,234 @@ Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\
 
 !ENTRY com.altera.ide.core 1 0 2011-07-07 08:28:56.488
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY org.eclipse.search 2 0 2011-07-07 10:21:49.899
+!MESSAGE Problems encountered during text search.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.899
+!MESSAGE File 'simple_socket_server_syslib/.svn/text-base/.cdtproject.svn-base' has been skipped, problem while reading: ('Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/text-base/.cdtproject.svn-base.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/text-base/.cdtproject.svn-base.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.899
+!MESSAGE Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/text-base/.cdtproject.svn-base.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'simple_socket_server_syslib/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'simple_socket_server_syslib/.svn/all-wcprops' has been skipped, problem while reading: ('Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/all-wcprops.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/all-wcprops.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:254)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /simple_socket_server_syslib/.svn/all-wcprops.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'altera.components/bin/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/bin/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/bin/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /altera.components/bin/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'altera.components/Newlib C Library/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /altera.components/Newlib C Library/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'altera.components/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /altera.components/.svn/entries.
+!SUBENTRY 1 org.eclipse.search 2 2 2011-07-07 10:21:49.900
+!MESSAGE File 'altera.components/.settings/.svn/entries' has been skipped, problem while reading: ('Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:606)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:290)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:279)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:282)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:268)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:254)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:189)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:170)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:182)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:122)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2011-07-07 10:21:49.900
+!MESSAGE Resource is out of sync with the file system: /altera.components/.settings/.svn/entries.
+!SESSION 2011-07-07 10:27:44.705 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-07-07 10:27:45.511
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY org.eclipse.update.core 4 42 2011-07-07 10:28:42.294
+!MESSAGE Network connection problems encountered during search.
+!SUBENTRY 1 org.eclipse.update.core 4 0 2011-07-07 10:28:42.294
+!MESSAGE Unable to access "http://download.eclipse.org/tools/cdt/releases/callisto".
+!STACK 1
+org.eclipse.update.internal.core.CoreExceptionWithRootCause: Unable to access site: "http://download.eclipse.org/tools/cdt/releases/callisto" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.]
+	at org.eclipse.update.core.Utilities.newCoreException(Utilities.java:226)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:93)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:78)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:447)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:294)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+org.eclipse.update.internal.core.CoreExceptionWithRootCause[42]: org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:560)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:78)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:447)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:294)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.update.core 4 42 2011-07-07 10:28:42.295
+!MESSAGE Unable to access site: "http://download.eclipse.org/tools/cdt/releases/callisto" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.]
+!STACK 0
+org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:560)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:78)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:447)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:294)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 2 org.eclipse.update.core 4 42 2011-07-07 10:28:42.295
+!MESSAGE Unable to access site: "http://download.eclipse.org/tools/cdt/releases/callisto" [Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.]
+!STACK 0
+org.eclipse.update.internal.core.FatalIOException: Server returned HTTP response code: "404 Not Found" for URL: http://download.eclipse.org/tools/cdt/releases/callisto.
+	at org.eclipse.update.internal.core.UpdateManagerUtils.checkConnectionResult(UpdateManagerUtils.java:560)
+	at org.eclipse.update.internal.core.SiteURLFactory.createSite(SiteURLFactory.java:74)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:334)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:326)
+	at org.eclipse.update.internal.core.InternalSiteManager.createSite(InternalSiteManager.java:298)
+	at org.eclipse.update.internal.core.InternalSiteManager.attemptCreateSite(InternalSiteManager.java:222)
+	at org.eclipse.update.internal.core.InternalSiteManager.getSite(InternalSiteManager.java:162)
+	at org.eclipse.update.core.SiteManager.getSite(SiteManager.java:78)
+	at org.eclipse.update.search.UpdateSearchRequest.searchOneSite(UpdateSearchRequest.java:447)
+	at org.eclipse.update.search.UpdateSearchRequest.performSearch(UpdateSearchRequest.java:294)
+	at org.eclipse.update.ui.UpdateJob.runUpdates(UpdateJob.java:207)
+	at org.eclipse.update.ui.UpdateJob.run(UpdateJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+
+!ENTRY com.altera.ide.core 1 0 2011-07-07 10:39:53.775
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 

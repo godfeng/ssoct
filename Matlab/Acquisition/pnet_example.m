@@ -57,22 +57,29 @@ end
 
 
 %% Continuous acquisition 'C\n\r'
-% DOES NOT WORK WELL!!!! CORRUPTED DATA!!!
-nLinesPerFrame = 400;
-nFrames = 2;
+% Works fine!!!
+nLinesPerFrame = 800;
+nFrames = 100;
 nAcqSamples = nLinesPerFrame*nFrames;
-rawDataCont = zeros([NSAMPLES nLinesPerFrame nFrames],'int16');
+rawDataCont = zeros([NSAMPLES nLinesPerFrame],'int16');
 fprintf('Continuous acquisition of %d A-lines...\n',nAcqSamples)
+figure
 pnet(tcpConn,'write',uint8([67 10 13]));
 tic
 for iFrames = 1:nFrames,
     for iLines = 1:nLinesPerFrame,
         % Reads an array of NSAMPLES elements from a connection
-        rawDataCont(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
-        if (iLines == 1) && (iFrames == 2)
-            keyboard
-        end
+        rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+%         Conditional breakpoint
+%         if (iLines == 1) && (iFrames == 2)
+%             keyboard
+%         end
     end
+	% Display a B-scan (single frame)
+    imagesc(BmodeScan2struct(rawDataCont));
+    axis image;
+    colormap(gray(255));
+    title(sprintf('Continuous Transfer. Frame %d',iFrames));
 end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])

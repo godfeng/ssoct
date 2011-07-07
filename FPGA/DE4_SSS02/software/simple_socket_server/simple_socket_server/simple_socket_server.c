@@ -367,7 +367,8 @@ void sss_exec_command(SSSConn* conn)
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop (ASCII code = 67)
                         //////////////////////////////////////////////////////////
-                        for (iLines = 1; iLines <= nLines; iLines++)
+                        //for (iLines = 1; iLines <= nLines; iLines++)
+                        while(1)
                         {
                             //////////////////////////////////////////////////////////
                             // Send single A-line
@@ -400,14 +401,17 @@ void sss_exec_command(SSSConn* conn)
                                     *tx_wr_pos++ = dataPointer[0];
                                 } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
                             bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                            printf("L:%d BS: %d\n",iLines,bytes_sent);
+                            //printf("L:%d BS: %d\n",iLines,bytes_sent);
                             // Indicate that we are done reading RAM contents
                             read_RAM_busy = 0;
                             IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
                             //////////////////////////////////////////////////////////
                             // single A-line transfer done!
                             //////////////////////////////////////////////////////////
-                        } // END for (iLines = 1; iLines <= nLines; iLines++)
+                            
+                            // Wait a little... Should know why...
+                            for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++);
+                        } // END of continuous acquisition loop
                         break;
                         
                     default:
