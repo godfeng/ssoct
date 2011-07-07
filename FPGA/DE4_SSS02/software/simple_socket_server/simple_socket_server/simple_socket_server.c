@@ -277,7 +277,6 @@ void sss_exec_command(SSSConn* conn)
     int             bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
     INT8U           tx_buf[SSS_TX_BUF_SIZE];
     INT8U*          tx_wr_pos = tx_buf;
-    INT8U*          pos_ini = tx_buf;
     INT8U           error_code;
     // Local variables
     unsigned char   acq_busy_signal;
@@ -319,119 +318,103 @@ void sss_exec_command(SSSConn* conn)
             } // END if (SSSCommand == CMD_QUIT)
             else
             {
-                if (SSSCommand == 65)
+                switch (SSSCommand)
                 {
-                    //////////////////////////////////////////////////////////
-                    // Read command A (ASCII code = 65) and send single A-line
-                    //////////////////////////////////////////////////////////
-                    
-                    // Wait to finish writing acquired data to the RAM
-                    do
-                    {
-                        acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                        // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
-                    }
-                    while (acq_busy_signal == 1);
-
-                    // Indicate that we are busy reading RAM contents
-                    read_RAM_busy = 1;
-                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-
-                    // Begin the transfer
-                    tx_wr_pos = tx_buf;
-                    
-                    if (acq_busy_signal == 0)//acq_busy_signal == 0
-                    {
-                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
-                        {
-                            // Read data port (from RAM)
-                            ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                            // Write address port (to RAM)
-                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
-                            dataPointer = (unsigned char*)&ADC_data;
-                            // Send 16-bit data (swapped upper and lower bytes)
-                            *tx_wr_pos++ = dataPointer[1]; 
-                            *tx_wr_pos++ = dataPointer[0];
-                        } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
-                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                        printf("Bytes sent = %d\n",bytes_sent);
-                        // SHOULD PAUSE HERE
+                    case 65:
+                        //////////////////////////////////////////////////////////
+                        // Read command A (ASCII code = 65) and send single A-line
+                        //////////////////////////////////////////////////////////
+                        
+                        // Wait to finish writing acquired data to the RAM
                         do
                         {
                             acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
                             // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
                         }
-                        while (acq_busy_signal == 0);
+                        while (acq_busy_signal == 1);
+    
+                        // Indicate that we are busy reading RAM contents
+                        read_RAM_busy = 1;
+                        IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
+    
+                        // Begin the transfer
+                        tx_wr_pos = tx_buf;
+                        
+                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
+                            {
+                                // Read data port (from RAM)
+                                ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
+                                // Write address port (to RAM)
+                                IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
+                                dataPointer = (unsigned char*)&ADC_data;
+                                // Send 16-bit data (swapped upper and lower bytes)
+                                *tx_wr_pos++ = dataPointer[1]; 
+                                *tx_wr_pos++ = dataPointer[0];
+                            } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
+                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                        //printf("Bytes sent = %d\n",bytes_sent);
+
                         // Indicate that we are done reading RAM contents
                         read_RAM_busy = 0;
                         IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-                    } // END if (acq_busy_signal == 0)
-                    //////////////////////////////////////////////////////////
-                    // single A-line transfer done!
-                    //////////////////////////////////////////////////////////
-                } // END if (SSSCommand == 65) [Single A-line transfer]
-                
-                else
-                {
-                    if (SSSCommand == 67) // [continuous A-line transfer]
-                    {
+                        //////////////////////////////////////////////////////////
+                        // single A-line transfer done!
+                        //////////////////////////////////////////////////////////
+                        break;
+                        
+                    case 67:
                         printf("Continuous acquisition! \n");
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop (ASCII code = 67)
                         //////////////////////////////////////////////////////////
-                        //while (SSSCommand != CMD_QUIT)
                         for (iLines = 1; iLines <= nLines; iLines++)
                         {
-                                //////////////////////////////////////////////////////////
-                                // Send single A-line
-                                //////////////////////////////////////////////////////////
+                            //////////////////////////////////////////////////////////
+                            // Send single A-line
+                            //////////////////////////////////////////////////////////
                                 
-                                // Wait to finish writing acquired data to the RAM
-                                do
+                            // Wait to finish writing acquired data to the RAM
+                            do
+                            {
+                                acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
+                                // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
+                            }
+                            while (acq_busy_signal == 1);
+        
+                            // Indicate that we are busy reading RAM contents
+                            read_RAM_busy = 1;
+                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
+        
+                            // Begin the transfer
+                            tx_wr_pos = tx_buf;
+                            
+                            for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
                                 {
-                                    acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                                    // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
-                                }
-                                while (acq_busy_signal == 1);
-            
-                                // Indicate that we are busy reading RAM contents
-                                read_RAM_busy = 1;
-                                IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-            
-                                // Begin the transfer
-                                tx_wr_pos = pos_ini;
-                                
-                                //acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                                if (acq_busy_signal == 0)//acq_busy_signal == 0
-                                {
-                                    for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
-                                    {
-                                        // Read data port (from RAM)
-                                        ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                                        // Write address port (to RAM)
-                                        IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
-                                        dataPointer = (unsigned char*)&ADC_data;
-                                        // Send 16-bit data (swapped upper and lower bytes)
-                                        *tx_wr_pos++ = dataPointer[1]; 
-                                        *tx_wr_pos++ = dataPointer[0];
-                                    } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
-                                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                                    printf("L:%d BS: %d\n",iLines,bytes_sent);
-                                    // Indicate that we are done reading RAM contents
-                                    read_RAM_busy = 0;
-                                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-                                } // END if (acq_busy_signal == 0)
-                                //////////////////////////////////////////////////////////
-                                // single A-line transfer done!
-                                //////////////////////////////////////////////////////////
-                        } // END while (SSSCommand != CMD_QUIT)
-                    } // END if (SSSCommand == 67)
-                    else
-                    {
+                                    // Read data port (from RAM)
+                                    ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
+                                    // Write address port (to RAM)
+                                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
+                                    dataPointer = (unsigned char*)&ADC_data;
+                                    // Send 16-bit data (swapped upper and lower bytes)
+                                    *tx_wr_pos++ = dataPointer[1]; 
+                                    *tx_wr_pos++ = dataPointer[0];
+                                } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
+                            bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                            printf("L:%d BS: %d\n",iLines,bytes_sent);
+                            // Indicate that we are done reading RAM contents
+                            read_RAM_busy = 0;
+                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
+                            //////////////////////////////////////////////////////////
+                            // single A-line transfer done!
+                            //////////////////////////////////////////////////////////
+                        } // END for (iLines = 1; iLines <= nLines; iLines++)
+                        break;
+                        
+                    default:
                         error_code = OSQPost(SSSLEDCommandQ, (void *)SSSCommand);    
                         alt_SSSErrorHandler(error_code, 0);
-                    } // END else if (SSSCommand == 67) // [continuous A-line transfer]
-                } // END else if (SSSCommand == 65)
+                        break;
+                } // END switch
             } // END else if(SSSCommand == CMD_QUIT)
         } // END if(SSSCommand >= ' ' && SSSCommand <= '~')
     } // END while(bytes_to_process--)

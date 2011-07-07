@@ -338,7 +338,7 @@ reg          conf_wr;
 //  Structural coding
 assign clk1_set_wr = 4'd1; //Disable MHZ
 assign clk2_set_wr = 4'd1; //Disable MHZ
-assign clk3_set_wr = 4'd7; //156.25 MHZ
+assign clk3_set_wr = 4'd4; //100 MHZ
 
 assign rstn = CPU_RESET_n;
 assign counter_max = &auto_set_counter;
@@ -410,7 +410,7 @@ assign	sweepTrigger	= GCLKIN;
 // ADC Data Output clock triggered by k-clock from the swept source.
 assign	kClock			= ADA_DCO;
 
-// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
+// Assign 100 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk			= PLL_CLKIN_p;
 //assign	FPGA_CLK_A_P	=  sys_clk;
 //assign	FPGA_CLK_A_N	= ~sys_clk;

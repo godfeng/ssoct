@@ -151,7 +151,7 @@ FAN_PWM FAN_PWM_inst
 // Heartbeat with glowing LED
 LED_glow LED_glow_inst
 (
-	.clk(clk_div_out_sig[2]) ,	// input  clk_sig
+	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
 	.LED(LED7) 					// output  LED_sig
 );
 endmodule

@@ -390,6 +390,5 @@ set_global_assignment -name QIP_FILE swBUF.qip
 set_global_assignment -name QIP_FILE adFIFO.qip
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name SIGNALTAP_FILE "adc-output.stp"
-set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
 set_global_assignment -name VERILOG_FILE display.v
