@@ -23,8 +23,6 @@
 module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, fcos_o, out_valid);
 
 parameter mpr = 14;
-parameter opr = 28;
-parameter oprp1 = 29;
 parameter apr = 32;
 parameter apri= 16;
 parameter aprf= 32;
@@ -32,20 +30,14 @@ parameter aprp= 16;
 parameter aprid=21;
 parameter dpri= 5;
 parameter rdw = 14;
-parameter rawc = 8;
-parameter rnwc = 256;
-parameter rawf = 8;
-parameter rnwf = 256;
-parameter Pn = 16384;
-parameter mxnbc = 3584;
-parameter mxnbf = 3584;
-parameter rsfc = "sin400k_sin_c.hex";
-parameter rsff = "sin400k_sin_f.hex";
-parameter rcfc = "sin400k_cos_c.hex";
-parameter rcff = "sin400k_cos_f.hex";
-parameter nc = 1;
-parameter log2nc =0;
-parameter outselinit = 0;
+parameter raw = 16;
+parameter rnw = 65536;
+parameter mxnb = 256;
+parameter rsf = "sin400k_sin.hex";
+parameter rcf = "sin400k_cos.hex";
+parameter nc = 2;
+parameter log2nc =1;
+parameter outselinit = 1;
 parameter paci0= 0;
 parameter paci1= 0;
 parameter paci2= 0;
@@ -67,30 +59,28 @@ wire reset;
 assign reset = !reset_n;
 
 wire [apr-1:0]  phi_inc_i_w;
+wire [raw-1:0] raxx001w;
 wire [apr-1:0] phi_acc_w;
-wire [mpr-1:0] rfx_s;	
-wire [mpr-1:0] rcx_s;
-wire [mpr-1:0] rfx_c;	
-wire [mpr-1:0] rcx_c;
-wire [mpr-1:0] rfy_s;	
-wire [mpr-1:0] rcy_s;
-wire [mpr-1:0] rfy_c;	
-wire [mpr-1:0] rcy_c;
-wire [rawc-1:0] raxxx001ms; 
-wire [rawc-1:0] raxxx001mc; 
-wire [rawc-1:0] raxxx000m; 
-wire [rawf-1:0] raxxx000l; 
-wire [rawc-1:0] raxxx001m; 
-wire [rawf-1:0] raxxx001l; 
-wire select_s;
-wire select_c;
-wire [opr:0] result_i;	
-wire [opr:0] result_r;	
+wire [apri-1:0] phi_acc_w_addr;
+wire [mpr-1:0] sin_o_w;
+wire [mpr-1:0] cos_o_w;
+wire [mpr-1:0] rxs_w;
+wire [mpr-1:0] rxc_w;
 wire [mpr-1:0] fsin_o_w;	
 wire [mpr-1:0] fcos_o_w;	
+wire [mpr-1:0] fsin_o;
+wire [mpr-1:0] fcos_o;
+wire [mpr-1:0] fsin_o_ch0;
+wire [mpr-1:0] fcos_o_ch0;
+wire [mpr-1:0] fsin_o_ch1;
+wire [mpr-1:0] fcos_o_ch1;
+wire [log2nc-1:0] inputsel_w;
+wire [log2nc-1:0] outputsel_w;
+wire [nc*apr-1:0] phi_inc_i_bus;
+wire [nc*mpr-1:0] fcos_o_bus;
+wire [nc*mpr-1:0] fsin_o_bus;
 
 assign phi_inc_i_w = phi_inc_i;
-
 
 
 
@@ -113,113 +103,55 @@ defparam ux000.paci5 = paci5 ;
 defparam ux000.paci6 = paci6 ;
 defparam ux000.paci7 = paci7 ;
 
-asj_gam_dp ux008( .clk(clk),
+asj_gal ux009( .clk(clk),
                    .reset(reset), 
                    .clken(clken), 
-                   .phi_acc_w(phi_acc_w[apr-1:apr-rawc-rawf]),
-                   .rom_add_cs(raxxx001ms),
-                   .rom_add_cc(raxxx001mc),
-                   .rom_add_f(raxxx001l)
+                   .phi_acc_w(phi_acc_w[apr-1:apr-raw]),
+                   .rom_add(raxx001w)
                    );
-defparam ux008.rawc = rawc;
-defparam ux008.rawf = rawf;
-defparam ux008.apr = apri;
+defparam ux009.raw = raw;
+defparam ux009.apr = raw;
 
-
-asj_nco_as_m_dp_cen ux0220(.clk(clk),
+asj_nco_as_m_cen ux0120(.clk(clk),
                    .clken (clken),
-                   .raxx_a(raxxx001ms[rawc-1:0]),
-                   .raxx_b(raxxx001mc[rawc-1:0]),
-                   .q_a(rcx_s[mpr-1:0]),
-                   .q_b(rcx_c[mpr-1:0])
-                     );
-defparam ux0220.mpr = mpr;
-defparam ux0220.rdw = rdw;
-defparam ux0220.raw = rawc;
-defparam ux0220.rnw = rnwc;
-defparam ux0220.rf = rsfc;
-defparam ux0220.dev = "Stratix";
+                   .raxx (raxx001w[raw-1:0]),
+                   .srw_int_res(rxs_w[mpr-1:0])
+                   );
+defparam ux0120.mpr = mpr;
+defparam ux0120.rdw = rdw;
+defparam ux0120.raw = raw;
+defparam ux0120.rnw = rnw;
+defparam ux0120.rf = rsf;
+defparam ux0120.dev = "StratixII";
 
-asj_nco_as_m_cen ux0122(.clk(clk),
+asj_nco_as_m_cen ux0121(.clk(clk),
                    .clken (clken),
-                   .raxx(raxxx001l[rawf-1:0]),
-                   .srw_int_res(rfx_s[mpr-1:0])
-                     );
-defparam ux0122.mpr = mpr;
-defparam ux0122.rdw = rdw;
-defparam ux0122.raw = rawf;
-defparam ux0122.rnw = rnwf;
-defparam ux0122.rf = rsff;
-defparam ux0122.dev = "Stratix";
+                   .raxx (raxx001w[raw-1:0]),
+                   .srw_int_res(rxc_w[mpr-1:0])
+                   );
+defparam ux0121.mpr = mpr;
+defparam ux0121.rdw = rdw;
+defparam ux0121.raw = raw;
+defparam ux0121.rnw = rnw;
+defparam ux0121.rf = rcf;
+defparam ux0121.dev = "StratixII";
 
-asj_nco_as_m_cen ux0123(.clk(clk),
-                   .clken (clken),
-                   .raxx(raxxx001l[rawf-1:0]),
-                   .srw_int_res(rfx_c[mpr-1:0])
-                     );
-defparam ux0123.mpr = mpr;
-defparam ux0123.rdw = rdw;
-defparam ux0123.raw = rawf;
-defparam ux0123.rnw = rnwf;
-defparam ux0123.rf = rcff;
-defparam ux0123.dev = "Stratix";
-
-mac_i_lpm m0(.clk(clk),
-                .reset(reset), 
-         .clken(clken), 
-         .a_or_s(select_c),
-         .dataa_0(rcy_s),
-         .dataa_1(rfy_s),
-         .datab_0(rfy_c),
-         .datab_1(rcy_c),
-         .result(result_i));
-defparam m0.mpr = mpr;
-defparam m0.opr = opr;
-defparam m0.oprp1 = oprp1;
-
-mac_i_lpm m1(.clk(clk),
-                .reset(reset), 
-         .clken(clken), 
-         .a_or_s(select_s),
-         .dataa_0(rcy_c),
-         .dataa_1(rcy_s),
-         .datab_0(rfy_c),
-         .datab_1(rfy_s),
-         .result(result_r));
-defparam m1.mpr = mpr;
-defparam m1.opr = opr;
-defparam m1.oprp1 = oprp1;
-
-asj_nco_derot ux0136(.crwx_rc(rcx_c),
-                     .crwx_rf(rfx_c),
-                     .srwx_rc(rcx_s),
-                     .srwx_rf(rfx_s),
-                     .crwy_rc(rcy_c),
-                     .crwy_rf(rfy_c),
-                     .srwy_rc(rcy_s),
-                     .srwy_rf(rfy_s)
-                     );
-defparam ux0136.mpr = mpr;
-defparam ux0136.rxt = rdw;
-
-assign select_s = 1'b0; 
-asj_nco_mob_w blk0( .clk(clk),
-                    .reset(reset),
-                    .clken(clken),
-                    .data_in(result_i),
-                    .data_out(fsin_o_w));
-
-defparam blk0.mpr = mpr;
-defparam blk0.opr = opr;
-assign select_c = 1'b1; 
-asj_nco_mob_w blk1( .clk(clk),
-                    .reset(reset),
-                    .clken(clken),
-                    .data_in(result_r),
-                    .data_out(fcos_o_w));
-
-defparam blk1.mpr = mpr;
-defparam blk1.opr = opr;
+asj_nco_mob_rw ux122(.data_in(rxs_w),
+                     .data_out(fsin_o_w),
+                     .reset(reset),
+                     .clken(clken),
+                     .clk(clk)
+);
+defparam ux122.mpr = mpr;
+defparam ux122.sel = 0;
+asj_nco_mob_rw ux123(.data_in(rxc_w),
+                     .data_out(fcos_o_w),
+                     .reset(reset),
+                     .clken(clken),
+                     .clk(clk)
+);
+defparam ux123.mpr = mpr;
+defparam ux123.sel = 0;
 assign fsin_o = fsin_o_w;
 assign fcos_o = fcos_o_w;
 
@@ -229,8 +161,8 @@ asj_nco_isdr ux710isdr(.clk(clk),
                     .clken(clken),                  
                     .data_ready(out_valid)          
                     );                                      
-defparam ux710isdr.ctc=11;                                       
-defparam ux710isdr.cpr=4;                                   
+defparam ux710isdr.ctc=4;                                       
+defparam ux710isdr.cpr=3;                                   
                                                             
 
 endmodule

@@ -134,7 +134,7 @@ sin400k_st sin400k_st_inst
 	.clk(sys_clk) ,				// input  clk_sig 150 MHz clock
 	.reset_n(global_reset_n) ,	// input  reset_n_sig
 	.clken(1'b1) ,				// input  clken_sig
-	.phi_inc_i(32'd10995116) ,	// input [anglePrec-1:0] phi_inc_i_sig @156.25 MHz->d10995116 for 400 kHz sinus
+	.phi_inc_i(32'd247390116) ,	// input [anglePrec-1:0] phi_inc_i_sig @156.25 MHz->d10995116 for 400 kHz sinus
 	.fsin_o(raw_sine) ,			// output [magnitudePrec-1:0] fsin_o_sig
 	.out_valid() 				// output  out_valid_sig
 );

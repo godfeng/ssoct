@@ -160,7 +160,7 @@ void SSSCreateTasks();
 /* 
  * TX & RX buffer sizes for all socket sends & receives in our sss app
  */
-#define SSS_RX_BUF_SIZE  10
+#define SSS_RX_BUF_SIZE  1500
 #define SSS_TX_BUF_SIZE  2340
 
 /* 

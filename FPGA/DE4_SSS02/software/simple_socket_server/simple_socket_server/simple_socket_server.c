@@ -198,6 +198,7 @@ void sss_send_menu(SSSConn* conn)
 {
   alt_u8  tx_buf[SSS_TX_BUF_SIZE];
   alt_u8 *tx_wr_pos = tx_buf;
+  unsigned short  bytes_sent;
 
   tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Nios II Simple Socket Server Menu\n\r");
@@ -210,8 +211,9 @@ void sss_send_menu(SSSConn* conn)
   tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
   tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:\n\r");
 
-  send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-
+  bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+  printf("Bytes sent = %d\n",bytes_sent);
+  
   return;
 }
 
