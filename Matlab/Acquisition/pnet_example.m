@@ -8,6 +8,8 @@ NSAMPLES        = 1170;
 % Tx & Rx buffer size for all socket sends & receives
 BUFFERSIZE      = 9000;
 MENUSIZE        = 351;
+% Save to file
+save2file       = false;
 % Creates tcp/ip connection to the specified 'hostname' and port
 tcpConn = pnet('tcpconnect',serverAddress,portNumber );
 % Necessary pause
@@ -40,10 +42,12 @@ rawData = zeros([NSAMPLES nLinesPerFrame nFrames],'int16');
 fprintf('Acquiring %d A-lines, one by one...\n',nAcqSamples)
 % Default DATA folder
 pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
-% Default file name
-filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
-% Create binary file and write to it
-fid = fopen(filename, 'w');
+if save2file
+    % Default file name
+    filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
+    % Create binary file and write to it
+    fid = fopen(filename, 'w');
+end
 for iFrames = 1:nFrames,
     for iLines = 1:nLinesPerFrame,
         % Send command 65 to the socket server
@@ -52,8 +56,10 @@ for iFrames = 1:nFrames,
         rawData(:,iLines,iFrames) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
     end
 end
-fwrite(fid, rawData, 'int16');
-fclose(fid);
+if save2file
+    fwrite(fid, rawData, 'int16');
+    fclose(fid);
+end
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
 fprintf('Estimated speed %.2f lines/sec\n',nAcqSamples/elapsedTime)
@@ -86,27 +92,47 @@ fprintf('Continuous acquisition of %d A-lines...\n',nAcqSamples)
 figure
 % Default DATA folder
 pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
-% Default file name
-filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
-% Create binary file
-fid = fopen(filename, 'w');
+if save2file
+    % Default file name
+    filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
+    % Create binary file
+    fid = fopen(filename, 'w');
+end
 % Send command 67 to the socket server
 pnet(tcpConn,'write',uint8([67 10 13]));
 tic
-for iFrames = 1:nFrames,
-    for iLines = 1:nLinesPerFrame,
-        % Reads an array of NSAMPLES elements from a connection
-        rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+if save2file
+    for iFrames = 1:nFrames,
+        for iLines = 1:nLinesPerFrame,
+            % Reads an array of NSAMPLES elements from a connection
+            rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+        end
+        
+        % Save a B-scan frame
+        fwrite(fid, rawDataCont, 'int16');
+        
+        % Display a B-scan (single frame)
+        imagesc(BmodeScan2struct(rawDataCont));
+        axis image;
+        colormap(gray(255));
+        title(sprintf('Continuous Transfer. Frame %d',iFrames));
     end
-    % Save a B-scan frame
-    fwrite(fid, rawDataCont, 'int16');
-	% Display a B-scan (single frame)
-    imagesc(BmodeScan2struct(rawDataCont));
-    axis image;
-    colormap(gray(255));
-    title(sprintf('Continuous Transfer. Frame %d',iFrames));
+    fclose(fid);
+else
+    iFrames = 1;
+    while(1),
+        for iLines = 1:nLinesPerFrame,
+            % Reads an array of NSAMPLES elements from a connection
+            rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+        end
+        % Display a B-scan (single frame)
+        imagesc(BmodeScan2struct(rawDataCont));
+        axis image;
+        colormap(gray(255));
+        title(sprintf('Continuous Transfer. Frame %d',iFrames));
+        iFrames = iFrames + 1;
+    end
 end
-fclose(fid);
 elapsedTime = toc;
 disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
 fprintf('Estimated speed: %.2f lines/sec\n',nAcqSamples/elapsedTime)
