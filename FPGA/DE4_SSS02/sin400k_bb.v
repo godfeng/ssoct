@@ -28,7 +28,6 @@ module sin400k (
 	reset_n,
 	clken,
 	fsin_o,
-	fcos_o,
 	out_valid);
 
 	input	[31:0]	phi_inc_i;
@@ -36,6 +35,5 @@ module sin400k (
 	input		reset_n;
 	input		clken;
 	output	[13:0]	fsin_o;
-	output	[13:0]	fcos_o;
 	output		out_valid;
 endmodule

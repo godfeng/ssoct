@@ -10,7 +10,7 @@ module A_line_acq(
 	read_RAM_address,
 	DAC_output,
 	o_sine,
-	A_line_out,
+	//A_line_out,
 	LED7,
 	FANpin,
 	acq_busy);
@@ -33,11 +33,10 @@ output		[10:0]			read_RAM_address;
 output		[13:0]			DAC_output;
 output		[13:0]			o_sine;
 // A-line of 1170 Elements, each 14 bits wide
-output  	[13:0] 			A_line_out; 
+//output  	[13:0] 			A_line_out; 
 output						LED7;
 output						FANpin;
 output						acq_busy;
-//output						acq_done;
 
 //=======================================================
 //  REG/WIRE declarations
@@ -46,9 +45,8 @@ wire						global_reset_n;
 wire						sys_clk;
 // ADC registers
 reg			[13:0]			per_a2da_d;
-//reg			[13:0]			a2da_data;
 // A-line of 1170 Elements, each 14 bits wide
-reg  		[13:0]			A_line; 
+//reg  		[13:0]			A_line; 
 wire						sweepTrigger;
 // Position of the ADC sample in the A-line
 wire		[10:0]			sample_position;
@@ -64,7 +62,7 @@ wire		[7:0]			clk_div_out_sig;
 //=======================================================	
 assign		global_reset_n	= global_reset;
 assign		sys_clk			= clk_system;
-assign		A_line_out		= A_line;
+//assign		A_line_out		= A_line;
 assign		sample_pos		= sample_position;
 assign		read_RAM_address= RAM_addr;
 assign		sweepTrigger	= trigger50kHz;
@@ -84,8 +82,7 @@ end
 always @(negedge global_reset_n or posedge sys_clk)
 begin
 	if (!global_reset_n) begin
-		//a2da_data	<= 14'd0;
-		A_line		<= 14'd0;
+//		A_line		<= 14'd0;
 		o_sine		<= 14'd0;
 	end
 	else begin
@@ -93,21 +90,21 @@ begin
 		DAC_output 	<= per_a2da_d;
 		// Invert sign bit (MSB) to have offset binary
 		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
-		if (sample_position == 0) begin
-			// 14-bit array, 1170 elements wide
-			A_line				<= 14'd0;
-		end
-		else begin
-			// 14-bit array, 1170 elements wide
-			A_line				<= per_a2da_d;
-		end
+//		if (sample_position == 0) begin
+//			// 14-bit array, 1170 elements wide
+//			A_line				<= 14'd0;
+//		end
+//		else begin
+//			// 14-bit array, 1170 elements wide
+//			A_line				<= per_a2da_d;
+//		end
 	end
 end
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst
 (
-	.clock(sys_clk) ,	// input  clock_sig (ADC_data_out_clk)
+	.clock(ADC_data_out_clk) ,	// input  clock_sig (ADC_data_out_clk)
 	.sclr(~sweepTrigger) ,		// input  sclr_sig
 	.q(sample_position) 		// output [10:0] q_sig
 );
@@ -131,10 +128,10 @@ sample_addressing_custom sample_addressing_custom_inst2
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst
 (
-	.clk(sys_clk) ,				// input  clk_sig 150 MHz clock
+	.clk(sys_clk) ,				// input  clk_sig 156.25 MHz clock
 	.reset_n(global_reset_n) ,	// input  reset_n_sig
 	.clken(1'b1) ,				// input  clken_sig
-	.phi_inc_i(32'd247390116) ,	// input [anglePrec-1:0] phi_inc_i_sig @156.25 MHz->d10995116 for 400 kHz sinus
+	.phi_inc_i(32'd27487791) ,	// input [anglePrec-1:0] phi_inc_i_sig @156.25 MHz->d10995116 for 400 kHz sinus
 	.fsin_o(raw_sine) ,			// output [magnitudePrec-1:0] fsin_o_sig
 	.out_valid() 				// output  out_valid_sig
 );

@@ -24,7 +24,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "80000000";
+            frequency = "90000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -33,14 +33,14 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "80000000";
+            frequency = "90000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
          }
          CLOCK pll_c1
          {
-            frequency = "60000000";
+            frequency = "70000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c1 from pll";
@@ -49,7 +49,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_peripheral_clk
          {
-            frequency = "60000000";
+            frequency = "70000000";
             source = "pll_c1";
             Is_Clock_Source = "0";
             display_name = "pll_peripheral_clk";
@@ -1857,10 +1857,10 @@ SYSTEM DE4_SOPC
             {
                DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "8";
+               MULTIPLY_BY = "9";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "80000000";
+               clock_freq = "90000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1868,10 +1868,10 @@ SYSTEM DE4_SOPC
             {
                DIVIDE_BY = "5";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "6";
+               MULTIPLY_BY = "7";
                PHASE_SHIFT = "0";
                clk_index = "1";
-               clock_freq = "60000000";
+               clock_freq = "70000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1947,15 +1947,15 @@ SYSTEM DE4_SOPC
                {
                   CLK0_DIVIDE_BY = "5";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "8";
+                  CLK0_MULTIPLY_BY = "9";
                   CLK1_DIVIDE_BY = "5";
                   CLK1_DUTY_CYCLE = "50";
-                  CLK1_MULTIPLY_BY = "6";
+                  CLK1_MULTIPLY_BY = "7";
                   INCLK0_INPUT_FREQUENCY = "20000";
                   WIDTH_CLOCK = "10";
                }
             }
-            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
+            LIBRARY = "altera_mf altera_mf.altera_mf_components.all";
             PRIVATE 
             {
                STRING 
@@ -1978,15 +1978,15 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "80.000000";
-                  EFF_OUTPUT_FREQ_VALUE1 = "60.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "90.000000";
+                  EFF_OUTPUT_FREQ_VALUE1 = "70.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
                   GLOCKED_COUNTER_EDIT_CHANGED = "1";
                   GLOCKED_FEATURE_ENABLED = "0";
                   GLOCKED_MODE_CHECK = "0";
                   HAS_MANUAL_SWITCHOVER = "1";
-                  INCLK0_FREQ_EDIT = "50.0";
+                  INCLK0_FREQ_EDIT = "50.000";
                   INCLK0_FREQ_UNIT_COMBO = "MHz";
                   INCLK1_FREQ_EDIT = "100.000";
                   INCLK1_FREQ_EDIT_CHANGED = "1";
@@ -2001,8 +2001,8 @@ SYSTEM DE4_SOPC
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "80.00000000";
-                  OUTPUT_FREQ1 = "60.00000000";
+                  OUTPUT_FREQ0 = "90.00000000";
+                  OUTPUT_FREQ1 = "70.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
                   OUTPUT_FREQ_UNIT0 = "MHz";
@@ -2478,7 +2478,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>2E959BA8</b>    (unique ID tag) <br> <b>4E138D39</b> (timestamp: Tue Jul 5, 2011 @6:16 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>379EE8CC</b>    (unique ID tag) <br> <b>4E189C16</b> (timestamp: Sat Jul 9, 2011 @2:21 PM)";
             MESSAGES 
             {
             }
@@ -2486,8 +2486,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "781556648u";
-         timestamp = "1309904185u";
+         id = "933161164u";
+         timestamp = "1310235670u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2496,7 +2496,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05201ce0 --id=781556648 --timestamp=1309904185";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x05201ce0 --id=933161164 --timestamp=1310235670";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2897,7 +2897,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "79999";
+         load_value = "89999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -3047,7 +3047,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "799999";
+         load_value = "899999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";
@@ -3412,7 +3412,7 @@ SYSTEM DE4_SOPC
       {
          TRANSMIT = "sgdma_tx";
          RECEIVE = "sgdma_rx";
-         TRANSMIT_FIFO_DEPTH = "2048";
+         TRANSMIT_FIFO_DEPTH = "4096";
          RECEIVE_FIFO_DEPTH = "2048";
          FIFO_WIDTH = "32";
          ENABLE_MACLITE = "0";

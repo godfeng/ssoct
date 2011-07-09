@@ -25,16 +25,7 @@ module sin400k_tb;
 
 wire out_valid;
 wire [13:0] sin_val;
-wire [13:0] cos_val;
-reg [13:0] sin_val_ch0;
-reg [13:0] cos_val_ch0;
-reg [13:0] sin_val_ch1;
-reg [13:0] cos_val_ch1;
 reg [31:0] phi;
-reg [31:0] phi_ch0;
-reg [31:0] phi_ch1;
-reg sel_phi;
-reg sel_output;
 reg reset_n;
 reg clken;
 reg clk;
@@ -47,8 +38,7 @@ initial
     #0 clk = 1'b0;
     #0 reset_n = 1'b0;
     #0 clken = 1'b1;
-    #0 phi_ch0 = 32'b00001110101111101101111110100100;
-    #0 phi_ch1 = 32'b00000111010111110110111111010010;
+    #0 phi = 32'b00000001101000110110111000101111;
     #(14*HALF_CYCLE) reset_n = 1'b1;
   end
 
@@ -59,11 +49,9 @@ always
   end
 
 integer sin_ch, sin_print;
-integer cos_ch, cos_print;
 initial
   begin
     sin_ch = $fopen ("fsin_o_ver_sin400k.txt");
-    cos_ch = $fopen ("fcos_o_ver_sin400k.txt");
   end
 
 always @(posedge clk)
@@ -75,75 +63,17 @@ always @(posedge clk)
         else
           sin_print =  sin_val[13:0] - (1<<14);
 
-      if (cos_val[13:0] < (1<<13))
-        cos_print = cos_val[13:0];
-      else
-        cos_print =  cos_val[13:0] - (1<<14);
-
     $fdisplay (sin_ch, "%0d", sin_print);
-    $fdisplay (cos_ch, "%0d", cos_print);
       end
 end
 
 sin400k i_sin400k (
     .out_valid(out_valid),
     .fsin_o(sin_val[13:0]),
-    .fcos_o(cos_val[13:0]),
     .phi_inc_i(phi[31:0]),
     .reset_n(reset_n),
     .clken(clken),
     .clk(clk)
     );
-////////////////////////////////////////////////////////////////////////////////////
-// Input Phase Increment Channel Selector                   
-/////////////////////////////////////////////////////////////////////////////////// 
-always @(negedge clk)                   
-  begin                                 
-    if(reset_n==1'b0)                     
-      begin                             
-        phi <= 0;                       
-        sel_phi <= 0;                 
-      end                               
-    else if(clken==1'b1)                               
-      begin                             
-        sel_phi<=~sel_phi;              
-        if(sel_phi==1'b0)               
-        begin               
-          phi<=phi_ch0;                 
-        end                            
-        else                            
-        begin               
-          phi<=phi_ch1;                 
-        end                            
-      end                               
-  end                                   
-////////////////////////////////////////////////////////////////////////////////////
-// Output Channel Selector              
-/////////////////////////////////////////////////////////////////////////////////// 
-always @(posedge clk)                   
-  begin                                 
-    if(reset_n==1'b0)                     
-      begin                             
-        sin_val_ch0 <= 0;               
-        cos_val_ch0 <= 0;               
-        sin_val_ch1 <= 0;               
-        cos_val_ch1 <= 0;               
-        sel_output <= 0;                
-      end                               
-    else if(out_valid==1'b1 && clken==1'b1)           
-      begin                             
-        sel_output<=~sel_output;        
-        if(sel_output==1'b0)            
-          begin                         
-            sin_val_ch0 <= sin_val;     
-            cos_val_ch0 <= cos_val;     
-          end                           
-        else                            
-          begin                         
-            sin_val_ch1 <= sin_val;     
-            cos_val_ch1 <= cos_val;     
-          end                           
-      end                               
-  end                                   
 
 endmodule

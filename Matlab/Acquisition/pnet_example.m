@@ -88,7 +88,11 @@ nLinesPerFrame = 840;
 nFrames = 400;
 nAcqSamples = nLinesPerFrame*nFrames;
 rawDataCont = zeros([NSAMPLES nLinesPerFrame],'int16');
-fprintf('Continuous acquisition of %d A-lines...\n',nAcqSamples)
+if save2file
+    fprintf('Continuous acquisition of %d A-lines...\n',nAcqSamples)
+else
+    fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
+end
 figure
 % Default DATA folder
 pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
@@ -106,12 +110,17 @@ if save2file
         for iLines = 1:nLinesPerFrame,
             % Reads an array of NSAMPLES elements from a connection
             rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+            if (iLines == 10)
+                subplot(222);
+                plot(rawDataCont(:,iLines));
+            end
         end
         
         % Save a B-scan frame
         fwrite(fid, rawDataCont, 'int16');
         
         % Display a B-scan (single frame)
+        subplot(121)
         imagesc(BmodeScan2struct(rawDataCont));
         axis image;
         colormap(gray(255));

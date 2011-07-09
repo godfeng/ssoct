@@ -20,7 +20,7 @@
 //	needed under any third party's intellectual property, are provided herein.
 
 
-module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, fcos_o, out_valid);
+module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, out_valid);
 
 parameter mpr = 14;
 parameter apr = 32;
@@ -34,10 +34,9 @@ parameter raw = 16;
 parameter rnw = 65536;
 parameter mxnb = 256;
 parameter rsf = "sin400k_sin.hex";
-parameter rcf = "sin400k_cos.hex";
-parameter nc = 2;
-parameter log2nc =1;
-parameter outselinit = 1;
+parameter nc = 1;
+parameter log2nc =0;
+parameter outselinit = 0;
 parameter paci0= 0;
 parameter paci1= 0;
 parameter paci2= 0;
@@ -53,7 +52,6 @@ input clken;
 input [apr-1:0] phi_inc_i; 
 
 output [mpr-1:0] fsin_o;
-output [mpr-1:0] fcos_o;
 output out_valid;
 wire reset; 
 assign reset = !reset_n;
@@ -67,18 +65,6 @@ wire [mpr-1:0] cos_o_w;
 wire [mpr-1:0] rxs_w;
 wire [mpr-1:0] rxc_w;
 wire [mpr-1:0] fsin_o_w;	
-wire [mpr-1:0] fcos_o_w;	
-wire [mpr-1:0] fsin_o;
-wire [mpr-1:0] fcos_o;
-wire [mpr-1:0] fsin_o_ch0;
-wire [mpr-1:0] fcos_o_ch0;
-wire [mpr-1:0] fsin_o_ch1;
-wire [mpr-1:0] fcos_o_ch1;
-wire [log2nc-1:0] inputsel_w;
-wire [log2nc-1:0] outputsel_w;
-wire [nc*apr-1:0] phi_inc_i_bus;
-wire [nc*mpr-1:0] fcos_o_bus;
-wire [nc*mpr-1:0] fsin_o_bus;
 
 assign phi_inc_i_w = phi_inc_i;
 
@@ -124,17 +110,6 @@ defparam ux0120.rnw = rnw;
 defparam ux0120.rf = rsf;
 defparam ux0120.dev = "StratixII";
 
-asj_nco_as_m_cen ux0121(.clk(clk),
-                   .clken (clken),
-                   .raxx (raxx001w[raw-1:0]),
-                   .srw_int_res(rxc_w[mpr-1:0])
-                   );
-defparam ux0121.mpr = mpr;
-defparam ux0121.rdw = rdw;
-defparam ux0121.raw = raw;
-defparam ux0121.rnw = rnw;
-defparam ux0121.rf = rcf;
-defparam ux0121.dev = "StratixII";
 
 asj_nco_mob_rw ux122(.data_in(rxs_w),
                      .data_out(fsin_o_w),
@@ -144,16 +119,7 @@ asj_nco_mob_rw ux122(.data_in(rxs_w),
 );
 defparam ux122.mpr = mpr;
 defparam ux122.sel = 0;
-asj_nco_mob_rw ux123(.data_in(rxc_w),
-                     .data_out(fcos_o_w),
-                     .reset(reset),
-                     .clken(clken),
-                     .clk(clk)
-);
-defparam ux123.mpr = mpr;
-defparam ux123.sel = 0;
 assign fsin_o = fsin_o_w;
-assign fcos_o = fcos_o_w;
 
 
 asj_nco_isdr ux710isdr(.clk(clk),                              

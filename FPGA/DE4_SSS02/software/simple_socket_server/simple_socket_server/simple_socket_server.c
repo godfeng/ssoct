@@ -1,5 +1,5 @@
 // OCT acquisition and data transfer via TCP/IP
-// Version 02 
+// Version 03
 /******************************************************************************
 * Copyright (c) 2006 Altera Corporation, San Jose, California, USA.           *
 * All rights reserved. All use of this software and documentation is          *
@@ -286,11 +286,7 @@ void sss_exec_command(SSSConn* conn)
     unsigned short  ADC_data;
     unsigned char*  dataPointer;
     unsigned short  RAM_address;
-    unsigned short  iLines;
-    unsigned short  nLines = 800;
     unsigned short  bytes_sent;
-    
-    //unsigned short  buffer_position;
     
     /*
     * "SSSCommand" is declared static so that the data will reside 

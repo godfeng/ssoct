@@ -173,8 +173,8 @@ module tse_mac (
 		altera_tse_mac_pcs_pma_inst.ENABLE_MAC_RX_VLAN = 1,
 		altera_tse_mac_pcs_pma_inst.ENABLE_MAC_TX_VLAN = 1,
 		altera_tse_mac_pcs_pma_inst.SYNCHRONIZER_DEPTH = 4,
-		altera_tse_mac_pcs_pma_inst.EG_FIFO = 2048,
-		altera_tse_mac_pcs_pma_inst.EG_ADDR = 11,
+		altera_tse_mac_pcs_pma_inst.EG_FIFO = 4096,
+		altera_tse_mac_pcs_pma_inst.EG_ADDR = 12,
 		altera_tse_mac_pcs_pma_inst.ING_FIFO = 2048,
 		altera_tse_mac_pcs_pma_inst.ENABLE_ENA = 32,
 		altera_tse_mac_pcs_pma_inst.ING_ADDR = 11,
@@ -221,8 +221,8 @@ endmodule
 // Retrieval info:      <PRIVATE name = "dataBitsPerSymbol" value="8"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "dev_version" value="2305"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "deviceFamily" value="STRATIXIV"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "eg_addr" value="11"  type="INTEGER"  enable="1" />
-// Retrieval info:      <PRIVATE name = "eg_fifo" value="2048"  type="INTEGER"  enable="1" />
+// Retrieval info:      <PRIVATE name = "eg_addr" value="12"  type="INTEGER"  enable="1" />
+// Retrieval info:      <PRIVATE name = "eg_fifo" value="4096"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ena_hash" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "enable_alt_reconfig" value="0"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "enable_clk_sharing" value="0"  type="BOOLEAN"  enable="1" />
@@ -262,7 +262,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "timingAdapterName" value="timingAdapter"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "toolContext" value="SOPC_BUILDER"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "transceiver_type" value="LVDS_IO"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "uiEgFIFOSize" value="2048 x 32 Bits"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "uiEgFIFOSize" value="4096 x 32 Bits"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiHostClockFrequency" value="0"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiIngFIFOSize" value="2048 x 32 Bits"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiMACFIFO" value="0"  type="BOOLEAN"  enable="1" />

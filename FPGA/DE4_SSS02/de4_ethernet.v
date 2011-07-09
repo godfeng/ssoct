@@ -603,7 +603,7 @@ A_line_acq A_line_acq_inst
 	.read_RAM_address() ,					// output [10:0] read_RAM_address_sig
 	.DAC_output(DB) ,						// output [13:0] DAC_output_sig
 	.o_sine(DA) ,							// output [13:0] o_sine_sig
-	.A_line_out(A_line) ,					// output [13:0] A_line_acq_sig
+	//.A_line_out(A_line) ,					// output [13:0] A_line_acq_sig
 	.LED7(LED[7]) ,							// output  LED7_sig
 	.FANpin(FAN_CTRL) ,						// output  FANpin_sig
 	.acq_busy(acq_busy) ,					// output  acq_busy_sig
