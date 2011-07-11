@@ -217,28 +217,28 @@
         <port name="acq_data_in[13]" source="A_line_out[9]"/>
         <port name="acq_trigger_in[14]" source="A_line_acq:A_line_acq_inst|acq_busy"/>
         <port name="acq_data_in[14]" source="A_line_acq:A_line_acq_inst|acq_busy"/>
-        <port name="acq_trigger_in[15]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[0]"/>
-        <port name="acq_data_in[15]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[0]"/>
-        <port name="acq_trigger_in[16]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[10]"/>
-        <port name="acq_data_in[16]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[10]"/>
-        <port name="acq_trigger_in[17]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[1]"/>
-        <port name="acq_data_in[17]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[1]"/>
-        <port name="acq_trigger_in[18]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[2]"/>
-        <port name="acq_data_in[18]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[2]"/>
-        <port name="acq_trigger_in[19]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[3]"/>
-        <port name="acq_data_in[19]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[3]"/>
-        <port name="acq_trigger_in[20]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[4]"/>
-        <port name="acq_data_in[20]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[4]"/>
-        <port name="acq_trigger_in[21]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[5]"/>
-        <port name="acq_data_in[21]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[5]"/>
-        <port name="acq_trigger_in[22]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[6]"/>
-        <port name="acq_data_in[22]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[6]"/>
-        <port name="acq_trigger_in[23]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[7]"/>
-        <port name="acq_data_in[23]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[7]"/>
-        <port name="acq_trigger_in[24]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[8]"/>
-        <port name="acq_data_in[24]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[8]"/>
-        <port name="acq_trigger_in[25]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[9]"/>
-        <port name="acq_data_in[25]" source="A_line_acq:A_line_acq_inst|sample_addressing_custom:sample_addressing_custom_inst2|q[9]"/>
+        <port name="acq_trigger_in[15]" source="q[0]"/>
+        <port name="acq_data_in[15]" source="q[0]"/>
+        <port name="acq_trigger_in[16]" source="q[10]"/>
+        <port name="acq_data_in[16]" source="q[10]"/>
+        <port name="acq_trigger_in[17]" source="q[1]"/>
+        <port name="acq_data_in[17]" source="q[1]"/>
+        <port name="acq_trigger_in[18]" source="q[2]"/>
+        <port name="acq_data_in[18]" source="q[2]"/>
+        <port name="acq_trigger_in[19]" source="q[3]"/>
+        <port name="acq_data_in[19]" source="q[3]"/>
+        <port name="acq_trigger_in[20]" source="q[4]"/>
+        <port name="acq_data_in[20]" source="q[4]"/>
+        <port name="acq_trigger_in[21]" source="q[5]"/>
+        <port name="acq_data_in[21]" source="q[5]"/>
+        <port name="acq_trigger_in[22]" source="q[6]"/>
+        <port name="acq_data_in[22]" source="q[6]"/>
+        <port name="acq_trigger_in[23]" source="q[7]"/>
+        <port name="acq_data_in[23]" source="q[7]"/>
+        <port name="acq_trigger_in[24]" source="q[8]"/>
+        <port name="acq_data_in[24]" source="q[8]"/>
+        <port name="acq_trigger_in[25]" source="q[9]"/>
+        <port name="acq_data_in[25]" source="q[9]"/>
         <port name="acq_trigger_in[26]" source="GCLKIN"/>
         <port name="acq_data_in[26]" source="GCLKIN"/>
         <port name="acq_clk" source="PLL_CLKIN_p"/>

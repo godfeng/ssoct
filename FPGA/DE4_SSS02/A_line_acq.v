@@ -7,7 +7,7 @@ module A_line_acq(
 	ADC_chanA,
 	global_reset,
 	sample_pos,
-	read_RAM_address,
+	//read_RAM_address,
 	DAC_output,
 	o_sine,
 	//A_line_out,
@@ -29,7 +29,7 @@ input						ADC_data_out_clk;
 input						trigger50kHz;
 input		[13:0]			ADC_chanA;
 output		[10:0]			sample_pos;
-output		[10:0]			read_RAM_address;
+//output		[10:0]			read_RAM_address;
 output		[13:0]			DAC_output;
 output		[13:0]			o_sine;
 // A-line of 1170 Elements, each 14 bits wide
@@ -51,7 +51,7 @@ wire						sweepTrigger;
 // Position of the ADC sample in the A-line
 wire		[10:0]			sample_position;
 // Position of the A-line sample in the RAM
-wire		[10:0]			RAM_addr;
+//wire		[10:0]			RAM_addr;
 reg			[13:0]			DAC_output;
 reg			[13:0]			o_sine;
 wire		[13:0]			raw_sine;
@@ -64,7 +64,7 @@ assign		global_reset_n	= global_reset;
 assign		sys_clk			= clk_system;
 //assign		A_line_out		= A_line;
 assign		sample_pos		= sample_position;
-assign		read_RAM_address= RAM_addr;
+//assign		read_RAM_address= RAM_addr;
 assign		sweepTrigger	= trigger50kHz;
 
 
@@ -118,12 +118,12 @@ assign acq_busy	= (sample_pos != 0) ? 1'b1 : 1'b0;
 ///////////////////////////////////////////////////////////////////////////////
 
 // RAM address counter active when not acquiring
-sample_addressing_custom sample_addressing_custom_inst2
-(
-	.clock(clk_system) ,		// input  clock_sig
-	.sclr(acq_busy) ,			// input  sclr_sig
-	.q(RAM_addr) 				// output [10:0] q_sig
-);
+//sample_addressing_custom sample_addressing_custom_inst2
+//(
+//	.clock(clk_system) ,		// input  clock_sig
+//	.sclr(acq_busy) ,			// input  sclr_sig
+//	.q(RAM_addr) 				// output [10:0] q_sig
+//);
 
 // 400 kHz sinus at DAC channel A
 sin400k_st sin400k_st_inst

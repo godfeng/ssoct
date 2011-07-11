@@ -600,7 +600,7 @@ A_line_acq A_line_acq_inst
 	.ADC_chanA(ADA_D) ,						// input [13:0] ADC_chanA_sig
 	.global_reset(global_reset_n) ,			// input  global_reset_sig
 	.sample_pos(sample_position) ,			// output [10:0] sample_pos_sig
-	.read_RAM_address() ,					// output [10:0] read_RAM_address_sig
+	//.read_RAM_address() ,					// output [10:0] read_RAM_address_sig
 	.DAC_output(DB) ,						// output [13:0] DAC_output_sig
 	.o_sine(DA) ,							// output [13:0] o_sine_sig
 	//.A_line_out(A_line) ,					// output [13:0] A_line_acq_sig
@@ -611,13 +611,13 @@ A_line_acq A_line_acq_inst
 
 // 2048 words (16-bit) RAM
 RAM	RAM_inst (
-	.data ( {2'b0, ADA_D} ),
-	.rdaddress ( read_RAM_address ),
-	.rdclock ( sys_clk ),
-	.wraddress ( sample_position ),
-	.wrclock ( ADA_DCO ),
-	.wren ( acq_busy & ~read_RAM_busy),		// acq_busy
-	.q ( RAMdata )
+	.data ( {2'b0, ADA_D} ),				// 16-bit data
+	.rdaddress ( read_RAM_address ),		// Read adress (read_RAM_address) from NIOS
+	.rdclock ( sys_clk ),					// Read clock (sys_clk)
+	.wraddress ( sample_position ), 		// Sample position (0-1170)
+	.wrclock ( sys_clk ),					// Write clock (ADA_DCO or sys_clk????)
+	.wren ( acq_busy & ~read_RAM_busy),		// acq_busy & ~read_RAM_busy
+	.q ( RAMdata )							// data read by NIOS
 	);
 	
 endmodule

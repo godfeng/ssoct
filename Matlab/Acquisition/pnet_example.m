@@ -1,3 +1,8 @@
+%_______________________________________________________________________________
+% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+%                    École Polytechnique de Montréal
+% Edgar Guevara
+% 2011/07/11
 %% PNET EXAMPLE
 clear; clc;
 % Server machine (FPGA)
@@ -88,12 +93,20 @@ nLinesPerFrame = 840;
 nFrames = 400;
 nAcqSamples = nLinesPerFrame*nFrames;
 rawDataCont = zeros([NSAMPLES nLinesPerFrame],'int16');
+
 if save2file
     fprintf('Continuous acquisition of %d A-lines...\n',nAcqSamples)
 else
     fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 end
-figure
+
+% New figure on white background
+figure; set(gcf,'color','w')
+% Maximize figure
+screenSize = get(0,'Screensize');
+screenSize = [1 40 screenSize(3) screenSize(4)-40];
+set(gcf, 'OuterPosition', screenSize);
+
 % Default DATA folder
 pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
 if save2file
@@ -104,7 +117,7 @@ if save2file
 end
 % Send command 67 to the socket server
 pnet(tcpConn,'write',uint8([67 10 13]));
-tic
+
 if save2file
     for iFrames = 1:nFrames,
         for iLines = 1:nLinesPerFrame,
@@ -133,18 +146,28 @@ else
         for iLines = 1:nLinesPerFrame,
             % Reads an array of NSAMPLES elements from a connection
             rawDataCont(:,iLines) = pnet(tcpConn,'read',[NSAMPLES 1],'int16');
+            % Correct first sample (always zero, should know why)
+            rawDataCont(1,iLines) = rawDataCont(2,iLines);
+            if (iLines == 10)
+                subplot(222);
+                plot(rawDataCont(:,iLines));
+                ylim([0 2^14])
+                title('Interferogram')
+                subplot(224);
+                plot(abs(ifftshift(fft(double(rawDataCont(:,iLines) - 2^13)))));
+                title('FFT of the interferogram')
+            end
         end
         % Display a B-scan (single frame)
-        imagesc(BmodeScan2struct(rawDataCont));
+        subplot(121)
+        % log scale
+        imagesc(log10(BmodeScan2struct(rawDataCont)));
         axis image;
         colormap(gray(255));
         title(sprintf('Continuous Transfer. Frame %d',iFrames));
         iFrames = iFrames + 1;
     end
 end
-elapsedTime = toc;
-disp(['Elapsed time: ' datestr(datenum(0,0,0,0,0,elapsedTime),'HH:MM:SS')])
-fprintf('Estimated speed: %.2f lines/sec\n',nAcqSamples/elapsedTime)
  
 %% Display data acquired continuously
 figure
