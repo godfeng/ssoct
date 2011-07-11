@@ -63,12 +63,9 @@
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
-<selection>
-<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib"/>
+<selection>&#x0A;<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server_syslib"/>
 </selection>
-<customFilters userDefinedPatternsEnabled="false">
-<xmlDefinedFilters>
-<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
+<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ExecutableFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.SharedFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ClosedProjectFilter" isEnabled="false"/>
