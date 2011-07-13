@@ -39,14 +39,14 @@ if SSOctDefaults.save2file
         rawBscan = acq_Bscan;
         % ---------------------- Plot a single A-line --------------------------
         subplot(222);
-        plot(SSOctDefaults.vectorLambda, rawBscan(:,10));
+        plot(SSOctDefaults.vectorLambda, rawBscan(:,2));
         title('Interferogram')
         xlabel('\lambda [nm]')
         xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % ------------ Plot the phase of a single A-line -----------------------
         subplot(224);
         % plot(abs(ifftshift(fft(double(rawBscan(:,10))))));    % FFT
-        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,10)))));
+        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,2)))));
         title('Interferogram phase')
         xlabel('\lambda [nm]')
         xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
@@ -62,9 +62,10 @@ if SSOctDefaults.save2file
         ylabel('z [\mum]')
         xlabel('A-lines')
         % --------------------- Save a B-scan frame ----------------------------
-        fwrite(fid, rawBscan, 'int16');
+        fwrite(fid, rawBscan, 'double');
     end
     fclose(fid);
+    disp(['File saved as: ' filename])
 else
     iFrames = 1;
     while(1),

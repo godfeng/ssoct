@@ -13,5 +13,4 @@ sampleArm   = SSOctDefaults.sampleArm;
 refArm      = SSOctDefaults.refArm;
 
 correctionMatrix = repmat(sampleArm,[1 SSOctDefaults.nLinesPerFrame]);
-correctedBscan = (double(rawBscan)-correctionMatrix)./(correctionMatrix);
-
+correctedBscan = (double(rawBscan) - correctionMatrix) ./ (correctionMatrix);
