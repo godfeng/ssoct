@@ -8,8 +8,8 @@ function cont_acq
 % Modifies values of global variable
 global SSOctDefaults
 
-% Continuous acquisition 'C\n\r'
-rawDataCont = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
+% Preallocation
+rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
 
 if SSOctDefaults.save2file
     fprintf('Continuous acquisition of %d A-lines...\n',SSOctDefaults.nAcqSamples)
@@ -36,53 +36,63 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
 
 if SSOctDefaults.save2file
     for iFrames = 1:SSOctDefaults.nFrames,
-        for iLines = 1:SSOctDefaults.nLinesPerFrame,
-            % Reads an array of NSAMPLES elements from a connection
-            rawDataCont(:,iLines) = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.NSAMPLES 1],'int16');
-            if (iLines == 10)
-                subplot(222);
-                plot(rawDataCont(:,iLines));
-            end
-        end
-        
-        % Save a B-scan frame
-        fwrite(fid, rawDataCont, 'int16');
-        
-        % Display a B-scan (single frame)
+        rawBscan = acq_Bscan;
+        % ---------------------- Plot a single A-line --------------------------
+        subplot(222);
+        plot(SSOctDefaults.vectorLambda, rawBscan(:,10));
+        title('Interferogram')
+        xlabel('\lambda [nm]')
+        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        % ------------ Plot the phase of a single A-line -----------------------
+        subplot(224);
+        % plot(abs(ifftshift(fft(double(rawBscan(:,10))))));    % FFT
+        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,10)))));
+        title('Interferogram phase')
+        xlabel('\lambda [nm]')
+        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        % --------------- Display a B-scan (single frame) ----------------------
         subplot(121)
-        imagesc(BmodeScan2struct(rawDataCont));
-        axis image;
+        Bscan = BmodeScan2struct(rawBscan);
+        % Display in linear scale, single-sided FFT, with z-axis in um
+        imagesc(1:SSOctDefaults.nLinesPerFrame, SSOctDefaults.zAxis,...
+            Bscan(SSOctDefaults.NSAMPLES/2+1:end,:));
+        axis tight;
         colormap(gray(255));
         title(sprintf('Continuous Transfer. Frame %d',iFrames));
+        ylabel('z [\mum]')
+        xlabel('A-lines')
+        % --------------------- Save a B-scan frame ----------------------------
+        fwrite(fid, rawBscan, 'int16');
     end
     fclose(fid);
 else
     iFrames = 1;
     while(1),
-        for iLines = 1:SSOctDefaults.nLinesPerFrame,
-            % Reads an array of NSAMPLES elements from a connection
-            rawDataCont(:,iLines) = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.NSAMPLES 1],'int16');
-            % Correct first sample (always zero, should know why)
-            rawDataCont(1,iLines) = rawDataCont(2,iLines);
-            % CORRECTION ALGORITHM HERE!!!!
-            correctedAline = correct_A_line(rawAline, sampleArm, refArm);
-            if (iLines == 10)
-                subplot(222);
-                plot(rawDataCont(:,iLines));
-                ylim([0 2^14])
-                title('Interferogram')
-                subplot(224);
-                plot(abs(ifftshift(fft(double(rawDataCont(:,iLines) - 2^13)))));
-                title('FFT of the interferogram')
-            end
-        end
-        % Display a B-scan (single frame)
+        rawBscan = acq_Bscan;
+        % ---------------------- Plot a single A-line --------------------------
+        subplot(222);
+        plot(SSOctDefaults.vectorLambda, rawBscan(:,10));
+        title('Interferogram')
+        xlabel('\lambda [nm]')
+        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        % ------------ Plot the phase of a single A-line -----------------------
+        subplot(224);
+        % plot(abs(ifftshift(fft(double(rawBscan(:,10))))));    % FFT
+        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,10)))));
+        title('Interferogram phase')
+        xlabel('\lambda [nm]')
+        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        % --------------- Display a B-scan (single frame) ----------------------
         subplot(121)
-        % log scale
-        imagesc(log10(BmodeScan2struct(rawDataCont)));
-        axis image;
+        Bscan = BmodeScan2struct(rawBscan);
+        % Display in linear scale, single-sided FFT, with z-axis in um
+        imagesc(1:SSOctDefaults.nLinesPerFrame, SSOctDefaults.zAxis,...
+            Bscan(SSOctDefaults.NSAMPLES/2+1:end,:));
+        axis tight;
         colormap(gray(255));
         title(sprintf('Continuous Transfer. Frame %d',iFrames));
+        ylabel('z [\mum]')
+        xlabel('A-lines')
         iFrames = iFrames + 1;
     end
 end

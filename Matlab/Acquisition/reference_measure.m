@@ -82,3 +82,7 @@ sampleArm = mean(rawData,2);
 subplot(222);
 plot(sampleArm);
 
+% Update global variable
+SSOctDefaults.sampleArm = sampleArm;
+SSOctDefaults.refArm    = refArm;
+

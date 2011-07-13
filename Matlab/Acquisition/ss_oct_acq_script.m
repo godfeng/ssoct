@@ -11,7 +11,7 @@ connect2FPGA
 % Flush data buffer of the connection
 flush_data
 % Send commands to test LEDs on the FPGA board
-LED_test
+% LED_test
 % Take reference and sample measurement
 [sampleArm, refArm] = reference_measure;
 % Start continuous acquisition

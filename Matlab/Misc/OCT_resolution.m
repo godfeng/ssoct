@@ -29,7 +29,8 @@ Ns = 1170;                              % Number of samples (Ns_max = 1286)
 delta_Z_Nq = lambda0^2 * Ns / (4*delta_lambda*n);
 n_air = 1;                              % Index of refraction of air
 delta_Z_Nq_air = lambda0^2 * Ns / (4*delta_lambda*n_air);
-fprintf('Tranverse resolution = %.2f mm\n',delta_Z_Nq_air*1e3)
+fprintf('Maximum path difference (in air) = %.2f mm\n',delta_Z_Nq_air*1e3)
+fprintf('Maximum path difference (in tissue) = %.2f mm\n',delta_Z_Nq*1e3)
 
 %% Data acquisition parameters
 nSamples = 1170;                        % Fixed by the swept source
