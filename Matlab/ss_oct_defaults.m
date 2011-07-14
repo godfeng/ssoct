@@ -54,8 +54,12 @@ SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
 %===============================================================================
 % Center wavelength
 SSOctDefaults.lambda0           = 1310e-9;
+% Wavelength range
+SSOctDefaults.minLambda         = 1258e-9;
+SSOctDefaults.maxLambda         = 1361.2e-9;
 % FWHM in wavelength
-SSOctDefaults.delta_lambda      = 100e-9;
+% SSOctDefaults.delta_lambda      = 100e-9;
+SSOctDefaults.delta_lambda      = SSOctDefaults.maxLambda - SSOctDefaults.minLambda;
 % Axial resolution in air
 SSOctDefaults.zr_air            = (2/pi)*log(2)*SSOctDefaults.lambda0^2 /...
     SSOctDefaults.delta_lambda;
@@ -88,13 +92,14 @@ SSOctDefaults.delta_Z_Nq        = SSOctDefaults.lambda0^2 * ...
 SSOctDefaults.n_air             = 1;
 SSOctDefaults.delta_Z_Nq_air    = SSOctDefaults.lambda0^2 * ...
     SSOctDefaults.NSAMPLES / (4*SSOctDefaults.delta_lambda*SSOctDefaults.n_air);
+% Wavenumber range
+SSOctDefaults.minK              = 2*pi / SSOctDefaults.maxLambda;
+SSOctDefaults.maxK              = 2*pi / SSOctDefaults.minLambda;
+% Wavenumbers column vector
+SSOctDefaults.vectorK           = linspace(SSOctDefaults.maxK,...
+    SSOctDefaults.minK, SSOctDefaults.NSAMPLES)';
+% Lambda Column Vector (in nm)
+SSOctDefaults.vectorLambda      = 2*pi ./ SSOctDefaults.vectorK;
 % z-axis in um
-SSOctDefaults.zAxis             = 1e6*linspace(SSOctDefaults.delta_Z_Nq_air ./...
-    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air / 2,SSOctDefaults.NSAMPLES / 2);
-
-% Wavelength range
-SSOctDefaults.minLambda         = 1258;
-SSOctDefaults.maxLambda         = 1361.2;
-SSOctDefaults.vectorLambda      = linspace(SSOctDefaults.minLambda,...
-    SSOctDefaults.maxLambda, SSOctDefaults.NSAMPLES);
-
+SSOctDefaults.zAxis             = linspace(SSOctDefaults.delta_Z_Nq_air ./...
+    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air,SSOctDefaults.NSAMPLES);
