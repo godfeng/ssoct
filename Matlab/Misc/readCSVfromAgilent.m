@@ -1,4 +1,4 @@
-% Reads .CSV file from Tektronix DSO3202A Scope
+% Reads .CSV file from Agilent DSO3202A Scope
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal

@@ -45,10 +45,22 @@ nMbitsPerSec = nMegsPerSec*8;           % Mbits/sec < 1 Gbit/sec
 %% Required Pathlength match (Axsun)
 c = 299792458;                          % Speed of light in air
 nFiber = 1.47;                          % effective index of refraction of the fiber
-redPath = nFiber*(1181+1180+1056+1058+1056+(1058+27+43)*2+1056+1179+1185)+...
-    (15+20+35+43+30)*2;                 % Red Path in mm
-% Electrical delay (in m)
-electricalDelay = (redPath + 1060 - 2620) / 1000;
+% Red Path in (in mm)
+redPath = nFiber *(...
+    1181 +   73 + 1180 + ...            % 50/50 coupler (source)
+    1056 +   60 +  861 + ...            % Circulator arms 1 & 2 (one-way)
+     861 +   60 + 1056 + ...            % Circulator arms 2 & 3 (return)
+    1184 +   73 + 1185)+ ...            % 50/50 coupler (detector)
+    2*(22 + ...                         % Collimator length
+    110 + ...                           % Scanning distance
+    (1.5 * 38.5) +...                   % Objective length
+    42.3);                              % Working ditance (LWD)
+% Orange Path (in mm)
+orangePath = 1060;
+% Green Path (in mm)
+greenPath = 2620;
+% Electrical delay (conversion from mm to m)
+electricalDelay = (redPath + orangePath - greenPath) / 1000;
 minElectricalDelay = 28.3e-9;           % Minimum electrical clock delay
 stepSizeClockDelay = 0.575e-9;          % the step size of clock delay
 timeDelay = electricalDelay / c;        % Time delay between the clock and signal

@@ -12,6 +12,10 @@ global SSOctDefaults
 sampleArm   = SSOctDefaults.sampleArm;
 refArm      = SSOctDefaults.refArm;
 
-correctionMatrix = repmat(sqrt(sampleArm.*refArm) ,[1 SSOctDefaults.nLinesPerFrame]);
-correctedBscan = (double(rawBscan) - 8192) ./ correctionMatrix;
-% correctedBscan = rawBscan;
+% Reference (correction matrix)
+correctionMatrix = repmat((sampleArm + refArm)/2, [1 SSOctDefaults.nLinesPerFrame]);
+% Normaliza by th reference????
+correctedBscan = (double(rawBscan) - correctionMatrix) ./ correctionMatrix;
+% Hanning window
+correctedBscan = correctedBscan.*repmat(hanning(SSOctDefaults.NSAMPLES), ...
+    [1 SSOctDefaults.nLinesPerFrame]);

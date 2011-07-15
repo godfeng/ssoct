@@ -19,4 +19,4 @@ for iLines = 1:SSOctDefaults.nLinesPerFrame,
     Bscan(1,iLines) = Bscan(2,iLines);
 end
 % CORRECTION ALGORITHM HERE!!!!
-Bscan = correct_B_scan(Bscan);
+% Bscan = correct_B_scan(Bscan);
