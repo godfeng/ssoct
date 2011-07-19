@@ -49,14 +49,15 @@ if SSOctDefaults.save2file
         xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % ------------ Plot the phase of a single A-line -----------------------
         subplot(248)
-        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,2)))),'-k')
+        plot(1e9*SSOctDefaults.vectorLambda, unwrap(angle(hilbert...
+            (rawBscan(:,2)))),'-k')
         title('Interferogram phase')
         xlabel('\lambda [nm]')
-        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % --------------- Plot the a single A-line (FFT) -----------------------
         subplot(247)
         plot(abs(fftshift(ifft(rawBscan(:,2)))),'-k')    % FFT
-        xlim([1 SSOctDefaults.NSAMPLES])
+        xlim([SSOctDefaults.NSAMPLES/2 + 1 SSOctDefaults.NSAMPLES])
         title('Single A-line')
         xlabel('Samples')
         % --------------- Display a B-scan (single frame) ----------------------
@@ -92,14 +93,15 @@ else
         xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % ------------ Plot the phase of a single A-line -----------------------
         subplot(248)
-        plot(SSOctDefaults.vectorLambda, unwrap(angle(hilbert(rawBscan(:,2)))),'-k')
+        plot(1e9*SSOctDefaults.vectorLambda, unwrap(angle(hilbert...
+            (rawBscan(:,2)))),'-k')
         title('Interferogram phase')
         xlabel('\lambda [nm]')
-        xlim([SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+        xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % --------------- Plot the a single A-line (FFT) -----------------------
         subplot(247)
         plot(abs(ifftshift(fft(rawBscan(:,2)))),'-k')    % FFT
-        xlim([1 SSOctDefaults.NSAMPLES])
+        xlim([SSOctDefaults.NSAMPLES/2 + 1 SSOctDefaults.NSAMPLES])
         title('Single A-line')
         xlabel('Samples')
         % --------------- Display a B-scan (single frame) ----------------------

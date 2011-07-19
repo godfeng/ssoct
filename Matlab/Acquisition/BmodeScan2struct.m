@@ -12,4 +12,6 @@ function struct2D = BmodeScan2struct(Bmodescan)
 % Edgar Guevara
 % 2011/07/11
 
-struct2D = abs(fftshift(ifft(double(Bmodescan),[],1)));
+% struct2D = abs(fftshift(ifft(double(Bmodescan),[],1)));
+% FFT OR IFFT?????
+struct2D = abs(ifftshift(fft(double(Bmodescan),[],1)));
