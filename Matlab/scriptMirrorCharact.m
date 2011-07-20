@@ -2,7 +2,7 @@
 % distances from zero path difference up to 3 mm. Then a dispersion optimization
 % algorithm is applied.
 %_______________________________________________________________________________
-% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/19

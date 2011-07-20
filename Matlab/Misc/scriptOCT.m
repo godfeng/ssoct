@@ -1,3 +1,9 @@
+% Script to analyze magnetomotive OCT files using Edward's code
+%_______________________________________________________________________________
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+%                    École Polytechnique de Montréal
+% Edgar Guevara
+% 2011/07/20
 %% Preprocess .bin files to .mat +.dat
 cd('D:\Edgar\Documents\FDOCT\Reconstruction 2')
 addpath(genpath('D:\Edgar\Documents\FDOCT\'))

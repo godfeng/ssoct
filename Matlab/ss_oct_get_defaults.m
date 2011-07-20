@@ -17,7 +17,7 @@ function varargout = ss_oct_get_defaults(defstr, varargin)
 % Volkmar Glauche
 % $Id: spm_get_defaults.m 2696 2009-02-05 20:29:48Z guillaume $
 %_______________________________________________________________________________
-% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11

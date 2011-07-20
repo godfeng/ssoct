@@ -10,7 +10,7 @@ function [posEnv negEnv] = detect_envelope(signal)
 % posEnv    Positive envelope of the original signal
 % negEnv    Negative envelope of the original signal
 %_______________________________________________________________________________
-% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/14

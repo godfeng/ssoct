@@ -1,6 +1,6 @@
 function cont_acq
 %_______________________________________________________________________________
-% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11
@@ -100,7 +100,7 @@ else
         xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
         % --------------- Plot the a single A-line (FFT) -----------------------
         subplot(247)
-        plot(abs(ifftshift(fft(rawBscan(:,2)))),'-k')    % FFT
+        plot(BmodeScan2struct(rawBscan(:,2)),'-k')    % FFT
         xlim([SSOctDefaults.NSAMPLES/2 + 1 SSOctDefaults.NSAMPLES])
         title('Single A-line')
         xlabel('Samples')

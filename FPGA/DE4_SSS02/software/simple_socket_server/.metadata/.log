@@ -2786,3 +2786,49 @@ java.lang.NullPointerException
 	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
 	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SESSION 2011-07-20 07:45:51.781 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-07-20 08:27:39.854
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-07-20 10:22:39.180 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-07-20 10:22:46.730
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY com.altera.ide.core 1 0 2011-07-20 10:23:23.640
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY org.eclipse.debug.core 4 2 2011-07-20 17:09:18.403
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.core.Launch.getLaunchManager(Launch.java:504)
+	at org.eclipse.debug.core.Launch.fireTerminate(Launch.java:400)
+	at org.eclipse.debug.core.Launch.handleDebugEvents(Launch.java:571)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1076)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+
+!ENTRY org.eclipse.core.jobs 4 2 2011-07-20 17:09:18.403
+!MESSAGE An internal error occurred during: "Debug Event Dispatch".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.core.DebugPlugin.log(DebugPlugin.java:860)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.handleException(DebugPlugin.java:1062)
+	at org.eclipse.core.runtime.SafeRunner.handleException(SafeRunner.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:39)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

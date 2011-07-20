@@ -7,7 +7,7 @@ function struct2D = BmodeScan2struct(Bmodescan)
 % OUTPUTS:
 % struct2D      2D raw data (B-scan)
 %_______________________________________________________________________________
-% Copyright (C) 2010 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11

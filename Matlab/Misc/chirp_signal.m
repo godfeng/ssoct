@@ -17,4 +17,4 @@ plot(t,y,'r-','LineWidth',3)
 set(gcf,'color','w')
 ylim([-1.1 1.1])
 axis off
-export_fig(gcf,'G:\My Documents\OCT\chirp.png')
+% export_fig(gcf,'G:\My Documents\OCT\chirp.png')
