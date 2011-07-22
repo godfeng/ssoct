@@ -54,7 +54,7 @@ if correctBackground
     % Digital subtraction of background signal (reference signal when the sample
     % arm is blocked). Spectral shaping is done by dividing the interferogram by
     % the self-interference term.
-    correctedBscan = (double(rawBscan) - refMatrix) ./ sampleMatrix;
+    correctedBscan = (double(rawBscan) - refMatrix);
 else
     correctedBscan = double(rawBscan);
 end

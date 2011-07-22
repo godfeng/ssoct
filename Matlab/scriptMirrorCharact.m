@@ -46,7 +46,7 @@ for iFiles = 1:nFiles,
     % Get raw data (always last frame)
     rawBscan(:,:,iFiles) = squeeze(A.Data.rawData(:,:,3));
     % Subtract reference and self-interference terms; apply hann window
-    rawBscan(:,:,iFiles) = correct_B_scan(rawBscan(:,:,iFiles),@hann);
+    rawBscan(:,:,iFiles) = correct_B_scan(rawBscan(:,:,iFiles),@hann,true);
     % Get reflectance profile from interferogram
     Bscan(:,:,iFiles) = BmodeScan2struct(squeeze(rawBscan(:,:,iFiles)));
     % Average all A-lines from each B-scan
@@ -68,6 +68,8 @@ end
 
 %% Find peaks and FWHM
 [FWHM,peak_pos] = calculate_FWHM(Alines);
+figure;
+plot(FWHM); title('FWHM')
 
 %%
 % Display B-scan
