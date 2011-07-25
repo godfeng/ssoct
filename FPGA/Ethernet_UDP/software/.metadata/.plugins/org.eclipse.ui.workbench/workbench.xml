@@ -45,7 +45,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="493" columnWidth1="105" columnWidth2="180" columnWidth3="90" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="496" columnWidth1="108" columnWidth2="183" columnWidth3="93" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
