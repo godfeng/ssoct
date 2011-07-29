@@ -3,6 +3,7 @@ cd('D:\Edgar\Documents\FDOCT\EdwardOCT\Reconstruction 2')
 OCT_processor
 
 %% Reconstruction of .dat files to .dop3D .struct3D
+clear
 main_reconstruction
 
 %% Map files to memory
@@ -11,15 +12,18 @@ map_3D_files
 
 %% 
 % Minimum & maximum values to display structureal data
-minVal = min(Structure.Data.Data(:));
-maxVal = max(Structure.Data.Data(:));
+minVal = min(Doppler1.Data.Data(:));
+maxVal = max(Doppler1.Data.Data(:));
 
 %%
+load('D:\Edgar\Documents\FDOCT\EdwardOCT\Reconstruction 2\doppler_color_map.mat')
 xTicks = recons_info.step(1)*[1:recons_info.size(1)];
 zTicks = recons_info.step(2)*[1:recons_info.size(2)];
 figure;
-for iFrames=1:acqui_info.nframes,
-    imagesc(xTicks,zTicks,squeeze(Structure.Data.Data(:,:,iFrames))',[minVal maxVal]); colormap(gray(255));
+for iFrames=30:30,
+    imagesc(xTicks,zTicks,squeeze(Doppler1.Data.Data(:,:,iFrames))'); 
+    colormap(doppler_color_map);
+%     colormap(gray)
     xlabel([recons_info.type(1) ' [um]'])
     ylabel([recons_info.type(2) ' [um]'])
     colorbar
@@ -32,8 +36,8 @@ acqui_info.nframes = 100;
 mMode = zeros(recons_info.size(2),recons_info.size(1)*recons_info.size(3));
 % We choose the x-slice
 sliceNo = 500;
-for iFrames=1:acqui_info.nframes,
-% for iFrames=1:100,
+% for iFrames=1:acqui_info.nframes,
+for iFrames=1:100,
     for iLines = 1:recons_info.size(1)
         mMode(:,(iFrames-1)*840 + iLines) = Structure.Data.Data(iLines,:,iFrames);
     end
@@ -46,7 +50,6 @@ xlabel('Frames')
 ylabel([recons_info.type(2) ' [um]'])
 
 %% Doppler data
-load('D:\Edgar\Documents\FDOCT\EdwardOCT\Reconstruction 2\doppler_color_map.mat')
 mMode = zeros(recons_info.size(2),recons_info.size(1)*recons_info.size(3));
 % We choose the x-slice
 sliceNo = 550;
@@ -75,8 +78,10 @@ freqECG = size(acqui_info.ecg_signal{1,1},1) / ...
 lineFreq = 1/(acqui_info.line_period_us*1e-6);
 frameRate = lineFreq/acqui_info.dat_size(2);
 
+%% FFT of ECG
+[Y,f] = myFFT(double(ECGsignal), freqECG);
+xlim([0 100])
 %% FFT of M-mode image
-% [Y,f] = myFFT(double(ECGsignal), freqECG);
-averageSignal = mean(mMode(270:280,:));
+averageSignal = mean(mMode(125:350,:));
 [Y,f] = myFFT(averageSignal, lineFreq);
 xlim([0 100])
