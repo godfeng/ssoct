@@ -20,14 +20,14 @@ ARFLAGS = -src
 # This project
 SYSTEM_NAME := simple_socket_server_0_syslib
 # Location of this project
-SYSTEM_DIR := /cygdrive/h/Project/Ethernet/software/simple_socket_server_0_syslib
+SYSTEM_DIR := /cygdrive/d/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/software/simple_socket_server_0_syslib
 
 # Configuration for system library project
 # The configuration can be changed from system library properties -> C/C++ build -> Configuration drop-down box.
 # If changed a new configuration folder (e.g. Release) is generated with all the generated and built files
 SYS_CONFIG := Debug
 
-PTF := /cygdrive/h/Project/Ethernet/std_2s60.ptf
+PTF := /cygdrive/d/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/std_2s60.ptf
 
 RM := rm -rf
 

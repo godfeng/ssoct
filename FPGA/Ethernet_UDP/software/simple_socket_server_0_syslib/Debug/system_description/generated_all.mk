@@ -1,9 +1,9 @@
 # generated_all.mk
 #
 # Machine generated for a CPU named "cpu" as defined in:
-# h:\Project\Ethernet\software\simple_socket_server_0_syslib\..\..\std_2s60.ptf
+# d:\Edgar\Documents\ssoct\FPGA\Ethernet_UDP\software\simple_socket_server_0_syslib\..\..\std_2s60.ptf
 #
-# Generated: 2009-12-07 20:59:29.281
+# Generated: 2011-07-29 14:00:39.751
 
 # ******************************************************************************
 # *                                                                            *
@@ -59,16 +59,10 @@ endif
 
 COMPONENTS_PROCESSOR      := /cygdrive/c/altera/quartus80/ip/nios2_ip/altera_nios2
 
-COMPONENTS_OS             := /cygdrive/c/altera/quartus80/nios2eds/components/micrium_uc_osii
+COMPONENTS_OS             := /cygdrive/c/altera/91/nios2eds/components/micrium_uc_osii
 
-COMPONENTS_DEVICE_DRIVERS := /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_cfi_flash \
-                             /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_lan91c111 \
-                             /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_timer \
-                             /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_jtag_uart \
-                             /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_pio \
-                             /cygdrive/c/altera/quartus80/ip/sopc_builder_ip/altera_avalon_sysid
 
-COMPONENTS_SOFTWARE       := /cygdrive/c/altera/quartus80/nios2eds/components/altera_iniche
+COMPONENTS_SOFTWARE       := /cygdrive/c/altera/91/nios2eds/components/altera_iniche
 
 CPU = cpu
 

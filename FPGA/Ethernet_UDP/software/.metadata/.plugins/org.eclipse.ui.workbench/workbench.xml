@@ -45,7 +45,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="496" columnWidth1="108" columnWidth2="183" columnWidth3="93" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="502" columnWidth1="114" columnWidth2="189" columnWidth3="99" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -59,7 +59,7 @@
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
 <selection>
-<element path="D:/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/software/simple_socket_server_0"/>
+<element path="D:/Edgar/Documents/ssoct/FPGA/Ethernet_UDP/software/simple_socket_server_0_syslib"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>

@@ -29,6 +29,9 @@
 <includePath path="c:/altera/quartus80/quartus/bin/cygwin/lib/gcc/i686-pc-cygwin/3.4.4/include"/>
 <includePath path="c:/altera/quartus80/quartus/bin/cygwin/usr/include"/>
 <includePath path="c:/altera/quartus80/quartus/bin/cygwin/usr/include/w32api"/>
+<includePath path="c:/altera/91/quartus/bin/cygwin/lib/gcc/i686-pc-cygwin/3.4.4/include"/>
+<includePath path="c:/altera/91/quartus/bin/cygwin/usr/include"/>
+<includePath path="c:/altera/91/quartus/bin/cygwin/usr/include/w32api"/>
 <definedSymbol symbol="ALTERA_INCLUDES"/>
 <definedSymbol symbol="SYSTEM_BUS_WIDTH=32"/>
 <definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION"/>
