@@ -85,3 +85,47 @@ xlim([0 100])
 averageSignal = mean(mMode(125:350,:));
 [Y,f] = myFFT(averageSignal, lineFreq);
 xlim([0 100])
+
+
+%% ------------------------------ Edgar OCT -----------------------------------
+% Load default parameters
+ss_oct_get_defaults
+global SSOctDefaults
+load ('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\bobineData.mat')
+
+% Get filename
+[filename pathname] = uigetfile('*.dat','Choose a file',SSOctDefaults.dirExp,...
+    'MultiSelect', 'on');
+% Map file to memory
+A = memmapfile(fullfile(pathname,filename), 'format', 'double',...
+    'writable', false);
+A.Format = {'double' [SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame...
+    SSOctDefaults.nFrames] 'rawData'};
+for iFrames=1:55,
+    % Get raw data
+    rawBscan(:,:,iFrames) = squeeze(A.Data.rawData(:,:,iFrames+5));
+    % Subtract reference and self-interference terms; apply hann window
+    rawBscan(:,:,iFrames) = correct_B_scan(rawBscan(:,:,iFrames),@hann,true);
+    % Get reflectance profile from interferogram
+    Bscan(:,:,iFrames) = BmodeScan2struct(squeeze(rawBscan(:,:,iFrames)));
+end
+
+%% Make M-mode image
+mMode = zeros(size(Bscan,1),size(Bscan,2)*size(Bscan,3));
+for iFrames=1:size(Bscan,3),
+    for iLines = 1:size(Bscan,2),
+        mMode(:,(iFrames-1)*840 + iLines) = Bscan(:,iLines,iFrames);
+    end
+end
+figure;
+% imagesc(acqui_info.framenumber,zTicks,mMode); colormap(gray(255)); colorbar
+imagesc(log(mMode+1)); colormap(gray(255)); colorbar
+% title(sprintf('x-slice No: %d',sliceNo))
+xlabel('Alines')
+ylabel([SSOctDefaults.zAxis ' [um]'])
+
+%% FFT of M-mode image
+lineFreq = 0.9084370*size(Bscan,2);
+averageSignal = mean(mMode(390:550,:));
+[Y,f] = myFFT(averageSignal, lineFreq);
+xlim([0 20])

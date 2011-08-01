@@ -35,6 +35,7 @@ end
 pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
 
 if SSOctDefaults.save2file
+    tic
     for iFrames = 1:SSOctDefaults.nFrames,
         rawBscan = acq_Bscan;
         % Negative and Positive envelope
@@ -63,9 +64,15 @@ if SSOctDefaults.save2file
         % --------------- Display a B-scan (single frame) ----------------------
         subplot(121)
         Bscan = BmodeScan2struct(rawBscan);
-        % Display in linear scale, single-sided FFT, with z-axis in um
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
-            Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
+        if SSOctDefaults.displayLog
+            % Display in log scale, single-sided FFT, with z-axis in um
+            imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
+                log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1))
+        else
+            % Display in linear scale, single-sided FFT, with z-axis in um
+            imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
+                Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
+        end
         axis tight
         colormap(gray(255))
         title(sprintf('Continuous Transfer. Frame %d',iFrames))
@@ -77,6 +84,8 @@ if SSOctDefaults.save2file
     fclose(fid);
     close(gcf)
     disp(['File saved as: ' filename])
+    frameRate = toc/SSOctDefaults.nFrames;
+    fprintf('Frame Rate = %d Hz',frameRate)
 else
     iFrames = 1;
     while(1),
@@ -107,12 +116,15 @@ else
         % --------------- Display a B-scan (single frame) ----------------------
         subplot(121)
         Bscan = BmodeScan2struct(rawBscan);
-        % Display in linear scale, single-sided FFT, with z-axis in um
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
-            Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
-        % Display in log scale, single-sided FFT, with z-axis in um
-%         imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
-%             log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1))
+        if SSOctDefaults.displayLog
+            % Display in log scale, single-sided FFT, with z-axis in um
+            imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
+                log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1))
+        else
+            % Display in linear scale, single-sided FFT, with z-axis in um
+            imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis,...
+                Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
+        end
         axis tight
         colormap(gray(255))
         title(sprintf('Continuous Transfer. Frame %d',iFrames))

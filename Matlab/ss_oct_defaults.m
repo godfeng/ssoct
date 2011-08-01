@@ -49,6 +49,8 @@ SSOctDefaults.nFrames           = 400;
 % Number of total samples per B-scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
+% Display B-scan in log scale
+SSOctDefaults.displayLog        = false;
 %===============================================================================
 % OCT axial resolution
 %===============================================================================
