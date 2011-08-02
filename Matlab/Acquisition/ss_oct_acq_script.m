@@ -10,10 +10,10 @@ ss_oct_get_defaults
 % ------------------------- MODIFY OPTIONS -------------------------------------
 global SSOctDefaults
 SSOctDefaults.displayLog = true;
-% % Save files
-SSOctDefaults.save2file = true;
+% Save files
+% SSOctDefaults.save2file = true;
 % Save a single frame (first 2 frames are garbage)
-SSOctDefaults.nFrames = 60;
+% SSOctDefaults.nFrames = 60;
 % ------------------------------------------------------------------------------
 
 % Establish connection to socket server running on FPGA

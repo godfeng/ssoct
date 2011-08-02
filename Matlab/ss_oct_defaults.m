@@ -18,6 +18,7 @@ function ss_oct_defaults
 % Default values for ss_oct in structure SSOctDefaults
 global SSOctDefaults
 
+%===============================================================================
 % Directories & file names
 %===============================================================================
 % Installation directory
@@ -29,6 +30,7 @@ SSOctDefaults.screenSize        = get(0,'Screensize');
 SSOctDefaults.screenSize        = [1 40 SSOctDefaults.screenSize(3)...
     SSOctDefaults.screenSize(4)-40];
 
+%===============================================================================
 % SS-OCT experiment specific variables
 %===============================================================================
 % Server machine (FPGA)
@@ -43,7 +45,7 @@ SSOctDefaults.MENUSIZE          = 351;
 % Save to file
 SSOctDefaults.save2file         = false;
 % Number of A-lines per frame
-SSOctDefaults.nLinesPerFrame    = 840;
+SSOctDefaults.nLinesPerFrame    = 1000;
 % Number of frames per B-scan
 SSOctDefaults.nFrames           = 400;
 % Number of total samples per B-scan
@@ -51,6 +53,7 @@ SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
 % Display B-scan in log scale
 SSOctDefaults.displayLog        = false;
+
 %===============================================================================
 % OCT axial resolution
 %===============================================================================
@@ -82,7 +85,7 @@ SSOctDefaults.EFL               = [18 36 54]*1e-3;
 % Numerical Aperture
 SSOctDefaults.NA                = sqrt(1 ./ (1 + (2.*SSOctDefaults.EFL ./ ...
     SSOctDefaults.beamWaist).^2));  
-% Transverse (lateral) resolution
+% Transverse (lateral) resolution for different scan lenses [LSM02 LSM03 LSM04]
 SSOctDefaults.rr                = (2/pi)*SSOctDefaults.lambda0 ./ SSOctDefaults.NA;
 
 %===============================================================================

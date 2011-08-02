@@ -37,7 +37,7 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
 if SSOctDefaults.save2file
     tic
     for iFrames = 1:SSOctDefaults.nFrames,
-        rawBscan = acq_Bscan;
+        rawBscan = acq_Bscan();
         % Negative and Positive envelope
         [posEnv negEnv] = detect_envelope(rawBscan(:,2));
         % -------------- Plot a single interferogram (A-line) ------------------
@@ -89,7 +89,7 @@ if SSOctDefaults.save2file
 else
     iFrames = 1;
     while(1),
-        rawBscan = acq_Bscan();
+        rawBscan = acq_Bscan(@rectwin,false);
         % Negative and Positive envelope
         [posEnv negEnv] = detect_envelope(rawBscan(:,2));
         % -------------- Plot a single interferogram (A-line) ------------------
