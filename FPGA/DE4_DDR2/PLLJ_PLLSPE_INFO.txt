@@ -1,0 +1,5 @@
+PLL_Name	DE4_SOPC:DE4_SOPC_inst|ddr2:the_ddr2|ddr2_controller_phy:ddr2_controller_phy_inst|ddr2_phy:ddr2_phy_inst|ddr2_phy_alt_mem_phy:ddr2_phy_alt_mem_phy_inst|ddr2_phy_alt_mem_phy_clk_reset:clk|ddr2_phy_alt_mem_phy_pll:half_rate.pll|altpll:altpll_component|altpll_c7r3:auto_generated|pll1
+PLLJITTER	26
+PLLSPEmax	40
+PLLSPEmin	-40
+
