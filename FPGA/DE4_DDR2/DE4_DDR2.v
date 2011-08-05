@@ -106,10 +106,10 @@ wire						clk50MHz;
 //  Structural coding
 //=======================================================
 
-assign 	rstn 			= CPU_RESET_n;
+assign 	rstn 				= CPU_RESET_n;
 assign	clk50MHz			= OSC_50_Bank3;
 
-DE4_SOPC DE4_SOPC_inst
+system system_inst
 (
 	// global signals:
 	.clock_master(clk50MHz), 								// input
@@ -125,7 +125,7 @@ DE4_SOPC DE4_SOPC_inst
 	.dll_reference_clk_from_the_ddr2() ,					// output
 	.dqs_delay_ctrl_export_from_the_ddr2() ,				// output [5:0]
 	
-	.global_reset_n_to_the_ddr2(rstn) ,					// input
+	.global_reset_n_to_the_ddr2(rstn) ,						// input
 	
 	.local_init_done_from_the_ddr2() ,						// output
 	.local_refresh_ack_from_the_ddr2() ,					// output
@@ -162,7 +162,7 @@ DE4_SOPC DE4_SOPC_inst
 	.control_go_to_the_master_read() ,	// input
 	.control_read_base_to_the_master_read() ,	// input [29:0]
 	.control_read_length_to_the_master_read() ,	// input [29:0]
-	.user_buffer_output_data_from_the_master_read() ,	// output [15:0]
+	.user_buffer_output_data_from_the_master_read() ,	// output [31:0]
 	.user_data_available_from_the_master_read() ,	// output
 	.user_read_buffer_to_the_master_read() ,	// input
 	
@@ -173,44 +173,44 @@ DE4_SOPC DE4_SOPC_inst
 	.control_write_base_to_the_master_write() ,	// input [29:0]
 	.control_write_length_to_the_master_write() ,	// input [29:0]
 	.user_buffer_full_from_the_master_write() ,	// output
-	.user_buffer_input_data_to_the_master_write() ,	// input [15:0]
+	.user_buffer_input_data_to_the_master_write() ,	// input [31:0]
 	.user_write_buffer_to_the_master_write() 	// input
 );
 
 TestWrite TestWrite_inst
 (
-	.RSTn(RSTn_sig) ,	// input  RSTn_sig
-	.CLK48MHZ(CLK48MHZ_sig) ,	// input  CLK48MHZ_sig
-	.control_go(control_go_sig) ,	// output  control_go_sig
-	.control_write_base(control_write_base_sig) ,	// output [23:0] control_write_base_sig
-	.control_write_length(control_write_length_sig) ,	// output [23:0] control_write_length_sig
-	.control_done(control_done_sig) ,	// input  control_done_sig
-	.user_buffer_data(user_buffer_data_sig) ,	// output [31:0] user_buffer_data_sig
-	.user_buffer_full(user_buffer_full_sig) ,	// input  user_buffer_full_sig
-	.user_write_buffer(user_write_buffer_sig) ,	// output  user_write_buffer_sig
-	.addressLastCompleteWrite(addressLastCompleteWrite_sig) ,	// output [23:0] addressLastCompleteWrite_sig
-	.addressLastCompleteRead(addressLastCompleteRead_sig) ,	// input [23:0] addressLastCompleteRead_sig
-	.writingDone(writingDone_sig) ,	// output  writingDone_sig
-	.debugOut(debugOut_sig) ,	// output [31:0] debugOut_sig
-	.errorFull(errorFull_sig) 	// output  errorFull_sig
+	.RSTn(rstn) ,	// input  RSTn_sig
+	.CLK48MHZ(clk50MHz) ,	// input  CLK48MHZ_sig
+	.control_go() ,	// output  control_go_sig
+	.control_write_base() ,	// output [23:0] control_write_base_sig
+	.control_write_length() ,	// output [23:0] control_write_length_sig
+	.control_done() ,	// input  control_done_sig
+	.user_buffer_data() ,	// output [31:0] user_buffer_data_sig
+	.user_buffer_full() ,	// input  user_buffer_full_sig
+	.user_write_buffer() ,	// output  user_write_buffer_sig
+	.addressLastCompleteWrite() ,	// output [23:0] addressLastCompleteWrite_sig
+	.addressLastCompleteRead() ,	// input [23:0] addressLastCompleteRead_sig
+	.writingDone() ,	// output  writingDone_sig
+	.debugOut() ,	// output [31:0] debugOut_sig
+	.errorFull() 	// output  errorFull_sig
 );
 
 TestRead TestRead_inst
 (
-	.RSTn(RSTn_sig) ,	// input  RSTn_sig
-	.CLK48MHZ(CLK48MHZ_sig) ,	// input  CLK48MHZ_sig
-	.control_go(control_go_sig) ,	// output  control_go_sig
-	.control_read_base(control_read_base_sig) ,	// output [23:0] control_read_base_sig
-	.control_read_length(control_read_length_sig) ,	// output [23:0] control_read_length_sig
-	.control_done(control_done_sig) ,	// input  control_done_sig
-	.user_buffer_data(user_buffer_data_sig) ,	// input [31:0] user_buffer_data_sig
-	.user_read_buffer(user_read_buffer_sig) ,	// output  user_read_buffer_sig
-	.user_data_available(user_data_available_sig) ,	// input  user_data_available_sig
-	.addressLastCompleteWrite(addressLastCompleteWrite_sig) ,	// input [23:0] addressLastCompleteWrite_sig
-	.addressLastCompleteRead(addressLastCompleteRead_sig) ,	// output [23:0] addressLastCompleteRead_sig
-	.readingDone(readingDone_sig) ,	// output  readingDone_sig
-	.debugOut(debugOut_sig) ,	// output [31:0] debugOut_sig
-	.errorData(errorData_sig) 	// output [2:0] errorData_sig
+	.RSTn(rstn) ,	// input  RSTn_sig
+	.CLK48MHZ(clk50MHz) ,	// input  CLK48MHZ_sig
+	.control_go() ,	// output  control_go_sig
+	.control_read_base() ,	// output [23:0] control_read_base_sig
+	.control_read_length() ,	// output [23:0] control_read_length_sig
+	.control_done() ,	// input  control_done_sig
+	.user_buffer_data() ,	// input [31:0] user_buffer_data_sig
+	.user_read_buffer() ,	// output  user_read_buffer_sig
+	.user_data_available() ,	// input  user_data_available_sig
+	.addressLastCompleteWrite() ,	// input [23:0] addressLastCompleteWrite_sig
+	.addressLastCompleteRead() ,	// output [23:0] addressLastCompleteRead_sig
+	.readingDone() ,	// output  readingDone_sig
+	.debugOut() ,	// output [31:0] debugOut_sig
+	.errorData() 	// output [2:0] errorData_sig
 );
 
 endmodule

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
- <systemtable filter="Default">
+ <systemtable filter="All">
   <columns>
-   <connections preferredWidth="63" />
+   <connections preferredWidth="127" />
    <export visible="0" />
    <irq preferredWidth="34" visible="0" />
    <inputclock preferredWidth="167" />
@@ -16,7 +16,7 @@
    <frequency preferredWidth="142" />
   </columns>
  </clocktable>
- <window width="960" height="1036" x="960" y="0" />
+ <window width="960" height="1036" x="3" y="9" />
  <library
    expandedCategories="Library/Memories and Memory Controllers,Library/Bridges and Adapters,Library/Peripherals,Project,Library/PLL,Project/Templates,Library/Bridges and Adapters/Memory Mapped,Library/Memories and Memory Controllers/On-Chip,Library,Library/Processors,Library/Interface Protocols,Library/Memories and Memory Controllers/SDRAM,Library/Peripherals/Debug and Performance,Library/Peripherals/Microcontroller Peripherals" />
 </preferences>
