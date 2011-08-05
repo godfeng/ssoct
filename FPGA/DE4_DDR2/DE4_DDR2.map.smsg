@@ -1,7 +1,3 @@
-Warning (10037): Verilog HDL or VHDL warning at cpu.v(1963): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu.v(1965): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu.v(2115): conditional expression evaluates to a constant
-Warning (10037): Verilog HDL or VHDL warning at cpu.v(3013): conditional expression evaluates to a constant
 Info (10281): Verilog HDL Declaration information at alt_ddrx_controller.v(67): object "MEM_CAS_WR_LAT" differs only in case from object "mem_cas_wr_lat" in the same scope
 Info (10281): Verilog HDL Declaration information at alt_ddrx_controller.v(68): object "MEM_ADD_LAT" differs only in case from object "mem_add_lat" in the same scope
 Info (10281): Verilog HDL Declaration information at alt_ddrx_controller.v(69): object "MEM_TCL" differs only in case from object "mem_tcl" in the same scope

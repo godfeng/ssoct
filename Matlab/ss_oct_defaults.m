@@ -48,7 +48,7 @@ SSOctDefaults.save2file         = false;
 SSOctDefaults.nLinesPerFrame    = 1000;
 % Number of frames per B-scan
 SSOctDefaults.nFrames           = 400;
-% Number of total samples per B-scan
+% Number of total samples per scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
 % Display B-scan in log scale

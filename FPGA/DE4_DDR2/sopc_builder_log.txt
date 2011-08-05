@@ -1,0 +1,285 @@
+#AFI afi generate sequencer: hdl/sequencer/seq/alt_mem_phy_seq alt_mem_phy_seq
+#AFI generate sequencer wrapper: hdl/datapath/common/alt_mem_phy_seq_wrapper ddr2_phy alt_mem_phy_seq_wrapper
+ALTMEMPHY Returning list of Ports to IPTB
+[pll_ref_clk, global_reset_n, soft_reset_n, reset_request_n, ctl_clk, ctl_reset_n, ctl_dqs_burst[15..0], ctl_wdata_valid[15..0], ctl_wdata[255..0], ctl_dm[31..0], ctl_wlat[4..0], ctl_addr[27..0], ctl_ba[5..0], ctl_cas_n[1..0], ctl_cke[1..0], ctl_cs_n[1..0], ctl_odt[1..0], ctl_ras_n[1..0], ctl_we_n[1..0], ctl_rst_n[1..0], ctl_doing_rd[15..0], ctl_rdata[255..0], ctl_rdata_valid[1..0], ctl_rlat[4..0], ctl_cal_req, ctl_mem_clk_disable[1..0], ctl_cal_success, ctl_cal_fail, ctl_cal_warning, mem_ac_parity, mem_err_out_n, parity_error_n, ctl_cal_byte_lane_sel_n[7..0], mem_addr[13..0], mem_ba[2..0], mem_cas_n, mem_cke[0..0], mem_cs_n[0..0], mem_dm[7..0], mem_odt[0..0], mem_ras_n, mem_we_n, mem_reset_n, mem_clk[1..0], mem_clk_n[1..0], mem_dq[63..0], mem_dqs[7..0], mem_dqs_n[7..0], oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_offset_delay_ctrl[5..0], dqs_delay_ctrl_import[5..0], dqs_delay_ctrl_export[5..0], dll_reference_clk, aux_half_rate_clk, aux_full_rate_clk, aux_scan_clk, aux_scan_clk_reset_n, dbg_clk, dbg_reset_n, dbg_addr[12..0], dbg_wr, dbg_rd, dbg_cs, dbg_wr_data[31..0], dbg_rd_data[31..0], dbg_waitrequest, pll_reconfig_enable, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_dout[63..0], hc_scan_ck]
+Generating MegaCore function top-level...
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+Generating QIP file ...
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq_wrapper.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq.vhd" Location = 2
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_pll.v" Location = 2
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_seq.vhd
+MSG QIP-1: Adding VHDL file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-6: Processing ddr2_phy.v
+MSG QIP-2: Adding Verilog file ddr2_phy.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_pll.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy_pll.v
+Adding design files to Quartus II project ...
+MSG BRT-7: Copying quartus.ini to quartus.ini
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq_wrapper.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq.vhd" Location = 2
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_pll.v" Location = 2
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-8: Processing ddr2_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_pll.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_pll.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_pll.v
+ALTMEMPHY Returning list of Ports to IPTB
+[pll_ref_clk, global_reset_n, soft_reset_n, reset_request_n, ctl_clk, ctl_reset_n, ctl_dqs_burst[15..0], ctl_wdata_valid[15..0], ctl_wdata[255..0], ctl_dm[31..0], ctl_wlat[4..0], ctl_addr[27..0], ctl_ba[5..0], ctl_cas_n[1..0], ctl_cke[1..0], ctl_cs_n[1..0], ctl_odt[1..0], ctl_ras_n[1..0], ctl_we_n[1..0], ctl_rst_n[1..0], ctl_doing_rd[15..0], ctl_rdata[255..0], ctl_rdata_valid[1..0], ctl_rlat[4..0], ctl_cal_req, ctl_mem_clk_disable[1..0], ctl_cal_success, ctl_cal_fail, ctl_cal_warning, mem_ac_parity, mem_err_out_n, parity_error_n, ctl_cal_byte_lane_sel_n[7..0], mem_addr[13..0], mem_ba[2..0], mem_cas_n, mem_cke[0..0], mem_cs_n[0..0], mem_dm[7..0], mem_odt[0..0], mem_ras_n, mem_we_n, mem_reset_n, mem_clk[1..0], mem_clk_n[1..0], mem_dq[63..0], mem_dqs[7..0], mem_dqs_n[7..0], oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_offset_delay_ctrl[5..0], dqs_delay_ctrl_import[5..0], dqs_delay_ctrl_export[5..0], dll_reference_clk, aux_half_rate_clk, aux_full_rate_clk, aux_scan_clk, aux_scan_clk_reset_n, dbg_clk, dbg_reset_n, dbg_addr[12..0], dbg_wr, dbg_rd, dbg_cs, dbg_wr_data[31..0], dbg_rd_data[31..0], dbg_waitrequest, pll_reconfig_enable, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_dout[63..0], hc_scan_ck]
+MegaCore Function Generation successful.
+MSG FMP-1: Posting close event for IP Toolbench. Application will exit now with code 4
+MSG FMP-2: Calling windowClosing. Application will exit now with the code 4
+DDR_HP Returning list of Ports to IPTB
+[local_address[24..0], local_write_req, local_read_req, local_burstbegin, local_ready, local_rdata[255..0], local_rdata_valid, local_wdata[255..0], local_be[31..0], local_size[2..0], reset_request_n, mem_odt[0..0], mem_clk[1..0], mem_clk_n[1..0], mem_cs_n[0..0], mem_cke[0..0], mem_addr[13..0], mem_ba[2..0], mem_ras_n, mem_cas_n, mem_we_n, mem_dq[63..0], mem_dqs[7..0], mem_dqsn[7..0], mem_dm[7..0], local_rdata_error, local_refresh_ack, local_refresh_req, local_wdata_req, local_init_done, reset_phy_clk_n, mem_reset_n, oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_delay_ctrl_import[5..0], dll_reference_clk, dqs_delay_ctrl_export[5..0], dqs_offset_delay_ctrl[5..0], hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_ck, hc_scan_dout[63..0], pll_reconfig_busy, pll_reconfig_clk, pll_reconfig_reset, pll_reconfig_write_param, pll_reconfig_read_param, pll_reconfig, pll_reconfig_counter_type[3..0], pll_reconfig_counter_param[2..0], pll_reconfig_soft_reset_en_n, pll_reconfig_data_out, pll_reconfig_data_in, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, pll_reconfig_enable, aux_scan_clk_reset_n, aux_scan_clk, global_reset_n, local_autopch_req, local_self_rfsh_req, local_self_rfsh_ack, local_multicast_req, local_refresh_chip, local_power_down_ack, pll_ref_clk, phy_clk, aux_full_rate_clk, aux_half_rate_clk, soft_reset_n]
+Generating MegaCore function top-level...
+MSG NF-1 Added project file "ddr2.v" Location = 2
+Generating QIP file ...
+MSG NF-1 Added project file "alt_ddrx_controller.v" Location = 2
+MSG NF-1 Added project file "ddr2_alt_ddrx_controller_wrapper.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_addr_cmd.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_afi_block.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_avalon_if.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_bank_tracking.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_clock_and_reset.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_cmd_queue.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_csr.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ddr2_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ddr3_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder_72.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder_40.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ecc.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder_40.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder_72.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_input_if.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_state_machine.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_timers.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_timers_fsm.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_wdata_fifo.v" Location = 2
+MSG NF-1 Added project file "altera_avalon_half_rate_bridge.v" Location = 2
+MSG APF-6: Processing ddr2_alt_ddrx_controller_wrapper.v
+MSG QIP-2: Adding Verilog file ddr2_alt_ddrx_controller_wrapper.v
+MSG APF-6: Processing alt_ddrx_controller.v
+MSG QIP-2: Adding Verilog file alt_ddrx_controller.v
+MSG APF-6: Processing alt_ddrx_addr_cmd.v
+MSG QIP-2: Adding Verilog file alt_ddrx_addr_cmd.v
+MSG APF-6: Processing alt_ddrx_afi_block.v
+MSG QIP-2: Adding Verilog file alt_ddrx_afi_block.v
+MSG APF-6: Processing alt_ddrx_avalon_if.v
+MSG QIP-2: Adding Verilog file alt_ddrx_avalon_if.v
+MSG APF-6: Processing alt_ddrx_bank_tracking.v
+MSG QIP-2: Adding Verilog file alt_ddrx_bank_tracking.v
+MSG APF-6: Processing alt_ddrx_clock_and_reset.v
+MSG QIP-2: Adding Verilog file alt_ddrx_clock_and_reset.v
+MSG APF-6: Processing alt_ddrx_cmd_queue.v
+MSG QIP-2: Adding Verilog file alt_ddrx_cmd_queue.v
+MSG APF-6: Processing alt_ddrx_csr.v
+MSG QIP-2: Adding Verilog file alt_ddrx_csr.v
+MSG APF-6: Processing alt_ddrx_ddr2_odt_gen.v
+MSG QIP-2: Adding Verilog file alt_ddrx_ddr2_odt_gen.v
+MSG APF-6: Processing alt_ddrx_ddr3_odt_gen.v
+MSG QIP-2: Adding Verilog file alt_ddrx_ddr3_odt_gen.v
+MSG APF-6: Processing alt_ddrx_decoder.v
+MSG QIP-2: Adding Verilog file alt_ddrx_decoder.v
+MSG APF-6: Processing alt_ddrx_decoder_72.v
+MSG QIP-2: Adding Verilog file alt_ddrx_decoder_72.v
+MSG APF-6: Processing alt_ddrx_decoder_40.v
+MSG QIP-2: Adding Verilog file alt_ddrx_decoder_40.v
+MSG APF-6: Processing alt_ddrx_ecc.v
+MSG QIP-2: Adding Verilog file alt_ddrx_ecc.v
+MSG APF-6: Processing alt_ddrx_encoder.v
+MSG QIP-2: Adding Verilog file alt_ddrx_encoder.v
+MSG APF-6: Processing alt_ddrx_encoder_40.v
+MSG QIP-2: Adding Verilog file alt_ddrx_encoder_40.v
+MSG APF-6: Processing alt_ddrx_encoder_72.v
+MSG QIP-2: Adding Verilog file alt_ddrx_encoder_72.v
+MSG APF-6: Processing alt_ddrx_input_if.v
+MSG QIP-2: Adding Verilog file alt_ddrx_input_if.v
+MSG APF-6: Processing alt_ddrx_odt_gen.v
+MSG QIP-2: Adding Verilog file alt_ddrx_odt_gen.v
+MSG APF-6: Processing alt_ddrx_state_machine.v
+MSG QIP-2: Adding Verilog file alt_ddrx_state_machine.v
+MSG APF-6: Processing alt_ddrx_timers.v
+MSG QIP-2: Adding Verilog file alt_ddrx_timers.v
+MSG APF-6: Processing alt_ddrx_timers_fsm.v
+MSG QIP-2: Adding Verilog file alt_ddrx_timers_fsm.v
+MSG APF-6: Processing alt_ddrx_wdata_fifo.v
+MSG QIP-2: Adding Verilog file alt_ddrx_wdata_fifo.v
+MSG APF-6: Processing altera_avalon_half_rate_bridge.v
+MSG QIP-2: Adding Verilog file altera_avalon_half_rate_bridge.v
+Adding design files to Quartus II project ...
+MSG BRT-7: Copying quartus.ini to quartus.ini
+MSG NF-1 Added project file "alt_ddrx_controller.v" Location = 2
+MSG NF-1 Added project file "ddr2_alt_ddrx_controller_wrapper.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_addr_cmd.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_afi_block.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_avalon_if.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_bank_tracking.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_clock_and_reset.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_cmd_queue.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_csr.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ddr2_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ddr3_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder_72.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_decoder_40.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_ecc.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder_40.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_encoder_72.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_input_if.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_odt_gen.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_state_machine.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_timers.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_timers_fsm.v" Location = 2
+MSG NF-1 Added project file "alt_ddrx_wdata_fifo.v" Location = 2
+MSG NF-1 Added project file "altera_avalon_half_rate_bridge.v" Location = 2
+MSG APF-8: Processing ddr2_alt_ddrx_controller_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_alt_ddrx_controller_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_alt_ddrx_controller_wrapper.v
+MSG APF-8: Processing alt_ddrx_controller.v
+MSG APF-1: Adding Tcl file alt_ddrx_controller.v
+MSG APF-1: Adding Tcl file alt_ddrx_controller.v
+MSG APF-8: Processing alt_ddrx_addr_cmd.v
+MSG APF-1: Adding Tcl file alt_ddrx_addr_cmd.v
+MSG APF-1: Adding Tcl file alt_ddrx_addr_cmd.v
+MSG APF-8: Processing alt_ddrx_afi_block.v
+MSG APF-1: Adding Tcl file alt_ddrx_afi_block.v
+MSG APF-1: Adding Tcl file alt_ddrx_afi_block.v
+MSG APF-8: Processing alt_ddrx_avalon_if.v
+MSG APF-1: Adding Tcl file alt_ddrx_avalon_if.v
+MSG APF-1: Adding Tcl file alt_ddrx_avalon_if.v
+MSG APF-8: Processing alt_ddrx_bank_tracking.v
+MSG APF-1: Adding Tcl file alt_ddrx_bank_tracking.v
+MSG APF-1: Adding Tcl file alt_ddrx_bank_tracking.v
+MSG APF-8: Processing alt_ddrx_clock_and_reset.v
+MSG APF-1: Adding Tcl file alt_ddrx_clock_and_reset.v
+MSG APF-1: Adding Tcl file alt_ddrx_clock_and_reset.v
+MSG APF-8: Processing alt_ddrx_cmd_queue.v
+MSG APF-1: Adding Tcl file alt_ddrx_cmd_queue.v
+MSG APF-1: Adding Tcl file alt_ddrx_cmd_queue.v
+MSG APF-8: Processing alt_ddrx_csr.v
+MSG APF-1: Adding Tcl file alt_ddrx_csr.v
+MSG APF-1: Adding Tcl file alt_ddrx_csr.v
+MSG APF-8: Processing alt_ddrx_ddr2_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_ddr2_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_ddr2_odt_gen.v
+MSG APF-8: Processing alt_ddrx_ddr3_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_ddr3_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_ddr3_odt_gen.v
+MSG APF-8: Processing alt_ddrx_decoder.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder.v
+MSG APF-8: Processing alt_ddrx_decoder_72.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder_72.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder_72.v
+MSG APF-8: Processing alt_ddrx_decoder_40.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder_40.v
+MSG APF-1: Adding Tcl file alt_ddrx_decoder_40.v
+MSG APF-8: Processing alt_ddrx_ecc.v
+MSG APF-1: Adding Tcl file alt_ddrx_ecc.v
+MSG APF-1: Adding Tcl file alt_ddrx_ecc.v
+MSG APF-8: Processing alt_ddrx_encoder.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder.v
+MSG APF-8: Processing alt_ddrx_encoder_40.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder_40.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder_40.v
+MSG APF-8: Processing alt_ddrx_encoder_72.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder_72.v
+MSG APF-1: Adding Tcl file alt_ddrx_encoder_72.v
+MSG APF-8: Processing alt_ddrx_input_if.v
+MSG APF-1: Adding Tcl file alt_ddrx_input_if.v
+MSG APF-1: Adding Tcl file alt_ddrx_input_if.v
+MSG APF-8: Processing alt_ddrx_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_odt_gen.v
+MSG APF-1: Adding Tcl file alt_ddrx_odt_gen.v
+MSG APF-8: Processing alt_ddrx_state_machine.v
+MSG APF-1: Adding Tcl file alt_ddrx_state_machine.v
+MSG APF-1: Adding Tcl file alt_ddrx_state_machine.v
+MSG APF-8: Processing alt_ddrx_timers.v
+MSG APF-1: Adding Tcl file alt_ddrx_timers.v
+MSG APF-1: Adding Tcl file alt_ddrx_timers.v
+MSG APF-8: Processing alt_ddrx_timers_fsm.v
+MSG APF-1: Adding Tcl file alt_ddrx_timers_fsm.v
+MSG APF-1: Adding Tcl file alt_ddrx_timers_fsm.v
+MSG APF-8: Processing alt_ddrx_wdata_fifo.v
+MSG APF-1: Adding Tcl file alt_ddrx_wdata_fifo.v
+MSG APF-1: Adding Tcl file alt_ddrx_wdata_fifo.v
+MSG APF-8: Processing altera_avalon_half_rate_bridge.v
+MSG APF-1: Adding Tcl file altera_avalon_half_rate_bridge.v
+MSG APF-1: Adding Tcl file altera_avalon_half_rate_bridge.v
+DDR_HP Returning list of Ports to IPTB
+[local_address[24..0], local_write_req, local_read_req, local_burstbegin, local_ready, local_rdata[255..0], local_rdata_valid, local_wdata[255..0], local_be[31..0], local_size[2..0], reset_request_n, mem_odt[0..0], mem_clk[1..0], mem_clk_n[1..0], mem_cs_n[0..0], mem_cke[0..0], mem_addr[13..0], mem_ba[2..0], mem_ras_n, mem_cas_n, mem_we_n, mem_dq[63..0], mem_dqs[7..0], mem_dqsn[7..0], mem_dm[7..0], local_rdata_error, local_refresh_ack, local_refresh_req, local_wdata_req, local_init_done, reset_phy_clk_n, mem_reset_n, oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_delay_ctrl_import[5..0], dll_reference_clk, dqs_delay_ctrl_export[5..0], dqs_offset_delay_ctrl[5..0], hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_ck, hc_scan_dout[63..0], pll_reconfig_busy, pll_reconfig_clk, pll_reconfig_reset, pll_reconfig_write_param, pll_reconfig_read_param, pll_reconfig, pll_reconfig_counter_type[3..0], pll_reconfig_counter_param[2..0], pll_reconfig_soft_reset_en_n, pll_reconfig_data_out, pll_reconfig_data_in, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, pll_reconfig_enable, aux_scan_clk_reset_n, aux_scan_clk, global_reset_n, local_autopch_req, local_self_rfsh_req, local_self_rfsh_ack, local_multicast_req, local_refresh_chip, local_power_down_ack, pll_ref_clk, phy_clk, aux_full_rate_clk, aux_half_rate_clk, soft_reset_n]
+MegaCore Function Generation successful.
+MSG FMP-1: Posting close event for IP Toolbench. Application will exit now with code 4
+MSG FMP-2: Calling windowClosing. Application will exit now with the code 4
+#AFI afi generate sequencer: hdl/sequencer/seq/alt_mem_phy_seq alt_mem_phy_seq
+#AFI generate sequencer wrapper: hdl/datapath/common/alt_mem_phy_seq_wrapper ddr2_phy alt_mem_phy_seq_wrapper
+ALTMEMPHY Returning list of Ports to IPTB
+[pll_ref_clk, global_reset_n, soft_reset_n, reset_request_n, ctl_clk, ctl_reset_n, ctl_dqs_burst[15..0], ctl_wdata_valid[15..0], ctl_wdata[255..0], ctl_dm[31..0], ctl_wlat[4..0], ctl_addr[27..0], ctl_ba[5..0], ctl_cas_n[1..0], ctl_cke[1..0], ctl_cs_n[1..0], ctl_odt[1..0], ctl_ras_n[1..0], ctl_we_n[1..0], ctl_rst_n[1..0], ctl_doing_rd[15..0], ctl_rdata[255..0], ctl_rdata_valid[1..0], ctl_rlat[4..0], ctl_cal_req, ctl_mem_clk_disable[1..0], ctl_cal_success, ctl_cal_fail, ctl_cal_warning, mem_ac_parity, mem_err_out_n, parity_error_n, ctl_cal_byte_lane_sel_n[7..0], mem_addr[13..0], mem_ba[2..0], mem_cas_n, mem_cke[0..0], mem_cs_n[0..0], mem_dm[7..0], mem_odt[0..0], mem_ras_n, mem_we_n, mem_reset_n, mem_clk[1..0], mem_clk_n[1..0], mem_dq[63..0], mem_dqs[7..0], mem_dqs_n[7..0], oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_offset_delay_ctrl[5..0], dqs_delay_ctrl_import[5..0], dqs_delay_ctrl_export[5..0], dll_reference_clk, aux_half_rate_clk, aux_full_rate_clk, aux_scan_clk, aux_scan_clk_reset_n, dbg_clk, dbg_reset_n, dbg_addr[12..0], dbg_wr, dbg_rd, dbg_cs, dbg_wr_data[31..0], dbg_rd_data[31..0], dbg_waitrequest, pll_reconfig_enable, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_dout[63..0], hc_scan_ck]
+Generating MegaCore function top-level...
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+Generating QIP file ...
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq_wrapper.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq.vhd" Location = 2
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_pll.v" Location = 2
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_seq.vhd
+MSG QIP-1: Adding VHDL file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-6: Processing ddr2_phy.v
+MSG QIP-2: Adding Verilog file ddr2_phy.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy.v
+MSG APF-6: Processing ddr2_phy_alt_mem_phy_pll.v
+MSG QIP-2: Adding Verilog file ddr2_phy_alt_mem_phy_pll.v
+Adding design files to Quartus II project ...
+MSG BRT-7: Copying quartus.ini to quartus.ini
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq_wrapper.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_seq.vhd" Location = 2
+MSG NF-1 Added project file "ddr2_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy.v" Location = 2
+MSG NF-1 Added project file "ddr2_phy_alt_mem_phy_pll.v" Location = 2
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq_wrapper.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_seq.vhd
+MSG APF-8: Processing ddr2_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy.v
+MSG APF-8: Processing ddr2_phy_alt_mem_phy_pll.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_pll.v
+MSG APF-1: Adding Tcl file ddr2_phy_alt_mem_phy_pll.v
+ALTMEMPHY Returning list of Ports to IPTB
+[pll_ref_clk, global_reset_n, soft_reset_n, reset_request_n, ctl_clk, ctl_reset_n, ctl_dqs_burst[15..0], ctl_wdata_valid[15..0], ctl_wdata[255..0], ctl_dm[31..0], ctl_wlat[4..0], ctl_addr[27..0], ctl_ba[5..0], ctl_cas_n[1..0], ctl_cke[1..0], ctl_cs_n[1..0], ctl_odt[1..0], ctl_ras_n[1..0], ctl_we_n[1..0], ctl_rst_n[1..0], ctl_doing_rd[15..0], ctl_rdata[255..0], ctl_rdata_valid[1..0], ctl_rlat[4..0], ctl_cal_req, ctl_mem_clk_disable[1..0], ctl_cal_success, ctl_cal_fail, ctl_cal_warning, mem_ac_parity, mem_err_out_n, parity_error_n, ctl_cal_byte_lane_sel_n[7..0], mem_addr[13..0], mem_ba[2..0], mem_cas_n, mem_cke[0..0], mem_cs_n[0..0], mem_dm[7..0], mem_odt[0..0], mem_ras_n, mem_we_n, mem_reset_n, mem_clk[1..0], mem_clk_n[1..0], mem_dq[63..0], mem_dqs[7..0], mem_dqs_n[7..0], oct_ctl_rs_value[13..0], oct_ctl_rt_value[13..0], dqs_offset_delay_ctrl[5..0], dqs_delay_ctrl_import[5..0], dqs_delay_ctrl_export[5..0], dll_reference_clk, aux_half_rate_clk, aux_full_rate_clk, aux_scan_clk, aux_scan_clk_reset_n, dbg_clk, dbg_reset_n, dbg_addr[12..0], dbg_wr, dbg_rd, dbg_cs, dbg_wr_data[31..0], dbg_rd_data[31..0], dbg_waitrequest, pll_reconfig_enable, pll_phasecounterselect[3..0], pll_phaseupdown, pll_phasestep, pll_phase_done, hc_scan_enable_access, hc_scan_enable_dq[63..0], hc_scan_enable_dm[7..0], hc_scan_enable_dqs[7..0], hc_scan_enable_dqs_config[7..0], hc_scan_din[7..0], hc_scan_update[7..0], hc_scan_dout[63..0], hc_scan_ck]
+MegaCore Function Generation successful.
+MSG FMP-1: Posting close event for IP Toolbench. Application will exit now with code 4
+MSG FMP-2: Calling windowClosing. Application will exit now with the code 4

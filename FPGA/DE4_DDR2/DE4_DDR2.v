@@ -200,14 +200,14 @@ assign reset_n = CPU_RESET_n;
 
 DE4_SOPC DE4_SOPC_inst(
                   // 1) global signals:
-                   .clk_50(OSC_50_Bank3),
+                   .clock_master(OSC_50_Bank3),
                    .reset_n(reset_n),
 
-                  // the_button
-                   .in_port_to_the_button(BUTTON),
-
-                  // the_led
-                   .out_port_from_the_led(LED),
+//                  // the_button
+//                   .in_port_to_the_button(BUTTON),
+//
+//                  // the_led
+//                   .out_port_from_the_led(LED),
 
 `ifndef USE_DDR2_DIMM2
                   // the_ddr2
@@ -238,9 +238,9 @@ DE4_SOPC DE4_SOPC_inst(
                    .reset_phy_clk_n_from_the_ddr2(),
                    
                   // ddr2 psd i2c
-                   .out_port_from_the_ddr2_i2c_scl(M1_DDR2_SCL),
-                   .out_port_from_the_ddr2_i2c_sa(M1_DDR2_SA),
-                   .bidir_port_to_and_from_the_ddr2_i2c_sda(M1_DDR2_SDA)                   
+//                   .out_port_from_the_ddr2_i2c_scl(M1_DDR2_SCL),
+//                   .out_port_from_the_ddr2_i2c_sa(M1_DDR2_SA),
+//                   .bidir_port_to_and_from_the_ddr2_i2c_sda(M1_DDR2_SDA)                   
 `else              
 
                   // the_ddr2

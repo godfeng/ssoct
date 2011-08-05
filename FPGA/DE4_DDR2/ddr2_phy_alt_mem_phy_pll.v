@@ -499,6 +499,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll.bsf FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll_inst.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll_inst.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ddr2_phy_alt_mem_phy_pll_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf
