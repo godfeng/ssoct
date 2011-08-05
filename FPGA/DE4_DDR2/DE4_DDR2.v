@@ -46,14 +46,14 @@ module DE4_DDR2(
 
 );
 
-//=======================================================
+// ============================================================================
 //  PARAMETER declarations
-//=======================================================
+// ============================================================================
 
 
-//=======================================================
+// ============================================================================
 //  PORT declarations
-//=======================================================
+// ============================================================================
 
 //////////// CLOCK //////////
 input		          		GCLKIN;
@@ -96,15 +96,39 @@ inout		          		M1_DDR2_SDA;
 output		          		M1_DDR2_we_n;
 
 
-//=======================================================
+// ============================================================================
 //  REG/WIRE declarations
-//=======================================================
-wire 						rstn;
-wire						clk50MHz;
+// ============================================================================
+wire 						rstn;							// global reset
+wire						clk50MHz;						// master clock
 
-//=======================================================
+wire						control_done_read;
+reg				[31:0]		user_buffer_data_read;
+wire						user_data_available;
+reg				[29:0]		address_last_complete_read;
+wire						control_go_read;
+reg				[29:0]		control_read_base;
+reg				[29:0]		control_read_length;
+wire						user_read_buffer;
+wire						reading_done;
+reg				[31:0]		debug_read;
+reg				[2:0]		error_data;
+	
+wire						control_done_write;
+reg				[31:0]		user_buffer_data_write;
+wire						user_buffer_full;
+reg				[29:0]		address_last_complete_write;
+wire						control_go_write;
+reg				[29:0]		control_write_base;
+reg				[29:0]		control_write_length;
+wire						user_write_buffer;
+wire						writing_done;
+reg				[31:0]		debug_write;
+wire						error_full;
+
+// ============================================================================
 //  Structural coding
-//=======================================================
+// ============================================================================
 
 assign 	rstn 				= CPU_RESET_n;
 assign	clk50MHz			= OSC_50_Bank3;
@@ -112,9 +136,9 @@ assign	clk50MHz			= OSC_50_Bank3;
 system system_inst
 (
 	// global signals:
-	.clock_master(clk50MHz), 								// input
 	.reset_n(rstn) ,										// input
-
+	.clock_master(clk50MHz), 								// input
+	
 	// the ddr2
 	.ddr2_aux_full_rate_clk_out() ,							// output
 	.ddr2_aux_half_rate_clk_out() ,							// output
@@ -156,61 +180,71 @@ system system_inst
 //	.bidir_port_to_and_from_the_ddr2_i2c_sda(M1_DDR2_SDA),
 	
 	// the Master Read
-	.control_done_from_the_master_read() ,	// output
-	.control_early_done_from_the_master_read() ,	// output
-	.control_fixed_location_to_the_master_read() ,	// input
-	.control_go_to_the_master_read() ,	// input
-	.control_read_base_to_the_master_read() ,	// input [29:0]
-	.control_read_length_to_the_master_read() ,	// input [29:0]
-	.user_buffer_output_data_from_the_master_read() ,	// output [31:0]
-	.user_data_available_from_the_master_read() ,	// output
-	.user_read_buffer_to_the_master_read() ,	// input
+	.control_done_from_the_master_read(control_done_read) ,				// output
+	.control_early_done_from_the_master_read() ,						// output (NC)
+	.control_fixed_location_to_the_master_read(1'b0) ,					// input
+	.control_go_to_the_master_read(control_go_read) ,					// input
+	.control_read_base_to_the_master_read(control_read_base) ,			// input [29:0]
+	.control_read_length_to_the_master_read(control_read_length) ,		// input [29:0]
+	.user_buffer_output_data_from_the_master_read(user_buffer_data_read),// output [31:0]
+	.user_data_available_from_the_master_read(user_data_available) ,	// output
+	.user_read_buffer_to_the_master_read(user_read_buffer) ,			// input
 	
 	// the Master Write
-	.control_done_from_the_master_write() ,	// output
-	.control_fixed_location_to_the_master_write() ,	// input
-	.control_go_to_the_master_write() ,	// input
-	.control_write_base_to_the_master_write() ,	// input [29:0]
-	.control_write_length_to_the_master_write() ,	// input [29:0]
-	.user_buffer_full_from_the_master_write() ,	// output
-	.user_buffer_input_data_to_the_master_write() ,	// input [31:0]
-	.user_write_buffer_to_the_master_write() 	// input
-);
-
-TestWrite TestWrite_inst
-(
-	.RSTn(rstn) ,	// input  RSTn_sig
-	.CLK48MHZ(clk50MHz) ,	// input  CLK48MHZ_sig
-	.control_go() ,	// output  control_go_sig
-	.control_write_base() ,	// output [23:0] control_write_base_sig
-	.control_write_length() ,	// output [23:0] control_write_length_sig
-	.control_done() ,	// input  control_done_sig
-	.user_buffer_data() ,	// output [31:0] user_buffer_data_sig
-	.user_buffer_full() ,	// input  user_buffer_full_sig
-	.user_write_buffer() ,	// output  user_write_buffer_sig
-	.addressLastCompleteWrite() ,	// output [23:0] addressLastCompleteWrite_sig
-	.addressLastCompleteRead() ,	// input [23:0] addressLastCompleteRead_sig
-	.writingDone() ,	// output  writingDone_sig
-	.debugOut() ,	// output [31:0] debugOut_sig
-	.errorFull() 	// output  errorFull_sig
+	.control_done_from_the_master_write(control_done_write) ,			// output
+	.control_fixed_location_to_the_master_write(1'b0) ,					// input
+	.control_go_to_the_master_write(control_go_write) ,					// input
+	.control_write_base_to_the_master_write(control_write_base) ,		// input [29:0]
+	.control_write_length_to_the_master_write(control_write_length) ,	// input [29:0]
+	.user_buffer_full_from_the_master_write(user_buffer_full) ,			// output
+	.user_buffer_input_data_to_the_master_write(user_buffer_data_write),// input [31:0]
+	.user_write_buffer_to_the_master_write(user_write_buffer) 			// input
 );
 
 TestRead TestRead_inst
 (
-	.RSTn(rstn) ,	// input  RSTn_sig
-	.CLK48MHZ(clk50MHz) ,	// input  CLK48MHZ_sig
-	.control_go() ,	// output  control_go_sig
-	.control_read_base() ,	// output [23:0] control_read_base_sig
-	.control_read_length() ,	// output [23:0] control_read_length_sig
-	.control_done() ,	// input  control_done_sig
-	.user_buffer_data() ,	// input [31:0] user_buffer_data_sig
-	.user_read_buffer() ,	// output  user_read_buffer_sig
-	.user_data_available() ,	// input  user_data_available_sig
-	.addressLastCompleteWrite() ,	// input [23:0] addressLastCompleteWrite_sig
-	.addressLastCompleteRead() ,	// output [23:0] addressLastCompleteRead_sig
-	.readingDone() ,	// output  readingDone_sig
-	.debugOut() ,	// output [31:0] debugOut_sig
-	.errorData() 	// output [2:0] errorData_sig
+	// global signals
+	.RSTn(rstn) ,											// input
+	.CLK48MHZ(clk50MHz) ,									// input
+	
+	// test read
+	.control_go(control_go_read) ,							// output
+	.control_read_base(control_read_base) ,					// output [23:0]
+	.control_read_length(control_read_length) ,				// output [23:0]
+	.control_done(control_done_read) ,						// input
+	.user_buffer_data(user_buffer_data_read) ,				// input [31:0]
+	.user_read_buffer(user_read_buffer) ,					// output
+	.user_data_available(user_data_available) ,				// input
+	.addressLastCompleteWrite(address_last_complete_write) ,// input [23:0]
+	.addressLastCompleteRead(address_last_complete_read) ,	// output [23:0]
+	.readingDone(reading_done) ,							// output
+	
+	// display error
+	.debugOut(debug_read) ,									// output [31:0]
+	.errorData(error_data) 									// output [2:0]
+);
+
+TestWrite TestWrite_inst
+(
+	// global signals
+	.RSTn(rstn) ,											// input  
+	.CLK48MHZ(clk50MHz) ,									// input  
+	
+	// test write signals
+	.control_go(control_go_write) ,							// output
+	.control_write_base(control_write_base) ,				// output [23:0]
+	.control_write_length(control_write_length) ,			// output [23:0]
+	.control_done(control_done_write) ,						// input
+	.user_buffer_data(user_buffer_data_write) ,				// output [31:0]
+	.user_buffer_full(user_buffer_full) ,					// input
+	.user_write_buffer(user_write_buffer) ,					// output
+	.addressLastCompleteWrite(address_last_complete_write) ,// output [23:0]
+	.addressLastCompleteRead(address_last_complete_read) ,	// input [23:0]
+	.writingDone(writing_done) ,							// output
+	
+	// display error
+	.debugOut(debug_write) ,								// output [31:0]
+	.errorFull(error_full) 									// output
 );
 
 endmodule
