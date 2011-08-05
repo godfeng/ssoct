@@ -1,0 +1,10 @@
+set_global_assignment -name TCL_FILE Avalon_MM-Master_Templates/custom_masters_hw.tcl
+set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/burst_write_master.v
+ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/custom_master.v
+ set_global_assignment -name VERILOG_FILE master_read.v
+ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/write_master.v
+ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/burst_read_master.v
+ set_global_assignment -name VERILOG_FILE master_write.v
+ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/latency_aware_read_master.v
+ set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C000001319BC48536 
+ 
