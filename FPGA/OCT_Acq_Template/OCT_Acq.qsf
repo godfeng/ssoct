@@ -6,7 +6,7 @@ set_global_assignment -name FAMILY "Stratix IV"
 set_global_assignment -name DEVICE EP4SGX230KF40C2
 set_global_assignment -name TOP_LEVEL_ENTITY "OCT_Acq"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1"
-set_global_assignment -name LAST_QUARTUS_VERSION "9.1"
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:26:03 AUGUST 05,2011"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152

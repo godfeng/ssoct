@@ -727,6 +727,7 @@ set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING ON
+set_global_assignment -name QIP_FILE pll_125.qip
 set_global_assignment -name VERILOG_FILE altpllpll.v
 set_global_assignment -name VERILOG_FILE led_pio.v
 set_global_assignment -name VERILOG_FILE onchip_memory.v
@@ -770,3 +771,5 @@ set_global_assignment -name VERILOG_FILE A_line_acq.v
 set_global_assignment -name QIP_FILE RAM.qip
 set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
 set_global_assignment -name VERILOG_FILE one_shot.v
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
