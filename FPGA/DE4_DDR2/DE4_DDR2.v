@@ -354,85 +354,85 @@ input		          		XT_IN_P;
 output		          		HSMC_SCL;
 inout		          		HSMC_SDA;
 
-// ============================================================================
-//  External PLL Configuration 
-// ============================================================================
-
-//  Signal declarations
-wire [ 3: 0] clk1_set_wr, clk2_set_wr, clk3_set_wr;
-wire         conf_ready;
-wire         counter_max;
-wire  [7:0]  counter_inc;
-reg   [7:0]  auto_set_counter;
-reg          conf_wr;
-
-//  Structural coding
-assign clk1_set_wr = 4'd0; //Unchange MHZ
-assign clk2_set_wr = 4'd0; //Unchange MHZ
-assign clk3_set_wr = 4'd7; //156.25 MHZ
-
-assign counter_max = &auto_set_counter;
-assign counter_inc = auto_set_counter + 1'b1;
-
-always @(posedge clk50MHz or negedge rstn)
-	if(!rstn)
-	begin
-		auto_set_counter <= 0;
-		conf_wr <= 0;
-	end 
-	else if (counter_max)
-		conf_wr <= 1;
-	else
-		auto_set_counter <= counter_inc;
-
-
-ext_pll_ctrl ext_pll_ctrl_Inst(
-	.osc_50(clk50MHz), //50MHZ
-	.rstn(rstn),
-
-	// device 1 (HSMA_REFCLK)
-	.clk1_set_wr(clk1_set_wr),
-	.clk1_set_rd(),
-
-	// device 2 (HSMB_REFCLK)
-	.clk2_set_wr(clk2_set_wr),
-	.clk2_set_rd(),
-
-	// device 3 (PLL_CLKIN/SATA_REFCLK)
-	.clk3_set_wr(clk3_set_wr),
-	.clk3_set_rd(),
-
-	// setting trigger
-	.conf_wr(conf_wr), // 1T 50MHz 
-	.conf_rd(), // 1T 50MHz
-
-	// status 
-	.conf_ready(conf_ready),
-
-	// 2-wire interface 
-	.max_sclk(MAX_I2C_SCLK),
-	.max_sdat(MAX_I2C_SDAT)
-
-);
+//// ============================================================================
+////  External PLL Configuration 
+//// ============================================================================
+//
+////  Signal declarations
+//wire [ 3: 0] clk1_set_wr, clk2_set_wr, clk3_set_wr;
+//wire         conf_ready;
+//wire         counter_max;
+//wire  [7:0]  counter_inc;
+//reg   [7:0]  auto_set_counter;
+//reg          conf_wr;
+//
+////  Structural coding
+//assign clk1_set_wr = 4'd0; //Unchange MHZ
+//assign clk2_set_wr = 4'd0; //Unchange MHZ
+//assign clk3_set_wr = 4'd7; //156.25 MHZ
+//
+//assign counter_max = &auto_set_counter;
+//assign counter_inc = auto_set_counter + 1'b1;
+//
+//always @(posedge OSC_50_BANK2 or negedge rstn)
+//	if(!rstn)
+//	begin
+//		auto_set_counter <= 0;
+//		conf_wr <= 0;
+//	end 
+//	else if (counter_max)
+//		conf_wr <= 1;
+//	else
+//		auto_set_counter <= counter_inc;
+//
+//
+//ext_pll_ctrl ext_pll_ctrl_Inst(
+//	.osc_50(OSC_50_BANK2), //50MHZ
+//	.rstn(rstn),
+//
+//	// device 1 (HSMA_REFCLK)
+//	.clk1_set_wr(clk1_set_wr),
+//	.clk1_set_rd(),
+//
+//	// device 2 (HSMB_REFCLK)
+//	.clk2_set_wr(clk2_set_wr),
+//	.clk2_set_rd(),
+//
+//	// device 3 (PLL_CLKIN/SATA_REFCLK)
+//	.clk3_set_wr(clk3_set_wr),
+//	.clk3_set_rd(),
+//
+//	// setting trigger
+//	.conf_wr(conf_wr), // 1T 50MHz 
+//	.conf_rd(), // 1T 50MHz
+//
+//	// status 
+//	.conf_ready(conf_ready),
+//
+//	// 2-wire interface 
+//	.max_sclk(MAX_I2C_SCLK),
+//	.max_sdat(MAX_I2C_SDAT)
+//
+//);
 
 // ============================================================================
 //  REG/WIRE declarations
 // ============================================================================
 wire 						rstn;							// reset
 wire						clk50MHz;						// master clock
-wire						global_reset_n;					// global ethernet reset
-wire						sys_clk;						// System clock (156.25 MHz)
-wire						enet_reset_n;					// Ethernet reset
+//wire						global_reset_n;					// global ethernet reset
+//wire						sys_clk;						// System clock (156.25 MHz)
+//wire						enet_reset_n;					// Ethernet reset
 
-//// Ethernet
-wire						enet_mdc;
-wire						enet_mdio_in;
-wire						enet_mdio_oen;
-wire						enet_mdio_out;
-wire						enet_refclk_125MHz;
-
-wire						lvds_rxp;
-wire						lvds_txp;
+////// Ethernet
+//wire						enet_mdc;
+//wire						enet_mdio_in;
+//wire						enet_mdio_oen;
+//wire						enet_mdio_out;
+//wire						enet_refclk_125MHz;
+//
+//wire						lvds_rxp;
+//wire						lvds_txp;
 
 //// Master template
 wire						control_done_read;
@@ -470,56 +470,56 @@ wire		[7:0]			clk_div_out_sig;				// PWM Fan & LED control
 assign 	rstn 				= CPU_RESET_n;
 assign	clk50MHz			= OSC_50_BANK3;
 
-//// Ethernet
-assign	ETH_RST_n			= enet_reset_n;
-assign	lvds_rxp			= ETH_RX_p[0];
-assign	ETH_TX_p[0]			= lvds_txp;
-assign	enet_mdio_in		= ETH_MDIO[0];
-assign	ETH_MDIO[0]			= !enet_mdio_oen ? enet_mdio_out : 1'bz;
-assign	ETH_MDC[0]			= enet_mdc;
-
-//// FLASH and SSRAM share bus
-assign	FLASH_ADV_n			= 1'b0;							// not used
-assign	FLASH_CLK			= 1'b0;							// not used
-assign	FLASH_RESET_n		= global_reset_n;
+////// Ethernet
+//assign	ETH_RST_n			= enet_reset_n;
+//assign	lvds_rxp			= ETH_RX_p[0];
+//assign	ETH_TX_p[0]			= lvds_txp;
+//assign	enet_mdio_in		= ETH_MDIO[0];
+//assign	ETH_MDIO[0]			= !enet_mdio_oen ? enet_mdio_out : 1'bz;
+//assign	ETH_MDC[0]			= enet_mdc;
+//
+////// FLASH and SSRAM share bus
+//assign	FLASH_ADV_n			= 1'b0;							// not used
+//assign	FLASH_CLK			= 1'b0;							// not used
+//assign	FLASH_RESET_n		= global_reset_n;
 //// SSRAM
 
 // ============================================================================
 // Ethernet clock PLL
 // ============================================================================
-pll_125 pll_125_ins (
-				.inclk0(clk50MHz),
-				.c0(enet_refclk_125MHz)
-				);
+//pll_125 pll_125_ins (
+//				.inclk0(clk50MHz),
+//				.c0(enet_refclk_125MHz)
+//				);
+//
+//gen_reset_n	system_gen_reset_n (
+//				.tx_clk(clk50MHz),
+//				.reset_n_in(rstn),
+//				.reset_n_out(global_reset_n)
+//				);
+//
+//gen_reset_n	net_gen_reset_n(
+//				.tx_clk(clk50MHz),
+//				.reset_n_in(global_reset_n),
+//				.reset_n_out(enet_reset_n)
+//				);
 
-gen_reset_n	system_gen_reset_n (
-				.tx_clk(clk50MHz),
-				.reset_n_in(rstn),
-				.reset_n_out(global_reset_n)
-				);
-
-gen_reset_n	net_gen_reset_n(
-				.tx_clk(clk50MHz),
-				.reset_n_in(global_reset_n),
-				.reset_n_out(enet_reset_n)
-				);
-
-///////////////////////////////////////////////////////////////////////////////
-// assign for ADC control signal
-assign	AD_SCLK				= 1'b0;							// (DFS)Data Format Select = binary (0)
-assign	AD_SDIO				= 1'b1;							// (DCS)Duty Cycle Stabilizer ON
-assign	ADA_OE				= 1'b0;							// enable ADA output (active LOW)
-assign	ADA_SPI_CS			= 1'b1;							// disable serial port interface A
-assign	ADB_OE				= 1'b0;							// enable ADB output (active LOW)
-assign	ADB_SPI_CS			= 1'b1;							// disable serial port interface B
-
-// Assign 50 kHz Sweep Trigger
-assign	sweepTrigger		= GCLKIN;
-
-// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
-assign	sys_clk				= PLL_CLKIN_p;
-assign	FPGA_CLK_A_P		=  sys_clk;
-assign	FPGA_CLK_A_N		= ~sys_clk;
+/////////////////////////////////////////////////////////////////////////////////
+//// assign for ADC control signal
+//assign	AD_SCLK				= 1'b0;							// (DFS)Data Format Select = binary (0)
+//assign	AD_SDIO				= 1'b1;							// (DCS)Duty Cycle Stabilizer ON
+//assign	ADA_OE				= 1'b0;							// enable ADA output (active LOW)
+//assign	ADA_SPI_CS			= 1'b1;							// disable serial port interface A
+//assign	ADB_OE				= 1'b0;							// enable ADB output (active LOW)
+//assign	ADB_SPI_CS			= 1'b1;							// disable serial port interface B
+//
+//// Assign 50 kHz Sweep Trigger
+//assign	sweepTrigger		= GCLKIN;
+//
+//// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
+//assign	sys_clk				= PLL_CLKIN_p;
+//assign	FPGA_CLK_A_P		=  sys_clk;
+//assign	FPGA_CLK_A_N		= ~sys_clk;
 
 // Additional logic
 assign	LED[0]				= writing_done & control_done_write;
@@ -527,7 +527,7 @@ assign	LED[1]				= reading_done & control_done_read;
 assign	LED[2]				= user_data_available | user_buffer_full;
 assign	LED[3]				= error_full;
 assign	LED[6:4]			= error_data;
-
+//assign	LED[6]				= 1'b1;
 
 system system_inst
 (
@@ -597,51 +597,51 @@ system system_inst
 	.user_write_buffer_to_the_master_write(user_write_buffer) 			// input
 );
 
-TestRead TestRead_inst
-(
-	// global signals
-	.RSTn(rstn) ,											// input
-	.CLK48MHZ(clk50MHz) ,									// input
-	
-	// test read
-	.control_go(control_go_read) ,							// output
-	.control_read_base(control_read_base) ,					// output [23:0]
-	.control_read_length(control_read_length) ,				// output [23:0]
-	.control_done(control_done_read) ,						// input
-	.user_buffer_data(user_buffer_data_read) ,				// input [31:0]
-	.user_read_buffer(user_read_buffer) ,					// output
-	.user_data_available(user_data_available) ,				// input
-	.addressLastCompleteWrite(address_last_complete_write) ,// input [23:0]
-	.addressLastCompleteRead(address_last_complete_read) ,	// output [23:0]
-	.readingDone(reading_done) ,							// output
-	
-	// display error
-	.debugOut(debug_read) ,									// output [31:0]
-	.errorData(error_data) 									// output [2:0]
-);
-
-TestWrite TestWrite_inst
-(
-	// global signals
-	.RSTn(rstn) ,											// input  
-	.CLK48MHZ(clk50MHz) ,									// input  
-	
-	// test write signals
-	.control_go(control_go_write) ,							// output
-	.control_write_base(control_write_base) ,				// output [23:0]
-	.control_write_length(control_write_length) ,			// output [23:0]
-	.control_done(control_done_write) ,						// input
-	.user_buffer_data(user_buffer_data_write) ,				// output [31:0]
-	.user_buffer_full(user_buffer_full) ,					// input
-	.user_write_buffer(user_write_buffer) ,					// output
-	.addressLastCompleteWrite(address_last_complete_write) ,// output [23:0]
-	.addressLastCompleteRead(address_last_complete_read) ,	// input [23:0]
-	.writingDone(writing_done) ,							// output
-	
-	// display error
-	.debugOut(debug_write) ,								// output [31:0]
-	.errorFull(error_full) 									// output
-);
+//TestRead TestRead_inst
+//(
+//	// global signals
+//	.RSTn(rstn) ,											// input
+//	.CLK48MHZ(clk50MHz) ,									// input
+//	
+//	// test read
+//	.control_go(control_go_read) ,							// output
+//	.control_read_base(control_read_base) ,					// output [23:0]
+//	.control_read_length(control_read_length) ,				// output [23:0]
+//	.control_done(control_done_read) ,						// input
+//	.user_buffer_data(user_buffer_data_read) ,				// input [31:0]
+//	.user_read_buffer(user_read_buffer) ,					// output
+//	.user_data_available(user_data_available) ,				// input
+//	.addressLastCompleteWrite(address_last_complete_write) ,// input [23:0]
+//	.addressLastCompleteRead(address_last_complete_read) ,	// output [23:0]
+//	.readingDone(reading_done) ,							// output
+//	
+//	// display error
+//	.debugOut(debug_read) ,									// output [31:0]
+//	.errorData(error_data) 									// output [2:0]
+//);
+//
+//TestWrite TestWrite_inst
+//(
+//	// global signals
+//	.RSTn(rstn) ,											// input  
+//	.CLK48MHZ(clk50MHz) ,									// input  
+//	
+//	// test write signals
+//	.control_go(control_go_write) ,							// output
+//	.control_write_base(control_write_base) ,				// output [23:0]
+//	.control_write_length(control_write_length) ,			// output [23:0]
+//	.control_done(control_done_write) ,						// input
+//	.user_buffer_data(user_buffer_data_write) ,				// output [31:0]
+//	.user_buffer_full(user_buffer_full) ,					// input
+//	.user_write_buffer(user_write_buffer) ,					// output
+//	.addressLastCompleteWrite(address_last_complete_write) ,// output [23:0]
+//	.addressLastCompleteRead(address_last_complete_read) ,	// input [23:0]
+//	.writingDone(writing_done) ,							// output
+//	
+//	// display error
+//	.debugOut(debug_write) ,								// output [31:0]
+//	.errorFull(error_full) 									// output
+//);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -651,7 +651,7 @@ TestWrite TestWrite_inst
 // Fan Control
 FAN_PWM FAN_PWM_inst
 (
-	.clk(clk50MHz) ,										// input  clk50MHz
+	.clk(OSC_50_BANK2) ,									// input  clk50MHz
 	.PWM_input(4'hC) ,										// input [3:0] 4'hC
 	.clk_div_out(clk_div_out_sig) ,							// output [7:0] clk_div_out_sig
 	.FAN(FAN_CTRL) 											// output  FAN_CTRL
@@ -661,7 +661,7 @@ FAN_PWM FAN_PWM_inst
 LED_glow LED_glow_inst
 (
 	.clk(clk_div_out_sig[1]) ,								// input  clk_div_out_sig[1]
-	.LED(LED[7]) 											// output  LED[7]
+	.LED(SEG1_DP) 											// output  LED[7]
 );
 
 endmodule

@@ -3337,6 +3337,8 @@ set_instance_assignment -name DQSB_DQS_PAIR ON -from M1_DDR2_dqsn_to_and_from_th
 set_instance_assignment -name T11_DELAY 7 -to M1_DDR2_dqs_to_and_from_the_ddr2
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2/DE4_DDR2.dpf"
+set_global_assignment -name VERILOG_FILE FAN_PWM.v
 set_global_assignment -name VERILOG_FILE LED_glow.v
 set_global_assignment -name SDC_FILE DE4_DDR2.SDC
 set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc

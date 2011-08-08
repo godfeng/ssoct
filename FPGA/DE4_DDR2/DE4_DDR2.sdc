@@ -6,8 +6,8 @@
 #**************************************************************
 # Create Clock
 #**************************************************************
-create_clock -name CLK_M1 -period "50 MHZ" [get_ports OSC_50_Bank3]
-create_clock -name CLK_M2 -period "50 MHZ" [get_ports OSC_50_Bank4]
+create_clock -name CLK_M1 -period "50 MHZ" [get_ports OSC_50_BANK3]
+create_clock -name CLK_M2 -period "50 MHZ" [get_ports OSC_50_BANK4]
 
 
 #**************************************************************
