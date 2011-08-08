@@ -461,7 +461,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "ctl_hrb_en" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "clk_source_sharing_en" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ctl_lookahead_depth" value="4"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "ref_clk_source" value="clock_master"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "ref_clk_source" value="clk_50"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ctl_autopch_en" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "multicast_wr_en" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ctl_powerdn_en" value="false"  type="STRING"  enable="1" />

@@ -1,0 +1,2 @@
+#AFI afi generate sequencer: hdl/sequencer/seq/alt_mem_phy_seq alt_mem_phy_seq
+#AFI generate sequencer wrapper: hdl/datapath/common/alt_mem_phy_seq_wrapper ddr2_phy alt_mem_phy_seq_wrapper

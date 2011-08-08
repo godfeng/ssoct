@@ -61,11 +61,11 @@ module clock_crossing_downstream_fifo (
     );
 
   defparam downstream_fifo.intended_device_family = "STRATIXIV",
-           downstream_fifo.lpm_numwords = 16,
+           downstream_fifo.lpm_numwords = 32,
            downstream_fifo.lpm_showahead = "OFF",
            downstream_fifo.lpm_type = "dcfifo",
            downstream_fifo.lpm_width = 96,
-           downstream_fifo.lpm_widthu = 4,
+           downstream_fifo.lpm_widthu = 5,
            downstream_fifo.overflow_checking = "ON",
            downstream_fifo.rdsync_delaypipe = 5,
            downstream_fifo.underflow_checking = "ON",

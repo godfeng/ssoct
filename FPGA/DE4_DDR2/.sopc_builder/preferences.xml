@@ -4,9 +4,8 @@
   <columns>
    <connections preferredWidth="127" />
    <export visible="0" />
-   <irq preferredWidth="34" visible="0" />
+   <irq preferredWidth="34" />
    <inputclock preferredWidth="167" />
-   <tags visible="0" />
   </columns>
  </systemtable>
  <clocktable>
@@ -16,7 +15,7 @@
    <frequency preferredWidth="142" />
   </columns>
  </clocktable>
- <window width="960" height="1036" x="3" y="9" />
+ <window width="960" height="1036" x="0" y="0" />
  <library
-   expandedCategories="Library/Memories and Memory Controllers,Library/Bridges and Adapters,Library/Peripherals,Project,Library/PLL,Project/Templates,Library/Bridges and Adapters/Memory Mapped,Library/Memories and Memory Controllers/On-Chip,Library,Library/Processors,Library/Interface Protocols,Library/Memories and Memory Controllers/SDRAM,Library/Peripherals/Debug and Performance,Library/Peripherals/Microcontroller Peripherals" />
+   expandedCategories="Library/Interface Protocols/Serial,Library,Project,Library/PLL,Library/Memories and Memory Controllers,Library/Peripherals/Microcontroller Peripherals,Library/Bridges and Adapters,Library/Interface Protocols,Library/Peripherals,Library/Processors,Library/Bridges and Adapters/Memory Mapped,Project/Templates" />
 </preferences>

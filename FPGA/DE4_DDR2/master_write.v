@@ -29,8 +29,8 @@ module master_write (
 		.BURST_CAPABLE       (1),
 		.MAXIMUM_BURST_COUNT (1),
 		.BURST_COUNT_WIDTH   (1),
-		.FIFO_DEPTH          (16),
-		.FIFO_DEPTH_LOG2     (4),
+		.FIFO_DEPTH          (32),
+		.FIFO_DEPTH_LOG2     (5),
 		.MEMORY_BASED_FIFO   (1)
 	) master_write_inst (
 		.clk                     (clk),                                  //   clock_reset.clk
