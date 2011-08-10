@@ -219,14 +219,16 @@ wire						error_full;
 //  Structural coding
 //=======================================================
 
-wire reset_n;
-assign reset_n = CPU_RESET_n;
+wire 						reset_n;
+assign 	reset_n 			= CPU_RESET_n;
 
 // Additional logic
 assign	LED[0]				= writing_done & control_done_write;
 assign	LED[1]				= reading_done & control_done_read;
-assign	LED[2]				= user_data_available | user_buffer_full;
-assign	LED[3]				= error_full;
+//assign	LED[2]				= user_data_available | user_buffer_full;
+//assign	LED[3]				= error_full;
+assign	LED[2]				= 0;
+assign	LED[3]				= 1;
 assign	LED[6:4]			= error_data;
 
 DE4_SOPC DE4_SOPC_inst(
@@ -297,20 +299,71 @@ DE4_SOPC DE4_SOPC_inst(
 );
 
 
-
-FAN_PWM FAN_PWM_inst
+TestRead TestRead_inst
 (
-	.clk(OSC_50_Bank3) ,	// input  clk_sig
-	.PWM_input(4'hC) ,	// input [3:0] PWM_input_sig
-	.clk_div_out(clk_div_out_sig) ,	// output [7:0] clk_div_out_sig
-	.FAN(FAN_sig) 	// output  FAN_sig
+	// global signals
+	.RSTn(rstn) ,											// input
+	.CLK48MHZ(clk50MHz) ,									// input
+	
+	// test read
+	.control_go(control_go_read) ,							// output
+	.control_read_base(control_read_base) ,					// output [23:0]
+	.control_read_length(control_read_length) ,				// output [23:0]
+	.control_done(control_done_read) ,						// input
+	.user_buffer_data(user_buffer_data_read) ,				// input [31:0]
+	.user_read_buffer(user_read_buffer) ,					// output
+	.user_data_available(user_data_available) ,				// input
+	.addressLastCompleteWrite(address_last_complete_write) ,// input [23:0]
+	.addressLastCompleteRead(address_last_complete_read) ,	// output [23:0]
+	.readingDone(reading_done) ,							// output
+	
+	// display error
+	.debugOut(debug_read) ,									// output [31:0]
+	.errorData(error_data) 									// output [2:0]
+);
+
+TestWrite TestWrite_inst
+(
+	// global signals
+	.RSTn(rstn) ,											// input  
+	.CLK48MHZ(clk50MHz) ,									// input  
+	
+	// test write signals
+	.control_go(control_go_write) ,							// output
+	.control_write_base(control_write_base) ,				// output [23:0]
+	.control_write_length(control_write_length) ,			// output [23:0]
+	.control_done(control_done_write) ,						// input
+	.user_buffer_data(user_buffer_data_write) ,				// output [31:0]
+	.user_buffer_full(user_buffer_full) ,					// input
+	.user_write_buffer(user_write_buffer) ,					// output
+	.addressLastCompleteWrite(address_last_complete_write) ,// output [23:0]
+	.addressLastCompleteRead(address_last_complete_read) ,	// input [23:0]
+	.writingDone(writing_done) ,							// output
+	
+	// display error
+	.debugOut(debug_write) ,								// output [31:0]
+	.errorFull(error_full) 									// output
 );
 
 
+///////////////////////////////////////////////////////////////////////////////
+// Optional modules
+///////////////////////////////////////////////////////////////////////////////
+
+// Fan PWM control (makes less noise)
+FAN_PWM FAN_PWM_inst
+(
+	.clk(OSC_50_Bank3) ,									// input  clk_sig
+	.PWM_input(4'hC) ,										// input [3:0] PWM_input_sig
+	.clk_div_out(clk_div_out_sig) ,							// output [7:0] clk_div_out_sig
+	.FAN(FAN_sig) 											// output  FAN_sig
+);
+
+// LED blinking
 LED_glow LED_glow_inst
 (
-	.clk(clk_div_out_sig[1]) ,	// input  clk_sig
-	.LED(LED[7]) 	// output  LED_sig
+	.clk(clk_div_out_sig[1]) ,								// input  clk_sig
+	.LED(LED[7]) 											// output  LED_sig
 );
 
 endmodule

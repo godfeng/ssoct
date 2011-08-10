@@ -1518,8 +1518,6 @@ set_location_assignment PIN_AF25 -to termination_blk0~_rup_pad
 set_location_assignment PIN_AG25 -to termination_blk0~_rdn_pad
 set_instance_assignment -name IO_STANDARD "1.8 V" -to termination_blk0~_rup_pad
 set_instance_assignment -name IO_STANDARD "1.8 V" -to termination_blk0~_rdn_pad
-set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
-set_global_assignment -name QIP_FILE DE4_SOPC.qip
 set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to M2_DDR2_odt_from_the_ddr2
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to M2_DDR2_odt_from_the_ddr2
 set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.8-V SSTL CLASS I" -to M2_DDR2_clk_to_and_from_the_ddr2[0]
@@ -2658,3 +2656,12 @@ set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs_to_and_from_the_ddr2[
 set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs_to_and_from_the_ddr2[7] -to M1_DDR2_dm_from_the_ddr2[7]
 set_instance_assignment -name DQSB_DQS_PAIR ON -from M1_DDR2_dqsn_to_and_from_the_ddr2[7] -to M1_DDR2_dqs_to_and_from_the_ddr2[7]
 set_instance_assignment -name T11_DELAY 7 -to M1_DDR2_dqs_to_and_from_the_ddr2
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name VHDL_FILE TestWrite.vhd
+set_global_assignment -name VHDL_FILE TestRead.vhd
+set_global_assignment -name VERILOG_FILE DE4_DDR2.v
+set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
+set_global_assignment -name QIP_FILE DE4_SOPC.qip
+set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2/DE4_DDR2.dpf"
+set_global_assignment -name CDF_FILE DE4_DDR2.cdf
