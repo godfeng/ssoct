@@ -1,0 +1,20 @@
+Analysis & Synthesis Status : Successful - Tue Aug 16 14:46:21 2011
+Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
+Revision Name : DE4_DDR2
+Top-level Entity Name : DE4_DDR2
+Family : Stratix IV
+Logic utilization : N/A
+    Combinational ALUTs : 4,934
+    Memory ALUTs : 272
+    Dedicated logic registers : 4,277
+Total registers : 4645
+Total pins : 450
+Total virtual pins : 0
+Total block memory bits : 84,544
+DSP block 18-bit elements : 0
+Total GXB Receiver Channel PCS : 0
+Total GXB Receiver Channel PMA : 0
+Total GXB Transmitter Channel PCS : 0
+Total GXB Transmitter Channel PMA : 0
+Total PLLs : 1
+Total DLLs : 1
