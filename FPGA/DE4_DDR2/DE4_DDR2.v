@@ -8,8 +8,6 @@ module DE4_DDR2(
 	//////// CLOCK //////////
 	GCLKIN,
 	GCLKOUT_FPGA,
-//	MAX_CONF_D,
-//	MAX_PLL_D,
 	OSC_50_BANK2,
 	OSC_50_BANK3,
 	OSC_50_BANK4,
@@ -360,23 +358,23 @@ inout		          		HSMC_SDA;
 
 `ifndef USE_DDR2_DIMM2
 //////////// DDR2 SODIMM //////////
-output		    [15:0]		M1_DDR2_addr;
-output		     [2:0]		M1_DDR2_ba;
-output		          		M1_DDR2_cas_n;
-output		     [1:0]		M1_DDR2_cke;
-inout		     [1:0]		M1_DDR2_clk;
-inout		     [1:0]		M1_DDR2_clk_n;
-output		     [1:0]		M1_DDR2_cs_n;
-output		     [7:0]		M1_DDR2_dm;
-inout		    [63:0]		M1_DDR2_dq;
-inout		     [7:0]		M1_DDR2_dqs;
-inout		     [7:0]		M1_DDR2_dqsn;
-output		     [1:0]		M1_DDR2_odt;
-output		          		M1_DDR2_ras_n;
-output		     [1:0]		M1_DDR2_SA;
-output		          		M1_DDR2_SCL;
-inout		          		M1_DDR2_SDA;
-output		          		M1_DDR2_we_n;
+output		    [15:0]		M1_DDR2_addr;	// DDR2 Address
+output		     [2:0]		M1_DDR2_ba;		// DDR2 Bank Address
+output		          		M1_DDR2_cas_n;	// DDR2 Column Address Strobe
+output		     [1:0]		M1_DDR2_cke; 	// Clock Enable pin for DDR2
+inout		     [1:0]		M1_DDR2_clk;	// Clock p for DDR2
+inout		     [1:0]		M1_DDR2_clk_n; 	// Clock n for DDR2
+output		     [1:0]		M1_DDR2_cs_n;	// DDR2 Chip Select
+output		     [7:0]		M1_DDR2_dm;		// DDR2 Data Mask
+inout		    [63:0]		M1_DDR2_dq;		// DDR2 Data
+inout		     [7:0]		M1_DDR2_dqs;	// DDR2 Data Strobe p
+inout		     [7:0]		M1_DDR2_dqsn;	// DDR2 Data Strobe n
+output		     [1:0]		M1_DDR2_odt;	// DDR2 On Die Termination
+output		          		M1_DDR2_ras_n; 	// DDR2 Row Address Strobe
+output		     [1:0]		M1_DDR2_SA;		// DDR2 Presence-detect address (I2C)
+output		          		M1_DDR2_SCL;	// DDR2 I2C Clock
+inout		          		M1_DDR2_SDA;	// DDR2 I2C Data
+output		          		M1_DDR2_we_n;	// DDR2 Write Enable
 
 `else
 //////////// DDR2 SODIMM //////////
@@ -475,7 +473,6 @@ wire						global_reset_n;
 wire						enet_reset_n;
 wire						sys_clk;
 
-
 //// Ethernet
 wire						enet_mdc;
 wire						enet_mdio_in;
@@ -514,6 +511,8 @@ wire						error_full;
 //// Custom modules
 // 50 kHz A-line trigger
 wire						sweepTrigger;
+// GPIO D6 (A-line trigger to NI-USB 6351 card)
+wire						aLineTrigger;
 
 //// Optional modules
 wire			[7:0]		clk_div_out_sig;
@@ -567,17 +566,33 @@ assign	ETH_MDC[3]			= enet_mdc;
 
 `endif
 
-
 //// FLASH and SSRAM share bus
-assign	FLASH_ADV_n		= 1'b0;					// not used
-assign	FLASH_CLK		= 1'b0;					// not used
-assign	FLASH_RESET_n	= global_reset_n;
+assign	FLASH_ADV_n			= 1'b0;					// not used
+assign	FLASH_CLK			= 1'b0;					// not used
+assign	FLASH_RESET_n		= global_reset_n;
 //// SSRAM
 
 // FAN PWM
-assign	FAN_CTRL 		= FAN_sig;
-// Test GPIO pin 13, D0
-assign	GPIO[1]			= FAN_sig;
+assign	FAN_CTRL 			= FAN_sig;
+
+// assign for ADC control signal
+assign	AD_SCLK				= 1'b0;			// (DFS)Data Format Select = binary (0)
+assign	AD_SDIO				= 1'b1;			// (DCS)Duty Cycle Stabilizer ON
+assign	ADA_OE				= 1'b0;			// enable ADA output (active LOW)
+assign	ADA_SPI_CS			= 1'b1;			// disable serial port interface A
+assign	ADB_OE				= 1'b0;			// enable ADB output (active LOW)
+assign	ADB_SPI_CS			= 1'b1;			// disable serial port interface B
+
+// Assign 50 kHz Sweep Trigger
+assign	sweepTrigger		= GCLKIN;
+
+// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
+assign	sys_clk				= PLL_CLKIN_p;
+
+// Test GPIO pin 11, D1
+assign	GPIO[1]				= FAN_sig;
+// Send sweep trigger to D6
+assign	GPIO[6]				= sweepTrigger & SLIDE_SW[0];
 
 // Additional logic to test master read & write
 assign	LED[0]				= writing_done & control_done_write;
@@ -586,6 +601,26 @@ assign	LED[2]				= user_data_available | user_buffer_full;
 assign	LED[3]				= error_full;
 assign	LED[6:4]			= error_data;
 
+// === Ethernet clock PLL
+pll_125 pll_125_ins (
+				.inclk0(clk50MHz),
+				.c0(enet_refclk_125MHz)
+				);
+
+// === System general reset
+gen_reset_n	system_gen_reset_n (
+				.tx_clk(clk50MHz),
+				.reset_n_in(rstn),
+				.reset_n_out(global_reset_n)
+				);
+
+// === Ethernet general reset
+gen_reset_n	net_gen_reset_n(
+				.tx_clk(clk50MHz),
+				.reset_n_in(global_reset_n),
+				.reset_n_out(enet_reset_n)
+				);
+				
 DE4_SOPC DE4_SOPC_inst(
 	// global signals:
 	.reset_n(rstn) ,										// input
@@ -626,7 +661,8 @@ DE4_SOPC DE4_SOPC_inst(
 	.oct_ctl_rt_value_to_the_ddr2() ,						// input [13:0]
 	.reset_phy_clk_n_from_the_ddr2() ,						// output
 
-	// ddr2 psd i2c WHERE DO I CONNECT THEM???????
+	// ddr2 psd i2c 
+	// NOT NECESSARY WHEN TESING DDR2, ONLY FOR EEPROM
 //	.out_port_from_the_ddr2_i2c_scl(M1_DDR2_SCL),
 //	.out_port_from_the_ddr2_i2c_sa(M1_DDR2_SA),
 //	.bidir_port_to_and_from_the_ddr2_i2c_sda(M1_DDR2_SDA),
@@ -636,8 +672,8 @@ DE4_SOPC DE4_SOPC_inst(
 	.control_early_done_from_the_master_read() ,						// output (NC)
 	.control_fixed_location_to_the_master_read(1'b0) ,					// input
 	.control_go_to_the_master_read(control_go_read) ,					// input
-	.control_read_base_to_the_master_read(control_read_base) ,			// input [29:0]
-	.control_read_length_to_the_master_read(control_read_length) ,		// input [29:0]
+	.control_read_base_to_the_master_read({6'b00, control_read_base}) ,			// input [29:0]
+	.control_read_length_to_the_master_read({6'b00, control_read_length}) ,		// input [29:0]
 	.user_buffer_output_data_from_the_master_read(user_buffer_data_read),// output [31:0]
 	.user_data_available_from_the_master_read(user_data_available) ,	// output
 	.user_read_buffer_to_the_master_read(user_read_buffer) ,			// input
@@ -646,32 +682,12 @@ DE4_SOPC DE4_SOPC_inst(
 	.control_done_from_the_master_write(control_done_write) ,			// output
 	.control_fixed_location_to_the_master_write(1'b0) ,					// input
 	.control_go_to_the_master_write(control_go_write) ,					// input
-	.control_write_base_to_the_master_write(control_write_base) ,		// input [29:0]
-	.control_write_length_to_the_master_write(control_write_length) ,	// input [29:0]
+	.control_write_base_to_the_master_write({6'b00, control_write_base}) ,		// input [29:0]
+	.control_write_length_to_the_master_write({6'b00, control_write_length}) ,	// input [29:0]
 	.user_buffer_full_from_the_master_write(user_buffer_full) ,			// output
 	.user_buffer_input_data_to_the_master_write(user_buffer_data_write),// input [31:0]
 	.user_write_buffer_to_the_master_write(user_write_buffer) 			// input
 );
-
-// === Ethernet clock PLL
-pll_125 pll_125_ins (
-				.inclk0(clk50MHz),
-				.c0(enet_refclk_125MHz)
-				);
-
-// === System general reset
-gen_reset_n	system_gen_reset_n (
-				.tx_clk(clk50MHz),
-				.reset_n_in(rstn),
-				.reset_n_out(global_reset_n)
-				);
-
-// === Ethernet general reset
-gen_reset_n	net_gen_reset_n(
-				.tx_clk(clk50MHz),
-				.reset_n_in(global_reset_n),
-				.reset_n_out(enet_reset_n)
-				);
 
 TestRead TestRead_inst
 (
