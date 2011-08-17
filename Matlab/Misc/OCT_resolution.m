@@ -43,17 +43,21 @@ nMegsPerSec = nKbytesPerSec/1024;       % Mbytes/sec
 nMbitsPerSec = nMegsPerSec*8;           % Mbits/sec < 1 Gbit/sec
 
 %% Required Pathlength match (Axsun)
-c = 299792458;                          % Speed of light in air
-nFiber = 1.47;                          % effective index of refraction of the fiber
+c = 299792458;                          % Speed of light in air (m/s)
+nFiber = 1.4677;                        % effective index of refraction of fiber
+                                        % SMF-28e
+nLens = 1.55785;                        % index of refraction of N-BAK1/N-BK7 @1310nm
 % Red Path in (in mm)
 redPath = nFiber *(...
     1181 +   73 + 1180 + ...            % 50/50 coupler (source)
-    1056 +   60 +  861 + ...            % Circulator arms 1 & 2 (one-way)
-     861 +   60 + 1056 + ...            % Circulator arms 2 & 3 (return)
+     895 +   60 +  943 + ...            % Circulator arms 1 & 2 (one-way)
+     943 +   60 + 1055 + ...            % Circulator arms 2 & 3 (return)
     1184 +   73 + 1185)+ ...            % 50/50 coupler (detector)
     2*(22 + ...                         % Collimator length
-    110 + ...                           % Scanning distance
-    (1.5 * 38.5) +...                   % Objective length
+    10 + 68 + 10 + ...                  % Collimator to X-galvo
+    200 -(2*5.3)+ 15 + ...              % Telescope distance (X-galvo to scan lens)
+    (nLens * 2 * 5.3) + ...             % LA1131-C telescope lens
+    (nLens * 38.5) +...                 % Telecentric scan lens LSM04 length
     42.3);                              % Working ditance (LWD)
 % Orange Path (in mm)
 orangePath = 1060;
@@ -66,3 +70,4 @@ stepSizeClockDelay = 0.575e-9;          % the step size of clock delay
 timeDelay = electricalDelay / c;        % Time delay between the clock and signal
 % Number to use in the "Set clock delay" window
 setClockDelay = round((timeDelay - minElectricalDelay) / stepSizeClockDelay);
+fprintf('Set Clock Delay = %d [0x%X] \n',setClockDelay,setClockDelay)
