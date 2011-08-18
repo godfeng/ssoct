@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <systemtable filter="Default">
+  <columns>
+   <connections preferredWidth="63" />
+   <export visible="0" />
+   <irq preferredWidth="34" />
+   <inputclock preferredWidth="167" />
+   <description preferredWidth="307" />
+  </columns>
+ </systemtable>
+ <clocktable>
+  <columns>
+   <clockname preferredWidth="468" />
+   <clocksource preferredWidth="467" />
+   <frequency preferredWidth="467" />
+  </columns>
+ </clocktable>
+ <window width="1920" height="1036" x="0" y="0" />
+ <library
+   expandedCategories="Library,Library/Memories and Memory Controllers/On-Chip,Library/Video and Image Processing/IO,Project/Templates,Library/Bridges and Adapters/Memory Mapped,Library/Video and Image Processing,Project,Library/Memories and Memory Controllers,Library/Bridges and Adapters" />
+ <debug showDebugMenu="0" />
+</preferences>
