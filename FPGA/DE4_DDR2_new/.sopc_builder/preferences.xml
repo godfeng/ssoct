@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
- <systemtable filter="Default">
+ <systemtable filter="Clocks">
   <columns>
-   <connections preferredWidth="63" />
+   <connections preferredWidth="79" />
    <export visible="0" />
    <irq preferredWidth="34" />
    <inputclock preferredWidth="167" />

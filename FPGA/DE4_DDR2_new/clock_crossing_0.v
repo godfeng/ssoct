@@ -34,17 +34,17 @@ module clock_crossing_0_downstream_fifo (
                                         )
 ;
 
-  output  [339: 0] q;
+  output  [343: 0] q;
   output           rdempty;
   output           wrfull;
   input            aclr;
-  input   [339: 0] data;
+  input   [343: 0] data;
   input            rdclk;
   input            rdreq;
   input            wrclk;
   input            wrreq;
 
-  wire    [339: 0] q;
+  wire    [343: 0] q;
   wire             rdempty;
   wire             wrfull;
   dcfifo downstream_fifo
@@ -64,7 +64,7 @@ module clock_crossing_0_downstream_fifo (
            downstream_fifo.lpm_numwords = 32,
            downstream_fifo.lpm_showahead = "OFF",
            downstream_fifo.lpm_type = "dcfifo",
-           downstream_fifo.lpm_width = 340,
+           downstream_fifo.lpm_width = 344,
            downstream_fifo.lpm_widthu = 5,
            downstream_fifo.overflow_checking = "ON",
            downstream_fifo.rdsync_delaypipe = 5,
@@ -99,7 +99,7 @@ module clock_crossing_0_upstream_fifo (
 
   output  [256: 0] q;
   output           rdempty;
-  output  [  6: 0] wrusedw;
+  output  [ 10: 0] wrusedw;
   input            aclr;
   input   [256: 0] data;
   input            rdclk;
@@ -109,7 +109,7 @@ module clock_crossing_0_upstream_fifo (
 
   wire    [256: 0] q;
   wire             rdempty;
-  wire    [  6: 0] wrusedw;
+  wire    [ 10: 0] wrusedw;
   dcfifo upstream_fifo
     (
       .aclr (aclr),
@@ -124,11 +124,11 @@ module clock_crossing_0_upstream_fifo (
     );
 
   defparam upstream_fifo.intended_device_family = "STRATIXIV",
-           upstream_fifo.lpm_numwords = 128,
+           upstream_fifo.lpm_numwords = 2048,
            upstream_fifo.lpm_showahead = "OFF",
            upstream_fifo.lpm_type = "dcfifo",
            upstream_fifo.lpm_width = 257,
-           upstream_fifo.lpm_widthu = 7,
+           upstream_fifo.lpm_widthu = 11,
            upstream_fifo.overflow_checking = "ON",
            upstream_fifo.rdsync_delaypipe = 5,
            upstream_fifo.underflow_checking = "ON",
@@ -153,6 +153,7 @@ module clock_crossing_0 (
                            master_reset_n,
                            master_waitrequest,
                            slave_address,
+                           slave_burstcount,
                            slave_byteenable,
                            slave_clk,
                            slave_nativeaddress,
@@ -163,6 +164,7 @@ module clock_crossing_0 (
 
                           // outputs:
                            master_address,
+                           master_burstcount,
                            master_byteenable,
                            master_nativeaddress,
                            master_read,
@@ -176,6 +178,7 @@ module clock_crossing_0 (
 ;
 
   output  [ 29: 0] master_address;
+  output  [  3: 0] master_burstcount;
   output  [ 31: 0] master_byteenable;
   output  [ 24: 0] master_nativeaddress;
   output           master_read;
@@ -192,6 +195,7 @@ module clock_crossing_0 (
   input            master_reset_n;
   input            master_waitrequest;
   input   [ 24: 0] slave_address;
+  input   [  3: 0] slave_burstcount;
   input   [ 31: 0] slave_byteenable;
   input            slave_clk;
   input   [ 24: 0] slave_nativeaddress;
@@ -200,8 +204,8 @@ module clock_crossing_0 (
   input            slave_write;
   input   [255: 0] slave_writedata;
 
-  wire    [339: 0] downstream_data_in;
-  wire    [339: 0] downstream_data_out;
+  wire    [343: 0] downstream_data_in;
+  wire    [343: 0] downstream_data_out;
   wire             downstream_rdempty;
   reg              downstream_rdempty_delayed_n;
   wire             downstream_rdreq;
@@ -212,6 +216,7 @@ module clock_crossing_0 (
   wire             internal_master_read;
   wire             internal_master_write;
   wire    [ 29: 0] master_address;
+  wire    [  3: 0] master_burstcount;
   wire    [ 29: 0] master_byte_address;
   wire    [ 31: 0] master_byteenable;
   wire             master_hold_read;
@@ -239,13 +244,13 @@ module clock_crossing_0 (
   wire             upstream_write_almost_full;
   reg              upstream_write_almost_full_delayed;
   wire             upstream_wrreq;
-  wire    [  6: 0] upstream_wrusedw;
+  wire    [ 10: 0] upstream_wrusedw;
   //s1, which is an e_avalon_slave
   //m1, which is an e_avalon_master
   assign upstream_data_in = {master_readdata, master_endofpacket};
   assign {slave_readdata, slave_endofpacket} = upstream_data_out;
-  assign downstream_data_in = {slave_writedata, slave_address, slave_read, slave_write, slave_nativeaddress, slave_byteenable};
-  assign {master_writedata, internal_master_address, internal_master_read, internal_master_write, master_nativeaddress, master_byteenable} = downstream_data_out;
+  assign downstream_data_in = {slave_writedata, slave_address, slave_read, slave_write, slave_nativeaddress, slave_byteenable, slave_burstcount};
+  assign {master_writedata, internal_master_address, internal_master_read, internal_master_write, master_nativeaddress, master_byteenable, master_burstcount} = downstream_data_out;
   //the_downstream_fifo, which is an e_instance
   clock_crossing_0_downstream_fifo the_downstream_fifo
     (
@@ -263,7 +268,7 @@ module clock_crossing_0 (
   assign downstream_wrreq = slave_read | slave_write | downstream_wrreq_delayed;
   assign slave_waitrequest = downstream_wrfull;
   assign downstream_rdreq = !downstream_rdempty & !master_waitrequest & !upstream_write_almost_full;
-  assign upstream_write_almost_full = upstream_wrusedw >= 31;
+  assign upstream_write_almost_full = upstream_wrusedw >= -1;
   always @(posedge slave_clk or negedge slave_reset_n)
     begin
       if (slave_reset_n == 0)

@@ -10,6 +10,7 @@ module master_write (
 		output wire         master_write,           //              .write
 		output wire [31:0]  master_byteenable,      //              .byteenable
 		output wire [255:0] master_writedata,       //              .writedata
+		output wire [3:0]   master_burstcount,      //              .burstcount
 		input  wire         master_waitrequest,     //              .waitrequest
 		input  wire         control_fixed_location, //       control.export
 		input  wire [29:0]  control_write_base,     //              .export
@@ -25,9 +26,9 @@ module master_write (
 		.MASTER_DIRECTION    (1),
 		.DATA_WIDTH          (256),
 		.ADDRESS_WIDTH       (30),
-		.BURST_CAPABLE       (0),
-		.MAXIMUM_BURST_COUNT (2),
-		.BURST_COUNT_WIDTH   (2),
+		.BURST_CAPABLE       (1),
+		.MAXIMUM_BURST_COUNT (8),
+		.BURST_COUNT_WIDTH   (4),
 		.FIFO_DEPTH          (32),
 		.FIFO_DEPTH_LOG2     (5),
 		.MEMORY_BASED_FIFO   (1)
@@ -38,6 +39,7 @@ module master_write (
 		.master_write            (master_write),                                                                                                                                                                                                                                                          //              .write
 		.master_byteenable       (master_byteenable),                                                                                                                                                                                                                                                     //              .byteenable
 		.master_writedata        (master_writedata),                                                                                                                                                                                                                                                      //              .writedata
+		.master_burstcount       (master_burstcount),                                                                                                                                                                                                                                                     //              .burstcount
 		.master_waitrequest      (master_waitrequest),                                                                                                                                                                                                                                                    //              .waitrequest
 		.control_fixed_location  (control_fixed_location),                                                                                                                                                                                                                                                //       control.export
 		.control_write_base      (control_write_base),                                                                                                                                                                                                                                                    //              .export
@@ -50,7 +52,6 @@ module master_write (
 		.master_read             (),                                                                                                                                                                                                                                                                      //   (terminated)
 		.master_readdata         (256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000), //   (terminated)
 		.master_readdatavalid    (1'b0),                                                                                                                                                                                                                                                                  //   (terminated)
-		.master_burstcount       (),                                                                                                                                                                                                                                                                      //   (terminated)
 		.control_read_base       (30'b000000000000000000000000000000),                                                                                                                                                                                                                                    //   (terminated)
 		.control_read_length     (30'b000000000000000000000000000000),                                                                                                                                                                                                                                    //   (terminated)
 		.control_early_done      (),                                                                                                                                                                                                                                                                      //   (terminated)

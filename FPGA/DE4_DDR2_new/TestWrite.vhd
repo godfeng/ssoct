@@ -58,19 +58,19 @@ ARCHITECTURE TestWrite_architecture OF TestWrite IS
 	SIGNAL dataToWrite : UNSIGNED(31 DOWNTO 0);
     
     -- Number of groups of data to write on the SDRAM.
-    CONSTANT GROUP_QUANTITY : INTEGER := 10000;
+    CONSTANT GROUP_QUANTITY : INTEGER := 100000;
     
     -- Index corresponding to the group that is being written.
     SIGNAL idxGroup : INTEGER RANGE 0 TO 100000;
     
     -- Increment between a word and the next one in a group. The value changes for each group.
-    SIGNAL incrementData : INTEGER RANGE 0 TO 400000;
+    SIGNAL incrementData : INTEGER RANGE 0 TO 40000;
     
     -- Number of bytes in a group. The value changes for each group.
-    SIGNAL groupLength : INTEGER RANGE 0 TO 800000; -- Up to 20000 words.
+    SIGNAL groupLength : INTEGER RANGE 0 TO 40000; -- Up to 20000 words.
     
     -- Index corresponding to the byte that is being written.
-    SIGNAL idxByte : INTEGER RANGE 0 TO 800000;
+    SIGNAL idxByte : INTEGER RANGE 0 TO 400000;
 
 BEGIN
 
@@ -159,9 +159,9 @@ ELSIF (CLK48MHZ'EVENT AND CLK48MHZ = '1') THEN
                     -- We intentionally put 3 errors in the data (6 errors should be detected, because two increments will be invalid for 3 wrong data).
                     IF idxGroup = 1000 AND idxByte = 192 THEN
                         user_buffer_data <= dataToWrite - 100;
-                    ELSIF idxGroup = 4500 AND idxByte = 1920 THEN
+                    ELSIF idxGroup = 9500 AND idxByte = 1920 THEN
                         user_buffer_data <= dataToWrite - 100;     
-                    ELSIF idxGroup = 5000 AND idxByte = 384 THEN
+                    ELSIF idxGroup = 15000 AND idxByte = 384 THEN
                         user_buffer_data <= dataToWrite - 100;               
                     END IF;                    
                     

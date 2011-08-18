@@ -42,10 +42,6 @@
 // ============================================================================
 
 `include "my_incl.v"			// Verilog include file
-`define NET0					// Ethernet PHY 0
-//`define NET1
-//`define NET2
-//`define NET3
 
 
 //=======================================================

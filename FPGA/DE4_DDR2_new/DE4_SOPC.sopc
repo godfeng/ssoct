@@ -78,8 +78,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_DDR2.qpf" />
- <parameter name="systemHash" value="-48302898674" />
- <parameter name="timeStamp" value="1313628763198" />
+ <parameter name="systemHash" value="-37597487402" />
+ <parameter name="timeStamp" value="1313687802604" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -273,9 +273,9 @@
   <parameter name="MASTER_DIRECTION" value="0" />
   <parameter name="DATA_WIDTH" value="256" />
   <parameter name="ADDRESS_WIDTH" value="30" />
-  <parameter name="BURST_CAPABLE" value="0" />
-  <parameter name="MAXIMUM_BURST_COUNT" value="2" />
-  <parameter name="BURST_COUNT_WIDTH" value="2" />
+  <parameter name="BURST_CAPABLE" value="1" />
+  <parameter name="MAXIMUM_BURST_COUNT" value="8" />
+  <parameter name="BURST_COUNT_WIDTH" value="4" />
   <parameter name="FIFO_DEPTH" value="32" />
   <parameter name="FIFO_DEPTH_LOG2" value="5" />
   <parameter name="MEMORY_BASED_FIFO" value="1" />
@@ -284,9 +284,9 @@
   <parameter name="MASTER_DIRECTION" value="1" />
   <parameter name="DATA_WIDTH" value="256" />
   <parameter name="ADDRESS_WIDTH" value="30" />
-  <parameter name="BURST_CAPABLE" value="0" />
-  <parameter name="MAXIMUM_BURST_COUNT" value="2" />
-  <parameter name="BURST_COUNT_WIDTH" value="2" />
+  <parameter name="BURST_CAPABLE" value="1" />
+  <parameter name="MAXIMUM_BURST_COUNT" value="8" />
+  <parameter name="BURST_COUNT_WIDTH" value="4" />
   <parameter name="FIFO_DEPTH" value="32" />
   <parameter name="FIFO_DEPTH_LOG2" value="5" />
   <parameter name="MEMORY_BASED_FIFO" value="1" />
@@ -302,9 +302,9 @@
   <parameter name="masterSyncDepth" value="3" />
   <parameter name="maxBurstSize" value="8" />
   <parameter name="slaveSyncDepth" value="3" />
-  <parameter name="upstreamFIFODepth" value="128" />
+  <parameter name="upstreamFIFODepth" value="2048" />
   <parameter name="upstreamUseRegister" value="false" />
-  <parameter name="useBurstCount" value="false" />
+  <parameter name="useBurstCount" value="true" />
  </module>
  <connection kind="clock" version="9.1" start="clk_50.clk" end="ddr2.refclk" />
  <connection
