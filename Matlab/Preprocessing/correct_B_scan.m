@@ -23,9 +23,13 @@ global SSOctDefaults
 
 % Values taken previously (see reference_measure.m)
 % Background signal from the reference arm (sample arm blocked)
-refArm      = SSOctDefaults.refArm;
+if isfield(SSOctDefaults,'refArm')
+    refArm      = SSOctDefaults.refArm;
+end
 % Self interference signal from the sample arm (reference arm blocked)
-sampleArm   = SSOctDefaults.sampleArm;
+if isfield(SSOctDefaults,'sampleArm')
+    sampleArm   = SSOctDefaults.sampleArm;
+end
 
 % only want 2 optional inputs at most
 numVarArgs = length(varargin);

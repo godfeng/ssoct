@@ -25,7 +25,7 @@ flush_data
 % LED_test
 
 % Take reference and sample measurement
-[sampleArm, refArm] = reference_measure;
+% [sampleArm, refArm] = reference_measure;
 
 % Save reference and sample arm measurements
 % save(fullfile(SSOctDefaults.dirExp,'Reference_Measurements'),'sampleArm','refArm');
