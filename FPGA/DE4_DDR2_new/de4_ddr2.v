@@ -449,6 +449,9 @@ wire						read_RAM_busy;
 // PWM for Fan and LED
 wire		[7:0]			clk_div_out_sig;
 
+// Receive signal from LabView to record data to DDR2
+wire						recordDataToDDR2;
+
 //==============================================================================
 //  External PLL Configuration ==========================================
 //==============================================================================
@@ -581,6 +584,13 @@ assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger		= GCLKIN;
+
+// Map 50 kHz A-line sweep signal to GPIO[0]
+assign	GPIO[0]				= sweepTrigger;
+
+// Receive signal from LabView to record data to DDR2 in GPIO[6]
+assign	recordDataToDDR2	= GPIO[6];
+assign	SEG0_DP				= recordDataToDDR2;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk				= PLL_CLKIN_p;

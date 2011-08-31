@@ -9,7 +9,7 @@ ss_oct_get_defaults
 
 % ------------------------- MODIFY OPTIONS -------------------------------------
 global SSOctDefaults
-SSOctDefaults.displayLog = false;
+SSOctDefaults.displayLog = true;
 % Save files
 % SSOctDefaults.save2file = true;
 % Save a single frame (first 2 frames are garbage)
