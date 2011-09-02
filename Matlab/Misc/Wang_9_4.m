@@ -11,7 +11,7 @@
 % Example 9.4
 % Use SI units throughout
 
-pathname = 'G:\My Documents\OCT\Code\';
+pathname = 'D:\Edgar\Documents\ssoct\Matlab\Misc\';
 cd(pathname)
 lambda0 = 830E-9; % center wavelength of source
 dlambda = 20E-9; % FWHM wavelength bandwidth of source
@@ -25,7 +25,7 @@ k0=2*pi/lambda0; % center propagation constant
 delta_k=2*pi*dlambda/lambda0^2; % FWHM bandwidth of k
 sigma_k = delta_k/sqrt(2*log(2)); % standard deviation of k
 
-N=2^10; % number of sampling points
+N=2^12; % number of sampling points
 nsigma = 5; % number of standard deviations to plot on each side of k0
 
 figure; set(gcf,'color','w')

@@ -1,7 +1,7 @@
 % Example 9.3
 % Use SI units throughout
 
-pathname = 'G:\My Documents\OCT\Code\';
+pathname = 'D:\Edgar\Documents\ssoct\Matlab\Misc\';
 cd(pathname)
 
 lambda0 = 830E-9; % center wavelength
