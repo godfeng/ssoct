@@ -13,8 +13,8 @@
 	//`define USE_DDR2_DIMM2				// Use DIMM 2 for DDR2
 	
 	`define NSAMPLES 11'd1170				// Number of samples per A-line
-	`define NLINESPERFRAME 16'1000			// Number of A-lines per frame
-	`define NFRAMES 16'30					// Number of total frames to grab
+	`define NLINESPERFRAME 16'900			// Number of A-lines per frame
+	`define NFRAMES 16'50					// Number of total frames to grab
 `endif //_my_incl_v_
 
 // Then, in any module where we need these definitions:

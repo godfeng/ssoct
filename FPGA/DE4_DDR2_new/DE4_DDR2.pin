@@ -472,7 +472,7 @@ GND                          : AJ30      : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ31      :        :                   :         : 2A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ32      :        :                   :         : 2C        :                
 GND                          : AJ33      : gnd    :                   :         :           :                
-FSM_A[0]                     : AJ34      : output : 2.5 V             :         : 2C        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AJ34      :        :                   :         : 2C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ35      :        :                   :         : 2C        :                
 GND                          : AJ36      : gnd    :                   :         :           :                
 GND                          : AJ37      : gnd    :                   :         :           :                
@@ -1212,7 +1212,7 @@ FSM_D[4]                     : K31       : bidir  : 2.5 V             :         
 SEG0_D[6]                    : K32       : output : 2.5 V             :         : 1A        : Y              
 VCCIO1C                      : K33       : power  :                   : 2.5V    : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K34       :        :                   :         : 1C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K35       :        :                   :         : 1C        :                
+FSM_A[0]                     : K35       : output : 2.5 V             :         : 1C        : N              
 GXB_NC                       : K36       :        :                   :         : QL2       :                
 GXB_NC                       : K37       :        :                   :         : QL2       :                
 GND                          : K38       : gnd    :                   :         :           :                

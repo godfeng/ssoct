@@ -15,8 +15,6 @@ module DE4_DDR2(
 	//////// CLOCK //////////
 	GCLKIN,
 	GCLKOUT_FPGA,
-//	MAX_CONF_D,
-//	MAX_PLL_D,
 	OSC_50_BANK2,
 	OSC_50_BANK3,
 	OSC_50_BANK4,
@@ -202,8 +200,6 @@ module DE4_DDR2(
 //////////// CLOCK //////////
 input		          		GCLKIN;
 output		          		GCLKOUT_FPGA;
-//inout		     [2:0]		MAX_CONF_D;
-//output		     [2:0]		MAX_PLL_D;
 input		          		OSC_50_BANK2;
 input		          		OSC_50_BANK3;
 input		          		OSC_50_BANK4;
@@ -412,7 +408,7 @@ wire						error_full;
 wire						ddr2_phy_clk_out;
 
 // Power on reset
-wire						reset_power_on;
+//wire						reset_power_on;
 
 //// Ethernet
 wire						enet_mdc;
@@ -430,18 +426,24 @@ wire		[13:0]			A_line;
 
 // 50 kHz A-line trigger
 wire						sweepTrigger;
-
-// Position of the ADC sample in the A-line
-wire		[10:0]			sample_position;
+// 50 kHz A-line trigger enabled by LabView
+wire						trigger50kHz;
 
 // Position of the ADC sample in the RAM
 wire		[10:0]			read_RAM_address;
+wire		[10:0]			write_RAM_address;
 
 // Data from RAM
 wire		[13:0]			RAMdata;
 
+// signal to dual buffer RAM
+wire						dualMSB;
+
 // Acquiring 1170 samples
 wire						acq_busy;
+
+// Acquisition of one A-line done
+wire						acq_done;
 
 // Reading RAM 
 wire						read_RAM_busy;
@@ -450,7 +452,12 @@ wire						read_RAM_busy;
 wire		[7:0]			clk_div_out_sig;
 
 // Receive signal from LabView to record data to DDR2
-wire						recordDataToDDR2;
+wire						enableRecording;
+
+// sinus wave signal
+wire		[13:0]			raw_sine;
+// output to DAC A
+reg			[13:0]			o_sine;
 
 //==============================================================================
 //  External PLL Configuration ==========================================
@@ -458,7 +465,6 @@ wire						recordDataToDDR2;
 
 //  Signal declarations
 wire 		[3:0] 			clk1_set_wr, clk2_set_wr, clk3_set_wr;
-//wire         reset_n;
 wire         				conf_ready;
 wire         				counter_max;
 wire  		[7:0]  			counter_inc;
@@ -470,7 +476,6 @@ assign clk1_set_wr 			= 4'd1; //Disable
 assign clk2_set_wr 			= 4'd1; //Disable
 assign clk3_set_wr 			= 4'd7; //156.25 MHZ
 
-//assign reset_n 				= CPU_RESET_n;
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
 
@@ -582,6 +587,9 @@ assign	ADA_SPI_CS			= 1'b1;				// disable serial port interface A
 assign	ADB_OE				= 1'b0;				// enable ADB output (active LOW)
 assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B
 
+// sinus wave to DA
+assign	DA					= o_sine;			// Output sinus wave to DAC A
+
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger		= GCLKIN;
 
@@ -589,8 +597,12 @@ assign	sweepTrigger		= GCLKIN;
 assign	GPIO[0]				= sweepTrigger;
 
 // Receive signal from LabView to record data to DDR2 in GPIO[6]
-assign	recordDataToDDR2	= GPIO[6];
-assign	SEG0_DP				= recordDataToDDR2;
+assign	enableRecording		= GPIO[6];
+//
+assign	SEG0_DP				= ~enableRecording;
+assign 	trigger50kHz		= enableRecording & sweepTrigger;
+// Acquisition started acq_busy;
+assign acq_busy	= (write_RAM_address != 0) ? 1'b1 : 1'b0;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
 assign	sys_clk				= PLL_CLKIN_p;
@@ -611,6 +623,25 @@ assign	LED[0]				= ~error_full;
 //assign	GPIO[0]				= user_data_available;
 //assign	GPIO[6]				= control_done_read;
 //assign	GPIO[1]				= control_go_read;
+
+// Synchronization of sampling with sweep trigger
+sample_addressing_custom sample_addressing_custom_inst
+(
+	.clock(ADA_DCO) ,							// input  clock_sig (ADA_DCO)
+	.sclr(~trigger50kHz) ,						// input  ~trigger50kHz
+	.sample_position(write_RAM_address) 		// output [10:0] sample_position
+);
+
+// 4096 words (16-bit) RAM
+RAM	RAM_inst (
+	.data ( {2'b0, ADA_D} ),					// 16-bit data
+	.rdaddress ({ ~dualMSB, read_RAM_address }),// Read adress (read_RAM_address) from NIOS
+	.rdclock ( sys_clk ),						// Read clock (sys_clk)
+	.wraddress ({ dualMSB, write_RAM_address }),// Sample position (0-1170)
+	.wrclock ( ADA_DCO ),						// Write clock (ADA_DCO or sys_clk????)
+	.wren ( acq_busy & ~read_RAM_busy),			// acq_busy & ~read_RAM_busy
+	.q ( RAMdata )								// data read by NIOS
+	);
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
@@ -636,13 +667,7 @@ gen_reset_n	net_gen_reset_n(
 DE4_SOPC DE4_SOPC_inst(
 	// 1) global signals:
 	.clk_50(OSC_50_BANK3),
-	.reset_n(reset_n),
-
-	// the_button
-	//.in_port_to_the_button(BUTTON),
-
-	// the_led
-	//.out_port_from_the_led(),
+	.reset_n(global_reset_n),
 
 `ifndef USE_DDR2_DIMM2
   // the_ddr2
@@ -739,16 +764,16 @@ DE4_SOPC DE4_SOPC_inst(
 	);
 
 // Yields a reset signal 20 ms after cpu reset
-PowerOn_RST PowerOn_RST_inst
-(
-	.clk(OSC_50_BANK3) ,						// input  clk_sig
-	.RSTnCPU(reset_n) ,							// input  RSTnCPU_sig
-	.RSTn(reset_power_on) 						// output  RSTn_sig
-);
+//PowerOn_RST PowerOn_RST_inst
+//(
+//	.clk(OSC_50_BANK3) ,						// input  clk_sig
+//	.RSTnCPU(global_reset_n) ,					// input  RSTnCPU_sig
+//	.RSTn(reset_power_on) 						// output  RSTn_sig
+//);
 
 TestRead TestRead_inst
 (
-	.RSTn(reset_power_on) ,										// input  
+	.RSTn(global_reset_n) ,										// input  reset_power_on
 	.CLK48MHZ(OSC_50_BANK3) ,									// input  
 	.control_go(control_go_read) ,								// output  
 	.control_read_base(control_read_base) ,						// output [29:0] 
@@ -766,7 +791,7 @@ TestRead TestRead_inst
 
 TestWrite TestWrite_inst
 (
-	.RSTn(reset_power_on) ,										// input  
+	.RSTn(global_reset_n) ,										// input  reset_power_on
 	.CLK48MHZ(OSC_50_BANK3) ,									// input  
 	.control_go(control_go_write) ,								// output  
 	.control_write_base(control_write_base) ,					// output [29:0] 
@@ -801,5 +826,30 @@ LED_glow LED_glow_inst
 	.clk(clk_div_out_sig[1]) ,					// input  clk_sig
 	.LED(LED[7]) 								// output  LED_sig
 );
+
+// Generate sinus wave in DAC B to test acquisition
+sin400k_st sin400k_st_inst
+(
+	.clk(sys_clk) ,								// input  sys_clk 156.25 MHz clock
+	.reset_n(global_reset_n) ,					// input  global_reset_n
+	.clken(1'b1) ,								// input  1'b1
+	.phi_inc_i(32'd27487791) ,					// input [anglePrec-1:0] @156.25 MHz -> 
+												// d10995116 for 400 kHz sinus,
+												// d27487791 for 1 MHz.
+	.fsin_o(raw_sine) ,							// output [magnitudePrec-1:0] raw_sine
+	.out_valid() 								// output  N.C.
+);
+
+// Synchronize DAC A output (sinus wave) with system clock
+always @(negedge global_reset_n or posedge sys_clk)
+begin
+	if (!global_reset_n) begin
+		o_sine		<= 14'd0;
+	end
+	else begin
+		// Invert sign bit (MSB) to have offset binary
+		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
+	end
+end
 
 endmodule
