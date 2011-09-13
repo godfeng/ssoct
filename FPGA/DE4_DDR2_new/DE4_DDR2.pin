@@ -115,7 +115,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : A23       :        :                   :      
 FSM_A[16]                    : A24       : output : 2.5 V             :         : 8C        : Y              
 FSM_A[3]                     : A25       : output : 2.5 V             :         : 8C        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : A26       :        :                   :         : 8B        :                
-FSM_A[0]                     : A27       : output : 2.5 V             :         : 8A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : A27       :        :                   :         : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A28       :        :                   :         : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A29       :        :                   :         : 8A        :                
 VCCIO8A                      : A30       : power  :                   : 2.5V    : 8A        :                
@@ -1405,7 +1405,7 @@ LED[2]                       : R29       : output : 2.5 V             :         
 ETH_MDC[0]                   : R30       : output : 2.5 V             :         : 1C        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : R31       :        :                   :         : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R32       :        :                   :         : 1C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : R33       :        :                   :         : 1C        :                
+FSM_A[0]                     : R33       : output : 2.5 V             :         : 1C        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : R34       :        :                   :         : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R35       :        :                   :         : 1C        :                
 GND                          : R36       : gnd    :                   :         :           :                

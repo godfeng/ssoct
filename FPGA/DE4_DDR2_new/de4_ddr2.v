@@ -601,10 +601,11 @@ assign	GPIO[0]				= sweepTrigger;
 assign	enableRecording		= GPIO[6];
 // Display enable signal from LabView
 assign	SEG0_DP				= ~enableRecording;
-// Turn off 7-segment displays
-assign	SEG0_D				= 1'b0;
-assign	SEG1_D				= 1'b0;
-assign	SEG1_DP				= 1'b0;
+
+// Turn off 7-segment displays (active LOW)
+assign	SEG0_D				= 7'h7F;
+assign	SEG1_D				= 7'h7F;
+assign	SEG1_DP				= 1'b1;
 assign 	trigger50kHz		= enableRecording & sweepTrigger;
 
 
@@ -623,41 +624,28 @@ assign	LED[1] 				= ~writing_done;
 //assign	LED[1] 				= ~user_buffer_full;
 assign	LED[0]				= ~error_full;
 
-// Send signal to D6
-//assign	GPIO[0]				= user_data_available;
-//assign	GPIO[6]				= control_done_read;
-//assign	GPIO[1]				= control_go_read;
-
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
-	.clock(ADA_DCO) ,							// input  clock_sig (ADA_DCO)
-	.sclr(~trigger50kHz) ,						// input  ~trigger50kHz
-	.sample_position(write_RAM_address) ,		// output [10:0] sample_position
-	.acq_busy(acq_busy) ,						// output acq_busy
-	.acq_done(acq_done) ,						// output acq_done
-	.dualMSB_write() ,				// output dualMSB_write
-	.dualMSB_read()					// output dualMSB_read
+	.clock( ADA_DCO ) ,							// input  clock_sig (ADA_DCO)
+	.sclr( ~trigger50kHz ) ,					// input  ~trigger50kHz
+	.sample_position( write_RAM_address ) ,		// output [10:0] write_RAM_address
+	.acq_busy( acq_busy ) ,						// output acq_busy
+	.acq_done( acq_done ) ,						// output acq_done
+	.dualMSB_write( dualMSB_write ) ,			// output dualMSB_write
+	.dualMSB_read( dualMSB_read )				// output dualMSB_read
 	);
 
-// T flip flop (divides frequency of acq_done by 2)
-FlipFlopT	FlipFlopT_inst (
-	.clock ( acq_done ),
-	.data ( dualMSB_read ),
-	.q ( dualMSB_write )
-	);
-
-// MSB to read address from internal RAM
-assign	dualMSB_read	= ~dualMSB_write;
+assign	GPIO[1]				= acq_done;
 
 // 4096 words (16-bit data bus) RAM
 RAM	RAM_inst (
-	.wraddress ({ dualMSB_write, write_RAM_address }),// Sample position (0-1170)
-	.wrclock ( ADA_DCO ),						// Write clock (ADA_DCO or sys_clk????)
-	.wren ( acq_busy ),							// acq_busy & ~read_RAM_busy
-	.data ( {2'b0, ADA_D} ),					// 16-bit data
-	.rdaddress ({ dualMSB_read, read_RAM_address }),// Read adress (read_RAM_address) from NIOS
-	.rdclock ( sys_clk ),						// Read clock (sys_clk)
-	.q ( RAMdata )								// data read by NIOS
+	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
+	.wrclock ( ADA_DCO ),						// input Write clock (ADA_DCO)
+	.wren ( acq_busy ),							// input acq_busy
+	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
+	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [11:0] Read address (read_RAM_address) from NIOS
+	.rdclock ( sys_clk ),						// input Read clock (sys_clk)
+	.q ( RAMdata )								// output [15:0] data read by NIOS
 	);
 
 // Ethernet clock PLL
@@ -692,7 +680,7 @@ DE4_SOPC DE4_SOPC_inst(
    .aux_scan_clk_reset_n_from_the_ddr2(),
    .dll_reference_clk_from_the_ddr2(),
    .dqs_delay_ctrl_export_from_the_ddr2(),
-   .global_reset_n_to_the_ddr2(reset_n),
+   .global_reset_n_to_the_ddr2( reset_n ),
    .local_init_done_from_the_ddr2(),
    .local_refresh_ack_from_the_ddr2(),
    .local_wdata_req_from_the_ddr2(),
@@ -726,7 +714,7 @@ DE4_SOPC DE4_SOPC_inst(
 	.aux_scan_clk_reset_n_from_the_ddr2(),
 	.dll_reference_clk_from_the_ddr2(),
 	.dqs_delay_ctrl_export_from_the_ddr2(),
-	.global_reset_n_to_the_ddr2(reset_n),
+	.global_reset_n_to_the_ddr2( reset_n ),
 	.local_init_done_from_the_ddr2(),
 	.local_refresh_ack_from_the_ddr2(),
 	.local_wdata_req_from_the_ddr2(),
@@ -759,25 +747,25 @@ DE4_SOPC DE4_SOPC_inst(
 	.ddr2_phy_clk_out (ddr2_phy_clk_out),
 	
 	// Master Read template
-	.control_done_from_the_master_read(control_done_read) ,					// output  
+	.control_done_from_the_master_read(control_done_read) ,					// output control_done_read
 	.control_early_done_from_the_master_read() ,							// output  
 	.control_fixed_location_to_the_master_read(0) ,							// input  
-	.control_go_to_the_master_read(control_go_read) ,						// input  
-	.control_read_base_to_the_master_read(control_read_base) ,				// input [29:0] 
-	.control_read_length_to_the_master_read(control_read_length) ,			// input [29:0] 
-	.user_buffer_output_data_from_the_master_read(user_buffer_data_read) ,	// output [31:0] 
-	.user_data_available_from_the_master_read(user_data_available) ,		// output  
-	.user_read_buffer_to_the_master_read(user_read_buffer) ,				// input  
+	.control_go_to_the_master_read(control_go_read) ,						// input control_go_read
+	.control_read_base_to_the_master_read(control_read_base) ,				// input [29:0] control_read_base
+	.control_read_length_to_the_master_read(control_read_length) ,			// input [29:0] control_read_length
+	.user_buffer_output_data_from_the_master_read(user_buffer_data_read) ,	// output [255:0] user_buffer_data_read
+	.user_data_available_from_the_master_read(user_data_available) ,		// output user_data_available
+	.user_read_buffer_to_the_master_read(user_read_buffer) ,				// input user_read_buffer 
 	
 	// Master Write template
-	.control_done_from_the_master_write(control_done_write) ,				// output  
-	.control_fixed_location_to_the_master_write(0) ,						// input  
-	.control_go_to_the_master_write(control_go_write) ,						// input  
-	.control_write_base_to_the_master_write(control_write_base) ,			// input [29:0] 
-	.control_write_length_to_the_master_write(control_write_length) ,		// input [29:0] 
-	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output  
-	.user_buffer_input_data_to_the_master_write({224'b0, user_buffer_data_write}) ,	// input [31:0] 
-	.user_write_buffer_to_the_master_write(user_write_buffer) 				// input  
+	.control_done_from_the_master_write(control_done_write) ,				// output control_done_write
+	.control_fixed_location_to_the_master_write(0) ,						// input 0
+	.control_go_to_the_master_write(control_go_write) ,						// input control_go_write
+	.control_write_base_to_the_master_write(control_write_base) ,			// input [29:0] control_write_base
+	.control_write_length_to_the_master_write(control_write_length) ,		// input [29:0] control_write_length
+	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output user_buffer_full 
+	.user_buffer_input_data_to_the_master_write({224'b0, user_buffer_data_write}) ,	// input [255:0] {224'b0, user_buffer_data_write}
+	.user_write_buffer_to_the_master_write(user_write_buffer) 				// input user_write_buffer
 	);
 
 // Yields a reset signal 20 ms after cpu reset
@@ -828,27 +816,27 @@ TestWrite TestWrite_inst (
 
 // Fan Control
 FAN_PWM FAN_PWM_inst (
-	.clk(OSC_50_BANK3) ,						// input  OSC_50_BANK3
-	.PWM_input(4'hC) ,							// input [3:0] PWM = 4'hC
-	.clk_div_out(clk_div_out_sig) ,				// output [7:0] clk_div_out_sig
-	.FAN(FAN_CTRL) 								// output FAN_CTRL
+	.clk( OSC_50_BANK3 ) ,						// input  OSC_50_BANK3
+	.PWM_input( 4'hC ) ,						// input [3:0] PWM = 4'hC
+	.clk_div_out( clk_div_out_sig ) ,			// output [7:0] clk_div_out_sig
+	.FAN( FAN_CTRL ) 							// output FAN_CTRL
 	);
 
 // Heartbeat with glowing LED
 LED_glow LED_glow_inst (
-	.clk(ADA_DCO) ,								// input  clk_div_out_sig[1]
-	.LED(LED[7]) 								// output LED_sig
+	.clk( clk_div_out_sig[1] ) ,				// input  clk_div_out_sig[1]
+	.LED( LED[7] ) 								// output LED_sig
 	);
 
-// Generate sinus wave in DAC B to test acquisition
+// Generate sinus wave in DAC A to test acquisition
 sin400k_st sin400k_st_inst (
-	.clk(sys_clk) ,								// input  sys_clk 156.25 MHz clock
-	.reset_n(global_reset_n) ,					// input  global_reset_n
-	.clken(1'b1) ,								// input  1'b1
-	.phi_inc_i(32'd27487791) ,					// input [anglePrec-1:0] @156.25 MHz -> 
+	.clk( sys_clk ) ,							// input  sys_clk 156.25 MHz clock
+	.reset_n( global_reset_n ) ,				// input  global_reset_n
+	.clken( 1'b1 ) ,							// input  1'b1
+	.phi_inc_i( 32'd27487791 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
 												// d10995116 for 400 kHz sinus,
 												// d27487791 for 1 MHz.
-	.fsin_o(raw_sine) ,							// output [magnitudePrec-1:0] raw_sine
+	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine
 	.out_valid() 								// output  N.C.
 	);
 

@@ -23,13 +23,15 @@ input					clock;
 input					sclr;
 output reg 	[10:0] 		sample_position;
 output 					acq_busy;
-output 					acq_done;
+output reg				acq_done;
 output 					dualMSB_write;
 output 					dualMSB_read;
+
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
 reg 		[13:0]		count;
+
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -52,10 +54,12 @@ begin
 	if (count > `NSAMPLES)	begin
 		// Output sample_position equal to 2047
 		sample_position	<= 11'd2047;
+		acq_done		<= 1'b1;
 	end
 	else	begin
 		// Output sample_position equal to count LSB
 		sample_position <= count[10:0] - 1;
+		acq_done		<= 1'b0;
 	end
 end
 
@@ -63,6 +67,17 @@ end
 assign 	acq_busy		= (sample_position >= 0 & sample_position < `NSAMPLES) ? 1'b1 : 1'b0;
 
 // Acquisition done (rising edge)
-assign 	acq_done		= ~acq_busy;
+//assign	acq_done		= ~acq_busy;
+
+
+// T flip flop (divides frequency of acq_done by 2)
+FlipFlopT	FlipFlopT_inst (
+	.clock ( acq_done ),
+	.data ( dualMSB_read ),
+	.q ( dualMSB_write )
+	);
+
+// MSB to read address from internal RAM
+assign	dualMSB_read	= ~dualMSB_write;
 
 endmodule
