@@ -393,7 +393,7 @@ wire			[31:0]		debug_read;
 wire			[2:0]		error_data;
 	
 wire						control_done_write;
-wire			[31:0]		user_buffer_data_write;
+wire			[255:0]		user_buffer_data_write;
 wire						user_buffer_full;
 wire			[29:0]		address_last_complete_write;
 wire						control_go_write;
@@ -424,7 +424,7 @@ wire						lvds_txp;
 reg  		[13:0]			A_line_array	[0:`NSAMPLES-1];
 wire		[13:0]			A_line; 
 
-// 50 kHz A-line trigger
+// 50 kHz A-line trigger from swept source laser
 wire						sweepTrigger;
 // 50 kHz A-line trigger enabled by LabView
 wire						trigger50kHz;
@@ -434,7 +434,7 @@ wire		[10:0]			read_RAM_address;
 wire		[10:0]			write_RAM_address;
 
 // Data from RAM
-wire		[13:0]			RAMdata;
+wire		[255:0]			RAMdata;
 
 // MSB to write dual buffer RAM
 wire						dualMSB_write;
@@ -616,12 +616,9 @@ assign	FPGA_CLK_A_N		= ~sys_clk;
 
 //// LED diagnostics
 assign	LED[6:4] 			= ~error_data;
-//assign	LED[6] 				= ~control_done_read;
 assign	LED[3] 				= ~reading_done;
 assign	LED[2] 				= ~user_data_available;
-//assign	LED[3] 				= ~control_done_write;
 assign	LED[1] 				= ~writing_done;
-//assign	LED[1] 				= ~user_buffer_full;
 assign	LED[0]				= ~error_full;
 
 // Synchronization of sampling with sweep trigger
@@ -635,7 +632,7 @@ sample_addressing_custom sample_addressing_custom_inst (
 	.dualMSB_read( dualMSB_read )				// output dualMSB_read
 	);
 
-assign	GPIO[1]				= acq_done;
+//assign	GPIO[1]				= acq_done;
 
 // 4096 words (16-bit data bus) RAM
 RAM	RAM_inst (
@@ -645,8 +642,26 @@ RAM	RAM_inst (
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
 	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [11:0] Read address (read_RAM_address) from NIOS
 	.rdclock ( sys_clk ),						// input Read clock (sys_clk)
-	.q ( RAMdata )								// output [15:0] data read by NIOS
+	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
+
+// Write contents of internal RAM to DDR2
+RAMtoDDR2 RAMtoDDR2_inst
+(
+	.RSTn(global_reset_n) ,						// input  global_reset_n
+	.CLK50MHZ(OSC_50_BANK3) ,					// input  OSC_50_BANK3
+	.control_go(control_go_write) ,				// output  control_go_write
+	.control_write_base(control_write_base) ,	// output [address_width-1:0] control_write_base
+	.control_write_length(control_write_length),// output [address_width-1:0] control_write_length
+	.control_done(control_done_write) ,			// input  control_done_write
+	.user_buffer_data(user_buffer_data_write) ,	// output [255:0] user_buffer_data_write
+	.user_buffer_full(user_buffer_full) ,		// input  user_buffer_full
+	.user_write_buffer(user_write_buffer) ,		// output  user_write_buffer
+	.RAM_dataOut(RAMdata) ,						// input [255:0] RAMdata
+	.RAM_readAddress(read_RAM_address) ,		// output [10:0] read_RAM_address
+	.acq_done(acq_done) 						// input  acq_done
+);
+
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
@@ -764,7 +779,7 @@ DE4_SOPC DE4_SOPC_inst(
 	.control_write_base_to_the_master_write(control_write_base) ,			// input [29:0] control_write_base
 	.control_write_length_to_the_master_write(control_write_length) ,		// input [29:0] control_write_length
 	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output user_buffer_full 
-	.user_buffer_input_data_to_the_master_write({224'b0, user_buffer_data_write}) ,	// input [255:0] {224'b0, user_buffer_data_write}
+	.user_buffer_input_data_to_the_master_write(user_buffer_data_write) ,	// input [255:0] {224'b0, user_buffer_data_write}
 	.user_write_buffer_to_the_master_write(user_write_buffer) 				// input user_write_buffer
 	);
 
@@ -776,39 +791,39 @@ DE4_SOPC DE4_SOPC_inst(
 //	.RSTn(reset_power_on) 						// output  RSTn_sig
 //);
 
-TestRead TestRead_inst (
-	.RSTn(global_reset_n) ,										// input  reset_power_on
-	.CLK48MHZ(OSC_50_BANK3) ,									// input  
-	.control_go(control_go_read) ,								// output  
-	.control_read_base(control_read_base) ,						// output [29:0] 
-	.control_read_length(control_read_length) ,					// output [29:0] 
-	.control_done(control_done_read) ,							// input  
-	.user_buffer_data(user_buffer_data_read[31:0]) ,			// input [31:0] 
-	.user_read_buffer(user_read_buffer) ,						// output  
-	.user_data_available(user_data_available) ,					// input  
-	.addressLastCompleteWrite(address_last_complete_write) ,	// input [29:0] 
-	.addressLastCompleteRead(address_last_complete_read) ,		// output [29:0] 
-	.readingDone(reading_done) ,								// output  
-	.debugOut() ,												// output [31:0] 
-	.errorData(error_data) 										// output [2:0] 
-	);
-
-TestWrite TestWrite_inst (
-	.RSTn(global_reset_n) ,										// input  reset_power_on
-	.CLK48MHZ(OSC_50_BANK3) ,									// input  
-	.control_go(control_go_write) ,								// output  
-	.control_write_base(control_write_base) ,					// output [29:0] 
-	.control_write_length(control_write_length) ,				// output [29:0] 
-	.control_done(control_done_write) ,							// input  
-	.user_buffer_data(user_buffer_data_write) ,					// output [31:0] 
-	.user_buffer_full(user_buffer_full) ,						// input  
-	.user_write_buffer(user_write_buffer) ,						// output  
-	.addressLastCompleteWrite(address_last_complete_write) ,	// output [29:0] 
-	.addressLastCompleteRead(address_last_complete_read) ,		// input [29:0] 
-	.writingDone(writing_done) ,								// output  
-	.debugOut() ,												// output [31:0] 
-	.errorFull(error_full) 										// output  
-	);
+//TestRead TestRead_inst (
+//	.RSTn(global_reset_n) ,										// input  reset_power_on
+//	.CLK48MHZ(OSC_50_BANK3) ,									// input  
+//	.control_go(control_go_read) ,								// output  
+//	.control_read_base(control_read_base) ,						// output [29:0] 
+//	.control_read_length(control_read_length) ,					// output [29:0] 
+//	.control_done(control_done_read) ,							// input  
+//	.user_buffer_data(user_buffer_data_read[31:0]) ,			// input [31:0] 
+//	.user_read_buffer(user_read_buffer) ,						// output  
+//	.user_data_available(user_data_available) ,					// input  
+//	.addressLastCompleteWrite(address_last_complete_write) ,	// input [29:0] 
+//	.addressLastCompleteRead(address_last_complete_read) ,		// output [29:0] 
+//	.readingDone(reading_done) ,								// output  
+//	.debugOut() ,												// output [31:0] 
+//	.errorData(error_data) 										// output [2:0] 
+//	);
+//
+//TestWrite TestWrite_inst (
+//	.RSTn(global_reset_n) ,										// input  reset_power_on
+//	.CLK48MHZ(OSC_50_BANK3) ,									// input  
+//	.control_go(control_go_write) ,								// output  
+//	.control_write_base(control_write_base) ,					// output [29:0] 
+//	.control_write_length(control_write_length) ,				// output [29:0] 
+//	.control_done(control_done_write) ,							// input  
+//	.user_buffer_data(user_buffer_data_write) ,					// output [31:0] 
+//	.user_buffer_full(user_buffer_full) ,						// input  
+//	.user_write_buffer(user_write_buffer) ,						// output  
+//	.addressLastCompleteWrite(address_last_complete_write) ,	// output [29:0] 
+//	.addressLastCompleteRead(address_last_complete_read) ,		// input [29:0] 
+//	.writingDone(writing_done) ,								// output  
+//	.debugOut() ,												// output [31:0] 
+//	.errorFull(error_full) 										// output  
+//	);
 
 //==============================================================================
 // Optional modules
