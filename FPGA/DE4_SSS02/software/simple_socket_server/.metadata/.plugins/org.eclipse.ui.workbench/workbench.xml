@@ -17,6 +17,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="185" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -28,12 +29,20 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.c"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="led.c" partName="led.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/led.c" title="led.c" tooltip="simple_socket_server/led.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/led.c"/>
+</editor>
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="iniche_init.c" partName="iniche_init.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/iniche_init.c" title="iniche_init.c" tooltip="simple_socket_server/iniche_init.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/iniche_init.c"/>
 </editor>
 </editors>
 <views>
@@ -50,7 +59,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="421" columnWidth1="81" columnWidth2="156" columnWidth3="66" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="424" columnWidth1="84" columnWidth2="159" columnWidth3="69" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -62,8 +71,16 @@
 <viewState/>
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
-<viewState horizontalPosition="0" verticalPosition="0">
-<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
+<viewState horizontalPosition="0" verticalPosition="7">
+<expanded>
+<element path="D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\software\simple_socket_server\simple_socket_server"/>
+</expanded>
+<selection>
+<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/software/simple_socket_server/simple_socket_server/iniche_init.c"/>
+</selection>
+<customFilters userDefinedPatternsEnabled="false">
+<xmlDefinedFilters>
+<child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ExecutableFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.SharedFilter" isEnabled="false"/>
 <child filterId="com.altera.nj.ui.Nios2CView.ClosedProjectFilter" isEnabled="false"/>
@@ -166,11 +183,6 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/micrium_uc_osii/UCOSII/inc/ucos_ii.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet/in_pcb.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet/tcp.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet6/ip6_fw.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet6/ipsec.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/namespace.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/un-namespace.h"/>
@@ -192,156 +204,159 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/led.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/led.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/simple_socket_server/Debug/obj/iniche_init.o"/>
 </editors>
-<item historyLabel="simple_socket_server.h" index="1">
-<position info="not_deleted" x="6159" y="0"/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="7760" y="0"/>
-</item>
-<item historyLabel="ucos_ii.h" index="2">
-<position info="not_deleted" x="50623" y="7"/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="19016" y="0"/>
-</item>
-<item historyLabel="in_pcb.h" index="3">
-<position info="not_deleted" x="6169" y="10"/>
-</item>
-<item historyLabel="tcp.h" index="4">
-<position info="not_deleted" x="4859" y="10"/>
-</item>
-<item historyLabel="ip6_fw.h" index="5">
-<position info="not_deleted" x="3459" y="10"/>
-</item>
-<item historyLabel="ipsec.h" index="6">
+<item historyLabel="ipsec.h" index="1">
 <position info="not_deleted" x="5355" y="10"/>
 </item>
-<item historyLabel="namespace.h" index="7">
+<item historyLabel="namespace.h" index="2">
 <position info="not_deleted" x="4272" y="10"/>
 </item>
-<item historyLabel="namespace.h" index="7">
+<item historyLabel="namespace.h" index="2">
 <position info="not_deleted" x="4286" y="10"/>
 </item>
-<item historyLabel="un-namespace.h" index="8">
+<item historyLabel="un-namespace.h" index="3">
 <position info="not_deleted" x="2608" y="10"/>
 </item>
-<item historyLabel="bindresvport.c" index="9">
+<item historyLabel="bindresvport.c" index="4">
 <position info="not_deleted" x="3540" y="10"/>
 </item>
-<item historyLabel="bindresvport.c" index="9">
+<item historyLabel="bindresvport.c" index="4">
 <position info="not_deleted" x="3764" y="10"/>
 </item>
-<item historyLabel="name6.c" index="10">
+<item historyLabel="name6.c" index="5">
 <position info="not_deleted" x="42470" y="10"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="18048" y="0"/>
 </item>
-<item historyLabel="sockops.h" index="11">
+<item historyLabel="sockops.h" index="6">
 <position info="not_deleted" x="531" y="10"/>
 </item>
-<item historyLabel="socket.c" index="12">
+<item historyLabel="socket.c" index="7">
 <position info="not_deleted" x="1192" y="10"/>
 </item>
-<item historyLabel="sockops.h" index="11">
+<item historyLabel="sockops.h" index="6">
 <position info="not_deleted" x="531" y="10"/>
 </item>
-<item historyLabel="syscall.h" index="13">
+<item historyLabel="syscall.h" index="8">
 <position info="not_deleted" x="6312" y="10"/>
 </item>
-<item historyLabel="ftpclnt.c" index="14">
+<item historyLabel="ftpclnt.c" index="9">
 <position info="not_deleted" x="32958" y="10"/>
 </item>
-<item historyLabel="ftpclnt.c" index="14">
+<item historyLabel="ftpclnt.c" index="9">
 <position info="not_deleted" x="43267" y="10"/>
 </item>
-<item historyLabel="ftpsrv.c" index="15">
+<item historyLabel="ftpsrv.c" index="10">
 <position info="not_deleted" x="56745" y="10"/>
 </item>
-<item historyLabel="ftpssock.c" index="16">
+<item historyLabel="ftpssock.c" index="11">
 <position info="not_deleted" x="6388" y="10"/>
 </item>
-<item historyLabel="ftpssock.c" index="16">
+<item historyLabel="ftpssock.c" index="11">
 <position info="not_deleted" x="8170" y="10"/>
 </item>
-<item historyLabel="ftpssock.c" index="16">
+<item historyLabel="ftpssock.c" index="11">
 <position info="not_deleted" x="9607" y="10"/>
 </item>
-<item historyLabel="ftpssock.c" index="16">
+<item historyLabel="ftpssock.c" index="11">
 <position info="not_deleted" x="10405" y="10"/>
 </item>
-<item historyLabel="ftpssock.c" index="16">
+<item historyLabel="ftpssock.c" index="11">
 <position info="not_deleted" x="11510" y="10"/>
 </item>
-<item historyLabel="bsdsock.h" index="17">
+<item historyLabel="bsdsock.h" index="12">
 <position info="not_deleted" x="4977" y="10"/>
 </item>
-<item historyLabel="sockcall.h" index="18">
+<item historyLabel="sockcall.h" index="13">
 <position info="not_deleted" x="1354" y="10"/>
 </item>
-<item historyLabel="socket.h" index="19">
+<item historyLabel="socket.h" index="14">
 <position info="not_deleted" x="4470" y="10"/>
 </item>
-<item historyLabel="socket.h" index="19">
+<item historyLabel="socket.h" index="14">
 <position info="not_deleted" x="5050" y="10"/>
 </item>
-<item historyLabel="socket6.h" index="20">
+<item historyLabel="socket6.h" index="15">
 <position info="not_deleted" x="1544" y="10"/>
 </item>
-<item historyLabel="tcpport.h" index="21">
+<item historyLabel="tcpport.h" index="16">
 <position info="not_deleted" x="9270" y="10"/>
 </item>
-<item historyLabel="tcpport.h" index="21">
+<item historyLabel="tcpport.h" index="16">
 <position info="not_deleted" x="9309" y="10"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="17925" y="0"/>
 </item>
-<item historyLabel="tcpport.h" index="21">
+<item historyLabel="tcpport.h" index="16">
 <position info="not_deleted" x="9309" y="10"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="17925" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="22">
+<item historyLabel="simple_socket_server.h" index="17">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="17952" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="22">
+<item historyLabel="simple_socket_server.h" index="17">
 <position info="not_deleted" x="8573" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="17952" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="23">
+<item historyLabel="simple_socket_server.h" index="18">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="8489" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="23">
+<item historyLabel="simple_socket_server.h" index="18">
 <position info="not_deleted" x="6115" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.c" index="24">
+<item historyLabel="simple_socket_server.c" index="19">
 <position/>
 </item>
-<item historyLabel="led.c" index="25">
+<item historyLabel="led.c" index="20">
 <position/>
 </item>
-<item historyLabel="network_utilities.c" index="26">
+<item historyLabel="network_utilities.c" index="21">
 <position/>
 </item>
-<item historyLabel="network_utilities.c" index="26">
+<item historyLabel="network_utilities.c" index="21">
 <position/>
 </item>
-<item historyLabel="led.c" index="25">
+<item historyLabel="led.c" index="20">
 <position info="not_deleted" x="1103" y="0"/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="24">
+<item historyLabel="simple_socket_server.c" index="19">
 <position/>
+</item>
+<item historyLabel="led.c" index="22">
+<position/>
+</item>
+<item historyLabel="simple_socket_server.c" index="19">
+<position info="not_deleted" x="19034" y="4"/>
+</item>
+<item historyLabel="iniche_init.c" index="23">
+<position/>
+</item>
+<item historyLabel="simple_socket_server.c" index="19">
+<position info="not_deleted" x="6300" y="0"/>
+</item>
+<item historyLabel="iniche_init.o" index="24">
+<position/>
+</item>
+<item historyLabel="simple_socket_server.c" index="19">
+<position info="not_deleted" x="6300" y="0"/>
+</item>
+<item active="true" historyLabel="iniche_init.c" index="23">
+<position info="not_deleted" x="4073" y="21"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -361,14 +376,20 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="iniche_init.o" tooltip="simple_socket_server/Debug/obj/iniche_init.o">
+<persistable path="/simple_socket_server/Debug/obj/iniche_init.o"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iniche_init.c" tooltip="simple_socket_server/iniche_init.c">
+<persistable path="/simple_socket_server/iniche_init.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="led.c" tooltip="simple_socket_server/led.c">
+<persistable path="/simple_socket_server/led.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c">
 <persistable path="/simple_socket_server/simple_socket_server.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="network_utilities.c" tooltip="simple_socket_server/network_utilities.c">
 <persistable path="/simple_socket_server/network_utilities.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="led.c" tooltip="simple_socket_server/led.c">
-<persistable path="/simple_socket_server/led.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="in_pcb.h" tooltip="altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet/in_pcb.h">
 <persistable path="/altera.components/Newlib C Library/src/newlib/newlib/libc/sys/linux/include/netinet/in_pcb.h"/>
