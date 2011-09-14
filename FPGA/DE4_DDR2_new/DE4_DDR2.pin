@@ -1190,7 +1190,7 @@ ADA_D[11]                    : K9        : input  : 2.5 V             :         
 ADA_D[9]                     : K10       : input  : 2.5 V             :         : 6A        : Y              
 VCCBAT                       : K11       : power  :                   : 2.5V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K12       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K13       :        :                   :         : 7A        :                
+FSM_A[0]                     : K13       : output : 2.5 V             :         : 7A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : K14       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K15       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K16       :        :                   :         : 7B        :                
@@ -1405,7 +1405,7 @@ LED[2]                       : R29       : output : 2.5 V             :         
 ETH_MDC[0]                   : R30       : output : 2.5 V             :         : 1C        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : R31       :        :                   :         : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R32       :        :                   :         : 1C        :                
-FSM_A[0]                     : R33       : output : 2.5 V             :         : 1C        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : R33       :        :                   :         : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R34       :        :                   :         : 1C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R35       :        :                   :         : 1C        :                
 GND                          : R36       : gnd    :                   :         :           :                

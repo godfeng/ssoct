@@ -378,6 +378,8 @@ output		          		M2_DDR2_we_n;
 
 //// Global signals
 wire 						reset_n;
+wire						clk156MHz;
+wire						clk50MHz;
 
 //// Master template
 wire						control_done_read;
@@ -430,15 +432,14 @@ wire						sweepTrigger;
 wire						trigger50kHz;
 
 // Position of the ADC sample in the RAM
-wire		[10:0]			read_RAM_address;
+wire		[ 6:0]			read_RAM_address;
 wire		[10:0]			write_RAM_address;
 
-// Data from RAM
+// Data output from internal RAM
 wire		[255:0]			RAMdata;
 
 // MSB to write dual buffer RAM
 wire						dualMSB_write;
-
 
 // Acquiring 1170 samples
 wire						acq_busy;
@@ -447,7 +448,7 @@ wire						acq_busy;
 wire						acq_done;
 
 // Reading RAM 
-wire						read_RAM_busy;
+//wire						read_RAM_busy;
 
 // PWM for Fan and LED
 wire		[7:0]			clk_div_out_sig;
@@ -459,6 +460,9 @@ wire						enableRecording;
 wire		[13:0]			raw_sine;
 // output to DAC A
 reg			[13:0]			o_sine;
+
+//LED diagnostics
+wire		[6:0]			stateLED;
 
 //==============================================================================
 //  External PLL Configuration ==========================================
@@ -480,7 +484,7 @@ assign clk3_set_wr 			= 4'd7; //156.25 MHZ
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
 
-always @(posedge OSC_50_BANK3 or negedge reset_n)
+always @(posedge clk50MHz or negedge reset_n)
 	if(!reset_n)
 	begin
 		auto_set_counter <= 0;
@@ -493,7 +497,7 @@ always @(posedge OSC_50_BANK3 or negedge reset_n)
 
 
 ext_pll_ctrl ext_pll_ctrl_Inst (
-	.osc_50(OSC_50_BANK3), //50MHZ
+	.osc_50(clk50MHz), //50MHZ
 	.rstn(reset_n),
 
 	// device 1 (HSMA_REFCLK)
@@ -602,24 +606,30 @@ assign	enableRecording		= GPIO[6];
 // Display enable signal from LabView
 assign	SEG0_DP				= ~enableRecording;
 
+//// DEBUG SIGNALS
+assign	GPIO[5]				= acq_done;
+assign	GPIO[4]				= control_go_write;
+assign	GPIO[3]				= control_done_write;
+assign	GPIO[2]				= user_buffer_full;
+assign	GPIO[1]				= user_write_buffer;
+
+// LED diagnostics (active LOW)
+assign	LED[6:0]			= ~stateLED;
+
 // Turn off 7-segment displays (active LOW)
 assign	SEG0_D				= 7'h7F;
 assign	SEG1_D				= 7'h7F;
 assign	SEG1_DP				= 1'b1;
-assign 	trigger50kHz		= enableRecording & sweepTrigger;
+assign 	trigger50kHz		= 1'b1 & sweepTrigger;
+//assign 	trigger50kHz		= enableRecording & sweepTrigger;
 
+// Assign 156.25 MHz clock PLL_CLKIN_p to clk156MHz
+assign	clk156MHz			= PLL_CLKIN_p;
+assign	FPGA_CLK_A_P		=  clk156MHz;
+assign	FPGA_CLK_A_N		= ~clk156MHz;
 
-// Assign 156.25 MHz clock PLL_CLKIN_p to sys_clk
-assign	sys_clk				= PLL_CLKIN_p;
-assign	FPGA_CLK_A_P		=  sys_clk;
-assign	FPGA_CLK_A_N		= ~sys_clk;
-
-//// LED diagnostics
-assign	LED[6:4] 			= ~error_data;
-assign	LED[3] 				= ~reading_done;
-assign	LED[2] 				= ~user_data_available;
-assign	LED[1] 				= ~writing_done;
-assign	LED[0]				= ~error_full;
+// Assign OSC_50_BANK3 to clk50MHz
+assign	clk50MHz			= OSC_50_BANK3;
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
@@ -632,16 +642,14 @@ sample_addressing_custom sample_addressing_custom_inst (
 	.dualMSB_read( dualMSB_read )				// output dualMSB_read
 	);
 
-//assign	GPIO[1]				= acq_done;
-
 // 4096 words (16-bit data bus) RAM
 RAM	RAM_inst (
 	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
 	.wrclock ( ADA_DCO ),						// input Write clock (ADA_DCO)
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
-	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [11:0] Read address (read_RAM_address) from NIOS
-	.rdclock ( sys_clk ),						// input Read clock (sys_clk)
+	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [7:0] Read address (read_RAM_address) from NIOS
+	.rdclock ( clk156MHz ),						// input Read clock (clk156MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 
@@ -649,7 +657,7 @@ RAM	RAM_inst (
 RAMtoDDR2 RAMtoDDR2_inst
 (
 	.RSTn(global_reset_n) ,						// input  global_reset_n
-	.CLK50MHZ(OSC_50_BANK3) ,					// input  OSC_50_BANK3
+	.CLK50MHZ(clk50MHz) ,						// input  clk50MHz
 	.control_go(control_go_write) ,				// output  control_go_write
 	.control_write_base(control_write_base) ,	// output [address_width-1:0] control_write_base
 	.control_write_length(control_write_length),// output [address_width-1:0] control_write_length
@@ -658,27 +666,28 @@ RAMtoDDR2 RAMtoDDR2_inst
 	.user_buffer_full(user_buffer_full) ,		// input  user_buffer_full
 	.user_write_buffer(user_write_buffer) ,		// output  user_write_buffer
 	.RAM_dataOut(RAMdata) ,						// input [255:0] RAMdata
-	.RAM_readAddress(read_RAM_address) ,		// output [10:0] read_RAM_address
-	.acq_done(acq_done) 						// input  acq_done
+	.RAM_readAddress(read_RAM_address) ,		// output [6:0] read_RAM_address
+	.acq_done(acq_done) ,						// input  acq_done
+	.stateLED(stateLED)
 );
 
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0(OSC_50_BANK3),
+	.inclk0(clk50MHz),
 	.c0(enet_refclk_125MHz)
 	);
 
 // Generate global reset signal
-gen_reset_n	system_gen_reset_n (
-	.tx_clk(OSC_50_BANK3),
-	.reset_n_in(reset_n),
-	.reset_n_out(global_reset_n)
-	);
+//gen_reset_n	system_gen_reset_n (
+//	.tx_clk(clk50MHz),
+//	.reset_n_in(reset_n),
+//	.reset_n_out(global_reset_n)
+//	);
 
 // Generate ethernet reset signal
 gen_reset_n	net_gen_reset_n(
-	.tx_clk(OSC_50_BANK3),
+	.tx_clk(clk50MHz),
 	.reset_n_in(global_reset_n),
 	.reset_n_out(enet_reset_n)
 	);
@@ -686,7 +695,7 @@ gen_reset_n	net_gen_reset_n(
 // SOPC system with master read and write DDR2 handling
 DE4_SOPC DE4_SOPC_inst(
 	// 1) global signals:
-	.clk_50(OSC_50_BANK3),
+	.clk_50(clk50MHz),
 	.reset_n(global_reset_n),
 
 `ifndef USE_DDR2_DIMM2
@@ -783,17 +792,17 @@ DE4_SOPC DE4_SOPC_inst(
 	.user_write_buffer_to_the_master_write(user_write_buffer) 				// input user_write_buffer
 	);
 
-// Yields a reset signal 20 ms after cpu reset
-//PowerOn_RST PowerOn_RST_inst
-//(
-//	.clk(OSC_50_BANK3) ,						// input  clk_sig
-//	.RSTnCPU(global_reset_n) ,					// input  RSTnCPU_sig
-//	.RSTn(reset_power_on) 						// output  RSTn_sig
-//);
+ //Yields a reset signal 20 ms after cpu reset
+PowerOn_RST PowerOn_RST_inst
+(
+	.clk(clk50MHz) ,							// input  clk_sig
+	.RSTnCPU(reset_n) ,					// input  RSTnCPU_sig
+	.RSTn(global_reset_n) 						// output  RSTn_sig
+);
 
 //TestRead TestRead_inst (
 //	.RSTn(global_reset_n) ,										// input  reset_power_on
-//	.CLK48MHZ(OSC_50_BANK3) ,									// input  
+//	.CLK48MHZ(clk50MHz) ,										// input  
 //	.control_go(control_go_read) ,								// output  
 //	.control_read_base(control_read_base) ,						// output [29:0] 
 //	.control_read_length(control_read_length) ,					// output [29:0] 
@@ -810,7 +819,7 @@ DE4_SOPC DE4_SOPC_inst(
 //
 //TestWrite TestWrite_inst (
 //	.RSTn(global_reset_n) ,										// input  reset_power_on
-//	.CLK48MHZ(OSC_50_BANK3) ,									// input  
+//	.CLK48MHZ(clk50MHz) ,										// input  
 //	.control_go(control_go_write) ,								// output  
 //	.control_write_base(control_write_base) ,					// output [29:0] 
 //	.control_write_length(control_write_length) ,				// output [29:0] 
@@ -831,7 +840,7 @@ DE4_SOPC DE4_SOPC_inst(
 
 // Fan Control
 FAN_PWM FAN_PWM_inst (
-	.clk( OSC_50_BANK3 ) ,						// input  OSC_50_BANK3
+	.clk( clk50MHz ) ,							// input  clk50MHz
 	.PWM_input( 4'hC ) ,						// input [3:0] PWM = 4'hC
 	.clk_div_out( clk_div_out_sig ) ,			// output [7:0] clk_div_out_sig
 	.FAN( FAN_CTRL ) 							// output FAN_CTRL
@@ -845,7 +854,7 @@ LED_glow LED_glow_inst (
 
 // Generate sinus wave in DAC A to test acquisition
 sin400k_st sin400k_st_inst (
-	.clk( sys_clk ) ,							// input  sys_clk 156.25 MHz clock
+	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
 	.phi_inc_i( 32'd27487791 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
@@ -856,7 +865,7 @@ sin400k_st sin400k_st_inst (
 	);
 
 // Synchronize DAC A output (sinus wave) with system clock
-always @(negedge global_reset_n or posedge sys_clk)
+always @(negedge global_reset_n or posedge clk156MHz)
 begin
 	if (!global_reset_n) begin
 		o_sine		<= 14'd0;
