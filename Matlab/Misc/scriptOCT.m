@@ -109,3 +109,5 @@ frameRate = acqui_info.dat_size(2)*acqui_info.line_period_us*1e-6;
 % fftmMode
 
 
+% ==============================================================================
+% [EOF]

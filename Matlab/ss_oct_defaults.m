@@ -45,7 +45,7 @@ SSOctDefaults.MENUSIZE          = 351;
 % Save to file
 SSOctDefaults.save2file         = false;
 % Number of A-lines per frame
-SSOctDefaults.nLinesPerFrame    = 1000;
+SSOctDefaults.nLinesPerFrame    = 900;
 % Number of frames per B-scan
 SSOctDefaults.nFrames           = 400;
 % Number of total samples per scan
@@ -53,6 +53,8 @@ SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
 % Display B-scan in log scale
 SSOctDefaults.displayLog        = false;
+% Display Color Bar
+SSOctDefaults.displayColorBar   = true;
 
 %===============================================================================
 % OCT axial resolution
@@ -105,6 +107,17 @@ SSOctDefaults.vectorK           = linspace(SSOctDefaults.maxK,...
     SSOctDefaults.minK, SSOctDefaults.NSAMPLES)';
 % Lambda Column Vector (in nm)
 SSOctDefaults.vectorLambda      = 2*pi ./ SSOctDefaults.vectorK;
-% z-axis in um
-SSOctDefaults.zAxis             = linspace(SSOctDefaults.delta_Z_Nq_air ./...
+% z-axis in um (air)
+SSOctDefaults.zAxis_air         = linspace(SSOctDefaults.delta_Z_Nq_air ./...
     SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air,SSOctDefaults.NSAMPLES);
+% z-axis in um (tissue)
+SSOctDefaults.zAxis             = linspace(SSOctDefaults.delta_Z_Nq ./...
+    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq,SSOctDefaults.NSAMPLES);
+% Positive z-axis in um (air)
+SSOctDefaults.positiveZaxis_air = linspace(SSOctDefaults.delta_Z_Nq_air ./...
+    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air,SSOctDefaults.NSAMPLES/2);
+% Positive z-axis in um (tissue)
+SSOctDefaults.positiveZaxis     = linspace(SSOctDefaults.delta_Z_Nq ./...
+    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq,SSOctDefaults.NSAMPLES/2);
+% ==============================================================================
+% [EOF]

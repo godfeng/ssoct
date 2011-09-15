@@ -12,3 +12,6 @@ global SSOctDefaults
 flush = pnet(SSOctDefaults.tcpConn,'read',SSOctDefaults.MENUSIZE,'uint8');
 % Show flushed data
 disp(char(flush))
+
+% ==============================================================================
+% [EOF]

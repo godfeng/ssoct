@@ -1,3 +1,11 @@
+% Main script to start acquisition from Swept Source-Optical Coherence
+% Tomography system.
+% SYNTAX:
+% ss_oct_acq_script
+% INPUTS:
+% none
+% OUTPUTS:
+% none
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -9,7 +17,7 @@ ss_oct_get_defaults
 
 % ------------------------- MODIFY OPTIONS -------------------------------------
 global SSOctDefaults
-SSOctDefaults.displayLog = true;
+SSOctDefaults.displayLog = false;
 % Save files
 % SSOctDefaults.save2file = true;
 % Save a single frame (first 2 frames are garbage)

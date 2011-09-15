@@ -86,3 +86,5 @@ plot(sampleArm);
 SSOctDefaults.sampleArm = sampleArm;
 SSOctDefaults.refArm    = refArm;
 
+% ==============================================================================
+% [EOF]

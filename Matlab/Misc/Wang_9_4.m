@@ -70,3 +70,6 @@ title('IFT of the deconvolved differential interferogram');
 xlabel('Depth ls (m)');
 ylabel('Relative reflectivity');
 axis([-2*ls2 2*ls2 0 1]);
+
+% ==============================================================================
+% [EOF]

@@ -64,3 +64,6 @@ xlabel('\Deltal/l_c')
 ylabel('Signals')
 axis([-0.6, 0.6, -1, 1])
 legend('Demodulated','Original')
+
+% ==============================================================================
+% [EOF]

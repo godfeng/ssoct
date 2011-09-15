@@ -207,5 +207,6 @@ fprintf('Connection closed from %s at port %d\n',serverAddress,portNumber)
 % Closes all pnet connections/sockets used in this matlab session.
 % pnet('closeall')
 
-% EOF
+% ==============================================================================
+% [EOF]
 

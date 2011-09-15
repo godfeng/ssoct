@@ -66,3 +66,5 @@ end
 correctedBscan = correctedBscan.*repmat(winFunction(SSOctDefaults.NSAMPLES), ...
     [1 SSOctDefaults.nLinesPerFrame]);
 
+% ==============================================================================
+% [EOF]

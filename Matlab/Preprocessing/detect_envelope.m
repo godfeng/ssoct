@@ -53,4 +53,5 @@ posEnv = env_secant(1:1170, signal, 256, 'top');
 % Negative part envelope
 negEnv = env_secant(1:1170, signal, 256, 'bottom');
 
-
+% ==============================================================================
+% [EOF]

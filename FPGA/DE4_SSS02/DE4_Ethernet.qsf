@@ -771,6 +771,4 @@ set_global_assignment -name VERILOG_FILE A_line_acq.v
 set_global_assignment -name QIP_FILE RAM.qip
 set_global_assignment -name SIGNALTAP_FILE counterMonitor.stp
 set_global_assignment -name VERILOG_FILE one_shot.v
-set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
-set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
 set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_SSS02/DE4_Ethernet.dpf"

@@ -20,4 +20,5 @@ fprintf('Connection closed from %s at port %d\n',SSOctDefaults.serverAddress,SSO
 % Closes all pnet connections/sockets used in this matlab session.
 % pnet('closeall')
 
-% EOF
+% ==============================================================================
+% [EOF]

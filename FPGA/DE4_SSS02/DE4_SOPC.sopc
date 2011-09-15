@@ -6,7 +6,7 @@
    {
       datum _sortIndex
       {
-         value = "20";
+         value = "16";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -22,7 +22,7 @@
    {
       datum _sortIndex
       {
-         value = "19";
+         value = "15";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -181,37 +181,11 @@
          type = "String";
       }
    }
-   element led_pio
-   {
-      datum _sortIndex
-      {
-         value = "15";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{output_language=VERILOG, output_directory=D:\\Work\\Project\\Proj_DE4\\RTL\\de4_230_ethernet}";
-         type = "String";
-      }
-   }
    element onchip_memory
    {
       datum _sortIndex
       {
          value = "1";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
-   element pb_pio
-   {
-      datum _sortIndex
-      {
-         value = "17";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -255,7 +229,7 @@
    {
       datum _sortIndex
       {
-         value = "21";
+         value = "17";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -268,7 +242,7 @@
    {
       datum _sortIndex
       {
-         value = "22";
+         value = "18";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -277,64 +251,19 @@
          type = "String";
       }
    }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "85987328";
-         type = "long";
-      }
-   }
-   element pb_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "32";
-         type = "long";
-      }
-   }
-   element read_RAM_address.s1
-   {
-      datum baseAddress
-      {
-         value = "96";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "85990528";
-         type = "long";
-      }
-   }
-   element read_RAM_busy_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "112";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "85990560";
-         type = "long";
-      }
-   }
    element onchip_memory.s1
    {
       datum baseAddress
       {
          value = "84934656";
+         type = "long";
+      }
+   }
+   element peripheral_clock_crossing.s1
+   {
+      datum baseAddress
+      {
+         value = "67108864";
          type = "long";
       }
    }
@@ -346,11 +275,35 @@
          type = "long";
       }
    }
-   element led_pio.s1
+   element pll.s1
    {
       datum baseAddress
       {
-         value = "0";
+         value = "85990528";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "85990560";
+         type = "long";
+      }
+   }
+   element read_RAM_busy_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "112";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "85987328";
          type = "long";
       }
    }
@@ -367,43 +320,6 @@
          type = "long";
       }
    }
-   element sw_pio.s1
-   {
-      datum _lockedAddress
-      {
-         value = "0";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "16";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "85990592";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "67108864";
-         type = "long";
-      }
-   }
    element ADC_data_pio.s1
    {
       datum _tags
@@ -417,17 +333,20 @@
          type = "long";
       }
    }
-   element seven_seg_pio
+   element sys_timer.s1
    {
-      datum _sortIndex
+      datum baseAddress
       {
-         value = "18";
-         type = "int";
+         value = "85990592";
+         type = "long";
       }
-      datum megawizard_uipreferences
+   }
+   element read_RAM_address.s1
+   {
+      datum baseAddress
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
-         type = "String";
+         value = "96";
+         type = "long";
       }
    }
    element sgdma_rx
@@ -453,19 +372,6 @@
       datum megawizard_uipreferences
       {
          value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS02}";
-         type = "String";
-      }
-   }
-   element sw_pio
-   {
-      datum _sortIndex
-      {
-         value = "16";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_SSS}";
          type = "String";
       }
    }
@@ -515,8 +421,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_Ethernet.qpf" />
- <parameter name="systemHash" value="933161164" />
- <parameter name="timeStamp" value="1310235669692" />
+ <parameter name="systemHash" value="-20252961174" />
+ <parameter name="timeStamp" value="1316107552901" />
  <module name="ext_clk" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -668,7 +574,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.000"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.0"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -977,19 +883,6 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
- <module name="led_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
  <module
    name="peripheral_clock_crossing"
    kind="altera_avalon_clock_crossing"
@@ -1004,49 +897,6 @@
   <parameter name="upstreamFIFODepth" value="64" />
   <parameter name="upstreamUseRegister" value="false" />
   <parameter name="useBurstCount" value="false" />
- </module>
- <module name="sw_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
- <module name="pb_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="4" />
- </module>
- <module
-   name="seven_seg_pio"
-   kind="altera_avalon_pio"
-   version="9.1"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="16" />
  </module>
  <module
    name="ext_flash"
@@ -1363,41 +1213,6 @@
    version="9.1"
    start="pll.c1"
    end="peripheral_clock_crossing.clk_m1" />
- <connection
-   kind="avalon"
-   version="6.1"
-   start="peripheral_clock_crossing.m1"
-   end="led_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
- </connection>
- <connection kind="clock" version="9.1" start="pll.c1" end="led_pio.clk" />
- <connection
-   kind="avalon"
-   version="6.1"
-   start="peripheral_clock_crossing.m1"
-   end="sw_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0010" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="peripheral_clock_crossing.m1"
-   end="pb_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0020" />
- </connection>
- <connection kind="clock" version="9.1" start="pll.c1" end="pb_pio.clk" />
- <connection
-   kind="avalon"
-   version="6.1"
-   start="peripheral_clock_crossing.m1"
-   end="seven_seg_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0030" />
- </connection>
- <connection kind="clock" version="9.1" start="pll.c1" end="seven_seg_pio.clk" />
  <connection kind="clock" version="9.1" start="pll.c0" end="ext_flash.clk" />
  <connection
    kind="clock"
@@ -1428,7 +1243,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x02000000" />
  </connection>
- <connection kind="clock" version="9.1" start="pll.c1" end="sw_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"

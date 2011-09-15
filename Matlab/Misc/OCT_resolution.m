@@ -71,3 +71,6 @@ timeDelay = electricalDelay / c;        % Time delay between the clock and signa
 % Number to use in the "Set clock delay" window
 setClockDelay = round((timeDelay - minElectricalDelay) / stepSizeClockDelay);
 fprintf('Set Clock Delay = %d [0x%X] \n',setClockDelay,setClockDelay)
+
+% ==============================================================================
+% [EOF]

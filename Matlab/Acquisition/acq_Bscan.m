@@ -1,6 +1,7 @@
 function Bscan  = acq_Bscan(varargin)
+% Acquires a single B-scan (frame) of nLinesPerFrame
 % SYNTAX:
-% correctedBscan = correct_B_scan(rawBscan, windowType)
+% Bscan = acq_Bscan(windowType, correctBackground)
 % INPUTS:
 % [windowType]      Function handle to the window function to use:
 %                   @barthannwin    @bartlett   @blackman   @blackmanharris
@@ -9,7 +10,7 @@ function Bscan  = acq_Bscan(varargin)
 %                   @taylorwin      @triang
 % [correctBackground] if true, applies correction method to raw B-scan
 % OUTPUTS:
-% Bscan             set of A/lines, already windowed and corrected for
+% Bscan             set of A/lines, optionally windowed and corrected for
 %                   background signal
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
@@ -49,4 +50,8 @@ for iLines = 1:SSOctDefaults.nLinesPerFrame,
     Bscan(1,iLines) = Bscan(2,iLines);
 end
 % CORRECTION ALGORITHM HERE!!!!
-Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
+if correctBackground
+    Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
+end
+% ==============================================================================
+% [EOF]

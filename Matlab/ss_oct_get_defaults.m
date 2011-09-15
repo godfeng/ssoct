@@ -28,12 +28,5 @@ if isempty(SSOctDefaults)
     ss_oct_defaults;
 end
 
-% % construct subscript reference struct from dot delimited tag string
-% tags = textscan(defstr,'%s', 'delimiter','.');
-% subs = struct('type','.','subs',tags{1}');
-% 
-% if nargin == 1
-%     varargout{1} = subsref(SSOctDefaults, subs);
-% else
-%     SSOctDefaults = subsasgn(SSOctDefaults, subs, varargin{1});
-% end
+% ==============================================================================
+% [EOF]

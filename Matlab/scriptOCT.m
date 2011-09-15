@@ -129,3 +129,6 @@ lineFreq = 0.9084370*size(Bscan,2);
 averageSignal = mean(mMode(390:550,:));
 [Y,f] = myFFT(averageSignal, lineFreq);
 xlim([0 20])
+
+% ==============================================================================
+% [EOF]

@@ -16,3 +16,6 @@ for iComm = 0:6,
     textReceived = uint8(swapbytes(pnet(SSOctDefaults.tcpConn,'read','uint8')));
     disp(char(textReceived'))
 end
+
+% ==============================================================================
+% [EOF]

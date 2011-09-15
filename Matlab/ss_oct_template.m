@@ -1,17 +1,15 @@
-% Add paths to matlab startup path
+% [Description]
 % SYNTAX:
-% startup
+% 
 % INPUTS:
-% none
+% 
 % OUTPUTS:
-% none
+% 
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/09/15
-addpath(genpath('D:\Edgar\Documents\FDOCT\'))
-addpath(genpath('D:\Edgar\Documents\ssoct\Matlab\'))
 
 % ==============================================================================
 % [EOF]

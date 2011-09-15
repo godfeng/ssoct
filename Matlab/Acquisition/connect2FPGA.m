@@ -16,3 +16,6 @@ pause(0.1);
 pnet(SSOctDefaults.tcpConn,'setreadtimeout',0.25);
 pnet(SSOctDefaults.tcpConn,'setwritetimeout',0.1);
 fprintf('Connection established to %s at port %d\n',SSOctDefaults.serverAddress,SSOctDefaults.portNumber)
+
+% ==============================================================================
+% [EOF]
