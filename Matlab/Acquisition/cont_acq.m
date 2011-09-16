@@ -49,11 +49,13 @@ if SSOctDefaults.save2file
     frameRate = toc/SSOctDefaults.nFrames;
     fprintf('Frame Rate = %d Hz\n',frameRate)
 else
-    iFrames = 1;
-    while(1),
+%     iFrames = 1;
+SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
+    SSOctDefaults.nLinesPerFrame]);
+    for iFrames = 1:SSOctDefaults.nFrames,
         displayAcqOCT(iFrames);
-        iFrames = iFrames + 1;
     end
+%         iFrames = iFrames + 1;
 end
 % ==============================================================================
 
@@ -69,6 +71,7 @@ function displayAcqOCT(iFrames)
 global SSOctDefaults
 % Acquire raw B-scan
 rawBscan = acq_Bscan(@rectwin,false);
+SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
 % Negative and Positive envelope
 [posEnv negEnv] = detect_envelope(rawBscan(:,2));
 % -------------- Plot a single interferogram (A-line) ------------------

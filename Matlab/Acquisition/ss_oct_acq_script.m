@@ -15,7 +15,7 @@
 % Load default parameters
 ss_oct_get_defaults
 
-% ------------------------- MODIFY OPTIONS -------------------------------------
+%% ------------------------- MODIFY OPTIONS ------------------------------------
 global SSOctDefaults
 SSOctDefaults.displayLog = false;
 % Save files
@@ -24,7 +24,7 @@ SSOctDefaults.displayLog = false;
 % SSOctDefaults.nFrames = 60;
 % ------------------------------------------------------------------------------
 
-% Establish connection to socket server running on FPGA
+%% Establish connection to socket server running on FPGA
 connect2FPGA
 % Flush data buffer of the connection
 flush_data
@@ -38,10 +38,10 @@ flush_data
 % Save reference and sample arm measurements
 % save(fullfile(SSOctDefaults.dirExp,'Reference_Measurements'),'sampleArm','refArm');
 
-% Start continuous acquisition
+%% Start continuous acquisition
 cont_acq
 % Disconnect from socket server
-disconnect_from_FPGA
+% disconnect_from_FPGA
 
 % ==============================================================================
 % [EOF]

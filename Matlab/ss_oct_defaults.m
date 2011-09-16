@@ -36,8 +36,8 @@ SSOctDefaults.screenSize        = [1 40 SSOctDefaults.screenSize(3)...
 % Server machine (FPGA)
 SSOctDefaults.serverAddress     = '192.168.1.234';
 SSOctDefaults.portNumber        = 30;
-% Number of samples per A-line
-SSOctDefaults.NSAMPLES          = 1170;
+% Number of samples per A-line (1170)
+SSOctDefaults.NSAMPLES          = 1184;
 % Tx & Rx buffer size for all socket sends & receives
 SSOctDefaults.BUFFERSIZE        = 9000;
 % Number of characters of startup menu
@@ -45,9 +45,9 @@ SSOctDefaults.MENUSIZE          = 351;
 % Save to file
 SSOctDefaults.save2file         = false;
 % Number of A-lines per frame
-SSOctDefaults.nLinesPerFrame    = 900;
+SSOctDefaults.nLinesPerFrame    = 1024;
 % Number of frames per B-scan
-SSOctDefaults.nFrames           = 400;
+SSOctDefaults.nFrames           = 64;
 % Number of total samples per scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
