@@ -4,11 +4,11 @@
 
 set_global_assignment -name FAMILY "Stratix IV"
 set_global_assignment -name DEVICE EP4SGX230KF40C2
-set_global_assignment -name TOP_LEVEL_ENTITY "DE4_DDR2"
+set_global_assignment -name TOP_LEVEL_ENTITY DE4_DDR2
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:15:19 JANUARY 27,2010"
-set_global_assignment -name DEVICE_FILTER_PACKAGE FPGA
+set_global_assignment -name DEVICE_FILTER_PACKAGE ANY
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 1152
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
 
@@ -1158,7 +1158,7 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to M2_DDR2_SA[1]
 # End of pin assignments by Terasic System Builder
 #============================================================
 
-
+set_instance_assignment -name VIRTUAL_PIN ON -to FSM_A[0]
 set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to M1_DDR2_odt
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to M1_DDR2_odt
 set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to M1_DDR2_clk[0]
@@ -1616,8 +1616,6 @@ set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs[7] -to M1_DDR2_dq[63]
 set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs[7] -to M1_DDR2_dm[7]
 set_instance_assignment -name DQSB_DQS_PAIR ON -from M1_DDR2_dqsn[7] -to M1_DDR2_dqs[7]
 set_instance_assignment -name T11_DELAY 7 -to M1_DDR2_dqs
-set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
-set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name MISC_FILE "D:/svn/DE4_DDR2/DE4_DDR2.dpf"
 set_instance_assignment -name IO_STANDARD "SSTL-18 CLASS I" -to M2_DDR2_odt
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to M2_DDR2_odt
@@ -3225,9 +3223,6 @@ set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs_to_and_from_the_ddr2[
 set_instance_assignment -name DQSB_DQS_PAIR ON -from M1_DDR2_dqsn_to_and_from_the_ddr2[7] -to M1_DDR2_dqs_to_and_from_the_ddr2[7]
 set_instance_assignment -name T11_DELAY 7 -to M1_DDR2_dqs_to_and_from_the_ddr2
 set_global_assignment -name MISC_FILE "C:/Terasic/DE4_Install/demonstrations/DE4_230/DE4_DDR2/DE4_DDR2.dpf"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING_AND_HIGH_SPEED_TILES -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE DE4_DDR2_logic_analyzer.stp
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
@@ -3304,72 +3299,80 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -t
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=16384" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=16384" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to PLL_CLKIN_p -section_id auto_signaltap_0
-set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
-set_global_assignment -name QIP_FILE sin400k.qip
-set_global_assignment -name CDF_FILE DE4_DDR2_time_limited.cdf
-set_global_assignment -name VERILOG_FILE my_incl.v
-set_global_assignment -name VHDL_FILE TestWrite.vhd
-set_global_assignment -name VHDL_FILE TestRead.vhd
-set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
-set_global_assignment -name QIP_FILE DE4_SOPC.qip
-set_global_assignment -name QIP_FILE RAM.qip
-set_global_assignment -name SIGNALTAP_FILE DE4_DDR2_logic_analyzer.stp
-set_global_assignment -name QIP_FILE FlipFlopT.qip
-set_global_assignment -name VHDL_FILE RAMtoDDR2.vhd
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "DE4_SOPC:DE4_SOPC_inst|control_done_from_the_master_write" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "DE4_SOPC:DE4_SOPC_inst|user_buffer_full_from_the_master_write" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckAcqDone" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckAcqDone2" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckControllerReady" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckFIFOFull" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_Done" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_Writing" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_busy" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_done" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_read" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_write" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to trigger50kHz -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "DE4_SOPC:DE4_SOPC_inst|control_done_from_the_master_write" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "DE4_SOPC:DE4_SOPC_inst|user_buffer_full_from_the_master_write" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckAcqDone" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckAcqDone2" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckControllerReady" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_CheckFIFOFull" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_Done" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "RAMtoDDR2:RAMtoDDR2_inst|state.State_Writing" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_busy" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_done" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_read" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_write" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[0]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[10]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[1]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[2]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[3]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[4]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[5]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[6]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[7]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[8]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[9]" -section_id auto_signaltap_0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to trigger50kHz -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=52" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=52" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=184" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT trigger_in -to "RAMtoDDR2:RAMtoDDR2_inst|acq_done" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=13092" -section_id auto_signaltap_0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=41168" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=1" -section_id auto_signaltap_0
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING_AND_HIGH_SPEED_TILES -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE de4_ddr2.v
+set_global_assignment -name VERILOG_FILE my_incl.v
+set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
+set_global_assignment -name VHDL_FILE RAMtoDDR2.vhd
+set_global_assignment -name QIP_FILE RAM.qip
+set_global_assignment -name QIP_FILE DE4_SOPC.qip
+set_global_assignment -name VHDL_FILE TestWrite.vhd
+set_global_assignment -name VHDL_FILE TestRead.vhd
+set_global_assignment -name VERILOG_FILE gen_reset_n.v
+set_global_assignment -name VHDL_FILE PowerOn_RST.vhd
+set_global_assignment -name QIP_FILE FlipFlopT.qip
+set_global_assignment -name VERILOG_FILE pll_125.v
+set_global_assignment -name VERILOG_FILE pll.v
+set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
+set_global_assignment -name VERILOG_FILE LED_glow.v
+set_global_assignment -name VERILOG_FILE FAN_PWM.v
+set_global_assignment -name QIP_FILE sin400k.qip
+set_global_assignment -name CDF_FILE DE4_DDR2_time_limited.cdf
+set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
+set_global_assignment -name SIGNALTAP_FILE DE4_DDR2_logic_analyzer.stp
+set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/DE4_DDR2.dpf"
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "RAMtoDDR2:RAMtoDDR2_inst|state[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "RAMtoDDR2:RAMtoDDR2_inst|state[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "RAMtoDDR2:RAMtoDDR2_inst|state[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_busy" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_done" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_write" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to trigger50kHz -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "RAMtoDDR2:RAMtoDDR2_inst|state[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "RAMtoDDR2:RAMtoDDR2_inst|state[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "RAMtoDDR2:RAMtoDDR2_inst|state[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_busy" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "sample_addressing_custom:sample_addressing_custom_inst|acq_done" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "sample_addressing_custom:sample_addressing_custom_inst|dualMSB_write" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "sample_addressing_custom:sample_addressing_custom_inst|sample_position[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to trigger50kHz -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=49" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=49" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=175" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=44104" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=60693" -section_id auto_signaltap_0
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -377,9 +377,11 @@ output		          		M2_DDR2_we_n;
 //==============================================================================
 
 //// Global signals
-wire 						reset_n;
-wire						clk156MHz;
-wire						clk50MHz;
+wire 						reset_n;			// reset_n from board
+wire						global_reset_n;		// delayed reset signal
+wire						enet_reset_n;		// reset signal for ethernet
+wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
+wire						clk50MHz;			// clock from board 
 
 //// Master template
 wire						control_done_read;
@@ -423,8 +425,8 @@ wire						lvds_rxp;
 wire						lvds_txp;
 
 // A-line of 1170 Elements, each 14 bits wide
-reg  		[13:0]			A_line_array	[0:`NSAMPLES-1];
-wire		[13:0]			A_line; 
+//reg  		[13:0]			A_line_array	[0:`NSAMPLES-1];
+//wire		[13:0]			A_line; 
 
 // 50 kHz A-line trigger from swept source laser
 wire						sweepTrigger;
@@ -440,6 +442,8 @@ wire		[255:0]			RAMdata;
 
 // MSB to write dual buffer RAM
 wire						dualMSB_write;
+// MSB to read dual buffer RAM
+wire						dualMSB_read;
 
 // Acquiring 1170 samples
 wire						acq_busy;
@@ -461,7 +465,7 @@ wire		[13:0]			raw_sine;
 // output to DAC A
 reg			[13:0]			o_sine;
 
-//LED diagnostics
+//LED diagnostics from state machine RAMtoDDR2
 wire		[6:0]			stateLED;
 
 //==============================================================================
@@ -477,9 +481,9 @@ reg   		[7:0]  			auto_set_counter;
 reg          				conf_wr;
 
 //  Structural coding
-assign clk1_set_wr 			= 4'd1; //Disable
-assign clk2_set_wr 			= 4'd1; //Disable
-assign clk3_set_wr 			= 4'd7; //156.25 MHZ
+assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
+assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
+assign clk3_set_wr 			= 4'd7; 			//156.25 MHZ 4'd7
 
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
@@ -497,7 +501,7 @@ always @(posedge clk50MHz or negedge reset_n)
 
 
 ext_pll_ctrl ext_pll_ctrl_Inst (
-	.osc_50(clk50MHz), //50MHZ
+	.osc_50(clk50MHz), 							//50MHZ
 	.rstn(reset_n),
 
 	// device 1 (HSMA_REFCLK)
@@ -513,8 +517,8 @@ ext_pll_ctrl ext_pll_ctrl_Inst (
 	.clk3_set_rd(),
 
 	// setting trigger
-	.conf_wr(conf_wr), // 1T 50MHz 
-	.conf_rd(), // 1T 50MHz
+	.conf_wr(conf_wr), 							// 1T 50MHz 
+	.conf_rd(), 								// 1T 50MHz
 
 	// status 
 	.conf_ready(conf_ready),
@@ -620,8 +624,8 @@ assign	LED[6:0]			= ~stateLED;
 assign	SEG0_D				= 7'h7F;
 assign	SEG1_D				= 7'h7F;
 assign	SEG1_DP				= 1'b1;
-assign 	trigger50kHz		= 1'b1 & sweepTrigger;
-//assign 	trigger50kHz		= enableRecording & sweepTrigger;
+//assign 	trigger50kHz		= 1'b1 & sweepTrigger;
+assign 	trigger50kHz		= enableRecording & sweepTrigger;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
@@ -668,13 +672,13 @@ RAMtoDDR2 RAMtoDDR2_inst
 	.RAM_dataOut(RAMdata) ,						// input [255:0] RAMdata
 	.RAM_readAddress(read_RAM_address) ,		// output [6:0] read_RAM_address
 	.acq_done(acq_done) ,						// input  acq_done
-	.stateLED(stateLED)
+	.stateLED(stateLED)							// output stateLED (Debug states)
 );
 
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0(clk50MHz),
+	.inclk0(OSC_50_BANK2),						// Dedicated clock OSC_50_BANK2
 	.c0(enet_refclk_125MHz)
 	);
 
@@ -685,6 +689,14 @@ pll_125 pll_125_ins (
 //	.reset_n_out(global_reset_n)
 //	);
 
+//Yields a reset signal 20 ms after cpu reset
+PowerOn_RST PowerOn_RST_inst
+(
+	.clk(clk50MHz) ,							// input  clk50MHz
+	.RSTnCPU(reset_n) ,							// input  reset_n
+	.RSTn(global_reset_n) 						// output  global_reset_n
+);
+
 // Generate ethernet reset signal
 gen_reset_n	net_gen_reset_n(
 	.tx_clk(clk50MHz),
@@ -694,12 +706,12 @@ gen_reset_n	net_gen_reset_n(
 				
 // SOPC system with master read and write DDR2 handling
 DE4_SOPC DE4_SOPC_inst(
-	// 1) global signals:
-	.clk_50(clk50MHz),
-	.reset_n(global_reset_n),
+	// Global signals:
+	.clk_50(clk50MHz),														// input  	clk50MHz
+	.reset_n(global_reset_n),												// input  	global_reset_n
 
 `ifndef USE_DDR2_DIMM2
-  // the_ddr2
+  // The DDR2 DIMM1
    .aux_scan_clk_from_the_ddr2(),
    .aux_scan_clk_reset_n_from_the_ddr2(),
    .dll_reference_clk_from_the_ddr2(),
@@ -708,32 +720,32 @@ DE4_SOPC DE4_SOPC_inst(
    .local_init_done_from_the_ddr2(),
    .local_refresh_ack_from_the_ddr2(),
    .local_wdata_req_from_the_ddr2(),
-   .mem_addr_from_the_ddr2(M1_DDR2_addr),
-   .mem_ba_from_the_ddr2(M1_DDR2_ba),
-   .mem_cas_n_from_the_ddr2(M1_DDR2_cas_n),
-   .mem_cke_from_the_ddr2(M1_DDR2_cke),
-   .mem_clk_n_to_and_from_the_ddr2(M1_DDR2_clk_n),
-   .mem_clk_to_and_from_the_ddr2(M1_DDR2_clk),
-   .mem_cs_n_from_the_ddr2(M1_DDR2_cs_n),
-   .mem_dm_from_the_ddr2(M1_DDR2_dm),
-   .mem_dq_to_and_from_the_ddr2(M1_DDR2_dq),
-   .mem_dqs_to_and_from_the_ddr2(M1_DDR2_dqs),
-   .mem_dqsn_to_and_from_the_ddr2(M1_DDR2_dqsn),
-   .mem_odt_from_the_ddr2(M1_DDR2_odt),
-   .mem_ras_n_from_the_ddr2(M1_DDR2_ras_n),
-   .mem_we_n_from_the_ddr2(M1_DDR2_we_n),
+   .mem_addr_from_the_ddr2(M1_DDR2_addr),									// output 	[13:0] M1_DDR2_addr
+   .mem_ba_from_the_ddr2(M1_DDR2_ba),										// output 	[2:0] M1_DDR2_ba
+   .mem_cas_n_from_the_ddr2(M1_DDR2_cas_n),									// output  	M1_DDR2_cas_n
+   .mem_cke_from_the_ddr2(M1_DDR2_cke),										// output  	M1_DDR2_cke
+   .mem_clk_n_to_and_from_the_ddr2(M1_DDR2_clk_n),							// inout 	[1:0] M1_DDR2_clk_n
+   .mem_clk_to_and_from_the_ddr2(M1_DDR2_clk),								// inout 	[1:0] M1_DDR2_clk
+   .mem_cs_n_from_the_ddr2(M1_DDR2_cs_n),									// output  	M1_DDR2_cs_n
+   .mem_dm_from_the_ddr2(M1_DDR2_dm),										// output 	[7:0] M1_DDR2_dm
+   .mem_dq_to_and_from_the_ddr2(M1_DDR2_dq),								// inout 	[63:0] M1_DDR2_dq
+   .mem_dqs_to_and_from_the_ddr2(M1_DDR2_dqs),								// inout 	[7:0] M1_DDR2_dqs
+   .mem_dqsn_to_and_from_the_ddr2(M1_DDR2_dqsn),							// inout 	[7:0] M1_DDR2_dqsn
+   .mem_odt_from_the_ddr2(M1_DDR2_odt),										// output  	M1_DDR2_odt
+   .mem_ras_n_from_the_ddr2(M1_DDR2_ras_n),									// output  	M1_DDR2_ras_n
+   .mem_we_n_from_the_ddr2(M1_DDR2_we_n),									// output  	M1_DDR2_we_n
    .oct_ctl_rs_value_to_the_ddr2(),
    .oct_ctl_rt_value_to_the_ddr2(),
    .reset_phy_clk_n_from_the_ddr2(),
    
   // ddr2 psd i2c
   // NOT NECESSARY WHEN TESING DDR2, ONLY FOR EEPROM
-   .out_port_from_the_ddr2_i2c_scl(), 			//M1_DDR2_SCL
-   .out_port_from_the_ddr2_i2c_sa(), 			//M1_DDR2_SA
-   .bidir_port_to_and_from_the_ddr2_i2c_sda(), 	//M1_DDR2_SDA
+//   .out_port_from_the_ddr2_i2c_scl(), 									//M1_DDR2_SCL
+//   .out_port_from_the_ddr2_i2c_sa(), 										//M1_DDR2_SA
+//   .bidir_port_to_and_from_the_ddr2_i2c_sda(), 							//M1_DDR2_SDA
    
 `else              
-	// the_ddr2
+	// The DDR2 DIMM2
 	.aux_scan_clk_from_the_ddr2(),
 	.aux_scan_clk_reset_n_from_the_ddr2(),
 	.dll_reference_clk_from_the_ddr2(),
@@ -762,66 +774,59 @@ DE4_SOPC DE4_SOPC_inst(
 
 	// ddr2 psd i2c
 	// NOT NECESSARY WHEN TESING DDR2, ONLY FOR EEPROM
-	.out_port_from_the_ddr2_i2c_scl(), 			//M2_DDR2_SCL
-	.out_port_from_the_ddr2_i2c_sa(), 			//M2_DDR2_SA
-	.bidir_port_to_and_from_the_ddr2_i2c_sda(), //M2_DDR2_SDA       
+//	.out_port_from_the_ddr2_i2c_scl(), 										//M2_DDR2_SCL
+//	.out_port_from_the_ddr2_i2c_sa(), 										//M2_DDR2_SA
+//	.bidir_port_to_and_from_the_ddr2_i2c_sda(), 							//M2_DDR2_SDA       
 `endif                   
 	
-	// clock out
-	.ddr2_phy_clk_out (ddr2_phy_clk_out),
+	// DDR2 clock out
+	.ddr2_phy_clk_out (ddr2_phy_clk_out),									// output  	ddr2_phy_clk_out
 	
 	// Master Read template
-	.control_done_from_the_master_read(control_done_read) ,					// output control_done_read
+	.control_done_from_the_master_read(control_done_read) ,					// output 	control_done_read
 	.control_early_done_from_the_master_read() ,							// output  
 	.control_fixed_location_to_the_master_read(0) ,							// input  
-	.control_go_to_the_master_read(control_go_read) ,						// input control_go_read
-	.control_read_base_to_the_master_read(control_read_base) ,				// input [29:0] control_read_base
-	.control_read_length_to_the_master_read(control_read_length) ,			// input [29:0] control_read_length
-	.user_buffer_output_data_from_the_master_read(user_buffer_data_read) ,	// output [255:0] user_buffer_data_read
-	.user_data_available_from_the_master_read(user_data_available) ,		// output user_data_available
-	.user_read_buffer_to_the_master_read(user_read_buffer) ,				// input user_read_buffer 
+	.control_go_to_the_master_read(control_go_read) ,						// input 	control_go_read
+	.control_read_base_to_the_master_read(control_read_base) ,				// input 	[29:0] control_read_base
+	.control_read_length_to_the_master_read(control_read_length) ,			// input 	[29:0] control_read_length
+	.user_buffer_output_data_from_the_master_read(user_buffer_data_read) ,	// output 	[255:0] user_buffer_data_read
+	.user_data_available_from_the_master_read(user_data_available) ,		// output 	user_data_available
+	.user_read_buffer_to_the_master_read(user_read_buffer) ,				// input 	user_read_buffer 
 	
 	// Master Write template
-	.control_done_from_the_master_write(control_done_write) ,				// output control_done_write
-	.control_fixed_location_to_the_master_write(0) ,						// input 0
-	.control_go_to_the_master_write(control_go_write) ,						// input control_go_write
-	.control_write_base_to_the_master_write(control_write_base) ,			// input [29:0] control_write_base
-	.control_write_length_to_the_master_write(control_write_length) ,		// input [29:0] control_write_length
-	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output user_buffer_full 
-	.user_buffer_input_data_to_the_master_write(user_buffer_data_write) ,	// input [255:0] {224'b0, user_buffer_data_write}
-	.user_write_buffer_to_the_master_write(user_write_buffer) ,				// input user_write_buffer
+	.control_done_from_the_master_write(control_done_write) ,				// output 	control_done_write
+	.control_fixed_location_to_the_master_write(0) ,						// input 	0
+	.control_go_to_the_master_write(control_go_write) ,						// input 	control_go_write
+	.control_write_base_to_the_master_write(control_write_base) ,			// input 	[29:0] control_write_base
+	.control_write_length_to_the_master_write(control_write_length) ,		// input 	[29:0] control_write_length
+	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output 	user_buffer_full 
+	.user_buffer_input_data_to_the_master_write(user_buffer_data_write) ,	// input 	[255:0] {224'b0, user_buffer_data_write}
+	.user_write_buffer_to_the_master_write(user_write_buffer) ,				// input 	user_write_buffer
 	
-	// the_flash_tristate_bridge_avalon_slave
-	.flash_tristate_bridge_address(FSM_A[24:0]),
-	.flash_tristate_bridge_data(FSM_D),
-	.flash_tristate_bridge_readn(FLASH_OE_n),
-	.flash_tristate_bridge_writen(FLASH_WE_n),
-	.select_n_to_the_ext_flash(FLASH_CE_n),
+	// Flash Tristate Bridge Avalon Slave
+	.flash_tristate_bridge_address(FSM_A[24:0]),							// output 	[24:0] FSM_A[24:0]
+	.flash_tristate_bridge_data(FSM_D),										// inout 	[15:0] FSM_D
+	.flash_tristate_bridge_readn(FLASH_OE_n),								// output  	FLASH_OE_n
+	.flash_tristate_bridge_writen(FLASH_WE_n),								// output  	FLASH_WE_n
+	.select_n_to_the_ext_flash(FLASH_CE_n),									// output  	FLASH_CE_n
 
-	// the_tse_mac
-	.led_an_from_the_tse_mac(led_an_from_the_tse_mac),
-	.led_char_err_from_the_tse_mac(led_char_err_from_the_tse_mac),
-	.led_col_from_the_tse_mac(led_col_from_the_tse_mac),
-	.led_crs_from_the_tse_mac(led_crs_from_the_tse_mac),
-	.led_disp_err_from_the_tse_mac(led_disp_err_from_the_tse_mac),
-	.led_link_from_the_tse_mac(led_link_from_the_tse_mac),
-	.mdc_from_the_tse_mac(enet_mdc),
-	.mdio_in_to_the_tse_mac(enet_mdio_in),
-	.mdio_oen_from_the_tse_mac(enet_mdio_oen),
-	.mdio_out_from_the_tse_mac(enet_mdio_out),
-	.ref_clk_to_the_tse_mac(enet_refclk_125MHz),
-	.rxp_to_the_tse_mac(lvds_rxp),
-	.txp_from_the_tse_mac(lvds_txp)
+	// Triple Speed Ethernet MAC
+	.led_an_from_the_tse_mac(led_an_from_the_tse_mac),						// output  	led_an_from_the_tse_mac
+	.led_char_err_from_the_tse_mac(led_char_err_from_the_tse_mac),			// output  	led_char_err_from_the_tse_mac
+	.led_col_from_the_tse_mac(led_col_from_the_tse_mac),					// output  	led_col_from_the_tse_mac
+	.led_crs_from_the_tse_mac(led_crs_from_the_tse_mac),					// output  	led_crs_from_the_tse_mac
+	.led_disp_err_from_the_tse_mac(led_disp_err_from_the_tse_mac),			// output  	led_disp_err_from_the_tse_mac
+	.led_link_from_the_tse_mac(led_link_from_the_tse_mac),					// output  	led_link_from_the_tse_mac
+	.mdc_from_the_tse_mac(enet_mdc),										// output	enet_mdc
+	.mdio_in_to_the_tse_mac(enet_mdio_in),									// input  	enet_mdio_in
+	.mdio_oen_from_the_tse_mac(enet_mdio_oen),								// output  	enet_mdio_oen
+	.mdio_out_from_the_tse_mac(enet_mdio_out),								// output  	enet_mdio_out
+	.ref_clk_to_the_tse_mac(enet_refclk_125MHz),							// input  	enet_refclk_125MHz
+	.rxp_to_the_tse_mac(lvds_rxp),											// input  	lvds_rxp
+	.txp_from_the_tse_mac(lvds_txp)											// output  	lvds_txp
 	);
 
- //Yields a reset signal 20 ms after cpu reset
-PowerOn_RST PowerOn_RST_inst
-(
-	.clk(clk50MHz) ,							// input  clk_sig
-	.RSTnCPU(reset_n) ,					// input  RSTnCPU_sig
-	.RSTn(global_reset_n) 						// output  RSTn_sig
-);
-
+// Module to test master read template
 //TestRead TestRead_inst (
 //	.RSTn(global_reset_n) ,										// input  reset_power_on
 //	.CLK48MHZ(clk50MHz) ,										// input  
@@ -838,7 +843,8 @@ PowerOn_RST PowerOn_RST_inst
 //	.debugOut() ,												// output [31:0] 
 //	.errorData(error_data) 										// output [2:0] 
 //	);
-//
+
+// Module to test master write template
 //TestWrite TestWrite_inst (
 //	.RSTn(global_reset_n) ,										// input  reset_power_on
 //	.CLK48MHZ(clk50MHz) ,										// input  
@@ -855,6 +861,7 @@ PowerOn_RST PowerOn_RST_inst
 //	.debugOut() ,												// output [31:0] 
 //	.errorFull(error_full) 										// output  
 //	);
+
 
 //==============================================================================
 // Optional modules
@@ -898,4 +905,6 @@ begin
 	end
 end
 
-endmodule
+endmodule 										// end of top module DE4_DDR2
+//==============================================================================
+// [EOF] de4_ddr2.v
