@@ -428,7 +428,7 @@ VCCIO3A                      : AH25      : power  :                   : 1.8V    
 M1_DDR2_ba[0]                : AH26      : output : SSTL-18 Class I   :         : 3A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH27      :        :                   :         : 2A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH28      :        :                   :         : 2A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH29      :        :                   :         : 2A        :                
+FSM_A[0]                     : AH29      : output : 2.5 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH30      :        :                   :         : 2A        :                
 VCCIO2C                      : AH31      : power  :                   : 2.5V    : 2C        :                
 UART_RXD                     : AH32      : input  : 2.5 V             :         : 2C        : Y              
@@ -1190,7 +1190,7 @@ ADA_D[11]                    : K9        : input  : 2.5 V             :         
 ADA_D[9]                     : K10       : input  : 2.5 V             :         : 6A        : Y              
 VCCBAT                       : K11       : power  :                   : 2.5V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K12       :        :                   :         : 7A        :                
-FSM_A[0]                     : K13       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : K13       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K14       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K15       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K16       :        :                   :         : 7B        :                

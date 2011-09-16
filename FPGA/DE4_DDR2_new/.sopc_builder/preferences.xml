@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
- <systemtable filter="Clocks">
+ <systemtable filter="Default">
   <columns>
-   <connections preferredWidth="79" />
+   <connections preferredWidth="255" />
    <export visible="0" />
    <irq preferredWidth="34" />
    <inputclock preferredWidth="167" />
-   <description preferredWidth="307" />
+   <description preferredWidth="152" />
+   <name preferredWidth="228" />
   </columns>
  </systemtable>
  <clocktable>
@@ -18,6 +19,6 @@
  </clocktable>
  <window width="960" height="1036" x="0" y="0" />
  <library
-   expandedCategories="Library,Library/Memories and Memory Controllers/On-Chip,Library/Video and Image Processing/IO,Project/Templates,Library/Bridges and Adapters/Memory Mapped,Library/Video and Image Processing,Project,Library/Memories and Memory Controllers,Library/Bridges and Adapters" />
+   expandedCategories="Project/Templates,Library,Project,Library/Bridges and Adapters/Memory Mapped,Library/Peripherals/Microcontroller Peripherals,Library/Peripherals,Library/Bridges and Adapters" />
  <debug showDebugMenu="0" />
 </preferences>

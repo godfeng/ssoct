@@ -2300,10 +2300,10 @@ module cpu_data_master_arbitrator (
   assign cpu_data_master_run = r_0 & r_1 & r_2;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write)));
+  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
+  assign r_2 = 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_data_master_address_to_slave = cpu_data_master_address[26 : 0];
@@ -4969,6 +4969,284 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module led_pio_s1_arbitrator (
+                               // inputs:
+                                clk,
+                                led_pio_s1_readdata,
+                                peripheral_clock_crossing_m1_address_to_slave,
+                                peripheral_clock_crossing_m1_byteenable,
+                                peripheral_clock_crossing_m1_latency_counter,
+                                peripheral_clock_crossing_m1_nativeaddress,
+                                peripheral_clock_crossing_m1_read,
+                                peripheral_clock_crossing_m1_write,
+                                peripheral_clock_crossing_m1_writedata,
+                                reset_n,
+
+                               // outputs:
+                                d1_led_pio_s1_end_xfer,
+                                led_pio_s1_address,
+                                led_pio_s1_chipselect,
+                                led_pio_s1_readdata_from_sa,
+                                led_pio_s1_reset_n,
+                                led_pio_s1_write_n,
+                                led_pio_s1_writedata,
+                                peripheral_clock_crossing_m1_granted_led_pio_s1,
+                                peripheral_clock_crossing_m1_qualified_request_led_pio_s1,
+                                peripheral_clock_crossing_m1_read_data_valid_led_pio_s1,
+                                peripheral_clock_crossing_m1_requests_led_pio_s1
+                             )
+;
+
+  output           d1_led_pio_s1_end_xfer;
+  output  [  1: 0] led_pio_s1_address;
+  output           led_pio_s1_chipselect;
+  output  [  7: 0] led_pio_s1_readdata_from_sa;
+  output           led_pio_s1_reset_n;
+  output           led_pio_s1_write_n;
+  output  [  7: 0] led_pio_s1_writedata;
+  output           peripheral_clock_crossing_m1_granted_led_pio_s1;
+  output           peripheral_clock_crossing_m1_qualified_request_led_pio_s1;
+  output           peripheral_clock_crossing_m1_read_data_valid_led_pio_s1;
+  output           peripheral_clock_crossing_m1_requests_led_pio_s1;
+  input            clk;
+  input   [  7: 0] led_pio_s1_readdata;
+  input   [  6: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  4: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+
+  reg              d1_led_pio_s1_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_led_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] led_pio_s1_address;
+  wire             led_pio_s1_allgrants;
+  wire             led_pio_s1_allow_new_arb_cycle;
+  wire             led_pio_s1_any_bursting_master_saved_grant;
+  wire             led_pio_s1_any_continuerequest;
+  wire             led_pio_s1_arb_counter_enable;
+  reg              led_pio_s1_arb_share_counter;
+  wire             led_pio_s1_arb_share_counter_next_value;
+  wire             led_pio_s1_arb_share_set_values;
+  wire             led_pio_s1_beginbursttransfer_internal;
+  wire             led_pio_s1_begins_xfer;
+  wire             led_pio_s1_chipselect;
+  wire             led_pio_s1_end_xfer;
+  wire             led_pio_s1_firsttransfer;
+  wire             led_pio_s1_grant_vector;
+  wire             led_pio_s1_in_a_read_cycle;
+  wire             led_pio_s1_in_a_write_cycle;
+  wire             led_pio_s1_master_qreq_vector;
+  wire             led_pio_s1_non_bursting_master_requests;
+  wire             led_pio_s1_pretend_byte_enable;
+  wire    [  7: 0] led_pio_s1_readdata_from_sa;
+  reg              led_pio_s1_reg_firsttransfer;
+  wire             led_pio_s1_reset_n;
+  reg              led_pio_s1_slavearbiterlockenable;
+  wire             led_pio_s1_slavearbiterlockenable2;
+  wire             led_pio_s1_unreg_firsttransfer;
+  wire             led_pio_s1_waits_for_read;
+  wire             led_pio_s1_waits_for_write;
+  wire             led_pio_s1_write_n;
+  wire    [  7: 0] led_pio_s1_writedata;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_saved_grant_led_pio_s1;
+  wire             wait_for_led_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~led_pio_s1_end_xfer;
+    end
+
+
+  assign led_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_led_pio_s1));
+  //assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_led_pio_s1 = ({peripheral_clock_crossing_m1_address_to_slave[6 : 4] , 4'b0} == 7'h0) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //led_pio_s1_arb_share_counter set values, which is an e_mux
+  assign led_pio_s1_arb_share_set_values = 1;
+
+  //led_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign led_pio_s1_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_led_pio_s1;
+
+  //led_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign led_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //led_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign led_pio_s1_arb_share_counter_next_value = led_pio_s1_firsttransfer ? (led_pio_s1_arb_share_set_values - 1) : |led_pio_s1_arb_share_counter ? (led_pio_s1_arb_share_counter - 1) : 0;
+
+  //led_pio_s1_allgrants all slave grants, which is an e_mux
+  assign led_pio_s1_allgrants = |led_pio_s1_grant_vector;
+
+  //led_pio_s1_end_xfer assignment, which is an e_assign
+  assign led_pio_s1_end_xfer = ~(led_pio_s1_waits_for_read | led_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_led_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_led_pio_s1 = led_pio_s1_end_xfer & (~led_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //led_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign led_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_led_pio_s1 & led_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests);
+
+  //led_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_arb_share_counter <= 0;
+      else if (led_pio_s1_arb_counter_enable)
+          led_pio_s1_arb_share_counter <= led_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //led_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|led_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_led_pio_s1) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests))
+          led_pio_s1_slavearbiterlockenable <= |led_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 led_pio/s1 arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = led_pio_s1_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //led_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign led_pio_s1_slavearbiterlockenable2 = |led_pio_s1_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 led_pio/s1 arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = led_pio_s1_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //led_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign led_pio_s1_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_led_pio_s1 = peripheral_clock_crossing_m1_requests_led_pio_s1 & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_led_pio_s1, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_led_pio_s1 = peripheral_clock_crossing_m1_granted_led_pio_s1 & peripheral_clock_crossing_m1_read & ~led_pio_s1_waits_for_read;
+
+  //led_pio_s1_writedata mux, which is an e_mux
+  assign led_pio_s1_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_led_pio_s1 = peripheral_clock_crossing_m1_qualified_request_led_pio_s1;
+
+  //peripheral_clock_crossing/m1 saved-grant led_pio/s1, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_led_pio_s1 = peripheral_clock_crossing_m1_requests_led_pio_s1;
+
+  //allow new arb cycle for led_pio/s1, which is an e_assign
+  assign led_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign led_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign led_pio_s1_master_qreq_vector = 1;
+
+  //led_pio_s1_reset_n assignment, which is an e_assign
+  assign led_pio_s1_reset_n = reset_n;
+
+  assign led_pio_s1_chipselect = peripheral_clock_crossing_m1_granted_led_pio_s1;
+  //led_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign led_pio_s1_firsttransfer = led_pio_s1_begins_xfer ? led_pio_s1_unreg_firsttransfer : led_pio_s1_reg_firsttransfer;
+
+  //led_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign led_pio_s1_unreg_firsttransfer = ~(led_pio_s1_slavearbiterlockenable & led_pio_s1_any_continuerequest);
+
+  //led_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (led_pio_s1_begins_xfer)
+          led_pio_s1_reg_firsttransfer <= led_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //led_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign led_pio_s1_beginbursttransfer_internal = led_pio_s1_begins_xfer;
+
+  //~led_pio_s1_write_n assignment, which is an e_mux
+  assign led_pio_s1_write_n = ~(((peripheral_clock_crossing_m1_granted_led_pio_s1 & peripheral_clock_crossing_m1_write)) & led_pio_s1_pretend_byte_enable);
+
+  //led_pio_s1_address mux, which is an e_mux
+  assign led_pio_s1_address = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_led_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_led_pio_s1_end_xfer <= 1;
+      else 
+        d1_led_pio_s1_end_xfer <= led_pio_s1_end_xfer;
+    end
+
+
+  //led_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign led_pio_s1_waits_for_read = led_pio_s1_in_a_read_cycle & led_pio_s1_begins_xfer;
+
+  //led_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign led_pio_s1_in_a_read_cycle = peripheral_clock_crossing_m1_granted_led_pio_s1 & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = led_pio_s1_in_a_read_cycle;
+
+  //led_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign led_pio_s1_waits_for_write = led_pio_s1_in_a_write_cycle & 0;
+
+  //led_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign led_pio_s1_in_a_write_cycle = peripheral_clock_crossing_m1_granted_led_pio_s1 & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = led_pio_s1_in_a_write_cycle;
+
+  assign wait_for_led_pio_s1_counter = 0;
+  //led_pio_s1_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign led_pio_s1_pretend_byte_enable = (peripheral_clock_crossing_m1_granted_led_pio_s1)? peripheral_clock_crossing_m1_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //led_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module onchip_memory_s1_arbitrator (
                                      // inputs:
                                       clk,
@@ -5590,6 +5868,259 @@ module onchip_memory_s1_arbitrator (
           $write("%0d ns: > 1 of saved_grant signals are active simultaneously", $time);
           $stop;
         end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module pb_pio_s1_arbitrator (
+                              // inputs:
+                               clk,
+                               pb_pio_s1_readdata,
+                               peripheral_clock_crossing_m1_address_to_slave,
+                               peripheral_clock_crossing_m1_latency_counter,
+                               peripheral_clock_crossing_m1_nativeaddress,
+                               peripheral_clock_crossing_m1_read,
+                               peripheral_clock_crossing_m1_write,
+                               reset_n,
+
+                              // outputs:
+                               d1_pb_pio_s1_end_xfer,
+                               pb_pio_s1_address,
+                               pb_pio_s1_readdata_from_sa,
+                               pb_pio_s1_reset_n,
+                               peripheral_clock_crossing_m1_granted_pb_pio_s1,
+                               peripheral_clock_crossing_m1_qualified_request_pb_pio_s1,
+                               peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1,
+                               peripheral_clock_crossing_m1_requests_pb_pio_s1
+                            )
+;
+
+  output           d1_pb_pio_s1_end_xfer;
+  output  [  1: 0] pb_pio_s1_address;
+  output  [  3: 0] pb_pio_s1_readdata_from_sa;
+  output           pb_pio_s1_reset_n;
+  output           peripheral_clock_crossing_m1_granted_pb_pio_s1;
+  output           peripheral_clock_crossing_m1_qualified_request_pb_pio_s1;
+  output           peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1;
+  output           peripheral_clock_crossing_m1_requests_pb_pio_s1;
+  input            clk;
+  input   [  3: 0] pb_pio_s1_readdata;
+  input   [  6: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  4: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input            reset_n;
+
+  reg              d1_pb_pio_s1_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_pb_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] pb_pio_s1_address;
+  wire             pb_pio_s1_allgrants;
+  wire             pb_pio_s1_allow_new_arb_cycle;
+  wire             pb_pio_s1_any_bursting_master_saved_grant;
+  wire             pb_pio_s1_any_continuerequest;
+  wire             pb_pio_s1_arb_counter_enable;
+  reg              pb_pio_s1_arb_share_counter;
+  wire             pb_pio_s1_arb_share_counter_next_value;
+  wire             pb_pio_s1_arb_share_set_values;
+  wire             pb_pio_s1_beginbursttransfer_internal;
+  wire             pb_pio_s1_begins_xfer;
+  wire             pb_pio_s1_end_xfer;
+  wire             pb_pio_s1_firsttransfer;
+  wire             pb_pio_s1_grant_vector;
+  wire             pb_pio_s1_in_a_read_cycle;
+  wire             pb_pio_s1_in_a_write_cycle;
+  wire             pb_pio_s1_master_qreq_vector;
+  wire             pb_pio_s1_non_bursting_master_requests;
+  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
+  reg              pb_pio_s1_reg_firsttransfer;
+  wire             pb_pio_s1_reset_n;
+  reg              pb_pio_s1_slavearbiterlockenable;
+  wire             pb_pio_s1_slavearbiterlockenable2;
+  wire             pb_pio_s1_unreg_firsttransfer;
+  wire             pb_pio_s1_waits_for_read;
+  wire             pb_pio_s1_waits_for_write;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_pb_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_pb_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_pb_pio_s1;
+  wire             peripheral_clock_crossing_m1_saved_grant_pb_pio_s1;
+  wire             wait_for_pb_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~pb_pio_s1_end_xfer;
+    end
+
+
+  assign pb_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_pb_pio_s1));
+  //assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_pb_pio_s1 = (({peripheral_clock_crossing_m1_address_to_slave[6 : 4] , 4'b0} == 7'h20) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)) & peripheral_clock_crossing_m1_read;
+  //pb_pio_s1_arb_share_counter set values, which is an e_mux
+  assign pb_pio_s1_arb_share_set_values = 1;
+
+  //pb_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign pb_pio_s1_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_pb_pio_s1;
+
+  //pb_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign pb_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //pb_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign pb_pio_s1_arb_share_counter_next_value = pb_pio_s1_firsttransfer ? (pb_pio_s1_arb_share_set_values - 1) : |pb_pio_s1_arb_share_counter ? (pb_pio_s1_arb_share_counter - 1) : 0;
+
+  //pb_pio_s1_allgrants all slave grants, which is an e_mux
+  assign pb_pio_s1_allgrants = |pb_pio_s1_grant_vector;
+
+  //pb_pio_s1_end_xfer assignment, which is an e_assign
+  assign pb_pio_s1_end_xfer = ~(pb_pio_s1_waits_for_read | pb_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_pb_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_pb_pio_s1 = pb_pio_s1_end_xfer & (~pb_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //pb_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign pb_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_pb_pio_s1 & pb_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests);
+
+  //pb_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_arb_share_counter <= 0;
+      else if (pb_pio_s1_arb_counter_enable)
+          pb_pio_s1_arb_share_counter <= pb_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //pb_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|pb_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_pb_pio_s1) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests))
+          pb_pio_s1_slavearbiterlockenable <= |pb_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 pb_pio/s1 arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = pb_pio_s1_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //pb_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign pb_pio_s1_slavearbiterlockenable2 = |pb_pio_s1_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 pb_pio/s1 arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = pb_pio_s1_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //pb_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign pb_pio_s1_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 = peripheral_clock_crossing_m1_requests_pb_pio_s1 & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1 = peripheral_clock_crossing_m1_granted_pb_pio_s1 & peripheral_clock_crossing_m1_read & ~pb_pio_s1_waits_for_read;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_pb_pio_s1 = peripheral_clock_crossing_m1_qualified_request_pb_pio_s1;
+
+  //peripheral_clock_crossing/m1 saved-grant pb_pio/s1, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_pb_pio_s1 = peripheral_clock_crossing_m1_requests_pb_pio_s1;
+
+  //allow new arb cycle for pb_pio/s1, which is an e_assign
+  assign pb_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign pb_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign pb_pio_s1_master_qreq_vector = 1;
+
+  //pb_pio_s1_reset_n assignment, which is an e_assign
+  assign pb_pio_s1_reset_n = reset_n;
+
+  //pb_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign pb_pio_s1_firsttransfer = pb_pio_s1_begins_xfer ? pb_pio_s1_unreg_firsttransfer : pb_pio_s1_reg_firsttransfer;
+
+  //pb_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign pb_pio_s1_unreg_firsttransfer = ~(pb_pio_s1_slavearbiterlockenable & pb_pio_s1_any_continuerequest);
+
+  //pb_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (pb_pio_s1_begins_xfer)
+          pb_pio_s1_reg_firsttransfer <= pb_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //pb_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign pb_pio_s1_beginbursttransfer_internal = pb_pio_s1_begins_xfer;
+
+  //pb_pio_s1_address mux, which is an e_mux
+  assign pb_pio_s1_address = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_pb_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_pb_pio_s1_end_xfer <= 1;
+      else 
+        d1_pb_pio_s1_end_xfer <= pb_pio_s1_end_xfer;
+    end
+
+
+  //pb_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign pb_pio_s1_waits_for_read = pb_pio_s1_in_a_read_cycle & pb_pio_s1_begins_xfer;
+
+  //pb_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign pb_pio_s1_in_a_read_cycle = peripheral_clock_crossing_m1_granted_pb_pio_s1 & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = pb_pio_s1_in_a_read_cycle;
+
+  //pb_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign pb_pio_s1_waits_for_write = pb_pio_s1_in_a_write_cycle & 0;
+
+  //pb_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign pb_pio_s1_in_a_write_cycle = peripheral_clock_crossing_m1_granted_pb_pio_s1 & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = pb_pio_s1_in_a_write_cycle;
+
+  assign wait_for_pb_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //pb_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
     end
 
 
@@ -7247,32 +7778,56 @@ module peripheral_clock_crossing_m1_arbitrator (
                                                   clk,
                                                   d1_ADC_data_pio_s1_end_xfer,
                                                   d1_acq_busy_pio_s1_end_xfer,
+                                                  d1_led_pio_s1_end_xfer,
+                                                  d1_pb_pio_s1_end_xfer,
                                                   d1_read_RAM_address_s1_end_xfer,
                                                   d1_read_RAM_busy_pio_s1_end_xfer,
+                                                  d1_seven_seg_pio_s1_end_xfer,
+                                                  d1_sw_pio_s1_end_xfer,
+                                                  led_pio_s1_readdata_from_sa,
+                                                  pb_pio_s1_readdata_from_sa,
                                                   peripheral_clock_crossing_m1_address,
                                                   peripheral_clock_crossing_m1_byteenable,
                                                   peripheral_clock_crossing_m1_granted_ADC_data_pio_s1,
                                                   peripheral_clock_crossing_m1_granted_acq_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_granted_led_pio_s1,
+                                                  peripheral_clock_crossing_m1_granted_pb_pio_s1,
                                                   peripheral_clock_crossing_m1_granted_read_RAM_address_s1,
                                                   peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_granted_seven_seg_pio_s1,
+                                                  peripheral_clock_crossing_m1_granted_sw_pio_s1,
                                                   peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1,
                                                   peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_qualified_request_led_pio_s1,
+                                                  peripheral_clock_crossing_m1_qualified_request_pb_pio_s1,
                                                   peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1,
                                                   peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1,
+                                                  peripheral_clock_crossing_m1_qualified_request_sw_pio_s1,
                                                   peripheral_clock_crossing_m1_read,
                                                   peripheral_clock_crossing_m1_read_data_valid_ADC_data_pio_s1,
                                                   peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_read_data_valid_led_pio_s1,
+                                                  peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1,
                                                   peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1,
                                                   peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1,
+                                                  peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1,
                                                   peripheral_clock_crossing_m1_requests_ADC_data_pio_s1,
                                                   peripheral_clock_crossing_m1_requests_acq_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_requests_led_pio_s1,
+                                                  peripheral_clock_crossing_m1_requests_pb_pio_s1,
                                                   peripheral_clock_crossing_m1_requests_read_RAM_address_s1,
                                                   peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1,
+                                                  peripheral_clock_crossing_m1_requests_seven_seg_pio_s1,
+                                                  peripheral_clock_crossing_m1_requests_sw_pio_s1,
                                                   peripheral_clock_crossing_m1_write,
                                                   peripheral_clock_crossing_m1_writedata,
                                                   read_RAM_address_s1_readdata_from_sa,
                                                   read_RAM_busy_pio_s1_readdata_from_sa,
                                                   reset_n,
+                                                  seven_seg_pio_s1_readdata_from_sa,
+                                                  sw_pio_s1_readdata_from_sa,
 
                                                  // outputs:
                                                   peripheral_clock_crossing_m1_address_to_slave,
@@ -7295,32 +7850,56 @@ module peripheral_clock_crossing_m1_arbitrator (
   input            clk;
   input            d1_ADC_data_pio_s1_end_xfer;
   input            d1_acq_busy_pio_s1_end_xfer;
+  input            d1_led_pio_s1_end_xfer;
+  input            d1_pb_pio_s1_end_xfer;
   input            d1_read_RAM_address_s1_end_xfer;
   input            d1_read_RAM_busy_pio_s1_end_xfer;
+  input            d1_seven_seg_pio_s1_end_xfer;
+  input            d1_sw_pio_s1_end_xfer;
+  input   [  7: 0] led_pio_s1_readdata_from_sa;
+  input   [  3: 0] pb_pio_s1_readdata_from_sa;
   input   [  6: 0] peripheral_clock_crossing_m1_address;
   input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
   input            peripheral_clock_crossing_m1_granted_ADC_data_pio_s1;
   input            peripheral_clock_crossing_m1_granted_acq_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_granted_led_pio_s1;
+  input            peripheral_clock_crossing_m1_granted_pb_pio_s1;
   input            peripheral_clock_crossing_m1_granted_read_RAM_address_s1;
   input            peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_granted_seven_seg_pio_s1;
+  input            peripheral_clock_crossing_m1_granted_sw_pio_s1;
   input            peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1;
   input            peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_qualified_request_led_pio_s1;
+  input            peripheral_clock_crossing_m1_qualified_request_pb_pio_s1;
   input            peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1;
   input            peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1;
+  input            peripheral_clock_crossing_m1_qualified_request_sw_pio_s1;
   input            peripheral_clock_crossing_m1_read;
   input            peripheral_clock_crossing_m1_read_data_valid_ADC_data_pio_s1;
   input            peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_read_data_valid_led_pio_s1;
+  input            peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1;
   input            peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1;
   input            peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1;
+  input            peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1;
   input            peripheral_clock_crossing_m1_requests_ADC_data_pio_s1;
   input            peripheral_clock_crossing_m1_requests_acq_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_requests_led_pio_s1;
+  input            peripheral_clock_crossing_m1_requests_pb_pio_s1;
   input            peripheral_clock_crossing_m1_requests_read_RAM_address_s1;
   input            peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1;
+  input            peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+  input            peripheral_clock_crossing_m1_requests_sw_pio_s1;
   input            peripheral_clock_crossing_m1_write;
   input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
   input   [ 10: 0] read_RAM_address_s1_readdata_from_sa;
   input            read_RAM_busy_pio_s1_readdata_from_sa;
   input            reset_n;
+  input   [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  input   [  7: 0] sw_pio_s1_readdata_from_sa;
 
   reg              active_and_waiting_last_time;
   wire             latency_load_value;
@@ -7342,18 +7921,21 @@ module peripheral_clock_crossing_m1_arbitrator (
   wire             pre_flush_peripheral_clock_crossing_m1_readdatavalid;
   wire             r_0;
   wire             r_1;
+  wire             r_2;
   //r_0 master_run cascaded wait assignment, which is an e_assign
   assign r_0 = 1 & (peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1 | ~peripheral_clock_crossing_m1_requests_ADC_data_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_ADC_data_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1 | ~peripheral_clock_crossing_m1_requests_acq_busy_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_acq_busy_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write)));
 
   //cascaded wait assignment, which is an e_assign
-  assign peripheral_clock_crossing_m1_run = r_0 & r_1;
+  assign peripheral_clock_crossing_m1_run = r_0 & r_1 & r_2;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_requests_read_RAM_address_s1) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_read_RAM_address_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_read_RAM_busy_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write)));
+  assign r_1 = 1 & (peripheral_clock_crossing_m1_qualified_request_led_pio_s1 | ~peripheral_clock_crossing_m1_requests_led_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_led_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_led_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_led_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 | ~peripheral_clock_crossing_m1_requests_pb_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_pb_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_requests_read_RAM_address_s1) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_read_RAM_address_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_read_RAM_busy_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write))) & 1 & (peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 | ~peripheral_clock_crossing_m1_requests_seven_seg_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_seven_seg_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write)));
+
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 | ~peripheral_clock_crossing_m1_requests_sw_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_sw_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write)));
 
   //optimize select-logic by passing only those address bits which matter.
-  assign peripheral_clock_crossing_m1_address_to_slave = {1'b1,
-    peripheral_clock_crossing_m1_address[5 : 0]};
+  assign peripheral_clock_crossing_m1_address_to_slave = peripheral_clock_crossing_m1_address[6 : 0];
 
   //peripheral_clock_crossing_m1_read_but_no_slave_selected assignment, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -7368,8 +7950,12 @@ module peripheral_clock_crossing_m1_arbitrator (
   //some slave is getting selected, which is an e_mux
   assign peripheral_clock_crossing_m1_is_granted_some_slave = peripheral_clock_crossing_m1_granted_ADC_data_pio_s1 |
     peripheral_clock_crossing_m1_granted_acq_busy_pio_s1 |
+    peripheral_clock_crossing_m1_granted_led_pio_s1 |
+    peripheral_clock_crossing_m1_granted_pb_pio_s1 |
     peripheral_clock_crossing_m1_granted_read_RAM_address_s1 |
-    peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1;
+    peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1 |
+    peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 |
+    peripheral_clock_crossing_m1_granted_sw_pio_s1;
 
   //latent slave read data valids which may be flushed, which is an e_mux
   assign pre_flush_peripheral_clock_crossing_m1_readdatavalid = 0;
@@ -7383,16 +7969,32 @@ module peripheral_clock_crossing_m1_arbitrator (
     peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1 |
     peripheral_clock_crossing_m1_read_but_no_slave_selected |
     pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_led_pio_s1 |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1 |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
     peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1 |
     peripheral_clock_crossing_m1_read_but_no_slave_selected |
     pre_flush_peripheral_clock_crossing_m1_readdatavalid |
-    peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1;
+    peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1 |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1 |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1;
 
   //peripheral_clock_crossing/m1 readdata mux, which is an e_mux
   assign peripheral_clock_crossing_m1_readdata = ({32 {~(peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1 & peripheral_clock_crossing_m1_read)}} | ADC_data_pio_s1_readdata_from_sa) &
     ({32 {~(peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1 & peripheral_clock_crossing_m1_read)}} | acq_busy_pio_s1_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_led_pio_s1 & peripheral_clock_crossing_m1_read)}} | led_pio_s1_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 & peripheral_clock_crossing_m1_read)}} | pb_pio_s1_readdata_from_sa) &
     ({32 {~(peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1 & peripheral_clock_crossing_m1_read)}} | read_RAM_address_s1_readdata_from_sa) &
-    ({32 {~(peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 & peripheral_clock_crossing_m1_read)}} | read_RAM_busy_pio_s1_readdata_from_sa);
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 & peripheral_clock_crossing_m1_read)}} | read_RAM_busy_pio_s1_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 & peripheral_clock_crossing_m1_read)}} | seven_seg_pio_s1_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 & peripheral_clock_crossing_m1_read)}} | sw_pio_s1_readdata_from_sa);
 
   //actual waitrequest port, which is an e_assign
   assign peripheral_clock_crossing_m1_waitrequest = ~peripheral_clock_crossing_m1_run;
@@ -8362,6 +8964,277 @@ module read_RAM_busy_pio_s1_arbitrator (
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
   //read_RAM_busy_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module seven_seg_pio_s1_arbitrator (
+                                     // inputs:
+                                      clk,
+                                      peripheral_clock_crossing_m1_address_to_slave,
+                                      peripheral_clock_crossing_m1_latency_counter,
+                                      peripheral_clock_crossing_m1_nativeaddress,
+                                      peripheral_clock_crossing_m1_read,
+                                      peripheral_clock_crossing_m1_write,
+                                      peripheral_clock_crossing_m1_writedata,
+                                      reset_n,
+                                      seven_seg_pio_s1_readdata,
+
+                                     // outputs:
+                                      d1_seven_seg_pio_s1_end_xfer,
+                                      peripheral_clock_crossing_m1_granted_seven_seg_pio_s1,
+                                      peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1,
+                                      peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1,
+                                      peripheral_clock_crossing_m1_requests_seven_seg_pio_s1,
+                                      seven_seg_pio_s1_address,
+                                      seven_seg_pio_s1_chipselect,
+                                      seven_seg_pio_s1_readdata_from_sa,
+                                      seven_seg_pio_s1_reset_n,
+                                      seven_seg_pio_s1_write_n,
+                                      seven_seg_pio_s1_writedata
+                                   )
+;
+
+  output           d1_seven_seg_pio_s1_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_seven_seg_pio_s1;
+  output           peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1;
+  output           peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1;
+  output           peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+  output  [  1: 0] seven_seg_pio_s1_address;
+  output           seven_seg_pio_s1_chipselect;
+  output  [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  output           seven_seg_pio_s1_reset_n;
+  output           seven_seg_pio_s1_write_n;
+  output  [ 15: 0] seven_seg_pio_s1_writedata;
+  input            clk;
+  input   [  6: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  4: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+  input   [ 15: 0] seven_seg_pio_s1_readdata;
+
+  reg              d1_reasons_to_wait;
+  reg              d1_seven_seg_pio_s1_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_seven_seg_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_saved_grant_seven_seg_pio_s1;
+  wire    [  1: 0] seven_seg_pio_s1_address;
+  wire             seven_seg_pio_s1_allgrants;
+  wire             seven_seg_pio_s1_allow_new_arb_cycle;
+  wire             seven_seg_pio_s1_any_bursting_master_saved_grant;
+  wire             seven_seg_pio_s1_any_continuerequest;
+  wire             seven_seg_pio_s1_arb_counter_enable;
+  reg              seven_seg_pio_s1_arb_share_counter;
+  wire             seven_seg_pio_s1_arb_share_counter_next_value;
+  wire             seven_seg_pio_s1_arb_share_set_values;
+  wire             seven_seg_pio_s1_beginbursttransfer_internal;
+  wire             seven_seg_pio_s1_begins_xfer;
+  wire             seven_seg_pio_s1_chipselect;
+  wire             seven_seg_pio_s1_end_xfer;
+  wire             seven_seg_pio_s1_firsttransfer;
+  wire             seven_seg_pio_s1_grant_vector;
+  wire             seven_seg_pio_s1_in_a_read_cycle;
+  wire             seven_seg_pio_s1_in_a_write_cycle;
+  wire             seven_seg_pio_s1_master_qreq_vector;
+  wire             seven_seg_pio_s1_non_bursting_master_requests;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  reg              seven_seg_pio_s1_reg_firsttransfer;
+  wire             seven_seg_pio_s1_reset_n;
+  reg              seven_seg_pio_s1_slavearbiterlockenable;
+  wire             seven_seg_pio_s1_slavearbiterlockenable2;
+  wire             seven_seg_pio_s1_unreg_firsttransfer;
+  wire             seven_seg_pio_s1_waits_for_read;
+  wire             seven_seg_pio_s1_waits_for_write;
+  wire             seven_seg_pio_s1_write_n;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
+  wire             wait_for_seven_seg_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~seven_seg_pio_s1_end_xfer;
+    end
+
+
+  assign seven_seg_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1));
+  //assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_seven_seg_pio_s1 = ({peripheral_clock_crossing_m1_address_to_slave[6 : 4] , 4'b0} == 7'h30) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //seven_seg_pio_s1_arb_share_counter set values, which is an e_mux
+  assign seven_seg_pio_s1_arb_share_set_values = 1;
+
+  //seven_seg_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign seven_seg_pio_s1_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+
+  //seven_seg_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign seven_seg_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //seven_seg_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign seven_seg_pio_s1_arb_share_counter_next_value = seven_seg_pio_s1_firsttransfer ? (seven_seg_pio_s1_arb_share_set_values - 1) : |seven_seg_pio_s1_arb_share_counter ? (seven_seg_pio_s1_arb_share_counter - 1) : 0;
+
+  //seven_seg_pio_s1_allgrants all slave grants, which is an e_mux
+  assign seven_seg_pio_s1_allgrants = |seven_seg_pio_s1_grant_vector;
+
+  //seven_seg_pio_s1_end_xfer assignment, which is an e_assign
+  assign seven_seg_pio_s1_end_xfer = ~(seven_seg_pio_s1_waits_for_read | seven_seg_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_seven_seg_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_seven_seg_pio_s1 = seven_seg_pio_s1_end_xfer & (~seven_seg_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //seven_seg_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign seven_seg_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & seven_seg_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests);
+
+  //seven_seg_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_arb_share_counter <= 0;
+      else if (seven_seg_pio_s1_arb_counter_enable)
+          seven_seg_pio_s1_arb_share_counter <= seven_seg_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //seven_seg_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|seven_seg_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_seven_seg_pio_s1) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests))
+          seven_seg_pio_s1_slavearbiterlockenable <= |seven_seg_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 seven_seg_pio/s1 arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = seven_seg_pio_s1_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //seven_seg_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign seven_seg_pio_s1_slavearbiterlockenable2 = |seven_seg_pio_s1_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 seven_seg_pio/s1 arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = seven_seg_pio_s1_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //seven_seg_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign seven_seg_pio_s1_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 = peripheral_clock_crossing_m1_requests_seven_seg_pio_s1 & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1 = peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 & peripheral_clock_crossing_m1_read & ~seven_seg_pio_s1_waits_for_read;
+
+  //seven_seg_pio_s1_writedata mux, which is an e_mux
+  assign seven_seg_pio_s1_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 = peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1;
+
+  //peripheral_clock_crossing/m1 saved-grant seven_seg_pio/s1, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_seven_seg_pio_s1 = peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+
+  //allow new arb cycle for seven_seg_pio/s1, which is an e_assign
+  assign seven_seg_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign seven_seg_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign seven_seg_pio_s1_master_qreq_vector = 1;
+
+  //seven_seg_pio_s1_reset_n assignment, which is an e_assign
+  assign seven_seg_pio_s1_reset_n = reset_n;
+
+  assign seven_seg_pio_s1_chipselect = peripheral_clock_crossing_m1_granted_seven_seg_pio_s1;
+  //seven_seg_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign seven_seg_pio_s1_firsttransfer = seven_seg_pio_s1_begins_xfer ? seven_seg_pio_s1_unreg_firsttransfer : seven_seg_pio_s1_reg_firsttransfer;
+
+  //seven_seg_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign seven_seg_pio_s1_unreg_firsttransfer = ~(seven_seg_pio_s1_slavearbiterlockenable & seven_seg_pio_s1_any_continuerequest);
+
+  //seven_seg_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (seven_seg_pio_s1_begins_xfer)
+          seven_seg_pio_s1_reg_firsttransfer <= seven_seg_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //seven_seg_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign seven_seg_pio_s1_beginbursttransfer_internal = seven_seg_pio_s1_begins_xfer;
+
+  //~seven_seg_pio_s1_write_n assignment, which is an e_mux
+  assign seven_seg_pio_s1_write_n = ~(peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 & peripheral_clock_crossing_m1_write);
+
+  //seven_seg_pio_s1_address mux, which is an e_mux
+  assign seven_seg_pio_s1_address = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_seven_seg_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_seven_seg_pio_s1_end_xfer <= 1;
+      else 
+        d1_seven_seg_pio_s1_end_xfer <= seven_seg_pio_s1_end_xfer;
+    end
+
+
+  //seven_seg_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign seven_seg_pio_s1_waits_for_read = seven_seg_pio_s1_in_a_read_cycle & seven_seg_pio_s1_begins_xfer;
+
+  //seven_seg_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign seven_seg_pio_s1_in_a_read_cycle = peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = seven_seg_pio_s1_in_a_read_cycle;
+
+  //seven_seg_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign seven_seg_pio_s1_waits_for_write = seven_seg_pio_s1_in_a_write_cycle & 0;
+
+  //seven_seg_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign seven_seg_pio_s1_in_a_write_cycle = peripheral_clock_crossing_m1_granted_seven_seg_pio_s1 & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = seven_seg_pio_s1_in_a_write_cycle;
+
+  assign wait_for_seven_seg_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //seven_seg_pio/s1 enable non-zero assertions, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
@@ -10045,6 +10918,259 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module sw_pio_s1_arbitrator (
+                              // inputs:
+                               clk,
+                               peripheral_clock_crossing_m1_address_to_slave,
+                               peripheral_clock_crossing_m1_latency_counter,
+                               peripheral_clock_crossing_m1_nativeaddress,
+                               peripheral_clock_crossing_m1_read,
+                               peripheral_clock_crossing_m1_write,
+                               reset_n,
+                               sw_pio_s1_readdata,
+
+                              // outputs:
+                               d1_sw_pio_s1_end_xfer,
+                               peripheral_clock_crossing_m1_granted_sw_pio_s1,
+                               peripheral_clock_crossing_m1_qualified_request_sw_pio_s1,
+                               peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1,
+                               peripheral_clock_crossing_m1_requests_sw_pio_s1,
+                               sw_pio_s1_address,
+                               sw_pio_s1_readdata_from_sa,
+                               sw_pio_s1_reset_n
+                            )
+;
+
+  output           d1_sw_pio_s1_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_sw_pio_s1;
+  output           peripheral_clock_crossing_m1_qualified_request_sw_pio_s1;
+  output           peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1;
+  output           peripheral_clock_crossing_m1_requests_sw_pio_s1;
+  output  [  1: 0] sw_pio_s1_address;
+  output  [  7: 0] sw_pio_s1_readdata_from_sa;
+  output           sw_pio_s1_reset_n;
+  input            clk;
+  input   [  6: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  4: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input            reset_n;
+  input   [  7: 0] sw_pio_s1_readdata;
+
+  reg              d1_reasons_to_wait;
+  reg              d1_sw_pio_s1_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_sw_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_sw_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_sw_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_sw_pio_s1;
+  wire             peripheral_clock_crossing_m1_saved_grant_sw_pio_s1;
+  wire    [  1: 0] sw_pio_s1_address;
+  wire             sw_pio_s1_allgrants;
+  wire             sw_pio_s1_allow_new_arb_cycle;
+  wire             sw_pio_s1_any_bursting_master_saved_grant;
+  wire             sw_pio_s1_any_continuerequest;
+  wire             sw_pio_s1_arb_counter_enable;
+  reg              sw_pio_s1_arb_share_counter;
+  wire             sw_pio_s1_arb_share_counter_next_value;
+  wire             sw_pio_s1_arb_share_set_values;
+  wire             sw_pio_s1_beginbursttransfer_internal;
+  wire             sw_pio_s1_begins_xfer;
+  wire             sw_pio_s1_end_xfer;
+  wire             sw_pio_s1_firsttransfer;
+  wire             sw_pio_s1_grant_vector;
+  wire             sw_pio_s1_in_a_read_cycle;
+  wire             sw_pio_s1_in_a_write_cycle;
+  wire             sw_pio_s1_master_qreq_vector;
+  wire             sw_pio_s1_non_bursting_master_requests;
+  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
+  reg              sw_pio_s1_reg_firsttransfer;
+  wire             sw_pio_s1_reset_n;
+  reg              sw_pio_s1_slavearbiterlockenable;
+  wire             sw_pio_s1_slavearbiterlockenable2;
+  wire             sw_pio_s1_unreg_firsttransfer;
+  wire             sw_pio_s1_waits_for_read;
+  wire             sw_pio_s1_waits_for_write;
+  wire             wait_for_sw_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~sw_pio_s1_end_xfer;
+    end
+
+
+  assign sw_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_sw_pio_s1));
+  //assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_sw_pio_s1 = (({peripheral_clock_crossing_m1_address_to_slave[6 : 4] , 4'b0} == 7'h10) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)) & peripheral_clock_crossing_m1_read;
+  //sw_pio_s1_arb_share_counter set values, which is an e_mux
+  assign sw_pio_s1_arb_share_set_values = 1;
+
+  //sw_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign sw_pio_s1_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_sw_pio_s1;
+
+  //sw_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign sw_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //sw_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign sw_pio_s1_arb_share_counter_next_value = sw_pio_s1_firsttransfer ? (sw_pio_s1_arb_share_set_values - 1) : |sw_pio_s1_arb_share_counter ? (sw_pio_s1_arb_share_counter - 1) : 0;
+
+  //sw_pio_s1_allgrants all slave grants, which is an e_mux
+  assign sw_pio_s1_allgrants = |sw_pio_s1_grant_vector;
+
+  //sw_pio_s1_end_xfer assignment, which is an e_assign
+  assign sw_pio_s1_end_xfer = ~(sw_pio_s1_waits_for_read | sw_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_sw_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_sw_pio_s1 = sw_pio_s1_end_xfer & (~sw_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //sw_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign sw_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_sw_pio_s1 & sw_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests);
+
+  //sw_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_arb_share_counter <= 0;
+      else if (sw_pio_s1_arb_counter_enable)
+          sw_pio_s1_arb_share_counter <= sw_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //sw_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|sw_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_sw_pio_s1) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests))
+          sw_pio_s1_slavearbiterlockenable <= |sw_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 sw_pio/s1 arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = sw_pio_s1_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //sw_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign sw_pio_s1_slavearbiterlockenable2 = |sw_pio_s1_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 sw_pio/s1 arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = sw_pio_s1_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //sw_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign sw_pio_s1_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 = peripheral_clock_crossing_m1_requests_sw_pio_s1 & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1 = peripheral_clock_crossing_m1_granted_sw_pio_s1 & peripheral_clock_crossing_m1_read & ~sw_pio_s1_waits_for_read;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_sw_pio_s1 = peripheral_clock_crossing_m1_qualified_request_sw_pio_s1;
+
+  //peripheral_clock_crossing/m1 saved-grant sw_pio/s1, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_sw_pio_s1 = peripheral_clock_crossing_m1_requests_sw_pio_s1;
+
+  //allow new arb cycle for sw_pio/s1, which is an e_assign
+  assign sw_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign sw_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign sw_pio_s1_master_qreq_vector = 1;
+
+  //sw_pio_s1_reset_n assignment, which is an e_assign
+  assign sw_pio_s1_reset_n = reset_n;
+
+  //sw_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign sw_pio_s1_firsttransfer = sw_pio_s1_begins_xfer ? sw_pio_s1_unreg_firsttransfer : sw_pio_s1_reg_firsttransfer;
+
+  //sw_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign sw_pio_s1_unreg_firsttransfer = ~(sw_pio_s1_slavearbiterlockenable & sw_pio_s1_any_continuerequest);
+
+  //sw_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (sw_pio_s1_begins_xfer)
+          sw_pio_s1_reg_firsttransfer <= sw_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //sw_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign sw_pio_s1_beginbursttransfer_internal = sw_pio_s1_begins_xfer;
+
+  //sw_pio_s1_address mux, which is an e_mux
+  assign sw_pio_s1_address = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_sw_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_sw_pio_s1_end_xfer <= 1;
+      else 
+        d1_sw_pio_s1_end_xfer <= sw_pio_s1_end_xfer;
+    end
+
+
+  //sw_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign sw_pio_s1_waits_for_read = sw_pio_s1_in_a_read_cycle & sw_pio_s1_begins_xfer;
+
+  //sw_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign sw_pio_s1_in_a_read_cycle = peripheral_clock_crossing_m1_granted_sw_pio_s1 & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = sw_pio_s1_in_a_read_cycle;
+
+  //sw_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign sw_pio_s1_waits_for_write = sw_pio_s1_in_a_write_cycle & 0;
+
+  //sw_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign sw_pio_s1_in_a_write_cycle = peripheral_clock_crossing_m1_granted_sw_pio_s1 & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = sw_pio_s1_in_a_write_cycle;
+
+  assign wait_for_sw_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //sw_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module sys_timer_s1_arbitrator (
                                  // inputs:
                                   clk,
@@ -11131,11 +12257,23 @@ module DE4_SOPC (
                    flash_tristate_bridge_writen,
                    select_n_to_the_ext_flash,
 
+                  // the_led_pio
+                   out_port_from_the_led_pio,
+
+                  // the_pb_pio
+                   in_port_to_the_pb_pio,
+
                   // the_read_RAM_address
                    out_port_from_the_read_RAM_address,
 
                   // the_read_RAM_busy_pio
                    out_port_from_the_read_RAM_busy_pio,
+
+                  // the_seven_seg_pio
+                   out_port_from_the_seven_seg_pio,
+
+                  // the_sw_pio
+                   in_port_to_the_sw_pio,
 
                   // the_tse_mac
                    led_an_from_the_tse_mac,
@@ -11167,8 +12305,10 @@ module DE4_SOPC (
   output           mdc_from_the_tse_mac;
   output           mdio_oen_from_the_tse_mac;
   output           mdio_out_from_the_tse_mac;
+  output  [  7: 0] out_port_from_the_led_pio;
   output  [ 10: 0] out_port_from_the_read_RAM_address;
   output           out_port_from_the_read_RAM_busy_pio;
+  output  [ 15: 0] out_port_from_the_seven_seg_pio;
   output           pll_peripheral_clk;
   output           pll_sys_clk;
   output           select_n_to_the_ext_flash;
@@ -11176,6 +12316,8 @@ module DE4_SOPC (
   input            ext_clk;
   input   [ 15: 0] in_port_to_the_ADC_data_pio;
   input            in_port_to_the_acq_busy_pio;
+  input   [  3: 0] in_port_to_the_pb_pio;
+  input   [  7: 0] in_port_to_the_sw_pio;
   input            mdio_in_to_the_tse_mac;
   input            ref_clk_to_the_tse_mac;
   input            reset_n;
@@ -11354,13 +12496,17 @@ module DE4_SOPC (
   wire             d1_flash_tristate_bridge_avalon_slave_end_xfer;
   wire             d1_high_res_timer_s1_end_xfer;
   wire             d1_jtag_uart_avalon_jtag_slave_end_xfer;
+  wire             d1_led_pio_s1_end_xfer;
   wire             d1_onchip_memory_s1_end_xfer;
+  wire             d1_pb_pio_s1_end_xfer;
   wire             d1_peripheral_clock_crossing_s1_end_xfer;
   wire             d1_pll_s1_end_xfer;
   wire             d1_read_RAM_address_s1_end_xfer;
   wire             d1_read_RAM_busy_pio_s1_end_xfer;
+  wire             d1_seven_seg_pio_s1_end_xfer;
   wire             d1_sgdma_rx_csr_end_xfer;
   wire             d1_sgdma_tx_csr_end_xfer;
+  wire             d1_sw_pio_s1_end_xfer;
   wire             d1_sys_timer_s1_end_xfer;
   wire             d1_sysid_control_slave_end_xfer;
   wire             d1_tse_mac_control_port_end_xfer;
@@ -11411,6 +12557,13 @@ module DE4_SOPC (
   wire             led_crs_from_the_tse_mac;
   wire             led_disp_err_from_the_tse_mac;
   wire             led_link_from_the_tse_mac;
+  wire    [  1: 0] led_pio_s1_address;
+  wire             led_pio_s1_chipselect;
+  wire    [  7: 0] led_pio_s1_readdata;
+  wire    [  7: 0] led_pio_s1_readdata_from_sa;
+  wire             led_pio_s1_reset_n;
+  wire             led_pio_s1_write_n;
+  wire    [  7: 0] led_pio_s1_writedata;
   wire             mdc_from_the_tse_mac;
   wire             mdio_oen_from_the_tse_mac;
   wire             mdio_out_from_the_tse_mac;
@@ -11424,33 +12577,55 @@ module DE4_SOPC (
   wire    [ 31: 0] onchip_memory_s1_writedata;
   wire             out_clk_pll_c0;
   wire             out_clk_pll_c1;
+  wire    [  7: 0] out_port_from_the_led_pio;
   wire    [ 10: 0] out_port_from_the_read_RAM_address;
   wire             out_port_from_the_read_RAM_busy_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
+  wire    [  1: 0] pb_pio_s1_address;
+  wire    [  3: 0] pb_pio_s1_readdata;
+  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
+  wire             pb_pio_s1_reset_n;
   wire    [  6: 0] peripheral_clock_crossing_m1_address;
   wire    [  6: 0] peripheral_clock_crossing_m1_address_to_slave;
   wire    [  3: 0] peripheral_clock_crossing_m1_byteenable;
   wire             peripheral_clock_crossing_m1_endofpacket;
   wire             peripheral_clock_crossing_m1_granted_ADC_data_pio_s1;
   wire             peripheral_clock_crossing_m1_granted_acq_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_granted_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_granted_pb_pio_s1;
   wire             peripheral_clock_crossing_m1_granted_read_RAM_address_s1;
   wire             peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_granted_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_granted_sw_pio_s1;
   wire             peripheral_clock_crossing_m1_latency_counter;
   wire    [  4: 0] peripheral_clock_crossing_m1_nativeaddress;
   wire             peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1;
   wire             peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_pb_pio_s1;
   wire             peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1;
   wire             peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_qualified_request_sw_pio_s1;
   wire             peripheral_clock_crossing_m1_read;
   wire             peripheral_clock_crossing_m1_read_data_valid_ADC_data_pio_s1;
   wire             peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1;
   wire             peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1;
   wire             peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1;
   wire    [ 31: 0] peripheral_clock_crossing_m1_readdata;
   wire             peripheral_clock_crossing_m1_readdatavalid;
   wire             peripheral_clock_crossing_m1_requests_ADC_data_pio_s1;
   wire             peripheral_clock_crossing_m1_requests_acq_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_led_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_pb_pio_s1;
   wire             peripheral_clock_crossing_m1_requests_read_RAM_address_s1;
   wire             peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_seven_seg_pio_s1;
+  wire             peripheral_clock_crossing_m1_requests_sw_pio_s1;
   wire             peripheral_clock_crossing_m1_reset_n;
   wire             peripheral_clock_crossing_m1_waitrequest;
   wire             peripheral_clock_crossing_m1_write;
@@ -11499,6 +12674,13 @@ module DE4_SOPC (
   wire             read_RAM_busy_pio_s1_writedata;
   wire             reset_n_sources;
   wire             select_n_to_the_ext_flash;
+  wire    [  1: 0] seven_seg_pio_s1_address;
+  wire             seven_seg_pio_s1_chipselect;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  wire             seven_seg_pio_s1_reset_n;
+  wire             seven_seg_pio_s1_write_n;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
   wire    [  3: 0] sgdma_rx_csr_address;
   wire             sgdma_rx_csr_chipselect;
   wire             sgdma_rx_csr_irq;
@@ -11592,6 +12774,10 @@ module DE4_SOPC (
   wire             sgdma_tx_out_ready;
   wire             sgdma_tx_out_startofpacket;
   wire             sgdma_tx_out_valid;
+  wire    [  1: 0] sw_pio_s1_address;
+  wire    [  7: 0] sw_pio_s1_readdata;
+  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
+  wire             sw_pio_s1_reset_n;
   wire    [  2: 0] sys_timer_s1_address;
   wire             sys_timer_s1_chipselect;
   wire             sys_timer_s1_irq;
@@ -12242,6 +13428,43 @@ module DE4_SOPC (
       .rst_n          (jtag_uart_avalon_jtag_slave_reset_n)
     );
 
+  led_pio_s1_arbitrator the_led_pio_s1
+    (
+      .clk                                                       (pll_peripheral_clk),
+      .d1_led_pio_s1_end_xfer                                    (d1_led_pio_s1_end_xfer),
+      .led_pio_s1_address                                        (led_pio_s1_address),
+      .led_pio_s1_chipselect                                     (led_pio_s1_chipselect),
+      .led_pio_s1_readdata                                       (led_pio_s1_readdata),
+      .led_pio_s1_readdata_from_sa                               (led_pio_s1_readdata_from_sa),
+      .led_pio_s1_reset_n                                        (led_pio_s1_reset_n),
+      .led_pio_s1_write_n                                        (led_pio_s1_write_n),
+      .led_pio_s1_writedata                                      (led_pio_s1_writedata),
+      .peripheral_clock_crossing_m1_address_to_slave             (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_byteenable                   (peripheral_clock_crossing_m1_byteenable),
+      .peripheral_clock_crossing_m1_granted_led_pio_s1           (peripheral_clock_crossing_m1_granted_led_pio_s1),
+      .peripheral_clock_crossing_m1_latency_counter              (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_led_pio_s1 (peripheral_clock_crossing_m1_qualified_request_led_pio_s1),
+      .peripheral_clock_crossing_m1_read                         (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_led_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_led_pio_s1),
+      .peripheral_clock_crossing_m1_requests_led_pio_s1          (peripheral_clock_crossing_m1_requests_led_pio_s1),
+      .peripheral_clock_crossing_m1_write                        (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                    (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                   (pll_peripheral_clk_reset_n)
+    );
+
+  led_pio the_led_pio
+    (
+      .address    (led_pio_s1_address),
+      .chipselect (led_pio_s1_chipselect),
+      .clk        (pll_peripheral_clk),
+      .out_port   (out_port_from_the_led_pio),
+      .readdata   (led_pio_s1_readdata),
+      .reset_n    (led_pio_s1_reset_n),
+      .write_n    (led_pio_s1_write_n),
+      .writedata  (led_pio_s1_writedata)
+    );
+
   onchip_memory_s1_arbitrator the_onchip_memory_s1
     (
       .clk                                                                         (pll_sys_clk),
@@ -12301,6 +13524,35 @@ module DE4_SOPC (
       .writedata  (onchip_memory_s1_writedata)
     );
 
+  pb_pio_s1_arbitrator the_pb_pio_s1
+    (
+      .clk                                                      (pll_peripheral_clk),
+      .d1_pb_pio_s1_end_xfer                                    (d1_pb_pio_s1_end_xfer),
+      .pb_pio_s1_address                                        (pb_pio_s1_address),
+      .pb_pio_s1_readdata                                       (pb_pio_s1_readdata),
+      .pb_pio_s1_readdata_from_sa                               (pb_pio_s1_readdata_from_sa),
+      .pb_pio_s1_reset_n                                        (pb_pio_s1_reset_n),
+      .peripheral_clock_crossing_m1_address_to_slave            (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_granted_pb_pio_s1           (peripheral_clock_crossing_m1_granted_pb_pio_s1),
+      .peripheral_clock_crossing_m1_latency_counter             (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress               (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_pb_pio_s1 (peripheral_clock_crossing_m1_qualified_request_pb_pio_s1),
+      .peripheral_clock_crossing_m1_read                        (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1),
+      .peripheral_clock_crossing_m1_requests_pb_pio_s1          (peripheral_clock_crossing_m1_requests_pb_pio_s1),
+      .peripheral_clock_crossing_m1_write                       (peripheral_clock_crossing_m1_write),
+      .reset_n                                                  (pll_peripheral_clk_reset_n)
+    );
+
+  pb_pio the_pb_pio
+    (
+      .address  (pb_pio_s1_address),
+      .clk      (pll_peripheral_clk),
+      .in_port  (in_port_to_the_pb_pio),
+      .readdata (pb_pio_s1_readdata),
+      .reset_n  (pb_pio_s1_reset_n)
+    );
+
   peripheral_clock_crossing_s1_arbitrator the_peripheral_clock_crossing_s1
     (
       .clk                                                                         (pll_sys_clk),
@@ -12340,38 +13592,62 @@ module DE4_SOPC (
       .clk                                                                 (pll_peripheral_clk),
       .d1_ADC_data_pio_s1_end_xfer                                         (d1_ADC_data_pio_s1_end_xfer),
       .d1_acq_busy_pio_s1_end_xfer                                         (d1_acq_busy_pio_s1_end_xfer),
+      .d1_led_pio_s1_end_xfer                                              (d1_led_pio_s1_end_xfer),
+      .d1_pb_pio_s1_end_xfer                                               (d1_pb_pio_s1_end_xfer),
       .d1_read_RAM_address_s1_end_xfer                                     (d1_read_RAM_address_s1_end_xfer),
       .d1_read_RAM_busy_pio_s1_end_xfer                                    (d1_read_RAM_busy_pio_s1_end_xfer),
+      .d1_seven_seg_pio_s1_end_xfer                                        (d1_seven_seg_pio_s1_end_xfer),
+      .d1_sw_pio_s1_end_xfer                                               (d1_sw_pio_s1_end_xfer),
+      .led_pio_s1_readdata_from_sa                                         (led_pio_s1_readdata_from_sa),
+      .pb_pio_s1_readdata_from_sa                                          (pb_pio_s1_readdata_from_sa),
       .peripheral_clock_crossing_m1_address                                (peripheral_clock_crossing_m1_address),
       .peripheral_clock_crossing_m1_address_to_slave                       (peripheral_clock_crossing_m1_address_to_slave),
       .peripheral_clock_crossing_m1_byteenable                             (peripheral_clock_crossing_m1_byteenable),
       .peripheral_clock_crossing_m1_granted_ADC_data_pio_s1                (peripheral_clock_crossing_m1_granted_ADC_data_pio_s1),
       .peripheral_clock_crossing_m1_granted_acq_busy_pio_s1                (peripheral_clock_crossing_m1_granted_acq_busy_pio_s1),
+      .peripheral_clock_crossing_m1_granted_led_pio_s1                     (peripheral_clock_crossing_m1_granted_led_pio_s1),
+      .peripheral_clock_crossing_m1_granted_pb_pio_s1                      (peripheral_clock_crossing_m1_granted_pb_pio_s1),
       .peripheral_clock_crossing_m1_granted_read_RAM_address_s1            (peripheral_clock_crossing_m1_granted_read_RAM_address_s1),
       .peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1           (peripheral_clock_crossing_m1_granted_read_RAM_busy_pio_s1),
+      .peripheral_clock_crossing_m1_granted_seven_seg_pio_s1               (peripheral_clock_crossing_m1_granted_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_granted_sw_pio_s1                      (peripheral_clock_crossing_m1_granted_sw_pio_s1),
       .peripheral_clock_crossing_m1_latency_counter                        (peripheral_clock_crossing_m1_latency_counter),
       .peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1      (peripheral_clock_crossing_m1_qualified_request_ADC_data_pio_s1),
       .peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1      (peripheral_clock_crossing_m1_qualified_request_acq_busy_pio_s1),
+      .peripheral_clock_crossing_m1_qualified_request_led_pio_s1           (peripheral_clock_crossing_m1_qualified_request_led_pio_s1),
+      .peripheral_clock_crossing_m1_qualified_request_pb_pio_s1            (peripheral_clock_crossing_m1_qualified_request_pb_pio_s1),
       .peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1  (peripheral_clock_crossing_m1_qualified_request_read_RAM_address_s1),
       .peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1 (peripheral_clock_crossing_m1_qualified_request_read_RAM_busy_pio_s1),
+      .peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1     (peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_qualified_request_sw_pio_s1            (peripheral_clock_crossing_m1_qualified_request_sw_pio_s1),
       .peripheral_clock_crossing_m1_read                                   (peripheral_clock_crossing_m1_read),
       .peripheral_clock_crossing_m1_read_data_valid_ADC_data_pio_s1        (peripheral_clock_crossing_m1_read_data_valid_ADC_data_pio_s1),
       .peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1        (peripheral_clock_crossing_m1_read_data_valid_acq_busy_pio_s1),
+      .peripheral_clock_crossing_m1_read_data_valid_led_pio_s1             (peripheral_clock_crossing_m1_read_data_valid_led_pio_s1),
+      .peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1              (peripheral_clock_crossing_m1_read_data_valid_pb_pio_s1),
       .peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1    (peripheral_clock_crossing_m1_read_data_valid_read_RAM_address_s1),
       .peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_read_RAM_busy_pio_s1),
+      .peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1       (peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1              (peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1),
       .peripheral_clock_crossing_m1_readdata                               (peripheral_clock_crossing_m1_readdata),
       .peripheral_clock_crossing_m1_readdatavalid                          (peripheral_clock_crossing_m1_readdatavalid),
       .peripheral_clock_crossing_m1_requests_ADC_data_pio_s1               (peripheral_clock_crossing_m1_requests_ADC_data_pio_s1),
       .peripheral_clock_crossing_m1_requests_acq_busy_pio_s1               (peripheral_clock_crossing_m1_requests_acq_busy_pio_s1),
+      .peripheral_clock_crossing_m1_requests_led_pio_s1                    (peripheral_clock_crossing_m1_requests_led_pio_s1),
+      .peripheral_clock_crossing_m1_requests_pb_pio_s1                     (peripheral_clock_crossing_m1_requests_pb_pio_s1),
       .peripheral_clock_crossing_m1_requests_read_RAM_address_s1           (peripheral_clock_crossing_m1_requests_read_RAM_address_s1),
       .peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1          (peripheral_clock_crossing_m1_requests_read_RAM_busy_pio_s1),
+      .peripheral_clock_crossing_m1_requests_seven_seg_pio_s1              (peripheral_clock_crossing_m1_requests_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_requests_sw_pio_s1                     (peripheral_clock_crossing_m1_requests_sw_pio_s1),
       .peripheral_clock_crossing_m1_reset_n                                (peripheral_clock_crossing_m1_reset_n),
       .peripheral_clock_crossing_m1_waitrequest                            (peripheral_clock_crossing_m1_waitrequest),
       .peripheral_clock_crossing_m1_write                                  (peripheral_clock_crossing_m1_write),
       .peripheral_clock_crossing_m1_writedata                              (peripheral_clock_crossing_m1_writedata),
       .read_RAM_address_s1_readdata_from_sa                                (read_RAM_address_s1_readdata_from_sa),
       .read_RAM_busy_pio_s1_readdata_from_sa                               (read_RAM_busy_pio_s1_readdata_from_sa),
-      .reset_n                                                             (pll_peripheral_clk_reset_n)
+      .reset_n                                                             (pll_peripheral_clk_reset_n),
+      .seven_seg_pio_s1_readdata_from_sa                                   (seven_seg_pio_s1_readdata_from_sa),
+      .sw_pio_s1_readdata_from_sa                                          (sw_pio_s1_readdata_from_sa)
     );
 
   peripheral_clock_crossing the_peripheral_clock_crossing
@@ -12519,6 +13795,42 @@ module DE4_SOPC (
       .reset_n    (read_RAM_busy_pio_s1_reset_n),
       .write_n    (read_RAM_busy_pio_s1_write_n),
       .writedata  (read_RAM_busy_pio_s1_writedata)
+    );
+
+  seven_seg_pio_s1_arbitrator the_seven_seg_pio_s1
+    (
+      .clk                                                             (pll_peripheral_clk),
+      .d1_seven_seg_pio_s1_end_xfer                                    (d1_seven_seg_pio_s1_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave                   (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_granted_seven_seg_pio_s1           (peripheral_clock_crossing_m1_granted_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_latency_counter                    (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                      (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1 (peripheral_clock_crossing_m1_qualified_request_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_read                               (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_requests_seven_seg_pio_s1          (peripheral_clock_crossing_m1_requests_seven_seg_pio_s1),
+      .peripheral_clock_crossing_m1_write                              (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                          (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                         (pll_peripheral_clk_reset_n),
+      .seven_seg_pio_s1_address                                        (seven_seg_pio_s1_address),
+      .seven_seg_pio_s1_chipselect                                     (seven_seg_pio_s1_chipselect),
+      .seven_seg_pio_s1_readdata                                       (seven_seg_pio_s1_readdata),
+      .seven_seg_pio_s1_readdata_from_sa                               (seven_seg_pio_s1_readdata_from_sa),
+      .seven_seg_pio_s1_reset_n                                        (seven_seg_pio_s1_reset_n),
+      .seven_seg_pio_s1_write_n                                        (seven_seg_pio_s1_write_n),
+      .seven_seg_pio_s1_writedata                                      (seven_seg_pio_s1_writedata)
+    );
+
+  seven_seg_pio the_seven_seg_pio
+    (
+      .address    (seven_seg_pio_s1_address),
+      .chipselect (seven_seg_pio_s1_chipselect),
+      .clk        (pll_peripheral_clk),
+      .out_port   (out_port_from_the_seven_seg_pio),
+      .readdata   (seven_seg_pio_s1_readdata),
+      .reset_n    (seven_seg_pio_s1_reset_n),
+      .write_n    (seven_seg_pio_s1_write_n),
+      .writedata  (seven_seg_pio_s1_writedata)
     );
 
   sgdma_rx_csr_arbitrator the_sgdma_rx_csr
@@ -12778,6 +14090,35 @@ module DE4_SOPC (
       .out_startofpacket             (sgdma_tx_out_startofpacket),
       .out_valid                     (sgdma_tx_out_valid),
       .system_reset_n                (sgdma_tx_csr_reset_n)
+    );
+
+  sw_pio_s1_arbitrator the_sw_pio_s1
+    (
+      .clk                                                      (pll_peripheral_clk),
+      .d1_sw_pio_s1_end_xfer                                    (d1_sw_pio_s1_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave            (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_granted_sw_pio_s1           (peripheral_clock_crossing_m1_granted_sw_pio_s1),
+      .peripheral_clock_crossing_m1_latency_counter             (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress               (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_sw_pio_s1 (peripheral_clock_crossing_m1_qualified_request_sw_pio_s1),
+      .peripheral_clock_crossing_m1_read                        (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_sw_pio_s1),
+      .peripheral_clock_crossing_m1_requests_sw_pio_s1          (peripheral_clock_crossing_m1_requests_sw_pio_s1),
+      .peripheral_clock_crossing_m1_write                       (peripheral_clock_crossing_m1_write),
+      .reset_n                                                  (pll_peripheral_clk_reset_n),
+      .sw_pio_s1_address                                        (sw_pio_s1_address),
+      .sw_pio_s1_readdata                                       (sw_pio_s1_readdata),
+      .sw_pio_s1_readdata_from_sa                               (sw_pio_s1_readdata_from_sa),
+      .sw_pio_s1_reset_n                                        (sw_pio_s1_reset_n)
+    );
+
+  sw_pio the_sw_pio
+    (
+      .address  (sw_pio_s1_address),
+      .clk      (pll_peripheral_clk),
+      .in_port  (in_port_to_the_sw_pio),
+      .readdata (sw_pio_s1_readdata),
+      .reset_n  (sw_pio_s1_reset_n)
     );
 
   sys_timer_s1_arbitrator the_sys_timer_s1
@@ -13278,6 +14619,7 @@ endmodule
 `include "sys_timer.v"
 `include "acq_busy_pio.v"
 `include "peripheral_clock_crossing.v"
+`include "led_pio.v"
 `include "jtag_uart.v"
 `include "ADC_data_pio.v"
 `include "DE4_SOPC_clock_0.v"
@@ -13290,7 +14632,10 @@ endmodule
 `include "cpu_jtag_debug_module_wrapper.v"
 `include "cpu.v"
 `include "onchip_memory.v"
+`include "sw_pio.v"
 `include "sgdma_tx.v"
+`include "seven_seg_pio.v"
+`include "pb_pio.v"
 
 `timescale 1ns / 1ps
 
@@ -13310,6 +14655,8 @@ module test_bench
   wire             flash_tristate_bridge_writen;
   wire    [ 15: 0] in_port_to_the_ADC_data_pio;
   wire             in_port_to_the_acq_busy_pio;
+  wire    [  3: 0] in_port_to_the_pb_pio;
+  wire    [  7: 0] in_port_to_the_sw_pio;
   wire             jtag_uart_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_avalon_jtag_slave_readyfordata_from_sa;
   wire             led_an_from_the_tse_mac;
@@ -13322,8 +14669,10 @@ module test_bench
   wire             mdio_in_to_the_tse_mac;
   wire             mdio_oen_from_the_tse_mac;
   wire             mdio_out_from_the_tse_mac;
+  wire    [  7: 0] out_port_from_the_led_pio;
   wire    [ 10: 0] out_port_from_the_read_RAM_address;
   wire             out_port_from_the_read_RAM_busy_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             peripheral_clock_crossing_m1_endofpacket;
   wire             peripheral_clock_crossing_s1_endofpacket_from_sa;
   wire             pll_peripheral_clk;
@@ -13349,6 +14698,8 @@ module test_bench
       .flash_tristate_bridge_writen        (flash_tristate_bridge_writen),
       .in_port_to_the_ADC_data_pio         (in_port_to_the_ADC_data_pio),
       .in_port_to_the_acq_busy_pio         (in_port_to_the_acq_busy_pio),
+      .in_port_to_the_pb_pio               (in_port_to_the_pb_pio),
+      .in_port_to_the_sw_pio               (in_port_to_the_sw_pio),
       .led_an_from_the_tse_mac             (led_an_from_the_tse_mac),
       .led_char_err_from_the_tse_mac       (led_char_err_from_the_tse_mac),
       .led_col_from_the_tse_mac            (led_col_from_the_tse_mac),
@@ -13359,8 +14710,10 @@ module test_bench
       .mdio_in_to_the_tse_mac              (mdio_in_to_the_tse_mac),
       .mdio_oen_from_the_tse_mac           (mdio_oen_from_the_tse_mac),
       .mdio_out_from_the_tse_mac           (mdio_out_from_the_tse_mac),
+      .out_port_from_the_led_pio           (out_port_from_the_led_pio),
       .out_port_from_the_read_RAM_address  (out_port_from_the_read_RAM_address),
       .out_port_from_the_read_RAM_busy_pio (out_port_from_the_read_RAM_busy_pio),
+      .out_port_from_the_seven_seg_pio     (out_port_from_the_seven_seg_pio),
       .pll_peripheral_clk                  (pll_peripheral_clk),
       .pll_sys_clk                         (pll_sys_clk),
       .ref_clk_to_the_tse_mac              (ref_clk_to_the_tse_mac),

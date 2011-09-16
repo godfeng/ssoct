@@ -789,7 +789,29 @@ DE4_SOPC DE4_SOPC_inst(
 	.control_write_length_to_the_master_write(control_write_length) ,		// input [29:0] control_write_length
 	.user_buffer_full_from_the_master_write(user_buffer_full) ,				// output user_buffer_full 
 	.user_buffer_input_data_to_the_master_write(user_buffer_data_write) ,	// input [255:0] {224'b0, user_buffer_data_write}
-	.user_write_buffer_to_the_master_write(user_write_buffer) 				// input user_write_buffer
+	.user_write_buffer_to_the_master_write(user_write_buffer) ,				// input user_write_buffer
+	
+	// the_flash_tristate_bridge_avalon_slave
+	.flash_tristate_bridge_address(FSM_A[24:0]),
+	.flash_tristate_bridge_data(FSM_D),
+	.flash_tristate_bridge_readn(FLASH_OE_n),
+	.flash_tristate_bridge_writen(FLASH_WE_n),
+	.select_n_to_the_ext_flash(FLASH_CE_n),
+
+	// the_tse_mac
+	.led_an_from_the_tse_mac(led_an_from_the_tse_mac),
+	.led_char_err_from_the_tse_mac(led_char_err_from_the_tse_mac),
+	.led_col_from_the_tse_mac(led_col_from_the_tse_mac),
+	.led_crs_from_the_tse_mac(led_crs_from_the_tse_mac),
+	.led_disp_err_from_the_tse_mac(led_disp_err_from_the_tse_mac),
+	.led_link_from_the_tse_mac(led_link_from_the_tse_mac),
+	.mdc_from_the_tse_mac(enet_mdc),
+	.mdio_in_to_the_tse_mac(enet_mdio_in),
+	.mdio_oen_from_the_tse_mac(enet_mdio_oen),
+	.mdio_out_from_the_tse_mac(enet_mdio_out),
+	.ref_clk_to_the_tse_mac(enet_refclk_125MHz),
+	.rxp_to_the_tse_mac(lvds_rxp),
+	.txp_from_the_tse_mac(lvds_txp)
 	);
 
  //Yields a reset signal 20 ms after cpu reset

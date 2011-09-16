@@ -94,7 +94,7 @@ void SSSInitialTask(void *task_data)
   SSSCreateOSDataStructs(); 
 
   /* create the other tasks */
-  //SSSCreateTasks();
+  SSSCreateTasks();
 
   /* Application Specific Task Launching Code Block End */
   

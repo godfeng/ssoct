@@ -536,16 +536,16 @@ DE4_SOPC	SOPC_INST (
 				.txp_from_the_tse_mac(lvds_txp),
 
 				// the_pb_pio
-				//.in_port_to_the_pb_pio(BUTTON),
+				.in_port_to_the_pb_pio(BUTTON),
 
 				// the_sw_pio
-				//.in_port_to_the_sw_pio(SW),
+				.in_port_to_the_sw_pio(SW),
 
 				// the_seven_seg_pio
-				//.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
+				.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 
 				// the_led_pio
-				//.out_port_from_the_led_pio({dummy_LED,LED[6:0]}),
+				.out_port_from_the_led_pio({dummy_LED,LED[6:0]}),
 				
 				// Busy acquiring data
 				.in_port_to_the_acq_busy_pio(acq_busy) ,	// input  in_port_to_the_acq_busy_pio_sig

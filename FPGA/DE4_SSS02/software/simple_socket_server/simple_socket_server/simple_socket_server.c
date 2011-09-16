@@ -139,35 +139,35 @@ void SSSCreateOSDataStructs(void)
  * Tasks which use Interniche sockets must be created with TK_NEWTASK.
  */
  
-//void SSSCreateTasks(void)
-//{
-//   INT8U error_code;
-//  
-//   error_code = OSTaskCreateExt(LED7SegLightshowTask,
-//                             NULL,
-//                             (void *)&LED7SegLightshowTaskStk[TASK_STACKSIZE-1],
-//                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
-//                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
-//                             LED7SegLightshowTaskStk,
-//                             TASK_STACKSIZE,
-//                             NULL,
-//                             0);
-//   
-//   alt_uCOSIIErrorHandler(error_code, 0);
-//  
-//   error_code = OSTaskCreateExt(LEDManagementTask,
-//                              NULL,
-//                              (void *)&LEDManagementTaskStk[TASK_STACKSIZE-1],
-//                              LED_MANAGEMENT_TASK_PRIORITY,
-//                              LED_MANAGEMENT_TASK_PRIORITY,
-//                              LEDManagementTaskStk,
-//                              TASK_STACKSIZE,
-//                              NULL,
-//                              0);
-//
-//   alt_uCOSIIErrorHandler(error_code, 0);
-//
-//}
+void SSSCreateTasks(void)
+{
+   INT8U error_code;
+  
+   error_code = OSTaskCreateExt(LED7SegLightshowTask,
+                             NULL,
+                             (void *)&LED7SegLightshowTaskStk[TASK_STACKSIZE-1],
+                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
+                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
+                             LED7SegLightshowTaskStk,
+                             TASK_STACKSIZE,
+                             NULL,
+                             0);
+   
+   alt_uCOSIIErrorHandler(error_code, 0);
+  
+   error_code = OSTaskCreateExt(LEDManagementTask,
+                              NULL,
+                              (void *)&LEDManagementTaskStk[TASK_STACKSIZE-1],
+                              LED_MANAGEMENT_TASK_PRIORITY,
+                              LED_MANAGEMENT_TASK_PRIORITY,
+                              LEDManagementTaskStk,
+                              TASK_STACKSIZE,
+                              NULL,
+                              0);
+
+   alt_uCOSIIErrorHandler(error_code, 0);
+
+}
 
 
 /*
