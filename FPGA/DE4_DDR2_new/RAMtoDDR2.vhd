@@ -106,7 +106,7 @@ ELSIF (CLK50MHZ'EVENT AND CLK50MHZ = '1') THEN
 		
 			IF control_done = '1' AND user_buffer_full = '0' THEN
 				state <= S_Full;
-				control_write_base <= TO_UNSIGNED(TO_INTEGER(control_write_length)+1,ADDRESS_WIDTH); -- In bytes.
+				control_write_base <= control_write_base + control_write_length; -- In bytes.
                 control_write_length <= TO_UNSIGNED(NBYTES_PER_ALINE,ADDRESS_WIDTH); -- In bytes.         
 			END IF;
 			
