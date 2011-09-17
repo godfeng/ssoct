@@ -3,7 +3,7 @@
 # Machine generated for a CPU named "cpu" as defined in:
 # d:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server_syslib\..\..\DE4_SOPC.ptf
 #
-# Generated: 2011-09-16 13:03:51.664
+# Generated: 2011-09-17 17:58:11.729
 
 # ******************************************************************************
 # *                                                                            *
@@ -66,7 +66,8 @@ COMPONENTS_DEVICE_DRIVERS := /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/alt
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_jtag_uart \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer \
                              /cygdrive/c/altera/91/ip/altera/triple_speed_ethernet/lib/sopc_builder/altera_triple_speed_ethernet \
-                             /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sgdma
+                             /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sgdma \
+                             /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio
 
 COMPONENTS_SOFTWARE       := /cygdrive/c/altera/91/nios2eds/components/altera_iniche
 

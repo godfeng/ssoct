@@ -64,4 +64,7 @@ obj/simple_socket_server.o: ../simple_socket_server.c \
   /cygdrive/c/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h/sockvar.h \
   /cygdrive/c/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h/sockcall.h \
   /cygdrive/c/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h/bsdsock.h \
-  /cygdrive/c/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h/tcpport.h
+  /cygdrive/c/altera/91/nios2eds/components/altera_iniche/UCOSII/src/h/tcpport.h \
+  /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio/inc/altera_avalon_pio_regs.h \
+  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/io.h \
+  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h

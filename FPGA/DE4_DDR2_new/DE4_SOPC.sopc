@@ -79,19 +79,19 @@
          type = "String";
       }
    }
-   element sgdma_rx.csr
-   {
-      datum baseAddress
-      {
-         value = "1141909440";
-         type = "long";
-      }
-   }
    element sgdma_tx.csr
    {
       datum baseAddress
       {
          value = "1141909376";
+         type = "long";
+      }
+   }
+   element sgdma_rx.csr
+   {
+      datum baseAddress
+      {
+         value = "1141909440";
          type = "long";
       }
    }
@@ -210,6 +210,19 @@
          type = "String";
       }
    }
+   element peripheral_clock_crossing
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
    element pipeline_bridge_ddr2
    {
       datum _sortIndex
@@ -236,43 +249,11 @@
          type = "String";
       }
    }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1141908992";
-         type = "long";
-      }
-   }
    element onchip_memory.s1
    {
       datum baseAddress
       {
          value = "1141374976";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1141905408";
          type = "long";
       }
    }
@@ -284,11 +265,43 @@
          type = "long";
       }
    }
-   element pll.s1
+   element peripheral_clock_crossing.s1
    {
       datum baseAddress
       {
-         value = "1141908480";
+         value = "1073741824";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1141905408";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "128";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1141908992";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
          type = "long";
       }
    }
@@ -297,6 +310,22 @@
       datum baseAddress
       {
          value = "1107296256";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "1141908480";
+         type = "long";
+      }
+   }
+   element clock_crossing_0.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
          type = "long";
       }
    }
@@ -373,6 +402,19 @@
          type = "String";
       }
    }
+   element vol_transfer_done_pio
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="deviceFamily" value="STRATIXIV" />
@@ -380,8 +422,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_DDR2.qpf" />
- <parameter name="systemHash" value="-89961407828" />
- <parameter name="timeStamp" value="1316129324373" />
+ <parameter name="systemHash" value="-85293036061" />
+ <parameter name="timeStamp" value="1316291957863" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -1098,6 +1140,38 @@
   <parameter name="upstreamPipeline" value="true" />
   <parameter name="waitrequestPipeline" value="false" />
  </module>
+ <module
+   name="peripheral_clock_crossing"
+   kind="altera_avalon_clock_crossing"
+   version="9.1"
+   enabled="1">
+  <parameter name="dataWidth" value="32" />
+  <parameter name="downstreamFIFODepth" value="16" />
+  <parameter name="downstreamUseRegister" value="false" />
+  <parameter name="masterSyncDepth" value="3" />
+  <parameter name="maxBurstSize" value="8" />
+  <parameter name="slaveSyncDepth" value="3" />
+  <parameter name="upstreamFIFODepth" value="32" />
+  <parameter name="upstreamUseRegister" value="false" />
+  <parameter name="useBurstCount" value="false" />
+ </module>
+ <module
+   name="vol_transfer_done_pio"
+   kind="altera_avalon_pio"
+   version="9.1"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
  <connection kind="clock" version="9.1" start="clk_50.clk" end="ddr2.refclk" />
  <connection
    kind="clock"
@@ -1411,5 +1485,36 @@
  <connection kind="avalon" version="6.1" start="clock_crossing_0.m1" end="ddr2.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="cpu.data_master"
+   end="peripheral_clock_crossing.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x40000000" />
+ </connection>
+ <connection
+   kind="clock"
+   version="9.1"
+   start="pll.c0"
+   end="peripheral_clock_crossing.clk_s1" />
+ <connection
+   kind="clock"
+   version="9.1"
+   start="pll.c1"
+   end="peripheral_clock_crossing.clk_m1" />
+ <connection
+   kind="clock"
+   version="9.1"
+   start="pll.c1"
+   end="vol_transfer_done_pio.clk" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="peripheral_clock_crossing.m1"
+   end="vol_transfer_done_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0080" />
  </connection>
 </system>

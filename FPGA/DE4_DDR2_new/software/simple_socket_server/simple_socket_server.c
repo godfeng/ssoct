@@ -41,7 +41,7 @@
 #include "tcpport.h"
 
 /* Altera Avalon registers */
-//#include "altera_avalon_pio_regs.h" 
+#include "altera_avalon_pio_regs.h" 
 
 /* Constants */
 #define NSAMPLES            1170    // 1170         (Fixed by the swept source laser)
@@ -282,10 +282,10 @@ void sss_exec_command(SSSConn* conn)
     int             bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
     INT8U           tx_buf[SSS_TX_BUF_SIZE];
     INT8U*          tx_wr_pos = tx_buf;
-    INT8U           error_code;
+    //INT8U           error_code;
     // Local variables
-    unsigned char   acq_busy_signal;
-    unsigned char   read_RAM_busy;
+    //unsigned char   acq_busy_signal;
+    //unsigned char   read_RAM_busy;
     unsigned long  DDR2_add;
     unsigned char*  dataPointer;
     unsigned long  RAM_address;
@@ -370,6 +370,8 @@ void sss_exec_command(SSSConn* conn)
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop (ASCII code = 67)
                         //////////////////////////////////////////////////////////
+                        // Assert signal when the whole volume is transfered
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
                         for (iLines = 0; iLines < NALINES_PER_FRAME*NFRAMES; iLines++)
                         {
                             //////////////////////////////////////////////////////////
@@ -398,10 +400,11 @@ void sss_exec_command(SSSConn* conn)
                             //////////////////////////////////////////////////////////
                             // single A-line transfer done!
                             //////////////////////////////////////////////////////////
-                            
                             // Wait a little... Should know why...
                             for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
                         } // END of continuous acquisition loop
+                        // Assert signal when the whole volume is transfered
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
                         break;
                         
                     default:

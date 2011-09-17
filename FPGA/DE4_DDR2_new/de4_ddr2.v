@@ -265,7 +265,7 @@ output		     [3:0]		ETH_MDC;
 inout		     [3:0]		ETH_MDIO;
 output		          		ETH_RST_n;
 //input		     [3:0]		ETH_RX_p;
-//output		     [3:0]		ETH_TX_p;
+//output			[3:0]		ETH_TX_p;
 
 //////////// Flash and SRAM Address/Data Share Bus //////////
 output		    [25:0]		FSM_A;
@@ -327,7 +327,7 @@ input		          		XT_IN_P;
 output		          		HSMC_SCL;
 inout		          		HSMC_SDA;
 	
-//////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
+//////////// GPIO_0, GPIO[6:0] connect to NI-USB 6351  //////////
 inout		    [35:0]		GPIO;
 
 `ifndef USE_DDR2_DIMM2
@@ -383,6 +383,10 @@ wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board 
 
+//// External PLL
+wire						MAX_I2C_SCLK;		// SPI
+wire						MAX_I2C_SDAT;		// SPI
+
 //// Master template
 wire						control_done_read;
 wire			[31:0]		user_buffer_data_read;
@@ -411,9 +415,6 @@ wire						error_full;
 // DDR2 200 MHz clock out
 wire						ddr2_phy_clk_out;
 
-// Power on reset
-//wire						reset_power_on;
-
 //// Ethernet
 wire						enet_mdc;
 wire						enet_mdio_in;
@@ -424,14 +425,23 @@ wire						enet_refclk_125MHz;
 wire						lvds_rxp;
 wire						lvds_txp;
 
-// A-line of 1170 Elements, each 14 bits wide
-//reg  		[13:0]			A_line_array	[0:`NSAMPLES-1];
-//wire		[13:0]			A_line; 
+wire						led_an_from_the_tse_mac;
+wire						led_char_err_from_the_tse_mac;
+wire						led_col_from_the_tse_mac;
+wire						led_crs_from_the_tse_mac;
+wire						led_disp_err_from_the_tse_mac;
+wire						led_link_from_the_tse_mac;
 
 // 50 kHz A-line trigger from swept source laser
 wire						sweepTrigger;
 // 50 kHz A-line trigger enabled by LabView
 wire						trigger50kHz;
+
+// Receive signal from LabView to record data to DDR2
+wire						enableRecording;
+
+// Transmit signal to LabView when a single volume is trasnferred via TCP/IP
+wire						volTransferDone;
 
 // Position of the ADC sample in the RAM
 wire		[ 6:0]			read_RAM_address;
@@ -447,18 +457,11 @@ wire						dualMSB_read;
 
 // Acquiring 1170 samples
 wire						acq_busy;
-
 // Acquisition of one A-line done
 wire						acq_done;
 
-// Reading RAM 
-//wire						read_RAM_busy;
-
 // PWM for Fan and LED
 wire		[7:0]			clk_div_out_sig;
-
-// Receive signal from LabView to record data to DDR2
-wire						enableRecording;
 
 // sinus wave signal
 wire		[13:0]			raw_sine;
@@ -469,7 +472,7 @@ reg			[13:0]			o_sine;
 wire		[6:0]			stateLED;
 
 //==============================================================================
-//  External PLL Configuration ==========================================
+//  External PLL Configuration =================================================
 //==============================================================================
 
 //  Signal declarations
@@ -601,7 +604,6 @@ assign	DA					= o_sine;			// Output sinus wave to DAC A
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger		= GCLKIN;
-
 // Map 50 kHz A-line sweep signal to GPIO[0]
 assign	GPIO[0]				= sweepTrigger;
 
@@ -610,12 +612,13 @@ assign	enableRecording		= GPIO[6];
 // Display enable signal from LabView
 assign	SEG0_DP				= ~enableRecording;
 
-//// DEBUG SIGNALS
-assign	GPIO[5]				= acq_done;
-assign	GPIO[4]				= control_go_write;
-assign	GPIO[3]				= control_done_write;
-assign	GPIO[2]				= user_buffer_full;
-assign	GPIO[1]				= user_write_buffer;
+// Acquisition is triggered only when LabView asserts the enable
+assign 	trigger50kHz		= enableRecording & sweepTrigger;
+
+// Transmit signal to LabView when a whole volume is transferred via TCP/IP in GPIO[1]
+assign	GPIO[1]				= volTransferDone;
+// Display volume transfer done signal from NIOS
+assign	SEG1_DP				= ~volTransferDone;
 
 // LED diagnostics (active LOW)
 assign	LED[6:0]			= ~stateLED;
@@ -623,9 +626,6 @@ assign	LED[6:0]			= ~stateLED;
 // Turn off 7-segment displays (active LOW)
 assign	SEG0_D				= 7'h7F;
 assign	SEG1_D				= 7'h7F;
-assign	SEG1_DP				= 1'b1;
-//assign 	trigger50kHz		= 1'b1 & sweepTrigger;
-assign 	trigger50kHz		= enableRecording & sweepTrigger;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
@@ -675,21 +675,13 @@ RAMtoDDR2 RAMtoDDR2_inst
 	.stateLED(stateLED)							// output stateLED (Debug states)
 );
 
-
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0(OSC_50_BANK2),						// Dedicated clock OSC_50_BANK2
+	.inclk0(OSC_50_BANK4),							// Dedicated clock OSC_50_BANK2?
 	.c0(enet_refclk_125MHz)
 	);
 
-// Generate global reset signal
-//gen_reset_n	system_gen_reset_n (
-//	.tx_clk(clk50MHz),
-//	.reset_n_in(reset_n),
-//	.reset_n_out(global_reset_n)
-//	);
-
-//Yields a reset signal 20 ms after cpu reset
+// Yields a reset signal 20 ms after cpu reset
 PowerOn_RST PowerOn_RST_inst
 (
 	.clk(clk50MHz) ,							// input  clk50MHz
@@ -738,12 +730,6 @@ DE4_SOPC DE4_SOPC_inst(
    .oct_ctl_rt_value_to_the_ddr2(),
    .reset_phy_clk_n_from_the_ddr2(),
    
-  // ddr2 psd i2c
-  // NOT NECESSARY WHEN TESING DDR2, ONLY FOR EEPROM
-//   .out_port_from_the_ddr2_i2c_scl(), 									//M1_DDR2_SCL
-//   .out_port_from_the_ddr2_i2c_sa(), 										//M1_DDR2_SA
-//   .bidir_port_to_and_from_the_ddr2_i2c_sda(), 							//M1_DDR2_SDA
-   
 `else              
 	// The DDR2 DIMM2
 	.aux_scan_clk_from_the_ddr2(),
@@ -772,11 +758,6 @@ DE4_SOPC DE4_SOPC_inst(
 	.oct_ctl_rt_value_to_the_ddr2(),
 	.reset_phy_clk_n_from_the_ddr2(),
 
-	// ddr2 psd i2c
-	// NOT NECESSARY WHEN TESING DDR2, ONLY FOR EEPROM
-//	.out_port_from_the_ddr2_i2c_scl(), 										//M2_DDR2_SCL
-//	.out_port_from_the_ddr2_i2c_sa(), 										//M2_DDR2_SA
-//	.bidir_port_to_and_from_the_ddr2_i2c_sda(), 							//M2_DDR2_SDA       
 `endif                   
 	
 	// DDR2 clock out
@@ -804,64 +785,30 @@ DE4_SOPC DE4_SOPC_inst(
 	.user_write_buffer_to_the_master_write(user_write_buffer) ,				// input 	user_write_buffer
 	
 	// Flash Tristate Bridge Avalon Slave
-	.flash_tristate_bridge_address(FSM_A[24:0]),							// output 	[24:0] FSM_A[24:0]
-	.flash_tristate_bridge_data(FSM_D),										// inout 	[15:0] FSM_D
-	.flash_tristate_bridge_readn(FLASH_OE_n),								// output  	FLASH_OE_n
-	.flash_tristate_bridge_writen(FLASH_WE_n),								// output  	FLASH_WE_n
-	.select_n_to_the_ext_flash(FLASH_CE_n),									// output  	FLASH_CE_n
+	.flash_tristate_bridge_address(FSM_A[24:0]) ,							// output 	[24:0] FSM_A[24:0]
+	.flash_tristate_bridge_data(FSM_D) ,									// inout 	[15:0] FSM_D
+	.flash_tristate_bridge_readn(FLASH_OE_n) ,								// output  	FLASH_OE_n
+	.flash_tristate_bridge_writen(FLASH_WE_n) ,								// output  	FLASH_WE_n
+	.select_n_to_the_ext_flash(FLASH_CE_n) ,								// output  	FLASH_CE_n
 
 	// Triple Speed Ethernet MAC
-	.led_an_from_the_tse_mac(led_an_from_the_tse_mac),						// output  	led_an_from_the_tse_mac
-	.led_char_err_from_the_tse_mac(led_char_err_from_the_tse_mac),			// output  	led_char_err_from_the_tse_mac
-	.led_col_from_the_tse_mac(led_col_from_the_tse_mac),					// output  	led_col_from_the_tse_mac
-	.led_crs_from_the_tse_mac(led_crs_from_the_tse_mac),					// output  	led_crs_from_the_tse_mac
-	.led_disp_err_from_the_tse_mac(led_disp_err_from_the_tse_mac),			// output  	led_disp_err_from_the_tse_mac
-	.led_link_from_the_tse_mac(led_link_from_the_tse_mac),					// output  	led_link_from_the_tse_mac
-	.mdc_from_the_tse_mac(enet_mdc),										// output	enet_mdc
-	.mdio_in_to_the_tse_mac(enet_mdio_in),									// input  	enet_mdio_in
-	.mdio_oen_from_the_tse_mac(enet_mdio_oen),								// output  	enet_mdio_oen
-	.mdio_out_from_the_tse_mac(enet_mdio_out),								// output  	enet_mdio_out
-	.ref_clk_to_the_tse_mac(enet_refclk_125MHz),							// input  	enet_refclk_125MHz
-	.rxp_to_the_tse_mac(lvds_rxp),											// input  	lvds_rxp
-	.txp_from_the_tse_mac(lvds_txp)											// output  	lvds_txp
+	.led_an_from_the_tse_mac(led_an_from_the_tse_mac) ,						// output  	led_an_from_the_tse_mac
+	.led_char_err_from_the_tse_mac(led_char_err_from_the_tse_mac) ,			// output  	led_char_err_from_the_tse_mac
+	.led_col_from_the_tse_mac(led_col_from_the_tse_mac) ,					// output  	led_col_from_the_tse_mac
+	.led_crs_from_the_tse_mac(led_crs_from_the_tse_mac) ,					// output  	led_crs_from_the_tse_mac
+	.led_disp_err_from_the_tse_mac(led_disp_err_from_the_tse_mac) ,			// output  	led_disp_err_from_the_tse_mac
+	.led_link_from_the_tse_mac(led_link_from_the_tse_mac) ,					// output  	led_link_from_the_tse_mac
+	.mdc_from_the_tse_mac(enet_mdc) ,										// output	enet_mdc
+	.mdio_in_to_the_tse_mac(enet_mdio_in) ,									// input  	enet_mdio_in
+	.mdio_oen_from_the_tse_mac(enet_mdio_oen) ,								// output  	enet_mdio_oen
+	.mdio_out_from_the_tse_mac(enet_mdio_out) ,								// output  	enet_mdio_out
+	.ref_clk_to_the_tse_mac(enet_refclk_125MHz) ,							// input  	enet_refclk_125MHz
+	.rxp_to_the_tse_mac(lvds_rxp) ,											// input  	lvds_rxp
+	.txp_from_the_tse_mac(lvds_txp) ,										// output  	lvds_txp
+	
+	// PIO pin to assert signal when a volume is transfered via TCP/IP
+	.out_port_from_the_vol_transfer_done_pio(volTransferDone) 				// output  volTransferDone
 	);
-
-// Module to test master read template
-//TestRead TestRead_inst (
-//	.RSTn(global_reset_n) ,										// input  reset_power_on
-//	.CLK48MHZ(clk50MHz) ,										// input  
-//	.control_go(control_go_read) ,								// output  
-//	.control_read_base(control_read_base) ,						// output [29:0] 
-//	.control_read_length(control_read_length) ,					// output [29:0] 
-//	.control_done(control_done_read) ,							// input  
-//	.user_buffer_data(user_buffer_data_read[31:0]) ,			// input [31:0] 
-//	.user_read_buffer(user_read_buffer) ,						// output  
-//	.user_data_available(user_data_available) ,					// input  
-//	.addressLastCompleteWrite(address_last_complete_write) ,	// input [29:0] 
-//	.addressLastCompleteRead(address_last_complete_read) ,		// output [29:0] 
-//	.readingDone(reading_done) ,								// output  
-//	.debugOut() ,												// output [31:0] 
-//	.errorData(error_data) 										// output [2:0] 
-//	);
-
-// Module to test master write template
-//TestWrite TestWrite_inst (
-//	.RSTn(global_reset_n) ,										// input  reset_power_on
-//	.CLK48MHZ(clk50MHz) ,										// input  
-//	.control_go(control_go_write) ,								// output  
-//	.control_write_base(control_write_base) ,					// output [29:0] 
-//	.control_write_length(control_write_length) ,				// output [29:0] 
-//	.control_done(control_done_write) ,							// input  
-//	.user_buffer_data(user_buffer_data_write) ,					// output [31:0] 
-//	.user_buffer_full(user_buffer_full) ,						// input  
-//	.user_write_buffer(user_write_buffer) ,						// output  
-//	.addressLastCompleteWrite(address_last_complete_write) ,	// output [29:0] 
-//	.addressLastCompleteRead(address_last_complete_read) ,		// input [29:0] 
-//	.writingDone(writing_done) ,								// output  
-//	.debugOut() ,												// output [31:0] 
-//	.errorFull(error_full) 										// output  
-//	);
-
 
 //==============================================================================
 // Optional modules

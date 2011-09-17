@@ -12,5 +12,5 @@ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/write_master
  set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/burst_write_master.v
  set_global_assignment -name SOURCE_FILE cpu.ocp
 set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/latency_aware_read_master.v
- set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C000001326F6C052B 
+ set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C000001327920A5B5 
  

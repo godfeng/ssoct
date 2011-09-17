@@ -68,7 +68,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2011.09.15.19:29:02</td>
+    <td class="l">2011.09.17.16:42:55</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -79,7 +79,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <table class="connectionboxes">
      <tr>
       <td class="lefthandwire">&#160;&#160;clk_50&#160;</td>
-      <td class="main" rowspan="17">DE4_SOPC</td>
+      <td class="main" rowspan="20">DE4_SOPC</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -146,6 +146,20 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <tr style="height:6px">
       <td></td>
      </tr>
+     <tr>
+      <td></td>
+      <td class="righthandlabel">&#160;&#160;
+       <a href="#module_vol_transfer_done_pio"><b>vol_transfer_done_pio</b>
+       </a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td class="righthandwire">&#160;out_port&#160;&#160;</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
     </table>
    </div><span style="display:inline-block ; width:28px"> </span>
    <div style="display:inline-block ; text-align:left"><span>Processor
@@ -197,7 +211,13 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </a> altera_avalon_onchip_memory2 9.1
      <br></br>&#160;&#160;
      <a href="#module_pipeline_bridge_ddr2"><b>pipeline_bridge_ddr2</b>
-     </a> altera_avalon_pipeline_bridge 9.1</span>
+     </a> altera_avalon_pipeline_bridge 9.1
+     <br></br>&#160;&#160;
+     <a href="#module_peripheral_clock_crossing"><b>peripheral_clock_crossing</b>
+     </a> altera_avalon_clock_crossing 9.1
+     <br></br>&#160;&#160;
+     <a href="#module_vol_transfer_done_pio"><b>vol_transfer_done_pio</b>
+     </a> altera_avalon_pio 9.1</span>
    </div>
   </div>
   <div style="width:100% ;  height:10px"> </div>
@@ -613,6 +633,35 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="empty"></td>
     <td class="addr"><span style="color:#989898">0x</span>44101800</td>
     <td class="addr"><span style="color:#989898">0x</span>44101800</td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_vol_transfer_done_pio"><b>vol_transfer_done_pio</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">s1&#160;</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="addr"><span style="color:#989898">0x</span>40000080</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
     <td class="empty"></td>
    </tr>
   </table>
@@ -2045,7 +2094,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clk_50">clk_50</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="44">pll</td>
+      <td class="main" rowspan="52">pll</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;inclk0</td>
@@ -2264,6 +2313,48 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td class="from">c0&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
        <a href="#module_high_res_timer">high_res_timer</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">c0&#160;&#160;</td>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_peripheral_clock_crossing">peripheral_clock_crossing</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clk_s1</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">c1&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clk_m1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">c1&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_vol_transfer_done_pio">vol_transfer_done_pio</a>
       </td>
      </tr>
      <tr>
@@ -2637,7 +2728,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_pll">pll</a>
       </td>
       <td class="from">c0&#160;&#160;</td>
-      <td class="main" rowspan="53">cpu</td>
+      <td class="main" rowspan="56">cpu</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
@@ -2904,6 +2995,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td class="from">data_master&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
        <a href="#module_pipeline_bridge_ddr2">pipeline_bridge_ddr2</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">data_master&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_peripheral_clock_crossing">peripheral_clock_crossing</a>
       </td>
      </tr>
      <tr>
@@ -3594,11 +3701,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">id</td>
-        <td class="parametervalue">1914578301</td>
+        <td class="parametervalue">1541173828</td>
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1316129324</td>
+        <td class="parametervalue">1316291958</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -3619,11 +3726,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">ID</td>
-        <td class="parametervalue">1914578301u</td>
+        <td class="parametervalue">1541173828u</td>
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1316129324u</td>
+        <td class="parametervalue">1316291958u</td>
        </tr>
       </table>
      </td>
@@ -5391,10 +5498,286 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
+  <a name="module_peripheral_clock_crossing"> </a>
+  <div>
+   <hr></hr>
+   <h2>peripheral_clock_crossing</h2>altera_avalon_clock_crossing v9.1
+   <br></br>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_cpu">cpu</a>
+      </td>
+      <td class="from">data_master&#160;&#160;</td>
+      <td class="main" rowspan="9">peripheral_clock_crossing</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_pll">pll</a>
+      </td>
+      <td class="from">c0&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk_s1</td>
+     </tr>
+     <tr>
+      <td class="from">c1&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk_m1</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">m1&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_vol_transfer_done_pio">vol_transfer_done_pio</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+    </table>
+   </div>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">dataWidth</td>
+        <td class="parametervalue">32</td>
+       </tr>
+       <tr>
+        <td class="parametername">downstreamFIFODepth</td>
+        <td class="parametervalue">16</td>
+       </tr>
+       <tr>
+        <td class="parametername">downstreamUseRegister</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">masterSyncDepth</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">maxBurstSize</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">slaveAddressWidth</td>
+        <td class="parametervalue">6</td>
+       </tr>
+       <tr>
+        <td class="parametername">slaveSyncDepth</td>
+        <td class="parametervalue">3</td>
+       </tr>
+       <tr>
+        <td class="parametername">upstreamFIFODepth</td>
+        <td class="parametervalue">32</td>
+       </tr>
+       <tr>
+        <td class="parametername">upstreamUseRegister</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">useBurstCount</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_vol_transfer_done_pio"> </a>
+  <div>
+   <hr></hr>
+   <h2>vol_transfer_done_pio</h2>altera_avalon_pio v9.1
+   <br></br>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_pll">pll</a>
+      </td>
+      <td class="from">c1&#160;&#160;</td>
+      <td class="main" rowspan="5">vol_transfer_done_pio</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_peripheral_clock_crossing">peripheral_clock_crossing</a>
+      </td>
+      <td class="from">m1&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+    </table>
+   </div>
+   <br></br>
+   <br></br>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">bitClearingEdgeCapReg</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">bitModifyingOutReg</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">captureEdge</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">clockRate</td>
+        <td class="parametervalue">70000000</td>
+       </tr>
+       <tr>
+        <td class="parametername">direction</td>
+        <td class="parametervalue">Output</td>
+       </tr>
+       <tr>
+        <td class="parametername">edgeType</td>
+        <td class="parametervalue">RISING</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateIRQ</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">irqType</td>
+        <td class="parametervalue">LEVEL</td>
+       </tr>
+       <tr>
+        <td class="parametername">resetValue</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">simDoTestBenchWiring</td>
+        <td class="parametervalue">false</td>
+       </tr>
+       <tr>
+        <td class="parametername">simDrivenValue</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">width</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>
+      <table>
+       <tr>
+        <td class="parametername">DO_TEST_BENCH_WIRING</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">DRIVEN_SIM_VALUE</td>
+        <td class="parametervalue">0x0</td>
+       </tr>
+       <tr>
+        <td class="parametername">HAS_TRI</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">HAS_OUT</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">HAS_IN</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">CAPTURE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">BIT_CLEARING_EDGE_REGISTER</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">BIT_MODIFYING_OUTPUT_REGISTER</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">DATA_WIDTH</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">RESET_VALUE</td>
+        <td class="parametervalue">0x0</td>
+       </tr>
+       <tr>
+        <td class="parametername">EDGE_TYPE</td>
+        <td class="parametervalue">"NONE"</td>
+       </tr>
+       <tr>
+        <td class="parametername">IRQ_TYPE</td>
+        <td class="parametervalue">"NONE"</td>
+       </tr>
+       <tr>
+        <td class="parametername">FREQ</td>
+        <td class="parametervalue">70000000u</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </div>
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.01 seconds</td>
-    <td class="r">rendering took 10.23 seconds</td>
+    <td class="r">rendering took 9.86 seconds</td>
    </tr>
   </table>
  </body>
