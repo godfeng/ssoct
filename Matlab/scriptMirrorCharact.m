@@ -22,7 +22,7 @@ SSOctDefaults.nFrames = 3;
 load('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Mirror_Characterization\Reference_Measurements.mat')
 
 % Get filename
-[filename pathname] = uigetfile('*.dat','Choose a file',SSOctDefaults.dirExp,...
+[filename pathname] = uigetfile('*.dat','Choose a file',SSOctDefaults.dirCurrExp,...
     'MultiSelect', 'on');
 
 % Load reference and self-interference terms

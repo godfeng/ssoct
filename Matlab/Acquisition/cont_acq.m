@@ -28,7 +28,9 @@ set(gcf, 'OuterPosition', SSOctDefaults.screenSize);
 
 if SSOctDefaults.save2file
     % Default file name
-    filename = fullfile(SSOctDefaults.dirExp,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
+    filename = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
+    % Save file name of current experiment in global structure
+    SSOctDefaults.CurrExpFileName = filename;
     % Create binary file
     fid = fopen(filename, 'w');
 end
@@ -39,7 +41,7 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
 if SSOctDefaults.save2file
     tic
     for iFrames = 1:SSOctDefaults.nFrames,
-        displayAcqOCT(iFrames);
+        rawBscan = displayAcqOCT(iFrames);
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan, 'double');
     end
@@ -49,17 +51,15 @@ if SSOctDefaults.save2file
     frameRate = toc/SSOctDefaults.nFrames;
     fprintf('Frame Rate = %d Hz\n',frameRate)
 else
-%     iFrames = 1;
-SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
-    SSOctDefaults.nLinesPerFrame]);
+    SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
+        SSOctDefaults.nLinesPerFrame]);
     for iFrames = 1:SSOctDefaults.nFrames,
         displayAcqOCT(iFrames);
     end
-%         iFrames = iFrames + 1;
 end
 % ==============================================================================
 
-function displayAcqOCT(iFrames)
+function rawBscan = displayAcqOCT(iFrames)
 % ------------- Acquires and displays a single B-scan (frame) ------------------
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire

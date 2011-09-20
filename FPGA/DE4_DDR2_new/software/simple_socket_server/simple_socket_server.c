@@ -71,7 +71,7 @@ void sss_reset_connection(SSSConn* conn)
 /*
  * sss_send_menu()
  * 
- * This routine will transmit the menu out to the telent client.
+ * This routine will transmit the menu out to the telnet client.
  */
 void sss_send_menu(SSSConn* conn)
 {
@@ -239,7 +239,7 @@ void sss_exec_command(SSSConn* conn)
                             //////////////////////////////////////////////////////////
                             
                             // Wait a little... Should know why...
-                            for (iLoop = 1; iLoop <= 16; iLoop++);
+                            for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
                         } // END of continuous acquisition loop
                         printf("Volume transferred\n");
                         // Assert signal when the whole volume is transfered

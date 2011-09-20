@@ -14,23 +14,51 @@ function outputCell = readCSVfile(fileName)
 
 % Open file
 fid = fopen(fileName, 'r');
-% Read line from file, discard newline character
-tline = fgetl(fid);
 
-% Split header
-outputCell(1,:) = regexp(tline, '\,', 'split');
-
-% Parse and read rest of file
-ctr = 1;
-while(~feof(fid))
-    if ischar(tline)
-        ctr = ctr + 1;
-        tline = fgetl(fid);
-        outputCell(ctr,:) = regexp(tline, '\,', 'split');
-    else
-        break;
+% Check if file exists (When fopen successfully opens a file, it returns a file
+% identifier greater than or equal to 3)
+if (fid >= 3)
+    tline = ' ';
+    % Column delimiter (comma) '\,'
+    delimiter = '\,';
+    iLines = 1;
+    
+    % Parse, read and convert to double the file
+    while(~feof(fid))
+        if ischar(tline)
+            % Read line from file, discard newline character
+            tline = fgetl(fid);
+            tempCell = regexp(tline, delimiter, 'split');
+            % String to double conversion
+            outputCell(iLines,:) = num2cell(str2double(tempCell));
+            for iCell = 1:length(tempCell),
+                if isnan(outputCell{iLines,iCell})
+                    outputCell{iLines,iCell} = tempCell{1,iCell};
+                end
+            end
+            iLines = iLines + 1;
+        else
+            break;
+        end
     end
+    % Close .csv file
+    fclose(fid);
+    
+    % Parse parameters to global variable
+    global SSOctDefaults
+    SSOctDefaults.nLinesPerFrame    = outputCell{1,2};
+    SSOctDefaults.nFrames           = outputCell{2,2};
+    SSOctDefaults.galvos.xStartVolt = outputCell{3,2};
+    SSOctDefaults.galvos.xEndVolt   = outputCell{4,2};
+    SSOctDefaults.galvos.yStartVolt = outputCell{5,2};
+    SSOctDefaults.galvos.yEndVolt   = outputCell{6,2};
+    SSOctDefaults.dirCurrExp        = outputCell{7,2};
+else
+    % Return an empty cell if file does not exist
+    outputCell = {};
+    % Close all open files
+    fclose('all');
+    disp(['File ' fileName ' does not exist'])
 end
-fclose(fid);
 % ==============================================================================
 % [EOF]

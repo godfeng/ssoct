@@ -23,8 +23,12 @@ global SSOctDefaults
 %===============================================================================
 % Installation directory
 SSOctDefaults.dirUser           = 'D:\Edgar\Documents\ssoct\Matlab\';
-% Experiments data directory
+% Data directory
 SSOctDefaults.dirExp            = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+% Current Experiments folder
+SSOctDefaults.dirCurrExp        = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+% Name of the file containing acquisition parameters
+SSOctDefaults.acqParamFileName  = 'acqParam.csv';
 % Maximize figure
 SSOctDefaults.screenSize        = get(0,'Screensize');
 SSOctDefaults.screenSize        = [1 40 SSOctDefaults.screenSize(3)...
@@ -46,7 +50,7 @@ SSOctDefaults.MENUSIZE          = 351;
 SSOctDefaults.save2file         = false;
 % Number of A-lines per frame
 SSOctDefaults.nLinesPerFrame    = 1024;
-% Number of frames per B-scan
+% Number of frames per volume
 SSOctDefaults.nFrames           = 64;
 % Number of total samples per scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
@@ -55,6 +59,18 @@ SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
 SSOctDefaults.displayLog        = false;
 % Display Color Bar
 SSOctDefaults.displayColorBar   = true;
+
+%===============================================================================
+% Galvo mirrors parameters
+%===============================================================================
+SSOctDefaults.galvos.xStartVolt = -1;
+SSOctDefaults.galvos.xEndVolt   = 1;
+SSOctDefaults.galvos.yStartVolt = -1;
+SSOctDefaults.galvos.yEndVolt   = 1;
+SSOctDefaults.galvos.xStartUm   = -100;
+SSOctDefaults.galvos.xEndUm     = 100;
+SSOctDefaults.galvos.yStartUm   = -100;
+SSOctDefaults.galvos.yEndUm     = 100;
 
 %===============================================================================
 % OCT axial resolution
