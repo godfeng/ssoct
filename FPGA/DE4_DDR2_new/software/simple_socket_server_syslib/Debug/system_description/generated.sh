@@ -5,7 +5,7 @@
 # Machine generated for a CPU named "cpu" as defined in:
 # d:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server_syslib\..\..\DE4_SOPC.ptf
 #
-# Generated: 2011-09-17 18:07:25.682
+# Generated: 2011-09-19 13:52:27.086
 
 # DO NOT MODIFY THIS FILE
 #
@@ -32,7 +32,7 @@ nios2_cpu_name=cpu
 # These variables indicate what the System ID peripheral should hold
 sidp=0x44102700
 id=1541173828u
-timestamp=1316291958u
+timestamp=1316451569u
 
 # Include operating system specific parameters, if they are supplied.
 

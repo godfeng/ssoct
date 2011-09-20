@@ -3,7 +3,7 @@
 # Machine generated for a CPU named "cpu" as defined in:
 # d:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server_syslib\..\..\DE4_SOPC.ptf
 #
-# Generated: 2011-09-17 18:07:20.546
+# Generated: 2011-09-19 13:52:22.225
 
 # DO NOT MODIFY THIS FILE
 #
@@ -71,7 +71,7 @@ $(EXT_FLASH_FLASHTARGET_ALT_SIM_PREFIX)ext_flash.flash: $(ELF)
 	elf2flash --input=$(ELF) --flash= --boot=$(DBL_QUOTE)$(shell $(DBL_QUOTE)$(QUARTUS_ROOTDIR)/sopc_builder/bin/find_sopc_component_dir$(DBL_QUOTE) $(CPU_CLASS) $(QUARTUS_PROJECT_DIR))/$(BOOT_COPIER)$(DBL_QUOTE) --outfile=$(EXT_FLASH_FLASHTARGET_ALT_SIM_PREFIX)ext_flash.flash --sim_optimize=$(ALT_SIM_OPTIMIZE) --base=0x42000000 --end=0x43FFFFFF --reset=$(CPU_RESET_ADDRESS)
 
 dummy_verifysysid_file:
-	nios2-download $(JTAG_CABLE)                                --sidp=0x44102700 --id=1541173828 --timestamp=1316291958
+	nios2-download $(JTAG_CABLE)                                --sidp=0x44102700 --id=1541173828 --timestamp=1316451569
 .PHONY: dummy_verifysysid_file
 
 

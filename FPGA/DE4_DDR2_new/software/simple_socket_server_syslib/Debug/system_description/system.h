@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * d:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server_syslib\..\..\DE4_SOPC.ptf
  *
- * Generated: 2011-09-17 17:58:27.642
+ * Generated: 2011-09-19 13:43:40.126
  *
  */
 
@@ -246,7 +246,7 @@ DO NOT MODIFY THIS FILE
 #define SYSID_BASE 0x44102700
 #define SYSID_SPAN 8
 #define SYSID_ID 1541173828u
-#define SYSID_TIMESTAMP 1316291958u
+#define SYSID_TIMESTAMP 1316451569u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 

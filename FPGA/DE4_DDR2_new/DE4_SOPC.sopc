@@ -79,19 +79,19 @@
          type = "String";
       }
    }
-   element sgdma_tx.csr
-   {
-      datum baseAddress
-      {
-         value = "1141909376";
-         type = "long";
-      }
-   }
    element sgdma_rx.csr
    {
       datum baseAddress
       {
          value = "1141909440";
+         type = "long";
+      }
+   }
+   element sgdma_tx.csr
+   {
+      datum baseAddress
+      {
+         value = "1141909376";
          type = "long";
       }
    }
@@ -249,15 +249,7 @@
          type = "String";
       }
    }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1141374976";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
+   element ddr2.s1
    {
       datum baseAddress
       {
@@ -265,19 +257,11 @@
          type = "long";
       }
    }
-   element peripheral_clock_crossing.s1
+   element onchip_memory.s1
    {
       datum baseAddress
       {
-         value = "1073741824";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1141905408";
+         value = "1141374976";
          type = "long";
       }
    }
@@ -289,6 +273,22 @@
          type = "long";
       }
    }
+   element clock_crossing_0.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1141905408";
+         type = "long";
+      }
+   }
    element sys_timer.s1
    {
       datum baseAddress
@@ -297,7 +297,7 @@
          type = "long";
       }
    }
-   element ddr2.s1
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
@@ -313,19 +313,19 @@
          type = "long";
       }
    }
+   element peripheral_clock_crossing.s1
+   {
+      datum baseAddress
+      {
+         value = "1073741824";
+         type = "long";
+      }
+   }
    element pll.s1
    {
       datum baseAddress
       {
          value = "1141908480";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
          type = "long";
       }
    }
@@ -423,7 +423,7 @@
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_DDR2.qpf" />
  <parameter name="systemHash" value="-85293036061" />
- <parameter name="timeStamp" value="1316291957863" />
+ <parameter name="timeStamp" value="1316451568618" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />

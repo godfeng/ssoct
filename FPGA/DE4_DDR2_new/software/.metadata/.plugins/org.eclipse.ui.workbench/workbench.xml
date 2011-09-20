@@ -28,12 +28,16 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.c"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="system.h" partName="system.h" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server_syslib/Debug/system_description/system.h" title="system.h" tooltip="simple_socket_server_syslib/Debug/system_description/system.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
 </editor>
 </editors>
 <views>
@@ -42,21 +46,27 @@
 </view>
 <view id="org.eclipse.ui.views.ResourceNavigator" partName="Navigator">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
-<filters>
-<filter element=".*" isEnabled="false"/>
+<filters>&#x0A;<filter element=".*" isEnabled="false"/>
 </filters>
+<expanded>&#x0A;<element path="/simple_socket_server_syslib"/>
+<element path="/simple_socket_server_syslib/Debug"/>
+<element path="/simple_socket_server_syslib/Debug/system_description"/>
+</expanded>
+<selection>&#x0A;<element path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
+</selection>
 </viewState>
 </view>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.sorting="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.cdt.make.ui.views.MakeView" partName="Make Targets">
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="424" columnWidth1="84" columnWidth2="159" columnWidth3="69" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="427" columnWidth1="87" columnWidth2="162" columnWidth3="72" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -173,13 +183,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/led.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
 </editors>
-<item historyLabel="ftpssock.c" index="1">
-<position info="not_deleted" x="6388" y="10"/>
-</item>
-<item historyLabel="ftpssock.c" index="1">
-<position info="not_deleted" x="8170" y="10"/>
-</item>
 <item historyLabel="ftpssock.c" index="1">
 <position info="not_deleted" x="9607" y="10"/>
 </item>
@@ -321,8 +326,14 @@
 <item historyLabel="iniche_init.c" index="13">
 <position info="not_deleted" x="4342" y="0"/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="9">
+<item historyLabel="simple_socket_server.c" index="9">
 <position info="not_deleted" x="1922" y="22"/>
+</item>
+<item historyLabel="system.h" index="15">
+<position/>
+</item>
+<item active="true" historyLabel="simple_socket_server.c" index="9">
+<position info="not_deleted" x="17360" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -342,6 +353,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system.h" tooltip="simple_socket_server_syslib/Debug/system_description/system.h">
+<persistable path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="network_utilities.c" tooltip="simple_socket_server/network_utilities.c">
 <persistable path="/simple_socket_server/network_utilities.c"/>
 </file>
