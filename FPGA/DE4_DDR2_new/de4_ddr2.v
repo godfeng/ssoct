@@ -381,7 +381,8 @@ wire 						reset_n;			// reset_n from board
 wire						global_reset_n;		// delayed reset signal
 wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
-wire						clk50MHz;			// clock from board 
+wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
+wire						clk150MHz;			// clock from internal PLL @ 150 MHz
 
 //// External PLL
 wire						MAX_I2C_SCLK;		// SPI
@@ -635,6 +636,9 @@ assign	FPGA_CLK_A_N		= ~clk156MHz;
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
 
+// Assign clk150MHz to GCLKOUT_FPGA (SMA_CLOCKOUT1/SMA_CLOCKOUT2)
+assign	GCLKOUT_FPGA		=  clk150MHz;
+
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
 	.clock( ADA_DCO ) ,							// input  clock_sig (ADA_DCO)
@@ -677,7 +681,7 @@ RAMtoDDR2 RAMtoDDR2_inst
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0(clk50MHz),						// Dedicated clock OSC_50_BANK2?
+	.inclk0(clk50MHz),							// Dedicated clock clk50MHz
 	.c0(enet_refclk_125MHz)
 	);
 
@@ -813,6 +817,13 @@ DE4_SOPC DE4_SOPC_inst(
 //==============================================================================
 // Optional modules
 //==============================================================================
+
+// External clock to sample the ADC
+pll_150 pll_150_inst
+(
+	.inclk0(clk50MHz) ,							// input  clk50MHz
+	.c0(clk150MHz) 								// output  clk150MHz
+);
 
 // Fan Control
 FAN_PWM FAN_PWM_inst (
