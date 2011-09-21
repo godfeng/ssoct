@@ -56,6 +56,7 @@ ARCHITECTURE RAMtoDDR2_architecture OF RAMtoDDR2 IS
 	CONSTANT S_Ready : STD_LOGIC_VECTOR(2 DOWNTO 0) := "010";
 	CONSTANT S_Full : STD_LOGIC_VECTOR(2 DOWNTO 0) := "011";
 	CONSTANT S_Writing : STD_LOGIC_VECTOR(2 DOWNTO 0) := "100";
+	CONSTANT S_Delay : STD_LOGIC_VECTOR(2 DOWNTO 0) := "101";
 	SIGNAL state : STD_LOGIC_VECTOR(2 DOWNTO 0) := S_Check1;
 	
 	-- Internal value of user_write_buffer.
@@ -63,6 +64,8 @@ ARCHITECTURE RAMtoDDR2_architecture OF RAMtoDDR2 IS
 	
     -- Index corresponding to the byte that is being written.
     SIGNAL idxByte : INTEGER RANGE 0 TO 400000;	
+    
+    SIGNAL counterDelay : INTEGER RANGE 0 TO 100;	
 
 BEGIN
 
@@ -78,7 +81,7 @@ IF (RSTn = '0') THEN
     idxByte <= 0;
     RAM_readAddress <= (OTHERS => '0');
     stateLED <= "0000001"; -- reset indicator
-    
+    counterDelay <= 0;
     
 ELSIF (CLK50MHZ'EVENT AND CLK50MHZ = '1') THEN
 	control_go <= '0';
@@ -134,6 +137,9 @@ ELSIF (CLK50MHZ'EVENT AND CLK50MHZ = '1') THEN
                     user_buffer_data <= RAM_dataOut;
                     idxByte <= idxByte + BYTES_PER_TRANSFER; -- In bytes.
                     user_write_buffer_internal <= '1';
+                    
+                    counterDelay <= 0;
+                    state <= S_Delay;
                 ELSE
                     state <= S_Check1;
                 END IF;
@@ -142,7 +148,19 @@ ELSIF (CLK50MHZ'EVENT AND CLK50MHZ = '1') THEN
                 idxByte <= idxByte - BYTES_PER_TRANSFER; -- In bytes.
                 RAM_readAddress <= RAM_readAddress - 1;					
             END IF;		
-																	
+		
+		WHEN S_Delay =>
+			counterDelay <= counterDelay + 1;
+			IF counterDelay = 0 THEN
+				IF user_buffer_full = '1' THEN
+				    idxByte <= idxByte - BYTES_PER_TRANSFER; -- In bytes.
+					RAM_readAddress <= RAM_readAddress - 1;	
+				END IF;
+			ELSIF counterDelay >= 1 THEN
+				counterDelay <= 0;
+				state <= S_Full;
+			END IF;
+			
 		WHEN OTHERS =>
 		
 			state <= S_Check1;

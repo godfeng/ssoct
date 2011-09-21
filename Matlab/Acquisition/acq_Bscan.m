@@ -1,4 +1,4 @@
-function Bscan  = acq_Bscan(varargin)
+function [Bscan, varargout]  = acq_Bscan(varargin)
 % Acquires a single B-scan (frame) of nLinesPerFrame
 % SYNTAX:
 % Bscan = acq_Bscan(windowType, correctBackground)
@@ -25,7 +25,7 @@ global SSOctDefaults
 numVarArgs = length(varargin);
 if numVarArgs > 2
     error('correct_B_scan:TooManyInputs', ...
-        'requires at most 1 optional input');
+        'requires at most 2 optional inputs');
 end
 
 % set defaults for optional inputs (@hann window)
@@ -42,16 +42,22 @@ optArgs(1:numVarArgs) = varargin;
 
 % Preallocate
 Bscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]);
+rawBscan16 = int16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]));
 
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
-    % Reads an array of NSAMPLES elements from a connection
-    Bscan(:,iLines) = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.NSAMPLES 1],'int16');
-    % Correct first sample (always zero, should know why)
-    Bscan(1,iLines) = Bscan(2,iLines);
+    % Reads an array of nWordsPerAline elements from a connection
+    tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'int16');
+    
+    % Only keep NSAMPLES from transmitted data array (transposed)
+    Bscan(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
+    rawBscan16(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
 end
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground
     Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
+end
+if nargout == 2,
+    varargout{1} = rawBscan16;
 end
 % ==============================================================================
 % [EOF]

@@ -41,7 +41,11 @@ SSOctDefaults.screenSize        = [1 40 SSOctDefaults.screenSize(3)...
 SSOctDefaults.serverAddress     = '192.168.1.234';
 SSOctDefaults.portNumber        = 30;
 % Number of samples per A-line (1170)
-SSOctDefaults.NSAMPLES          = 1184;
+SSOctDefaults.NSAMPLES          = 1170;
+% Number of bytes per A-line (2368) > NSAMPLES*2=2340
+SSOctDefaults.nBytesPerAline    = 2368;
+% Number of 16-bit words per A-line (nBytesPerAline/2)
+SSOctDefaults.nWordsPerAline    = SSOctDefaults.nBytesPerAline/2;
 % Tx & Rx buffer size for all socket sends & receives
 SSOctDefaults.BUFFERSIZE        = 9000;
 % Number of characters of startup menu

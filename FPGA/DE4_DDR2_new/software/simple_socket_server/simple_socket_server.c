@@ -1,5 +1,5 @@
 // OCT acquisition and data transfer via TCP/IP
-// Version 03
+// Version 2011/09/21
 /******************************************************************************
 * Copyright (c) 2006 Altera Corporation, San Jose, California, USA.           *
 * All rights reserved. All use of this software and documentation is          *
@@ -45,7 +45,7 @@
 
 /* Constants */
 #define NSAMPLES            1170    // 1170         (Fixed by the swept source laser)
-#define NBYTES_PER_ALINE    2368    // 1170*2=2340  (Must be a multiple of 32 bytes)
+#define NBYTES_PER_ALINE    2368    // 1170*2=2340  (Must be a multiple of 32 bytes) -> SSS_TX_BUF_SIZEs
 #define NFRAMES             64      // 64           (Given by LabView)
 #define NALINES_PER_FRAME   1024    // 1024         (Given by LabView)
 
@@ -494,4 +494,22 @@ void SSSSimpleSocketServerTask()
 * of California and by the laws of the United States of America.              *
 * Altera does not recommend, suggest or require that this reference design    *
 * file be used in conjunction or combination with any other product.          *
+******************************************************************************/
+
+/******************************************************************************
+                Representation of Data Types
+Type                Size (Bytes)    Representation
+char, signed char   1               two’s complement (ASCII)
+unsigned char       1               binary (ASCII)
+short, signed short 2               two’s complement
+unsigned short      2               binary
+int, signed int     4               two’s complement
+unsigned int        4               binary
+long, signed long   4               two’s complement
+unsigned long       4               binary
+float               4               IEEE
+double              8               IEEE
+pointer             4               binary
+long long           8               two’s complement
+unsigned long long  8               binary
 ******************************************************************************/

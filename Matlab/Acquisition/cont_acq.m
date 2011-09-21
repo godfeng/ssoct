@@ -11,7 +11,7 @@ function cont_acq
 global SSOctDefaults
 
 % Preallocation
-rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
+% rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
 
 if SSOctDefaults.save2file
     fprintf('Continuous acquisition of %d A-lines...\n',SSOctDefaults.nAcqSamples)
@@ -41,25 +41,25 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
 if SSOctDefaults.save2file
     tic
     for iFrames = 1:SSOctDefaults.nFrames,
-        rawBscan = displayAcqOCT(iFrames);
+        [~, rawBscan16] = displayAcqOCT(iFrames);
         % --------------------- Save a B-scan frame ----------------------------
-        fwrite(fid, rawBscan, 'double');
+        fwrite(fid, rawBscan16, 'int16');
     end
     fclose(fid);
-    close(gcf)
+
     disp(['File saved as: ' filename])
     frameRate = toc/SSOctDefaults.nFrames;
     fprintf('Frame Rate = %d Hz\n',frameRate)
 else
-    SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
-        SSOctDefaults.nLinesPerFrame]);
+%     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
+%         SSOctDefaults.nLinesPerFrame]);
     for iFrames = 1:SSOctDefaults.nFrames,
         displayAcqOCT(iFrames);
     end
 end
 % ==============================================================================
 
-function rawBscan = displayAcqOCT(iFrames)
+function [rawBscan rawBscan16] = displayAcqOCT(iFrames)
 % ------------- Acquires and displays a single B-scan (frame) ------------------
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
@@ -70,8 +70,8 @@ function rawBscan = displayAcqOCT(iFrames)
 % Load defaults
 global SSOctDefaults
 % Acquire raw B-scan
-rawBscan = acq_Bscan(@rectwin,false);
-SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
+[rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
+% SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
 % Negative and Positive envelope
 [posEnv negEnv] = detect_envelope(rawBscan(:,2));
 % -------------- Plot a single interferogram (A-line) ------------------

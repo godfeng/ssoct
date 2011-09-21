@@ -22,11 +22,16 @@ function varargout = ss_oct_get_defaults(defstr, varargin)
 % Edgar Guevara
 % 2011/07/11
 
+% Close all open files
+fclose('all');
+
 % Just a name change to follow the variable created by spm_lot_defaults //EGC
 global SSOctDefaults;
-% if isempty(SSOctDefaults)
+
+% Initialize defaults structure
+if isempty(SSOctDefaults)
     ss_oct_defaults;
-% end
+end
 
 % ==============================================================================
 % [EOF]

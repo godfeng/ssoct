@@ -12,6 +12,8 @@
 % Edgar Guevara
 % 2011/07/11
 
+% Clear global data
+clear global SSOctDefaults
 % Load default parameters
 ss_oct_get_defaults
 
