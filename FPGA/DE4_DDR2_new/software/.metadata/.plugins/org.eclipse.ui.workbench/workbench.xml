@@ -179,13 +179,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 </editors>
-<item historyLabel="simple_socket_server.c" index="0">
-<position/>
-</item>
-<item historyLabel="led.c" index="1">
-<position info="not_deleted" x="1838" y="0"/>
-</item>
 <item historyLabel="iniche_init.c" index="2">
 <position/>
 </item>
@@ -327,8 +322,14 @@
 <item historyLabel="simple_socket_server.h" index="8">
 <position info="not_deleted" x="5998" y="0"/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="0">
+<item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="20948" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.h" index="11">
+<position/>
+</item>
+<item active="true" historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="10215" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>

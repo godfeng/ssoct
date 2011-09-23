@@ -487,7 +487,7 @@ reg          				conf_wr;
 //  Structural coding
 assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
 assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk3_set_wr 			= 4'd6; 			//156.25 MHZ 4'd7
+assign clk3_set_wr 			= 4'd4; 			//156.25 MHZ 4'd7
 
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
@@ -632,8 +632,8 @@ assign	SEG1_D				= 7'h7F;
 assign	clk156MHz			= PLL_CLKIN_p;
 
 // Assign 150 MHz clock clk150MHz to differential outputs to HSMC-B board
-//assign	FPGA_CLK_A_P		=  clk150MHz;
-//assign	FPGA_CLK_A_N		= ~clk150MHz;
+assign	FPGA_CLK_A_P		=  clk156MHz;
+assign	FPGA_CLK_A_N		= ~clk156MHz;
 
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
@@ -659,7 +659,7 @@ RAM	RAM_inst (
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
 	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [7:0] Read address (read_RAM_address) from NIOS
-	.rdclock ( clk156MHz ),						// input Read clock (clk156MHz)
+	.rdclock ( clk50MHz ),						// input Read clock (clk156MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 
@@ -846,7 +846,7 @@ sin400k_st sin400k_st_inst (
 	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd28633115 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
+	.phi_inc_i( 32'd42949673 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
 												// d10995116 for 400 kHz sinus,
 												// d27487791 for 1 MHz.
 	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine

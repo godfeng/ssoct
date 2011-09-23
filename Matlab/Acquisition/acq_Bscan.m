@@ -47,9 +47,9 @@ rawBscan16 = int16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]))
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
     % Reads an array of nWordsPerAline elements from a connection
     tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'int16');
-    
     % Only keep NSAMPLES from transmitted data array (transposed)
     Bscan(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
+    % B-scan saved as int16
     rawBscan16(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
 end
 % CORRECTION ALGORITHM HERE!!!!

@@ -46,8 +46,6 @@ SSOctDefaults.NSAMPLES          = 1170;
 SSOctDefaults.nBytesPerAline    = 2368;
 % Number of 16-bit words per A-line (nBytesPerAline/2)
 SSOctDefaults.nWordsPerAline    = SSOctDefaults.nBytesPerAline/2;
-% Tx & Rx buffer size for all socket sends & receives
-SSOctDefaults.BUFFERSIZE        = 9000;
 % Number of characters of startup menu
 SSOctDefaults.MENUSIZE          = 351;
 % Save to file
@@ -59,6 +57,9 @@ SSOctDefaults.nFrames           = 64;
 % Number of total samples per scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;
+% Tx & Rx buffer size for all socket sends & receives
+SSOctDefaults.BUFFERSIZE        = SSOctDefaults.nBytesPerAline *...
+    SSOctDefaults.nLinesPerFrame;
 % Display B-scan in log scale
 SSOctDefaults.displayLog        = false;
 % Display Color Bar

@@ -10,9 +10,6 @@ function cont_acq
 % Modifies values of global variable
 global SSOctDefaults
 
-% Preallocation
-% rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
-
 if SSOctDefaults.save2file
     fprintf('Continuous acquisition of %d A-lines...\n',SSOctDefaults.nAcqSamples)
 else
