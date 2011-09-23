@@ -487,7 +487,7 @@ reg          				conf_wr;
 //  Structural coding
 assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
 assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk3_set_wr 			= 4'd7; 			//156.25 MHZ 4'd7
+assign clk3_set_wr 			= 4'd6; 			//156.25 MHZ 4'd7
 
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
@@ -630,14 +630,16 @@ assign	SEG1_D				= 7'h7F;
 
 // Assign 156.25 MHz clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
-assign	FPGA_CLK_A_P		=  clk156MHz;
-assign	FPGA_CLK_A_N		= ~clk156MHz;
+
+// Assign 150 MHz clock clk150MHz to differential outputs to HSMC-B board
+//assign	FPGA_CLK_A_P		=  clk150MHz;
+//assign	FPGA_CLK_A_N		= ~clk150MHz;
 
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
 
 // Assign clk150MHz to GCLKOUT_FPGA (SMA_CLOCKOUT1/SMA_CLOCKOUT2)
-assign	GCLKOUT_FPGA		=  clk150MHz;
+//assign	GCLKOUT_FPGA		=  clk150MHz;
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
@@ -819,11 +821,11 @@ DE4_SOPC DE4_SOPC_inst(
 //==============================================================================
 
 // External clock to sample the ADC
-pll_150 pll_150_inst
-(
-	.inclk0(clk50MHz) ,							// input  clk50MHz
-	.c0(clk150MHz) 								// output  clk150MHz
-);
+//pll_150 pll_150_inst
+//(
+//	.inclk0(clk50MHz) ,							// input  clk50MHz
+//	.c0(clk150MHz) 								// output  clk150MHz
+//);
 
 // Fan Control
 FAN_PWM FAN_PWM_inst (
@@ -844,7 +846,7 @@ sin400k_st sin400k_st_inst (
 	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd27487791 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
+	.phi_inc_i( 32'd28633115 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
 												// d10995116 for 400 kHz sinus,
 												// d27487791 for 1 MHz.
 	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine

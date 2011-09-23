@@ -26,7 +26,7 @@ SSOctDefaults.dirUser           = 'D:\Edgar\Documents\ssoct\Matlab\';
 % Data directory
 SSOctDefaults.dirExp            = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
 % Current Experiments folder
-SSOctDefaults.dirCurrExp        = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+SSOctDefaults.dirCurrExp        = [];
 % Name of the file containing acquisition parameters
 SSOctDefaults.acqParamFileName  = 'acqParam.csv';
 % Maximize figure

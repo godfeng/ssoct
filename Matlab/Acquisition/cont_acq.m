@@ -28,7 +28,7 @@ set(gcf, 'OuterPosition', SSOctDefaults.screenSize);
 
 if SSOctDefaults.save2file
     % Default file name
-    filename = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
+    filename = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
     % Save file name of current experiment in global structure
     SSOctDefaults.CurrExpFileName = filename;
     % Create binary file
