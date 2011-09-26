@@ -383,6 +383,7 @@ wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
 wire						clk150MHz;			// clock from internal PLL @ 150 MHz
+wire						clockVar;			// output of the PLL fed by ADA_DCO
 
 //// External PLL
 wire						MAX_I2C_SCLK;		// SPI
@@ -487,7 +488,7 @@ reg          				conf_wr;
 //  Structural coding
 assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
 assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk3_set_wr 			= 4'd4; 			//156.25 MHZ 4'd7
+assign clk3_set_wr 			= 4'd7; 			//156.25 MHZ 4'd7
 
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
@@ -641,9 +642,16 @@ assign	clk50MHz			= OSC_50_BANK3;
 // Assign clk150MHz to GCLKOUT_FPGA (SMA_CLOCKOUT1/SMA_CLOCKOUT2)
 //assign	GCLKOUT_FPGA		=  clk150MHz;
 
+// PLL dephasing ADA_DCO
+pll_DCO pll_DCO_inst
+(
+	.inclk0(ADA_DCO) ,							// input  ADA_DCO
+	.c0(clockVar) 								// output  clockVar
+);
+
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
-	.clock( ADA_DCO ) ,							// input  clock_sig (ADA_DCO)
+	.clock( clockVar ) ,						// input  clock_sig (ADA_DCO)
 	.sclr( ~trigger50kHz ) ,					// input  ~trigger50kHz
 	.sample_position( write_RAM_address ) ,		// output [10:0] write_RAM_address
 	.acq_busy( acq_busy ) ,						// output acq_busy
@@ -655,11 +663,11 @@ sample_addressing_custom sample_addressing_custom_inst (
 // 4096 words (16-bit data bus) RAM
 RAM	RAM_inst (
 	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
-	.wrclock ( ADA_DCO ),						// input Write clock (ADA_DCO)
+	.wrclock ( clockVar ),						// input Write clock (ADA_DCO)
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
 	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [7:0] Read address (read_RAM_address) from NIOS
-	.rdclock ( clk50MHz ),						// input Read clock (clk156MHz)
+	.rdclock ( clk156MHz ),						// input Read clock (clk156MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 

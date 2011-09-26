@@ -31,8 +31,10 @@ if SSOctDefaults.save2file
     % Create binary file
     fid = fopen(filename, 'w');
 end
-% Send command 67 ('C\n\r') to the socket server
-pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13]));
+% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
+pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
+    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
 
 % ------------------------------ Main Loop -------------------------------------
 if SSOctDefaults.save2file
@@ -48,11 +50,13 @@ if SSOctDefaults.save2file
     frameRate = toc/SSOctDefaults.nFrames;
     fprintf('Frame Rate = %d Hz\n',frameRate)
 else
+%     Save data in a big variable
 %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
 %         SSOctDefaults.nLinesPerFrame]);
     for iFrames = 1:SSOctDefaults.nFrames,
         displayAcqOCT(iFrames);
     end
+    disp('Transfer done!')
 end
 % ==============================================================================
 
@@ -68,6 +72,7 @@ function [rawBscan rawBscan16] = displayAcqOCT(iFrames)
 global SSOctDefaults
 % Acquire raw B-scan
 [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
+%     Save data in a big variable
 % SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
 % Negative and Positive envelope
 [posEnv negEnv] = detect_envelope(rawBscan(:,2));

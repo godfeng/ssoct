@@ -31,7 +31,8 @@ SSOctDefaults.dirCurrExp        = [];
 SSOctDefaults.acqParamFileName  = 'acqParam.csv';
 % Maximize figure
 SSOctDefaults.screenSize        = get(0,'Screensize');
-SSOctDefaults.screenSize        = [1 40 SSOctDefaults.screenSize(3)...
+SSOctDefaults.screenSize        = [1+SSOctDefaults.screenSize(3)/2 40 ...
+    SSOctDefaults.screenSize(3)/2 ...
     SSOctDefaults.screenSize(4)-40];
 
 %===============================================================================

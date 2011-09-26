@@ -46,8 +46,8 @@
 /* Constants */
 #define NSAMPLES            1170    // 1170         (Fixed by the swept source laser)
 #define NBYTES_PER_ALINE    2368    // 1170*2=2340  (Must be a multiple of 32 bytes) -> SSS_TX_BUF_SIZEs
-#define NFRAMES             64      // 64           (Given by LabView)
-#define NALINES_PER_FRAME   1024    // 1024         (Given by LabView)
+//#define NFRAMES             64      // 64           (Given by LabView)
+//#define NALINES_PER_FRAME   1024    // 1024         (Given by LabView)
 
 /*
  * sss_reset_connection()
@@ -168,6 +168,10 @@ void sss_exec_command(SSSConn* conn)
     unsigned short  bytes_sent;
     unsigned short  iLoop;
     unsigned long   iLines;
+    unsigned short  nLinesPerFrame = 0;
+    unsigned char byte0 = 0;
+    unsigned char byte1 = 0;
+    unsigned short  nFrames = 0;
     
     /*
     * "SSSCommand" is declared static so that the data will reside 
@@ -203,37 +207,50 @@ void sss_exec_command(SSSConn* conn)
                         break;
                         
                     case 67:
+                        // Transferred volume signal = 0
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                        
                         printf("Continuous acquisition! \n");
+                        // Discard \n
+                        byte0 = *conn->rx_rd_pos++;
+                        //Discard \r
+                        byte1 = *conn->rx_rd_pos++;
+                        
+                        // Read byte 0 of command nLinesPerFrame
+                        nLinesPerFrame = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nLinesPerFrame
+                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+                        // Read byte 0 of command nFrames
+                        nFrames = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nFrames
+                        nFrames += (*conn->rx_rd_pos++) * 256;
+                        printf("Lines: %d Frames: %d\n",nLinesPerFrame,nFrames);
+                        
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop (ASCII code = 67)
                         //////////////////////////////////////////////////////////
-                        // Assert signal when the whole volume is transfered
-                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-                        for (iLines = 0; iLines < NALINES_PER_FRAME*NFRAMES; iLines++)
+                        for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
                         {
                             //////////////////////////////////////////////////////////
                             // Send single A-line
                             //////////////////////////////////////////////////////////
-                                
                             // Begin the transfer
                             tx_wr_pos = tx_buf;
                             
-                            for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address+=2)
+                            for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
                                 {
                                     // Read data port (from RAM)
-                                    //ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
                                     DDR2_add = iLines*NBYTES_PER_ALINE + RAM_address;
+                                    
                                     // Write address port (to RAM)
-                                    //IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
                                     dataPointer = (unsigned char*)DDR2_add;
+                                    
                                     // Send 16-bit data (swapped upper and lower bytes)
                                     *tx_wr_pos++ = dataPointer[1]; 
                                     *tx_wr_pos++ = dataPointer[0];
                                 } // END for (RAM_address = 0; RAM_address < NSAMPLES; RAM_address++)
+                            // Send data to the client
                             bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                            //printf("L:%d BS: %d\n",iLines,bytes_sent);
-                            //printf("DDR2_add: %d\n",DDR2_add);
-
                             //////////////////////////////////////////////////////////
                             // single A-line transfer done!
                             //////////////////////////////////////////////////////////
@@ -241,6 +258,7 @@ void sss_exec_command(SSSConn* conn)
                             // Wait a little... Should know why...
                             for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
                         } // END of continuous acquisition loop
+                        
                         printf("Volume transferred\n");
                         // Assert signal when the whole volume is transfered
                         IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
