@@ -46,14 +46,11 @@
 </view>
 <view id="org.eclipse.ui.views.ResourceNavigator" partName="Navigator">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
-<filters>
-<filter element=".*" isEnabled="false"/>
+<filters>&#x0A;<filter element=".*" isEnabled="false"/>
 </filters>
-<expanded>
-<element path="/simple_socket_server"/>
+<expanded>&#x0A;<element path="/simple_socket_server"/>
 </expanded>
-<selection>
-<element path="/simple_socket_server/iniche_init.c"/>
+<selection>&#x0A;<element path="/simple_socket_server/iniche_init.c"/>
 </selection>
 </viewState>
 </view>

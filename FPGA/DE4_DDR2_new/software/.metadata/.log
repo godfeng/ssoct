@@ -3369,3 +3369,12 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.altera.ide.core 1 0 2011-09-27 10:48:47.076
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-09-27 13:41:25.258 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-09-27 13:42:33.059
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 

@@ -595,11 +595,11 @@ assign	FLASH_RESET_n		= global_reset_n;
 // assign for ADC control signal
 //==============================================================================
 assign	AD_SCLK				= 1'b0;				// (DFS)Data Format Select = binary (0)
-assign	AD_SDIO				= 1'b1;				// (DCS)Duty Cycle Stabilizer ON
+assign	AD_SDIO				= 1'b0;				// (DCS)Duty Cycle Stabilizer OFF (0)
 assign	ADA_OE				= 1'b0;				// enable ADA output (active LOW)
-assign	ADA_SPI_CS			= 1'b1;				// disable serial port interface A
+assign	ADA_SPI_CS			= 1'b1;				// disable serial port interface A (1)
 assign	ADB_OE				= 1'b0;				// enable ADB output (active LOW)
-assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B
+assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 
 // sinus wave to DA
 assign	DA					= o_sine;			// Output sinus wave to DAC A
@@ -643,11 +643,13 @@ assign	clk50MHz			= OSC_50_BANK3;
 //assign	GCLKOUT_FPGA		=  clk150MHz;
 
 // PLL dephasing ADA_DCO
-pll_DCO pll_DCO_inst
-(
-	.inclk0(ADA_DCO) ,							// input  ADA_DCO
-	.c0(clockVar) 								// output  clockVar
-);
+//pll_DCO pll_DCO_inst
+//(
+//	.inclk0(ADA_DCO) ,							// input  ADA_DCO
+//	.c0(clockVar) 								// output  clockVar
+//);
+
+assign	clockVar			=  ADA_DCO;
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
