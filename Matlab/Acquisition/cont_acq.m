@@ -53,8 +53,11 @@ else
 %     Save data in a big variable
 %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
 %         SSOctDefaults.nLinesPerFrame]);
-    for iFrames = 1:SSOctDefaults.nFrames,
+%     for iFrames = 1:SSOctDefaults.nFrames,
+    iFrames = 1;
+    while(1)
         displayAcqOCT(iFrames);
+        iFrames = iFrames + 1;
     end
     disp('Transfer done!')
 end

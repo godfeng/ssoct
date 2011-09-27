@@ -6,22 +6,23 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="true" key="wholeword"/>
+		<item value="DDR2_address" key="selection"/>
 		<list key="findhistory">
+			<item value="DDR2_address"/>
+			<item value="DDR2_add"/>
+			<item value="main"/>
+			<item value="sss_send_menu"/>
 			<item value="9000"/>
 			<item value="buffer"/>
 			<item value="DDR2_data"/>
 			<item value="ADC_data"/>
-			<item value="SSSCreateTasks"/>
-			<item value="create"/>
-			<item value="LED7SegLightshowTask"/>
-			<item value="LEDManagementTaskStk"/>
 		</list>
 		<list key="replacehistory">
+			<item value="DDR2_address"/>
 			<item value="DDR2_add"/>
 			<item value="DDR2_data"/>
 		</list>

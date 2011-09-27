@@ -35,6 +35,9 @@
 #include "libport.h"
 #include "osport.h"
 
+/* Altera Avalon registers */
+#include "altera_avalon_pio_regs.h" 
+
 /* Definition of task stack for the initial task which will initialize the NicheStack
  * TCP/IP Stack and then initialize the rest of the Simple Socket Server example tasks. 
  */
@@ -86,6 +89,14 @@ void SSSInitialTask(void *task_data)
   /* Application Specific Task Launching Code Block Begin */
 
   printf("\nSimple Socket Server starting up\n");
+  
+  // Transmit initial trigger to LabView
+  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+  // Pause 10 000 microseconds
+  usleep(10000);
+  // Reset trigger to LabView
+  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+  printf("Acquisition start trigger sent!\n");
 
   /* Create the main simple socket server task. */
   TK_NEWTASK(&ssstask);
