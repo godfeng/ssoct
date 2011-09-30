@@ -862,7 +862,7 @@ sin400k_st sin400k_st_inst (
 	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd27487791 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
+	.phi_inc_i( 32'd10995116 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
 												// d10995116 for 400 kHz sinus,
 												// d27487791 for 1 MHz.
 	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine

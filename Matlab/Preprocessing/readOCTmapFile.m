@@ -53,9 +53,12 @@ if isempty(fileName)
         % Map the .dat file to a variable
         mappedFile = memmapfile(fullfile(pathName,fileName), 'format', 'int16',...
             'writable', false);
+        % Calculate the number of recorded B-frames
+        nFramesSaved = numel(mappedFile.Data) / SSOctDefaults.NSAMPLES / ...
+            SSOctDefaults.nLinesPerFrame;
         % Apply the right format to the mapped matrix
         mappedFile.Format = {'int16' [SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame...
-            SSOctDefaults.nFrames] 'rawData'};
+            nFramesSaved] 'rawData'};
     end
 else
     [pathName, fileName, fileExt] = fileparts(fileName);
@@ -65,9 +68,12 @@ else
     % Map the .dat file to a variable
     mappedFile = memmapfile(fullfile(pathName,[fileName fileExt]), 'format', 'int16',...
         'writable', false);
+    % Calculate the number of recorded B-frames
+    nFramesSaved = numel(mappedFile.Data) / SSOctDefaults.NSAMPLES / ...
+        SSOctDefaults.nLinesPerFrame;
     % Apply the right format to the mapped matrix
     mappedFile.Format = {'int16' [SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame...
-        SSOctDefaults.nFrames] 'rawData'};
+        nFramesSaved] 'rawData'};
 end
 % ==============================================================================
 % [EOF]

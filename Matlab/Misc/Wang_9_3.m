@@ -4,8 +4,8 @@
 pathname = 'D:\Edgar\Documents\ssoct\Matlab\Misc\';
 cd(pathname)
 
-lambda0 = 830E-9; % center wavelength
-dlambda = 60E-9; % bandwidth (delta lambda)
+lambda0 = 1310E-9; % center wavelength
+dlambda = 200E-9; % bandwidth (delta lambda)
 c = 3E8; % speed of light
 
 lc = 4*log(2)/pi*lambda0^2/dlambda 	% coherence length
@@ -64,6 +64,19 @@ xlabel('\Deltal/l_c')
 ylabel('Signals')
 axis([-0.6, 0.6, -1, 1])
 legend('Demodulated','Original')
+
+
+% Copy of the interferogram
+
+figure
+set(gcf,'color','w')
+plot(dl/lc, Iac, 'r', 'LineWidth', 3)
+% title('(a) Interferogram')
+% xlabel('\Deltal/l_c')
+% ylabel('Signal')
+axis([-0.6, 0.6, -1, 1])
+axis off
+% export_fig(gcf,'D:\Edgar\Documents\Dropbox\Docs\OCT\Screenshots\OCT_signal.png')
 
 % ==============================================================================
 % [EOF]

@@ -55,6 +55,8 @@ SSOctDefaults.save2file         = false;
 SSOctDefaults.nLinesPerFrame    = 1024;
 % Number of frames per volume
 SSOctDefaults.nFrames           = 64;
+% Number of saved frames
+SSOctDefaults.nFramesSaved      = 0;
 % Number of total samples per scan
 SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
     SSOctDefaults.nFrames;

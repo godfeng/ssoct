@@ -39,28 +39,33 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
 % ------------------------------ Main Loop -------------------------------------
 if SSOctDefaults.save2file
     tic
-    for iFrames = 1:SSOctDefaults.nFrames,
+    iFrames = 1;
+    while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
+        %for iFrames = 1:SSOctDefaults.nFrames,
         [~, rawBscan16] = displayAcqOCT(iFrames);
+        iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'int16');
     end
     fclose(fid);
-
+    
     disp(['File saved as: ' filename])
     frameRate = toc/SSOctDefaults.nFrames;
     fprintf('Frame Rate = %d Hz\n',frameRate)
 else
-%     Save data in a big variable
-%     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
-%         SSOctDefaults.nLinesPerFrame]);
-%     for iFrames = 1:SSOctDefaults.nFrames,
+    %     Save data in a big variable
+    %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
+    %         SSOctDefaults.nLinesPerFrame]);
+    %     for iFrames = 1:SSOctDefaults.nFrames,
     iFrames = 1;
-    while(1)
+    while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
         displayAcqOCT(iFrames);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')
 end
+% Disconnect from socket server
+disconnect_from_FPGA
 % ==============================================================================
 
 function [rawBscan rawBscan16] = displayAcqOCT(iFrames)
