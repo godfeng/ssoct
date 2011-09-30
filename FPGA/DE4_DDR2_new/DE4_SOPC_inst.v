@@ -25,6 +25,7 @@
       .flash_tristate_bridge_readn                  (flash_tristate_bridge_readn),
       .flash_tristate_bridge_writen                 (flash_tristate_bridge_writen),
       .global_reset_n_to_the_ddr2                   (global_reset_n_to_the_ddr2),
+      .in_port_to_the_vol_recording_done_pio        (in_port_to_the_vol_recording_done_pio),
       .led_an_from_the_tse_mac                      (led_an_from_the_tse_mac),
       .led_char_err_from_the_tse_mac                (led_char_err_from_the_tse_mac),
       .led_col_from_the_tse_mac                     (led_col_from_the_tse_mac),

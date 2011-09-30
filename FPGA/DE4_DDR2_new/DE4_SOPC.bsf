@@ -1,8 +1,8 @@
 (header "symbol" (version "1.1"))
 (symbol
-(rect 0 0 592 1008)
+(rect 0 0 592 1040)
 (text "DE4_SOPC" (rect 4 0 87 16)(font "Arial" (font_size 10)))
-(text "inst" (rect 4 992 28 1008)(font "Arial"))
+(text "inst" (rect 4 1024 28 1040)(font "Arial"))
 (port
 (pt 0 32)
 (input)
@@ -135,6 +135,13 @@
 (text "rxp_to_the_tse_mac " (rect 0 0 98 16)(font "Arial" (font_size 8)))
 (text "rxp_to_the_tse_mac " (rect 20 825 118 841)(font "Arial" (font_size 8)))
 (line (pt 0 832)(pt 16 832)(line_width 1))
+)
+(port
+(pt 0 976)
+(input)
+(text "in_port_to_the_vol_recording_done_pio " (rect 0 0 191 16)(font "Arial" (font_size 8)))
+(text "in_port_to_the_vol_recording_done_pio " (rect 20 969 211 985)(font "Arial" (font_size 8)))
+(line (pt 0 976)(pt 16 976)(line_width 1))
 )
 (port
 (pt 592 32)
@@ -473,11 +480,11 @@
 (line (pt 576 944)(pt 592 944)(line_width 1))
 )
 (port
-(pt 592 976)
+(pt 592 1008)
 (output)
 (text "out_port_from_the_vol_transfer_done_pio " (rect 0 0 200 16)(font "Arial" (font_size 8)))
-(text "out_port_from_the_vol_transfer_done_pio " (rect 364 969 565 985)(font "Arial" (font_size 8)))
-(line (pt 576 976)(pt 592 976)(line_width 1))
+(text "out_port_from_the_vol_transfer_done_pio " (rect 364 1001 565 1017)(font "Arial" (font_size 8)))
+(line (pt 576 1008)(pt 592 1008)(line_width 1))
 )
 (drawing
 (line (pt 16 112)(pt 575 112)(color 0 0 0)(dotted)(line_width 1))
@@ -486,5 +493,6 @@
 (line (pt 16 672)(pt 575 672)(color 0 0 0)(dotted)(line_width 1))
 (line (pt 16 784)(pt 575 784)(color 0 0 0)(dotted)(line_width 1))
 (line (pt 16 960)(pt 575 960)(color 0 0 0)(dotted)(line_width 1))
-(rectangle (rect 16 16 576 992)(line_width 1)))
+(line (pt 16 992)(pt 575 992)(color 0 0 0)(dotted)(line_width 1))
+(rectangle (rect 16 16 576 1024)(line_width 1)))
 )

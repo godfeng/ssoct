@@ -382,7 +382,7 @@ wire						global_reset_n;		// delayed reset signal
 wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
-wire						clk150MHz;			// clock from internal PLL @ 150 MHz
+wire						clk125MHz;			// clock from internal PLL @ 125 MHz
 wire						clockVar;			// output of the PLL fed by ADA_DCO
 
 //// External PLL
@@ -441,6 +441,9 @@ wire						trigger50kHz;
 
 // Receive signal from LabView to record data to DDR2
 wire						enableRecording;
+
+// Receive signal from LabView when recording to DDR2 is done
+wire						volRecordingDone;
 
 // Transmit signal to LabView when a single volume is trasnferred via TCP/IP
 wire						volTransferDone;
@@ -602,7 +605,7 @@ assign	ADB_OE				= 1'b0;				// enable ADB output (active LOW)
 assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 
 // sinus wave to DA
-assign	DA					= o_sine;			// Output sinus wave to DAC A
+assign	DB					= o_sine;			// Output sinus wave to DAC B
 
 // Assign 50 kHz Sweep Trigger
 assign	sweepTrigger		= GCLKIN;
@@ -613,6 +616,9 @@ assign	GPIO[0]				= sweepTrigger;
 assign	enableRecording		= GPIO[6];
 // Display enable signal from LabView
 assign	SEG0_DP				= ~enableRecording;
+
+// Receive signal from LabView to record data to DDR2 in GPIO[6]
+assign	volRecordingDone	= GPIO[5];
 
 // Acquisition is triggered only when LabView asserts the enable
 assign 	trigger50kHz		= enableRecording & sweepTrigger;
@@ -629,26 +635,17 @@ assign	LED[6:0]			= ~stateLED;
 assign	SEG0_D				= 7'h7F;
 assign	SEG1_D				= 7'h7F;
 
-// Assign 156.25 MHz clock PLL_CLKIN_p to clk156MHz
+// Assign 156.25 MHz external clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
 
-// Assign 150 MHz clock clk150MHz to differential outputs to HSMC-B board
-assign	FPGA_CLK_A_P		=  clk156MHz;
-assign	FPGA_CLK_A_N		= ~clk156MHz;
+// Assign clk125MHz to differential outputs to HSMC-B board
+assign	FPGA_CLK_B_P		=  clk125MHz;
+assign	FPGA_CLK_B_N		= ~clk125MHz;
 
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
 
-// Assign clk150MHz to GCLKOUT_FPGA (SMA_CLOCKOUT1/SMA_CLOCKOUT2)
-//assign	GCLKOUT_FPGA		=  clk150MHz;
-
-// PLL dephasing ADA_DCO
-//pll_DCO pll_DCO_inst
-//(
-//	.inclk0(ADA_DCO) ,							// input  ADA_DCO
-//	.c0(clockVar) 								// output  clockVar
-//);
-
+// Assign ADA_DCO to wire clockVar
 assign	clockVar			=  ADA_DCO;
 
 // Synchronization of sampling with sweep trigger
@@ -823,7 +820,9 @@ DE4_SOPC DE4_SOPC_inst(
 	.txp_from_the_tse_mac(lvds_txp) ,										// output  	lvds_txp
 	
 	// PIO pin to assert signal when a volume is transfered via TCP/IP
-	.out_port_from_the_vol_transfer_done_pio(volTransferDone) 				// output  volTransferDone
+	.out_port_from_the_vol_transfer_done_pio(volTransferDone) ,				// output  	volTransferDone
+	// PIO pin to receive signal when data recording to DDR2 is done
+	.in_port_to_the_vol_recording_done_pio(volRecordingDone) 				// input 	volRecordingDone
 	);
 
 //==============================================================================
@@ -831,10 +830,17 @@ DE4_SOPC DE4_SOPC_inst(
 //==============================================================================
 
 // External clock to sample the ADC
-//pll_150 pll_150_inst
+pll_150 pll_150_inst
+(
+	.inclk0(clk50MHz) ,							// input  clk50MHz
+	.c0(clk125MHz) 								// output  clk125MHz
+);
+
+// PLL dephasing ADA_DCO
+//pll_DCO pll_DCO_inst
 //(
-//	.inclk0(clk50MHz) ,							// input  clk50MHz
-//	.c0(clk150MHz) 								// output  clk150MHz
+//	.inclk0(ADA_DCO) ,							// input  ADA_DCO
+//	.c0(clockVar) 								// output  clockVar
 //);
 
 // Fan Control
@@ -856,7 +862,7 @@ sin400k_st sin400k_st_inst (
 	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd42949673 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
+	.phi_inc_i( 32'd27487791 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
 												// d10995116 for 400 kHz sinus,
 												// d27487791 for 1 MHz.
 	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine
