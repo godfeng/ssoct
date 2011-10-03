@@ -10,12 +10,6 @@ function cont_acq
 % Modifies values of global variable
 global SSOctDefaults
 
-if SSOctDefaults.save2file
-    fprintf('Continuous acquisition of %d A-lines...\n',SSOctDefaults.nAcqSamples)
-else
-    fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
-end
-
 % New figure on white background
 figure; set(gcf,'color','w')
 % Change figure name
@@ -23,35 +17,35 @@ set(gcf,'Name','Continuous Acquisition')
 % Maximize figure
 set(gcf, 'OuterPosition', SSOctDefaults.screenSize);
 
-if SSOctDefaults.save2file
-    % Default file name
-    filename = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
-    % Save file name of current experiment in global structure
-    SSOctDefaults.CurrExpFileName = filename;
-    % Create binary file
-    fid = fopen(filename, 'w');
-end
 % Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
 pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
+fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 
 % ------------------------------ Main Loop -------------------------------------
 if SSOctDefaults.save2file
+    % Close all open files
+    fclose('all');
+    % Default file name
+    fileName = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
+    % Save file name of current experiment in global structure
+    SSOctDefaults.CurrExpFileName = fileName;
+    % Create binary file
+    fid = fopen(fileName, 'w');
     tic
     iFrames = 1;
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        %for iFrames = 1:SSOctDefaults.nFrames,
         [~, rawBscan16] = displayAcqOCT(iFrames);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
-        fwrite(fid, rawBscan16, 'int16');
+        fwrite(fid, rawBscan16, 'uint16');
     end
     fclose(fid);
     
-    disp(['File saved as: ' filename])
+    disp(['File saved as: ' fileName])
     frameRate = toc/SSOctDefaults.nFrames;
-    fprintf('Frame Rate = %d Hz\n',frameRate)
+    fprintf('Approximate Frame Rate = %d Hz\n',frameRate)
 else
     %     Save data in a big variable
     %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...

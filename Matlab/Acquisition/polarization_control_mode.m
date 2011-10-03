@@ -10,7 +10,7 @@ function polarization_control_mode
 global SSOctDefaults
 
 % Preallocation
-rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'int16');
+rawBscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'uint16');
 
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 
