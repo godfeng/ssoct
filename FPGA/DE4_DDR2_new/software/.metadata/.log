@@ -3524,3 +3524,57 @@ java.lang.NullPointerException
 	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1108)
 	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:344)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SESSION 2011-10-03 19:03:45.935 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 19:03:52.393
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-03 19:29:57.328 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 19:30:12.850
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-03 19:39:10.148 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 19:39:25.326
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-03 19:43:47.999 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 19:44:22.659
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-03 19:47:56.912 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 19:48:04.968
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-03 20:13:08.151 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-03 20:13:13.791
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
