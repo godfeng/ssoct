@@ -8,6 +8,13 @@ function connect2FPGA
 % Modifies values of global variable
 global SSOctDefaults
 
+%Program NIOS
+currentDir = pwd;
+cd(SSOctDefaults.dirLabView)
+% system('progNIOS.bat');
+% system('testfile.bat');
+cd(currentDir)
+
 % Creates tcp/ip connection to the specified 'hostname' and port
 SSOctDefaults.tcpConn = pnet('tcpconnect',SSOctDefaults.serverAddress,SSOctDefaults.portNumber );
 % Necessary pause
