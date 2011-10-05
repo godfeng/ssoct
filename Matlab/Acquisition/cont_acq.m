@@ -33,19 +33,18 @@ if SSOctDefaults.save2file
     SSOctDefaults.CurrExpFileName = fileName;
     % Create binary file
     fid = fopen(fileName, 'w');
-    tic
     iFrames = 1;
+    tic
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
         [~, rawBscan16] = displayAcqOCT(iFrames);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'uint16');
     end
+    frameRate = iFrames/toc;
+    fprintf('Approximate Frame Rate = %d fps\n',frameRate)
     fclose(fid);
-    
     disp(['File saved as: ' fileName])
-    frameRate = toc/SSOctDefaults.nFrames;
-    fprintf('Approximate Frame Rate = %d Hz\n',frameRate)
 else
     %     Save data in a big variable
     %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
