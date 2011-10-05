@@ -90,13 +90,13 @@ void SSSInitialTask(void *task_data)
 
   printf("\nSimple Socket Server starting up\n");
   
-  // Transmit initial trigger to LabView
-  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-  // Pause 10 000 microseconds
-  usleep(10000);
-  // Reset trigger to LabView
-  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-  printf("Acquisition start trigger sent!\n");
+//  // Transmit initial trigger to LabView
+//  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+//  // Pause 10 000 microseconds
+//  usleep(10000);
+//  // Reset trigger to LabView
+//  IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+//  printf("Acquisition start trigger sent!\n");
 
   /* Create the main simple socket server task. */
   TK_NEWTASK(&ssstask);

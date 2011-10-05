@@ -18,9 +18,9 @@
 	<section name="CleanDialogSettings">
 		<item value="524" key="DIALOG_WIDTH"/>
 		<item value="false" key="BUILD_NOW"/>
-		<item value="249" key="DIALOG_Y_ORIGIN"/>
+		<item value="108" key="DIALOG_Y_ORIGIN"/>
 		<item value="395" key="DIALOG_HEIGHT"/>
-		<item value="1396" key="DIALOG_X_ORIGIN"/>
+		<item value="957" key="DIALOG_X_ORIGIN"/>
 		<item value="false" key="TOGGLE_SELECTED"/>
 	</section>
 	<section name="NewWizardAction">

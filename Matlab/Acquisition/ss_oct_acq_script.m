@@ -32,15 +32,6 @@ connect2FPGA
 % Flush data buffer of the connection
 flush_data
 
-% Send commands to test LEDs on the FPGA board
-% LED_test
-
-% Take reference and sample measurement
-% [sampleArm, refArm] = reference_measure;
-
-% Save reference and sample arm measurements
-% save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm','refArm');
-
 %% Start continuous acquisition
 cont_acq
 % ==============================================================================

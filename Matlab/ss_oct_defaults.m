@@ -50,7 +50,7 @@ SSOctDefaults.nBytesPerAline    = 2368;
 % Number of 16-bit words per A-line (nBytesPerAline/2)
 SSOctDefaults.nWordsPerAline    = SSOctDefaults.nBytesPerAline/2;
 % Number of characters of startup menu
-SSOctDefaults.MENUSIZE          = 351;
+SSOctDefaults.MENUSIZE          = 320;
 % Save to file
 SSOctDefaults.save2file         = false;
 % Number of A-lines per frame

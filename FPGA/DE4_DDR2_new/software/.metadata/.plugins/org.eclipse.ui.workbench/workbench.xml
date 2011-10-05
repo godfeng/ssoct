@@ -86,7 +86,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="436" columnWidth1="96" columnWidth2="171" columnWidth3="81" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="442" columnWidth1="102" columnWidth2="177" columnWidth3="87" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -192,10 +192,8 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/network_utilities.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
@@ -203,56 +201,34 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/micrium_uc_osii/UCOSII/inc/ucos_ii.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/IP Device Drivers/altera/sopc_builder_ip/altera_avalon_pio/inc/altera_avalon_pio_regs.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
 </editors>
-<item historyLabel="network_utilities.h" index="1">
-<position/>
-</item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2323" y="4"/>
 </item>
-<item historyLabel="network_utilities.c" index="2">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.h" index="3">
-<position/>
-</item>
-<item historyLabel="network_utilities.h" index="1">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.h" index="3">
-<position/>
-</item>
-<item historyLabel="iniche_init.c" index="4">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.h" index="3">
-<position/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="2323" y="4"/>
-</item>
-<item historyLabel="simple_socket_server.h" index="3">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="5975" y="15"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2123" y="0"/>
 </item>
-<item historyLabel="network_utilities.c" index="2">
+<item historyLabel="network_utilities.c" index="1">
 <position info="not_deleted" x="1014" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="3">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="5975" y="15"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2123" y="0"/>
 </item>
-<item historyLabel="system.h" index="5">
+<item historyLabel="system.h" index="3">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2542" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="3">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="5975" y="15"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
@@ -261,25 +237,25 @@
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="20948" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="3">
+<item historyLabel="simple_socket_server.h" index="2">
 <position info="not_deleted" x="5998" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="20948" y="0"/>
 </item>
-<item historyLabel="simple_socket_server.h" index="6">
+<item historyLabel="simple_socket_server.h" index="4">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="5">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position/>
 </item>
-<item historyLabel="simple_socket_server.h" index="7">
+<item historyLabel="simple_socket_server.h" index="5">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
@@ -291,25 +267,25 @@
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="6038" y="73"/>
 </item>
-<item historyLabel="iniche_init.c" index="8">
+<item historyLabel="iniche_init.c" index="6">
 <position/>
 </item>
-<item historyLabel="ucos_ii.h" index="9">
+<item historyLabel="ucos_ii.h" index="7">
 <position info="not_deleted" x="58828" y="7"/>
 </item>
-<item historyLabel="iniche_init.c" index="8">
+<item historyLabel="iniche_init.c" index="6">
 <position info="not_deleted" x="3977" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position/>
 </item>
-<item historyLabel="iniche_init.c" index="8">
+<item historyLabel="iniche_init.c" index="6">
 <position info="not_deleted" x="3977" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2125" y="66"/>
 </item>
-<item historyLabel="iniche_init.c" index="8">
+<item historyLabel="iniche_init.c" index="6">
 <position info="not_deleted" x="2059" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
@@ -327,7 +303,7 @@
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="6649" y="0"/>
 </item>
-<item historyLabel="iniche_init.c" index="8">
+<item historyLabel="iniche_init.c" index="6">
 <position info="not_deleted" x="4157" y="0"/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
@@ -336,23 +312,47 @@
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="11420" y="70"/>
 </item>
-<item historyLabel="altera_avalon_pio_regs.h" index="10">
+<item historyLabel="altera_avalon_pio_regs.h" index="8">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="2123" y="0"/>
 </item>
-<item historyLabel="system.h" index="11">
+<item historyLabel="system.h" index="9">
 <position/>
 </item>
 <item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="9451" y="0"/>
 </item>
-<item historyLabel="altera_avalon_pio_regs.h" index="10">
+<item historyLabel="altera_avalon_pio_regs.h" index="8">
 <position info="not_deleted" x="2545" y="27"/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="0">
+<item historyLabel="simple_socket_server.c" index="0">
 <position info="not_deleted" x="9451" y="0"/>
+</item>
+<item historyLabel="iniche_init.c" index="10">
+<position/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position/>
+</item>
+<item historyLabel="iniche_init.c" index="10">
+<position info="not_deleted" x="4132" y="43"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="8825" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="12177" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="6142" y="26"/>
+</item>
+<item historyLabel="iniche_init.c" index="11">
+<position info="not_deleted" x="4293" y="0"/>
+</item>
+<item active="true" historyLabel="simple_socket_server.c" index="0">
+<position info="not_deleted" x="1279" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>
