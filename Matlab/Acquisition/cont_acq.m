@@ -49,6 +49,8 @@ if SSOctDefaults.save2file
     fprintf('Approximate Frame Rate = %.3f fps\n',frameRate)
     fclose(fid);
     disp(['File saved as: ' fileName])
+    % Delete file created by LabView
+    delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
 else
     %     Save data in a big variable
     %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
@@ -60,6 +62,8 @@ else
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')
+    % Delete file created by LabView
+    delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
 end
 % Disconnect from socket server
 disconnect_from_FPGA

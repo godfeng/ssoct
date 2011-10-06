@@ -15,15 +15,24 @@ global SSOctDefaults
 % Negative and Positive envelope
 [posEnv negEnv] = detect_envelope(rawBscan(:,2));
 % figure(hContAcq)
+
 % -------------- Plot a single interferogram (A-line) ------------------
 subplot(222);
-plot(1e9*SSOctDefaults.vectorLambda, rawBscan(:,2), 'k-',...
-    1e9*SSOctDefaults.vectorLambda, posEnv,'r:',...
-    1e9*SSOctDefaults.vectorLambda, negEnv,'b:');
+% plot(1e9*SSOctDefaults.vectorLambda, rawBscan(:,2), 'k-',...
+%     1e9*SSOctDefaults.vectorLambda, posEnv,'r:',...
+%     1e9*SSOctDefaults.vectorLambda, negEnv,'b:');
+% title('Interferogram')
+% xlabel('\lambda [nm]')
+% ylabel('Intensity [ADC units]')
+% xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+
+% -------------- Plot interferogram (B-scan) ------------------
+imagesc(1:SSOctDefaults.nLinesPerFrame, 1e9*SSOctDefaults.vectorLambda, ...
+    rawBscan, [0 16384]);
 title('Interferogram')
-xlabel('\lambda [nm]')
-ylabel('Intensity [ADC units]')
-xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+xlabel('A-lines')
+ylabel('\lambda [nm]')
+
 % ------------ Plot the phase of a single A-line -----------------------
 subplot(248)
 plot(1e9*SSOctDefaults.vectorLambda, unwrap(angle(hilbert...
