@@ -9,7 +9,7 @@
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
-% Edgar Guevara
+% Edgarmap Guevara
 % 2011/10/03
 
 % Clear global data

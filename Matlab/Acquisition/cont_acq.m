@@ -49,6 +49,7 @@ if SSOctDefaults.save2file
     fprintf('Approximate Frame Rate = %.3f fps\n',frameRate)
     fclose(fid);
     disp(['File saved as: ' fileName])
+    pause(0.5);
     % Delete file created by LabView
     delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
 else
@@ -63,6 +64,7 @@ else
     end
     disp('Transfer done!')
     % Delete file created by LabView
+    pause(0.5);
     delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
 end
 % Disconnect from socket server
