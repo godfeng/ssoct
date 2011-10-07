@@ -53,6 +53,8 @@ if (fid >= 3)
     SSOctDefaults.galvos.yStartVolt = outputCell{5,2};
     SSOctDefaults.galvos.yEndVolt   = outputCell{6,2};
     SSOctDefaults.dirCurrExp        = outputCell{7,2};
+    SSOctDefaults.subjectID         = outputCell{8,2};
+    SSOctDefaults.expDescription    = outputCell{9,2};
 else
     % Return an empty cell if file does not exist
     outputCell = {};

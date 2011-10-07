@@ -10,13 +10,6 @@ function cont_acq
 % Modifies values of global variable
 global SSOctDefaults
 
-% New figure on white background
-hContAcq = figure; set(hContAcq,'color','w')
-% Change figure name
-set(hContAcq,'Name','Continuous Acquisition')
-% Maximize figure
-set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
-
 % Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
 pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...

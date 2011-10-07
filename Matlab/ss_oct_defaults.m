@@ -31,6 +31,10 @@ SSOctDefaults.dirCurrExp        = [];
 SSOctDefaults.dirLabView        = 'D:\Edgar\Documents\ssoct\LabView\SSS01\';
 % Name of the file containing acquisition parameters
 SSOctDefaults.acqParamFileName  = 'acqParam.csv';
+% Name of the subject
+SSOctDefaults.subjectID         = 'NO_NAME';
+% Description of the experiment
+SSOctDefaults.expDescription    = 'EMPTY';
 % Maximize figure
 SSOctDefaults.screenSize        = get(0,'Screensize');
 SSOctDefaults.screenSize        = [1+SSOctDefaults.screenSize(3)/2 40 ...
@@ -52,7 +56,7 @@ SSOctDefaults.nWordsPerAline    = SSOctDefaults.nBytesPerAline/2;
 % Number of characters of startup menu
 SSOctDefaults.MENUSIZE          = 320;
 % Save to file
-SSOctDefaults.save2file         = false;
+SSOctDefaults.save2file         = true;
 % Number of A-lines per frame
 SSOctDefaults.nLinesPerFrame    = 1024;
 % Number of frames per volume
@@ -69,6 +73,8 @@ SSOctDefaults.BUFFERSIZE        = SSOctDefaults.nBytesPerAline *...
 SSOctDefaults.displayLog        = false;
 % Display Color Bar
 SSOctDefaults.displayColorBar   = true;
+% Interferogram signal plot
+SSOctDefaults.displaySingleLine = true;
 
 %===============================================================================
 % Galvo mirrors parameters
