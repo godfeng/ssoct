@@ -20,7 +20,7 @@
 //	needed under any third party's intellectual property, are provided herein.
 
 
-module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, out_valid);
+module sin400k_st(clk, reset_n, clken, phi_inc_i, fsin_o, fcos_o, out_valid);
 
 parameter mpr = 14;
 parameter apr = 32;
@@ -28,15 +28,16 @@ parameter apri= 16;
 parameter aprf= 32;
 parameter aprp= 16;
 parameter aprid=21;
-parameter dpri= 5;
+parameter dpri= 6;
 parameter rdw = 14;
 parameter raw = 16;
 parameter rnw = 65536;
 parameter mxnb = 256;
 parameter rsf = "sin400k_sin.hex";
+parameter rcf = "sin400k_cos.hex";
 parameter nc = 1;
 parameter log2nc =0;
-parameter outselinit = 0;
+parameter outselinit = -1;
 parameter paci0= 0;
 parameter paci1= 0;
 parameter paci2= 0;
@@ -52,6 +53,7 @@ input clken;
 input [apr-1:0] phi_inc_i; 
 
 output [mpr-1:0] fsin_o;
+output [mpr-1:0] fcos_o;
 output out_valid;
 wire reset; 
 assign reset = !reset_n;
@@ -59,12 +61,17 @@ assign reset = !reset_n;
 wire [apr-1:0]  phi_inc_i_w;
 wire [raw-1:0] raxx001w;
 wire [apr-1:0] phi_acc_w;
+wire [aprid-1:0] phi_acc_w_d;
+wire [aprid-1:0] phi_acc_w_di;
+wire [dpri-1:0] rval_w_d;
+wire [dpri-1:0] rval_w;
 wire [apri-1:0] phi_acc_w_addr;
 wire [mpr-1:0] sin_o_w;
 wire [mpr-1:0] cos_o_w;
 wire [mpr-1:0] rxs_w;
 wire [mpr-1:0] rxc_w;
 wire [mpr-1:0] fsin_o_w;	
+wire [mpr-1:0] fcos_o_w;	
 
 assign phi_inc_i_w = phi_inc_i;
 
@@ -89,10 +96,35 @@ defparam ux000.paci5 = paci5 ;
 defparam ux000.paci6 = paci6 ;
 defparam ux000.paci7 = paci7 ;
 
+asj_dxx_g ux001(.clk(clk), 
+            .clken(clken), 
+              .reset(reset), 
+              .dxxrv(rval_w_d)
+              );
+defparam ux001.dpri = dpri;
+assign rval_w = rval_w_d;
+asj_dxx ux002(.clk(clk), 
+            .clken(clken), 
+	         .reset(reset), 
+            .dxxpdi(phi_acc_w_di), 
+            .rval(rval_w), 
+            .dxxpdo(phi_acc_w_d) 
+           );
+
+defparam ux002.aprid = aprid;
+defparam ux002.dpri = dpri;
+
+asj_nco_apr_dxx ux0219(.pcc_w(phi_acc_w),
+                         .pcc_d(phi_acc_w_di)
+                         ); 
+defparam ux0219.apr = apr;    
+defparam ux0219.aprid = aprid;
+
+
 asj_gal ux009( .clk(clk),
                    .reset(reset), 
                    .clken(clken), 
-                   .phi_acc_w(phi_acc_w[apr-1:apr-raw]),
+                   .phi_acc_w(phi_acc_w_d[aprid-1:aprid-raw]),
                    .rom_add(raxx001w)
                    );
 defparam ux009.raw = raw;
@@ -110,6 +142,17 @@ defparam ux0120.rnw = rnw;
 defparam ux0120.rf = rsf;
 defparam ux0120.dev = "StratixII";
 
+asj_nco_as_m_cen ux0121(.clk(clk),
+                   .clken (clken),
+                   .raxx (raxx001w[raw-1:0]),
+                   .srw_int_res(rxc_w[mpr-1:0])
+                   );
+defparam ux0121.mpr = mpr;
+defparam ux0121.rdw = rdw;
+defparam ux0121.raw = raw;
+defparam ux0121.rnw = rnw;
+defparam ux0121.rf = rcf;
+defparam ux0121.dev = "StratixII";
 
 asj_nco_mob_rw ux122(.data_in(rxs_w),
                      .data_out(fsin_o_w),
@@ -119,7 +162,16 @@ asj_nco_mob_rw ux122(.data_in(rxs_w),
 );
 defparam ux122.mpr = mpr;
 defparam ux122.sel = 0;
+asj_nco_mob_rw ux123(.data_in(rxc_w),
+                     .data_out(fcos_o_w),
+                     .reset(reset),
+                     .clken(clken),
+                     .clk(clk)
+);
+defparam ux123.mpr = mpr;
+defparam ux123.sel = 0;
 assign fsin_o = fsin_o_w;
+assign fcos_o = fcos_o_w;
 
 
 asj_nco_isdr ux710isdr(.clk(clk),                              
@@ -127,7 +179,7 @@ asj_nco_isdr ux710isdr(.clk(clk),
                     .clken(clken),                  
                     .data_ready(out_valid)          
                     );                                      
-defparam ux710isdr.ctc=4;                                       
+defparam ux710isdr.ctc=6;                                       
 defparam ux710isdr.cpr=3;                                   
                                                             
 

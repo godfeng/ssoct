@@ -721,7 +721,7 @@ DE4_SOPC DE4_SOPC_inst(
    .aux_scan_clk_reset_n_from_the_ddr2(),
    .dll_reference_clk_from_the_ddr2(),
    .dqs_delay_ctrl_export_from_the_ddr2(),
-   .global_reset_n_to_the_ddr2( reset_n ),
+   .global_reset_n_to_the_ddr2( reset_n ),									// input  	reset_n
    .local_init_done_from_the_ddr2(),
    .local_refresh_ack_from_the_ddr2(),
    .local_wdata_req_from_the_ddr2(),
@@ -859,18 +859,17 @@ LED_glow LED_glow_inst (
 
 // Generate sinus wave in DAC A to test acquisition
 sin400k_st sin400k_st_inst (
-	.clk( clk156MHz ) ,							// input  clk156MHz 156.25 MHz clock
+	.clk( clk50MHz ) ,							// input  clk156MHz 156.25 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd10995116 ) ,				// input [anglePrec-1:0] @156.25 MHz -> 
-												// d10995116 for 400 kHz sinus,
-												// d27487791 for 1 MHz.
+	.phi_inc_i( 32'd34359738 ) ,				// input [anglePrec-1:0] @50 MHz -> 
+												// d34359738 for 400 kHz sinus,
 	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine
 	.out_valid() 								// output  N.C.
 	);
 
 // Synchronize DAC A output (sinus wave) with system clock
-always @(negedge global_reset_n or posedge clk156MHz)
+always @(negedge global_reset_n or posedge clk50MHz)
 begin
 	if (!global_reset_n) begin
 		o_sine		<= 14'd0;

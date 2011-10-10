@@ -15,6 +15,15 @@ pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
 
+% ----------------------------- New figure -------------------------------------
+hContAcq = figure; 
+% white background
+set(hContAcq,'color','w')
+% Change figure name
+set(hContAcq,'Name','Continuous Acquisition')
+% Maximize figure
+set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
+
 % --------------------- Take reference measurements ----------------------------
 % [sampleArm, refArm] = reference_measure;
 
@@ -33,7 +42,7 @@ if SSOctDefaults.save2file
     iFrames = 1;
     tic
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        [~, rawBscan16] = displayAcqOCT(iFrames);
+        [~, rawBscan16] = displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'uint16');
@@ -52,7 +61,7 @@ else
     %     for iFrames = 1:SSOctDefaults.nFrames,
     iFrames = 1;
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        displayAcqOCT(iFrames);
+        displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')

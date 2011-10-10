@@ -141,6 +141,7 @@ set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_wa
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_model.m ]
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_tb.m ]
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_sin.hex ]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_cos.hex ]
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k.vec ]
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k_nativelink.tcl ]
 set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) sin400k.qip ]

@@ -1,9 +1,10 @@
-function [rawBscan rawBscan16] = displayAcqOCT(iFrames)
+function [rawBscan rawBscan16] = displayAcqOCT(iFrames,hContAcq)
 % ------------- Acquires and displays a single B-scan (frame) ------------------
 % SYNTAX:
 % [rawBscan rawBscan16] = displayAcqOCT(iFrames)
 % INPUTS:
 % iFrames       Current B-scan
+% hContAcq      Handle to the current figure
 % OUTPUTS:
 % rawBscan      Uncorrected B-scan
 % rawBscan16    Uncorrected B-scan (uint16 format), this data are saved to file
@@ -22,12 +23,8 @@ global SSOctDefaults
 % Negative and Positive envelope
 [posEnv negEnv] = detect_envelope(rawBscan(:,2));
 
-% New figure on white background
-hContAcq = figure; set(hContAcq,'color','w')
-% Change figure name
-set(hContAcq,'Name','Continuous Acquisition')
-% Maximize figure
-set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
+% Go to specific figure
+figure(hContAcq)
 
 subplot(222);
 if SSOctDefaults.displaySingleLine

@@ -21,16 +21,17 @@ if ~isempty(textReceived)
 end
 % pause(0.1);
 pnet(SSOctDefaults.tcpConn,'close')
-fprintf('Connection closed from %s at port %d\n',SSOctDefaults.serverAddress,SSOctDefaults.portNumber)
 % Closes all pnet connections/sockets used in this matlab session.
 pnet('closeall')
 
 % Kill NIOS terminal
-[~,~] = system('taskkill /F /FI "IMAGENAME eq nios2*"');
+[~,~] = system('taskkill /F /FI "IMAGENAME eq nios2-terminal.exe"'); 
 % Kill NIOS task
 [~,~] = system('taskkill /F /FI "IMAGENAME eq bash*"');
 % Kill Quartus programmer task
-[~,~] = system('taskkill /F /FI "IMAGENAME eq quartus*"');
+[~,~] = system('taskkill /F /FI "IMAGENAME eq quartus_pgm.exe"'); 
+
+fprintf('Connection closed from %s at port %d\n',SSOctDefaults.serverAddress,SSOctDefaults.portNumber)
 
 % ==============================================================================
 % [EOF]

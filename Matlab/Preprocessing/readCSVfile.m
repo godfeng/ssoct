@@ -1,4 +1,4 @@
-function outputCell = readCSVfile(fileName)
+function outputCell = readCSVfile(varargin)
 % Reads .CSV file with mixed data type (text + numbers) generateed by LabView
 % SYNTAX:
 % outputCell = readCSVfile(fileName)
@@ -12,8 +12,44 @@ function outputCell = readCSVfile(fileName)
 % Edgar Guevara
 % 2011/09/19
 
-% Open file
-fid = fopen(fileName, 'r');
+% Parse parameters to global variable
+global SSOctDefaults
+
+% only want 2 optional inputs at most
+numVarArgs = length(varargin);
+if numVarArgs > 1
+    error('readCSVfile:TooManyInputs', ...
+        'requires at most 1 optional input');
+end
+
+% set defaults for optional inputs {''}
+optArgs = {''};
+
+% now put these defaults into the optArgs cell array, 
+% and overwrite the ones specified in varargin.
+optArgs(1:numVarArgs) = varargin;
+% or ...
+% [optargs{1:numvarargs}] = varargin{:};
+
+% Place optional args in memorable variable names
+[fileName] = optArgs{:};
+
+if isempty(fileName)
+    [fileName, pathName] = uigetfile('*.csv',...
+        'Pick a .CSV file',...
+        SSOctDefaults.dirExp);
+    if isequal(fileName,0) || isequal(pathName,0)
+        % Return an empty matrix
+        outputCell = {};
+        disp('User pressed cancel')
+        return
+    end
+    % Open file
+    fid = fopen(fullfile(pathName,fileName), 'r');
+else
+    % Open file
+    fid = fopen(fileName, 'r');
+end
 
 % Check if file exists (When fopen successfully opens a file, it returns a file
 % identifier greater than or equal to 3)
@@ -44,17 +80,29 @@ if (fid >= 3)
     % Close .csv file
     fclose(fid);
     
-    % Parse parameters to global variable
-    global SSOctDefaults
-    SSOctDefaults.nLinesPerFrame    = outputCell{1,2};
-    SSOctDefaults.nFrames           = outputCell{2,2};
-    SSOctDefaults.galvos.xStartVolt = outputCell{3,2};
-    SSOctDefaults.galvos.xEndVolt   = outputCell{4,2};
-    SSOctDefaults.galvos.yStartVolt = outputCell{5,2};
-    SSOctDefaults.galvos.yEndVolt   = outputCell{6,2};
-    SSOctDefaults.dirCurrExp        = outputCell{7,2};
-    SSOctDefaults.subjectID         = outputCell{8,2};
-    SSOctDefaults.expDescription    = outputCell{9,2};
+    % Check number of lines read
+    switch size(outputCell,1)
+        case 9
+            % second version with 9 fields
+            SSOctDefaults.nLinesPerFrame    = outputCell{1,2};
+            SSOctDefaults.nFrames           = outputCell{2,2};
+            SSOctDefaults.galvos.xStartVolt = outputCell{3,2};
+            SSOctDefaults.galvos.xEndVolt   = outputCell{4,2};
+            SSOctDefaults.galvos.yStartVolt = outputCell{5,2};
+            SSOctDefaults.galvos.yEndVolt   = outputCell{6,2};
+            SSOctDefaults.dirCurrExp        = outputCell{7,2};
+            SSOctDefaults.subjectID         = outputCell{8,2};
+            SSOctDefaults.expDescription    = outputCell{9,2};
+        otherwise
+            % Default case (first version with 7 fields)
+            SSOctDefaults.nLinesPerFrame    = outputCell{1,2};
+            SSOctDefaults.nFrames           = outputCell{2,2};
+            SSOctDefaults.galvos.xStartVolt = outputCell{3,2};
+            SSOctDefaults.galvos.xEndVolt   = outputCell{4,2};
+            SSOctDefaults.galvos.yStartVolt = outputCell{5,2};
+            SSOctDefaults.galvos.yEndVolt   = outputCell{6,2};
+            SSOctDefaults.dirCurrExp        = outputCell{7,2};
+    end
 else
     % Return an empty cell if file does not exist
     outputCell = {};

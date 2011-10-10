@@ -16,9 +16,9 @@ fclose('all');
 clear all; 
 clear global; 
 close all; 
-[~,~] = system('taskkill /F /FI "IMAGENAME eq nios2*"'); 
+[~,~] = system('taskkill /F /FI "IMAGENAME eq nios2-terminal.exe"'); 
 [~,~] = system('taskkill /F /FI "IMAGENAME eq bash*"'); 
-[~,~] = system('taskkill /F /FI "IMAGENAME eq quartus*"'); 
+[~,~] = system('taskkill /F /FI "IMAGENAME eq quartus_pgm.exe"'); 
 clc;
 % ==============================================================================
 % [EOF]
