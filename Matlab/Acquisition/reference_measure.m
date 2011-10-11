@@ -8,12 +8,12 @@ function [sampleArm, refArm] = reference_measure
 % Modifies values of global variable
 global SSOctDefaults
 
-% Raw data matrix
-rawData     = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'uint16');
-% Signal from reference arm
-refArm      = zeros([SSOctDefaults.NSAMPLES 1]);
-% Signal from sample arm
-sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
+% % Raw data matrix
+% rawData     = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'uint16');
+% % Signal from reference arm
+% refArm      = zeros([SSOctDefaults.NSAMPLES 1]);
+% % Signal from sample arm
+% sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
 
 % % New figure on white background
 % figure; set(gcf,'color','w')

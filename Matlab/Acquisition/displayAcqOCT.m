@@ -36,6 +36,7 @@ if SSOctDefaults.displaySingleLine
     xlabel('\lambda [nm]')
     ylabel('Intensity [ADC units]')
     xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+    ylim([0 16384])
 else
     % -------------- Plot interferogram (B-scan) ------------------
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e9*SSOctDefaults.vectorLambda, ...
