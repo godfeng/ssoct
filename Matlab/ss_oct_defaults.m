@@ -75,6 +75,8 @@ SSOctDefaults.displayLog        = false;
 SSOctDefaults.displayColorBar   = true;
 % Interferogram signal plot
 SSOctDefaults.displaySingleLine = true;
+% Resamling data at k-clock frequency
+SSOctDefaults.resampleData      = false;
 
 %===============================================================================
 % Galvo mirrors parameters

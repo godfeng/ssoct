@@ -382,7 +382,7 @@ wire						global_reset_n;		// delayed reset signal
 wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
-wire						clk125MHz;			// clock from internal PLL @ 125 MHz
+wire						clk150MHz;			// clock from internal PLL @ 150 MHz
 wire						clockVar;			// output of the PLL fed by ADA_DCO
 
 //// External PLL
@@ -491,7 +491,7 @@ reg          				conf_wr;
 //  Structural coding
 assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
 assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk3_set_wr 			= 4'd7; 			//156.25 MHZ 4'd7
+assign clk3_set_wr 			= 4'd1; 			//156.25 MHZ 4'd7
 
 assign counter_max 			= &auto_set_counter;
 assign counter_inc 			= auto_set_counter + 1'b1;
@@ -598,10 +598,10 @@ assign	FLASH_RESET_n		= global_reset_n;
 // assign for ADC control signal
 //==============================================================================
 assign	AD_SCLK				= 1'b0;				// (DFS)Data Format Select = binary (0)
-assign	AD_SDIO				= 1'b0;				// (DCS)Duty Cycle Stabilizer OFF (0)
+assign	AD_SDIO				= 1'b1;				// (DCS)Duty Cycle Stabilizer OFF (0)
 assign	ADA_OE				= 1'b0;				// enable ADA output (active LOW)
 assign	ADA_SPI_CS			= 1'b1;				// disable serial port interface A (1)
-assign	ADB_OE				= 1'b0;				// enable ADB output (active LOW)
+assign	ADB_OE				= 1'b1;				// enable ADB output (active LOW)
 assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 
 // sinus wave to DA
@@ -638,9 +638,9 @@ assign	SEG1_D				= 7'h7F;
 // Assign 156.25 MHz external clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
 
-// Assign clk125MHz to differential outputs to HSMC-B board
-assign	FPGA_CLK_B_P		=  clk125MHz;
-assign	FPGA_CLK_B_N		= ~clk125MHz;
+// Assign clk150MHz to differential outputs to HSMC-B board
+assign	FPGA_CLK_B_P		=  clk150MHz;
+assign	FPGA_CLK_B_N		= ~clk150MHz;
 
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
@@ -665,8 +665,8 @@ RAM	RAM_inst (
 	.wrclock ( clockVar ),						// input Write clock (ADA_DCO)
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
-	.rdaddress ({ dualMSB_read, read_RAM_address }),// input [7:0] Read address (read_RAM_address) from NIOS
-	.rdclock ( clk156MHz ),						// input Read clock (clk156MHz)
+	.rdaddress({dualMSB_read,read_RAM_address}),// input [7:0] Read address ({dualMSB_read,read_RAM_address}) from NIOS
+	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 
@@ -833,7 +833,7 @@ DE4_SOPC DE4_SOPC_inst(
 pll_150 pll_150_inst
 (
 	.inclk0(clk50MHz) ,							// input  clk50MHz
-	.c0(clk125MHz) 								// output  clk125MHz
+	.c0(clk150MHz) 								// output  clk150MHz
 );
 
 // PLL dephasing ADA_DCO
@@ -859,7 +859,7 @@ LED_glow LED_glow_inst (
 
 // Generate sinus wave in DAC A to test acquisition
 sin400k_st sin400k_st_inst (
-	.clk( clk50MHz ) ,							// input  clk156MHz 156.25 MHz clock
+	.clk( clk50MHz ) ,							// input  clk50MHz 50 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
 	.clken( 1'b1 ) ,							// input  1'b1
 	.phi_inc_i( 32'd34359738 ) ,				// input [anglePrec-1:0] @50 MHz -> 

@@ -12,8 +12,10 @@ function struct2D = BmodeScan2struct(Bmodescan)
 % Edgar Guevara
 % 2011/07/11
 
-% struct2D = abs(fftshift(ifft(double(Bmodescan),[],1)));
-% FFT OR IFFT?????
+% K-clock resampling of a B-scan
+Bmodescan = resample_B_scan(Bmodescan);
+
+% fft of the interferogram is a reflectivity profile
 struct2D = abs(ifftshift(fft(double(Bmodescan),[],1)));
 % ==============================================================================
 % [EOF]

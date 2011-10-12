@@ -14,7 +14,7 @@ function [rawBscan rawBscan16] = displayAcqOCT(iFrames,hContAcq)
 % Edgar Guevara
 % 2011/10/07
 
-% Load defaults
+% Modifies values of global variable
 global SSOctDefaults
 % Acquire raw B-scan
 [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);

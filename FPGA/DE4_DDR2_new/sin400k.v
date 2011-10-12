@@ -83,7 +83,6 @@ endmodule
 // Retrieval info:      <PRIVATE name = "MAXF" value="3584"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "rfs1" value="xxx.hex"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "devicefamily" value="Stratix IV"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "NUMBA" value="1"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RCFC" value="sin400k_cos_c.mif"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RCVC" value="sin400k_cos_c.v"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RCHC" value="sin400k_cos_c.hex"  type="STRING"  enable="1" />
@@ -96,7 +95,8 @@ endmodule
 // Retrieval info:      <PRIVATE name = "RSFF" value="sin400k_sin_f.mif"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RSVF" value="sin400k_sin_f.v"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RSHF" value="sin400k_sin_f.hex"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "DPRI" value="6"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "NUMBA" value="1"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "DPRI" value="10"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "DEVICE" value="StratixIV"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ACCUM_SCLR" value="0"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "ARCH" value="LARGE_ROM_ARCH"  type="STRING"  enable="1" />
@@ -144,7 +144,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "RCF" value="sin400k_cos.mif"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RCV" value="sin400k_cos.v"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "RCH" value="sin400k_cos.hex"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "NUM_LCELLS" value="147"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "NUM_LCELLS" value="155"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "NUM_MEM_BITS" value="1835008"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "NUM_EABS" value="448"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "NUM_DSP_BLOCKS" value="0"  type="STRING"  enable="1" />
