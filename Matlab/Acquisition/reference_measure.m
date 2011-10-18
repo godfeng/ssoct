@@ -1,4 +1,4 @@
-function [sampleArm, refArm] = reference_measure
+function [sampleArm, refArm] = reference_measure(hContAcq)
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -26,19 +26,21 @@ global SSOctDefaults
 % pnet(SSOctDefaults.tcpConn,'write',uint8([66 10 13 ...
 %     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
 %     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
+
+
 fprintf('Taking reference measurement...Press <Ctrl>+<C> to cancel\n')
-pause(0.1);
+% pause(0.1);
 
 % Discard first frame
-[~, ~] = displayAcqOCT(1);
+[~, ~] = displayAcqOCT(1,hContAcq);
 
 subplot(121)
 title('Please block sample arm and press any key when ready...')
-pause()
+% pause()
 title('Acquiring data...')
 
 % Get data from reference arm
-[rawBscan, ~] = displayAcqOCT(2);
+[rawBscan, ~] = displayAcqOCT(2,hContAcq);
 
 subplot(121)
 title('B-scan from sample arm');
@@ -48,11 +50,11 @@ refArm = mean(rawBscan,2);
 
 subplot(121)
 title('Please block reference arm and press any key when ready...')
-pause()
+% pause()
 title('Acquiring data...')
 
 % Get data from sample arm
-[rawBscan, ~] = displayAcqOCT(3);
+[rawBscan, ~] = displayAcqOCT(3,hContAcq);
 
 subplot(121)
 title('B-scan from sample arm');
@@ -69,7 +71,7 @@ save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm','re
 
 subplot(121)
 title('Please unblock both arms and press any key when ready...')
-pause()
+% pause()
 title('Acquiring data...')
 
 % ==============================================================================

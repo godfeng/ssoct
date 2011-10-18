@@ -25,9 +25,12 @@ set(hContAcq,'Name','Continuous Acquisition')
 set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 
 % --------------------- Take reference measurements ----------------------------
-% [sampleArm, refArm] = reference_measure;
+% SSOctDefaults.corrBscan         = false;
+% [~, ~] = reference_measure(hContAcq);
+% SSOctDefaults.corrBscan         = true;
 
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
+load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 
 % ------------------------------ Main Loop -------------------------------------
 if SSOctDefaults.save2file
@@ -42,7 +45,7 @@ if SSOctDefaults.save2file
     iFrames = 1;
     tic
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        [~, rawBscan16] = displayAcqOCT(iFrames,hContAcq);
+        [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq,reference);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'uint16');
@@ -61,7 +64,7 @@ else
     %     for iFrames = 1:SSOctDefaults.nFrames,
     iFrames = 1;
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        displayAcqOCT(iFrames,hContAcq);
+        displayAcqOCT(iFrames,hContAcq,reference);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')

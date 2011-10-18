@@ -1,4 +1,4 @@
-function [rawBscan rawBscan16] = displayAcqOCT(iFrames,hContAcq)
+function [rawBscan rawBscan16 correctedBscan] = displayAcqOCT(iFrames,hContAcq,reference)
 % ------------- Acquires and displays a single B-scan (frame) ------------------
 % SYNTAX:
 % [rawBscan rawBscan16] = displayAcqOCT(iFrames)
@@ -17,30 +17,42 @@ function [rawBscan rawBscan16] = displayAcqOCT(iFrames,hContAcq)
 % Modifies values of global variable
 global SSOctDefaults
 % Acquire raw B-scan
-[rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
+if SSOctDefaults.corrBscan
+    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
+    limitY = [-2^13 2^13];
+else
+    [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
+    correctedBscan = double(rawBscan) - double(reference);
+    correctedBscan = correctedBscan.*repmat(hann(SSOctDefaults.NSAMPLES), ...
+    [1 SSOctDefaults.nLinesPerFrame]);
+%     limitY = [0 2^14];
+    limitY = [-2^13 2^13];
+end
 % Save data in a big variable
 % SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
 % Negative and Positive envelope
-[posEnv negEnv] = detect_envelope(rawBscan(:,2));
+[posEnv negEnv] = detect_envelope(correctedBscan(:,2));
 
 % Go to specific figure
 figure(hContAcq)
 
+
+
 subplot(222);
 if SSOctDefaults.displaySingleLine
     % -------------- Plot a single interferogram (A-line) ------------------
-    plot(1e9*SSOctDefaults.vectorLambda, rawBscan(:,2), 'k-',...
+    plot(1e9*SSOctDefaults.vectorLambda, correctedBscan(:,2), 'k-',...
         1e9*SSOctDefaults.vectorLambda, posEnv,'r:',...
         1e9*SSOctDefaults.vectorLambda, negEnv,'b:');
     title('Interferogram')
     xlabel('\lambda [nm]')
     ylabel('Intensity [ADC units]')
     xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
-    ylim([0 16384])
+    ylim(limitY)
 else
     % -------------- Plot interferogram (B-scan) ------------------
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e9*SSOctDefaults.vectorLambda, ...
-        rawBscan, [0 16384]);
+        correctedBscan, [0 16384]);
     title('Interferogram')
     xlabel('A-lines')
     ylabel('\lambda [nm]')
@@ -54,14 +66,14 @@ end
 % ------------ Plot the phase of a single A-line -----------------------
 subplot(248)
 plot(1e9*SSOctDefaults.vectorLambda, unwrap(angle(hilbert...
-    (rawBscan(:,2)))),'-k')
+    (correctedBscan(:,2)))),'-k')
 title('Interferogram phase')
 xlabel('\lambda [nm]')
 xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
 
 % --------------- Plot the a single A-line (FFT) -----------------------
 subplot(247)
-singleAline = BmodeScan2struct(rawBscan(:,2));    % log FFT
+singleAline = BmodeScan2struct(correctedBscan(:,2));    % log FFT
 % Take only positive half of the symmetric FFT
 singleAline = singleAline(SSOctDefaults.NSAMPLES/2 + 1 : ...
     SSOctDefaults.NSAMPLES);
@@ -78,7 +90,7 @@ xlabel('z [mm]')
 
 % --------------- Display a B-scan (single frame) ----------------------
 subplot(121)
-Bscan = BmodeScan2struct(rawBscan);
+Bscan = BmodeScan2struct(correctedBscan);
 if SSOctDefaults.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...

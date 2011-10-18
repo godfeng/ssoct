@@ -10,14 +10,14 @@ function [Bscan, varargout]  = acq_Bscan(varargin)
 %                   @taylorwin      @triang
 % [correctBackground] if true, applies correction method to raw B-scan
 % OUTPUTS:
-% Bscan             set of A/lines, optionally windowed and corrected for
-%                   background signal
+% Bscan             raw set of A/lines
+% [rawBscan16]      raw set of A/lines in uint16 format (to be saved to disk)  
+% [correctedBscan]  B-scan windowed and corrected for background signal
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11
-
 
 % Modifies values of global variable
 global SSOctDefaults
@@ -54,9 +54,11 @@ for iLines = 1:SSOctDefaults.nLinesPerFrame,
 end
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground
-    Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
+%     Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
+    % correctedBscan
+    varargout{2} = correct_B_scan(Bscan,winFunction,correctBackground);
 end
-if nargout == 2,
+if nargout >= 2,
     varargout{1} = rawBscan16;
 end
 % ==============================================================================

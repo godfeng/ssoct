@@ -77,6 +77,8 @@ SSOctDefaults.displayColorBar   = true;
 SSOctDefaults.displaySingleLine = true;
 % Resamling data at k-clock frequency
 SSOctDefaults.resampleData      = false;
+% Correct B-scan in real-time
+SSOctDefaults.corrBscan         = false;
 
 %===============================================================================
 % Galvo mirrors parameters
