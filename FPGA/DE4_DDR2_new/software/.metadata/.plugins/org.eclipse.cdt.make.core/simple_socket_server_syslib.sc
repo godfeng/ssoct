@@ -12,6 +12,7 @@
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/src/nios2"/>
 <includePath path="c:\altera\91\quartus\bin\cygwin\UCOSII\inc\iniche" removed="true"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_iniche/UCOSII/inc"/>
+<includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_cfi_flash/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sysid/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sysid/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/HAL/inc"/>
@@ -24,7 +25,6 @@
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sgdma/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_sgdma/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio/inc"/>
-<includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_cfi_flash/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/nios2_ip/altera_nios2/UCOSII/inc"/>
 <includePath path="c:/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc"/>
 <includePath path="c:/altera/91/nios2eds/components/micrium_uc_osii/UCOSII/inc"/>

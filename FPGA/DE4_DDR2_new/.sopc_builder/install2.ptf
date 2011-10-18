@@ -1,7 +1,7 @@
 PACKAGE install2 
 {
    # This file informs the Nios II IDE of non-legacy component paths.
-   # Generated 2011.10.05.17:59:08
+   # Generated 2011.10.18.16:31:29
    COMPONENT 10gbaser_phy 
    {
       VERSION 9.1 

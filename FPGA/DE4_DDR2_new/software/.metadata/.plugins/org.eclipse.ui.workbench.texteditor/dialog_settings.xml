@@ -10,16 +10,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wholeword"/>
-		<item value="trigger sent" key="selection"/>
+		<item value="LED7SegLightshowTask" key="selection"/>
 		<list key="findhistory">
+			<item value="LED7SegLightshowTask"/>
+			<item value="OSTaskCreateExt"/>
 			<item value="trigger sent"/>
 			<item value="DDR2_address"/>
 			<item value="DDR2_add"/>
 			<item value="main"/>
 			<item value="sss_send_menu"/>
 			<item value="9000"/>
-			<item value="buffer"/>
-			<item value="DDR2_data"/>
 		</list>
 		<list key="replacehistory">
 			<item value="DDR2_address"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <stf>
-	<project ptf="D:\Edgar\Documents\ssoct\FPGA\DE4_SSS02\DE4_SOPC.ptf" target="Nios II System Library">
+	<project ptf="..\..\DE4_SOPC.ptf" target="Nios II System Library">
 	</project>
 	<cpu name="cpu">
 	</cpu>

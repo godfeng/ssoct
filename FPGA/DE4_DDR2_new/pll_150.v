@@ -99,7 +99,7 @@ module pll_150 (
 		altpll_component.intended_device_family = "Stratix IV",
 		altpll_component.lpm_hint = "CBX_MODULE_PREFIX=pll_150",
 		altpll_component.lpm_type = "altpll",
-		altpll_component.operation_mode = "SOURCE_SYNCHRONOUS",
+		altpll_component.operation_mode = "NORMAL",
 		altpll_component.pll_type = "AUTO",
 		altpll_component.port_activeclock = "PORT_UNUSED",
 		altpll_component.port_areset = "PORT_UNUSED",
@@ -193,7 +193,7 @@ endmodule
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT0 STRING "deg"
 // Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
 // Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "1"
-// Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "0"
+// Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "125.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -222,7 +222,7 @@ endmodule
 // Retrieval info: PRIVATE: SPREAD_FREQ_UNIT STRING "KHz"
 // Retrieval info: PRIVATE: SPREAD_PERCENT STRING "0.500"
 // Retrieval info: PRIVATE: SPREAD_USE STRING "0"
-// Retrieval info: PRIVATE: SRC_SYNCH_COMP_RADIO STRING "1"
+// Retrieval info: PRIVATE: SRC_SYNCH_COMP_RADIO STRING "0"
 // Retrieval info: PRIVATE: STICKY_CLK0 STRING "1"
 // Retrieval info: PRIVATE: SWITCHOVER_COUNT_EDIT NUMERIC "1"
 // Retrieval info: PRIVATE: SWITCHOVER_FEATURE_ENABLED STRING "1"
@@ -240,7 +240,7 @@ endmodule
 // Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix IV"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
-// Retrieval info: CONSTANT: OPERATION_MODE STRING "SOURCE_SYNCHRONOUS"
+// Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
 // Retrieval info: CONSTANT: PLL_TYPE STRING "AUTO"
 // Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"

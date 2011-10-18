@@ -3272,12 +3272,12 @@ module DE4_SOPC_burst_0_downstream_arbitrator (
   wire             latency_load_value;
   wire             p1_DE4_SOPC_burst_0_downstream_latency_counter;
   wire             pre_flush_DE4_SOPC_burst_0_downstream_readdatavalid;
-  wire             r_0;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~DE4_SOPC_burst_0_downstream_requests_ddr2_s1) & (DE4_SOPC_burst_0_downstream_granted_ddr2_s1 | ~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1) & ((~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~(DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write) | (1 & ddr2_s1_waitrequest_n_from_sa & (DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write)))) & ((~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~(DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write) | (1 & ddr2_s1_waitrequest_n_from_sa & (DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write))));
+  wire             r_1;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~DE4_SOPC_burst_0_downstream_requests_ddr2_s1) & (DE4_SOPC_burst_0_downstream_granted_ddr2_s1 | ~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1) & ((~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~(DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write) | (1 & ddr2_s1_waitrequest_n_from_sa & (DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write)))) & ((~DE4_SOPC_burst_0_downstream_qualified_request_ddr2_s1 | ~(DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write) | (1 & ddr2_s1_waitrequest_n_from_sa & (DE4_SOPC_burst_0_downstream_read | DE4_SOPC_burst_0_downstream_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign DE4_SOPC_burst_0_downstream_run = r_0;
+  assign DE4_SOPC_burst_0_downstream_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
   assign DE4_SOPC_burst_0_downstream_address_to_slave = DE4_SOPC_burst_0_downstream_address;
@@ -3605,7 +3605,7 @@ module DE4_SOPC_clock_0_in_arbitrator (
   //assign DE4_SOPC_clock_0_in_readdata_from_sa = DE4_SOPC_clock_0_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_0_in_readdata_from_sa = DE4_SOPC_clock_0_in_readdata;
 
-  assign cpu_data_master_requests_DE4_SOPC_clock_0_in = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h44102400) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_DE4_SOPC_clock_0_in = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102400) & (cpu_data_master_read | cpu_data_master_write);
   //assign DE4_SOPC_clock_0_in_waitrequest_from_sa = DE4_SOPC_clock_0_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_0_in_waitrequest_from_sa = DE4_SOPC_clock_0_in_waitrequest;
 
@@ -4114,7 +4114,7 @@ module DE4_SOPC_clock_1_in_arbitrator (
   //assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata;
 
-  assign cpu_data_master_requests_DE4_SOPC_clock_1_in = ({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h44102740) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_DE4_SOPC_clock_1_in = ({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h45102740) & (cpu_data_master_read | cpu_data_master_write);
   //assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest;
 
@@ -5071,10 +5071,10 @@ module DE4_SOPC_clock_3_in_arbitrator (
   input   [  7: 0] DE4_SOPC_clock_3_in_readdata;
   input            DE4_SOPC_clock_3_in_waitrequest;
   input            clk;
-  input   [  7: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
   input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
   input            peripheral_clock_crossing_m1_latency_counter;
-  input   [  5: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
   input            peripheral_clock_crossing_m1_read;
   input            peripheral_clock_crossing_m1_write;
   input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
@@ -5141,7 +5141,7 @@ module DE4_SOPC_clock_3_in_arbitrator (
   //assign DE4_SOPC_clock_3_in_readdata_from_sa = DE4_SOPC_clock_3_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_3_in_readdata_from_sa = DE4_SOPC_clock_3_in_readdata;
 
-  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in = ({peripheral_clock_crossing_m1_address_to_slave[7 : 4] , 4'b0} == 8'h0) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h80) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
   //assign DE4_SOPC_clock_3_in_waitrequest_from_sa = DE4_SOPC_clock_3_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_3_in_waitrequest_from_sa = DE4_SOPC_clock_3_in_waitrequest;
 
@@ -5483,6 +5483,1956 @@ module DE4_SOPC_clock_3_out_arbitrator (
       if (active_and_waiting_last_time & (DE4_SOPC_clock_3_out_writedata != DE4_SOPC_clock_3_out_writedata_last_time) & DE4_SOPC_clock_3_out_write)
         begin
           $write("%0d ns: DE4_SOPC_clock_3_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_4_in_arbitrator (
+                                        // inputs:
+                                         DE4_SOPC_clock_4_in_endofpacket,
+                                         DE4_SOPC_clock_4_in_readdata,
+                                         DE4_SOPC_clock_4_in_waitrequest,
+                                         clk,
+                                         peripheral_clock_crossing_m1_address_to_slave,
+                                         peripheral_clock_crossing_m1_byteenable,
+                                         peripheral_clock_crossing_m1_latency_counter,
+                                         peripheral_clock_crossing_m1_nativeaddress,
+                                         peripheral_clock_crossing_m1_read,
+                                         peripheral_clock_crossing_m1_write,
+                                         peripheral_clock_crossing_m1_writedata,
+                                         reset_n,
+
+                                        // outputs:
+                                         DE4_SOPC_clock_4_in_address,
+                                         DE4_SOPC_clock_4_in_endofpacket_from_sa,
+                                         DE4_SOPC_clock_4_in_nativeaddress,
+                                         DE4_SOPC_clock_4_in_read,
+                                         DE4_SOPC_clock_4_in_readdata_from_sa,
+                                         DE4_SOPC_clock_4_in_reset_n,
+                                         DE4_SOPC_clock_4_in_waitrequest_from_sa,
+                                         DE4_SOPC_clock_4_in_write,
+                                         DE4_SOPC_clock_4_in_writedata,
+                                         d1_DE4_SOPC_clock_4_in_end_xfer,
+                                         peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in,
+                                         peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in,
+                                         peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in,
+                                         peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in
+                                      )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_4_in_address;
+  output           DE4_SOPC_clock_4_in_endofpacket_from_sa;
+  output  [  1: 0] DE4_SOPC_clock_4_in_nativeaddress;
+  output           DE4_SOPC_clock_4_in_read;
+  output  [  7: 0] DE4_SOPC_clock_4_in_readdata_from_sa;
+  output           DE4_SOPC_clock_4_in_reset_n;
+  output           DE4_SOPC_clock_4_in_waitrequest_from_sa;
+  output           DE4_SOPC_clock_4_in_write;
+  output  [  7: 0] DE4_SOPC_clock_4_in_writedata;
+  output           d1_DE4_SOPC_clock_4_in_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in;
+  output           peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in;
+  output           peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in;
+  output           peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+  input            DE4_SOPC_clock_4_in_endofpacket;
+  input   [  7: 0] DE4_SOPC_clock_4_in_readdata;
+  input            DE4_SOPC_clock_4_in_waitrequest;
+  input            clk;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+
+  wire    [  1: 0] DE4_SOPC_clock_4_in_address;
+  wire             DE4_SOPC_clock_4_in_allgrants;
+  wire             DE4_SOPC_clock_4_in_allow_new_arb_cycle;
+  wire             DE4_SOPC_clock_4_in_any_bursting_master_saved_grant;
+  wire             DE4_SOPC_clock_4_in_any_continuerequest;
+  wire             DE4_SOPC_clock_4_in_arb_counter_enable;
+  reg              DE4_SOPC_clock_4_in_arb_share_counter;
+  wire             DE4_SOPC_clock_4_in_arb_share_counter_next_value;
+  wire             DE4_SOPC_clock_4_in_arb_share_set_values;
+  wire             DE4_SOPC_clock_4_in_beginbursttransfer_internal;
+  wire             DE4_SOPC_clock_4_in_begins_xfer;
+  wire             DE4_SOPC_clock_4_in_end_xfer;
+  wire             DE4_SOPC_clock_4_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_4_in_firsttransfer;
+  wire             DE4_SOPC_clock_4_in_grant_vector;
+  wire             DE4_SOPC_clock_4_in_in_a_read_cycle;
+  wire             DE4_SOPC_clock_4_in_in_a_write_cycle;
+  wire             DE4_SOPC_clock_4_in_master_qreq_vector;
+  wire    [  1: 0] DE4_SOPC_clock_4_in_nativeaddress;
+  wire             DE4_SOPC_clock_4_in_non_bursting_master_requests;
+  wire             DE4_SOPC_clock_4_in_pretend_byte_enable;
+  wire             DE4_SOPC_clock_4_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_4_in_readdata_from_sa;
+  reg              DE4_SOPC_clock_4_in_reg_firsttransfer;
+  wire             DE4_SOPC_clock_4_in_reset_n;
+  reg              DE4_SOPC_clock_4_in_slavearbiterlockenable;
+  wire             DE4_SOPC_clock_4_in_slavearbiterlockenable2;
+  wire             DE4_SOPC_clock_4_in_unreg_firsttransfer;
+  wire             DE4_SOPC_clock_4_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_4_in_waits_for_read;
+  wire             DE4_SOPC_clock_4_in_waits_for_write;
+  wire             DE4_SOPC_clock_4_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_4_in_writedata;
+  reg              d1_DE4_SOPC_clock_4_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_4_in;
+  wire             wait_for_DE4_SOPC_clock_4_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~DE4_SOPC_clock_4_in_end_xfer;
+    end
+
+
+  assign DE4_SOPC_clock_4_in_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in));
+  //assign DE4_SOPC_clock_4_in_readdata_from_sa = DE4_SOPC_clock_4_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_4_in_readdata_from_sa = DE4_SOPC_clock_4_in_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h100) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //assign DE4_SOPC_clock_4_in_waitrequest_from_sa = DE4_SOPC_clock_4_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_4_in_waitrequest_from_sa = DE4_SOPC_clock_4_in_waitrequest;
+
+  //DE4_SOPC_clock_4_in_arb_share_counter set values, which is an e_mux
+  assign DE4_SOPC_clock_4_in_arb_share_set_values = 1;
+
+  //DE4_SOPC_clock_4_in_non_bursting_master_requests mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+
+  //DE4_SOPC_clock_4_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_any_bursting_master_saved_grant = 0;
+
+  //DE4_SOPC_clock_4_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_in_arb_share_counter_next_value = DE4_SOPC_clock_4_in_firsttransfer ? (DE4_SOPC_clock_4_in_arb_share_set_values - 1) : |DE4_SOPC_clock_4_in_arb_share_counter ? (DE4_SOPC_clock_4_in_arb_share_counter - 1) : 0;
+
+  //DE4_SOPC_clock_4_in_allgrants all slave grants, which is an e_mux
+  assign DE4_SOPC_clock_4_in_allgrants = |DE4_SOPC_clock_4_in_grant_vector;
+
+  //DE4_SOPC_clock_4_in_end_xfer assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_in_end_xfer = ~(DE4_SOPC_clock_4_in_waits_for_read | DE4_SOPC_clock_4_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in = DE4_SOPC_clock_4_in_end_xfer & (~DE4_SOPC_clock_4_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //DE4_SOPC_clock_4_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign DE4_SOPC_clock_4_in_arb_counter_enable = (end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in & DE4_SOPC_clock_4_in_allgrants) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in & ~DE4_SOPC_clock_4_in_non_bursting_master_requests);
+
+  //DE4_SOPC_clock_4_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_in_arb_share_counter <= 0;
+      else if (DE4_SOPC_clock_4_in_arb_counter_enable)
+          DE4_SOPC_clock_4_in_arb_share_counter <= DE4_SOPC_clock_4_in_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_4_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_in_slavearbiterlockenable <= 0;
+      else if ((|DE4_SOPC_clock_4_in_master_qreq_vector & end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_4_in & ~DE4_SOPC_clock_4_in_non_bursting_master_requests))
+          DE4_SOPC_clock_4_in_slavearbiterlockenable <= |DE4_SOPC_clock_4_in_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_4/in arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = DE4_SOPC_clock_4_in_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_4_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_4_in_slavearbiterlockenable2 = |DE4_SOPC_clock_4_in_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_4/in arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = DE4_SOPC_clock_4_in_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_4_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign DE4_SOPC_clock_4_in_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_read & ~DE4_SOPC_clock_4_in_waits_for_read;
+
+  //DE4_SOPC_clock_4_in_writedata mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //assign DE4_SOPC_clock_4_in_endofpacket_from_sa = DE4_SOPC_clock_4_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_4_in_endofpacket_from_sa = DE4_SOPC_clock_4_in_endofpacket;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in = peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in;
+
+  //peripheral_clock_crossing/m1 saved-grant DE4_SOPC_clock_4/in, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_4_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+
+  //allow new arb cycle for DE4_SOPC_clock_4/in, which is an e_assign
+  assign DE4_SOPC_clock_4_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign DE4_SOPC_clock_4_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign DE4_SOPC_clock_4_in_master_qreq_vector = 1;
+
+  //DE4_SOPC_clock_4_in_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_in_reset_n = reset_n;
+
+  //DE4_SOPC_clock_4_in_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_4_in_firsttransfer = DE4_SOPC_clock_4_in_begins_xfer ? DE4_SOPC_clock_4_in_unreg_firsttransfer : DE4_SOPC_clock_4_in_reg_firsttransfer;
+
+  //DE4_SOPC_clock_4_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_4_in_unreg_firsttransfer = ~(DE4_SOPC_clock_4_in_slavearbiterlockenable & DE4_SOPC_clock_4_in_any_continuerequest);
+
+  //DE4_SOPC_clock_4_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_in_reg_firsttransfer <= 1'b1;
+      else if (DE4_SOPC_clock_4_in_begins_xfer)
+          DE4_SOPC_clock_4_in_reg_firsttransfer <= DE4_SOPC_clock_4_in_unreg_firsttransfer;
+    end
+
+
+  //DE4_SOPC_clock_4_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign DE4_SOPC_clock_4_in_beginbursttransfer_internal = DE4_SOPC_clock_4_in_begins_xfer;
+
+  //DE4_SOPC_clock_4_in_read assignment, which is an e_mux
+  assign DE4_SOPC_clock_4_in_read = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_read;
+
+  //DE4_SOPC_clock_4_in_write assignment, which is an e_mux
+  assign DE4_SOPC_clock_4_in_write = ((peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_write)) & DE4_SOPC_clock_4_in_pretend_byte_enable;
+
+  //DE4_SOPC_clock_4_in_address mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_address = peripheral_clock_crossing_m1_address_to_slave;
+
+  //slaveid DE4_SOPC_clock_4_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_nativeaddress = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_DE4_SOPC_clock_4_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_DE4_SOPC_clock_4_in_end_xfer <= 1;
+      else 
+        d1_DE4_SOPC_clock_4_in_end_xfer <= DE4_SOPC_clock_4_in_end_xfer;
+    end
+
+
+  //DE4_SOPC_clock_4_in_waits_for_read in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_4_in_waits_for_read = DE4_SOPC_clock_4_in_in_a_read_cycle & DE4_SOPC_clock_4_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_4_in_in_a_read_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_in_in_a_read_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = DE4_SOPC_clock_4_in_in_a_read_cycle;
+
+  //DE4_SOPC_clock_4_in_waits_for_write in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_4_in_waits_for_write = DE4_SOPC_clock_4_in_in_a_write_cycle & DE4_SOPC_clock_4_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_4_in_in_a_write_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_in_in_a_write_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = DE4_SOPC_clock_4_in_in_a_write_cycle;
+
+  assign wait_for_DE4_SOPC_clock_4_in_counter = 0;
+  //DE4_SOPC_clock_4_in_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign DE4_SOPC_clock_4_in_pretend_byte_enable = (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in)? peripheral_clock_crossing_m1_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_4/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_4_out_arbitrator (
+                                         // inputs:
+                                          DE4_SOPC_clock_4_out_address,
+                                          DE4_SOPC_clock_4_out_granted_led_pio_s1,
+                                          DE4_SOPC_clock_4_out_qualified_request_led_pio_s1,
+                                          DE4_SOPC_clock_4_out_read,
+                                          DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1,
+                                          DE4_SOPC_clock_4_out_requests_led_pio_s1,
+                                          DE4_SOPC_clock_4_out_write,
+                                          DE4_SOPC_clock_4_out_writedata,
+                                          clk,
+                                          d1_led_pio_s1_end_xfer,
+                                          led_pio_s1_readdata_from_sa,
+                                          reset_n,
+
+                                         // outputs:
+                                          DE4_SOPC_clock_4_out_address_to_slave,
+                                          DE4_SOPC_clock_4_out_readdata,
+                                          DE4_SOPC_clock_4_out_reset_n,
+                                          DE4_SOPC_clock_4_out_waitrequest
+                                       )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_4_out_address_to_slave;
+  output  [  7: 0] DE4_SOPC_clock_4_out_readdata;
+  output           DE4_SOPC_clock_4_out_reset_n;
+  output           DE4_SOPC_clock_4_out_waitrequest;
+  input   [  1: 0] DE4_SOPC_clock_4_out_address;
+  input            DE4_SOPC_clock_4_out_granted_led_pio_s1;
+  input            DE4_SOPC_clock_4_out_qualified_request_led_pio_s1;
+  input            DE4_SOPC_clock_4_out_read;
+  input            DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1;
+  input            DE4_SOPC_clock_4_out_requests_led_pio_s1;
+  input            DE4_SOPC_clock_4_out_write;
+  input   [  7: 0] DE4_SOPC_clock_4_out_writedata;
+  input            clk;
+  input            d1_led_pio_s1_end_xfer;
+  input   [  7: 0] led_pio_s1_readdata_from_sa;
+  input            reset_n;
+
+  reg     [  1: 0] DE4_SOPC_clock_4_out_address_last_time;
+  wire    [  1: 0] DE4_SOPC_clock_4_out_address_to_slave;
+  reg              DE4_SOPC_clock_4_out_read_last_time;
+  wire    [  7: 0] DE4_SOPC_clock_4_out_readdata;
+  wire             DE4_SOPC_clock_4_out_reset_n;
+  wire             DE4_SOPC_clock_4_out_run;
+  wire             DE4_SOPC_clock_4_out_waitrequest;
+  reg              DE4_SOPC_clock_4_out_write_last_time;
+  reg     [  7: 0] DE4_SOPC_clock_4_out_writedata_last_time;
+  reg              active_and_waiting_last_time;
+  wire             r_1;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & ((~DE4_SOPC_clock_4_out_qualified_request_led_pio_s1 | ~DE4_SOPC_clock_4_out_read | (1 & ~d1_led_pio_s1_end_xfer & DE4_SOPC_clock_4_out_read))) & ((~DE4_SOPC_clock_4_out_qualified_request_led_pio_s1 | ~DE4_SOPC_clock_4_out_write | (1 & DE4_SOPC_clock_4_out_write)));
+
+  //cascaded wait assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_out_run = r_1;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign DE4_SOPC_clock_4_out_address_to_slave = DE4_SOPC_clock_4_out_address;
+
+  //DE4_SOPC_clock_4/out readdata mux, which is an e_mux
+  assign DE4_SOPC_clock_4_out_readdata = led_pio_s1_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign DE4_SOPC_clock_4_out_waitrequest = ~DE4_SOPC_clock_4_out_run;
+
+  //DE4_SOPC_clock_4_out_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_4_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_4_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_out_address_last_time <= 0;
+      else 
+        DE4_SOPC_clock_4_out_address_last_time <= DE4_SOPC_clock_4_out_address;
+    end
+
+
+  //DE4_SOPC_clock_4/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= DE4_SOPC_clock_4_out_waitrequest & (DE4_SOPC_clock_4_out_read | DE4_SOPC_clock_4_out_write);
+    end
+
+
+  //DE4_SOPC_clock_4_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_4_out_address != DE4_SOPC_clock_4_out_address_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_4_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_4_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_out_read_last_time <= 0;
+      else 
+        DE4_SOPC_clock_4_out_read_last_time <= DE4_SOPC_clock_4_out_read;
+    end
+
+
+  //DE4_SOPC_clock_4_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_4_out_read != DE4_SOPC_clock_4_out_read_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_4_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_4_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_out_write_last_time <= 0;
+      else 
+        DE4_SOPC_clock_4_out_write_last_time <= DE4_SOPC_clock_4_out_write;
+    end
+
+
+  //DE4_SOPC_clock_4_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_4_out_write != DE4_SOPC_clock_4_out_write_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_4_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_4_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_4_out_writedata_last_time <= 0;
+      else 
+        DE4_SOPC_clock_4_out_writedata_last_time <= DE4_SOPC_clock_4_out_writedata;
+    end
+
+
+  //DE4_SOPC_clock_4_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_4_out_writedata != DE4_SOPC_clock_4_out_writedata_last_time) & DE4_SOPC_clock_4_out_write)
+        begin
+          $write("%0d ns: DE4_SOPC_clock_4_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_5_in_arbitrator (
+                                        // inputs:
+                                         DE4_SOPC_clock_5_in_endofpacket,
+                                         DE4_SOPC_clock_5_in_readdata,
+                                         DE4_SOPC_clock_5_in_waitrequest,
+                                         clk,
+                                         peripheral_clock_crossing_m1_address_to_slave,
+                                         peripheral_clock_crossing_m1_byteenable,
+                                         peripheral_clock_crossing_m1_latency_counter,
+                                         peripheral_clock_crossing_m1_nativeaddress,
+                                         peripheral_clock_crossing_m1_read,
+                                         peripheral_clock_crossing_m1_write,
+                                         peripheral_clock_crossing_m1_writedata,
+                                         reset_n,
+
+                                        // outputs:
+                                         DE4_SOPC_clock_5_in_address,
+                                         DE4_SOPC_clock_5_in_endofpacket_from_sa,
+                                         DE4_SOPC_clock_5_in_nativeaddress,
+                                         DE4_SOPC_clock_5_in_read,
+                                         DE4_SOPC_clock_5_in_readdata_from_sa,
+                                         DE4_SOPC_clock_5_in_reset_n,
+                                         DE4_SOPC_clock_5_in_waitrequest_from_sa,
+                                         DE4_SOPC_clock_5_in_write,
+                                         DE4_SOPC_clock_5_in_writedata,
+                                         d1_DE4_SOPC_clock_5_in_end_xfer,
+                                         peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in,
+                                         peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in,
+                                         peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in,
+                                         peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in
+                                      )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_5_in_address;
+  output           DE4_SOPC_clock_5_in_endofpacket_from_sa;
+  output  [  1: 0] DE4_SOPC_clock_5_in_nativeaddress;
+  output           DE4_SOPC_clock_5_in_read;
+  output  [  7: 0] DE4_SOPC_clock_5_in_readdata_from_sa;
+  output           DE4_SOPC_clock_5_in_reset_n;
+  output           DE4_SOPC_clock_5_in_waitrequest_from_sa;
+  output           DE4_SOPC_clock_5_in_write;
+  output  [  7: 0] DE4_SOPC_clock_5_in_writedata;
+  output           d1_DE4_SOPC_clock_5_in_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in;
+  output           peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in;
+  output           peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in;
+  output           peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+  input            DE4_SOPC_clock_5_in_endofpacket;
+  input   [  7: 0] DE4_SOPC_clock_5_in_readdata;
+  input            DE4_SOPC_clock_5_in_waitrequest;
+  input            clk;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+
+  wire    [  1: 0] DE4_SOPC_clock_5_in_address;
+  wire             DE4_SOPC_clock_5_in_allgrants;
+  wire             DE4_SOPC_clock_5_in_allow_new_arb_cycle;
+  wire             DE4_SOPC_clock_5_in_any_bursting_master_saved_grant;
+  wire             DE4_SOPC_clock_5_in_any_continuerequest;
+  wire             DE4_SOPC_clock_5_in_arb_counter_enable;
+  reg              DE4_SOPC_clock_5_in_arb_share_counter;
+  wire             DE4_SOPC_clock_5_in_arb_share_counter_next_value;
+  wire             DE4_SOPC_clock_5_in_arb_share_set_values;
+  wire             DE4_SOPC_clock_5_in_beginbursttransfer_internal;
+  wire             DE4_SOPC_clock_5_in_begins_xfer;
+  wire             DE4_SOPC_clock_5_in_end_xfer;
+  wire             DE4_SOPC_clock_5_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_5_in_firsttransfer;
+  wire             DE4_SOPC_clock_5_in_grant_vector;
+  wire             DE4_SOPC_clock_5_in_in_a_read_cycle;
+  wire             DE4_SOPC_clock_5_in_in_a_write_cycle;
+  wire             DE4_SOPC_clock_5_in_master_qreq_vector;
+  wire    [  1: 0] DE4_SOPC_clock_5_in_nativeaddress;
+  wire             DE4_SOPC_clock_5_in_non_bursting_master_requests;
+  wire             DE4_SOPC_clock_5_in_pretend_byte_enable;
+  wire             DE4_SOPC_clock_5_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_5_in_readdata_from_sa;
+  reg              DE4_SOPC_clock_5_in_reg_firsttransfer;
+  wire             DE4_SOPC_clock_5_in_reset_n;
+  reg              DE4_SOPC_clock_5_in_slavearbiterlockenable;
+  wire             DE4_SOPC_clock_5_in_slavearbiterlockenable2;
+  wire             DE4_SOPC_clock_5_in_unreg_firsttransfer;
+  wire             DE4_SOPC_clock_5_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_5_in_waits_for_read;
+  wire             DE4_SOPC_clock_5_in_waits_for_write;
+  wire             DE4_SOPC_clock_5_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_5_in_writedata;
+  reg              d1_DE4_SOPC_clock_5_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_5_in;
+  wire             wait_for_DE4_SOPC_clock_5_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~DE4_SOPC_clock_5_in_end_xfer;
+    end
+
+
+  assign DE4_SOPC_clock_5_in_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in));
+  //assign DE4_SOPC_clock_5_in_readdata_from_sa = DE4_SOPC_clock_5_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_5_in_readdata_from_sa = DE4_SOPC_clock_5_in_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h180) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //assign DE4_SOPC_clock_5_in_waitrequest_from_sa = DE4_SOPC_clock_5_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_5_in_waitrequest_from_sa = DE4_SOPC_clock_5_in_waitrequest;
+
+  //DE4_SOPC_clock_5_in_arb_share_counter set values, which is an e_mux
+  assign DE4_SOPC_clock_5_in_arb_share_set_values = 1;
+
+  //DE4_SOPC_clock_5_in_non_bursting_master_requests mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+
+  //DE4_SOPC_clock_5_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_any_bursting_master_saved_grant = 0;
+
+  //DE4_SOPC_clock_5_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_in_arb_share_counter_next_value = DE4_SOPC_clock_5_in_firsttransfer ? (DE4_SOPC_clock_5_in_arb_share_set_values - 1) : |DE4_SOPC_clock_5_in_arb_share_counter ? (DE4_SOPC_clock_5_in_arb_share_counter - 1) : 0;
+
+  //DE4_SOPC_clock_5_in_allgrants all slave grants, which is an e_mux
+  assign DE4_SOPC_clock_5_in_allgrants = |DE4_SOPC_clock_5_in_grant_vector;
+
+  //DE4_SOPC_clock_5_in_end_xfer assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_in_end_xfer = ~(DE4_SOPC_clock_5_in_waits_for_read | DE4_SOPC_clock_5_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in = DE4_SOPC_clock_5_in_end_xfer & (~DE4_SOPC_clock_5_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //DE4_SOPC_clock_5_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign DE4_SOPC_clock_5_in_arb_counter_enable = (end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in & DE4_SOPC_clock_5_in_allgrants) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in & ~DE4_SOPC_clock_5_in_non_bursting_master_requests);
+
+  //DE4_SOPC_clock_5_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_in_arb_share_counter <= 0;
+      else if (DE4_SOPC_clock_5_in_arb_counter_enable)
+          DE4_SOPC_clock_5_in_arb_share_counter <= DE4_SOPC_clock_5_in_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_5_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_in_slavearbiterlockenable <= 0;
+      else if ((|DE4_SOPC_clock_5_in_master_qreq_vector & end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_5_in & ~DE4_SOPC_clock_5_in_non_bursting_master_requests))
+          DE4_SOPC_clock_5_in_slavearbiterlockenable <= |DE4_SOPC_clock_5_in_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_5/in arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = DE4_SOPC_clock_5_in_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_5_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_5_in_slavearbiterlockenable2 = |DE4_SOPC_clock_5_in_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_5/in arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = DE4_SOPC_clock_5_in_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_5_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign DE4_SOPC_clock_5_in_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_read & ~DE4_SOPC_clock_5_in_waits_for_read;
+
+  //DE4_SOPC_clock_5_in_writedata mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //assign DE4_SOPC_clock_5_in_endofpacket_from_sa = DE4_SOPC_clock_5_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_5_in_endofpacket_from_sa = DE4_SOPC_clock_5_in_endofpacket;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in = peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in;
+
+  //peripheral_clock_crossing/m1 saved-grant DE4_SOPC_clock_5/in, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_5_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+
+  //allow new arb cycle for DE4_SOPC_clock_5/in, which is an e_assign
+  assign DE4_SOPC_clock_5_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign DE4_SOPC_clock_5_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign DE4_SOPC_clock_5_in_master_qreq_vector = 1;
+
+  //DE4_SOPC_clock_5_in_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_in_reset_n = reset_n;
+
+  //DE4_SOPC_clock_5_in_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_5_in_firsttransfer = DE4_SOPC_clock_5_in_begins_xfer ? DE4_SOPC_clock_5_in_unreg_firsttransfer : DE4_SOPC_clock_5_in_reg_firsttransfer;
+
+  //DE4_SOPC_clock_5_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_5_in_unreg_firsttransfer = ~(DE4_SOPC_clock_5_in_slavearbiterlockenable & DE4_SOPC_clock_5_in_any_continuerequest);
+
+  //DE4_SOPC_clock_5_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_in_reg_firsttransfer <= 1'b1;
+      else if (DE4_SOPC_clock_5_in_begins_xfer)
+          DE4_SOPC_clock_5_in_reg_firsttransfer <= DE4_SOPC_clock_5_in_unreg_firsttransfer;
+    end
+
+
+  //DE4_SOPC_clock_5_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign DE4_SOPC_clock_5_in_beginbursttransfer_internal = DE4_SOPC_clock_5_in_begins_xfer;
+
+  //DE4_SOPC_clock_5_in_read assignment, which is an e_mux
+  assign DE4_SOPC_clock_5_in_read = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_read;
+
+  //DE4_SOPC_clock_5_in_write assignment, which is an e_mux
+  assign DE4_SOPC_clock_5_in_write = ((peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_write)) & DE4_SOPC_clock_5_in_pretend_byte_enable;
+
+  //DE4_SOPC_clock_5_in_address mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_address = peripheral_clock_crossing_m1_address_to_slave;
+
+  //slaveid DE4_SOPC_clock_5_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_nativeaddress = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_DE4_SOPC_clock_5_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_DE4_SOPC_clock_5_in_end_xfer <= 1;
+      else 
+        d1_DE4_SOPC_clock_5_in_end_xfer <= DE4_SOPC_clock_5_in_end_xfer;
+    end
+
+
+  //DE4_SOPC_clock_5_in_waits_for_read in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_5_in_waits_for_read = DE4_SOPC_clock_5_in_in_a_read_cycle & DE4_SOPC_clock_5_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_5_in_in_a_read_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_in_in_a_read_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = DE4_SOPC_clock_5_in_in_a_read_cycle;
+
+  //DE4_SOPC_clock_5_in_waits_for_write in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_5_in_waits_for_write = DE4_SOPC_clock_5_in_in_a_write_cycle & DE4_SOPC_clock_5_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_5_in_in_a_write_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_in_in_a_write_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = DE4_SOPC_clock_5_in_in_a_write_cycle;
+
+  assign wait_for_DE4_SOPC_clock_5_in_counter = 0;
+  //DE4_SOPC_clock_5_in_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign DE4_SOPC_clock_5_in_pretend_byte_enable = (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in)? peripheral_clock_crossing_m1_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_5/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_5_out_arbitrator (
+                                         // inputs:
+                                          DE4_SOPC_clock_5_out_address,
+                                          DE4_SOPC_clock_5_out_granted_sw_pio_s1,
+                                          DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1,
+                                          DE4_SOPC_clock_5_out_read,
+                                          DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1,
+                                          DE4_SOPC_clock_5_out_requests_sw_pio_s1,
+                                          DE4_SOPC_clock_5_out_write,
+                                          DE4_SOPC_clock_5_out_writedata,
+                                          clk,
+                                          d1_sw_pio_s1_end_xfer,
+                                          reset_n,
+                                          sw_pio_s1_readdata_from_sa,
+
+                                         // outputs:
+                                          DE4_SOPC_clock_5_out_address_to_slave,
+                                          DE4_SOPC_clock_5_out_readdata,
+                                          DE4_SOPC_clock_5_out_reset_n,
+                                          DE4_SOPC_clock_5_out_waitrequest
+                                       )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_5_out_address_to_slave;
+  output  [  7: 0] DE4_SOPC_clock_5_out_readdata;
+  output           DE4_SOPC_clock_5_out_reset_n;
+  output           DE4_SOPC_clock_5_out_waitrequest;
+  input   [  1: 0] DE4_SOPC_clock_5_out_address;
+  input            DE4_SOPC_clock_5_out_granted_sw_pio_s1;
+  input            DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1;
+  input            DE4_SOPC_clock_5_out_read;
+  input            DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1;
+  input            DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+  input            DE4_SOPC_clock_5_out_write;
+  input   [  7: 0] DE4_SOPC_clock_5_out_writedata;
+  input            clk;
+  input            d1_sw_pio_s1_end_xfer;
+  input            reset_n;
+  input   [  7: 0] sw_pio_s1_readdata_from_sa;
+
+  reg     [  1: 0] DE4_SOPC_clock_5_out_address_last_time;
+  wire    [  1: 0] DE4_SOPC_clock_5_out_address_to_slave;
+  reg              DE4_SOPC_clock_5_out_read_last_time;
+  wire    [  7: 0] DE4_SOPC_clock_5_out_readdata;
+  wire             DE4_SOPC_clock_5_out_reset_n;
+  wire             DE4_SOPC_clock_5_out_run;
+  wire             DE4_SOPC_clock_5_out_waitrequest;
+  reg              DE4_SOPC_clock_5_out_write_last_time;
+  reg     [  7: 0] DE4_SOPC_clock_5_out_writedata_last_time;
+  reg              active_and_waiting_last_time;
+  wire             r_2;
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & ((~DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1 | ~DE4_SOPC_clock_5_out_read | (1 & ~d1_sw_pio_s1_end_xfer & DE4_SOPC_clock_5_out_read))) & ((~DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1 | ~DE4_SOPC_clock_5_out_write | (1 & DE4_SOPC_clock_5_out_write)));
+
+  //cascaded wait assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_out_run = r_2;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign DE4_SOPC_clock_5_out_address_to_slave = DE4_SOPC_clock_5_out_address;
+
+  //DE4_SOPC_clock_5/out readdata mux, which is an e_mux
+  assign DE4_SOPC_clock_5_out_readdata = sw_pio_s1_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign DE4_SOPC_clock_5_out_waitrequest = ~DE4_SOPC_clock_5_out_run;
+
+  //DE4_SOPC_clock_5_out_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_5_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_5_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_out_address_last_time <= 0;
+      else 
+        DE4_SOPC_clock_5_out_address_last_time <= DE4_SOPC_clock_5_out_address;
+    end
+
+
+  //DE4_SOPC_clock_5/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= DE4_SOPC_clock_5_out_waitrequest & (DE4_SOPC_clock_5_out_read | DE4_SOPC_clock_5_out_write);
+    end
+
+
+  //DE4_SOPC_clock_5_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_5_out_address != DE4_SOPC_clock_5_out_address_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_5_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_5_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_out_read_last_time <= 0;
+      else 
+        DE4_SOPC_clock_5_out_read_last_time <= DE4_SOPC_clock_5_out_read;
+    end
+
+
+  //DE4_SOPC_clock_5_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_5_out_read != DE4_SOPC_clock_5_out_read_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_5_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_5_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_out_write_last_time <= 0;
+      else 
+        DE4_SOPC_clock_5_out_write_last_time <= DE4_SOPC_clock_5_out_write;
+    end
+
+
+  //DE4_SOPC_clock_5_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_5_out_write != DE4_SOPC_clock_5_out_write_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_5_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_5_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_5_out_writedata_last_time <= 0;
+      else 
+        DE4_SOPC_clock_5_out_writedata_last_time <= DE4_SOPC_clock_5_out_writedata;
+    end
+
+
+  //DE4_SOPC_clock_5_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_5_out_writedata != DE4_SOPC_clock_5_out_writedata_last_time) & DE4_SOPC_clock_5_out_write)
+        begin
+          $write("%0d ns: DE4_SOPC_clock_5_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_6_in_arbitrator (
+                                        // inputs:
+                                         DE4_SOPC_clock_6_in_endofpacket,
+                                         DE4_SOPC_clock_6_in_readdata,
+                                         DE4_SOPC_clock_6_in_waitrequest,
+                                         clk,
+                                         peripheral_clock_crossing_m1_address_to_slave,
+                                         peripheral_clock_crossing_m1_byteenable,
+                                         peripheral_clock_crossing_m1_latency_counter,
+                                         peripheral_clock_crossing_m1_nativeaddress,
+                                         peripheral_clock_crossing_m1_read,
+                                         peripheral_clock_crossing_m1_write,
+                                         peripheral_clock_crossing_m1_writedata,
+                                         reset_n,
+
+                                        // outputs:
+                                         DE4_SOPC_clock_6_in_address,
+                                         DE4_SOPC_clock_6_in_endofpacket_from_sa,
+                                         DE4_SOPC_clock_6_in_nativeaddress,
+                                         DE4_SOPC_clock_6_in_read,
+                                         DE4_SOPC_clock_6_in_readdata_from_sa,
+                                         DE4_SOPC_clock_6_in_reset_n,
+                                         DE4_SOPC_clock_6_in_waitrequest_from_sa,
+                                         DE4_SOPC_clock_6_in_write,
+                                         DE4_SOPC_clock_6_in_writedata,
+                                         d1_DE4_SOPC_clock_6_in_end_xfer,
+                                         peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in,
+                                         peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in,
+                                         peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in,
+                                         peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in
+                                      )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_6_in_address;
+  output           DE4_SOPC_clock_6_in_endofpacket_from_sa;
+  output  [  1: 0] DE4_SOPC_clock_6_in_nativeaddress;
+  output           DE4_SOPC_clock_6_in_read;
+  output  [  7: 0] DE4_SOPC_clock_6_in_readdata_from_sa;
+  output           DE4_SOPC_clock_6_in_reset_n;
+  output           DE4_SOPC_clock_6_in_waitrequest_from_sa;
+  output           DE4_SOPC_clock_6_in_write;
+  output  [  7: 0] DE4_SOPC_clock_6_in_writedata;
+  output           d1_DE4_SOPC_clock_6_in_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in;
+  output           peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in;
+  output           peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in;
+  output           peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+  input            DE4_SOPC_clock_6_in_endofpacket;
+  input   [  7: 0] DE4_SOPC_clock_6_in_readdata;
+  input            DE4_SOPC_clock_6_in_waitrequest;
+  input            clk;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+
+  wire    [  1: 0] DE4_SOPC_clock_6_in_address;
+  wire             DE4_SOPC_clock_6_in_allgrants;
+  wire             DE4_SOPC_clock_6_in_allow_new_arb_cycle;
+  wire             DE4_SOPC_clock_6_in_any_bursting_master_saved_grant;
+  wire             DE4_SOPC_clock_6_in_any_continuerequest;
+  wire             DE4_SOPC_clock_6_in_arb_counter_enable;
+  reg              DE4_SOPC_clock_6_in_arb_share_counter;
+  wire             DE4_SOPC_clock_6_in_arb_share_counter_next_value;
+  wire             DE4_SOPC_clock_6_in_arb_share_set_values;
+  wire             DE4_SOPC_clock_6_in_beginbursttransfer_internal;
+  wire             DE4_SOPC_clock_6_in_begins_xfer;
+  wire             DE4_SOPC_clock_6_in_end_xfer;
+  wire             DE4_SOPC_clock_6_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_6_in_firsttransfer;
+  wire             DE4_SOPC_clock_6_in_grant_vector;
+  wire             DE4_SOPC_clock_6_in_in_a_read_cycle;
+  wire             DE4_SOPC_clock_6_in_in_a_write_cycle;
+  wire             DE4_SOPC_clock_6_in_master_qreq_vector;
+  wire    [  1: 0] DE4_SOPC_clock_6_in_nativeaddress;
+  wire             DE4_SOPC_clock_6_in_non_bursting_master_requests;
+  wire             DE4_SOPC_clock_6_in_pretend_byte_enable;
+  wire             DE4_SOPC_clock_6_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_6_in_readdata_from_sa;
+  reg              DE4_SOPC_clock_6_in_reg_firsttransfer;
+  wire             DE4_SOPC_clock_6_in_reset_n;
+  reg              DE4_SOPC_clock_6_in_slavearbiterlockenable;
+  wire             DE4_SOPC_clock_6_in_slavearbiterlockenable2;
+  wire             DE4_SOPC_clock_6_in_unreg_firsttransfer;
+  wire             DE4_SOPC_clock_6_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_6_in_waits_for_read;
+  wire             DE4_SOPC_clock_6_in_waits_for_write;
+  wire             DE4_SOPC_clock_6_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_6_in_writedata;
+  reg              d1_DE4_SOPC_clock_6_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_6_in;
+  wire             wait_for_DE4_SOPC_clock_6_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~DE4_SOPC_clock_6_in_end_xfer;
+    end
+
+
+  assign DE4_SOPC_clock_6_in_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in));
+  //assign DE4_SOPC_clock_6_in_readdata_from_sa = DE4_SOPC_clock_6_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_6_in_readdata_from_sa = DE4_SOPC_clock_6_in_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h200) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //assign DE4_SOPC_clock_6_in_waitrequest_from_sa = DE4_SOPC_clock_6_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_6_in_waitrequest_from_sa = DE4_SOPC_clock_6_in_waitrequest;
+
+  //DE4_SOPC_clock_6_in_arb_share_counter set values, which is an e_mux
+  assign DE4_SOPC_clock_6_in_arb_share_set_values = 1;
+
+  //DE4_SOPC_clock_6_in_non_bursting_master_requests mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+
+  //DE4_SOPC_clock_6_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_any_bursting_master_saved_grant = 0;
+
+  //DE4_SOPC_clock_6_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_in_arb_share_counter_next_value = DE4_SOPC_clock_6_in_firsttransfer ? (DE4_SOPC_clock_6_in_arb_share_set_values - 1) : |DE4_SOPC_clock_6_in_arb_share_counter ? (DE4_SOPC_clock_6_in_arb_share_counter - 1) : 0;
+
+  //DE4_SOPC_clock_6_in_allgrants all slave grants, which is an e_mux
+  assign DE4_SOPC_clock_6_in_allgrants = |DE4_SOPC_clock_6_in_grant_vector;
+
+  //DE4_SOPC_clock_6_in_end_xfer assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_in_end_xfer = ~(DE4_SOPC_clock_6_in_waits_for_read | DE4_SOPC_clock_6_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in = DE4_SOPC_clock_6_in_end_xfer & (~DE4_SOPC_clock_6_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //DE4_SOPC_clock_6_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign DE4_SOPC_clock_6_in_arb_counter_enable = (end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in & DE4_SOPC_clock_6_in_allgrants) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in & ~DE4_SOPC_clock_6_in_non_bursting_master_requests);
+
+  //DE4_SOPC_clock_6_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_in_arb_share_counter <= 0;
+      else if (DE4_SOPC_clock_6_in_arb_counter_enable)
+          DE4_SOPC_clock_6_in_arb_share_counter <= DE4_SOPC_clock_6_in_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_6_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_in_slavearbiterlockenable <= 0;
+      else if ((|DE4_SOPC_clock_6_in_master_qreq_vector & end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_6_in & ~DE4_SOPC_clock_6_in_non_bursting_master_requests))
+          DE4_SOPC_clock_6_in_slavearbiterlockenable <= |DE4_SOPC_clock_6_in_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_6/in arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = DE4_SOPC_clock_6_in_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_6_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_6_in_slavearbiterlockenable2 = |DE4_SOPC_clock_6_in_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_6/in arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = DE4_SOPC_clock_6_in_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_6_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign DE4_SOPC_clock_6_in_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_read & ~DE4_SOPC_clock_6_in_waits_for_read;
+
+  //DE4_SOPC_clock_6_in_writedata mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //assign DE4_SOPC_clock_6_in_endofpacket_from_sa = DE4_SOPC_clock_6_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_6_in_endofpacket_from_sa = DE4_SOPC_clock_6_in_endofpacket;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in = peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in;
+
+  //peripheral_clock_crossing/m1 saved-grant DE4_SOPC_clock_6/in, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_6_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+
+  //allow new arb cycle for DE4_SOPC_clock_6/in, which is an e_assign
+  assign DE4_SOPC_clock_6_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign DE4_SOPC_clock_6_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign DE4_SOPC_clock_6_in_master_qreq_vector = 1;
+
+  //DE4_SOPC_clock_6_in_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_in_reset_n = reset_n;
+
+  //DE4_SOPC_clock_6_in_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_6_in_firsttransfer = DE4_SOPC_clock_6_in_begins_xfer ? DE4_SOPC_clock_6_in_unreg_firsttransfer : DE4_SOPC_clock_6_in_reg_firsttransfer;
+
+  //DE4_SOPC_clock_6_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_6_in_unreg_firsttransfer = ~(DE4_SOPC_clock_6_in_slavearbiterlockenable & DE4_SOPC_clock_6_in_any_continuerequest);
+
+  //DE4_SOPC_clock_6_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_in_reg_firsttransfer <= 1'b1;
+      else if (DE4_SOPC_clock_6_in_begins_xfer)
+          DE4_SOPC_clock_6_in_reg_firsttransfer <= DE4_SOPC_clock_6_in_unreg_firsttransfer;
+    end
+
+
+  //DE4_SOPC_clock_6_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign DE4_SOPC_clock_6_in_beginbursttransfer_internal = DE4_SOPC_clock_6_in_begins_xfer;
+
+  //DE4_SOPC_clock_6_in_read assignment, which is an e_mux
+  assign DE4_SOPC_clock_6_in_read = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_read;
+
+  //DE4_SOPC_clock_6_in_write assignment, which is an e_mux
+  assign DE4_SOPC_clock_6_in_write = ((peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_write)) & DE4_SOPC_clock_6_in_pretend_byte_enable;
+
+  //DE4_SOPC_clock_6_in_address mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_address = peripheral_clock_crossing_m1_address_to_slave;
+
+  //slaveid DE4_SOPC_clock_6_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_nativeaddress = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_DE4_SOPC_clock_6_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_DE4_SOPC_clock_6_in_end_xfer <= 1;
+      else 
+        d1_DE4_SOPC_clock_6_in_end_xfer <= DE4_SOPC_clock_6_in_end_xfer;
+    end
+
+
+  //DE4_SOPC_clock_6_in_waits_for_read in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_6_in_waits_for_read = DE4_SOPC_clock_6_in_in_a_read_cycle & DE4_SOPC_clock_6_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_6_in_in_a_read_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_in_in_a_read_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = DE4_SOPC_clock_6_in_in_a_read_cycle;
+
+  //DE4_SOPC_clock_6_in_waits_for_write in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_6_in_waits_for_write = DE4_SOPC_clock_6_in_in_a_write_cycle & DE4_SOPC_clock_6_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_6_in_in_a_write_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_in_in_a_write_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = DE4_SOPC_clock_6_in_in_a_write_cycle;
+
+  assign wait_for_DE4_SOPC_clock_6_in_counter = 0;
+  //DE4_SOPC_clock_6_in_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign DE4_SOPC_clock_6_in_pretend_byte_enable = (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in)? peripheral_clock_crossing_m1_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_6/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_6_out_arbitrator (
+                                         // inputs:
+                                          DE4_SOPC_clock_6_out_address,
+                                          DE4_SOPC_clock_6_out_granted_pb_pio_s1,
+                                          DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1,
+                                          DE4_SOPC_clock_6_out_read,
+                                          DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1,
+                                          DE4_SOPC_clock_6_out_requests_pb_pio_s1,
+                                          DE4_SOPC_clock_6_out_write,
+                                          DE4_SOPC_clock_6_out_writedata,
+                                          clk,
+                                          d1_pb_pio_s1_end_xfer,
+                                          pb_pio_s1_readdata_from_sa,
+                                          reset_n,
+
+                                         // outputs:
+                                          DE4_SOPC_clock_6_out_address_to_slave,
+                                          DE4_SOPC_clock_6_out_readdata,
+                                          DE4_SOPC_clock_6_out_reset_n,
+                                          DE4_SOPC_clock_6_out_waitrequest
+                                       )
+;
+
+  output  [  1: 0] DE4_SOPC_clock_6_out_address_to_slave;
+  output  [  7: 0] DE4_SOPC_clock_6_out_readdata;
+  output           DE4_SOPC_clock_6_out_reset_n;
+  output           DE4_SOPC_clock_6_out_waitrequest;
+  input   [  1: 0] DE4_SOPC_clock_6_out_address;
+  input            DE4_SOPC_clock_6_out_granted_pb_pio_s1;
+  input            DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1;
+  input            DE4_SOPC_clock_6_out_read;
+  input            DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1;
+  input            DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+  input            DE4_SOPC_clock_6_out_write;
+  input   [  7: 0] DE4_SOPC_clock_6_out_writedata;
+  input            clk;
+  input            d1_pb_pio_s1_end_xfer;
+  input   [  3: 0] pb_pio_s1_readdata_from_sa;
+  input            reset_n;
+
+  reg     [  1: 0] DE4_SOPC_clock_6_out_address_last_time;
+  wire    [  1: 0] DE4_SOPC_clock_6_out_address_to_slave;
+  reg              DE4_SOPC_clock_6_out_read_last_time;
+  wire    [  7: 0] DE4_SOPC_clock_6_out_readdata;
+  wire             DE4_SOPC_clock_6_out_reset_n;
+  wire             DE4_SOPC_clock_6_out_run;
+  wire             DE4_SOPC_clock_6_out_waitrequest;
+  reg              DE4_SOPC_clock_6_out_write_last_time;
+  reg     [  7: 0] DE4_SOPC_clock_6_out_writedata_last_time;
+  reg              active_and_waiting_last_time;
+  wire             r_2;
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & ((~DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1 | ~DE4_SOPC_clock_6_out_read | (1 & ~d1_pb_pio_s1_end_xfer & DE4_SOPC_clock_6_out_read))) & ((~DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1 | ~DE4_SOPC_clock_6_out_write | (1 & DE4_SOPC_clock_6_out_write)));
+
+  //cascaded wait assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_out_run = r_2;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign DE4_SOPC_clock_6_out_address_to_slave = DE4_SOPC_clock_6_out_address;
+
+  //DE4_SOPC_clock_6/out readdata mux, which is an e_mux
+  assign DE4_SOPC_clock_6_out_readdata = pb_pio_s1_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign DE4_SOPC_clock_6_out_waitrequest = ~DE4_SOPC_clock_6_out_run;
+
+  //DE4_SOPC_clock_6_out_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_6_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_6_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_out_address_last_time <= 0;
+      else 
+        DE4_SOPC_clock_6_out_address_last_time <= DE4_SOPC_clock_6_out_address;
+    end
+
+
+  //DE4_SOPC_clock_6/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= DE4_SOPC_clock_6_out_waitrequest & (DE4_SOPC_clock_6_out_read | DE4_SOPC_clock_6_out_write);
+    end
+
+
+  //DE4_SOPC_clock_6_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_6_out_address != DE4_SOPC_clock_6_out_address_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_6_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_6_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_out_read_last_time <= 0;
+      else 
+        DE4_SOPC_clock_6_out_read_last_time <= DE4_SOPC_clock_6_out_read;
+    end
+
+
+  //DE4_SOPC_clock_6_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_6_out_read != DE4_SOPC_clock_6_out_read_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_6_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_6_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_out_write_last_time <= 0;
+      else 
+        DE4_SOPC_clock_6_out_write_last_time <= DE4_SOPC_clock_6_out_write;
+    end
+
+
+  //DE4_SOPC_clock_6_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_6_out_write != DE4_SOPC_clock_6_out_write_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_6_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_6_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_6_out_writedata_last_time <= 0;
+      else 
+        DE4_SOPC_clock_6_out_writedata_last_time <= DE4_SOPC_clock_6_out_writedata;
+    end
+
+
+  //DE4_SOPC_clock_6_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_6_out_writedata != DE4_SOPC_clock_6_out_writedata_last_time) & DE4_SOPC_clock_6_out_write)
+        begin
+          $write("%0d ns: DE4_SOPC_clock_6_out_writedata did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_7_in_arbitrator (
+                                        // inputs:
+                                         DE4_SOPC_clock_7_in_endofpacket,
+                                         DE4_SOPC_clock_7_in_readdata,
+                                         DE4_SOPC_clock_7_in_waitrequest,
+                                         clk,
+                                         peripheral_clock_crossing_m1_address_to_slave,
+                                         peripheral_clock_crossing_m1_byteenable,
+                                         peripheral_clock_crossing_m1_latency_counter,
+                                         peripheral_clock_crossing_m1_nativeaddress,
+                                         peripheral_clock_crossing_m1_read,
+                                         peripheral_clock_crossing_m1_write,
+                                         peripheral_clock_crossing_m1_writedata,
+                                         reset_n,
+
+                                        // outputs:
+                                         DE4_SOPC_clock_7_in_address,
+                                         DE4_SOPC_clock_7_in_byteenable,
+                                         DE4_SOPC_clock_7_in_endofpacket_from_sa,
+                                         DE4_SOPC_clock_7_in_nativeaddress,
+                                         DE4_SOPC_clock_7_in_read,
+                                         DE4_SOPC_clock_7_in_readdata_from_sa,
+                                         DE4_SOPC_clock_7_in_reset_n,
+                                         DE4_SOPC_clock_7_in_waitrequest_from_sa,
+                                         DE4_SOPC_clock_7_in_write,
+                                         DE4_SOPC_clock_7_in_writedata,
+                                         d1_DE4_SOPC_clock_7_in_end_xfer,
+                                         peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in,
+                                         peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in,
+                                         peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in,
+                                         peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in
+                                      )
+;
+
+  output  [  2: 0] DE4_SOPC_clock_7_in_address;
+  output  [  1: 0] DE4_SOPC_clock_7_in_byteenable;
+  output           DE4_SOPC_clock_7_in_endofpacket_from_sa;
+  output  [  1: 0] DE4_SOPC_clock_7_in_nativeaddress;
+  output           DE4_SOPC_clock_7_in_read;
+  output  [ 15: 0] DE4_SOPC_clock_7_in_readdata_from_sa;
+  output           DE4_SOPC_clock_7_in_reset_n;
+  output           DE4_SOPC_clock_7_in_waitrequest_from_sa;
+  output           DE4_SOPC_clock_7_in_write;
+  output  [ 15: 0] DE4_SOPC_clock_7_in_writedata;
+  output           d1_DE4_SOPC_clock_7_in_end_xfer;
+  output           peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in;
+  output           peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in;
+  output           peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in;
+  output           peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
+  input            DE4_SOPC_clock_7_in_endofpacket;
+  input   [ 15: 0] DE4_SOPC_clock_7_in_readdata;
+  input            DE4_SOPC_clock_7_in_waitrequest;
+  input            clk;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
+  input            peripheral_clock_crossing_m1_latency_counter;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input            peripheral_clock_crossing_m1_read;
+  input            peripheral_clock_crossing_m1_write;
+  input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
+  input            reset_n;
+
+  wire    [  2: 0] DE4_SOPC_clock_7_in_address;
+  wire             DE4_SOPC_clock_7_in_allgrants;
+  wire             DE4_SOPC_clock_7_in_allow_new_arb_cycle;
+  wire             DE4_SOPC_clock_7_in_any_bursting_master_saved_grant;
+  wire             DE4_SOPC_clock_7_in_any_continuerequest;
+  wire             DE4_SOPC_clock_7_in_arb_counter_enable;
+  reg              DE4_SOPC_clock_7_in_arb_share_counter;
+  wire             DE4_SOPC_clock_7_in_arb_share_counter_next_value;
+  wire             DE4_SOPC_clock_7_in_arb_share_set_values;
+  wire             DE4_SOPC_clock_7_in_beginbursttransfer_internal;
+  wire             DE4_SOPC_clock_7_in_begins_xfer;
+  wire    [  1: 0] DE4_SOPC_clock_7_in_byteenable;
+  wire             DE4_SOPC_clock_7_in_end_xfer;
+  wire             DE4_SOPC_clock_7_in_endofpacket_from_sa;
+  wire             DE4_SOPC_clock_7_in_firsttransfer;
+  wire             DE4_SOPC_clock_7_in_grant_vector;
+  wire             DE4_SOPC_clock_7_in_in_a_read_cycle;
+  wire             DE4_SOPC_clock_7_in_in_a_write_cycle;
+  wire             DE4_SOPC_clock_7_in_master_qreq_vector;
+  wire    [  1: 0] DE4_SOPC_clock_7_in_nativeaddress;
+  wire             DE4_SOPC_clock_7_in_non_bursting_master_requests;
+  wire             DE4_SOPC_clock_7_in_read;
+  wire    [ 15: 0] DE4_SOPC_clock_7_in_readdata_from_sa;
+  reg              DE4_SOPC_clock_7_in_reg_firsttransfer;
+  wire             DE4_SOPC_clock_7_in_reset_n;
+  reg              DE4_SOPC_clock_7_in_slavearbiterlockenable;
+  wire             DE4_SOPC_clock_7_in_slavearbiterlockenable2;
+  wire             DE4_SOPC_clock_7_in_unreg_firsttransfer;
+  wire             DE4_SOPC_clock_7_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_7_in_waits_for_read;
+  wire             DE4_SOPC_clock_7_in_waits_for_write;
+  wire             DE4_SOPC_clock_7_in_write;
+  wire    [ 15: 0] DE4_SOPC_clock_7_in_writedata;
+  reg              d1_DE4_SOPC_clock_7_in_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire             peripheral_clock_crossing_m1_arbiterlock;
+  wire             peripheral_clock_crossing_m1_arbiterlock2;
+  wire             peripheral_clock_crossing_m1_continuerequest;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
+  wire             peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_7_in;
+  wire             wait_for_DE4_SOPC_clock_7_in_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~DE4_SOPC_clock_7_in_end_xfer;
+    end
+
+
+  assign DE4_SOPC_clock_7_in_begins_xfer = ~d1_reasons_to_wait & ((peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in));
+  //assign DE4_SOPC_clock_7_in_readdata_from_sa = DE4_SOPC_clock_7_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_7_in_readdata_from_sa = DE4_SOPC_clock_7_in_readdata;
+
+  assign peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h280) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  //assign DE4_SOPC_clock_7_in_waitrequest_from_sa = DE4_SOPC_clock_7_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_7_in_waitrequest_from_sa = DE4_SOPC_clock_7_in_waitrequest;
+
+  //DE4_SOPC_clock_7_in_arb_share_counter set values, which is an e_mux
+  assign DE4_SOPC_clock_7_in_arb_share_set_values = 1;
+
+  //DE4_SOPC_clock_7_in_non_bursting_master_requests mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_non_bursting_master_requests = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
+
+  //DE4_SOPC_clock_7_in_any_bursting_master_saved_grant mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_any_bursting_master_saved_grant = 0;
+
+  //DE4_SOPC_clock_7_in_arb_share_counter_next_value assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_in_arb_share_counter_next_value = DE4_SOPC_clock_7_in_firsttransfer ? (DE4_SOPC_clock_7_in_arb_share_set_values - 1) : |DE4_SOPC_clock_7_in_arb_share_counter ? (DE4_SOPC_clock_7_in_arb_share_counter - 1) : 0;
+
+  //DE4_SOPC_clock_7_in_allgrants all slave grants, which is an e_mux
+  assign DE4_SOPC_clock_7_in_allgrants = |DE4_SOPC_clock_7_in_grant_vector;
+
+  //DE4_SOPC_clock_7_in_end_xfer assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_in_end_xfer = ~(DE4_SOPC_clock_7_in_waits_for_read | DE4_SOPC_clock_7_in_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in = DE4_SOPC_clock_7_in_end_xfer & (~DE4_SOPC_clock_7_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //DE4_SOPC_clock_7_in_arb_share_counter arbitration counter enable, which is an e_assign
+  assign DE4_SOPC_clock_7_in_arb_counter_enable = (end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in & DE4_SOPC_clock_7_in_allgrants) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in & ~DE4_SOPC_clock_7_in_non_bursting_master_requests);
+
+  //DE4_SOPC_clock_7_in_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_in_arb_share_counter <= 0;
+      else if (DE4_SOPC_clock_7_in_arb_counter_enable)
+          DE4_SOPC_clock_7_in_arb_share_counter <= DE4_SOPC_clock_7_in_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_7_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_in_slavearbiterlockenable <= 0;
+      else if ((|DE4_SOPC_clock_7_in_master_qreq_vector & end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in) | (end_xfer_arb_share_counter_term_DE4_SOPC_clock_7_in & ~DE4_SOPC_clock_7_in_non_bursting_master_requests))
+          DE4_SOPC_clock_7_in_slavearbiterlockenable <= |DE4_SOPC_clock_7_in_arb_share_counter_next_value;
+    end
+
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_7/in arbiterlock, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock = DE4_SOPC_clock_7_in_slavearbiterlockenable & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_7_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_7_in_slavearbiterlockenable2 = |DE4_SOPC_clock_7_in_arb_share_counter_next_value;
+
+  //peripheral_clock_crossing/m1 DE4_SOPC_clock_7/in arbiterlock2, which is an e_assign
+  assign peripheral_clock_crossing_m1_arbiterlock2 = DE4_SOPC_clock_7_in_slavearbiterlockenable2 & peripheral_clock_crossing_m1_continuerequest;
+
+  //DE4_SOPC_clock_7_in_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign DE4_SOPC_clock_7_in_any_continuerequest = 1;
+
+  //peripheral_clock_crossing_m1_continuerequest continued request, which is an e_assign
+  assign peripheral_clock_crossing_m1_continuerequest = 1;
+
+  assign peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in & ~((peripheral_clock_crossing_m1_read & ((peripheral_clock_crossing_m1_latency_counter != 0))));
+  //local readdatavalid peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in, which is an e_mux
+  assign peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_read & ~DE4_SOPC_clock_7_in_waits_for_read;
+
+  //DE4_SOPC_clock_7_in_writedata mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_writedata = peripheral_clock_crossing_m1_writedata;
+
+  //assign DE4_SOPC_clock_7_in_endofpacket_from_sa = DE4_SOPC_clock_7_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign DE4_SOPC_clock_7_in_endofpacket_from_sa = DE4_SOPC_clock_7_in_endofpacket;
+
+  //master is always granted when requested
+  assign peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in = peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in;
+
+  //peripheral_clock_crossing/m1 saved-grant DE4_SOPC_clock_7/in, which is an e_assign
+  assign peripheral_clock_crossing_m1_saved_grant_DE4_SOPC_clock_7_in = peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
+
+  //allow new arb cycle for DE4_SOPC_clock_7/in, which is an e_assign
+  assign DE4_SOPC_clock_7_in_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign DE4_SOPC_clock_7_in_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign DE4_SOPC_clock_7_in_master_qreq_vector = 1;
+
+  //DE4_SOPC_clock_7_in_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_in_reset_n = reset_n;
+
+  //DE4_SOPC_clock_7_in_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_7_in_firsttransfer = DE4_SOPC_clock_7_in_begins_xfer ? DE4_SOPC_clock_7_in_unreg_firsttransfer : DE4_SOPC_clock_7_in_reg_firsttransfer;
+
+  //DE4_SOPC_clock_7_in_unreg_firsttransfer first transaction, which is an e_assign
+  assign DE4_SOPC_clock_7_in_unreg_firsttransfer = ~(DE4_SOPC_clock_7_in_slavearbiterlockenable & DE4_SOPC_clock_7_in_any_continuerequest);
+
+  //DE4_SOPC_clock_7_in_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_in_reg_firsttransfer <= 1'b1;
+      else if (DE4_SOPC_clock_7_in_begins_xfer)
+          DE4_SOPC_clock_7_in_reg_firsttransfer <= DE4_SOPC_clock_7_in_unreg_firsttransfer;
+    end
+
+
+  //DE4_SOPC_clock_7_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign DE4_SOPC_clock_7_in_beginbursttransfer_internal = DE4_SOPC_clock_7_in_begins_xfer;
+
+  //DE4_SOPC_clock_7_in_read assignment, which is an e_mux
+  assign DE4_SOPC_clock_7_in_read = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_read;
+
+  //DE4_SOPC_clock_7_in_write assignment, which is an e_mux
+  assign DE4_SOPC_clock_7_in_write = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_write;
+
+  //DE4_SOPC_clock_7_in_address mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_address = peripheral_clock_crossing_m1_address_to_slave;
+
+  //slaveid DE4_SOPC_clock_7_in_nativeaddress nativeaddress mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_nativeaddress = peripheral_clock_crossing_m1_nativeaddress;
+
+  //d1_DE4_SOPC_clock_7_in_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_DE4_SOPC_clock_7_in_end_xfer <= 1;
+      else 
+        d1_DE4_SOPC_clock_7_in_end_xfer <= DE4_SOPC_clock_7_in_end_xfer;
+    end
+
+
+  //DE4_SOPC_clock_7_in_waits_for_read in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_7_in_waits_for_read = DE4_SOPC_clock_7_in_in_a_read_cycle & DE4_SOPC_clock_7_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_7_in_in_a_read_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_in_in_a_read_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = DE4_SOPC_clock_7_in_in_a_read_cycle;
+
+  //DE4_SOPC_clock_7_in_waits_for_write in a cycle, which is an e_mux
+  assign DE4_SOPC_clock_7_in_waits_for_write = DE4_SOPC_clock_7_in_in_a_write_cycle & DE4_SOPC_clock_7_in_waitrequest_from_sa;
+
+  //DE4_SOPC_clock_7_in_in_a_write_cycle assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_in_in_a_write_cycle = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = DE4_SOPC_clock_7_in_in_a_write_cycle;
+
+  assign wait_for_DE4_SOPC_clock_7_in_counter = 0;
+  //DE4_SOPC_clock_7_in_byteenable byte enable port mux, which is an e_mux
+  assign DE4_SOPC_clock_7_in_byteenable = (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in)? peripheral_clock_crossing_m1_byteenable :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_7/in enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module DE4_SOPC_clock_7_out_arbitrator (
+                                         // inputs:
+                                          DE4_SOPC_clock_7_out_address,
+                                          DE4_SOPC_clock_7_out_byteenable,
+                                          DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1,
+                                          DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1,
+                                          DE4_SOPC_clock_7_out_read,
+                                          DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1,
+                                          DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1,
+                                          DE4_SOPC_clock_7_out_write,
+                                          DE4_SOPC_clock_7_out_writedata,
+                                          clk,
+                                          d1_seven_seg_pio_s1_end_xfer,
+                                          reset_n,
+                                          seven_seg_pio_s1_readdata_from_sa,
+
+                                         // outputs:
+                                          DE4_SOPC_clock_7_out_address_to_slave,
+                                          DE4_SOPC_clock_7_out_readdata,
+                                          DE4_SOPC_clock_7_out_reset_n,
+                                          DE4_SOPC_clock_7_out_waitrequest
+                                       )
+;
+
+  output  [  2: 0] DE4_SOPC_clock_7_out_address_to_slave;
+  output  [ 15: 0] DE4_SOPC_clock_7_out_readdata;
+  output           DE4_SOPC_clock_7_out_reset_n;
+  output           DE4_SOPC_clock_7_out_waitrequest;
+  input   [  2: 0] DE4_SOPC_clock_7_out_address;
+  input   [  1: 0] DE4_SOPC_clock_7_out_byteenable;
+  input            DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1;
+  input            DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1;
+  input            DE4_SOPC_clock_7_out_read;
+  input            DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1;
+  input            DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+  input            DE4_SOPC_clock_7_out_write;
+  input   [ 15: 0] DE4_SOPC_clock_7_out_writedata;
+  input            clk;
+  input            d1_seven_seg_pio_s1_end_xfer;
+  input            reset_n;
+  input   [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+
+  reg     [  2: 0] DE4_SOPC_clock_7_out_address_last_time;
+  wire    [  2: 0] DE4_SOPC_clock_7_out_address_to_slave;
+  reg     [  1: 0] DE4_SOPC_clock_7_out_byteenable_last_time;
+  reg              DE4_SOPC_clock_7_out_read_last_time;
+  wire    [ 15: 0] DE4_SOPC_clock_7_out_readdata;
+  wire             DE4_SOPC_clock_7_out_reset_n;
+  wire             DE4_SOPC_clock_7_out_run;
+  wire             DE4_SOPC_clock_7_out_waitrequest;
+  reg              DE4_SOPC_clock_7_out_write_last_time;
+  reg     [ 15: 0] DE4_SOPC_clock_7_out_writedata_last_time;
+  reg              active_and_waiting_last_time;
+  wire             r_2;
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & ((~DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1 | ~DE4_SOPC_clock_7_out_read | (1 & ~d1_seven_seg_pio_s1_end_xfer & DE4_SOPC_clock_7_out_read))) & ((~DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1 | ~DE4_SOPC_clock_7_out_write | (1 & DE4_SOPC_clock_7_out_write)));
+
+  //cascaded wait assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_out_run = r_2;
+
+  //optimize select-logic by passing only those address bits which matter.
+  assign DE4_SOPC_clock_7_out_address_to_slave = DE4_SOPC_clock_7_out_address;
+
+  //DE4_SOPC_clock_7/out readdata mux, which is an e_mux
+  assign DE4_SOPC_clock_7_out_readdata = seven_seg_pio_s1_readdata_from_sa;
+
+  //actual waitrequest port, which is an e_assign
+  assign DE4_SOPC_clock_7_out_waitrequest = ~DE4_SOPC_clock_7_out_run;
+
+  //DE4_SOPC_clock_7_out_reset_n assignment, which is an e_assign
+  assign DE4_SOPC_clock_7_out_reset_n = reset_n;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //DE4_SOPC_clock_7_out_address check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_out_address_last_time <= 0;
+      else 
+        DE4_SOPC_clock_7_out_address_last_time <= DE4_SOPC_clock_7_out_address;
+    end
+
+
+  //DE4_SOPC_clock_7/out waited last time, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          active_and_waiting_last_time <= 0;
+      else 
+        active_and_waiting_last_time <= DE4_SOPC_clock_7_out_waitrequest & (DE4_SOPC_clock_7_out_read | DE4_SOPC_clock_7_out_write);
+    end
+
+
+  //DE4_SOPC_clock_7_out_address matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_7_out_address != DE4_SOPC_clock_7_out_address_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_7_out_address did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_7_out_byteenable check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_out_byteenable_last_time <= 0;
+      else 
+        DE4_SOPC_clock_7_out_byteenable_last_time <= DE4_SOPC_clock_7_out_byteenable;
+    end
+
+
+  //DE4_SOPC_clock_7_out_byteenable matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_7_out_byteenable != DE4_SOPC_clock_7_out_byteenable_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_7_out_byteenable did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_7_out_read check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_out_read_last_time <= 0;
+      else 
+        DE4_SOPC_clock_7_out_read_last_time <= DE4_SOPC_clock_7_out_read;
+    end
+
+
+  //DE4_SOPC_clock_7_out_read matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_7_out_read != DE4_SOPC_clock_7_out_read_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_7_out_read did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_7_out_write check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_out_write_last_time <= 0;
+      else 
+        DE4_SOPC_clock_7_out_write_last_time <= DE4_SOPC_clock_7_out_write;
+    end
+
+
+  //DE4_SOPC_clock_7_out_write matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_7_out_write != DE4_SOPC_clock_7_out_write_last_time))
+        begin
+          $write("%0d ns: DE4_SOPC_clock_7_out_write did not heed wait!!!", $time);
+          $stop;
+        end
+    end
+
+
+  //DE4_SOPC_clock_7_out_writedata check against wait, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          DE4_SOPC_clock_7_out_writedata_last_time <= 0;
+      else 
+        DE4_SOPC_clock_7_out_writedata_last_time <= DE4_SOPC_clock_7_out_writedata;
+    end
+
+
+  //DE4_SOPC_clock_7_out_writedata matches last port_name, which is an e_process
+  always @(posedge clk)
+    begin
+      if (active_and_waiting_last_time & (DE4_SOPC_clock_7_out_writedata != DE4_SOPC_clock_7_out_writedata_last_time) & DE4_SOPC_clock_7_out_write)
+        begin
+          $write("%0d ns: DE4_SOPC_clock_7_out_writedata did not heed wait!!!", $time);
           $stop;
         end
     end
@@ -14113,7 +16063,7 @@ module cpu_jtag_debug_module_arbitrator (
   //assign cpu_jtag_debug_module_readdata_from_sa = cpu_jtag_debug_module_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign cpu_jtag_debug_module_readdata_from_sa = cpu_jtag_debug_module_readdata;
 
-  assign cpu_data_master_requests_cpu_jtag_debug_module = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h44101000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_cpu_jtag_debug_module = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101000) & (cpu_data_master_read | cpu_data_master_write);
   //cpu_jtag_debug_module_arb_share_counter set values, which is an e_mux
   assign cpu_jtag_debug_module_arb_share_set_values = 1;
 
@@ -14203,7 +16153,7 @@ module cpu_jtag_debug_module_arbitrator (
   //cpu_jtag_debug_module_writedata mux, which is an e_mux
   assign cpu_jtag_debug_module_writedata = cpu_data_master_writedata;
 
-  assign cpu_instruction_master_requests_cpu_jtag_debug_module = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h44101000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_cpu_jtag_debug_module = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted cpu/jtag_debug_module last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -14716,17 +16666,21 @@ module cpu_data_master_arbitrator (
   wire             r_0;
   wire             r_1;
   wire             r_2;
+  wire             r_3;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~cpu_data_master_requests_DE4_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~cpu_data_master_requests_DE4_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~cpu_data_master_requests_DE4_SOPC_clock_2_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1);
+  assign r_0 = 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~cpu_data_master_requests_DE4_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~cpu_data_master_requests_DE4_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~cpu_data_master_requests_DE4_SOPC_clock_2_in) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_DE4_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~DE4_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_data_master_run = r_0 & r_1 & r_2;
+  assign cpu_data_master_run = r_0 & r_1 & r_2 & r_3;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1) & (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
+  assign r_1 = 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1) & (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1;
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
+  assign r_2 = (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~cpu_data_master_requests_peripheral_clock_crossing_s1) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_peripheral_clock_crossing_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~peripheral_clock_crossing_s1_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write)));
+
+  //r_3 master_run cascaded wait assignment, which is an e_assign
+  assign r_3 = 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_data_master_address_to_slave = cpu_data_master_address[30 : 0];
@@ -15189,16 +17143,16 @@ module cpu_instruction_master_arbitrator (
   wire    [ 15: 0] p1_dbs_latent_16_reg_segment_0;
   wire             pre_dbs_count_enable;
   wire             pre_flush_cpu_instruction_master_readdatavalid;
-  wire             r_0;
   wire             r_1;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~cpu_instruction_master_requests_descriptor_memory_s1);
+  wire             r_2;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~cpu_instruction_master_requests_descriptor_memory_s1) & (cpu_instruction_master_granted_descriptor_memory_s1 | ~cpu_instruction_master_qualified_request_descriptor_memory_s1) & ((~cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read)))) & 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read)));
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_instruction_master_run = r_0 & r_1;
+  assign cpu_instruction_master_run = r_1 & r_2;
 
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (cpu_instruction_master_granted_descriptor_memory_s1 | ~cpu_instruction_master_qualified_request_descriptor_memory_s1) & ((~cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read)))) & 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_instruction_master_address_to_slave = {4'b1000,
@@ -20232,7 +22186,7 @@ module descriptor_memory_s1_arbitrator (
   //assign descriptor_memory_s1_readdata_from_sa = descriptor_memory_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign descriptor_memory_s1_readdata_from_sa = descriptor_memory_s1_readdata;
 
-  assign cpu_data_master_requests_descriptor_memory_s1 = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h44101800) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_descriptor_memory_s1 = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101800) & (cpu_data_master_read | cpu_data_master_write);
   //descriptor_memory_s1_arb_share_counter set values, which is an e_mux
   assign descriptor_memory_s1_arb_share_set_values = 1;
 
@@ -20531,7 +22485,7 @@ module descriptor_memory_s1_arbitrator (
   //mux descriptor_memory_s1_clken, which is an e_mux
   assign descriptor_memory_s1_clken = 1'b1;
 
-  assign cpu_instruction_master_requests_descriptor_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h44101800) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_descriptor_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101800) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted descriptor_memory/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -20569,7 +22523,7 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid cpu_instruction_master_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign cpu_instruction_master_read_data_valid_descriptor_memory_s1 = cpu_instruction_master_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_rx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h44101800) & (sgdma_rx_descriptor_read_read)) & sgdma_rx_descriptor_read_read;
+  assign sgdma_rx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_rx_descriptor_read_read)) & sgdma_rx_descriptor_read_read;
   assign sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 = sgdma_rx_descriptor_read_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_read_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
   //sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in = sgdma_rx_descriptor_read_granted_descriptor_memory_s1 & sgdma_rx_descriptor_read_read & ~descriptor_memory_s1_waits_for_read;
@@ -20590,9 +22544,9 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1 = sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_rx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h44101800) & (sgdma_rx_descriptor_write_write)) & sgdma_rx_descriptor_write_write;
+  assign sgdma_rx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_rx_descriptor_write_write)) & sgdma_rx_descriptor_write_write;
   assign sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 = sgdma_rx_descriptor_write_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_tx_descriptor_read_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
-  assign sgdma_tx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h44101800) & (sgdma_tx_descriptor_read_read)) & sgdma_tx_descriptor_read_read;
+  assign sgdma_tx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_tx_descriptor_read_read)) & sgdma_tx_descriptor_read_read;
   assign sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 = sgdma_tx_descriptor_read_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
   //sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in = sgdma_tx_descriptor_read_granted_descriptor_memory_s1 & sgdma_tx_descriptor_read_read & ~descriptor_memory_s1_waits_for_read;
@@ -20613,7 +22567,7 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1 = sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_tx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h44101800) & (sgdma_tx_descriptor_write_write)) & sgdma_tx_descriptor_write_write;
+  assign sgdma_tx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_tx_descriptor_write_write)) & sgdma_tx_descriptor_write_write;
   assign sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 = sgdma_tx_descriptor_write_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_read_arbiterlock);
   //allow new arb cycle for descriptor_memory/s1, which is an e_assign
   assign descriptor_memory_s1_allow_new_arb_cycle = ~cpu_data_master_arbiterlock & ~cpu_instruction_master_arbiterlock & ~sgdma_rx_descriptor_read_arbiterlock & ~sgdma_rx_descriptor_write_arbiterlock & ~sgdma_tx_descriptor_read_arbiterlock & ~sgdma_tx_descriptor_write_arbiterlock;
@@ -21655,7 +23609,7 @@ module high_res_timer_s1_arbitrator (
   //assign high_res_timer_s1_readdata_from_sa = high_res_timer_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign high_res_timer_s1_readdata_from_sa = high_res_timer_s1_readdata;
 
-  assign cpu_data_master_requests_high_res_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h44102500) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_high_res_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102500) & (cpu_data_master_read | cpu_data_master_write);
   //high_res_timer_s1_arb_share_counter set values, which is an e_mux
   assign high_res_timer_s1_arb_share_set_values = 1;
 
@@ -22129,6 +24083,277 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module led_pio_s1_arbitrator (
+                               // inputs:
+                                DE4_SOPC_clock_4_out_address_to_slave,
+                                DE4_SOPC_clock_4_out_nativeaddress,
+                                DE4_SOPC_clock_4_out_read,
+                                DE4_SOPC_clock_4_out_write,
+                                DE4_SOPC_clock_4_out_writedata,
+                                clk,
+                                led_pio_s1_readdata,
+                                reset_n,
+
+                               // outputs:
+                                DE4_SOPC_clock_4_out_granted_led_pio_s1,
+                                DE4_SOPC_clock_4_out_qualified_request_led_pio_s1,
+                                DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1,
+                                DE4_SOPC_clock_4_out_requests_led_pio_s1,
+                                d1_led_pio_s1_end_xfer,
+                                led_pio_s1_address,
+                                led_pio_s1_chipselect,
+                                led_pio_s1_readdata_from_sa,
+                                led_pio_s1_reset_n,
+                                led_pio_s1_write_n,
+                                led_pio_s1_writedata
+                             )
+;
+
+  output           DE4_SOPC_clock_4_out_granted_led_pio_s1;
+  output           DE4_SOPC_clock_4_out_qualified_request_led_pio_s1;
+  output           DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1;
+  output           DE4_SOPC_clock_4_out_requests_led_pio_s1;
+  output           d1_led_pio_s1_end_xfer;
+  output  [  1: 0] led_pio_s1_address;
+  output           led_pio_s1_chipselect;
+  output  [  7: 0] led_pio_s1_readdata_from_sa;
+  output           led_pio_s1_reset_n;
+  output           led_pio_s1_write_n;
+  output  [  7: 0] led_pio_s1_writedata;
+  input   [  1: 0] DE4_SOPC_clock_4_out_address_to_slave;
+  input   [  1: 0] DE4_SOPC_clock_4_out_nativeaddress;
+  input            DE4_SOPC_clock_4_out_read;
+  input            DE4_SOPC_clock_4_out_write;
+  input   [  7: 0] DE4_SOPC_clock_4_out_writedata;
+  input            clk;
+  input   [  7: 0] led_pio_s1_readdata;
+  input            reset_n;
+
+  wire             DE4_SOPC_clock_4_out_arbiterlock;
+  wire             DE4_SOPC_clock_4_out_arbiterlock2;
+  wire             DE4_SOPC_clock_4_out_continuerequest;
+  wire             DE4_SOPC_clock_4_out_granted_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_qualified_request_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_requests_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_saved_grant_led_pio_s1;
+  reg              d1_led_pio_s1_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_led_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] led_pio_s1_address;
+  wire             led_pio_s1_allgrants;
+  wire             led_pio_s1_allow_new_arb_cycle;
+  wire             led_pio_s1_any_bursting_master_saved_grant;
+  wire             led_pio_s1_any_continuerequest;
+  wire             led_pio_s1_arb_counter_enable;
+  reg              led_pio_s1_arb_share_counter;
+  wire             led_pio_s1_arb_share_counter_next_value;
+  wire             led_pio_s1_arb_share_set_values;
+  wire             led_pio_s1_beginbursttransfer_internal;
+  wire             led_pio_s1_begins_xfer;
+  wire             led_pio_s1_chipselect;
+  wire             led_pio_s1_end_xfer;
+  wire             led_pio_s1_firsttransfer;
+  wire             led_pio_s1_grant_vector;
+  wire             led_pio_s1_in_a_read_cycle;
+  wire             led_pio_s1_in_a_write_cycle;
+  wire             led_pio_s1_master_qreq_vector;
+  wire             led_pio_s1_non_bursting_master_requests;
+  wire             led_pio_s1_pretend_byte_enable;
+  wire    [  7: 0] led_pio_s1_readdata_from_sa;
+  reg              led_pio_s1_reg_firsttransfer;
+  wire             led_pio_s1_reset_n;
+  reg              led_pio_s1_slavearbiterlockenable;
+  wire             led_pio_s1_slavearbiterlockenable2;
+  wire             led_pio_s1_unreg_firsttransfer;
+  wire             led_pio_s1_waits_for_read;
+  wire             led_pio_s1_waits_for_write;
+  wire             led_pio_s1_write_n;
+  wire    [  7: 0] led_pio_s1_writedata;
+  wire             wait_for_led_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~led_pio_s1_end_xfer;
+    end
+
+
+  assign led_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((DE4_SOPC_clock_4_out_qualified_request_led_pio_s1));
+  //assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata;
+
+  assign DE4_SOPC_clock_4_out_requests_led_pio_s1 = (1) & (DE4_SOPC_clock_4_out_read | DE4_SOPC_clock_4_out_write);
+  //led_pio_s1_arb_share_counter set values, which is an e_mux
+  assign led_pio_s1_arb_share_set_values = 1;
+
+  //led_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign led_pio_s1_non_bursting_master_requests = DE4_SOPC_clock_4_out_requests_led_pio_s1;
+
+  //led_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign led_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //led_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign led_pio_s1_arb_share_counter_next_value = led_pio_s1_firsttransfer ? (led_pio_s1_arb_share_set_values - 1) : |led_pio_s1_arb_share_counter ? (led_pio_s1_arb_share_counter - 1) : 0;
+
+  //led_pio_s1_allgrants all slave grants, which is an e_mux
+  assign led_pio_s1_allgrants = |led_pio_s1_grant_vector;
+
+  //led_pio_s1_end_xfer assignment, which is an e_assign
+  assign led_pio_s1_end_xfer = ~(led_pio_s1_waits_for_read | led_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_led_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_led_pio_s1 = led_pio_s1_end_xfer & (~led_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //led_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign led_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_led_pio_s1 & led_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests);
+
+  //led_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_arb_share_counter <= 0;
+      else if (led_pio_s1_arb_counter_enable)
+          led_pio_s1_arb_share_counter <= led_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //led_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|led_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_led_pio_s1) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests))
+          led_pio_s1_slavearbiterlockenable <= |led_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_4/out led_pio/s1 arbiterlock, which is an e_assign
+  assign DE4_SOPC_clock_4_out_arbiterlock = led_pio_s1_slavearbiterlockenable & DE4_SOPC_clock_4_out_continuerequest;
+
+  //led_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign led_pio_s1_slavearbiterlockenable2 = |led_pio_s1_arb_share_counter_next_value;
+
+  //DE4_SOPC_clock_4/out led_pio/s1 arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_4_out_arbiterlock2 = led_pio_s1_slavearbiterlockenable2 & DE4_SOPC_clock_4_out_continuerequest;
+
+  //led_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign led_pio_s1_any_continuerequest = 1;
+
+  //DE4_SOPC_clock_4_out_continuerequest continued request, which is an e_assign
+  assign DE4_SOPC_clock_4_out_continuerequest = 1;
+
+  assign DE4_SOPC_clock_4_out_qualified_request_led_pio_s1 = DE4_SOPC_clock_4_out_requests_led_pio_s1;
+  //led_pio_s1_writedata mux, which is an e_mux
+  assign led_pio_s1_writedata = DE4_SOPC_clock_4_out_writedata;
+
+  //master is always granted when requested
+  assign DE4_SOPC_clock_4_out_granted_led_pio_s1 = DE4_SOPC_clock_4_out_qualified_request_led_pio_s1;
+
+  //DE4_SOPC_clock_4/out saved-grant led_pio/s1, which is an e_assign
+  assign DE4_SOPC_clock_4_out_saved_grant_led_pio_s1 = DE4_SOPC_clock_4_out_requests_led_pio_s1;
+
+  //allow new arb cycle for led_pio/s1, which is an e_assign
+  assign led_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign led_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign led_pio_s1_master_qreq_vector = 1;
+
+  //led_pio_s1_reset_n assignment, which is an e_assign
+  assign led_pio_s1_reset_n = reset_n;
+
+  assign led_pio_s1_chipselect = DE4_SOPC_clock_4_out_granted_led_pio_s1;
+  //led_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign led_pio_s1_firsttransfer = led_pio_s1_begins_xfer ? led_pio_s1_unreg_firsttransfer : led_pio_s1_reg_firsttransfer;
+
+  //led_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign led_pio_s1_unreg_firsttransfer = ~(led_pio_s1_slavearbiterlockenable & led_pio_s1_any_continuerequest);
+
+  //led_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          led_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (led_pio_s1_begins_xfer)
+          led_pio_s1_reg_firsttransfer <= led_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //led_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign led_pio_s1_beginbursttransfer_internal = led_pio_s1_begins_xfer;
+
+  //~led_pio_s1_write_n assignment, which is an e_mux
+  assign led_pio_s1_write_n = ~(((DE4_SOPC_clock_4_out_granted_led_pio_s1 & DE4_SOPC_clock_4_out_write)) & led_pio_s1_pretend_byte_enable);
+
+  //led_pio_s1_address mux, which is an e_mux
+  assign led_pio_s1_address = DE4_SOPC_clock_4_out_nativeaddress;
+
+  //d1_led_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_led_pio_s1_end_xfer <= 1;
+      else 
+        d1_led_pio_s1_end_xfer <= led_pio_s1_end_xfer;
+    end
+
+
+  //led_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign led_pio_s1_waits_for_read = led_pio_s1_in_a_read_cycle & led_pio_s1_begins_xfer;
+
+  //led_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign led_pio_s1_in_a_read_cycle = DE4_SOPC_clock_4_out_granted_led_pio_s1 & DE4_SOPC_clock_4_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = led_pio_s1_in_a_read_cycle;
+
+  //led_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign led_pio_s1_waits_for_write = led_pio_s1_in_a_write_cycle & 0;
+
+  //led_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign led_pio_s1_in_a_write_cycle = DE4_SOPC_clock_4_out_granted_led_pio_s1 & DE4_SOPC_clock_4_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = led_pio_s1_in_a_write_cycle;
+
+  assign wait_for_led_pio_s1_counter = 0;
+  //led_pio_s1_pretend_byte_enable byte enable port mux, which is an e_mux
+  assign led_pio_s1_pretend_byte_enable = (DE4_SOPC_clock_4_out_granted_led_pio_s1)? {1 {1'b1}} :
+    -1;
+
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //led_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module master_read_avalon_master_arbitrator (
                                               // inputs:
                                                clk,
@@ -22194,12 +24419,12 @@ module master_read_avalon_master_arbitrator (
   reg              master_read_latency_counter;
   wire             p1_master_read_latency_counter;
   wire             pre_flush_master_read_avalon_master_readdatavalid;
-  wire             r_0;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (master_read_qualified_request_clock_crossing_0_s1 | ~master_read_requests_clock_crossing_0_s1) & (master_read_granted_clock_crossing_0_s1 | ~master_read_qualified_request_clock_crossing_0_s1) & ((~master_read_qualified_request_clock_crossing_0_s1 | ~(master_read_avalon_master_read) | (1 & ~clock_crossing_0_s1_waitrequest_from_sa & (master_read_avalon_master_read))));
+  wire             r_1;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (master_read_qualified_request_clock_crossing_0_s1 | ~master_read_requests_clock_crossing_0_s1) & (master_read_granted_clock_crossing_0_s1 | ~master_read_qualified_request_clock_crossing_0_s1) & ((~master_read_qualified_request_clock_crossing_0_s1 | ~(master_read_avalon_master_read) | (1 & ~clock_crossing_0_s1_waitrequest_from_sa & (master_read_avalon_master_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign master_read_avalon_master_run = r_0;
+  assign master_read_avalon_master_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
   assign master_read_avalon_master_address_to_slave = master_read_avalon_master_address[29 : 0];
@@ -22409,12 +24634,12 @@ module master_write_avalon_master_arbitrator (
   wire             master_write_avalon_master_waitrequest;
   reg              master_write_avalon_master_write_last_time;
   reg     [255: 0] master_write_avalon_master_writedata_last_time;
-  wire             r_0;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (master_write_qualified_request_clock_crossing_0_s1 | ~master_write_requests_clock_crossing_0_s1) & (master_write_granted_clock_crossing_0_s1 | ~master_write_qualified_request_clock_crossing_0_s1) & ((~master_write_qualified_request_clock_crossing_0_s1 | ~(master_write_avalon_master_write) | (1 & ~clock_crossing_0_s1_waitrequest_from_sa & (master_write_avalon_master_write))));
+  wire             r_1;
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (master_write_qualified_request_clock_crossing_0_s1 | ~master_write_requests_clock_crossing_0_s1) & (master_write_granted_clock_crossing_0_s1 | ~master_write_qualified_request_clock_crossing_0_s1) & ((~master_write_qualified_request_clock_crossing_0_s1 | ~(master_write_avalon_master_write) | (1 & ~clock_crossing_0_s1_waitrequest_from_sa & (master_write_avalon_master_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign master_write_avalon_master_run = r_0;
+  assign master_write_avalon_master_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
   assign master_write_avalon_master_address_to_slave = master_write_avalon_master_address[29 : 0];
@@ -22754,7 +24979,7 @@ module onchip_memory_s1_arbitrator (
   //assign onchip_memory_s1_readdata_from_sa = onchip_memory_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign onchip_memory_s1_readdata_from_sa = onchip_memory_s1_readdata;
 
-  assign cpu_data_master_requests_onchip_memory_s1 = ({cpu_data_master_address_to_slave[30 : 19] , 19'b0} == 31'h44080000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_onchip_memory_s1 = ({cpu_data_master_address_to_slave[30 : 19] , 19'b0} == 31'h45080000) & (cpu_data_master_read | cpu_data_master_write);
   //onchip_memory_s1_arb_share_counter set values, which is an e_mux
   assign onchip_memory_s1_arb_share_set_values = 1;
 
@@ -22942,7 +25167,7 @@ module onchip_memory_s1_arbitrator (
   //mux onchip_memory_s1_clken, which is an e_mux
   assign onchip_memory_s1_clken = 1'b1;
 
-  assign cpu_instruction_master_requests_onchip_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 19] , 19'b0} == 31'h44080000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_onchip_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 19] , 19'b0} == 31'h45080000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted onchip_memory/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -22978,9 +25203,9 @@ module onchip_memory_s1_arbitrator (
   //local readdatavalid cpu_instruction_master_read_data_valid_onchip_memory_s1, which is an e_mux
   assign cpu_instruction_master_read_data_valid_onchip_memory_s1 = cpu_instruction_master_read_data_valid_onchip_memory_s1_shift_register;
 
-  assign sgdma_rx_m_write_requests_onchip_memory_s1 = (({sgdma_rx_m_write_address_to_slave[31 : 19] , 19'b0} == 32'h44080000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
+  assign sgdma_rx_m_write_requests_onchip_memory_s1 = (({sgdma_rx_m_write_address_to_slave[31 : 19] , 19'b0} == 32'h45080000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
   assign sgdma_rx_m_write_qualified_request_onchip_memory_s1 = sgdma_rx_m_write_requests_onchip_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_tx_m_read_arbiterlock);
-  assign sgdma_tx_m_read_requests_onchip_memory_s1 = (({sgdma_tx_m_read_address_to_slave[31 : 19] , 19'b0} == 32'h44080000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
+  assign sgdma_tx_m_read_requests_onchip_memory_s1 = (({sgdma_tx_m_read_address_to_slave[31 : 19] , 19'b0} == 32'h45080000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
   assign sgdma_tx_m_read_qualified_request_onchip_memory_s1 = sgdma_tx_m_read_requests_onchip_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_m_write_arbiterlock);
   //sgdma_tx_m_read_read_data_valid_onchip_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_tx_m_read_read_data_valid_onchip_memory_s1_shift_register_in = sgdma_tx_m_read_granted_onchip_memory_s1 & sgdma_tx_m_read_read & ~onchip_memory_s1_waits_for_read;
@@ -23177,6 +25402,254 @@ module onchip_memory_s1_arbitrator (
           $write("%0d ns: > 1 of saved_grant signals are active simultaneously", $time);
           $stop;
         end
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
+module pb_pio_s1_arbitrator (
+                              // inputs:
+                               DE4_SOPC_clock_6_out_address_to_slave,
+                               DE4_SOPC_clock_6_out_nativeaddress,
+                               DE4_SOPC_clock_6_out_read,
+                               DE4_SOPC_clock_6_out_write,
+                               clk,
+                               pb_pio_s1_readdata,
+                               reset_n,
+
+                              // outputs:
+                               DE4_SOPC_clock_6_out_granted_pb_pio_s1,
+                               DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1,
+                               DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1,
+                               DE4_SOPC_clock_6_out_requests_pb_pio_s1,
+                               d1_pb_pio_s1_end_xfer,
+                               pb_pio_s1_address,
+                               pb_pio_s1_readdata_from_sa,
+                               pb_pio_s1_reset_n
+                            )
+;
+
+  output           DE4_SOPC_clock_6_out_granted_pb_pio_s1;
+  output           DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1;
+  output           DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1;
+  output           DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+  output           d1_pb_pio_s1_end_xfer;
+  output  [  1: 0] pb_pio_s1_address;
+  output  [  3: 0] pb_pio_s1_readdata_from_sa;
+  output           pb_pio_s1_reset_n;
+  input   [  1: 0] DE4_SOPC_clock_6_out_address_to_slave;
+  input   [  1: 0] DE4_SOPC_clock_6_out_nativeaddress;
+  input            DE4_SOPC_clock_6_out_read;
+  input            DE4_SOPC_clock_6_out_write;
+  input            clk;
+  input   [  3: 0] pb_pio_s1_readdata;
+  input            reset_n;
+
+  wire             DE4_SOPC_clock_6_out_arbiterlock;
+  wire             DE4_SOPC_clock_6_out_arbiterlock2;
+  wire             DE4_SOPC_clock_6_out_continuerequest;
+  wire             DE4_SOPC_clock_6_out_granted_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_saved_grant_pb_pio_s1;
+  reg              d1_pb_pio_s1_end_xfer;
+  reg              d1_reasons_to_wait;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_pb_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] pb_pio_s1_address;
+  wire             pb_pio_s1_allgrants;
+  wire             pb_pio_s1_allow_new_arb_cycle;
+  wire             pb_pio_s1_any_bursting_master_saved_grant;
+  wire             pb_pio_s1_any_continuerequest;
+  wire             pb_pio_s1_arb_counter_enable;
+  reg              pb_pio_s1_arb_share_counter;
+  wire             pb_pio_s1_arb_share_counter_next_value;
+  wire             pb_pio_s1_arb_share_set_values;
+  wire             pb_pio_s1_beginbursttransfer_internal;
+  wire             pb_pio_s1_begins_xfer;
+  wire             pb_pio_s1_end_xfer;
+  wire             pb_pio_s1_firsttransfer;
+  wire             pb_pio_s1_grant_vector;
+  wire             pb_pio_s1_in_a_read_cycle;
+  wire             pb_pio_s1_in_a_write_cycle;
+  wire             pb_pio_s1_master_qreq_vector;
+  wire             pb_pio_s1_non_bursting_master_requests;
+  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
+  reg              pb_pio_s1_reg_firsttransfer;
+  wire             pb_pio_s1_reset_n;
+  reg              pb_pio_s1_slavearbiterlockenable;
+  wire             pb_pio_s1_slavearbiterlockenable2;
+  wire             pb_pio_s1_unreg_firsttransfer;
+  wire             pb_pio_s1_waits_for_read;
+  wire             pb_pio_s1_waits_for_write;
+  wire             wait_for_pb_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~pb_pio_s1_end_xfer;
+    end
+
+
+  assign pb_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1));
+  //assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata;
+
+  assign DE4_SOPC_clock_6_out_requests_pb_pio_s1 = ((1) & (DE4_SOPC_clock_6_out_read | DE4_SOPC_clock_6_out_write)) & DE4_SOPC_clock_6_out_read;
+  //pb_pio_s1_arb_share_counter set values, which is an e_mux
+  assign pb_pio_s1_arb_share_set_values = 1;
+
+  //pb_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign pb_pio_s1_non_bursting_master_requests = DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+
+  //pb_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign pb_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //pb_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign pb_pio_s1_arb_share_counter_next_value = pb_pio_s1_firsttransfer ? (pb_pio_s1_arb_share_set_values - 1) : |pb_pio_s1_arb_share_counter ? (pb_pio_s1_arb_share_counter - 1) : 0;
+
+  //pb_pio_s1_allgrants all slave grants, which is an e_mux
+  assign pb_pio_s1_allgrants = |pb_pio_s1_grant_vector;
+
+  //pb_pio_s1_end_xfer assignment, which is an e_assign
+  assign pb_pio_s1_end_xfer = ~(pb_pio_s1_waits_for_read | pb_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_pb_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_pb_pio_s1 = pb_pio_s1_end_xfer & (~pb_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //pb_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign pb_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_pb_pio_s1 & pb_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests);
+
+  //pb_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_arb_share_counter <= 0;
+      else if (pb_pio_s1_arb_counter_enable)
+          pb_pio_s1_arb_share_counter <= pb_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //pb_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|pb_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_pb_pio_s1) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests))
+          pb_pio_s1_slavearbiterlockenable <= |pb_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_6/out pb_pio/s1 arbiterlock, which is an e_assign
+  assign DE4_SOPC_clock_6_out_arbiterlock = pb_pio_s1_slavearbiterlockenable & DE4_SOPC_clock_6_out_continuerequest;
+
+  //pb_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign pb_pio_s1_slavearbiterlockenable2 = |pb_pio_s1_arb_share_counter_next_value;
+
+  //DE4_SOPC_clock_6/out pb_pio/s1 arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_6_out_arbiterlock2 = pb_pio_s1_slavearbiterlockenable2 & DE4_SOPC_clock_6_out_continuerequest;
+
+  //pb_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign pb_pio_s1_any_continuerequest = 1;
+
+  //DE4_SOPC_clock_6_out_continuerequest continued request, which is an e_assign
+  assign DE4_SOPC_clock_6_out_continuerequest = 1;
+
+  assign DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1 = DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+  //master is always granted when requested
+  assign DE4_SOPC_clock_6_out_granted_pb_pio_s1 = DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1;
+
+  //DE4_SOPC_clock_6/out saved-grant pb_pio/s1, which is an e_assign
+  assign DE4_SOPC_clock_6_out_saved_grant_pb_pio_s1 = DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+
+  //allow new arb cycle for pb_pio/s1, which is an e_assign
+  assign pb_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign pb_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign pb_pio_s1_master_qreq_vector = 1;
+
+  //pb_pio_s1_reset_n assignment, which is an e_assign
+  assign pb_pio_s1_reset_n = reset_n;
+
+  //pb_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign pb_pio_s1_firsttransfer = pb_pio_s1_begins_xfer ? pb_pio_s1_unreg_firsttransfer : pb_pio_s1_reg_firsttransfer;
+
+  //pb_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign pb_pio_s1_unreg_firsttransfer = ~(pb_pio_s1_slavearbiterlockenable & pb_pio_s1_any_continuerequest);
+
+  //pb_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          pb_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (pb_pio_s1_begins_xfer)
+          pb_pio_s1_reg_firsttransfer <= pb_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //pb_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign pb_pio_s1_beginbursttransfer_internal = pb_pio_s1_begins_xfer;
+
+  //pb_pio_s1_address mux, which is an e_mux
+  assign pb_pio_s1_address = DE4_SOPC_clock_6_out_nativeaddress;
+
+  //d1_pb_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_pb_pio_s1_end_xfer <= 1;
+      else 
+        d1_pb_pio_s1_end_xfer <= pb_pio_s1_end_xfer;
+    end
+
+
+  //pb_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign pb_pio_s1_waits_for_read = pb_pio_s1_in_a_read_cycle & pb_pio_s1_begins_xfer;
+
+  //pb_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign pb_pio_s1_in_a_read_cycle = DE4_SOPC_clock_6_out_granted_pb_pio_s1 & DE4_SOPC_clock_6_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = pb_pio_s1_in_a_read_cycle;
+
+  //pb_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign pb_pio_s1_waits_for_write = pb_pio_s1_in_a_write_cycle & 0;
+
+  //pb_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign pb_pio_s1_in_a_write_cycle = DE4_SOPC_clock_6_out_granted_pb_pio_s1 & DE4_SOPC_clock_6_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = pb_pio_s1_in_a_write_cycle;
+
+  assign wait_for_pb_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //pb_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
     end
 
 
@@ -24532,10 +27005,10 @@ module peripheral_clock_crossing_s1_arbitrator (
   output           cpu_data_master_read_data_valid_peripheral_clock_crossing_s1_shift_register;
   output           cpu_data_master_requests_peripheral_clock_crossing_s1;
   output           d1_peripheral_clock_crossing_s1_end_xfer;
-  output  [  5: 0] peripheral_clock_crossing_s1_address;
+  output  [  7: 0] peripheral_clock_crossing_s1_address;
   output  [  3: 0] peripheral_clock_crossing_s1_byteenable;
   output           peripheral_clock_crossing_s1_endofpacket_from_sa;
-  output  [  5: 0] peripheral_clock_crossing_s1_nativeaddress;
+  output  [  7: 0] peripheral_clock_crossing_s1_nativeaddress;
   output           peripheral_clock_crossing_s1_read;
   output  [ 31: 0] peripheral_clock_crossing_s1_readdata_from_sa;
   output           peripheral_clock_crossing_s1_reset_n;
@@ -24572,7 +27045,7 @@ module peripheral_clock_crossing_s1_arbitrator (
   wire             end_xfer_arb_share_counter_term_peripheral_clock_crossing_s1;
   wire             in_a_read_cycle;
   wire             in_a_write_cycle;
-  wire    [  5: 0] peripheral_clock_crossing_s1_address;
+  wire    [  7: 0] peripheral_clock_crossing_s1_address;
   wire             peripheral_clock_crossing_s1_allgrants;
   wire             peripheral_clock_crossing_s1_allow_new_arb_cycle;
   wire             peripheral_clock_crossing_s1_any_bursting_master_saved_grant;
@@ -24592,7 +27065,7 @@ module peripheral_clock_crossing_s1_arbitrator (
   wire             peripheral_clock_crossing_s1_in_a_write_cycle;
   wire             peripheral_clock_crossing_s1_master_qreq_vector;
   wire             peripheral_clock_crossing_s1_move_on_to_next_transaction;
-  wire    [  5: 0] peripheral_clock_crossing_s1_nativeaddress;
+  wire    [  7: 0] peripheral_clock_crossing_s1_nativeaddress;
   wire             peripheral_clock_crossing_s1_non_bursting_master_requests;
   wire             peripheral_clock_crossing_s1_read;
   wire    [ 31: 0] peripheral_clock_crossing_s1_readdata_from_sa;
@@ -24625,7 +27098,7 @@ module peripheral_clock_crossing_s1_arbitrator (
   //assign peripheral_clock_crossing_s1_readdata_from_sa = peripheral_clock_crossing_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign peripheral_clock_crossing_s1_readdata_from_sa = peripheral_clock_crossing_s1_readdata;
 
-  assign cpu_data_master_requests_peripheral_clock_crossing_s1 = ({cpu_data_master_address_to_slave[30 : 8] , 8'b0} == 31'h40000000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_peripheral_clock_crossing_s1 = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h44000000) & (cpu_data_master_read | cpu_data_master_write);
   //assign peripheral_clock_crossing_s1_waitrequest_from_sa = peripheral_clock_crossing_s1_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign peripheral_clock_crossing_s1_waitrequest_from_sa = peripheral_clock_crossing_s1_waitrequest;
 
@@ -24832,19 +27305,51 @@ module peripheral_clock_crossing_m1_arbitrator (
                                                   DE4_SOPC_clock_3_in_endofpacket_from_sa,
                                                   DE4_SOPC_clock_3_in_readdata_from_sa,
                                                   DE4_SOPC_clock_3_in_waitrequest_from_sa,
+                                                  DE4_SOPC_clock_4_in_endofpacket_from_sa,
+                                                  DE4_SOPC_clock_4_in_readdata_from_sa,
+                                                  DE4_SOPC_clock_4_in_waitrequest_from_sa,
+                                                  DE4_SOPC_clock_5_in_endofpacket_from_sa,
+                                                  DE4_SOPC_clock_5_in_readdata_from_sa,
+                                                  DE4_SOPC_clock_5_in_waitrequest_from_sa,
+                                                  DE4_SOPC_clock_6_in_endofpacket_from_sa,
+                                                  DE4_SOPC_clock_6_in_readdata_from_sa,
+                                                  DE4_SOPC_clock_6_in_waitrequest_from_sa,
+                                                  DE4_SOPC_clock_7_in_endofpacket_from_sa,
+                                                  DE4_SOPC_clock_7_in_readdata_from_sa,
+                                                  DE4_SOPC_clock_7_in_waitrequest_from_sa,
                                                   clk,
                                                   d1_DE4_SOPC_clock_3_in_end_xfer,
+                                                  d1_DE4_SOPC_clock_4_in_end_xfer,
+                                                  d1_DE4_SOPC_clock_5_in_end_xfer,
+                                                  d1_DE4_SOPC_clock_6_in_end_xfer,
+                                                  d1_DE4_SOPC_clock_7_in_end_xfer,
                                                   d1_vol_transfer_done_pio_s1_end_xfer,
                                                   peripheral_clock_crossing_m1_address,
                                                   peripheral_clock_crossing_m1_byteenable,
                                                   peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in,
+                                                  peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in,
+                                                  peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in,
+                                                  peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in,
+                                                  peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in,
                                                   peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1,
                                                   peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in,
+                                                  peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in,
+                                                  peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in,
+                                                  peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in,
+                                                  peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in,
                                                   peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1,
                                                   peripheral_clock_crossing_m1_read,
                                                   peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in,
+                                                  peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in,
+                                                  peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in,
+                                                  peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in,
+                                                  peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in,
                                                   peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1,
                                                   peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in,
+                                                  peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in,
+                                                  peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in,
+                                                  peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in,
+                                                  peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in,
                                                   peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1,
                                                   peripheral_clock_crossing_m1_write,
                                                   peripheral_clock_crossing_m1_writedata,
@@ -24862,7 +27367,7 @@ module peripheral_clock_crossing_m1_arbitrator (
                                                )
 ;
 
-  output  [  7: 0] peripheral_clock_crossing_m1_address_to_slave;
+  output  [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
   output           peripheral_clock_crossing_m1_endofpacket;
   output           peripheral_clock_crossing_m1_latency_counter;
   output  [ 31: 0] peripheral_clock_crossing_m1_readdata;
@@ -24872,19 +27377,51 @@ module peripheral_clock_crossing_m1_arbitrator (
   input            DE4_SOPC_clock_3_in_endofpacket_from_sa;
   input   [  7: 0] DE4_SOPC_clock_3_in_readdata_from_sa;
   input            DE4_SOPC_clock_3_in_waitrequest_from_sa;
+  input            DE4_SOPC_clock_4_in_endofpacket_from_sa;
+  input   [  7: 0] DE4_SOPC_clock_4_in_readdata_from_sa;
+  input            DE4_SOPC_clock_4_in_waitrequest_from_sa;
+  input            DE4_SOPC_clock_5_in_endofpacket_from_sa;
+  input   [  7: 0] DE4_SOPC_clock_5_in_readdata_from_sa;
+  input            DE4_SOPC_clock_5_in_waitrequest_from_sa;
+  input            DE4_SOPC_clock_6_in_endofpacket_from_sa;
+  input   [  7: 0] DE4_SOPC_clock_6_in_readdata_from_sa;
+  input            DE4_SOPC_clock_6_in_waitrequest_from_sa;
+  input            DE4_SOPC_clock_7_in_endofpacket_from_sa;
+  input   [ 15: 0] DE4_SOPC_clock_7_in_readdata_from_sa;
+  input            DE4_SOPC_clock_7_in_waitrequest_from_sa;
   input            clk;
   input            d1_DE4_SOPC_clock_3_in_end_xfer;
+  input            d1_DE4_SOPC_clock_4_in_end_xfer;
+  input            d1_DE4_SOPC_clock_5_in_end_xfer;
+  input            d1_DE4_SOPC_clock_6_in_end_xfer;
+  input            d1_DE4_SOPC_clock_7_in_end_xfer;
   input            d1_vol_transfer_done_pio_s1_end_xfer;
-  input   [  7: 0] peripheral_clock_crossing_m1_address;
+  input   [  9: 0] peripheral_clock_crossing_m1_address;
   input   [  3: 0] peripheral_clock_crossing_m1_byteenable;
   input            peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in;
+  input            peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in;
+  input            peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in;
+  input            peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in;
+  input            peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in;
   input            peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1;
   input            peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in;
+  input            peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in;
+  input            peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in;
+  input            peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in;
+  input            peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in;
   input            peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1;
   input            peripheral_clock_crossing_m1_read;
   input            peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in;
+  input            peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in;
+  input            peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in;
+  input            peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in;
+  input            peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in;
   input            peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1;
   input            peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in;
+  input            peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+  input            peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+  input            peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+  input            peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
   input            peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1;
   input            peripheral_clock_crossing_m1_write;
   input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
@@ -24894,8 +27431,8 @@ module peripheral_clock_crossing_m1_arbitrator (
   reg              active_and_waiting_last_time;
   wire             latency_load_value;
   wire             p1_peripheral_clock_crossing_m1_latency_counter;
-  reg     [  7: 0] peripheral_clock_crossing_m1_address_last_time;
-  wire    [  7: 0] peripheral_clock_crossing_m1_address_to_slave;
+  reg     [  9: 0] peripheral_clock_crossing_m1_address_last_time;
+  wire    [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
   reg     [  3: 0] peripheral_clock_crossing_m1_byteenable_last_time;
   wire             peripheral_clock_crossing_m1_endofpacket;
   wire             peripheral_clock_crossing_m1_is_granted_some_slave;
@@ -24913,7 +27450,7 @@ module peripheral_clock_crossing_m1_arbitrator (
   wire             r_0;
   wire             r_3;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_3_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_3_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write))));
+  assign r_0 = 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_3_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_3_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_4_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_4_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_5_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_5_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_6_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_6_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & 1 & (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in | ~peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_7_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write)))) & ((~peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in | ~(peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write) | (1 & ~DE4_SOPC_clock_7_in_waitrequest_from_sa & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write))));
 
   //cascaded wait assignment, which is an e_assign
   assign peripheral_clock_crossing_m1_run = r_0 & r_3;
@@ -24922,9 +27459,9 @@ module peripheral_clock_crossing_m1_arbitrator (
   assign r_3 = 1 & (peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1 | ~peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1) & ((~peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1 | ~peripheral_clock_crossing_m1_read | (1 & ~d1_vol_transfer_done_pio_s1_end_xfer & peripheral_clock_crossing_m1_read))) & ((~peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1 | ~peripheral_clock_crossing_m1_write | (1 & peripheral_clock_crossing_m1_write)));
 
   //optimize select-logic by passing only those address bits which matter.
-  assign peripheral_clock_crossing_m1_address_to_slave = {peripheral_clock_crossing_m1_address[7],
-    3'b0,
-    peripheral_clock_crossing_m1_address[3 : 0]};
+  assign peripheral_clock_crossing_m1_address_to_slave = {peripheral_clock_crossing_m1_address[9 : 7],
+    2'b0,
+    peripheral_clock_crossing_m1_address[4 : 0]};
 
   //peripheral_clock_crossing_m1_read_but_no_slave_selected assignment, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -24938,6 +27475,10 @@ module peripheral_clock_crossing_m1_arbitrator (
 
   //some slave is getting selected, which is an e_mux
   assign peripheral_clock_crossing_m1_is_granted_some_slave = peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in |
+    peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in |
+    peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in |
+    peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in |
+    peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in |
     peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1;
 
   //latent slave read data valids which may be flushed, which is an e_mux
@@ -24949,10 +27490,26 @@ module peripheral_clock_crossing_m1_arbitrator (
     peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in |
     peripheral_clock_crossing_m1_read_but_no_slave_selected |
     pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
+    peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in |
+    peripheral_clock_crossing_m1_read_but_no_slave_selected |
+    pre_flush_peripheral_clock_crossing_m1_readdatavalid |
     peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1;
 
   //peripheral_clock_crossing/m1 readdata mux, which is an e_mux
   assign peripheral_clock_crossing_m1_readdata = ({32 {~(peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in & peripheral_clock_crossing_m1_read)}} | DE4_SOPC_clock_3_in_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in & peripheral_clock_crossing_m1_read)}} | DE4_SOPC_clock_4_in_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in & peripheral_clock_crossing_m1_read)}} | DE4_SOPC_clock_5_in_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in & peripheral_clock_crossing_m1_read)}} | DE4_SOPC_clock_6_in_readdata_from_sa) &
+    ({32 {~(peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in & peripheral_clock_crossing_m1_read)}} | DE4_SOPC_clock_7_in_readdata_from_sa) &
     ({32 {~(peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1 & peripheral_clock_crossing_m1_read)}} | vol_transfer_done_pio_s1_readdata_from_sa);
 
   //actual waitrequest port, which is an e_assign
@@ -24980,7 +27537,11 @@ module peripheral_clock_crossing_m1_arbitrator (
   assign peripheral_clock_crossing_m1_reset_n = reset_n;
 
   //mux peripheral_clock_crossing_m1_endofpacket, which is an e_mux
-  assign peripheral_clock_crossing_m1_endofpacket = DE4_SOPC_clock_3_in_endofpacket_from_sa;
+  assign peripheral_clock_crossing_m1_endofpacket = (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in)? DE4_SOPC_clock_3_in_endofpacket_from_sa :
+    (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in)? DE4_SOPC_clock_4_in_endofpacket_from_sa :
+    (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in)? DE4_SOPC_clock_5_in_endofpacket_from_sa :
+    (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in)? DE4_SOPC_clock_6_in_endofpacket_from_sa :
+    DE4_SOPC_clock_7_in_endofpacket_from_sa;
 
 
 //synthesis translate_off
@@ -28242,16 +30803,16 @@ module pipeline_bridge_ddr2_m1_arbitrator (
   reg              pipeline_bridge_ddr2_m1_write_last_time;
   reg     [ 31: 0] pipeline_bridge_ddr2_m1_writedata_last_time;
   wire             pre_flush_pipeline_bridge_ddr2_m1_readdatavalid;
-  wire             r_0;
+  wire             r_1;
   wire             read_selecto_nrdv_pipeline_bridge_ddr2_m1_3_ddr2_s1_fifo;
   wire    [  2: 0] selecto_nrdv_pipeline_bridge_ddr2_m1_3_ddr2_s1_fifo_output;
   wire    [  2: 0] selecto_nrdv_pipeline_bridge_ddr2_m1_3_ddr2_s1_fifo_output_ddr2_s1;
   wire             write_selecto_nrdv_pipeline_bridge_ddr2_m1_3_ddr2_s1_fifo;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_requests_ddr2_s1) & (pipeline_bridge_ddr2_m1_granted_ddr2_s1 | ~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1) & ((~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_chipselect | (1 & ddr2_s1_waitrequest_n_from_sa & pipeline_bridge_ddr2_m1_chipselect))) & ((~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_chipselect | (1 & ddr2_s1_waitrequest_n_from_sa & pipeline_bridge_ddr2_m1_chipselect)));
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_requests_ddr2_s1) & (pipeline_bridge_ddr2_m1_granted_ddr2_s1 | ~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1) & ((~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_chipselect | (1 & ddr2_s1_waitrequest_n_from_sa & pipeline_bridge_ddr2_m1_chipselect))) & ((~pipeline_bridge_ddr2_m1_qualified_request_ddr2_s1 | ~pipeline_bridge_ddr2_m1_chipselect | (1 & ddr2_s1_waitrequest_n_from_sa & pipeline_bridge_ddr2_m1_chipselect)));
 
   //cascaded wait assignment, which is an e_assign
-  assign pipeline_bridge_ddr2_m1_run = r_0;
+  assign pipeline_bridge_ddr2_m1_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
   assign pipeline_bridge_ddr2_m1_address_to_slave = pipeline_bridge_ddr2_m1_address[29 : 0];
@@ -28823,6 +31384,272 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module seven_seg_pio_s1_arbitrator (
+                                     // inputs:
+                                      DE4_SOPC_clock_7_out_address_to_slave,
+                                      DE4_SOPC_clock_7_out_nativeaddress,
+                                      DE4_SOPC_clock_7_out_read,
+                                      DE4_SOPC_clock_7_out_write,
+                                      DE4_SOPC_clock_7_out_writedata,
+                                      clk,
+                                      reset_n,
+                                      seven_seg_pio_s1_readdata,
+
+                                     // outputs:
+                                      DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1,
+                                      DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1,
+                                      DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1,
+                                      DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1,
+                                      d1_seven_seg_pio_s1_end_xfer,
+                                      seven_seg_pio_s1_address,
+                                      seven_seg_pio_s1_chipselect,
+                                      seven_seg_pio_s1_readdata_from_sa,
+                                      seven_seg_pio_s1_reset_n,
+                                      seven_seg_pio_s1_write_n,
+                                      seven_seg_pio_s1_writedata
+                                   )
+;
+
+  output           DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1;
+  output           DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1;
+  output           DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1;
+  output           DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+  output           d1_seven_seg_pio_s1_end_xfer;
+  output  [  1: 0] seven_seg_pio_s1_address;
+  output           seven_seg_pio_s1_chipselect;
+  output  [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  output           seven_seg_pio_s1_reset_n;
+  output           seven_seg_pio_s1_write_n;
+  output  [ 15: 0] seven_seg_pio_s1_writedata;
+  input   [  2: 0] DE4_SOPC_clock_7_out_address_to_slave;
+  input   [  1: 0] DE4_SOPC_clock_7_out_nativeaddress;
+  input            DE4_SOPC_clock_7_out_read;
+  input            DE4_SOPC_clock_7_out_write;
+  input   [ 15: 0] DE4_SOPC_clock_7_out_writedata;
+  input            clk;
+  input            reset_n;
+  input   [ 15: 0] seven_seg_pio_s1_readdata;
+
+  wire             DE4_SOPC_clock_7_out_arbiterlock;
+  wire             DE4_SOPC_clock_7_out_arbiterlock2;
+  wire             DE4_SOPC_clock_7_out_continuerequest;
+  wire             DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_saved_grant_seven_seg_pio_s1;
+  reg              d1_reasons_to_wait;
+  reg              d1_seven_seg_pio_s1_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_seven_seg_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] seven_seg_pio_s1_address;
+  wire             seven_seg_pio_s1_allgrants;
+  wire             seven_seg_pio_s1_allow_new_arb_cycle;
+  wire             seven_seg_pio_s1_any_bursting_master_saved_grant;
+  wire             seven_seg_pio_s1_any_continuerequest;
+  wire             seven_seg_pio_s1_arb_counter_enable;
+  reg              seven_seg_pio_s1_arb_share_counter;
+  wire             seven_seg_pio_s1_arb_share_counter_next_value;
+  wire             seven_seg_pio_s1_arb_share_set_values;
+  wire             seven_seg_pio_s1_beginbursttransfer_internal;
+  wire             seven_seg_pio_s1_begins_xfer;
+  wire             seven_seg_pio_s1_chipselect;
+  wire             seven_seg_pio_s1_end_xfer;
+  wire             seven_seg_pio_s1_firsttransfer;
+  wire             seven_seg_pio_s1_grant_vector;
+  wire             seven_seg_pio_s1_in_a_read_cycle;
+  wire             seven_seg_pio_s1_in_a_write_cycle;
+  wire             seven_seg_pio_s1_master_qreq_vector;
+  wire             seven_seg_pio_s1_non_bursting_master_requests;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  reg              seven_seg_pio_s1_reg_firsttransfer;
+  wire             seven_seg_pio_s1_reset_n;
+  reg              seven_seg_pio_s1_slavearbiterlockenable;
+  wire             seven_seg_pio_s1_slavearbiterlockenable2;
+  wire             seven_seg_pio_s1_unreg_firsttransfer;
+  wire             seven_seg_pio_s1_waits_for_read;
+  wire             seven_seg_pio_s1_waits_for_write;
+  wire             seven_seg_pio_s1_write_n;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
+  wire             wait_for_seven_seg_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~seven_seg_pio_s1_end_xfer;
+    end
+
+
+  assign seven_seg_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1));
+  //assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata;
+
+  assign DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1 = (1) & (DE4_SOPC_clock_7_out_read | DE4_SOPC_clock_7_out_write);
+  //seven_seg_pio_s1_arb_share_counter set values, which is an e_mux
+  assign seven_seg_pio_s1_arb_share_set_values = 1;
+
+  //seven_seg_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign seven_seg_pio_s1_non_bursting_master_requests = DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+
+  //seven_seg_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign seven_seg_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //seven_seg_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign seven_seg_pio_s1_arb_share_counter_next_value = seven_seg_pio_s1_firsttransfer ? (seven_seg_pio_s1_arb_share_set_values - 1) : |seven_seg_pio_s1_arb_share_counter ? (seven_seg_pio_s1_arb_share_counter - 1) : 0;
+
+  //seven_seg_pio_s1_allgrants all slave grants, which is an e_mux
+  assign seven_seg_pio_s1_allgrants = |seven_seg_pio_s1_grant_vector;
+
+  //seven_seg_pio_s1_end_xfer assignment, which is an e_assign
+  assign seven_seg_pio_s1_end_xfer = ~(seven_seg_pio_s1_waits_for_read | seven_seg_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_seven_seg_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_seven_seg_pio_s1 = seven_seg_pio_s1_end_xfer & (~seven_seg_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //seven_seg_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign seven_seg_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & seven_seg_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests);
+
+  //seven_seg_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_arb_share_counter <= 0;
+      else if (seven_seg_pio_s1_arb_counter_enable)
+          seven_seg_pio_s1_arb_share_counter <= seven_seg_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //seven_seg_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|seven_seg_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_seven_seg_pio_s1) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests))
+          seven_seg_pio_s1_slavearbiterlockenable <= |seven_seg_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_7/out seven_seg_pio/s1 arbiterlock, which is an e_assign
+  assign DE4_SOPC_clock_7_out_arbiterlock = seven_seg_pio_s1_slavearbiterlockenable & DE4_SOPC_clock_7_out_continuerequest;
+
+  //seven_seg_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign seven_seg_pio_s1_slavearbiterlockenable2 = |seven_seg_pio_s1_arb_share_counter_next_value;
+
+  //DE4_SOPC_clock_7/out seven_seg_pio/s1 arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_7_out_arbiterlock2 = seven_seg_pio_s1_slavearbiterlockenable2 & DE4_SOPC_clock_7_out_continuerequest;
+
+  //seven_seg_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign seven_seg_pio_s1_any_continuerequest = 1;
+
+  //DE4_SOPC_clock_7_out_continuerequest continued request, which is an e_assign
+  assign DE4_SOPC_clock_7_out_continuerequest = 1;
+
+  assign DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1 = DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+  //seven_seg_pio_s1_writedata mux, which is an e_mux
+  assign seven_seg_pio_s1_writedata = DE4_SOPC_clock_7_out_writedata;
+
+  //master is always granted when requested
+  assign DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1 = DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1;
+
+  //DE4_SOPC_clock_7/out saved-grant seven_seg_pio/s1, which is an e_assign
+  assign DE4_SOPC_clock_7_out_saved_grant_seven_seg_pio_s1 = DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+
+  //allow new arb cycle for seven_seg_pio/s1, which is an e_assign
+  assign seven_seg_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign seven_seg_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign seven_seg_pio_s1_master_qreq_vector = 1;
+
+  //seven_seg_pio_s1_reset_n assignment, which is an e_assign
+  assign seven_seg_pio_s1_reset_n = reset_n;
+
+  assign seven_seg_pio_s1_chipselect = DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1;
+  //seven_seg_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign seven_seg_pio_s1_firsttransfer = seven_seg_pio_s1_begins_xfer ? seven_seg_pio_s1_unreg_firsttransfer : seven_seg_pio_s1_reg_firsttransfer;
+
+  //seven_seg_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign seven_seg_pio_s1_unreg_firsttransfer = ~(seven_seg_pio_s1_slavearbiterlockenable & seven_seg_pio_s1_any_continuerequest);
+
+  //seven_seg_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          seven_seg_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (seven_seg_pio_s1_begins_xfer)
+          seven_seg_pio_s1_reg_firsttransfer <= seven_seg_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //seven_seg_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign seven_seg_pio_s1_beginbursttransfer_internal = seven_seg_pio_s1_begins_xfer;
+
+  //~seven_seg_pio_s1_write_n assignment, which is an e_mux
+  assign seven_seg_pio_s1_write_n = ~(DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1 & DE4_SOPC_clock_7_out_write);
+
+  //seven_seg_pio_s1_address mux, which is an e_mux
+  assign seven_seg_pio_s1_address = DE4_SOPC_clock_7_out_nativeaddress;
+
+  //d1_seven_seg_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_seven_seg_pio_s1_end_xfer <= 1;
+      else 
+        d1_seven_seg_pio_s1_end_xfer <= seven_seg_pio_s1_end_xfer;
+    end
+
+
+  //seven_seg_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign seven_seg_pio_s1_waits_for_read = seven_seg_pio_s1_in_a_read_cycle & seven_seg_pio_s1_begins_xfer;
+
+  //seven_seg_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign seven_seg_pio_s1_in_a_read_cycle = DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1 & DE4_SOPC_clock_7_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = seven_seg_pio_s1_in_a_read_cycle;
+
+  //seven_seg_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign seven_seg_pio_s1_waits_for_write = seven_seg_pio_s1_in_a_write_cycle & 0;
+
+  //seven_seg_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign seven_seg_pio_s1_in_a_write_cycle = DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1 & DE4_SOPC_clock_7_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = seven_seg_pio_s1_in_a_write_cycle;
+
+  assign wait_for_seven_seg_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //seven_seg_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module sgdma_rx_csr_arbitrator (
                                  // inputs:
                                   clk,
@@ -28937,7 +31764,7 @@ module sgdma_rx_csr_arbitrator (
   //assign sgdma_rx_csr_readdata_from_sa = sgdma_rx_csr_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sgdma_rx_csr_readdata_from_sa = sgdma_rx_csr_readdata;
 
-  assign cpu_data_master_requests_sgdma_rx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h441027c0) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sgdma_rx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h451027c0) & (cpu_data_master_read | cpu_data_master_write);
   //sgdma_rx_csr_arb_share_counter set values, which is an e_mux
   assign sgdma_rx_csr_arb_share_set_values = 1;
 
@@ -29229,7 +32056,6 @@ module sgdma_rx_descriptor_read_arbitrator (
   wire             latency_load_value;
   wire             p1_sgdma_rx_descriptor_read_latency_counter;
   wire             pre_flush_sgdma_rx_descriptor_read_readdatavalid;
-  wire             r_0;
   wire             r_1;
   reg     [ 31: 0] sgdma_rx_descriptor_read_address_last_time;
   wire    [ 31: 0] sgdma_rx_descriptor_read_address_to_slave;
@@ -29241,17 +32067,14 @@ module sgdma_rx_descriptor_read_arbitrator (
   wire             sgdma_rx_descriptor_read_readdatavalid;
   wire             sgdma_rx_descriptor_read_run;
   wire             sgdma_rx_descriptor_read_waitrequest;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_requests_descriptor_memory_s1);
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_requests_descriptor_memory_s1) & (sgdma_rx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_read_read) | (1 & (sgdma_rx_descriptor_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_descriptor_read_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_rx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_read_read) | (1 & (sgdma_rx_descriptor_read_read))));
+  assign sgdma_rx_descriptor_read_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_descriptor_read_address_to_slave = {21'b10001000001000000011,
+  assign sgdma_rx_descriptor_read_address_to_slave = {21'b10001010001000000011,
     sgdma_rx_descriptor_read_address[10 : 0]};
 
   //sgdma_rx_descriptor_read_read_but_no_slave_selected assignment, which is an e_register
@@ -29397,7 +32220,6 @@ module sgdma_rx_descriptor_write_arbitrator (
   input   [ 31: 0] sgdma_rx_descriptor_write_writedata;
 
   reg              active_and_waiting_last_time;
-  wire             r_0;
   wire             r_1;
   reg     [ 31: 0] sgdma_rx_descriptor_write_address_last_time;
   wire    [ 31: 0] sgdma_rx_descriptor_write_address_to_slave;
@@ -29405,17 +32227,14 @@ module sgdma_rx_descriptor_write_arbitrator (
   wire             sgdma_rx_descriptor_write_waitrequest;
   reg              sgdma_rx_descriptor_write_write_last_time;
   reg     [ 31: 0] sgdma_rx_descriptor_write_writedata_last_time;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_requests_descriptor_memory_s1);
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_requests_descriptor_memory_s1) & (sgdma_rx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_write_write) | (1 & (sgdma_rx_descriptor_write_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_descriptor_write_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_rx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_write_write) | (1 & (sgdma_rx_descriptor_write_write))));
+  assign sgdma_rx_descriptor_write_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_descriptor_write_address_to_slave = {21'b10001000001000000011,
+  assign sgdma_rx_descriptor_write_address_to_slave = {21'b10001010001000000011,
     sgdma_rx_descriptor_write_address[10 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -29543,7 +32362,7 @@ module sgdma_rx_m_write_arbitrator (
   input   [ 31: 0] sgdma_rx_m_write_writedata;
 
   reg              active_and_waiting_last_time;
-  wire             r_1;
+  wire             r_2;
   reg     [ 31: 0] sgdma_rx_m_write_address_last_time;
   wire    [ 31: 0] sgdma_rx_m_write_address_to_slave;
   reg     [  3: 0] sgdma_rx_m_write_byteenable_last_time;
@@ -29551,14 +32370,14 @@ module sgdma_rx_m_write_arbitrator (
   wire             sgdma_rx_m_write_waitrequest;
   reg              sgdma_rx_m_write_write_last_time;
   reg     [ 31: 0] sgdma_rx_m_write_writedata_last_time;
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1) & ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1) & ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_m_write_run = r_1;
+  assign sgdma_rx_m_write_run = r_2;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_m_write_address_to_slave = {13'b100010000001,
+  assign sgdma_rx_m_write_address_to_slave = {13'b100010100001,
     sgdma_rx_m_write_address[18 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -29788,7 +32607,7 @@ module sgdma_tx_csr_arbitrator (
   //assign sgdma_tx_csr_readdata_from_sa = sgdma_tx_csr_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sgdma_tx_csr_readdata_from_sa = sgdma_tx_csr_readdata;
 
-  assign cpu_data_master_requests_sgdma_tx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h44102780) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sgdma_tx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h45102780) & (cpu_data_master_read | cpu_data_master_write);
   //sgdma_tx_csr_arb_share_counter set values, which is an e_mux
   assign sgdma_tx_csr_arb_share_set_values = 1;
 
@@ -30003,7 +32822,6 @@ module sgdma_tx_descriptor_read_arbitrator (
   wire             latency_load_value;
   wire             p1_sgdma_tx_descriptor_read_latency_counter;
   wire             pre_flush_sgdma_tx_descriptor_read_readdatavalid;
-  wire             r_0;
   wire             r_1;
   reg     [ 31: 0] sgdma_tx_descriptor_read_address_last_time;
   wire    [ 31: 0] sgdma_tx_descriptor_read_address_to_slave;
@@ -30015,17 +32833,14 @@ module sgdma_tx_descriptor_read_arbitrator (
   wire             sgdma_tx_descriptor_read_readdatavalid;
   wire             sgdma_tx_descriptor_read_run;
   wire             sgdma_tx_descriptor_read_waitrequest;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_requests_descriptor_memory_s1);
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_requests_descriptor_memory_s1) & (sgdma_tx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_read_read) | (1 & (sgdma_tx_descriptor_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_descriptor_read_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_tx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_read_read) | (1 & (sgdma_tx_descriptor_read_read))));
+  assign sgdma_tx_descriptor_read_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_descriptor_read_address_to_slave = {21'b10001000001000000011,
+  assign sgdma_tx_descriptor_read_address_to_slave = {21'b10001010001000000011,
     sgdma_tx_descriptor_read_address[10 : 0]};
 
   //sgdma_tx_descriptor_read_read_but_no_slave_selected assignment, which is an e_register
@@ -30171,7 +32986,6 @@ module sgdma_tx_descriptor_write_arbitrator (
   input   [ 31: 0] sgdma_tx_descriptor_write_writedata;
 
   reg              active_and_waiting_last_time;
-  wire             r_0;
   wire             r_1;
   reg     [ 31: 0] sgdma_tx_descriptor_write_address_last_time;
   wire    [ 31: 0] sgdma_tx_descriptor_write_address_to_slave;
@@ -30179,17 +32993,14 @@ module sgdma_tx_descriptor_write_arbitrator (
   wire             sgdma_tx_descriptor_write_waitrequest;
   reg              sgdma_tx_descriptor_write_write_last_time;
   reg     [ 31: 0] sgdma_tx_descriptor_write_writedata_last_time;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_requests_descriptor_memory_s1);
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_requests_descriptor_memory_s1) & (sgdma_tx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_write_write) | (1 & (sgdma_tx_descriptor_write_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_descriptor_write_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_tx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_write_write) | (1 & (sgdma_tx_descriptor_write_write))));
+  assign sgdma_tx_descriptor_write_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_descriptor_write_address_to_slave = {21'b10001000001000000011,
+  assign sgdma_tx_descriptor_write_address_to_slave = {21'b10001010001000000011,
     sgdma_tx_descriptor_write_address[10 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -30326,7 +33137,7 @@ module sgdma_tx_m_read_arbitrator (
   wire             latency_load_value;
   wire             p1_sgdma_tx_m_read_latency_counter;
   wire             pre_flush_sgdma_tx_m_read_readdatavalid;
-  wire             r_1;
+  wire             r_2;
   reg     [ 31: 0] sgdma_tx_m_read_address_last_time;
   wire    [ 31: 0] sgdma_tx_m_read_address_to_slave;
   wire             sgdma_tx_m_read_is_granted_some_slave;
@@ -30337,14 +33148,14 @@ module sgdma_tx_m_read_arbitrator (
   wire             sgdma_tx_m_read_readdatavalid;
   wire             sgdma_tx_m_read_run;
   wire             sgdma_tx_m_read_waitrequest;
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~sgdma_tx_m_read_requests_onchip_memory_s1) & (sgdma_tx_m_read_granted_onchip_memory_s1 | ~sgdma_tx_m_read_qualified_request_onchip_memory_s1) & ((~sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~(sgdma_tx_m_read_read) | (1 & (sgdma_tx_m_read_read))));
+  //r_2 master_run cascaded wait assignment, which is an e_assign
+  assign r_2 = 1 & (sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~sgdma_tx_m_read_requests_onchip_memory_s1) & (sgdma_tx_m_read_granted_onchip_memory_s1 | ~sgdma_tx_m_read_qualified_request_onchip_memory_s1) & ((~sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~(sgdma_tx_m_read_read) | (1 & (sgdma_tx_m_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_m_read_run = r_1;
+  assign sgdma_tx_m_read_run = r_2;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_m_read_address_to_slave = {13'b100010000001,
+  assign sgdma_tx_m_read_address_to_slave = {13'b100010100001,
     sgdma_tx_m_read_address[18 : 0]};
 
   //sgdma_tx_m_read_read_but_no_slave_selected assignment, which is an e_register
@@ -30500,6 +33311,254 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
+module sw_pio_s1_arbitrator (
+                              // inputs:
+                               DE4_SOPC_clock_5_out_address_to_slave,
+                               DE4_SOPC_clock_5_out_nativeaddress,
+                               DE4_SOPC_clock_5_out_read,
+                               DE4_SOPC_clock_5_out_write,
+                               clk,
+                               reset_n,
+                               sw_pio_s1_readdata,
+
+                              // outputs:
+                               DE4_SOPC_clock_5_out_granted_sw_pio_s1,
+                               DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1,
+                               DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1,
+                               DE4_SOPC_clock_5_out_requests_sw_pio_s1,
+                               d1_sw_pio_s1_end_xfer,
+                               sw_pio_s1_address,
+                               sw_pio_s1_readdata_from_sa,
+                               sw_pio_s1_reset_n
+                            )
+;
+
+  output           DE4_SOPC_clock_5_out_granted_sw_pio_s1;
+  output           DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1;
+  output           DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1;
+  output           DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+  output           d1_sw_pio_s1_end_xfer;
+  output  [  1: 0] sw_pio_s1_address;
+  output  [  7: 0] sw_pio_s1_readdata_from_sa;
+  output           sw_pio_s1_reset_n;
+  input   [  1: 0] DE4_SOPC_clock_5_out_address_to_slave;
+  input   [  1: 0] DE4_SOPC_clock_5_out_nativeaddress;
+  input            DE4_SOPC_clock_5_out_read;
+  input            DE4_SOPC_clock_5_out_write;
+  input            clk;
+  input            reset_n;
+  input   [  7: 0] sw_pio_s1_readdata;
+
+  wire             DE4_SOPC_clock_5_out_arbiterlock;
+  wire             DE4_SOPC_clock_5_out_arbiterlock2;
+  wire             DE4_SOPC_clock_5_out_continuerequest;
+  wire             DE4_SOPC_clock_5_out_granted_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_saved_grant_sw_pio_s1;
+  reg              d1_reasons_to_wait;
+  reg              d1_sw_pio_s1_end_xfer;
+  reg              enable_nonzero_assertions;
+  wire             end_xfer_arb_share_counter_term_sw_pio_s1;
+  wire             in_a_read_cycle;
+  wire             in_a_write_cycle;
+  wire    [  1: 0] sw_pio_s1_address;
+  wire             sw_pio_s1_allgrants;
+  wire             sw_pio_s1_allow_new_arb_cycle;
+  wire             sw_pio_s1_any_bursting_master_saved_grant;
+  wire             sw_pio_s1_any_continuerequest;
+  wire             sw_pio_s1_arb_counter_enable;
+  reg              sw_pio_s1_arb_share_counter;
+  wire             sw_pio_s1_arb_share_counter_next_value;
+  wire             sw_pio_s1_arb_share_set_values;
+  wire             sw_pio_s1_beginbursttransfer_internal;
+  wire             sw_pio_s1_begins_xfer;
+  wire             sw_pio_s1_end_xfer;
+  wire             sw_pio_s1_firsttransfer;
+  wire             sw_pio_s1_grant_vector;
+  wire             sw_pio_s1_in_a_read_cycle;
+  wire             sw_pio_s1_in_a_write_cycle;
+  wire             sw_pio_s1_master_qreq_vector;
+  wire             sw_pio_s1_non_bursting_master_requests;
+  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
+  reg              sw_pio_s1_reg_firsttransfer;
+  wire             sw_pio_s1_reset_n;
+  reg              sw_pio_s1_slavearbiterlockenable;
+  wire             sw_pio_s1_slavearbiterlockenable2;
+  wire             sw_pio_s1_unreg_firsttransfer;
+  wire             sw_pio_s1_waits_for_read;
+  wire             sw_pio_s1_waits_for_write;
+  wire             wait_for_sw_pio_s1_counter;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_reasons_to_wait <= 0;
+      else 
+        d1_reasons_to_wait <= ~sw_pio_s1_end_xfer;
+    end
+
+
+  assign sw_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1));
+  //assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
+  assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata;
+
+  assign DE4_SOPC_clock_5_out_requests_sw_pio_s1 = ((1) & (DE4_SOPC_clock_5_out_read | DE4_SOPC_clock_5_out_write)) & DE4_SOPC_clock_5_out_read;
+  //sw_pio_s1_arb_share_counter set values, which is an e_mux
+  assign sw_pio_s1_arb_share_set_values = 1;
+
+  //sw_pio_s1_non_bursting_master_requests mux, which is an e_mux
+  assign sw_pio_s1_non_bursting_master_requests = DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+
+  //sw_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
+  assign sw_pio_s1_any_bursting_master_saved_grant = 0;
+
+  //sw_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
+  assign sw_pio_s1_arb_share_counter_next_value = sw_pio_s1_firsttransfer ? (sw_pio_s1_arb_share_set_values - 1) : |sw_pio_s1_arb_share_counter ? (sw_pio_s1_arb_share_counter - 1) : 0;
+
+  //sw_pio_s1_allgrants all slave grants, which is an e_mux
+  assign sw_pio_s1_allgrants = |sw_pio_s1_grant_vector;
+
+  //sw_pio_s1_end_xfer assignment, which is an e_assign
+  assign sw_pio_s1_end_xfer = ~(sw_pio_s1_waits_for_read | sw_pio_s1_waits_for_write);
+
+  //end_xfer_arb_share_counter_term_sw_pio_s1 arb share counter enable term, which is an e_assign
+  assign end_xfer_arb_share_counter_term_sw_pio_s1 = sw_pio_s1_end_xfer & (~sw_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
+
+  //sw_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
+  assign sw_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_sw_pio_s1 & sw_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests);
+
+  //sw_pio_s1_arb_share_counter counter, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_arb_share_counter <= 0;
+      else if (sw_pio_s1_arb_counter_enable)
+          sw_pio_s1_arb_share_counter <= sw_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //sw_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_slavearbiterlockenable <= 0;
+      else if ((|sw_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_sw_pio_s1) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests))
+          sw_pio_s1_slavearbiterlockenable <= |sw_pio_s1_arb_share_counter_next_value;
+    end
+
+
+  //DE4_SOPC_clock_5/out sw_pio/s1 arbiterlock, which is an e_assign
+  assign DE4_SOPC_clock_5_out_arbiterlock = sw_pio_s1_slavearbiterlockenable & DE4_SOPC_clock_5_out_continuerequest;
+
+  //sw_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
+  assign sw_pio_s1_slavearbiterlockenable2 = |sw_pio_s1_arb_share_counter_next_value;
+
+  //DE4_SOPC_clock_5/out sw_pio/s1 arbiterlock2, which is an e_assign
+  assign DE4_SOPC_clock_5_out_arbiterlock2 = sw_pio_s1_slavearbiterlockenable2 & DE4_SOPC_clock_5_out_continuerequest;
+
+  //sw_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
+  assign sw_pio_s1_any_continuerequest = 1;
+
+  //DE4_SOPC_clock_5_out_continuerequest continued request, which is an e_assign
+  assign DE4_SOPC_clock_5_out_continuerequest = 1;
+
+  assign DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1 = DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+  //master is always granted when requested
+  assign DE4_SOPC_clock_5_out_granted_sw_pio_s1 = DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1;
+
+  //DE4_SOPC_clock_5/out saved-grant sw_pio/s1, which is an e_assign
+  assign DE4_SOPC_clock_5_out_saved_grant_sw_pio_s1 = DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+
+  //allow new arb cycle for sw_pio/s1, which is an e_assign
+  assign sw_pio_s1_allow_new_arb_cycle = 1;
+
+  //placeholder chosen master
+  assign sw_pio_s1_grant_vector = 1;
+
+  //placeholder vector of master qualified-requests
+  assign sw_pio_s1_master_qreq_vector = 1;
+
+  //sw_pio_s1_reset_n assignment, which is an e_assign
+  assign sw_pio_s1_reset_n = reset_n;
+
+  //sw_pio_s1_firsttransfer first transaction, which is an e_assign
+  assign sw_pio_s1_firsttransfer = sw_pio_s1_begins_xfer ? sw_pio_s1_unreg_firsttransfer : sw_pio_s1_reg_firsttransfer;
+
+  //sw_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
+  assign sw_pio_s1_unreg_firsttransfer = ~(sw_pio_s1_slavearbiterlockenable & sw_pio_s1_any_continuerequest);
+
+  //sw_pio_s1_reg_firsttransfer first transaction, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          sw_pio_s1_reg_firsttransfer <= 1'b1;
+      else if (sw_pio_s1_begins_xfer)
+          sw_pio_s1_reg_firsttransfer <= sw_pio_s1_unreg_firsttransfer;
+    end
+
+
+  //sw_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
+  assign sw_pio_s1_beginbursttransfer_internal = sw_pio_s1_begins_xfer;
+
+  //sw_pio_s1_address mux, which is an e_mux
+  assign sw_pio_s1_address = DE4_SOPC_clock_5_out_nativeaddress;
+
+  //d1_sw_pio_s1_end_xfer register, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          d1_sw_pio_s1_end_xfer <= 1;
+      else 
+        d1_sw_pio_s1_end_xfer <= sw_pio_s1_end_xfer;
+    end
+
+
+  //sw_pio_s1_waits_for_read in a cycle, which is an e_mux
+  assign sw_pio_s1_waits_for_read = sw_pio_s1_in_a_read_cycle & sw_pio_s1_begins_xfer;
+
+  //sw_pio_s1_in_a_read_cycle assignment, which is an e_assign
+  assign sw_pio_s1_in_a_read_cycle = DE4_SOPC_clock_5_out_granted_sw_pio_s1 & DE4_SOPC_clock_5_out_read;
+
+  //in_a_read_cycle assignment, which is an e_mux
+  assign in_a_read_cycle = sw_pio_s1_in_a_read_cycle;
+
+  //sw_pio_s1_waits_for_write in a cycle, which is an e_mux
+  assign sw_pio_s1_waits_for_write = sw_pio_s1_in_a_write_cycle & 0;
+
+  //sw_pio_s1_in_a_write_cycle assignment, which is an e_assign
+  assign sw_pio_s1_in_a_write_cycle = DE4_SOPC_clock_5_out_granted_sw_pio_s1 & DE4_SOPC_clock_5_out_write;
+
+  //in_a_write_cycle assignment, which is an e_mux
+  assign in_a_write_cycle = sw_pio_s1_in_a_write_cycle;
+
+  assign wait_for_sw_pio_s1_counter = 0;
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  //sw_pio/s1 enable non-zero assertions, which is an e_register
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          enable_nonzero_assertions <= 0;
+      else 
+        enable_nonzero_assertions <= 1'b1;
+    end
+
+
+
+//////////////// END SIMULATION-ONLY CONTENTS
+
+//synthesis translate_on
+
+endmodule
+
+
+
+// turn off superfluous verilog processor warnings 
+// altera message_level Level1 
+// altera message_off 10034 10035 10036 10037 10230 10240 10030 
+
 module sys_timer_s1_arbitrator (
                                  // inputs:
                                   clk,
@@ -30611,7 +33670,7 @@ module sys_timer_s1_arbitrator (
   //assign sys_timer_s1_readdata_from_sa = sys_timer_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sys_timer_s1_readdata_from_sa = sys_timer_s1_readdata;
 
-  assign cpu_data_master_requests_sys_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h44102600) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sys_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102600) & (cpu_data_master_read | cpu_data_master_write);
   //sys_timer_s1_arb_share_counter set values, which is an e_mux
   assign sys_timer_s1_arb_share_set_values = 1;
 
@@ -30873,7 +33932,7 @@ module sysid_control_slave_arbitrator (
   //assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata;
 
-  assign cpu_data_master_requests_sysid_control_slave = (({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h44102700) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
+  assign cpu_data_master_requests_sysid_control_slave = (({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h45102700) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
   //sysid_control_slave_arb_share_counter set values, which is an e_mux
   assign sysid_control_slave_arb_share_set_values = 1;
 
@@ -31141,7 +34200,7 @@ module tse_mac_control_port_arbitrator (
   //assign tse_mac_control_port_readdata_from_sa = tse_mac_control_port_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign tse_mac_control_port_readdata_from_sa = tse_mac_control_port_readdata;
 
-  assign cpu_data_master_requests_tse_mac_control_port = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h44102000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_tse_mac_control_port = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h45102000) & (cpu_data_master_read | cpu_data_master_write);
   //assign tse_mac_control_port_waitrequest_from_sa = tse_mac_control_port_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign tse_mac_control_port_waitrequest_from_sa = tse_mac_control_port_waitrequest;
 
@@ -31718,9 +34777,9 @@ module vol_transfer_done_pio_s1_arbitrator (
   output           vol_transfer_done_pio_s1_write_n;
   output           vol_transfer_done_pio_s1_writedata;
   input            clk;
-  input   [  7: 0] peripheral_clock_crossing_m1_address_to_slave;
+  input   [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
   input            peripheral_clock_crossing_m1_latency_counter;
-  input   [  5: 0] peripheral_clock_crossing_m1_nativeaddress;
+  input   [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
   input            peripheral_clock_crossing_m1_read;
   input            peripheral_clock_crossing_m1_write;
   input   [ 31: 0] peripheral_clock_crossing_m1_writedata;
@@ -31784,7 +34843,7 @@ module vol_transfer_done_pio_s1_arbitrator (
   //assign vol_transfer_done_pio_s1_readdata_from_sa = vol_transfer_done_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign vol_transfer_done_pio_s1_readdata_from_sa = vol_transfer_done_pio_s1_readdata;
 
-  assign peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1 = ({peripheral_clock_crossing_m1_address_to_slave[7 : 4] , 4'b0} == 8'h80) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
+  assign peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1 = ({peripheral_clock_crossing_m1_address_to_slave[9 : 4] , 4'b0} == 10'h0) & (peripheral_clock_crossing_m1_read | peripheral_clock_crossing_m1_write);
   //vol_transfer_done_pio_s1_arb_share_counter set values, which is an e_mux
   assign vol_transfer_done_pio_s1_arb_share_set_values = 1;
 
@@ -32129,6 +35188,9 @@ module DE4_SOPC (
                    flash_tristate_bridge_writen,
                    select_n_to_the_ext_flash,
 
+                  // the_led_pio
+                   out_port_from_the_led_pio,
+
                   // the_master_read
                    control_done_from_the_master_read,
                    control_early_done_from_the_master_read,
@@ -32149,6 +35211,15 @@ module DE4_SOPC (
                    user_buffer_full_from_the_master_write,
                    user_buffer_input_data_to_the_master_write,
                    user_write_buffer_to_the_master_write,
+
+                  // the_pb_pio
+                   in_port_to_the_pb_pio,
+
+                  // the_seven_seg_pio
+                   out_port_from_the_seven_seg_pio,
+
+                  // the_sw_pio
+                   in_port_to_the_sw_pio,
 
                   // the_tse_mac
                    led_an_from_the_tse_mac,
@@ -32213,6 +35284,8 @@ module DE4_SOPC (
   output           mem_odt_from_the_ddr2;
   output           mem_ras_n_from_the_ddr2;
   output           mem_we_n_from_the_ddr2;
+  output  [  7: 0] out_port_from_the_led_pio;
+  output  [ 15: 0] out_port_from_the_seven_seg_pio;
   output           out_port_from_the_vol_transfer_done_pio;
   output           pll_peripheral_clk;
   output           pll_sys_clk;
@@ -32232,6 +35305,8 @@ module DE4_SOPC (
   input   [ 29: 0] control_write_base_to_the_master_write;
   input   [ 29: 0] control_write_length_to_the_master_write;
   input            global_reset_n_to_the_ddr2;
+  input   [  3: 0] in_port_to_the_pb_pio;
+  input   [  7: 0] in_port_to_the_sw_pio;
   input            in_port_to_the_vol_recording_done_pio;
   input            mdio_in_to_the_tse_mac;
   input   [ 13: 0] oct_ctl_rs_value_to_the_ddr2;
@@ -32387,6 +35462,112 @@ module DE4_SOPC (
   wire             DE4_SOPC_clock_3_out_waitrequest;
   wire             DE4_SOPC_clock_3_out_write;
   wire    [  7: 0] DE4_SOPC_clock_3_out_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_4_in_address;
+  wire             DE4_SOPC_clock_4_in_endofpacket;
+  wire             DE4_SOPC_clock_4_in_endofpacket_from_sa;
+  wire    [  1: 0] DE4_SOPC_clock_4_in_nativeaddress;
+  wire             DE4_SOPC_clock_4_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_4_in_readdata;
+  wire    [  7: 0] DE4_SOPC_clock_4_in_readdata_from_sa;
+  wire             DE4_SOPC_clock_4_in_reset_n;
+  wire             DE4_SOPC_clock_4_in_waitrequest;
+  wire             DE4_SOPC_clock_4_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_4_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_4_in_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_4_out_address;
+  wire    [  1: 0] DE4_SOPC_clock_4_out_address_to_slave;
+  wire             DE4_SOPC_clock_4_out_endofpacket;
+  wire             DE4_SOPC_clock_4_out_granted_led_pio_s1;
+  wire    [  1: 0] DE4_SOPC_clock_4_out_nativeaddress;
+  wire             DE4_SOPC_clock_4_out_qualified_request_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_read;
+  wire             DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1;
+  wire    [  7: 0] DE4_SOPC_clock_4_out_readdata;
+  wire             DE4_SOPC_clock_4_out_requests_led_pio_s1;
+  wire             DE4_SOPC_clock_4_out_reset_n;
+  wire             DE4_SOPC_clock_4_out_waitrequest;
+  wire             DE4_SOPC_clock_4_out_write;
+  wire    [  7: 0] DE4_SOPC_clock_4_out_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_5_in_address;
+  wire             DE4_SOPC_clock_5_in_endofpacket;
+  wire             DE4_SOPC_clock_5_in_endofpacket_from_sa;
+  wire    [  1: 0] DE4_SOPC_clock_5_in_nativeaddress;
+  wire             DE4_SOPC_clock_5_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_5_in_readdata;
+  wire    [  7: 0] DE4_SOPC_clock_5_in_readdata_from_sa;
+  wire             DE4_SOPC_clock_5_in_reset_n;
+  wire             DE4_SOPC_clock_5_in_waitrequest;
+  wire             DE4_SOPC_clock_5_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_5_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_5_in_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_5_out_address;
+  wire    [  1: 0] DE4_SOPC_clock_5_out_address_to_slave;
+  wire             DE4_SOPC_clock_5_out_endofpacket;
+  wire             DE4_SOPC_clock_5_out_granted_sw_pio_s1;
+  wire    [  1: 0] DE4_SOPC_clock_5_out_nativeaddress;
+  wire             DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_read;
+  wire             DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1;
+  wire    [  7: 0] DE4_SOPC_clock_5_out_readdata;
+  wire             DE4_SOPC_clock_5_out_requests_sw_pio_s1;
+  wire             DE4_SOPC_clock_5_out_reset_n;
+  wire             DE4_SOPC_clock_5_out_waitrequest;
+  wire             DE4_SOPC_clock_5_out_write;
+  wire    [  7: 0] DE4_SOPC_clock_5_out_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_6_in_address;
+  wire             DE4_SOPC_clock_6_in_endofpacket;
+  wire             DE4_SOPC_clock_6_in_endofpacket_from_sa;
+  wire    [  1: 0] DE4_SOPC_clock_6_in_nativeaddress;
+  wire             DE4_SOPC_clock_6_in_read;
+  wire    [  7: 0] DE4_SOPC_clock_6_in_readdata;
+  wire    [  7: 0] DE4_SOPC_clock_6_in_readdata_from_sa;
+  wire             DE4_SOPC_clock_6_in_reset_n;
+  wire             DE4_SOPC_clock_6_in_waitrequest;
+  wire             DE4_SOPC_clock_6_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_6_in_write;
+  wire    [  7: 0] DE4_SOPC_clock_6_in_writedata;
+  wire    [  1: 0] DE4_SOPC_clock_6_out_address;
+  wire    [  1: 0] DE4_SOPC_clock_6_out_address_to_slave;
+  wire             DE4_SOPC_clock_6_out_endofpacket;
+  wire             DE4_SOPC_clock_6_out_granted_pb_pio_s1;
+  wire    [  1: 0] DE4_SOPC_clock_6_out_nativeaddress;
+  wire             DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_read;
+  wire             DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1;
+  wire    [  7: 0] DE4_SOPC_clock_6_out_readdata;
+  wire             DE4_SOPC_clock_6_out_requests_pb_pio_s1;
+  wire             DE4_SOPC_clock_6_out_reset_n;
+  wire             DE4_SOPC_clock_6_out_waitrequest;
+  wire             DE4_SOPC_clock_6_out_write;
+  wire    [  7: 0] DE4_SOPC_clock_6_out_writedata;
+  wire    [  2: 0] DE4_SOPC_clock_7_in_address;
+  wire    [  1: 0] DE4_SOPC_clock_7_in_byteenable;
+  wire             DE4_SOPC_clock_7_in_endofpacket;
+  wire             DE4_SOPC_clock_7_in_endofpacket_from_sa;
+  wire    [  1: 0] DE4_SOPC_clock_7_in_nativeaddress;
+  wire             DE4_SOPC_clock_7_in_read;
+  wire    [ 15: 0] DE4_SOPC_clock_7_in_readdata;
+  wire    [ 15: 0] DE4_SOPC_clock_7_in_readdata_from_sa;
+  wire             DE4_SOPC_clock_7_in_reset_n;
+  wire             DE4_SOPC_clock_7_in_waitrequest;
+  wire             DE4_SOPC_clock_7_in_waitrequest_from_sa;
+  wire             DE4_SOPC_clock_7_in_write;
+  wire    [ 15: 0] DE4_SOPC_clock_7_in_writedata;
+  wire    [  2: 0] DE4_SOPC_clock_7_out_address;
+  wire    [  2: 0] DE4_SOPC_clock_7_out_address_to_slave;
+  wire    [  1: 0] DE4_SOPC_clock_7_out_byteenable;
+  wire             DE4_SOPC_clock_7_out_endofpacket;
+  wire             DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1;
+  wire    [  1: 0] DE4_SOPC_clock_7_out_nativeaddress;
+  wire             DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_read;
+  wire             DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1;
+  wire    [ 15: 0] DE4_SOPC_clock_7_out_readdata;
+  wire             DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1;
+  wire             DE4_SOPC_clock_7_out_reset_n;
+  wire             DE4_SOPC_clock_7_out_waitrequest;
+  wire             DE4_SOPC_clock_7_out_write;
+  wire    [ 15: 0] DE4_SOPC_clock_7_out_writedata;
   wire             aux_scan_clk_from_the_ddr2;
   wire             aux_scan_clk_reset_n_from_the_ddr2;
   wire             clk_50_reset_n;
@@ -32540,6 +35721,10 @@ module DE4_SOPC (
   wire             d1_DE4_SOPC_clock_1_in_end_xfer;
   wire             d1_DE4_SOPC_clock_2_in_end_xfer;
   wire             d1_DE4_SOPC_clock_3_in_end_xfer;
+  wire             d1_DE4_SOPC_clock_4_in_end_xfer;
+  wire             d1_DE4_SOPC_clock_5_in_end_xfer;
+  wire             d1_DE4_SOPC_clock_6_in_end_xfer;
+  wire             d1_DE4_SOPC_clock_7_in_end_xfer;
   wire             d1_clock_crossing_0_s1_end_xfer;
   wire             d1_cpu_jtag_debug_module_end_xfer;
   wire             d1_ddr2_s1_end_xfer;
@@ -32547,12 +35732,16 @@ module DE4_SOPC (
   wire             d1_flash_tristate_bridge_avalon_slave_end_xfer;
   wire             d1_high_res_timer_s1_end_xfer;
   wire             d1_jtag_uart_avalon_jtag_slave_end_xfer;
+  wire             d1_led_pio_s1_end_xfer;
   wire             d1_onchip_memory_s1_end_xfer;
+  wire             d1_pb_pio_s1_end_xfer;
   wire             d1_peripheral_clock_crossing_s1_end_xfer;
   wire             d1_pipeline_bridge_ddr2_s1_end_xfer;
   wire             d1_pll_s1_end_xfer;
+  wire             d1_seven_seg_pio_s1_end_xfer;
   wire             d1_sgdma_rx_csr_end_xfer;
   wire             d1_sgdma_tx_csr_end_xfer;
+  wire             d1_sw_pio_s1_end_xfer;
   wire             d1_sys_timer_s1_end_xfer;
   wire             d1_sysid_control_slave_end_xfer;
   wire             d1_tse_mac_control_port_end_xfer;
@@ -32624,6 +35813,13 @@ module DE4_SOPC (
   wire             led_crs_from_the_tse_mac;
   wire             led_disp_err_from_the_tse_mac;
   wire             led_link_from_the_tse_mac;
+  wire    [  1: 0] led_pio_s1_address;
+  wire             led_pio_s1_chipselect;
+  wire    [  7: 0] led_pio_s1_readdata;
+  wire    [  7: 0] led_pio_s1_readdata_from_sa;
+  wire             led_pio_s1_reset_n;
+  wire             led_pio_s1_write_n;
+  wire    [  7: 0] led_pio_s1_writedata;
   wire             local_init_done_from_the_ddr2;
   wire             local_refresh_ack_from_the_ddr2;
   wire             local_wdata_req_from_the_ddr2;
@@ -32683,33 +35879,55 @@ module DE4_SOPC (
   wire             out_clk_ddr2_phy_clk;
   wire             out_clk_pll_c0;
   wire             out_clk_pll_c1;
+  wire    [  7: 0] out_port_from_the_led_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             out_port_from_the_vol_transfer_done_pio;
-  wire    [  7: 0] peripheral_clock_crossing_m1_address;
-  wire    [  7: 0] peripheral_clock_crossing_m1_address_to_slave;
+  wire    [  1: 0] pb_pio_s1_address;
+  wire    [  3: 0] pb_pio_s1_readdata;
+  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
+  wire             pb_pio_s1_reset_n;
+  wire    [  9: 0] peripheral_clock_crossing_m1_address;
+  wire    [  9: 0] peripheral_clock_crossing_m1_address_to_slave;
   wire    [  3: 0] peripheral_clock_crossing_m1_byteenable;
   wire             peripheral_clock_crossing_m1_endofpacket;
   wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in;
   wire             peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1;
   wire             peripheral_clock_crossing_m1_latency_counter;
-  wire    [  5: 0] peripheral_clock_crossing_m1_nativeaddress;
+  wire    [  7: 0] peripheral_clock_crossing_m1_nativeaddress;
   wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in;
   wire             peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1;
   wire             peripheral_clock_crossing_m1_read;
   wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in;
   wire             peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1;
   wire    [ 31: 0] peripheral_clock_crossing_m1_readdata;
   wire             peripheral_clock_crossing_m1_readdatavalid;
   wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in;
+  wire             peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in;
   wire             peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1;
   wire             peripheral_clock_crossing_m1_reset_n;
   wire             peripheral_clock_crossing_m1_waitrequest;
   wire             peripheral_clock_crossing_m1_write;
   wire    [ 31: 0] peripheral_clock_crossing_m1_writedata;
-  wire    [  5: 0] peripheral_clock_crossing_s1_address;
+  wire    [  7: 0] peripheral_clock_crossing_s1_address;
   wire    [  3: 0] peripheral_clock_crossing_s1_byteenable;
   wire             peripheral_clock_crossing_s1_endofpacket;
   wire             peripheral_clock_crossing_s1_endofpacket_from_sa;
-  wire    [  5: 0] peripheral_clock_crossing_s1_nativeaddress;
+  wire    [  7: 0] peripheral_clock_crossing_s1_nativeaddress;
   wire             peripheral_clock_crossing_s1_read;
   wire    [ 31: 0] peripheral_clock_crossing_s1_readdata;
   wire    [ 31: 0] peripheral_clock_crossing_s1_readdata_from_sa;
@@ -32774,6 +35992,13 @@ module DE4_SOPC (
   wire             reset_n_sources;
   wire             reset_phy_clk_n_from_the_ddr2;
   wire             select_n_to_the_ext_flash;
+  wire    [  1: 0] seven_seg_pio_s1_address;
+  wire             seven_seg_pio_s1_chipselect;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
+  wire             seven_seg_pio_s1_reset_n;
+  wire             seven_seg_pio_s1_write_n;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
   wire    [  3: 0] sgdma_rx_csr_address;
   wire             sgdma_rx_csr_chipselect;
   wire             sgdma_rx_csr_irq;
@@ -32867,6 +36092,10 @@ module DE4_SOPC (
   wire             sgdma_tx_out_ready;
   wire             sgdma_tx_out_startofpacket;
   wire             sgdma_tx_out_valid;
+  wire    [  1: 0] sw_pio_s1_address;
+  wire    [  7: 0] sw_pio_s1_readdata;
+  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
+  wire             sw_pio_s1_reset_n;
   wire    [  2: 0] sys_timer_s1_address;
   wire             sys_timer_s1_chipselect;
   wire             sys_timer_s1_irq;
@@ -33316,6 +36545,306 @@ module DE4_SOPC (
       .slave_waitrequest    (DE4_SOPC_clock_3_in_waitrequest),
       .slave_write          (DE4_SOPC_clock_3_in_write),
       .slave_writedata      (DE4_SOPC_clock_3_in_writedata)
+    );
+
+  DE4_SOPC_clock_4_in_arbitrator the_DE4_SOPC_clock_4_in
+    (
+      .DE4_SOPC_clock_4_in_address                                        (DE4_SOPC_clock_4_in_address),
+      .DE4_SOPC_clock_4_in_endofpacket                                    (DE4_SOPC_clock_4_in_endofpacket),
+      .DE4_SOPC_clock_4_in_endofpacket_from_sa                            (DE4_SOPC_clock_4_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_4_in_nativeaddress                                  (DE4_SOPC_clock_4_in_nativeaddress),
+      .DE4_SOPC_clock_4_in_read                                           (DE4_SOPC_clock_4_in_read),
+      .DE4_SOPC_clock_4_in_readdata                                       (DE4_SOPC_clock_4_in_readdata),
+      .DE4_SOPC_clock_4_in_readdata_from_sa                               (DE4_SOPC_clock_4_in_readdata_from_sa),
+      .DE4_SOPC_clock_4_in_reset_n                                        (DE4_SOPC_clock_4_in_reset_n),
+      .DE4_SOPC_clock_4_in_waitrequest                                    (DE4_SOPC_clock_4_in_waitrequest),
+      .DE4_SOPC_clock_4_in_waitrequest_from_sa                            (DE4_SOPC_clock_4_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_4_in_write                                          (DE4_SOPC_clock_4_in_write),
+      .DE4_SOPC_clock_4_in_writedata                                      (DE4_SOPC_clock_4_in_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_DE4_SOPC_clock_4_in_end_xfer                                    (d1_DE4_SOPC_clock_4_in_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave                      (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_byteenable                            (peripheral_clock_crossing_m1_byteenable),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in           (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_latency_counter                       (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                         (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_read                                  (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in   (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in          (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_write                                 (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                             (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_4_out_arbitrator the_DE4_SOPC_clock_4_out
+    (
+      .DE4_SOPC_clock_4_out_address                      (DE4_SOPC_clock_4_out_address),
+      .DE4_SOPC_clock_4_out_address_to_slave             (DE4_SOPC_clock_4_out_address_to_slave),
+      .DE4_SOPC_clock_4_out_granted_led_pio_s1           (DE4_SOPC_clock_4_out_granted_led_pio_s1),
+      .DE4_SOPC_clock_4_out_qualified_request_led_pio_s1 (DE4_SOPC_clock_4_out_qualified_request_led_pio_s1),
+      .DE4_SOPC_clock_4_out_read                         (DE4_SOPC_clock_4_out_read),
+      .DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1   (DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1),
+      .DE4_SOPC_clock_4_out_readdata                     (DE4_SOPC_clock_4_out_readdata),
+      .DE4_SOPC_clock_4_out_requests_led_pio_s1          (DE4_SOPC_clock_4_out_requests_led_pio_s1),
+      .DE4_SOPC_clock_4_out_reset_n                      (DE4_SOPC_clock_4_out_reset_n),
+      .DE4_SOPC_clock_4_out_waitrequest                  (DE4_SOPC_clock_4_out_waitrequest),
+      .DE4_SOPC_clock_4_out_write                        (DE4_SOPC_clock_4_out_write),
+      .DE4_SOPC_clock_4_out_writedata                    (DE4_SOPC_clock_4_out_writedata),
+      .clk                                               (clk_50),
+      .d1_led_pio_s1_end_xfer                            (d1_led_pio_s1_end_xfer),
+      .led_pio_s1_readdata_from_sa                       (led_pio_s1_readdata_from_sa),
+      .reset_n                                           (clk_50_reset_n)
+    );
+
+  DE4_SOPC_clock_4 the_DE4_SOPC_clock_4
+    (
+      .master_address       (DE4_SOPC_clock_4_out_address),
+      .master_clk           (clk_50),
+      .master_endofpacket   (DE4_SOPC_clock_4_out_endofpacket),
+      .master_nativeaddress (DE4_SOPC_clock_4_out_nativeaddress),
+      .master_read          (DE4_SOPC_clock_4_out_read),
+      .master_readdata      (DE4_SOPC_clock_4_out_readdata),
+      .master_reset_n       (DE4_SOPC_clock_4_out_reset_n),
+      .master_waitrequest   (DE4_SOPC_clock_4_out_waitrequest),
+      .master_write         (DE4_SOPC_clock_4_out_write),
+      .master_writedata     (DE4_SOPC_clock_4_out_writedata),
+      .slave_address        (DE4_SOPC_clock_4_in_address),
+      .slave_clk            (pll_peripheral_clk),
+      .slave_endofpacket    (DE4_SOPC_clock_4_in_endofpacket),
+      .slave_nativeaddress  (DE4_SOPC_clock_4_in_nativeaddress),
+      .slave_read           (DE4_SOPC_clock_4_in_read),
+      .slave_readdata       (DE4_SOPC_clock_4_in_readdata),
+      .slave_reset_n        (DE4_SOPC_clock_4_in_reset_n),
+      .slave_waitrequest    (DE4_SOPC_clock_4_in_waitrequest),
+      .slave_write          (DE4_SOPC_clock_4_in_write),
+      .slave_writedata      (DE4_SOPC_clock_4_in_writedata)
+    );
+
+  DE4_SOPC_clock_5_in_arbitrator the_DE4_SOPC_clock_5_in
+    (
+      .DE4_SOPC_clock_5_in_address                                        (DE4_SOPC_clock_5_in_address),
+      .DE4_SOPC_clock_5_in_endofpacket                                    (DE4_SOPC_clock_5_in_endofpacket),
+      .DE4_SOPC_clock_5_in_endofpacket_from_sa                            (DE4_SOPC_clock_5_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_5_in_nativeaddress                                  (DE4_SOPC_clock_5_in_nativeaddress),
+      .DE4_SOPC_clock_5_in_read                                           (DE4_SOPC_clock_5_in_read),
+      .DE4_SOPC_clock_5_in_readdata                                       (DE4_SOPC_clock_5_in_readdata),
+      .DE4_SOPC_clock_5_in_readdata_from_sa                               (DE4_SOPC_clock_5_in_readdata_from_sa),
+      .DE4_SOPC_clock_5_in_reset_n                                        (DE4_SOPC_clock_5_in_reset_n),
+      .DE4_SOPC_clock_5_in_waitrequest                                    (DE4_SOPC_clock_5_in_waitrequest),
+      .DE4_SOPC_clock_5_in_waitrequest_from_sa                            (DE4_SOPC_clock_5_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_5_in_write                                          (DE4_SOPC_clock_5_in_write),
+      .DE4_SOPC_clock_5_in_writedata                                      (DE4_SOPC_clock_5_in_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_DE4_SOPC_clock_5_in_end_xfer                                    (d1_DE4_SOPC_clock_5_in_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave                      (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_byteenable                            (peripheral_clock_crossing_m1_byteenable),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in           (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_latency_counter                       (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                         (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_read                                  (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in   (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in          (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_write                                 (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                             (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_5_out_arbitrator the_DE4_SOPC_clock_5_out
+    (
+      .DE4_SOPC_clock_5_out_address                     (DE4_SOPC_clock_5_out_address),
+      .DE4_SOPC_clock_5_out_address_to_slave            (DE4_SOPC_clock_5_out_address_to_slave),
+      .DE4_SOPC_clock_5_out_granted_sw_pio_s1           (DE4_SOPC_clock_5_out_granted_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1 (DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_read                        (DE4_SOPC_clock_5_out_read),
+      .DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1   (DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_readdata                    (DE4_SOPC_clock_5_out_readdata),
+      .DE4_SOPC_clock_5_out_requests_sw_pio_s1          (DE4_SOPC_clock_5_out_requests_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_reset_n                     (DE4_SOPC_clock_5_out_reset_n),
+      .DE4_SOPC_clock_5_out_waitrequest                 (DE4_SOPC_clock_5_out_waitrequest),
+      .DE4_SOPC_clock_5_out_write                       (DE4_SOPC_clock_5_out_write),
+      .DE4_SOPC_clock_5_out_writedata                   (DE4_SOPC_clock_5_out_writedata),
+      .clk                                              (clk_50),
+      .d1_sw_pio_s1_end_xfer                            (d1_sw_pio_s1_end_xfer),
+      .reset_n                                          (clk_50_reset_n),
+      .sw_pio_s1_readdata_from_sa                       (sw_pio_s1_readdata_from_sa)
+    );
+
+  DE4_SOPC_clock_5 the_DE4_SOPC_clock_5
+    (
+      .master_address       (DE4_SOPC_clock_5_out_address),
+      .master_clk           (clk_50),
+      .master_endofpacket   (DE4_SOPC_clock_5_out_endofpacket),
+      .master_nativeaddress (DE4_SOPC_clock_5_out_nativeaddress),
+      .master_read          (DE4_SOPC_clock_5_out_read),
+      .master_readdata      (DE4_SOPC_clock_5_out_readdata),
+      .master_reset_n       (DE4_SOPC_clock_5_out_reset_n),
+      .master_waitrequest   (DE4_SOPC_clock_5_out_waitrequest),
+      .master_write         (DE4_SOPC_clock_5_out_write),
+      .master_writedata     (DE4_SOPC_clock_5_out_writedata),
+      .slave_address        (DE4_SOPC_clock_5_in_address),
+      .slave_clk            (pll_peripheral_clk),
+      .slave_endofpacket    (DE4_SOPC_clock_5_in_endofpacket),
+      .slave_nativeaddress  (DE4_SOPC_clock_5_in_nativeaddress),
+      .slave_read           (DE4_SOPC_clock_5_in_read),
+      .slave_readdata       (DE4_SOPC_clock_5_in_readdata),
+      .slave_reset_n        (DE4_SOPC_clock_5_in_reset_n),
+      .slave_waitrequest    (DE4_SOPC_clock_5_in_waitrequest),
+      .slave_write          (DE4_SOPC_clock_5_in_write),
+      .slave_writedata      (DE4_SOPC_clock_5_in_writedata)
+    );
+
+  DE4_SOPC_clock_6_in_arbitrator the_DE4_SOPC_clock_6_in
+    (
+      .DE4_SOPC_clock_6_in_address                                        (DE4_SOPC_clock_6_in_address),
+      .DE4_SOPC_clock_6_in_endofpacket                                    (DE4_SOPC_clock_6_in_endofpacket),
+      .DE4_SOPC_clock_6_in_endofpacket_from_sa                            (DE4_SOPC_clock_6_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_6_in_nativeaddress                                  (DE4_SOPC_clock_6_in_nativeaddress),
+      .DE4_SOPC_clock_6_in_read                                           (DE4_SOPC_clock_6_in_read),
+      .DE4_SOPC_clock_6_in_readdata                                       (DE4_SOPC_clock_6_in_readdata),
+      .DE4_SOPC_clock_6_in_readdata_from_sa                               (DE4_SOPC_clock_6_in_readdata_from_sa),
+      .DE4_SOPC_clock_6_in_reset_n                                        (DE4_SOPC_clock_6_in_reset_n),
+      .DE4_SOPC_clock_6_in_waitrequest                                    (DE4_SOPC_clock_6_in_waitrequest),
+      .DE4_SOPC_clock_6_in_waitrequest_from_sa                            (DE4_SOPC_clock_6_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_6_in_write                                          (DE4_SOPC_clock_6_in_write),
+      .DE4_SOPC_clock_6_in_writedata                                      (DE4_SOPC_clock_6_in_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_DE4_SOPC_clock_6_in_end_xfer                                    (d1_DE4_SOPC_clock_6_in_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave                      (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_byteenable                            (peripheral_clock_crossing_m1_byteenable),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in           (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_latency_counter                       (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                         (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_read                                  (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in   (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in          (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_write                                 (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                             (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_6_out_arbitrator the_DE4_SOPC_clock_6_out
+    (
+      .DE4_SOPC_clock_6_out_address                     (DE4_SOPC_clock_6_out_address),
+      .DE4_SOPC_clock_6_out_address_to_slave            (DE4_SOPC_clock_6_out_address_to_slave),
+      .DE4_SOPC_clock_6_out_granted_pb_pio_s1           (DE4_SOPC_clock_6_out_granted_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1 (DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_read                        (DE4_SOPC_clock_6_out_read),
+      .DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1   (DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_readdata                    (DE4_SOPC_clock_6_out_readdata),
+      .DE4_SOPC_clock_6_out_requests_pb_pio_s1          (DE4_SOPC_clock_6_out_requests_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_reset_n                     (DE4_SOPC_clock_6_out_reset_n),
+      .DE4_SOPC_clock_6_out_waitrequest                 (DE4_SOPC_clock_6_out_waitrequest),
+      .DE4_SOPC_clock_6_out_write                       (DE4_SOPC_clock_6_out_write),
+      .DE4_SOPC_clock_6_out_writedata                   (DE4_SOPC_clock_6_out_writedata),
+      .clk                                              (clk_50),
+      .d1_pb_pio_s1_end_xfer                            (d1_pb_pio_s1_end_xfer),
+      .pb_pio_s1_readdata_from_sa                       (pb_pio_s1_readdata_from_sa),
+      .reset_n                                          (clk_50_reset_n)
+    );
+
+  DE4_SOPC_clock_6 the_DE4_SOPC_clock_6
+    (
+      .master_address       (DE4_SOPC_clock_6_out_address),
+      .master_clk           (clk_50),
+      .master_endofpacket   (DE4_SOPC_clock_6_out_endofpacket),
+      .master_nativeaddress (DE4_SOPC_clock_6_out_nativeaddress),
+      .master_read          (DE4_SOPC_clock_6_out_read),
+      .master_readdata      (DE4_SOPC_clock_6_out_readdata),
+      .master_reset_n       (DE4_SOPC_clock_6_out_reset_n),
+      .master_waitrequest   (DE4_SOPC_clock_6_out_waitrequest),
+      .master_write         (DE4_SOPC_clock_6_out_write),
+      .master_writedata     (DE4_SOPC_clock_6_out_writedata),
+      .slave_address        (DE4_SOPC_clock_6_in_address),
+      .slave_clk            (pll_peripheral_clk),
+      .slave_endofpacket    (DE4_SOPC_clock_6_in_endofpacket),
+      .slave_nativeaddress  (DE4_SOPC_clock_6_in_nativeaddress),
+      .slave_read           (DE4_SOPC_clock_6_in_read),
+      .slave_readdata       (DE4_SOPC_clock_6_in_readdata),
+      .slave_reset_n        (DE4_SOPC_clock_6_in_reset_n),
+      .slave_waitrequest    (DE4_SOPC_clock_6_in_waitrequest),
+      .slave_write          (DE4_SOPC_clock_6_in_write),
+      .slave_writedata      (DE4_SOPC_clock_6_in_writedata)
+    );
+
+  DE4_SOPC_clock_7_in_arbitrator the_DE4_SOPC_clock_7_in
+    (
+      .DE4_SOPC_clock_7_in_address                                        (DE4_SOPC_clock_7_in_address),
+      .DE4_SOPC_clock_7_in_byteenable                                     (DE4_SOPC_clock_7_in_byteenable),
+      .DE4_SOPC_clock_7_in_endofpacket                                    (DE4_SOPC_clock_7_in_endofpacket),
+      .DE4_SOPC_clock_7_in_endofpacket_from_sa                            (DE4_SOPC_clock_7_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_7_in_nativeaddress                                  (DE4_SOPC_clock_7_in_nativeaddress),
+      .DE4_SOPC_clock_7_in_read                                           (DE4_SOPC_clock_7_in_read),
+      .DE4_SOPC_clock_7_in_readdata                                       (DE4_SOPC_clock_7_in_readdata),
+      .DE4_SOPC_clock_7_in_readdata_from_sa                               (DE4_SOPC_clock_7_in_readdata_from_sa),
+      .DE4_SOPC_clock_7_in_reset_n                                        (DE4_SOPC_clock_7_in_reset_n),
+      .DE4_SOPC_clock_7_in_waitrequest                                    (DE4_SOPC_clock_7_in_waitrequest),
+      .DE4_SOPC_clock_7_in_waitrequest_from_sa                            (DE4_SOPC_clock_7_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_7_in_write                                          (DE4_SOPC_clock_7_in_write),
+      .DE4_SOPC_clock_7_in_writedata                                      (DE4_SOPC_clock_7_in_writedata),
+      .clk                                                                (pll_peripheral_clk),
+      .d1_DE4_SOPC_clock_7_in_end_xfer                                    (d1_DE4_SOPC_clock_7_in_end_xfer),
+      .peripheral_clock_crossing_m1_address_to_slave                      (peripheral_clock_crossing_m1_address_to_slave),
+      .peripheral_clock_crossing_m1_byteenable                            (peripheral_clock_crossing_m1_byteenable),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in           (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in),
+      .peripheral_clock_crossing_m1_latency_counter                       (peripheral_clock_crossing_m1_latency_counter),
+      .peripheral_clock_crossing_m1_nativeaddress                         (peripheral_clock_crossing_m1_nativeaddress),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in),
+      .peripheral_clock_crossing_m1_read                                  (peripheral_clock_crossing_m1_read),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in   (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in          (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in),
+      .peripheral_clock_crossing_m1_write                                 (peripheral_clock_crossing_m1_write),
+      .peripheral_clock_crossing_m1_writedata                             (peripheral_clock_crossing_m1_writedata),
+      .reset_n                                                            (pll_peripheral_clk_reset_n)
+    );
+
+  DE4_SOPC_clock_7_out_arbitrator the_DE4_SOPC_clock_7_out
+    (
+      .DE4_SOPC_clock_7_out_address                            (DE4_SOPC_clock_7_out_address),
+      .DE4_SOPC_clock_7_out_address_to_slave                   (DE4_SOPC_clock_7_out_address_to_slave),
+      .DE4_SOPC_clock_7_out_byteenable                         (DE4_SOPC_clock_7_out_byteenable),
+      .DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1           (DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1 (DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_read                               (DE4_SOPC_clock_7_out_read),
+      .DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1   (DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_readdata                           (DE4_SOPC_clock_7_out_readdata),
+      .DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1          (DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_reset_n                            (DE4_SOPC_clock_7_out_reset_n),
+      .DE4_SOPC_clock_7_out_waitrequest                        (DE4_SOPC_clock_7_out_waitrequest),
+      .DE4_SOPC_clock_7_out_write                              (DE4_SOPC_clock_7_out_write),
+      .DE4_SOPC_clock_7_out_writedata                          (DE4_SOPC_clock_7_out_writedata),
+      .clk                                                     (clk_50),
+      .d1_seven_seg_pio_s1_end_xfer                            (d1_seven_seg_pio_s1_end_xfer),
+      .reset_n                                                 (clk_50_reset_n),
+      .seven_seg_pio_s1_readdata_from_sa                       (seven_seg_pio_s1_readdata_from_sa)
+    );
+
+  DE4_SOPC_clock_7 the_DE4_SOPC_clock_7
+    (
+      .master_address       (DE4_SOPC_clock_7_out_address),
+      .master_byteenable    (DE4_SOPC_clock_7_out_byteenable),
+      .master_clk           (clk_50),
+      .master_endofpacket   (DE4_SOPC_clock_7_out_endofpacket),
+      .master_nativeaddress (DE4_SOPC_clock_7_out_nativeaddress),
+      .master_read          (DE4_SOPC_clock_7_out_read),
+      .master_readdata      (DE4_SOPC_clock_7_out_readdata),
+      .master_reset_n       (DE4_SOPC_clock_7_out_reset_n),
+      .master_waitrequest   (DE4_SOPC_clock_7_out_waitrequest),
+      .master_write         (DE4_SOPC_clock_7_out_write),
+      .master_writedata     (DE4_SOPC_clock_7_out_writedata),
+      .slave_address        (DE4_SOPC_clock_7_in_address),
+      .slave_byteenable     (DE4_SOPC_clock_7_in_byteenable),
+      .slave_clk            (pll_peripheral_clk),
+      .slave_endofpacket    (DE4_SOPC_clock_7_in_endofpacket),
+      .slave_nativeaddress  (DE4_SOPC_clock_7_in_nativeaddress),
+      .slave_read           (DE4_SOPC_clock_7_in_read),
+      .slave_readdata       (DE4_SOPC_clock_7_in_readdata),
+      .slave_reset_n        (DE4_SOPC_clock_7_in_reset_n),
+      .slave_waitrequest    (DE4_SOPC_clock_7_in_waitrequest),
+      .slave_write          (DE4_SOPC_clock_7_in_write),
+      .slave_writedata      (DE4_SOPC_clock_7_in_writedata)
     );
 
   clock_crossing_0_s1_arbitrator the_clock_crossing_0_s1
@@ -33954,6 +37483,41 @@ module DE4_SOPC (
       .rst_n          (jtag_uart_avalon_jtag_slave_reset_n)
     );
 
+  led_pio_s1_arbitrator the_led_pio_s1
+    (
+      .DE4_SOPC_clock_4_out_address_to_slave             (DE4_SOPC_clock_4_out_address_to_slave),
+      .DE4_SOPC_clock_4_out_granted_led_pio_s1           (DE4_SOPC_clock_4_out_granted_led_pio_s1),
+      .DE4_SOPC_clock_4_out_nativeaddress                (DE4_SOPC_clock_4_out_nativeaddress),
+      .DE4_SOPC_clock_4_out_qualified_request_led_pio_s1 (DE4_SOPC_clock_4_out_qualified_request_led_pio_s1),
+      .DE4_SOPC_clock_4_out_read                         (DE4_SOPC_clock_4_out_read),
+      .DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1   (DE4_SOPC_clock_4_out_read_data_valid_led_pio_s1),
+      .DE4_SOPC_clock_4_out_requests_led_pio_s1          (DE4_SOPC_clock_4_out_requests_led_pio_s1),
+      .DE4_SOPC_clock_4_out_write                        (DE4_SOPC_clock_4_out_write),
+      .DE4_SOPC_clock_4_out_writedata                    (DE4_SOPC_clock_4_out_writedata),
+      .clk                                               (clk_50),
+      .d1_led_pio_s1_end_xfer                            (d1_led_pio_s1_end_xfer),
+      .led_pio_s1_address                                (led_pio_s1_address),
+      .led_pio_s1_chipselect                             (led_pio_s1_chipselect),
+      .led_pio_s1_readdata                               (led_pio_s1_readdata),
+      .led_pio_s1_readdata_from_sa                       (led_pio_s1_readdata_from_sa),
+      .led_pio_s1_reset_n                                (led_pio_s1_reset_n),
+      .led_pio_s1_write_n                                (led_pio_s1_write_n),
+      .led_pio_s1_writedata                              (led_pio_s1_writedata),
+      .reset_n                                           (clk_50_reset_n)
+    );
+
+  led_pio the_led_pio
+    (
+      .address    (led_pio_s1_address),
+      .chipselect (led_pio_s1_chipselect),
+      .clk        (clk_50),
+      .out_port   (out_port_from_the_led_pio),
+      .readdata   (led_pio_s1_readdata),
+      .reset_n    (led_pio_s1_reset_n),
+      .write_n    (led_pio_s1_write_n),
+      .writedata  (led_pio_s1_writedata)
+    );
+
   master_read_avalon_master_arbitrator the_master_read_avalon_master
     (
       .clk                                                            (clk_50),
@@ -34098,6 +37662,34 @@ module DE4_SOPC (
       .writedata  (onchip_memory_s1_writedata)
     );
 
+  pb_pio_s1_arbitrator the_pb_pio_s1
+    (
+      .DE4_SOPC_clock_6_out_address_to_slave            (DE4_SOPC_clock_6_out_address_to_slave),
+      .DE4_SOPC_clock_6_out_granted_pb_pio_s1           (DE4_SOPC_clock_6_out_granted_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_nativeaddress               (DE4_SOPC_clock_6_out_nativeaddress),
+      .DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1 (DE4_SOPC_clock_6_out_qualified_request_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_read                        (DE4_SOPC_clock_6_out_read),
+      .DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1   (DE4_SOPC_clock_6_out_read_data_valid_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_requests_pb_pio_s1          (DE4_SOPC_clock_6_out_requests_pb_pio_s1),
+      .DE4_SOPC_clock_6_out_write                       (DE4_SOPC_clock_6_out_write),
+      .clk                                              (clk_50),
+      .d1_pb_pio_s1_end_xfer                            (d1_pb_pio_s1_end_xfer),
+      .pb_pio_s1_address                                (pb_pio_s1_address),
+      .pb_pio_s1_readdata                               (pb_pio_s1_readdata),
+      .pb_pio_s1_readdata_from_sa                       (pb_pio_s1_readdata_from_sa),
+      .pb_pio_s1_reset_n                                (pb_pio_s1_reset_n),
+      .reset_n                                          (clk_50_reset_n)
+    );
+
+  pb_pio the_pb_pio
+    (
+      .address  (pb_pio_s1_address),
+      .clk      (clk_50),
+      .in_port  (in_port_to_the_pb_pio),
+      .readdata (pb_pio_s1_readdata),
+      .reset_n  (pb_pio_s1_reset_n)
+    );
+
   peripheral_clock_crossing_s1_arbitrator the_peripheral_clock_crossing_s1
     (
       .clk                                                                         (pll_sys_clk),
@@ -34135,24 +37727,56 @@ module DE4_SOPC (
       .DE4_SOPC_clock_3_in_endofpacket_from_sa                                 (DE4_SOPC_clock_3_in_endofpacket_from_sa),
       .DE4_SOPC_clock_3_in_readdata_from_sa                                    (DE4_SOPC_clock_3_in_readdata_from_sa),
       .DE4_SOPC_clock_3_in_waitrequest_from_sa                                 (DE4_SOPC_clock_3_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_4_in_endofpacket_from_sa                                 (DE4_SOPC_clock_4_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_4_in_readdata_from_sa                                    (DE4_SOPC_clock_4_in_readdata_from_sa),
+      .DE4_SOPC_clock_4_in_waitrequest_from_sa                                 (DE4_SOPC_clock_4_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_5_in_endofpacket_from_sa                                 (DE4_SOPC_clock_5_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_5_in_readdata_from_sa                                    (DE4_SOPC_clock_5_in_readdata_from_sa),
+      .DE4_SOPC_clock_5_in_waitrequest_from_sa                                 (DE4_SOPC_clock_5_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_6_in_endofpacket_from_sa                                 (DE4_SOPC_clock_6_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_6_in_readdata_from_sa                                    (DE4_SOPC_clock_6_in_readdata_from_sa),
+      .DE4_SOPC_clock_6_in_waitrequest_from_sa                                 (DE4_SOPC_clock_6_in_waitrequest_from_sa),
+      .DE4_SOPC_clock_7_in_endofpacket_from_sa                                 (DE4_SOPC_clock_7_in_endofpacket_from_sa),
+      .DE4_SOPC_clock_7_in_readdata_from_sa                                    (DE4_SOPC_clock_7_in_readdata_from_sa),
+      .DE4_SOPC_clock_7_in_waitrequest_from_sa                                 (DE4_SOPC_clock_7_in_waitrequest_from_sa),
       .clk                                                                     (pll_peripheral_clk),
       .d1_DE4_SOPC_clock_3_in_end_xfer                                         (d1_DE4_SOPC_clock_3_in_end_xfer),
+      .d1_DE4_SOPC_clock_4_in_end_xfer                                         (d1_DE4_SOPC_clock_4_in_end_xfer),
+      .d1_DE4_SOPC_clock_5_in_end_xfer                                         (d1_DE4_SOPC_clock_5_in_end_xfer),
+      .d1_DE4_SOPC_clock_6_in_end_xfer                                         (d1_DE4_SOPC_clock_6_in_end_xfer),
+      .d1_DE4_SOPC_clock_7_in_end_xfer                                         (d1_DE4_SOPC_clock_7_in_end_xfer),
       .d1_vol_transfer_done_pio_s1_end_xfer                                    (d1_vol_transfer_done_pio_s1_end_xfer),
       .peripheral_clock_crossing_m1_address                                    (peripheral_clock_crossing_m1_address),
       .peripheral_clock_crossing_m1_address_to_slave                           (peripheral_clock_crossing_m1_address_to_slave),
       .peripheral_clock_crossing_m1_byteenable                                 (peripheral_clock_crossing_m1_byteenable),
       .peripheral_clock_crossing_m1_endofpacket                                (peripheral_clock_crossing_m1_endofpacket),
       .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in                (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_3_in),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in                (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in                (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in                (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in                (peripheral_clock_crossing_m1_granted_DE4_SOPC_clock_7_in),
       .peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1           (peripheral_clock_crossing_m1_granted_vol_transfer_done_pio_s1),
       .peripheral_clock_crossing_m1_latency_counter                            (peripheral_clock_crossing_m1_latency_counter),
       .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in      (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_3_in),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in      (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in      (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in      (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in      (peripheral_clock_crossing_m1_qualified_request_DE4_SOPC_clock_7_in),
       .peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1 (peripheral_clock_crossing_m1_qualified_request_vol_transfer_done_pio_s1),
       .peripheral_clock_crossing_m1_read                                       (peripheral_clock_crossing_m1_read),
       .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in        (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_3_in),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in        (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in        (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in        (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in        (peripheral_clock_crossing_m1_read_data_valid_DE4_SOPC_clock_7_in),
       .peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1   (peripheral_clock_crossing_m1_read_data_valid_vol_transfer_done_pio_s1),
       .peripheral_clock_crossing_m1_readdata                                   (peripheral_clock_crossing_m1_readdata),
       .peripheral_clock_crossing_m1_readdatavalid                              (peripheral_clock_crossing_m1_readdatavalid),
       .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in               (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_3_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in               (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_4_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in               (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_5_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in               (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_6_in),
+      .peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in               (peripheral_clock_crossing_m1_requests_DE4_SOPC_clock_7_in),
       .peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1          (peripheral_clock_crossing_m1_requests_vol_transfer_done_pio_s1),
       .peripheral_clock_crossing_m1_reset_n                                    (peripheral_clock_crossing_m1_reset_n),
       .peripheral_clock_crossing_m1_waitrequest                                (peripheral_clock_crossing_m1_waitrequest),
@@ -34331,6 +37955,41 @@ module DE4_SOPC (
       .resetrequest (pll_s1_resetrequest),
       .write        (pll_s1_write),
       .writedata    (pll_s1_writedata)
+    );
+
+  seven_seg_pio_s1_arbitrator the_seven_seg_pio_s1
+    (
+      .DE4_SOPC_clock_7_out_address_to_slave                   (DE4_SOPC_clock_7_out_address_to_slave),
+      .DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1           (DE4_SOPC_clock_7_out_granted_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_nativeaddress                      (DE4_SOPC_clock_7_out_nativeaddress),
+      .DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1 (DE4_SOPC_clock_7_out_qualified_request_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_read                               (DE4_SOPC_clock_7_out_read),
+      .DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1   (DE4_SOPC_clock_7_out_read_data_valid_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1          (DE4_SOPC_clock_7_out_requests_seven_seg_pio_s1),
+      .DE4_SOPC_clock_7_out_write                              (DE4_SOPC_clock_7_out_write),
+      .DE4_SOPC_clock_7_out_writedata                          (DE4_SOPC_clock_7_out_writedata),
+      .clk                                                     (clk_50),
+      .d1_seven_seg_pio_s1_end_xfer                            (d1_seven_seg_pio_s1_end_xfer),
+      .reset_n                                                 (clk_50_reset_n),
+      .seven_seg_pio_s1_address                                (seven_seg_pio_s1_address),
+      .seven_seg_pio_s1_chipselect                             (seven_seg_pio_s1_chipselect),
+      .seven_seg_pio_s1_readdata                               (seven_seg_pio_s1_readdata),
+      .seven_seg_pio_s1_readdata_from_sa                       (seven_seg_pio_s1_readdata_from_sa),
+      .seven_seg_pio_s1_reset_n                                (seven_seg_pio_s1_reset_n),
+      .seven_seg_pio_s1_write_n                                (seven_seg_pio_s1_write_n),
+      .seven_seg_pio_s1_writedata                              (seven_seg_pio_s1_writedata)
+    );
+
+  seven_seg_pio the_seven_seg_pio
+    (
+      .address    (seven_seg_pio_s1_address),
+      .chipselect (seven_seg_pio_s1_chipselect),
+      .clk        (clk_50),
+      .out_port   (out_port_from_the_seven_seg_pio),
+      .readdata   (seven_seg_pio_s1_readdata),
+      .reset_n    (seven_seg_pio_s1_reset_n),
+      .write_n    (seven_seg_pio_s1_write_n),
+      .writedata  (seven_seg_pio_s1_writedata)
     );
 
   sgdma_rx_csr_arbitrator the_sgdma_rx_csr
@@ -34590,6 +38249,34 @@ module DE4_SOPC (
       .out_startofpacket             (sgdma_tx_out_startofpacket),
       .out_valid                     (sgdma_tx_out_valid),
       .system_reset_n                (sgdma_tx_csr_reset_n)
+    );
+
+  sw_pio_s1_arbitrator the_sw_pio_s1
+    (
+      .DE4_SOPC_clock_5_out_address_to_slave            (DE4_SOPC_clock_5_out_address_to_slave),
+      .DE4_SOPC_clock_5_out_granted_sw_pio_s1           (DE4_SOPC_clock_5_out_granted_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_nativeaddress               (DE4_SOPC_clock_5_out_nativeaddress),
+      .DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1 (DE4_SOPC_clock_5_out_qualified_request_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_read                        (DE4_SOPC_clock_5_out_read),
+      .DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1   (DE4_SOPC_clock_5_out_read_data_valid_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_requests_sw_pio_s1          (DE4_SOPC_clock_5_out_requests_sw_pio_s1),
+      .DE4_SOPC_clock_5_out_write                       (DE4_SOPC_clock_5_out_write),
+      .clk                                              (clk_50),
+      .d1_sw_pio_s1_end_xfer                            (d1_sw_pio_s1_end_xfer),
+      .reset_n                                          (clk_50_reset_n),
+      .sw_pio_s1_address                                (sw_pio_s1_address),
+      .sw_pio_s1_readdata                               (sw_pio_s1_readdata),
+      .sw_pio_s1_readdata_from_sa                       (sw_pio_s1_readdata_from_sa),
+      .sw_pio_s1_reset_n                                (sw_pio_s1_reset_n)
+    );
+
+  sw_pio the_sw_pio
+    (
+      .address  (sw_pio_s1_address),
+      .clk      (clk_50),
+      .in_port  (in_port_to_the_sw_pio),
+      .readdata (sw_pio_s1_readdata),
+      .reset_n  (sw_pio_s1_reset_n)
     );
 
   sys_timer_s1_arbitrator the_sys_timer_s1
@@ -34855,6 +38542,18 @@ module DE4_SOPC (
 
   //DE4_SOPC_clock_3_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign DE4_SOPC_clock_3_out_endofpacket = 0;
+
+  //DE4_SOPC_clock_4_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign DE4_SOPC_clock_4_out_endofpacket = 0;
+
+  //DE4_SOPC_clock_5_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign DE4_SOPC_clock_5_out_endofpacket = 0;
+
+  //DE4_SOPC_clock_6_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign DE4_SOPC_clock_6_out_endofpacket = 0;
+
+  //DE4_SOPC_clock_7_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
+  assign DE4_SOPC_clock_7_out_endofpacket = 0;
 
   //clock_crossing_0_m1_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign clock_crossing_0_m1_endofpacket = 0;
@@ -35147,19 +38846,16 @@ endmodule
 `include "tse_mac.vo"
 `include "tse_mac_loopback.v"
 `include "descriptor_memory.v"
-`include "pll.v"
-`include "altpllpll.v"
 `include "sysid.v"
 `include "DE4_SOPC_clock_1.v"
 `include "vol_transfer_done_pio.v"
-`include "clock_crossing_0.v"
 `include "high_res_timer.v"
-`include "sys_timer.v"
 `include "peripheral_clock_crossing.v"
 `include "jtag_uart.v"
 `include "DE4_SOPC_burst_0.v"
+`include "DE4_SOPC_clock_5.v"
 `include "DE4_SOPC_clock_0.v"
-`include "sgdma_rx.v"
+`include "DE4_SOPC_clock_7.v"
 `include "onchip_memory.v"
 `include "cpu_test_bench.v"
 `include "cpu_mult_cell.v"
@@ -35168,11 +38864,22 @@ endmodule
 `include "cpu_jtag_debug_module_sysclk.v"
 `include "cpu_jtag_debug_module_wrapper.v"
 `include "cpu.v"
-`include "vol_recording_done_pio.v"
+`include "sw_pio.v"
 `include "pipeline_bridge_ddr2.v"
-`include "sgdma_tx.v"
+`include "seven_seg_pio.v"
 `include "DE4_SOPC_clock_2.v"
+`include "pb_pio.v"
+`include "pll.v"
+`include "altpllpll.v"
+`include "clock_crossing_0.v"
+`include "sys_timer.v"
+`include "led_pio.v"
+`include "DE4_SOPC_clock_6.v"
+`include "sgdma_rx.v"
+`include "vol_recording_done_pio.v"
+`include "sgdma_tx.v"
 `include "DE4_SOPC_clock_3.v"
+`include "DE4_SOPC_clock_4.v"
 
 `timescale 1ns / 1ps
 
@@ -35188,6 +38895,10 @@ module test_bench
   wire             DE4_SOPC_clock_1_out_endofpacket;
   wire             DE4_SOPC_clock_2_in_endofpacket_from_sa;
   wire             DE4_SOPC_clock_3_out_endofpacket;
+  wire             DE4_SOPC_clock_4_out_endofpacket;
+  wire             DE4_SOPC_clock_5_out_endofpacket;
+  wire             DE4_SOPC_clock_6_out_endofpacket;
+  wire             DE4_SOPC_clock_7_out_endofpacket;
   wire             aux_scan_clk_from_the_ddr2;
   wire             aux_scan_clk_reset_n_from_the_ddr2;
   wire             clk;
@@ -35216,6 +38927,8 @@ module test_bench
   wire             flash_tristate_bridge_readn;
   wire             flash_tristate_bridge_writen;
   wire             global_reset_n_to_the_ddr2;
+  wire    [  3: 0] in_port_to_the_pb_pio;
+  wire    [  7: 0] in_port_to_the_sw_pio;
   wire             in_port_to_the_vol_recording_done_pio;
   wire             jtag_uart_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_avalon_jtag_slave_readyfordata_from_sa;
@@ -35248,6 +38961,8 @@ module test_bench
   wire             mem_we_n_from_the_ddr2;
   wire    [ 13: 0] oct_ctl_rs_value_to_the_ddr2;
   wire    [ 13: 0] oct_ctl_rt_value_to_the_ddr2;
+  wire    [  7: 0] out_port_from_the_led_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             out_port_from_the_vol_transfer_done_pio;
   wire             peripheral_clock_crossing_s1_endofpacket_from_sa;
   wire             pipeline_bridge_ddr2_m1_debugaccess;
@@ -35299,6 +39014,8 @@ module test_bench
       .flash_tristate_bridge_readn                  (flash_tristate_bridge_readn),
       .flash_tristate_bridge_writen                 (flash_tristate_bridge_writen),
       .global_reset_n_to_the_ddr2                   (global_reset_n_to_the_ddr2),
+      .in_port_to_the_pb_pio                        (in_port_to_the_pb_pio),
+      .in_port_to_the_sw_pio                        (in_port_to_the_sw_pio),
       .in_port_to_the_vol_recording_done_pio        (in_port_to_the_vol_recording_done_pio),
       .led_an_from_the_tse_mac                      (led_an_from_the_tse_mac),
       .led_char_err_from_the_tse_mac                (led_char_err_from_the_tse_mac),
@@ -35329,6 +39046,8 @@ module test_bench
       .mem_we_n_from_the_ddr2                       (mem_we_n_from_the_ddr2),
       .oct_ctl_rs_value_to_the_ddr2                 (oct_ctl_rs_value_to_the_ddr2),
       .oct_ctl_rt_value_to_the_ddr2                 (oct_ctl_rt_value_to_the_ddr2),
+      .out_port_from_the_led_pio                    (out_port_from_the_led_pio),
+      .out_port_from_the_seven_seg_pio              (out_port_from_the_seven_seg_pio),
       .out_port_from_the_vol_transfer_done_pio      (out_port_from_the_vol_transfer_done_pio),
       .pll_peripheral_clk                           (pll_peripheral_clk),
       .pll_sys_clk                                  (pll_sys_clk),

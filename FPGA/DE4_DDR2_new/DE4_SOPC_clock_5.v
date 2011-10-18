@@ -1,4 +1,4 @@
-//Legal Notice: (C)2010 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2011 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -422,7 +422,6 @@ module DE4_SOPC_clock_5 (
                            master_reset_n,
                            master_waitrequest,
                            slave_address,
-                           slave_byteenable,
                            slave_clk,
                            slave_nativeaddress,
                            slave_read,
@@ -432,7 +431,6 @@ module DE4_SOPC_clock_5 (
 
                           // outputs:
                            master_address,
-                           master_byteenable,
                            master_nativeaddress,
                            master_read,
                            master_write,
@@ -443,32 +441,29 @@ module DE4_SOPC_clock_5 (
                         )
 ;
 
-  output  [  6: 0] master_address;
-  output  [  3: 0] master_byteenable;
-  output  [  4: 0] master_nativeaddress;
+  output  [  1: 0] master_address;
+  output  [  1: 0] master_nativeaddress;
   output           master_read;
   output           master_write;
-  output  [ 31: 0] master_writedata;
+  output  [  7: 0] master_writedata;
   output           slave_endofpacket;
-  output  [ 31: 0] slave_readdata;
+  output  [  7: 0] slave_readdata;
   output           slave_waitrequest;
   input            master_clk;
   input            master_endofpacket;
-  input   [ 31: 0] master_readdata;
+  input   [  7: 0] master_readdata;
   input            master_reset_n;
   input            master_waitrequest;
-  input   [  6: 0] slave_address;
-  input   [  3: 0] slave_byteenable;
+  input   [  1: 0] slave_address;
   input            slave_clk;
-  input   [  4: 0] slave_nativeaddress;
+  input   [  1: 0] slave_nativeaddress;
   input            slave_read;
   input            slave_reset_n;
   input            slave_write;
-  input   [ 31: 0] slave_writedata;
+  input   [  7: 0] slave_writedata;
 
-  reg     [  6: 0] master_address /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
-  reg     [  3: 0] master_byteenable /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
-  reg     [  4: 0] master_nativeaddress /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  reg     [  1: 0] master_address /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  reg     [  1: 0] master_nativeaddress /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
   wire             master_read;
   wire             master_read_done;
   wire             master_read_done_sync;
@@ -477,21 +472,20 @@ module DE4_SOPC_clock_5 (
   wire             master_write_done;
   wire             master_write_done_sync;
   wire             master_write_done_token;
-  reg     [ 31: 0] master_writedata /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
-  reg     [  6: 0] slave_address_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
-  reg     [  3: 0] slave_byteenable_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg     [  7: 0] master_writedata /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  reg     [  1: 0] slave_address_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   wire             slave_endofpacket;
-  reg     [  4: 0] slave_nativeaddress_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg     [  1: 0] slave_nativeaddress_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   wire             slave_read_request;
   wire             slave_read_request_sync;
   wire             slave_read_request_token;
-  reg     [ 31: 0] slave_readdata /* synthesis ALTERA_ATTRIBUTE = "{-from \"*\"} CUT=ON"  */;
-  reg     [ 31: 0] slave_readdata_p1;
+  reg     [  7: 0] slave_readdata /* synthesis ALTERA_ATTRIBUTE = "{-from \"*\"} CUT=ON"  */;
+  reg     [  7: 0] slave_readdata_p1;
   wire             slave_waitrequest;
   wire             slave_write_request;
   wire             slave_write_request_sync;
   wire             slave_write_request_token;
-  reg     [ 31: 0] slave_writedata_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg     [  7: 0] slave_writedata_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   //in, which is an e_avalon_slave
   //out, which is an e_avalon_master
   altera_std_synchronizer the_altera_std_synchronizer
@@ -678,24 +672,6 @@ module DE4_SOPC_clock_5 (
           master_nativeaddress <= 0;
       else 
         master_nativeaddress <= slave_nativeaddress_d1;
-    end
-
-
-  always @(posedge slave_clk or negedge slave_reset_n)
-    begin
-      if (slave_reset_n == 0)
-          slave_byteenable_d1 <= 0;
-      else 
-        slave_byteenable_d1 <= slave_byteenable;
-    end
-
-
-  always @(posedge master_clk or negedge master_reset_n)
-    begin
-      if (master_reset_n == 0)
-          master_byteenable <= 0;
-      else 
-        master_byteenable <= slave_byteenable_d1;
     end
 
 

@@ -822,7 +822,21 @@ DE4_SOPC DE4_SOPC_inst(
 	// PIO pin to assert signal when a volume is transfered via TCP/IP
 	.out_port_from_the_vol_transfer_done_pio(volTransferDone) ,				// output  	volTransferDone
 	// PIO pin to receive signal when data recording to DDR2 is done
-	.in_port_to_the_vol_recording_done_pio(volRecordingDone) 				// input 	volRecordingDone
+	.in_port_to_the_vol_recording_done_pio(volRecordingDone) ,				// input 	volRecordingDone
+	
+	// the_pb_pio
+	.in_port_to_the_pb_pio(BUTTON),
+
+	// the_sw_pio
+	.in_port_to_the_sw_pio(SW),
+
+	// the_seven_seg_pio
+	.out_port_from_the_seven_seg_pio(),
+	//.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
+
+	// the_led_pio
+	.out_port_from_the_led_pio()
+	//.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 	);
 
 //==============================================================================

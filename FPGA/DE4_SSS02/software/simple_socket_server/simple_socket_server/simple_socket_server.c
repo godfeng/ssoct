@@ -44,7 +44,13 @@
 #include "altera_avalon_pio_regs.h" 
 
 /* Constants */
-#define NSAMPLES    1170
+#define NSAMPLES            1170    // 1170         (Fixed by the swept source laser)
+#define NBYTES_PER_ALINE    2368    // 1170*2=2340  (Must be a multiple of 32 bytes) -> SSS_TX_BUF_SIZE
+
+/* Global variables */
+unsigned long   DDR2_address    = 0;
+unsigned char*  dataPointer;
+
 
 /*
  * Global handles (pointers) to our MicroC/OS-II resources. All of resources 
@@ -200,19 +206,17 @@ void sss_send_menu(SSSConn* conn)
   alt_u8 *tx_wr_pos = tx_buf;
   unsigned short  bytes_sent;
 
-  tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"Nios II Simple Socket Server Menu\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"0-6 : Toggle board LEDs LED0 - LED6\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"S   : 7-Segment LED Light Show\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"A   : Send a single A-line to PC\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"C   : Continuously send A-lines to PC\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"Q   : Terminate session\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"====================================\n\r");
-  tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"======================================\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"   Swept Source OCT Acquisition Menu  \n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"======================================\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"B   : Take reference measurements     \n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"C   : Continuously send data to PC    \n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"Q   : Terminate session               \n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"======================================\n\r");
+  tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:     \n\r");
 
   bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-  printf("Bytes sent = %d\n",bytes_sent);
+  printf("Bytes sent from the menu = %d\n",bytes_sent);
   
   return;
 }
@@ -281,12 +285,16 @@ void sss_exec_command(SSSConn* conn)
     INT8U*          tx_wr_pos = tx_buf;
     INT8U           error_code;
     // Local variables
-    unsigned char   acq_busy_signal;
-    unsigned char   read_RAM_busy;
-    unsigned short  ADC_data;
-    unsigned char*  dataPointer;
-    unsigned short  RAM_address;
+    unsigned long   RAM_address     = 0;
     unsigned short  bytes_sent;
+    unsigned short  iLoop;
+    unsigned short  iFrames;
+    unsigned long   iLines          = 0;
+    unsigned short  nLinesPerFrame  = 0;
+    unsigned char   byte0           = 0;
+    unsigned char   byte1           = 0;
+    unsigned short  nFrames         = 0;
+    unsigned char   volAcqFinished  = 0;
     
     /*
     * "SSSCommand" is declared static so that the data will reside 
@@ -323,93 +331,84 @@ void sss_exec_command(SSSConn* conn)
                         // Read command A (ASCII code = 65) and send single A-line
                         //////////////////////////////////////////////////////////
                         
-                        // Wait to finish writing acquired data to the RAM
-                        do
-                        {
-                            acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                            // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
-                        }
-                        while (acq_busy_signal == 1);
-    
-                        // Indicate that we are busy reading RAM contents
-                        read_RAM_busy = 1;
-                        IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-    
-                        // Begin the transfer
-                        tx_wr_pos = tx_buf;
-                        
-                        for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
-                            {
-                                // Read data port (from RAM)
-                                ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                                // Write address port (to RAM)
-                                IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
-                                dataPointer = (unsigned char*)&ADC_data;
-                                // Send 16-bit data (swapped upper and lower bytes)
-                                *tx_wr_pos++ = dataPointer[1]; 
-                                *tx_wr_pos++ = dataPointer[0];
-                            } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
-                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                        //printf("Bytes sent = %d\n",bytes_sent);
-
-                        // Indicate that we are done reading RAM contents
-                        read_RAM_busy = 0;
-                        IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
                         //////////////////////////////////////////////////////////
                         // single A-line transfer done!
                         //////////////////////////////////////////////////////////
                         break;
                         
                     case 67:
-                        printf("Continuous acquisition! \n");
+                        //////////////////////////////////////////////////////////
+                        // Continuous acquisition loop
+                        //////////////////////////////////////////////////////////
+                    
+                        // Transmit initial trigger to LabView
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                        // Pause 10 000 microseconds
+                        usleep(10000);
+                        // Reset trigger to LabView
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                        printf("Acquisition start trigger sent!\n");
+                        
+                        // Discard \n
+                        byte0 = *conn->rx_rd_pos++;
+                        //Discard \r
+                        byte1 = *conn->rx_rd_pos++;
+                        // Read byte 0 of command nLinesPerFrame
+                        nLinesPerFrame = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nLinesPerFrame
+                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+                        // Read byte 0 of command nFrames
+                        nFrames = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nFrames
+                        nFrames += (*conn->rx_rd_pos++) * 256;
+                        printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
+                        
+                        
+                        printf("Continuous acquisition started! \n");
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop (ASCII code = 67)
                         //////////////////////////////////////////////////////////
-                        //for (iLines = 1; iLines <= nLines; iLines++)
                         while(1)
                         {
-                            //////////////////////////////////////////////////////////
-                            // Send single A-line
-                            //////////////////////////////////////////////////////////
-                                
-                            // Wait to finish writing acquired data to the RAM
-                            do
+                            // Read if volumeAcqfinished then transfer
+                            volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
+                            if (volAcqFinished)
                             {
-                                acq_busy_signal = IORD_ALTERA_AVALON_PIO_DATA(ACQ_BUSY_PIO_BASE);
-                                // look definitions in ..software\simple_socket_server\simple_socket_server_syslib\Debug\system_description\system.h
-                            }
-                            while (acq_busy_signal == 1);
-        
-                            // Indicate that we are busy reading RAM contents
-                            read_RAM_busy = 1;
-                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-        
-                            // Begin the transfer
-                            tx_wr_pos = tx_buf;
-                            
-                            for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++)
+                                // Transferred volume signal = 0
+                                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                                //////////////////////////////////////////////////////////
+                                // B-frame transfer loop
+                                //////////////////////////////////////////////////////////
+                                for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
                                 {
-                                    // Read data port (from RAM)
-                                    ADC_data = IORD_ALTERA_AVALON_PIO_DATA(ADC_DATA_PIO_BASE);
-                                    // Write address port (to RAM)
-                                    IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_ADDRESS_BASE, RAM_address + 1);
-                                    dataPointer = (unsigned char*)&ADC_data;
-                                    // Send 16-bit data (swapped upper and lower bytes)
-                                    *tx_wr_pos++ = dataPointer[1]; 
-                                    *tx_wr_pos++ = dataPointer[0];
-                                } // END for (RAM_address = 0; RAM_address <= NSAMPLES; RAM_address++)
-                            bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                            //printf("L:%d BS: %d\n",iLines,bytes_sent);
-                            // Indicate that we are done reading RAM contents
-                            read_RAM_busy = 0;
-                            IOWR_ALTERA_AVALON_PIO_DATA(READ_RAM_BUSY_PIO_BASE, read_RAM_busy);
-                            //////////////////////////////////////////////////////////
-                            // single A-line transfer done!
-                            //////////////////////////////////////////////////////////
-                            
-                            // Wait a little... Should know why...
-                            for (RAM_address = 1; RAM_address <= NSAMPLES; RAM_address++);
-                        } // END of continuous acquisition loop
+                                    // Begin the transfer
+                                    tx_wr_pos = tx_buf;
+                                    //////////////////////////////////////////////////////////
+                                    // Send single A-line
+                                    //////////////////////////////////////////////////////////
+                                    for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+                                        {
+                                            // Write address port (to RAM)
+                                            dataPointer = (unsigned char*)DDR2_address;
+                                            // Send 16-bit data (swapped upper and lower bytes)
+                                            *tx_wr_pos++ = dataPointer[1]; 
+                                            *tx_wr_pos++ = dataPointer[0];
+                                            // Read 2 bytes
+                                            DDR2_address += 2;
+                                            if (DDR2_address >= 1073741824)
+                                                // Reset DDR2 address if greater than 1Gbyte
+                                                DDR2_address -= 1073741824;
+                                        } // END of A-line loop
+                                    // Send a single A-line to the client
+                                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                                    // Wait a little... Should know why...
+                                    for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+                                } // END of volume / B-frame loop
+                                // Assert signal when the whole volume is transferred
+                                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                                //printf("DDR2 address: %lu\n",DDR2_address);
+                            } // END if volume acquisition finished
+                        } // END of continuous transfer loop
                         break;
                         
                     default:
@@ -661,3 +660,4 @@ void SSSSimpleSocketServerTask()
 * Altera does not recommend, suggest or require that this reference design    *
 * file be used in conjunction or combination with any other product.          *
 ******************************************************************************/
+
