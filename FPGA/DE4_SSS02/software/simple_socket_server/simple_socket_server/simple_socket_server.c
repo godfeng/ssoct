@@ -288,7 +288,7 @@ void sss_exec_command(SSSConn* conn)
     unsigned long   RAM_address     = 0;
     unsigned short  bytes_sent;
     unsigned short  iLoop;
-    unsigned short  iFrames;
+    //unsigned short  iFrames;
     unsigned long   iLines          = 0;
     unsigned short  nLinesPerFrame  = 0;
     unsigned char   byte0           = 0;
@@ -305,18 +305,21 @@ void sss_exec_command(SSSConn* conn)
     * SSSSimpleSocketServerTask, since the LEDManagementTask does not 
     * have access to the stack of the SSSSimpleSocketServerTask.
     */
-    static unsigned long SSSCommand;
+    //static unsigned long SSSCommand;
+    static INT32U SSSCommand;
     
-    SSSCommand = CMD_LEDS_BIT_0_TOGGLE;
+    //SSSCommand = CMD_LEDS_BIT_0_TOGGLE;
     
     while(bytes_to_process--)
     {
-        SSSCommand = toupper(*(conn->rx_rd_pos++));
+        //SSSCommand = toupper(*(conn->rx_rd_pos++));
+        SSSCommand = *(conn->rx_rd_pos++); // Max version
         if(SSSCommand >= ' ' && SSSCommand <= '~')
         {
-            tx_wr_pos += sprintf(tx_wr_pos,
-                "--> Simple Socket Server Command %c.\n\r",
-                (char)SSSCommand);
+//            tx_wr_pos += sprintf(tx_wr_pos,
+//                "--> Simple Socket Server Command %c.\n\r",
+//                (char)SSSCommand);
+                printf("--> Simple Socket Server Command %c.\n",(char)SSSCommand);
             if (SSSCommand == CMD_QUIT)
             {
                 tx_wr_pos += sprintf(tx_wr_pos,"Terminating connection.\n\n\r");
@@ -326,17 +329,131 @@ void sss_exec_command(SSSConn* conn)
             {
                 switch (SSSCommand)
                 {
-                    case 65:
+                    case(65):
                         //////////////////////////////////////////////////////////
-                        // Read command A (ASCII code = 65) and send single A-line
+                        // Reference measurements
                         //////////////////////////////////////////////////////////
+//                        printf("Reference measurements\n");
+//                        
+//                        // Transmit initial trigger to LabView
+//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+//                        // Pause 1 000 microseconds
+//                        usleep(1000);
+//                        // Reset trigger to LabView
+//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+//                        printf("First trigger sent!\n");
+//                        
+//                        // Discard \n
+//                        byte0 = *conn->rx_rd_pos++;
+//                        //Discard \r
+//                        byte1 = *conn->rx_rd_pos++;
+//                        // Read byte 0 of command nLinesPerFrame
+//                        nLinesPerFrame = *conn->rx_rd_pos++;
+//                        // Read byte 1 of command nLinesPerFrame
+//                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+//                        // Read byte 0 of command nFrames
+//                        nFrames = *conn->rx_rd_pos++;
+//                        // Read byte 1 of command nFrames
+//                        nFrames += (*conn->rx_rd_pos++) * 256;
+//                        printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
+//                        
+//                        //////////////////////////////////////////////////////////
+//                        // Take 1 frame at a time
+//                        //////////////////////////////////////////////////////////
+//                        
+//                        // Read if volumeAcqfinished then transfer
+//                        //volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
+//                        while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+//                        // Transferred volume signal = 0
+//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+//                        
+//                        //////////////////////////////////////////////////////////
+//                        // B-frame transfer loop
+//                        //////////////////////////////////////////////////////////
+//                        for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
+//                        {
+//                            // Begin the transfer
+//                            tx_wr_pos = tx_buf;
+//                            //////////////////////////////////////////////////////////
+//                            // Send single A-line
+//                            //////////////////////////////////////////////////////////
+//                            for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+//                                {
+//                                    // Write address port (to RAM)
+//                                    dataPointer = (unsigned char*)DDR2_address;
+//                                    // Send 16-bit data (swapped upper and lower bytes)
+//                                    *tx_wr_pos++ = dataPointer[1]; 
+//                                    *tx_wr_pos++ = dataPointer[0];
+//                                    // Read 2 bytes
+//                                    DDR2_address += 2;
+//                                    if (DDR2_address >= 1073741824)
+//                                        // Reset DDR2 address if greater than 1Gbyte
+//                                        DDR2_address -= 1073741824;
+//                                } // END of A-line loop
+//                            // Send a single A-line to the client
+//                            bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+//                            // Wait a little... Should know why...
+//                            for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+//                        } // END of volume / B-frame loop
+//                        // Assert signal when the whole volume is transferred
+//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+//                        printf("DDR2 address: %lu\n",DDR2_address);
                         
-                        //////////////////////////////////////////////////////////
-                        // single A-line transfer done!
-                        //////////////////////////////////////////////////////////
-                        break;
+                        // Discard \n
+                        byte0 = *conn->rx_rd_pos++;
+                        //Discard \r
+                        byte1 = *conn->rx_rd_pos++;
+                        // Read byte 0 of command nLinesPerFrame
+                        nLinesPerFrame = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nLinesPerFrame
+                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+                        // Read byte 0 of command nFrames
+                        nFrames = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nFrames
+                        nFrames += (*conn->rx_rd_pos++) * 256;
                         
-                    case 67:
+                        tx_wr_pos += sprintf(tx_wr_pos,"Case 65\n\r");
+                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                        printf("Case 65\n");
+                    break;
+                        
+                    case (66):
+                        // Discard \n
+                        byte0 = *conn->rx_rd_pos++;
+                        //Discard \r
+                        byte1 = *conn->rx_rd_pos++;
+                        // Read byte 0 of command nLinesPerFrame
+                        nLinesPerFrame = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nLinesPerFrame
+                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+                        // Read byte 0 of command nFrames
+                        nFrames = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nFrames
+                        nFrames += (*conn->rx_rd_pos++) * 256;
+                        tx_wr_pos += sprintf(tx_wr_pos,"Case 66\n\r");
+                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                        printf("Case 66\n");
+                    break; 
+                    
+                    case (68):
+                        // Discard \n
+                        byte0 = *conn->rx_rd_pos++;
+                        //Discard \r
+                        byte1 = *conn->rx_rd_pos++;
+                        // Read byte 0 of command nLinesPerFrame
+                        nLinesPerFrame = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nLinesPerFrame
+                        nLinesPerFrame += (*conn->rx_rd_pos++) * 256;
+                        // Read byte 0 of command nFrames
+                        nFrames = *conn->rx_rd_pos++;
+                        // Read byte 1 of command nFrames
+                        nFrames += (*conn->rx_rd_pos++) * 256;
+                        tx_wr_pos += sprintf(tx_wr_pos,"Case 68\n\r");
+                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                        printf("Case 68\n");
+                    break;
+                        
+                    case (67):
                         //////////////////////////////////////////////////////////
                         // Continuous acquisition loop
                         //////////////////////////////////////////////////////////
@@ -409,17 +526,18 @@ void sss_exec_command(SSSConn* conn)
                                 //printf("DDR2 address: %lu\n",DDR2_address);
                             } // END if volume acquisition finished
                         } // END of continuous transfer loop
-                        break;
+                    break;
                         
                     default:
                         error_code = OSQPost(SSSLEDCommandQ, (void *)SSSCommand);    
                         alt_SSSErrorHandler(error_code, 0);
-                        break;
+                    break;
                 } // END switch
             } // END else if(SSSCommand == CMD_QUIT)
         } // END if(SSSCommand >= ' ' && SSSCommand <= '~')
     } // END while(bytes_to_process--)
     // ORIGINAL POSITION OF SEND COMMAND!!! 
+    //send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
     return;
 } // END void sss_exec_command(SSSConn* conn)
 
@@ -446,59 +564,110 @@ void sss_exec_command(SSSConn* conn)
  */
 void sss_handle_receive(SSSConn* conn)
 {
-  int data_used = 0, rx_code = 0;
-  INT8U *lf_addr; 
-  
-  conn->rx_rd_pos = conn->rx_buffer;
-  conn->rx_wr_pos = conn->rx_buffer;
-  
-  printf("[sss_handle_receive] processing RX data\n");
-  
-  while(conn->state != CLOSE)
-  {
-    /* Find the Carriage return which marks the end of the header */
-    lf_addr = strchr(conn->rx_buffer, '\n');
+//  int data_used = 0, rx_code = 0;
+//  INT8U *lf_addr; 
+//  
+//  conn->rx_rd_pos = conn->rx_buffer;
+//  conn->rx_wr_pos = conn->rx_buffer;
+//  
+//  printf("[sss_handle_receive] processing RX data\n");
+//  
+//  while(conn->state != CLOSE)
+//  {
+//    printf("Finding CR\n");
+//    /* Find the Carriage return which marks the end of the header */
+//    lf_addr = strchr(conn->rx_buffer, '\n');
+//    printf("CR found!\n");
+//      
+//    if(lf_addr)
+//    {
+//      /* go off and do whatever the user wanted us to do */
+//      printf("go off and do whatever the user wanted us to do\n");
+//      sss_exec_command(conn);
+//    }
+//    /* No newline received? Then ask the socket for data */
+//    else
+//    {
+//        printf(" No newline received? Then ask the socket for data\n");
+//      rx_code = recv(conn->fd, conn->rx_wr_pos, 
+//        SSS_RX_BUF_SIZE - (conn->rx_wr_pos - conn->rx_buffer) -1, 0);
+//          
+//     if(rx_code > 0)
+//      {
+//        conn->rx_wr_pos += rx_code;
+//        
+//        /* Zero terminate so we can use string functions */
+//        *(conn->rx_wr_pos+1) = 0;
+//      }
+//    }
+//
+//    /* 
+//     * When the quit command is received, update our connection state so that
+//     * we can exit the while() loop and close the connection
+//     */
+//    conn->state = conn->close ? CLOSE : READY;
+//
+//    /* Manage buffer */
+//    data_used = conn->rx_rd_pos - conn->rx_buffer;
+//    memmove(conn->rx_buffer, conn->rx_rd_pos, 
+//       conn->rx_wr_pos - conn->rx_rd_pos);
+//    conn->rx_rd_pos = conn->rx_buffer;
+//    conn->rx_wr_pos -= data_used;
+//    memset(conn->rx_wr_pos, 0, data_used);
+//  }
+//
+//  printf("[sss_handle_receive] closing connection\n");
+//  close(conn->fd);
+//  sss_reset_connection(conn);
+//  
+//  return;
+
+    // Maxime's version
+    int data_used = 0, rx_code = 0;
+    int iLoop = 0;
+    //INT8U *lf_addr; 
+    conn->rx_rd_pos = conn->rx_buffer;
+    conn->rx_wr_pos = conn->rx_buffer;
       
-    if(lf_addr)
+    printf("[sss_handle_receive] processing RX data\n");
+        
+    while(conn->state != CLOSE)
     {
-      /* go off and do whatever the user wanted us to do */
-      sss_exec_command(conn);
-    }
-    /* No newline received? Then ask the socket for data */
-    else
-    {
-      rx_code = recv(conn->fd, conn->rx_wr_pos, 
+        //Receiving 1 byte
+        rx_code = recv(conn->fd, conn->rx_wr_pos, 
         SSS_RX_BUF_SIZE - (conn->rx_wr_pos - conn->rx_buffer) -1, 0);
           
-     if(rx_code > 0)
-      {
-        conn->rx_wr_pos += rx_code;
+        if(rx_code > 0)
+        {
+            conn->rx_wr_pos += rx_code;
+            // Zero terminate so we can use string functions
+            *(conn->rx_wr_pos+1) = 0;
+        }
         
-        /* Zero terminate so we can use string functions */
-        *(conn->rx_wr_pos+1) = 0;
-      }
-    }
+        if (iLoop == 0)
+            printf("Data received: %s \n",conn->rx_buffer);  
 
-    /* 
-     * When the quit command is received, update our connection state so that
-     * we can exit the while() loop and close the connection
-     */
-    conn->state = conn->close ? CLOSE : READY;
-
-    /* Manage buffer */
-    data_used = conn->rx_rd_pos - conn->rx_buffer;
-    memmove(conn->rx_buffer, conn->rx_rd_pos, 
-       conn->rx_wr_pos - conn->rx_rd_pos);
-    conn->rx_rd_pos = conn->rx_buffer;
-    conn->rx_wr_pos -= data_used;
-    memset(conn->rx_wr_pos, 0, data_used);
+        /* go off and do whatever the user wanted us to do */
+        sss_exec_command(conn);
+         
+        /* 
+        * When the quit command is received, update our connection state so that
+        * we can exit the while() loop and close the connection
+        */
+        conn->state = conn->close ? CLOSE : READY;
+     
+        /* Manage buffer */
+        data_used = conn->rx_rd_pos - conn->rx_buffer;
+        memmove(conn->rx_buffer, conn->rx_rd_pos, 
+           conn->rx_wr_pos - conn->rx_rd_pos);
+        conn->rx_rd_pos = conn->rx_buffer;
+        conn->rx_wr_pos -= data_used;
+        memset(conn->rx_wr_pos, 0, data_used);
   }
-
-  printf("[sss_handle_receive] closing connection\n");
-  close(conn->fd);
-  sss_reset_connection(conn);
-  
-  return;
+      printf("[sss_handle_receive] closing connection\n");
+      close(conn->fd);
+      sss_reset_connection(conn);
+      return;
 }
 
 /*
@@ -661,3 +830,20 @@ void SSSSimpleSocketServerTask()
 * file be used in conjunction or combination with any other product.          *
 ******************************************************************************/
 
+/******************************************************************************
+                Representation of Data Types
+Type                Size (Bytes)    Representation
+char, signed char   1               two’s complement (ASCII)
+unsigned char       1               binary (ASCII)
+short, signed short 2               two’s complement
+unsigned short      2               binary
+int, signed int     4               two’s complement
+unsigned int        4               binary
+long, signed long   4               two’s complement
+unsigned long       4               binary
+float               4               IEEE
+double              8               IEEE
+pointer             4               binary
+long long           8               two’s complement
+unsigned long long  8               binary
+******************************************************************************/

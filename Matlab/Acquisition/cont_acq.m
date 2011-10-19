@@ -10,11 +10,6 @@ function cont_acq
 % Modifies values of global variable
 global SSOctDefaults
 
-% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
-pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
-    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
-    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
-
 % ----------------------------- New figure -------------------------------------
 hContAcq = figure; 
 % white background
@@ -29,6 +24,10 @@ set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 % [~, ~] = reference_measure(hContAcq);
 % SSOctDefaults.corrBscan         = true;
 
+% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
+pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
+    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 

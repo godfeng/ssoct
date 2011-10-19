@@ -37,6 +37,6 @@ connect2FPGA
 flush_data
 
 %% Start continuous acquisition
-cont_acq
+% cont_acq
 % ==============================================================================
 % [EOF]

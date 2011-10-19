@@ -8,12 +8,12 @@ function [sampleArm, refArm] = reference_measure(hContAcq)
 % Modifies values of global variable
 global SSOctDefaults
 
-% % Raw data matrix
-% rawData     = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'uint16');
-% % Signal from reference arm
-% refArm      = zeros([SSOctDefaults.NSAMPLES 1]);
-% % Signal from sample arm
-% sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
+% Raw data matrix
+rawData     = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame],'uint16');
+% Signal from reference arm
+refArm      = zeros([SSOctDefaults.NSAMPLES 1]);
+% Signal from sample arm
+sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
 
 % % New figure on white background
 % figure; set(gcf,'color','w')
@@ -22,43 +22,37 @@ global SSOctDefaults
 % % Maximize figure
 % set(gcf, 'OuterPosition', SSOctDefaults.screenSize);
 
-% Send command chain ('B\n\r nLinesPerFrame nFrames') to the socket server
-% pnet(SSOctDefaults.tcpConn,'write',uint8([66 10 13 ...
-%     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
-%     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
-
-
 fprintf('Taking reference measurement...Press <Ctrl>+<C> to cancel\n')
-% pause(0.1);
-
-% Discard first frame
-[~, ~] = displayAcqOCT(1,hContAcq);
 
 subplot(121)
 title('Please block sample arm and press any key when ready...')
-% pause()
+pause()
+% Send command chain ('A\n\r nLinesPerFrame nFrames') to the socket server
+pnet(SSOctDefaults.tcpConn,'write',uint8([65 10 13 ...
+    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
 title('Acquiring data...')
-
+pause(1)
 % Get data from reference arm
-[rawBscan, ~] = displayAcqOCT(2,hContAcq);
-
+[rawBscan, ~, ~] = acq_Bscan(@rectwin,false);
 subplot(121)
 title('B-scan from sample arm');
-
 % Average A-lines of reference arm
 refArm = mean(rawBscan,2);
 
 subplot(121)
 title('Please block reference arm and press any key when ready...')
-% pause()
+pause()
+% Send command chain ('A\n\r nLinesPerFrame nFrames') to the socket server
+pnet(SSOctDefaults.tcpConn,'write',uint8([65 10 13 ...
+    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
 title('Acquiring data...')
-
+pause(0.1)
 % Get data from sample arm
-[rawBscan, ~] = displayAcqOCT(3,hContAcq);
-
+[rawBscan, ~, ~] = acq_Bscan(@rectwin,false);
 subplot(121)
 title('B-scan from sample arm');
-
 % Average A-lines of sample arm
 sampleArm = mean(rawBscan,2);
 
@@ -71,7 +65,7 @@ save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm','re
 
 subplot(121)
 title('Please unblock both arms and press any key when ready...')
-% pause()
+pause()
 title('Acquiring data...')
 
 % ==============================================================================
