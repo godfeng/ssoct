@@ -19,15 +19,24 @@ set(hContAcq,'Name','Continuous Acquisition')
 % Maximize figure
 set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 
-% --------------------- Take reference measurements ----------------------------
-% SSOctDefaults.corrBscan         = false;
-% [~, ~] = reference_measure(hContAcq);
-% SSOctDefaults.corrBscan         = true;
-
-% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
-pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
+% ------------------- Transmit acquisition parameters --------------------------
+pnet(SSOctDefaults.tcpConn,'write',uint8([66 ...
     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
+pause(0.1)
+
+
+% --------------------- Take reference measurements ----------------------------
+SSOctDefaults.corrBscan         = false;
+[~, ~] = reference_measure(hContAcq);
+SSOctDefaults.corrBscan         = true;
+
+% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
+% pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ...
+%     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+%     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
+pnet(SSOctDefaults.tcpConn,'write',uint8(67));
+pnet(SSOctDefaults.tcpConn,'write',uint8(67));
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 
