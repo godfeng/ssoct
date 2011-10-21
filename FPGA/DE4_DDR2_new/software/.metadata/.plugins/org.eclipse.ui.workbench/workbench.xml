@@ -39,11 +39,17 @@
 </editors>
 <views>
 <view id="org.eclipse.cdt.ui.CView" partName="C/C++ Projects">
-<viewState horizontalPosition="0" verticalPosition="10">
-<expanded>&#x0A;<element path="D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server"/>
+<viewState horizontalPosition="0" verticalPosition="7">
+<expanded>
+<element path="D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server"/>
 <element path="D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server_syslib"/>
 </expanded>
-<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.cdt.internal.ui.CView.ExecutableFilter" isEnabled="false"/>
+<selection>
+<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/iniche_init.c"/>
+</selection>
+<customFilters userDefinedPatternsEnabled="false">
+<xmlDefinedFilters>
+<child filterId="org.eclipse.cdt.internal.ui.CView.ExecutableFilter" isEnabled="false"/>
 <child filterId="org.eclipse.cdt.internal.ui.CView.SharedFilter" isEnabled="false"/>
 <child filterId="org.eclipse.cdt.internal.ui.CView.ClosedProjectFilter" isEnabled="false"/>
 <child filterId="org.eclipse.cdt.internal.ui.CView.NonCProjectsFilter" isEnabled="false"/>
@@ -79,7 +85,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="762" columnWidth1="188" columnWidth2="195" columnWidth3="105" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="765" columnWidth1="191" columnWidth2="198" columnWidth3="108" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -202,16 +208,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/alt_error_handler.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/led.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/iniche_init.c"/>
 </editors>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="6300" y="0"/>
-</item>
-<item historyLabel="led.c" index="2">
-<position info="not_deleted" x="3429" y="0"/>
-</item>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="6300" y="0"/>
-</item>
 <item historyLabel="iniche_init.c" index="1">
 <position info="not_deleted" x="3979" y="0"/>
 </item>
@@ -350,8 +348,17 @@
 <item historyLabel="system.h" index="14">
 <position/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="4">
+<item historyLabel="simple_socket_server.c" index="4">
 <position info="not_deleted" x="19750" y="0"/>
+</item>
+<item historyLabel="simple_socket_server.c" index="4">
+<position info="not_deleted" x="20180" y="42"/>
+</item>
+<item historyLabel="iniche_init.c" index="15">
+<position/>
+</item>
+<item active="true" historyLabel="simple_socket_server.c" index="4">
+<position info="not_deleted" x="20180" y="42"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -371,14 +378,14 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iniche_init.c" tooltip="simple_socket_server/iniche_init.c">
+<persistable path="/simple_socket_server/iniche_init.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system.h" tooltip="simple_socket_server_syslib/Debug/system_description/system.h">
 <persistable path="/simple_socket_server_syslib/Debug/system_description/system.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="led.c" tooltip="simple_socket_server/led.c">
 <persistable path="/simple_socket_server/led.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iniche_init.c" tooltip="simple_socket_server/iniche_init.c">
-<persistable path="/simple_socket_server/iniche_init.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="alt_error_handler.c" tooltip="simple_socket_server/alt_error_handler.c">
 <persistable path="/simple_socket_server/alt_error_handler.c"/>

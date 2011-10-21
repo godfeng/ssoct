@@ -19,26 +19,21 @@ set(hContAcq,'Name','Continuous Acquisition')
 % Maximize figure
 set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 
-% ------------------- Transmit acquisition parameters --------------------------
-pnet(SSOctDefaults.tcpConn,'write',uint8([66 ...
+% ------ Transmit acquisition parameters ['A' nLinesPerFrame nFrames]-----------
+pnet(SSOctDefaults.tcpConn,'write',uint8([65 ...
     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
-pause(0.5)
-
+pause(1)
 
 % --------------------- Take reference measurements ----------------------------
-SSOctDefaults.corrBscan         = false;
 [~, ~] = reference_measure(hContAcq);
-% SSOctDefaults.corrBscan         = true;
 
-% Send command chain ('C\n\r nLinesPerFrame nFrames') to the socket server
-% pnet(SSOctDefaults.tcpConn,'write',uint8([67 10 13 ... 
-%     typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
-%     typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
-pnet(SSOctDefaults.tcpConn,'write',uint8([67 90]));
-% pause(0.5)
+
+% Send command chain ('CZ') to the socket server
+pnet(SSOctDefaults.tcpConn,'write',uint8(67));
+pause(0.1)
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
-load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
+% load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 
 % ------------------------------ Main Loop -------------------------------------
 if SSOctDefaults.save2file
@@ -53,7 +48,7 @@ if SSOctDefaults.save2file
     iFrames = 1;
     tic
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq,reference);
+        [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'uint16');
@@ -69,10 +64,9 @@ else
     %     Save data in a big variable
     %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
     %         SSOctDefaults.nLinesPerFrame]);
-    %     for iFrames = 1:SSOctDefaults.nFrames,
     iFrames = 1;
     while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
-        displayAcqOCT(iFrames,hContAcq,reference);
+        displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')

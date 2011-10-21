@@ -27,9 +27,9 @@ if isfield(SSOctDefaults,'refArm')
     refArm      = SSOctDefaults.refArm;
 end
 % Self interference signal from the sample arm (reference arm blocked)
-if isfield(SSOctDefaults,'sampleArm')
-    sampleArm   = SSOctDefaults.sampleArm;
-end
+% if isfield(SSOctDefaults,'sampleArm')
+%     sampleArm   = SSOctDefaults.sampleArm;
+% end
 
 % only want 2 optional inputs at most
 numVarArgs = length(varargin);
@@ -54,7 +54,8 @@ if correctBackground
     % Background signal from the reference arm (sample arm blocked)
     refMatrix       = repmat(refArm, [1 SSOctDefaults.nLinesPerFrame]);
     % Self interference signal from the sample arm (reference arm blocked)
-    sampleMatrix    = repmat(sampleArm, [1 SSOctDefaults.nLinesPerFrame]);
+    % sampleMatrix    = repmat(sampleArm, [1 SSOctDefaults.nLinesPerFrame]);
+
     % Digital subtraction of background signal (reference signal when the sample
     % arm is blocked). Spectral shaping is done by dividing the interferogram by
     % the self-interference term.

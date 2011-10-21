@@ -1,4 +1,4 @@
-function [rawBscan rawBscan16 correctedBscan] = displayAcqOCT(iFrames,hContAcq,reference)
+function [rawBscan rawBscan16 correctedBscan] = displayAcqOCT(iFrames,hContAcq)
 % ------------- Acquires and displays a single B-scan (frame) ------------------
 % SYNTAX:
 % [rawBscan rawBscan16] = displayAcqOCT(iFrames)
@@ -22,11 +22,10 @@ if SSOctDefaults.corrBscan
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
-    correctedBscan = double(rawBscan) - double(reference);
-    correctedBscan = correctedBscan.*repmat(hann(SSOctDefaults.NSAMPLES), ...
-    [1 SSOctDefaults.nLinesPerFrame]);
-%     limitY = [0 2^14];
-    limitY = [-2^13 2^13];
+%     correctedBscan = double(rawBscan) - double(reference);
+%     correctedBscan = correctedBscan.*repmat(hann(SSOctDefaults.NSAMPLES), ...
+%     [1 SSOctDefaults.nLinesPerFrame]);
+     limitY = [0 2^14];
 end
 % Save data in a big variable
 % SSOctDefaults.OCTfullAcq(iFrames,:,:) = rawBscan;
@@ -35,8 +34,6 @@ end
 
 % Go to specific figure
 figure(hContAcq)
-
-
 
 subplot(222);
 if SSOctDefaults.displaySingleLine

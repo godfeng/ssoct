@@ -54,7 +54,16 @@ char            menu            = 1;
 unsigned short  nLinesPerFrame  = 0;
 unsigned short  nFrames         = 0;
 int             iParameters     = 0;
+unsigned char   volAcqFinished  = 0;
+// Local variables ??????
+unsigned long   RAM_address     = 0;
+unsigned short  bytes_sent;
+unsigned short  iLoop;
+//unsigned short  iFrames;
+unsigned long   iLines          = 0;
 
+unsigned char   byte0           = 0;
+unsigned char   byte1           = 0;
 
 
 /*
@@ -214,8 +223,8 @@ void sss_send_menu(SSSConn* conn)
   tx_wr_pos += sprintf(tx_wr_pos,"=======================================\n");
   tx_wr_pos += sprintf(tx_wr_pos,"   Swept Source OCT Acquisition Menu   \n");
   tx_wr_pos += sprintf(tx_wr_pos,"=======================================\n");
-  tx_wr_pos += sprintf(tx_wr_pos,"A   : Take reference measurements      \n");
-  tx_wr_pos += sprintf(tx_wr_pos,"B   : Send acquisition parameters      \n");
+  tx_wr_pos += sprintf(tx_wr_pos,"A   : Send acquisition parameters      \n");
+  tx_wr_pos += sprintf(tx_wr_pos,"B   : Take reference measurements      \n");
   tx_wr_pos += sprintf(tx_wr_pos,"C   : Continuously send data to PC     \n");
   tx_wr_pos += sprintf(tx_wr_pos,"Q   : Terminate session                \n");
   tx_wr_pos += sprintf(tx_wr_pos,"=======================================\n");
@@ -289,19 +298,8 @@ void sss_exec_command(SSSConn* conn)
     int             bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
     INT8U           tx_buf[SSS_TX_BUF_SIZE];
     INT8U*          tx_wr_pos = tx_buf;
-    INT8U           error_code;
-    // Local variables
-    unsigned long   RAM_address     = 0;
-    unsigned short  bytes_sent;
-    unsigned short  iLoop;
-    //unsigned short  iFrames;
-    unsigned long   iLines          = 0;
+    //INT8U           error_code;
 
-    unsigned char   byte0           = 0;
-    unsigned char   byte1           = 0;
-    
-    unsigned char   volAcqFinished  = 0;
-    
     /*
     * "SSSCommand" is declared static so that the data will reside 
     * in the BSS segment. This is done because a pointer to the data in 
@@ -312,7 +310,8 @@ void sss_exec_command(SSSConn* conn)
     * have access to the stack of the SSSSimpleSocketServerTask.
     */
     //static unsigned long SSSCommand;
-    static INT32U SSSCommand;
+    //static INT32U SSSCommand;
+    static unsigned short SSSCommand;
     
     while(bytes_to_process--)
     {
@@ -323,8 +322,8 @@ void sss_exec_command(SSSConn* conn)
             // Initial menu
             switch (SSSCommand)
             {
-                case 65:   printf("A   : Take reference measurements      \n");    menu = 65;   break;
-                case 66:   printf("B   : Send acquisition parameters      \n");    menu = 66;   break;
+                case 65:   printf("A   : Send acquisition parameters      \n");    menu = 65;   break;
+                case 66:   printf("B   : Take reference measurements      \n");    menu = 66;   break;
                 case 67:   printf("C   : Continuously send data to PC     \n");    menu = 67;   break;
                 case 68:   printf("D   : Test Menu                        \n");    menu = 68;   break;
                 default:                                                                        break;
@@ -332,7 +331,7 @@ void sss_exec_command(SSSConn* conn)
         }
         else
         {
-            if(menu == 66) 
+            if(menu == 65) 
             {
                 //////////////////////////////////////////////////////////
                 // Acquisition parameters
@@ -350,7 +349,7 @@ void sss_exec_command(SSSConn* conn)
                 iParameters++;
             }
             
-            if(menu == 65)
+            if(menu == 66)
             {
                 //////////////////////////////////////////////////////////
                 // Reference measurements
@@ -363,19 +362,11 @@ void sss_exec_command(SSSConn* conn)
                 usleep(1000);
                 // Reset trigger to LabView
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-                printf("First trigger sent!\n");
-                
+                printf("Reference trigger sent!\n");
                 printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
                 
-                //////////////////////////////////////////////////////////
-                // Take 1 frame at a time
-                //////////////////////////////////////////////////////////
-                
-                // Read if volumeAcqfinished then transfer
-                //volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
+                // Wait for volume recording to be done
                 while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
-                // Transferred volume signal = 0
-                //IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
                 
                 //////////////////////////////////////////////////////////
                 // B-frame transfer loop
@@ -405,39 +396,31 @@ void sss_exec_command(SSSConn* conn)
                     // Wait a little... Should know why...
                     for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
                 } // END of volume / B-frame loop
-                // Assert signal when the whole volume is transferred
-                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                // Pause 10 000 microseconds
-                usleep(10000);
-                // Reset trigger to LabView
-                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-                printf("DDR2 address: %lu\n",DDR2_address);
+                
+                printf("DDR2 address after reference: %lu\n",DDR2_address);
                 menu = 1;
                 iParameters = 0;
             }
 
-            if(menu == 68)
-            {                
-                //////////////////////////////////////////////////////////
-                // Test menu
-                //////////////////////////////////////////////////////////
-                printf("Succesful return from reference sequence\n");
-                menu = 1;
-                iParameters = 0;
-            }
-            
             if(menu == 67)
             {
                 //////////////////////////////////////////////////////////
                 // Continuous Acquisition
                 //////////////////////////////////////////////////////////
-                printf("Continuous acqusition\n");
+                printf("Continuous acquisition\n");
                 printf("DDR2 address: %lu (same as before)\n",DDR2_address);
                 
-               // Transmit initial trigger to LabView (done in case 65)                
-                
+                // Transmit initial trigger to LabView  
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                // Pause 10 000 microseconds
+                usleep(10000);
+                // Reset trigger to LabView
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
                 printf("Acquisition start trigger sent!\n");
-                        
+                printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
+                // Wait for volume recording to be done
+                //while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+                                        
                 while(1)
                 {
                     // Read if volumeAcqfinished then transfer
@@ -476,9 +459,20 @@ void sss_exec_command(SSSConn* conn)
                         } // END of volume / B-frame loop
                         // Assert signal when the whole volume is transferred
                         IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                        //printf("DDR2 address: %lu\n",DDR2_address);
+                        // Pause 1 000 microseconds
+                        usleep(1000);
                     } // END if volume acquisition finished
                 } // END of continuous transfer loop
+                menu = 1;
+                iParameters = 0;
+            }
+            
+            if(menu == 68)
+            {                
+                //////////////////////////////////////////////////////////
+                // Test menu
+                //////////////////////////////////////////////////////////
+                printf("CORRECT PROGRAM FLOW SHOULD NEVER GET HERE!!!\n");
                 menu = 1;
                 iParameters = 0;
             }
