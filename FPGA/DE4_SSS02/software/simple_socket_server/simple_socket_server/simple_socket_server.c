@@ -356,58 +356,62 @@ void sss_exec_command(SSSConn* conn)
                 // Reference measurements
                 //////////////////////////////////////////////////////////
                 printf("Reference measurements\n");
-//                
-//                // Transmit initial trigger to LabView
-//                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-//                // Pause 1 000 microseconds
-//                usleep(1000);
-//                // Reset trigger to LabView
-//                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-//                printf("First trigger sent!\n");
-//                
-//                printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
-//                
-//                //////////////////////////////////////////////////////////
-//                // Take 1 frame at a time
-//                //////////////////////////////////////////////////////////
-//                
-//                // Read if volumeAcqfinished then transfer
-//                //volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
-//                while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
-//                // Transferred volume signal = 0
-//                //IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-//                
-//                //////////////////////////////////////////////////////////
-//                // B-frame transfer loop
-//                //////////////////////////////////////////////////////////
-//                for (iLines = 0; iLines < nLinesPerFrame; iLines++)
-//                {
-//                    // Begin the transfer
-//                    tx_wr_pos = tx_buf;
-//                    //////////////////////////////////////////////////////////
-//                    // Send single A-line
-//                    //////////////////////////////////////////////////////////
-//                    for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
-//                        {
-//                            // Write address port (to RAM)
-//                            dataPointer = (unsigned char*)DDR2_address;
-//                            // Send 16-bit data (swapped upper and lower bytes)
-//                            *tx_wr_pos++ = dataPointer[1]; 
-//                            *tx_wr_pos++ = dataPointer[0];
-//                            // Read 2 bytes
-//                            DDR2_address += 2;
-//                            if (DDR2_address >= 1073741824)
-//                                // Reset DDR2 address if greater than 1Gbyte
-//                                DDR2_address -= 1073741824;
-//                        } // END of A-line loop
-//                    // Send a single A-line to the client
-//                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-//                    // Wait a little... Should know why...
-//                    for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
-//                } // END of volume / B-frame loop
-//                // Assert signal when the whole volume is transferred
-//                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-//                printf("DDR2 address: %lu\n",DDR2_address);
+                
+                // Transmit initial trigger to LabView
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                // Pause 1 000 microseconds
+                usleep(1000);
+                // Reset trigger to LabView
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                printf("First trigger sent!\n");
+                
+                printf("A-lines per B-frame: %d. B-frames per volume: %d\n",nLinesPerFrame,nFrames);
+                
+                //////////////////////////////////////////////////////////
+                // Take 1 frame at a time
+                //////////////////////////////////////////////////////////
+                
+                // Read if volumeAcqfinished then transfer
+                //volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
+                while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+                // Transferred volume signal = 0
+                //IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                
+                //////////////////////////////////////////////////////////
+                // B-frame transfer loop
+                //////////////////////////////////////////////////////////
+                for (iLines = 0; iLines < nLinesPerFrame; iLines++)
+                {
+                    // Begin the transfer
+                    tx_wr_pos = tx_buf;
+                    //////////////////////////////////////////////////////////
+                    // Send single A-line
+                    //////////////////////////////////////////////////////////
+                    for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+                        {
+                            // Write address port (to RAM)
+                            dataPointer = (unsigned char*)DDR2_address;
+                            // Send 16-bit data (swapped upper and lower bytes)
+                            *tx_wr_pos++ = dataPointer[1]; 
+                            *tx_wr_pos++ = dataPointer[0];
+                            // Read 2 bytes
+                            DDR2_address += 2;
+                            if (DDR2_address >= 1073741824)
+                                // Reset DDR2 address if greater than 1Gbyte
+                                DDR2_address -= 1073741824;
+                        } // END of A-line loop
+                    // Send a single A-line to the client
+                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                    // Wait a little... Should know why...
+                    for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+                } // END of volume / B-frame loop
+                // Assert signal when the whole volume is transferred
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                // Pause 10 000 microseconds
+                usleep(10000);
+                // Reset trigger to LabView
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                printf("DDR2 address: %lu\n",DDR2_address);
                 menu = 1;
                 iParameters = 0;
             }
@@ -428,48 +432,53 @@ void sss_exec_command(SSSConn* conn)
                 // Continuous Acquisition
                 //////////////////////////////////////////////////////////
                 printf("Continuous acqusition\n");
-//                printf("DDR2 address: %lu (same as before)\n",DDR2_address);
-//                while(1)
-//                {
-//                    // Read if volumeAcqfinished then transfer
-//                    volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
-//                    if (volAcqFinished)
-//                    {
-//                        // Transferred volume signal = 0
-//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-//                        //////////////////////////////////////////////////////////
-//                        // B-frame transfer loop
-//                        //////////////////////////////////////////////////////////
-//                        for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
-//                        {
-//                            // Begin the transfer
-//                            tx_wr_pos = tx_buf;
-//                            //////////////////////////////////////////////////////////
-//                            // Send single A-line
-//                            //////////////////////////////////////////////////////////
-//                            for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
-//                                {
-//                                    // Write address port (to RAM)
-//                                    dataPointer = (unsigned char*)DDR2_address;
-//                                    // Send 16-bit data (swapped upper and lower bytes)
-//                                    *tx_wr_pos++ = dataPointer[1]; 
-//                                    *tx_wr_pos++ = dataPointer[0];
-//                                    // Read 2 bytes
-//                                    DDR2_address += 2;
-//                                    if (DDR2_address >= 1073741824)
-//                                        // Reset DDR2 address if greater than 1Gbyte
-//                                        DDR2_address -= 1073741824;
-//                                } // END of A-line loop
-//                            // Send a single A-line to the client
-//                            bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-//                            // Wait a little... Should know why...
-//                            for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
-//                        } // END of volume / B-frame loop
-//                        // Assert signal when the whole volume is transferred
-//                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-//                        //printf("DDR2 address: %lu\n",DDR2_address);
-//                    } // END if volume acquisition finished
-//                } // END of continuous transfer loop
+                printf("DDR2 address: %lu (same as before)\n",DDR2_address);
+                
+               // Transmit initial trigger to LabView (done in case 65)                
+                
+                printf("Acquisition start trigger sent!\n");
+                        
+                while(1)
+                {
+                    // Read if volumeAcqfinished then transfer
+                    volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
+                    if (volAcqFinished)
+                    {
+                        // Transferred volume signal = 0
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                        //////////////////////////////////////////////////////////
+                        // B-frame transfer loop
+                        //////////////////////////////////////////////////////////
+                        for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
+                        {
+                            // Begin the transfer
+                            tx_wr_pos = tx_buf;
+                            //////////////////////////////////////////////////////////
+                            // Send single A-line
+                            //////////////////////////////////////////////////////////
+                            for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+                                {
+                                    // Write address port (to RAM)
+                                    dataPointer = (unsigned char*)DDR2_address;
+                                    // Send 16-bit data (swapped upper and lower bytes)
+                                    *tx_wr_pos++ = dataPointer[1]; 
+                                    *tx_wr_pos++ = dataPointer[0];
+                                    // Read 2 bytes
+                                    DDR2_address += 2;
+                                    if (DDR2_address >= 1073741824)
+                                        // Reset DDR2 address if greater than 1Gbyte
+                                        DDR2_address -= 1073741824;
+                                } // END of A-line loop
+                            // Send a single A-line to the client
+                            bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                            // Wait a little... Should know why...
+                            for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+                        } // END of volume / B-frame loop
+                        // Assert signal when the whole volume is transferred
+                        IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                        //printf("DDR2 address: %lu\n",DDR2_address);
+                    } // END if volume acquisition finished
+                } // END of continuous transfer loop
                 menu = 1;
                 iParameters = 0;
             }

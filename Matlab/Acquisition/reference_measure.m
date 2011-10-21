@@ -27,10 +27,9 @@ fprintf('Taking reference measurement...Press <Ctrl>+<C> to cancel\n')
 subplot(121)
 title('Please block sample arm and press any key when ready...')
 pause()
-% Send command chain ('A') to the socket server. 2 times????
-pnet(SSOctDefaults.tcpConn,'write',uint8(65));
-pause(0.1)
-% pnet(SSOctDefaults.tcpConn,'write',uint8(65));
+% Send command chain ('AZ') to the socket server. 2 times????
+pnet(SSOctDefaults.tcpConn,'write',uint8([65 90]));
+pause(0.5)
 
 title('Acquiring data...')
 % Get data from reference arm
