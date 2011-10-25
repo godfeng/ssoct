@@ -4158,3 +4158,84 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.altera.ide.core 1 0 2011-10-21 13:42:11.924
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-22 10:42:43.577 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-22 10:43:35.786
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-25 11:54:47.673 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-10-25 11:55:46.585
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY com.altera.nj.launch 4 104 2011-10-25 16:04:21.852
+!MESSAGE The Nios II ELF executable does not exist. Please verify that the project simple_socket_server built successfully.
+!STACK 0
+java.io.FileNotFoundException: D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/Debug/simple_socket_server.elf not found.
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.getProgramFile(Nios2LaunchConfigurationDelegate.java:1424)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.verifyProgramFile(AbstractCLaunchDelegate.java:378)
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.syncLaunch(Nios2LaunchConfigurationDelegate.java:377)
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.launch(Nios2LaunchConfigurationDelegate.java:342)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:639)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:565)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:754)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$6.run(DebugUIPlugin.java:944)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 1 com.altera.nj.launch 4 104 2011-10-25 16:04:21.853
+!MESSAGE D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/Debug/simple_socket_server.elf not found.
+!STACK 0
+java.io.FileNotFoundException: D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/Debug/simple_socket_server.elf not found.
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.getProgramFile(Nios2LaunchConfigurationDelegate.java:1424)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate.verifyProgramFile(AbstractCLaunchDelegate.java:378)
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.syncLaunch(Nios2LaunchConfigurationDelegate.java:377)
+	at com.altera.nj.launch.internal.Nios2LaunchConfigurationDelegate.launch(Nios2LaunchConfigurationDelegate.java:342)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:639)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:565)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:754)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$6.run(DebugUIPlugin.java:944)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SESSION 2011-10-25 16:22:07.603 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-10-25 16:22:08.775
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY com.altera.ide.core 1 0 2011-10-25 16:40:27.525
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-25 17:38:34.970 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-10-25 17:38:35.777
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY com.altera.ide.core 1 0 2011-10-25 17:41:57.181
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-10-25 18:25:01.229 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-10-25 18:25:02.032
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY com.altera.ide.core 1 0 2011-10-25 18:25:11.934
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 

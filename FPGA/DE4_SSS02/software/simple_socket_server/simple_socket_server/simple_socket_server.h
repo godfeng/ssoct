@@ -63,6 +63,13 @@
   #error including notes on migrating applications from lwIP to NicheStack.
 #endif
 
+/* Constants */
+#define         DDR2_SIZE_BYTES     1073741824  // 1073741824   1GByte
+#define         NSAMPLES            1170        // 1170         (Fixed by the swept source laser)
+#define         NBYTES_PER_ALINE    2368        // 1170*2=2340  (Must be a multiple of 32 bytes) -> SSS_TX_BUF_SIZE
+#define         DEBUG_CODE          1           // Display debug messages if 1
+
+
 /*
  * Task Prototypes:
  * 
@@ -161,7 +168,7 @@ void SSSCreateTasks();
  * TX & RX buffer sizes for all socket sends & receives in our sss app
  */
 #define SSS_RX_BUF_SIZE  1500
-#define SSS_TX_BUF_SIZE  2340
+#define SSS_TX_BUF_SIZE  NBYTES_PER_ALINE
 
 /* 
  * Here we structure to manage sss communication for a single connection

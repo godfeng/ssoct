@@ -19,22 +19,23 @@ figure(hContAcq)
 subplot(121)
 title('Please block sample arm and press any key when ready...')
 pause()
-% Send command chain ('BZ') to the socket server.
-pnet(SSOctDefaults.tcpConn,'write',uint8([66 66]));
-pause(1)
+% Send command chain ('B') to the socket server.
+pnet(SSOctDefaults.tcpConn,'write',uint8(66));
+pause(0.1)
 
 title('Acquiring data...')
 % Get data from reference arm
-[rawBscan, ~] = acq_Bscan(@rectwin,false);
+[rawBscanRef, ~] = acq_Bscan(@rectwin,false);
 % Average A-lines of reference arm
-refArm = mean(rawBscan,2);
+refArm = mean(rawBscanRef,2);
 
 % Update global variable
 SSOctDefaults.refArm    = refArm;
 SSOctDefaults.sampleArm = sampleArm;
 
 % Save reference and sample arm measurements
-save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm','refArm');
+save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
+    'refArm','rawBscanRef');
 
 [posEnv negEnv] = detect_envelope(refArm);
 
@@ -57,7 +58,7 @@ if SSOctDefaults.displaySingleLine
 else
     % -------------- Plot interferogram (B-scan) ------------------
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e9*SSOctDefaults.vectorLambda, ...
-        rawBscan, [0 16384]);
+        rawBscanRef, [0 16384]);
     title('Reference measurement')
     xlabel('A-lines')
     ylabel('\lambda [nm]')
@@ -70,7 +71,7 @@ end
 
 % ------------------- Display a reference B-scan -------------------------------
 subplot(121)
-Bscan = BmodeScan2struct(rawBscan);
+Bscan = BmodeScan2struct(rawBscanRef);
 if SSOctDefaults.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
@@ -86,7 +87,7 @@ else
     colorbar off;
 end
 axis tight
-colormap(gray(255))
+colormap(flipud(gray(255)))
 ylabel('z [mm]')
 xlabel('A-lines')
 

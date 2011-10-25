@@ -20,16 +20,16 @@ set(hContAcq,'Name','Continuous Acquisition')
 set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 
 % ------ Transmit acquisition parameters ['A' nLinesPerFrame nFrames]-----------
-pnet(SSOctDefaults.tcpConn,'write',uint8([65 ...
-    typecast(uint16(SSOctDefaults.nLinesPerFrame), 'uint8') ...
-    typecast(uint16(SSOctDefaults.nFrames), 'uint8')]));
-pause(1)
+pnet(SSOctDefaults.tcpConn,'write',([uint8(65) ...
+    typecast(uint32(SSOctDefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint32(SSOctDefaults.nFrames), 'uint8')]));
+pause(1)                                % Necessary to give time to NIOS
 
 % --------------------- Take reference measurements ----------------------------
 [~, ~] = reference_measure(hContAcq);
 
 
-% Send command chain ('CZ') to the socket server
+% Send command chain ('C') to the socket server
 pnet(SSOctDefaults.tcpConn,'write',uint8(67));
 pause(0.1)
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')

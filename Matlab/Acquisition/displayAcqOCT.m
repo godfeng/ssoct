@@ -105,7 +105,7 @@ else
     colorbar off;
 end
 axis tight
-colormap(gray(255))
+colormap(flipud(gray(255)))
 ylabel('z [mm]')
 xlabel('A-lines')
 % ==============================================================================
