@@ -5,23 +5,25 @@
 		<item value="647" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="false" key="wrap"/>
+		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Flow" key="selection"/>
+		<item value="iLoop" key="selection"/>
 		<list key="findhistory">
+			<item value="iLoop"/>
+			<item value="iLines"/>
+			<item value="Processed all bytes"/>
+			<item value="%P"/>
+			<item value="%p"/>
 			<item value="FLOw"/>
 			<item value="FLOW"/>
 			<item value="LED7SegLightshowTask"/>
-			<item value="OSTaskCreateExt"/>
-			<item value="trigger sent"/>
-			<item value="DDR2_address"/>
-			<item value="DDR2_add"/>
-			<item value="main"/>
 		</list>
 		<list key="replacehistory">
+			<item value="%p"/>
+			<item value="%P"/>
 			<item value="DDR2_address"/>
 			<item value="DDR2_add"/>
 			<item value="DDR2_data"/>

@@ -51,15 +51,6 @@ unsigned long   nLinesPerFrame  = 0;
 unsigned long   nFrames         = 0;
 signed short    iParameters     = 0;
 unsigned char   volAcqFinished  = 0;
-// Local variables ??????
-unsigned long   RAM_address     = 0;
-unsigned short  bytes_sent;
-unsigned short  iLoop;
-//unsigned short  iFrames;
-unsigned long   iLines          = 0;
-unsigned char   byte0           = 0;
-unsigned char   byte1           = 0;
-
 
 /*
  * Global handles (pointers) to our MicroC/OS-II resources. All of resources 
@@ -295,7 +286,10 @@ void sss_exec_command(SSSConn* conn)
     int             bytes_to_process = conn->rx_wr_pos - conn->rx_rd_pos;
     INT8U           tx_buf[SSS_TX_BUF_SIZE];
     INT8U*          tx_wr_pos = tx_buf;
-    //INT8U           error_code;
+    // Local variables
+    unsigned long   RAM_address     = 0;
+    unsigned short  bytes_sent;
+    unsigned long   iLines          = 0;
 
     /*
     * "SSSCommand" is declared static so that the data will reside 
@@ -307,8 +301,9 @@ void sss_exec_command(SSSConn* conn)
     * have access to the stack of the SSSSimpleSocketServerTask.
     */
     
-    static INT8U SSSCommand;
-    //static unsigned short SSSCommand; //2 bytes
+    //static INT8U SSSCommand;
+    static unsigned char SSSCommand;
+    
     #if DEBUG_CODE
         printf("bytes to process %d\n", bytes_to_process);
     #endif
@@ -352,7 +347,7 @@ void sss_exec_command(SSSConn* conn)
                     case 5: nFrames         += SSSCommand * 256;            break;
                     case 6: nFrames         += SSSCommand * 65536;          break;
                     case 7: nFrames         += SSSCommand * 16777216; 
-                            menu = 1;  iParameters=-1;                      break;
+                            menu = 1;       iParameters = -1;               break;
                     default:                                                break;
                 }  
                 printf("nLinesPerFrame: %lu nFrames: %lu Count: %i\n", nLinesPerFrame, nFrames, iParameters);
@@ -360,7 +355,7 @@ void sss_exec_command(SSSConn* conn)
             }
         } // END else -> menu != 1  
         #if DEBUG_CODE
-            printf("menu=%d\n",menu);
+            printf("menu = %d\n",menu);
         #endif          
         if(menu == 66)
         {
@@ -370,8 +365,7 @@ void sss_exec_command(SSSConn* conn)
             printf("Reference measurements\n");
             // Transmit initial trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            // Pause 1 000 microseconds
-            usleep(1000);
+            usleep(1000);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
             printf("Reference trigger sent!\n");
@@ -392,6 +386,10 @@ void sss_exec_command(SSSConn* conn)
                 //////////////////////////////////////////////////////////
                 for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
                     {
+                        #if DEBUG_CODE
+                            if ((iLines == nLinesPerFrame-1) && (RAM_address == 0)) 
+                                printf("tx_wr_pos at beginning = %p\n",tx_wr_pos);
+                        #endif
                         // Write address port (to RAM)
                         dataPointer = (unsigned char*)DDR2_address;
                         // Send 16-bit data (swapped upper and lower bytes)
@@ -402,16 +400,31 @@ void sss_exec_command(SSSConn* conn)
                         if (DDR2_address >= DDR2_SIZE_BYTES)
                             // Reset DDR2 address if greater than 1Gbyte
                             DDR2_address -= DDR2_SIZE_BYTES;
+                        #if DEBUG_CODE
+                            if ((iLines == nLinesPerFrame-1) && (RAM_address == NBYTES_PER_ALINE-2)) 
+                                printf("tx_wr_pos at end = %p\n",tx_wr_pos);
+                        #endif
                     } // END of A-line loop
+                    #if DEBUG_CODE
+                        if (iLines == nLinesPerFrame-1) 
+                            printf("tx_wr_pos after A-line= %p\n",tx_wr_pos);
+                    #endif
                 // Send a single A-line to the client
                 bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                #if DEBUG_CODE
+                    if (iLines == nLinesPerFrame-1)
+                    {
+                        printf("tx_wr_pos after send = %p\n",tx_wr_pos);
+                        printf("bytes_sent = %i\n",bytes_sent);
+                        printf("tx_wr_pos - tx_buf = %li\n",tx_wr_pos - tx_buf);
+                        printf("First address of tx_buf = %p\n",&tx_buf[0]);
+                        printf("Last address of tx_buf = %p\n",&tx_buf[SSS_TX_BUF_SIZE]);
+                    }
+                #endif
                 // Wait a little... Should know why...
-                for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+                usleep(600); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
-            #if DEBUG_CODE
-                printf("tx_wr_pos = %p\n",tx_wr_pos);
-            #endif   
-            printf("DDR2 address after reference: %lu\n",DDR2_address);
+            printf("\nDDR2 address after reference: %lu\n",DDR2_address);
             menu = 1;
             iParameters = 0;
         }
@@ -425,18 +438,14 @@ void sss_exec_command(SSSConn* conn)
             #if DEBUG_CODE
                 printf("DDR2 address: %lu (same as before)\n",DDR2_address);
             #endif
-            
             // Transmit initial trigger to LabView  
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            // Pause 10 000 microseconds
-            usleep(10000);
+            usleep(1000);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
             printf("Acquisition start trigger sent!\n");
             printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFrames);
-            // Wait for volume recording to be done
-            //while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
-                                    
+         
             while(1)
             {
                 // Read if volumeAcqfinished then transfer
@@ -472,12 +481,11 @@ void sss_exec_command(SSSConn* conn)
                         // Send a single A-line to the client
                         bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
                         // Wait a little... Should know why...
-                        for (iLoop = 1; iLoop <= NSAMPLES; iLoop++);
+                        usleep(600); // 0.6 ms if sys_clk @ 90MHz
                     } // END of volume / B-frame loop
                     // Assert signal when the whole volume is transferred
                     IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                    // Pause 1 000 microseconds
-                    usleep(1000);
+                    usleep(1000);       // Pause 1 000 microseconds
                 } // END if volume acquisition finished
             } // END of continuous transfer loop
             menu = 1;
