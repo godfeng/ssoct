@@ -1,4 +1,11 @@
 function connect2FPGA
+% Establishes connection to FPGA-based simple socket server 
+% SYNTAX:
+% connect2FPGA
+% INPUTS:
+% None
+% OUTPUTS:
+% None
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal

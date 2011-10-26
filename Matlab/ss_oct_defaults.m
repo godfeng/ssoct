@@ -79,6 +79,8 @@ SSOctDefaults.displaySingleLine = true;
 SSOctDefaults.resampleData      = false;
 % Correct B-scan in real-time
 SSOctDefaults.corrBscan         = false;
+% Required pause between volumes acquired
+SSOctDefaults.pauseTime         = 1.8;
 
 %===============================================================================
 % Galvo mirrors parameters

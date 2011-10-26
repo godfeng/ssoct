@@ -43,8 +43,16 @@ optArgs(1:numVarArgs) = varargin;
 % Preallocate
 Bscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]);
 rawBscan16 = uint16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]));
+%rxData = [];
+pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
 
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
+    % Gives an "preview" of whats available, all data is left in the read
+    % buffer. We check how much is available at the moment without blocking.
+%     while numel(rxData) < SSOctDefaults.nBytesPerAline,
+%         rxData = pnet(SSOctDefaults.tcpConn, 'read','view','noblock');
+%     end
+    
     % Reads an array of nWordsPerAline elements from a connection
     tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'uint16');
     % Only keep NSAMPLES from transmitted data array (transposed)

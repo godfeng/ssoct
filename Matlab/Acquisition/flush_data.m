@@ -1,4 +1,11 @@
 function flush_data
+% Reads the first menu sent by NIOS and flushes reception buffer
+% SYNTAX:
+% flush_data
+% INPUTS:
+% None
+% OUTPUTS:
+% None
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal

@@ -3,9 +3,9 @@
 % SYNTAX:
 % ss_oct_acq_script
 % INPUTS:
-% none
+% None
 % OUTPUTS:
-% none
+% None
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal

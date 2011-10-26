@@ -1,4 +1,14 @@
 function [sampleArm, refArm] = reference_measure(hContAcq)
+% Takes a reference measurement. User is asked to block the sample arm before
+% data is recorded.
+% Reference data is saved to Reference_Measurements.mat in the experiment folder
+% SYNTAX:
+% [sampleArm, refArm] = reference_measure(hContAcq)
+% INPUTS:
+% hContAcq      Handle to figure where the measurement is to be displayed
+% OUTPUTS:
+% sampleArm     empty vector (for the time being)
+% refArm        Averaged A-line of reference (whole B-scan is also saved)
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -25,6 +35,7 @@ pause(0.1)
 
 title('Acquiring data...')
 % Get data from reference arm
+dbstop if error
 [rawBscanRef, ~] = acq_Bscan(@rectwin,false);
 % Average A-lines of reference arm
 refArm = mean(rawBscanRef,2);
@@ -92,6 +103,7 @@ ylabel('z [mm]')
 xlabel('A-lines')
 
 title('Please unblock both arms and press any key when ready...')
+
 pause()
 % Correct B-scan flag
 SSOctDefaults.corrBscan         = true;

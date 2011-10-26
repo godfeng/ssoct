@@ -1,6 +1,12 @@
 function cont_acq
-% Acquires OCT data either continuously or a fixed number of frames. Optionally
-% save data to a .dat file. See scriptMirrorCharact to map .dat files to memory
+% Continuously acquires OCT data. Optionally save data to a .dat file. See
+% scriptMirrorCharact to map .dat files to memory
+% SYNTAX:
+% cont_acq
+% INPUTS:
+% None
+% OUTPUTS:
+% None
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -23,9 +29,10 @@ set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
 pnet(SSOctDefaults.tcpConn,'write',([uint8(65) ...
     typecast(uint32(SSOctDefaults.nLinesPerFrame), 'uint8') ...
     typecast(uint32(SSOctDefaults.nFrames), 'uint8')]));
-pause(1)                                % Necessary to give time to NIOS
+pause(0.1)                              % Necessary to give time to NIOS
 
 % --------------------- Take reference measurements ----------------------------
+dbstop if error                         % Debug (Stop if error)
 [~, ~] = reference_measure(hContAcq);
 
 
