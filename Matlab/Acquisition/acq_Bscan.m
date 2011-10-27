@@ -44,7 +44,6 @@ optArgs(1:numVarArgs) = varargin;
 Bscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]);
 rawBscan16 = uint16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]));
 %rxData = [];
-pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
 
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
     % Gives an "preview" of whats available, all data is left in the read

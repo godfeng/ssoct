@@ -1,9 +1,10 @@
 function outputCell = readCSVfile(varargin)
-% Reads .CSV file with mixed data type (text + numbers) generateed by LabView
+% Reads acqParam.CSV file with mixed data type (text + numbers) generateed by
+% LabView
 % SYNTAX:
 % outputCell = readCSVfile(fileName)
 % INPUTS:
-% fileName      Name of the .CSV file
+% fileName      Name of the .CSV file (usually acqParam.csv)
 % OUTPUTS:
 % outputCell    Variable with file contents
 %_______________________________________________________________________________
@@ -82,6 +83,21 @@ if (fid >= 3)
     
     % Check number of lines read
     switch size(outputCell,1)
+        case 10
+            % third version with 10 fields
+            SSOctDefaults.nLinesPerFrame            = outputCell{1,2};
+            SSOctDefaults.nFrames                   = outputCell{2,2};
+            SSOctDefaults.galvos.xStartVolt         = outputCell{3,2};
+            SSOctDefaults.galvos.xEndVolt           = outputCell{4,2};
+            SSOctDefaults.galvos.yStartVolt         = outputCell{5,2};
+            SSOctDefaults.galvos.yEndVolt           = outputCell{6,2};
+            SSOctDefaults.dirCurrExp                = outputCell{7,2};
+            SSOctDefaults.subjectID                 = outputCell{8,2};
+            SSOctDefaults.expDescription            = outputCell{9,2};
+            SSOctDefaults.galvos.nSamplesPerVolume  = outputCell{10,2};
+            SSOctDefaults.pauseTime                 = 1.1 * ...
+                SSOctDefaults.galvos.nSamplesPerVolume / 50e3;
+            
         case 9
             % second version with 9 fields
             SSOctDefaults.nLinesPerFrame    = outputCell{1,2};

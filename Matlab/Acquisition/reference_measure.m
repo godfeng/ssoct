@@ -36,6 +36,7 @@ pause(0.1)
 title('Acquiring data...')
 % Get data from reference arm
 dbstop if error
+pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
 [rawBscanRef, ~] = acq_Bscan(@rectwin,false);
 % Average A-lines of reference arm
 refArm = mean(rawBscanRef,2);

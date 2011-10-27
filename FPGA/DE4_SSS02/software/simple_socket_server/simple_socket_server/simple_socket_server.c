@@ -415,6 +415,7 @@ void sss_exec_command(SSSConn* conn)
                     if (iLines == nLinesPerFrame-1)
                     {
                         printf("tx_wr_pos after send = %p\n",tx_wr_pos);
+                        printf("tx_wr_pos after send = %p\n",tx_wr_pos);
                         printf("bytes_sent = %i\n",bytes_sent);
                         printf("tx_wr_pos - tx_buf = %li\n",tx_wr_pos - tx_buf);
                         printf("First address of tx_buf = %p\n",&tx_buf[0]);
@@ -557,7 +558,7 @@ void sss_handle_receive(SSSConn* conn)
         }
         #if DEBUG_CODE
             printf("Data received addr: %p \n",conn->rx_wr_pos-n_bytes_received);  
-            printf("Buffer addr: %p \n",conn->rx_buffer);
+            printf("rX buffer addr: %p \n",conn->rx_buffer);
         #endif    
         /* go off and do whatever the user wanted us to do */
         sss_exec_command(conn);

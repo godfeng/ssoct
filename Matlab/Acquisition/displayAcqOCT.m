@@ -16,6 +16,9 @@ function [rawBscan rawBscan16 correctedBscan] = displayAcqOCT(iFrames,hContAcq)
 
 % Modifies values of global variable
 global SSOctDefaults
+if rem(iFrames-1, SSOctDefaults.nFrames) == 0,
+    pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
+end
 % Acquire raw B-scan
 if SSOctDefaults.corrBscan
     [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);

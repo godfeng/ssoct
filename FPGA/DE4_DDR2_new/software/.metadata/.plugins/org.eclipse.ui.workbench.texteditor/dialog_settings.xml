@@ -6,12 +6,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="iLoop" key="selection"/>
+		<item value="rx_buf" key="selection"/>
 		<list key="findhistory">
+			<item value="rx_buf"/>
 			<item value="iLoop"/>
 			<item value="iLines"/>
 			<item value="Processed all bytes"/>
@@ -19,7 +20,6 @@
 			<item value="%p"/>
 			<item value="FLOw"/>
 			<item value="FLOW"/>
-			<item value="LED7SegLightshowTask"/>
 		</list>
 		<list key="replacehistory">
 			<item value="%p"/>

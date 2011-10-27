@@ -79,20 +79,23 @@ SSOctDefaults.displaySingleLine = true;
 SSOctDefaults.resampleData      = false;
 % Correct B-scan in real-time
 SSOctDefaults.corrBscan         = false;
-% Required pause between volumes acquired
+% Required pause between acquired volumes (depends on nSamplesPerVolume)
 SSOctDefaults.pauseTime         = 1.8;
 
 %===============================================================================
 % Galvo mirrors parameters
 %===============================================================================
-SSOctDefaults.galvos.xStartVolt = -1;
-SSOctDefaults.galvos.xEndVolt   = 1;
-SSOctDefaults.galvos.yStartVolt = -1;
-SSOctDefaults.galvos.yEndVolt   = 1;
-SSOctDefaults.galvos.xStartUm   = -100;
-SSOctDefaults.galvos.xEndUm     = 100;
-SSOctDefaults.galvos.yStartUm   = -100;
-SSOctDefaults.galvos.yEndUm     = 100;
+SSOctDefaults.galvos.xStartVolt         = -1;
+SSOctDefaults.galvos.xEndVolt           = 1;
+SSOctDefaults.galvos.yStartVolt         = -1;
+SSOctDefaults.galvos.yEndVolt           = 1;
+SSOctDefaults.galvos.xStartUm           = -100;
+SSOctDefaults.galvos.xEndUm             = 100;
+SSOctDefaults.galvos.yStartUm           = -100;
+SSOctDefaults.galvos.yEndUm             = 100;
+% Number of samples per volume scan (given by LabView)
+SSOctDefaults.galvos.nSamplesPerVolume  = 1100;
+
 
 %===============================================================================
 % OCT axial resolution
