@@ -19,7 +19,7 @@ function [sampleArm, refArm] = reference_measure(hContAcq)
 global SSOctDefaults
 
 % Correct B-scan flag
-SSOctDefaults.corrBscan         = false;
+corrBscanFlag = SSOctDefaults.corrBscan;
 
 % Signal from sample arm
 sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
@@ -35,7 +35,6 @@ pause(0.1)
 
 title('Acquiring data...')
 % Get data from reference arm
-dbstop if error
 pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
 [rawBscanRef, ~] = acq_Bscan(@rectwin,false);
 % Average A-lines of reference arm
@@ -51,11 +50,8 @@ save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
 
 [posEnv negEnv] = detect_envelope(refArm);
 
-if SSOctDefaults.corrBscan
-    limitY = [-2^13 2^13];
-else
-     limitY = [0 2^14];
-end
+limitY = [0 2^14];
+
 subplot(222);
 if SSOctDefaults.displaySingleLine
     % -------------- Plot a single interferogram (A-line) ------------------
@@ -86,12 +82,16 @@ subplot(121)
 Bscan = BmodeScan2struct(rawBscanRef);
 if SSOctDefaults.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
+%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+%         log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1));
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-        log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1));
+            log(Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:)+1));
 else
     % Display in linear scale, single-sided FFT, with z-axis in um
+%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+%         Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-        Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
+        Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:))
 end
 if SSOctDefaults.displayColorBar
     colorbar;
@@ -107,7 +107,7 @@ title('Please unblock both arms and press any key when ready...')
 
 pause()
 % Correct B-scan flag
-SSOctDefaults.corrBscan         = true;
+SSOctDefaults.corrBscan = corrBscanFlag;
 return
 % ==============================================================================
 % [EOF]

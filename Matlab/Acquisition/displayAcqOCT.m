@@ -25,9 +25,7 @@ if SSOctDefaults.corrBscan
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
-%     correctedBscan = double(rawBscan) - double(reference);
-%     correctedBscan = correctedBscan.*repmat(hann(SSOctDefaults.NSAMPLES), ...
-%     [1 SSOctDefaults.nLinesPerFrame]);
+    correctedBscan = double(rawBscan);
      limitY = [0 2^14];
 end
 % Save data in a big variable
@@ -75,8 +73,9 @@ xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
 subplot(247)
 singleAline = BmodeScan2struct(correctedBscan(:,2));    % log FFT
 % Take only positive half of the symmetric FFT
-singleAline = singleAline(SSOctDefaults.NSAMPLES/2 + 1 : ...
-    SSOctDefaults.NSAMPLES);
+% singleAline = singleAline(SSOctDefaults.NSAMPLES/2 + 1 : ...
+%     SSOctDefaults.NSAMPLES);
+singleAline = singleAline(SSOctDefaults.NSAMPLES/2:-1:1);
 if SSOctDefaults.displayLog
     singleAline = log(singleAline + 1);
     plot(10^3*SSOctDefaults.positiveZaxis_air, singleAline,'k-')
@@ -93,13 +92,17 @@ subplot(121)
 Bscan = BmodeScan2struct(correctedBscan);
 if SSOctDefaults.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
+%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+%         log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1));
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-        log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1));
+        log(Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:)+1));
     title(sprintf('log(R). Continuous Transfer. Frame %d',iFrames))
 else
     % Display in linear scale, single-sided FFT, with z-axis in um
+%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+%         Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-        Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
+        log(Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:)+1));
     title(sprintf('Continuous Transfer. Frame %d',iFrames))
 end
 if SSOctDefaults.displayColorBar

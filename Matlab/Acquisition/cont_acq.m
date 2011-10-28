@@ -32,7 +32,6 @@ pnet(SSOctDefaults.tcpConn,'write',([uint8(65) ...
 pause(0.1)                              % Necessary to give time to NIOS
 
 % --------------------- Take reference measurements ----------------------------
-dbstop if error                         % Debug (Stop if error)
 [~, ~] = reference_measure(hContAcq);
 
 
