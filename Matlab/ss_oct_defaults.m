@@ -69,6 +69,11 @@ SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
 % Tx & Rx buffer size for all socket sends & receives
 SSOctDefaults.BUFFERSIZE        = SSOctDefaults.nBytesPerAline *...
     SSOctDefaults.nLinesPerFrame;
+% Required pause between acquired volumes (depends on nSamplesPerVolume)
+SSOctDefaults.pauseTime         = 1.8;
+%===============================================================================
+% GUI parameters
+%===============================================================================
 % Display B-scan in log scale
 SSOctDefaults.displayLog        = false;
 % Display Color Bar
@@ -79,8 +84,8 @@ SSOctDefaults.displaySingleLine = true;
 SSOctDefaults.resampleData      = false;
 % Correct B-scan in real-time
 SSOctDefaults.corrBscan         = false;
-% Required pause between acquired volumes (depends on nSamplesPerVolume)
-SSOctDefaults.pauseTime         = 1.8;
+% Show FWHM in real time
+SSOctDefaults.showFWHM          = false;
 
 %===============================================================================
 % Galvo mirrors parameters

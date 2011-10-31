@@ -11,9 +11,12 @@ function struct2D = BmodeScan2struct(Bmodescan)
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11
+global SSOctDefaults
 
-% K-clock resampling of a B-scan
-Bmodescan = resample_B_scan(Bmodescan);
+if SSOctDefaults.resampleData
+    % K-clock resampling of a B-scan
+    Bmodescan = resample_B_scan(Bmodescan);
+end
 
 % FFT of the interferogram is a reflectivity profile, applying the FFT across
 % the columns (dimension = 1) 
