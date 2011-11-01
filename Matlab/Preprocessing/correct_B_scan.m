@@ -64,8 +64,12 @@ else
     correctedBscan = double(rawBscan);
 end
 % Apply window to the interferogram
-correctedBscan = correctedBscan.*repmat(winFunction(SSOctDefaults.NSAMPLES), ...
-    [1 SSOctDefaults.nLinesPerFrame]);
+% correctedBscan = correctedBscan.*repmat(winFunction(SSOctDefaults.NSAMPLES), ...
+%     [1 SSOctDefaults.nLinesPerFrame]);
+
+% replacement of repmat is 2% faster this way!
+tmpCorrArray = winFunction(SSOctDefaults.NSAMPLES);
+correctedBscan = correctedBscan.*tmpCorrArray(:,ones(SSOctDefaults.nLinesPerFrame, 1));
 
 % ==============================================================================
 % [EOF]

@@ -19,7 +19,7 @@ ss_oct_get_defaults
 
 %% ------------------------- MODIFY OPTIONS ------------------------------------
 global SSOctDefaults
-dbstop if error                         % Debug (Stop if error)
+% dbstop if error                         % Debug (Stop if error)
 SSOctDefaults.displayLog        = false;
 % Save files
 SSOctDefaults.save2file         = true;

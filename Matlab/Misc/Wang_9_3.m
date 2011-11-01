@@ -78,5 +78,13 @@ axis([-0.6, 0.6, -1, 1])
 axis off
 % export_fig(gcf,'D:\Edgar\Documents\Dropbox\Docs\OCT\Screenshots\OCT_signal.png')
 
+%% FFT of interferogram
+Aline = abs(fft(Iac));
+figure
+set(gcf,'color','w')
+plot(Aline, 'r', 'LineWidth', 3)
+axis([0, 47*2, 0, 275])
+axis off
+% export_fig(gcf,'D:\Edgar\Documents\Dropbox\Docs\OCT\Screenshots\A_line.png')
 % ==============================================================================
 % [EOF]

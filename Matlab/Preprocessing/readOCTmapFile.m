@@ -1,4 +1,4 @@
-function mappedFile = readOCTmapFile(varargin)
+function [mappedFile, varargout] = readOCTmapFile(varargin)
 % Maps a .dat file into memory
 % SYNTAX:
 % mappedFile = readOCTmapFile(fileName)
@@ -6,6 +6,8 @@ function mappedFile = readOCTmapFile(varargin)
 % [fileName]    Optional input with the full file name (path+file.dat)
 % OUTPUTS:
 % mappedFile    Memory mapped file
+% [pathName]    Directory path
+% [fileName]    File name
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
@@ -74,6 +76,15 @@ else
     % Apply the right format to the mapped matrix
     mappedFile.Format = {'uint16' [SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame...
         nFramesSaved] 'rawData'};
+end
+% Optional output arguments
+nArgsOut = max(nargout,1)-1;
+switch nArgsOut
+    case 1
+        varargout{1} = pathName;
+    case 2
+        varargout{1} = pathName;
+        varargout{2} = fileName;
 end
 % ==============================================================================
 % [EOF]

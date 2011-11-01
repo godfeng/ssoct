@@ -54,9 +54,10 @@ redPath = nFiber *(...
      943 +   60 + 1055 + ...            % Circulator arms 2 & 3 (return)
     1184 +   73 + 1185)+ ...            % 50/50 coupler (detector)
     2*(22 + ...                         % Collimator length
-    10 + 68 + 10 + ...                  % Collimator to X-galvo
+    36 + 68 + ...                       % Collimator to Y-galvo
+    10 + ...                            % Y-galvo to X-galvo
     200 -(2*5.3)+ 15 + ...              % Telescope distance (X-galvo to scan lens)
-    (nLens * 2 * 5.3) + ...             % LA1131-C telescope lens
+    (nLens * 2 * 5.3) + ...             % LA1131-C telescope lens (f = 50mm)
     (nLens * 38.5) +...                 % Telecentric scan lens LSM04 length
     42.3);                              % Working ditance (LWD)
 % Orange Path (in mm)
@@ -70,7 +71,9 @@ stepSizeClockDelay = 0.575e-9;          % the step size of clock delay
 timeDelay = electricalDelay / c;        % Time delay between the clock and signal
 % Number to use in the "Set clock delay" window
 setClockDelay = round((timeDelay - minElectricalDelay) / stepSizeClockDelay);
-fprintf('Set Clock Delay = %d [0x%X] \n',setClockDelay,setClockDelay)
+fprintf('Set Clock Delay = %d [0x%X]\n',setClockDelay,setClockDelay)
+
+%% FOV computation
 
 % ==============================================================================
 % [EOF]
