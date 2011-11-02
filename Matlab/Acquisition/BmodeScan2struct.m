@@ -20,6 +20,7 @@ end
 
 % FFT of the interferogram is a reflectivity profile, applying the FFT across
 % the columns (dimension = 1) 
-struct2D = abs(ifftshift(fft(double(Bmodescan),[],1)));
+struct2D = abs(fftshift(fft(double(Bmodescan),[],1),1));
+% struct2D = abs((fft(double(Bmodescan),[],1)));
 % ==============================================================================
 % [EOF]

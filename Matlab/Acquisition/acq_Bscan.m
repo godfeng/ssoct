@@ -46,14 +46,8 @@ rawBscan16 = uint16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame])
 % Initialize transfer time variable
 transferTime = 0;
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
-    % Gives an "preview" of whats available, all data is left in the read
-    % buffer. We check how much is available at the moment without blocking.
-%     while numel(rxData) < SSOctDefaults.nBytesPerAline,
-%         rxData = pnet(SSOctDefaults.tcpConn, 'read','view','noblock');
-%     end
-    
+%     tic
     % Reads an array of nWordsPerAline elements from a connection
-    tic
     tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'uint16');
     transferTime = transferTime + toc;
     % Only keep NSAMPLES from transmitted data array (transposed)
@@ -61,14 +55,14 @@ for iLines = 1:SSOctDefaults.nLinesPerFrame,
     % B-scan saved as uint16
     rawBscan16(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
 end
+
 % Average over nLinesPerFrame
-transferTime = transferTime / SSOctDefaults.nLinesPerFrame;
-fprintf('Average transfer time = %03.2f Mbits/sec\n',...
-    16*SSOctDefaults.nWordsPerAline/(transferTime*2^20))
+% transferTime = transferTime / SSOctDefaults.nLinesPerFrame;
+% fprintf('Average transfer time = %03.2f Mbits/sec\n',...
+%     16*SSOctDefaults.nWordsPerAline/(transferTime*2^20))
+
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground
-%     Bscan = correct_B_scan(Bscan,winFunction,correctBackground);
-    % correctedBscan
     varargout{2} = correct_B_scan(Bscan,winFunction,correctBackground);
 end
 if nargout >= 2,

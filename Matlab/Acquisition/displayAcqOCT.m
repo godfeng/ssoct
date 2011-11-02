@@ -76,7 +76,9 @@ singleAline = BmodeScan2struct(correctedBscan(:,2));    % log FFT
 singleAline = singleAline(SSOctDefaults.NSAMPLES/2:-1:1);
 if SSOctDefaults.displayLog
     singleAline = log(singleAline + 1);
+    plot(10^3*SSOctDefaults.positiveZaxis_air, singleAline,'k-')
     ylabel('log(R) [a.u.]')
+    title('Single A-line')
 else
     ylabel('Reflectivity [a.u.]')
     if SSOctDefaults.showFWHM
@@ -88,8 +90,9 @@ else
     else
         title('Single A-line')
     end
+    plot(10^3*SSOctDefaults.positiveZaxis_air, singleAline,'k-')
+    ylabel('(R) [a.u.]')
 end
-plot(10^3*SSOctDefaults.positiveZaxis_air, singleAline,'k-')
 hold off
 xlabel('z [mm]')
 

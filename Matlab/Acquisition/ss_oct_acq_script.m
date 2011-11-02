@@ -14,13 +14,13 @@
 
 % Clear global data
 clear global SSOctDefaults
-% Load default parameters
+% % Load default parameters
 ss_oct_get_defaults
 
 %% ------------------------- MODIFY OPTIONS ------------------------------------
 global SSOctDefaults
 % dbstop if error                         % Debug (Stop if error)
-SSOctDefaults.displayLog        = false;
+SSOctDefaults.displayLog        = true;
 % Save files
 SSOctDefaults.save2file         = true;
 % Display single line/multiple lines in the interferogram plot
@@ -28,7 +28,7 @@ SSOctDefaults.displaySingleLine = true;
 % Resample data in real-time
 SSOctDefaults.resampleData      = false;
 % Correct B-scan in real time
-SSOctDefaults.corrBscan         = false;
+SSOctDefaults.corrBscan         = true;
 % Show FWHM in real time
 SSOctDefaults.showFWHM          = true;
 % ------------------------------------------------------------------------------

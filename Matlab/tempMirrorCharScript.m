@@ -96,3 +96,93 @@ legend('Resampled (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
 
+%% 
+
+% Clear global data
+clear global SSOctDefaults
+% Load default parameters
+ss_oct_get_defaults
+% Access global variable
+global SSOctDefaults
+close all
+% ------------------------------------------------------------------------------
+Fs = 125e6;                             % Sampling frequency = 125 MHz
+[rawBscan refBscan Bscan hFig] = browseVolume(1,...
+    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_35_18_darkNoise\2011_10_31_17_44_34.dat');
+[Aline,f] = myFFT(mean(rawBscan,2), Fs);
+% Pixel spacing in frequency
+pixSpace = mean(diff(f));
+[FWHM, peak_pos, FWHMum, peak_pos_m] = fwhm(Aline);
+% plot(f,Aline,'k-',peak_pos*pixSpace,FWHM*pixSpace,'ro')
+% title(sprintf('FWHM = %.2f Hz at %.2f Hz',FWHM*pixSpace,f(peak_pos)))
+% xlabel('f [Hz]')
+% xlim([0 15e6])
+
+[rawBscan refBscan Bscan hFig] = browseVolume(1,...
+    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_50_26_readoutNoise\2011_10_31_17_51_29.dat');
+[Aline,f] = myFFT(mean(rawBscan,2), Fs);
+% Pixel spacing in frequency
+pixSpace = mean(diff(f));
+[FWHM, peak_pos, FWHMum, peak_pos_m] = fwhm(Aline);
+% plot(f,Aline,'k-',peak_pos*pixSpace,FWHM*pixSpace,'ro')
+% title(sprintf('FWHM = %.2f Hz at %.2f Hz',FWHM*pixSpace,f(peak_pos)))
+% xlabel('f [Hz]')
+% xlim([0 15e6])
+
+[rawBscan refBscan Bscan hFig] = browseVolume(1,...
+    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_57_01_referenceLight\2011_10_31_17_57_56.dat');
+[Aline,f] = myFFT(mean(refBscan,2), Fs);
+% Pixel spacing in frequency
+pixSpace = mean(diff(f));
+[FWHM, peak_pos, FWHMum, peak_pos_m] = fwhm(Aline);
+% plot(f,Aline,'k-',peak_pos*pixSpace,FWHM*pixSpace,'ro')
+% title(sprintf('FWHM = %.2f Hz at %.2f Hz',FWHM*pixSpace,f(peak_pos)))
+% xlabel('f [Hz]')
+% xlim([0 15e6])
+
+%% Comparison between 125 and 100 MHz. Mirror close to the surface
+[rawBscan refBscan Bscan hFig] = browseVolume(1,...
+    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\18_26_54_0000um\2011_10_31_18_29_21.dat');
+[Aline,f] = myFFT(mean(rawBscan,2), Fs);
+% Pixel spacing in frequency
+pixSpace = mean(diff(f));
+[FWHM, peak_pos, FWHMum, peak_pos_m] = fwhm(Aline);
+% plot(f,Aline,'k-',peak_pos*pixSpace,FWHM*pixSpace,'ro')
+% title(sprintf('FWHM = %.2f Hz at %.2f Hz',FWHM*pixSpace,f(peak_pos)))
+% xlabel('f [Hz]')
+% xlim([0 15e6])
+
+
+% ------------------------------------------------------------------------------
+% Mirror close to the surface but acquired at 100 MHz
+Fs100 = 100e6;                             % Sampling frequency = 100 MHz
+[rawBscan100 refBscan100 Bscan100 hFig] = browseVolume(1,...
+    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_01_Mirror\13_33_23_acq100MHz\2011_11_01_13_34_21.dat');
+[Aline100,f100] = myFFT(mean(rawBscan100,2), Fs100);
+% Pixel spacing in frequency
+pixSpace100 = mean(diff(f100));
+[FWHM100, peak_pos100, FWHMum100, peak_pos_m100] = fwhm(Aline100);
+% plot(f100,Aline100,'k-',peak_pos100*pixSpace100,FWHM100*pixSpace100,'ro',...
+%     f,Aline,'b-',peak_pos*pixSpace,FWHM*pixSpace,'go')
+% title(sprintf('FWHM100 = %.2f Hz at %.2f Hz. FWHM125 = %.2f Hz at %.2f Hz',FWHM100*pixSpace100,f100(peak_pos100),...
+%     FWHM*pixSpace,f(peak_pos)))
+% legend({'@100MHz' '@100MHz' '@125MHz' '@125MHz'})
+
+[refAline,~] = myFFT(mean(refBscan,2), Fs);
+[refAline100,~] = myFFT(mean(refBscan100,2), Fs100);
+
+figure; set(gcf,'color','w')
+plot(f100,Aline100,'k-',f,Aline,'r-',f100,refAline100,'k:',f,refAline,'r:')
+legend({'Mirror @100MHz' 'Mirror @125MHz' 'Reference @100MHz' 'Reference @125MHz'})
+xlabel('f [Hz]')
+xlim([0 12e6])
+ylim([0 1.5e3])
+
+figure; set(gcf,'color','w')
+plot(f100,Aline100-refAline100,'k-',f,Aline-refAline,'r-')
+legend({'Mirror-Ref @100MHz' 'Mirror-Ref @125MHz'})
+xlabel('f [Hz]')
+xlim([0 12e6])
+ylim([0 1.5e3])
+
+tilefigs
