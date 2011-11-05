@@ -44,12 +44,12 @@ optArgs(1:numVarArgs) = varargin;
 Bscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]);
 rawBscan16 = uint16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]));
 % Initialize transfer time variable
-transferTime = 0;
+% transferTime = 0;
 for iLines = 1:SSOctDefaults.nLinesPerFrame,
 %     tic
     % Reads an array of nWordsPerAline elements from a connection
     tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'uint16');
-    transferTime = transferTime + toc;
+%     transferTime = transferTime + toc;
     % Only keep NSAMPLES from transmitted data array (transposed)
     Bscan(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
     % B-scan saved as uint16

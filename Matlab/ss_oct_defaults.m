@@ -71,6 +71,7 @@ SSOctDefaults.BUFFERSIZE        = SSOctDefaults.nBytesPerAline *...
     SSOctDefaults.nLinesPerFrame;
 % Required pause between acquired volumes (depends on nSamplesPerVolume)
 SSOctDefaults.pauseTime         = 1.8;
+
 %===============================================================================
 % GUI parameters
 %===============================================================================
@@ -86,6 +87,8 @@ SSOctDefaults.resampleData      = false;
 SSOctDefaults.corrBscan         = false;
 % Show FWHM in real time
 SSOctDefaults.showFWHM          = false;
+%  Calculate reference signal as the median A-line of current B-scan
+SSOctDefaults.medianRefArm      = false;
 
 %===============================================================================
 % Galvo mirrors parameters

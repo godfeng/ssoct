@@ -63,9 +63,25 @@ if showRefScan
     if SSOctDefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
+        resampledStruct2D = 10*log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:));
+
+        % noise_lower_fraction = 0.1
+        noise_lower_fraction = 0.05;
+        noise_floor = mean(...
+            mean(resampledStruct2D(round((1-noise_lower_fraction)*end):end,:)));
+        resampledStruct2D = 10*log(resampledStruct2D / noise_floor);
+        resampledStruct2D(resampledStruct2D < 0) = 0;
+        
+        if iFrames == framesRange(1),
+            % Scale color to the first frame
+            minColor = min(resampledStruct2D(:));
+            maxColor = max(resampledStruct2D(:));
+        end        
+        
         imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-            log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:)+1));
-        title('log(R). Reference')
+            resampledStruct2D,...
+            [minColor maxColor]);
+        title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
     else
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
@@ -120,20 +136,36 @@ for iFrames = framesRange,
     resampledStruct2D = BmodeScan2struct(resampledCorrectedBscan);
     % Output
     Bscan = resampledStruct2D;
-    if iFrames == framesRange(1),
-        % Scale color to the first frame
-        minColor = min(resampledStruct2D(:));
-        maxColor = max(resampledStruct2D(:));
-    end
+    
     figure(hFig)
     if SSOctDefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
+        resampledStruct2D = 10*log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:));
+
+%         % noise_lower_fraction = 0.1
+%         noise_lower_fraction = 0.05;
+%         noise_floor = mean(...
+%             mean(resampledStruct2D(round((1-noise_lower_fraction)*end):end,:)));
+%         resampledStruct2D = 10*log(resampledStruct2D / noise_floor);
+%         resampledStruct2D(resampledStruct2D < 0) = 0;
+        
+        if iFrames == framesRange(1),
+            % Scale color to the first frame
+            minColor = min(resampledStruct2D(:));
+            maxColor = max(resampledStruct2D(:));
+        end
+        
         imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-            log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:)+1),...
+            resampledStruct2D,...
             [minColor maxColor]);
         title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
     else
+            if iFrames == framesRange(1),
+                % Scale color to the first frame
+                minColor = min(resampledStruct2D(:));
+                maxColor = max(resampledStruct2D(:));
+            end
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
         imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...

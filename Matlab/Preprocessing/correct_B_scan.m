@@ -26,6 +26,13 @@ global SSOctDefaults
 if isfield(SSOctDefaults,'refArm')
     refArm      = SSOctDefaults.refArm;
 end
+
+% Calculate the reference signal as the median A-line of current B-scan
+if SSOctDefaults.medianRefArm,
+    SSOctDefaults.refArm    = median(rawBscan,2);
+    refArm                  = SSOctDefaults.refArm;
+end
+
 % Self interference signal from the sample arm (reference arm blocked)
 % if isfield(SSOctDefaults,'sampleArm')
 %     sampleArm   = SSOctDefaults.sampleArm;
@@ -52,7 +59,10 @@ optArgs(1:numVarArgs) = varargin;
 
 if correctBackground
     % Background signal from the reference arm (sample arm blocked)
-    refMatrix       = repmat(refArm, [1 SSOctDefaults.nLinesPerFrame]);
+    % refMatrix       = repmat(refArm, [1 SSOctDefaults.nLinesPerFrame]);
+    % replacement of repmat is 2% faster this way!
+    refMatrix = refArm(:,ones(SSOctDefaults.nLinesPerFrame, 1));
+    
     % Self interference signal from the sample arm (reference arm blocked)
     % sampleMatrix    = repmat(sampleArm, [1 SSOctDefaults.nLinesPerFrame]);
 
