@@ -18,6 +18,8 @@ function [rawBscan refBscan Bscan hFig] = browseVolume(varargin)
 
 % Show Reference Image
 showRefScan = false;
+% Pause time
+pauseTime = 0.05;
 
 % Modifies values of global variable
 global SSOctDefaults
@@ -102,7 +104,7 @@ if showRefScan
         colorbar off;
     end
     axis tight
-    colormap(flipud(gray(255)))
+    colormap(SSOctDefaults.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
 end
@@ -191,10 +193,10 @@ for iFrames = framesRange,
         colorbar off;
     end
     axis tight
-    colormap(flipud(gray(255)))
+    colormap(SSOctDefaults.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
-    pause(0.5)
+    pause(pauseTime)
 end
 % ==============================================================================
 % [EOF]

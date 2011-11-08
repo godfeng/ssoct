@@ -87,8 +87,10 @@ SSOctDefaults.resampleData      = false;
 SSOctDefaults.corrBscan         = false;
 % Show FWHM in real time
 SSOctDefaults.showFWHM          = false;
-%  Calculate reference signal as the median A-line of current B-scan
+% Calculate reference signal as the median A-line of current B-scan
 SSOctDefaults.medianRefArm      = false;
+% Colormap to be used
+SSOctDefaults.OCTcolorMap       = get_colormaps('bow');
 
 %===============================================================================
 % Galvo mirrors parameters

@@ -118,7 +118,7 @@ else
     colorbar off;
 end
 axis tight
-colormap(flipud(gray(255)))
+colormap(SSOctDefaults.OCTcolorMap)
 ylabel('z [mm]')
 xlabel('A-lines')
 % ==============================================================================

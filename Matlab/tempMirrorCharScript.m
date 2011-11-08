@@ -26,22 +26,22 @@ resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'true');
 figure; set(gcf,'color','w')
 subplot(231)
 imagesc(rawBscanRef,[0 2^14]); 
-colormap(flipud(gray(255))); colorbar; title('Reference B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Reference B-scan')
 subplot(232)
 imagesc(rawBscan,[0 2^14]); 
-colormap(flipud(gray(255))); colorbar; title('Raw B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Raw B-scan')
 subplot(233)
 imagesc(correctedBscan,[-2^13 2^13]); 
-colormap(flipud(gray(255))); colorbar; title('Corrected B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Corrected B-scan')
 subplot(234)
 imagesc(resampledRawBscanRef,[0 2^14]); 
-colormap(flipud(gray(255))); colorbar; title('Resampled Reference B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Resampled Reference B-scan')
 subplot(235)
 imagesc(rawBscan,[0 2^14]); 
-colormap(flipud(gray(255))); colorbar; title('Resampled B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Resampled B-scan')
 subplot(236)
 imagesc(resampledCorrectedBscan,[-2^13 2^13]); 
-colormap(flipud(gray(255))); colorbar; title('Resampled Corrected B-scan')
+colormap(SSOctDefaults.OCTcolorMap); colorbar; title('Resampled Corrected B-scan')
 
 %% Example of interpolation
 figure; plot(1e9*SSOctDefaults.vectorLambda,mean(correctedBscan,2),'k-',...
