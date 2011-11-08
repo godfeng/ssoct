@@ -3,9 +3,9 @@ function struct2D = BmodeScan2struct(Bmodescan)
 % SYNTAX:
 % struct2D = BmodeScan2struct(Bmodescan)
 % INPUTS:
-% Bmodescan     2D fft of a B-scan
+% Bmodescan     2D raw data (B-scan)
 % OUTPUTS:
-% struct2D      2D raw data (B-scan)
+% struct2D      2D fft of a B-scan
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal

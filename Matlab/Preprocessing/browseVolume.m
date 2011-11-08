@@ -48,11 +48,18 @@ optArgs(1:numVarArgs) = varargin;
 % ---------------------------- Display reference scan --------------------------
 % Load reference values
 load(fullfile(pathName,'Reference_Measurements.mat'));
-% Resample reference B-scan
-resampledRawBscanRef = resample_B_scan(rawBscanRef);
-% Update reference A-line
-SSOctDefaults.refArm = mean(resampledRawBscanRef,2);
-% Get structure
+if SSOctDefaults.resampleData
+    % Resample reference B-scan
+    resampledRawBscanRef = resample_B_scan(rawBscanRef);
+    % Update reference A-line
+    SSOctDefaults.refArm = mean(resampledRawBscanRef,2);
+else
+    % Do not resample
+    resampledRawBscanRef = rawBscanRef;
+    % Update reference A-line
+    SSOctDefaults.refArm = mean(resampledRawBscanRef,2);
+end
+% Get structure   
 resampledStruct2D = BmodeScan2struct(resampledRawBscanRef);
 
 if showRefScan
@@ -63,13 +70,13 @@ if showRefScan
     if SSOctDefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        resampledStruct2D = 10*log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:));
+        resampledStruct2D = resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:);
 
         % noise_lower_fraction = 0.1
-        noise_lower_fraction = 0.05;
+        noise_lower_fraction = 0.1;
         noise_floor = mean(...
             mean(resampledStruct2D(round((1-noise_lower_fraction)*end):end,:)));
-        resampledStruct2D = 10*log(resampledStruct2D / noise_floor);
+        resampledStruct2D = 10*log10(resampledStruct2D / noise_floor);
         resampledStruct2D(resampledStruct2D < 0) = 0;
         
         if iFrames == framesRange(1),
@@ -128,8 +135,13 @@ end
 for iFrames = framesRange,
     % Convert a single B-scan to double
     rawBscan = double(squeeze(mappedFile.Data.rawData(:,:,iFrames)));
-    % Resample/interpolate B-scan
-    resampledRawBscan = resample_B_scan(rawBscan);
+    if SSOctDefaults.resampleData
+        % Resample/interpolate B-scan
+        resampledRawBscan = resample_B_scan(rawBscan);
+    else
+        % Do not resample
+        resampledRawBscan = rawBscan;
+    end
     % Apply windowing function and subtract the reference
     resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'true');
     % Obtain structural data
@@ -141,14 +153,14 @@ for iFrames = framesRange,
     if SSOctDefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        resampledStruct2D = 10*log(resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:));
+        resampledStruct2D = resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:);
 
-%         % noise_lower_fraction = 0.1
-%         noise_lower_fraction = 0.05;
-%         noise_floor = mean(...
-%             mean(resampledStruct2D(round((1-noise_lower_fraction)*end):end,:)));
-%         resampledStruct2D = 10*log(resampledStruct2D / noise_floor);
-%         resampledStruct2D(resampledStruct2D < 0) = 0;
+        % noise_lower_fraction = 0.1
+        noise_lower_fraction = 0.1;
+        noise_floor = mean(...
+            mean(resampledStruct2D(round((1-noise_lower_fraction)*end):end,:)));
+        resampledStruct2D = 10*log10(resampledStruct2D / noise_floor);
+        resampledStruct2D(resampledStruct2D < 0) = 0;
         
         if iFrames == framesRange(1),
             % Scale color to the first frame
