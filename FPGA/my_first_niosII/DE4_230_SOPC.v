@@ -2264,7 +2264,6 @@ module tri_state_bridge_avalon_slave_arbitrator (
                                                    reset_n,
 
                                                   // outputs:
-                                                   address_to_the_cfi_flash,
                                                    cfi_flash_s1_wait_counter_eq_0,
                                                    cpu_data_master_byteenable_cfi_flash_s1,
                                                    cpu_data_master_granted_cfi_flash_s1,
@@ -2278,14 +2277,14 @@ module tri_state_bridge_avalon_slave_arbitrator (
                                                    d1_tri_state_bridge_avalon_slave_end_xfer,
                                                    incoming_tri_state_bridge_data,
                                                    incoming_tri_state_bridge_data_with_Xs_converted_to_0,
-                                                   read_n_to_the_cfi_flash,
                                                    select_n_to_the_cfi_flash,
+                                                   tri_state_bridge_address,
                                                    tri_state_bridge_data,
-                                                   write_n_to_the_cfi_flash
+                                                   tri_state_bridge_readn,
+                                                   tri_state_bridge_writen
                                                 )
 ;
 
-  output  [ 25: 0] address_to_the_cfi_flash;
   output           cfi_flash_s1_wait_counter_eq_0;
   output  [  1: 0] cpu_data_master_byteenable_cfi_flash_s1;
   output           cpu_data_master_granted_cfi_flash_s1;
@@ -2299,10 +2298,11 @@ module tri_state_bridge_avalon_slave_arbitrator (
   output           d1_tri_state_bridge_avalon_slave_end_xfer;
   output  [ 15: 0] incoming_tri_state_bridge_data;
   output  [ 15: 0] incoming_tri_state_bridge_data_with_Xs_converted_to_0;
-  output           read_n_to_the_cfi_flash;
   output           select_n_to_the_cfi_flash;
+  output  [ 25: 0] tri_state_bridge_address;
   inout   [ 15: 0] tri_state_bridge_data;
-  output           write_n_to_the_cfi_flash;
+  output           tri_state_bridge_readn;
+  output           tri_state_bridge_writen;
   input            clk;
   input   [ 27: 0] cpu_data_master_address_to_slave;
   input   [  3: 0] cpu_data_master_byteenable;
@@ -2317,11 +2317,10 @@ module tri_state_bridge_avalon_slave_arbitrator (
   input            cpu_instruction_master_read;
   input            reset_n;
 
-  reg     [ 25: 0] address_to_the_cfi_flash /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
-  wire    [  5: 0] cfi_flash_s1_counter_load_value;
+  wire    [  3: 0] cfi_flash_s1_counter_load_value;
   wire             cfi_flash_s1_in_a_read_cycle;
   wire             cfi_flash_s1_in_a_write_cycle;
-  reg     [  5: 0] cfi_flash_s1_wait_counter;
+  reg     [  3: 0] cfi_flash_s1_wait_counter;
   wire             cfi_flash_s1_wait_counter_eq_0;
   wire             cfi_flash_s1_waits_for_read;
   wire             cfi_flash_s1_waits_for_write;
@@ -2378,15 +2377,15 @@ module tri_state_bridge_avalon_slave_arbitrator (
   reg              last_cycle_cpu_data_master_granted_slave_cfi_flash_s1;
   reg              last_cycle_cpu_instruction_master_granted_slave_cfi_flash_s1;
   wire    [ 15: 0] outgoing_tri_state_bridge_data;
-  wire    [ 25: 0] p1_address_to_the_cfi_flash;
   wire    [  1: 0] p1_cpu_data_master_read_data_valid_cfi_flash_s1_shift_register;
   wire    [  1: 0] p1_cpu_instruction_master_read_data_valid_cfi_flash_s1_shift_register;
-  wire             p1_read_n_to_the_cfi_flash;
   wire             p1_select_n_to_the_cfi_flash;
-  wire             p1_write_n_to_the_cfi_flash;
-  reg              read_n_to_the_cfi_flash /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
+  wire    [ 25: 0] p1_tri_state_bridge_address;
+  wire             p1_tri_state_bridge_readn;
+  wire             p1_tri_state_bridge_writen;
   reg              select_n_to_the_cfi_flash /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
   wire             time_to_write;
+  reg     [ 25: 0] tri_state_bridge_address /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
   wire             tri_state_bridge_avalon_slave_allgrants;
   wire             tri_state_bridge_avalon_slave_allow_new_arb_cycle;
   wire             tri_state_bridge_avalon_slave_any_bursting_master_saved_grant;
@@ -2415,8 +2414,9 @@ module tri_state_bridge_avalon_slave_arbitrator (
   wire             tri_state_bridge_avalon_slave_unreg_firsttransfer;
   wire             tri_state_bridge_avalon_slave_write_pending;
   wire    [ 15: 0] tri_state_bridge_data;
+  reg              tri_state_bridge_readn /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
+  reg              tri_state_bridge_writen /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
   wire             wait_for_cfi_flash_s1_counter;
-  reg              write_n_to_the_cfi_flash /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
@@ -2702,44 +2702,44 @@ module tri_state_bridge_avalon_slave_arbitrator (
   //tri_state_bridge_avalon_slave_arbitration_holdoff_internal arbitration_holdoff, which is an e_assign
   assign tri_state_bridge_avalon_slave_arbitration_holdoff_internal = tri_state_bridge_avalon_slave_begins_xfer & tri_state_bridge_avalon_slave_firsttransfer;
 
-  //~read_n_to_the_cfi_flash of type read to ~p1_read_n_to_the_cfi_flash, which is an e_register
+  //~tri_state_bridge_readn of type read to ~p1_tri_state_bridge_readn, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          read_n_to_the_cfi_flash <= ~0;
+          tri_state_bridge_readn <= ~0;
       else 
-        read_n_to_the_cfi_flash <= p1_read_n_to_the_cfi_flash;
+        tri_state_bridge_readn <= p1_tri_state_bridge_readn;
     end
 
 
-  //~p1_read_n_to_the_cfi_flash assignment, which is an e_mux
-  assign p1_read_n_to_the_cfi_flash = ~(((cpu_data_master_granted_cfi_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_cfi_flash_s1 & cpu_instruction_master_read))& ~tri_state_bridge_avalon_slave_begins_xfer & (cfi_flash_s1_wait_counter < 20));
+  //~p1_tri_state_bridge_readn assignment, which is an e_mux
+  assign p1_tri_state_bridge_readn = ~(((cpu_data_master_granted_cfi_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_cfi_flash_s1 & cpu_instruction_master_read))& ~tri_state_bridge_avalon_slave_begins_xfer & (cfi_flash_s1_wait_counter < 8));
 
-  //~write_n_to_the_cfi_flash of type write to ~p1_write_n_to_the_cfi_flash, which is an e_register
+  //~tri_state_bridge_writen of type write to ~p1_tri_state_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          write_n_to_the_cfi_flash <= ~0;
+          tri_state_bridge_writen <= ~0;
       else 
-        write_n_to_the_cfi_flash <= p1_write_n_to_the_cfi_flash;
+        tri_state_bridge_writen <= p1_tri_state_bridge_writen;
     end
 
 
-  //~p1_write_n_to_the_cfi_flash assignment, which is an e_mux
-  assign p1_write_n_to_the_cfi_flash = ~(((cpu_data_master_granted_cfi_flash_s1 & cpu_data_master_write)) & ~tri_state_bridge_avalon_slave_begins_xfer & (cfi_flash_s1_wait_counter >= 20) & (cfi_flash_s1_wait_counter < 40));
+  //~p1_tri_state_bridge_writen assignment, which is an e_mux
+  assign p1_tri_state_bridge_writen = ~(((cpu_data_master_granted_cfi_flash_s1 & cpu_data_master_write)) & ~tri_state_bridge_avalon_slave_begins_xfer & (cfi_flash_s1_wait_counter >= 2) & (cfi_flash_s1_wait_counter < 10));
 
-  //address_to_the_cfi_flash of type address to p1_address_to_the_cfi_flash, which is an e_register
+  //tri_state_bridge_address of type address to p1_tri_state_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          address_to_the_cfi_flash <= 0;
+          tri_state_bridge_address <= 0;
       else 
-        address_to_the_cfi_flash <= p1_address_to_the_cfi_flash;
+        tri_state_bridge_address <= p1_tri_state_bridge_address;
     end
 
 
-  //p1_address_to_the_cfi_flash mux, which is an e_mux
-  assign p1_address_to_the_cfi_flash = (cpu_data_master_granted_cfi_flash_s1)? ({cpu_data_master_address_to_slave >> 2,
+  //p1_tri_state_bridge_address mux, which is an e_mux
+  assign p1_tri_state_bridge_address = (cpu_data_master_granted_cfi_flash_s1)? ({cpu_data_master_address_to_slave >> 2,
     cpu_data_master_dbs_address[1],
     {1 {1'b0}}}) :
     ({cpu_instruction_master_address_to_slave >> 2,
@@ -2784,8 +2784,8 @@ module tri_state_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign cfi_flash_s1_counter_load_value = ((cfi_flash_s1_in_a_read_cycle & tri_state_bridge_avalon_slave_begins_xfer))? 38 :
-    ((cfi_flash_s1_in_a_write_cycle & tri_state_bridge_avalon_slave_begins_xfer))? 58 :
+  assign cfi_flash_s1_counter_load_value = ((cfi_flash_s1_in_a_read_cycle & tri_state_bridge_avalon_slave_begins_xfer))? 12 :
+    ((cfi_flash_s1_in_a_write_cycle & tri_state_bridge_avalon_slave_begins_xfer))? 14 :
     (~cfi_flash_s1_wait_counter_eq_0)? cfi_flash_s1_wait_counter - 1 :
     0;
 
@@ -3011,24 +3011,23 @@ module DE4_230_SOPC (
                        out_port_from_the_pio_LED,
 
                       // the_tri_state_bridge_avalon_slave
-                       address_to_the_cfi_flash,
-                       read_n_to_the_cfi_flash,
                        select_n_to_the_cfi_flash,
+                       tri_state_bridge_address,
                        tri_state_bridge_data,
-                       write_n_to_the_cfi_flash
+                       tri_state_bridge_readn,
+                       tri_state_bridge_writen
                     )
 ;
 
-  output  [ 25: 0] address_to_the_cfi_flash;
   output  [  7: 0] out_port_from_the_pio_LED;
-  output           read_n_to_the_cfi_flash;
   output           select_n_to_the_cfi_flash;
+  output  [ 25: 0] tri_state_bridge_address;
   inout   [ 15: 0] tri_state_bridge_data;
-  output           write_n_to_the_cfi_flash;
+  output           tri_state_bridge_readn;
+  output           tri_state_bridge_writen;
   input            clk_0;
   input            reset_n;
 
-  wire    [ 25: 0] address_to_the_cfi_flash;
   wire             cfi_flash_s1_wait_counter_eq_0;
   wire             clk_0_reset_n;
   wire    [ 27: 0] cpu_data_master_address;
@@ -3137,11 +3136,12 @@ module DE4_230_SOPC (
   wire             pio_LED_s1_reset_n;
   wire             pio_LED_s1_write_n;
   wire    [  7: 0] pio_LED_s1_writedata;
-  wire             read_n_to_the_cfi_flash;
   wire             reset_n_sources;
   wire             select_n_to_the_cfi_flash;
+  wire    [ 25: 0] tri_state_bridge_address;
   wire    [ 15: 0] tri_state_bridge_data;
-  wire             write_n_to_the_cfi_flash;
+  wire             tri_state_bridge_readn;
+  wire             tri_state_bridge_writen;
   cpu_jtag_debug_module_arbitrator the_cpu_jtag_debug_module
     (
       .clk                                                            (clk_0),
@@ -3425,7 +3425,6 @@ module DE4_230_SOPC (
 
   tri_state_bridge_avalon_slave_arbitrator the_tri_state_bridge_avalon_slave
     (
-      .address_to_the_cfi_flash                              (address_to_the_cfi_flash),
       .cfi_flash_s1_wait_counter_eq_0                        (cfi_flash_s1_wait_counter_eq_0),
       .clk                                                   (clk_0),
       .cpu_data_master_address_to_slave                      (cpu_data_master_address_to_slave),
@@ -3451,11 +3450,12 @@ module DE4_230_SOPC (
       .d1_tri_state_bridge_avalon_slave_end_xfer             (d1_tri_state_bridge_avalon_slave_end_xfer),
       .incoming_tri_state_bridge_data                        (incoming_tri_state_bridge_data),
       .incoming_tri_state_bridge_data_with_Xs_converted_to_0 (incoming_tri_state_bridge_data_with_Xs_converted_to_0),
-      .read_n_to_the_cfi_flash                               (read_n_to_the_cfi_flash),
       .reset_n                                               (clk_0_reset_n),
       .select_n_to_the_cfi_flash                             (select_n_to_the_cfi_flash),
+      .tri_state_bridge_address                              (tri_state_bridge_address),
       .tri_state_bridge_data                                 (tri_state_bridge_data),
-      .write_n_to_the_cfi_flash                              (write_n_to_the_cfi_flash)
+      .tri_state_bridge_readn                                (tri_state_bridge_readn),
+      .tri_state_bridge_writen                               (tri_state_bridge_writen)
     );
 
   //reset is asserted asynchronously and deasserted synchronously
@@ -3763,17 +3763,17 @@ module test_bench
 ;
 
 
-  wire    [ 25: 0] address_to_the_cfi_flash;
   wire             clk;
   reg              clk_0;
   wire             jtag_uart_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_avalon_jtag_slave_readyfordata_from_sa;
   wire    [  7: 0] out_port_from_the_pio_LED;
-  wire             read_n_to_the_cfi_flash;
   reg              reset_n;
   wire             select_n_to_the_cfi_flash;
+  wire    [ 25: 0] tri_state_bridge_address;
   wire    [ 15: 0] tri_state_bridge_data;
-  wire             write_n_to_the_cfi_flash;
+  wire             tri_state_bridge_readn;
+  wire             tri_state_bridge_writen;
 
 
 // <ALTERA_NOTE> CODE INSERTED BETWEEN HERE
@@ -3783,23 +3783,23 @@ module test_bench
   //Set us up the Dut
   DE4_230_SOPC DUT
     (
-      .address_to_the_cfi_flash  (address_to_the_cfi_flash),
       .clk_0                     (clk_0),
       .out_port_from_the_pio_LED (out_port_from_the_pio_LED),
-      .read_n_to_the_cfi_flash   (read_n_to_the_cfi_flash),
       .reset_n                   (reset_n),
       .select_n_to_the_cfi_flash (select_n_to_the_cfi_flash),
+      .tri_state_bridge_address  (tri_state_bridge_address),
       .tri_state_bridge_data     (tri_state_bridge_data),
-      .write_n_to_the_cfi_flash  (write_n_to_the_cfi_flash)
+      .tri_state_bridge_readn    (tri_state_bridge_readn),
+      .tri_state_bridge_writen   (tri_state_bridge_writen)
     );
 
   cfi_flash the_cfi_flash
     (
-      .address  (address_to_the_cfi_flash[25 : 1]),
+      .address  (tri_state_bridge_address[25 : 1]),
       .data     (tri_state_bridge_data),
-      .read_n   (read_n_to_the_cfi_flash),
+      .read_n   (tri_state_bridge_readn),
       .select_n (select_n_to_the_cfi_flash),
-      .write_n  (write_n_to_the_cfi_flash)
+      .write_n  (tri_state_bridge_writen)
     );
 
   initial

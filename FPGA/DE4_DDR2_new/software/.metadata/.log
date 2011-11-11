@@ -4307,3 +4307,27 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY com.altera.ide.core 1 0 2011-10-28 11:22:31.091
 !MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-11-10 16:21:52.726 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-11-10 16:23:24.175
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-10 16:48:06.397
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-10 16:48:06.804
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 
+!SESSION 2011-11-10 19:35:59.978 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.ui 4 4 2011-11-10 19:36:30.702
+!MESSAGE Invalid Menu Extension (Path is invalid): RunAsLauterbachISS

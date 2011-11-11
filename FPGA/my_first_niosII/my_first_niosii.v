@@ -107,7 +107,7 @@ output		     [7:0]		LED;
 input		          		CPU_RESET_n;
 
 //////////// Flash and SRAM Address/Data Share Bus //////////
-output		    [25:1]		FSM_A;
+output		    [25:0]		FSM_A;
 inout		    [15:0]		FSM_D;
 
 //////////// Flash Control //////////
@@ -240,14 +240,17 @@ ext_pll_ctrl ext_pll_ctrl_Inst(
                        .out_port_from_the_pio_LED(LED), 		// 8-bit Port
 
                       // the_tri_state_bridge_avalon_slave
-                       .address_to_the_cfi_flash(flash_address_bus),// 25-bit address bus (64Mb)
+                       .tri_state_bridge_address(flash_address_bus),// 25-bit address bus (64Mb)
 //                       FSM_A(25 DOWNTO 1) <= address_to_the_cfi_flash(25 DOWNTO 1);
-                       .read_n_to_the_cfi_flash(FLASH_OE_n),	// Output enable
+                       .tri_state_bridge_readn(FLASH_OE_n),	// Output enable
                        .select_n_to_the_cfi_flash(FLASH_CE_n),	// Chip Enable
                        .tri_state_bridge_data(FSM_D),			// 16-bit data bus
-                       .write_n_to_the_cfi_flash(FLASH_WE_n)	// Write Enable
+                       .tri_state_bridge_writen(FLASH_WE_n)	// Write Enable
                     );
+assign	FLASH_ADV_n		= 1'b0;					// not used
+assign	FLASH_CLK		= 1'b0;					// not used
+//assign	FLASH_RESET_n	= global_reset_n;
 assign FLASH_RESET_n = 1'b1;									// Disable Flash Reset
 																// FLASH_WP_n????
-assign FSM_A[25:1] = flash_address_bus[25:1];					// Assign MSB to FLASH address bus
+assign FSM_A[25:0] = flash_address_bus;					// Assign MSB to FLASH address bus
 endmodule	

@@ -22,7 +22,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\my_first_niosII}";
+         value = "{}";
          type = "String";
       }
    }
@@ -138,8 +138,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="my_first_niosII.qpf" />
- <parameter name="systemHash" value="4616337362" />
- <parameter name="timeStamp" value="1302021542930" />
+ <parameter name="systemHash" value="7918319618" />
+ <parameter name="timeStamp" value="1320969257603" />
  <module name="clk_0" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -287,11 +287,11 @@
   <parameter name="addressWidth" value="25" />
   <parameter name="corePreset" value="CUSTOM" />
   <parameter name="dataWidth" value="16" />
-  <parameter name="holdTime" value="400" />
-  <parameter name="setupTime" value="400" />
-  <parameter name="sharedPorts" value="s1/data" />
+  <parameter name="holdTime" value="40" />
+  <parameter name="setupTime" value="110" />
+  <parameter name="sharedPorts">s1/address,s1/data,s1/read_n,s1/write_n</parameter>
   <parameter name="timingUnits" value="NS" />
-  <parameter name="waitTime" value="400" />
+  <parameter name="waitTime" value="160" />
  </module>
  <connection kind="clock" version="9.1" start="clk_0.clk" end="cpu.clk" />
  <connection

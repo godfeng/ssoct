@@ -349,8 +349,8 @@
 (port
 (pt 592 496)
 (output)
-(text "flash_tristate_bridge_address[24..0] " (rect 0 0 173 16)(font "Arial" (font_size 8)))
-(text "flash_tristate_bridge_address[24..0] " (rect 391 489 565 505)(font "Arial" (font_size 8)))
+(text "flash_tristate_bridge_address[25..0] " (rect 0 0 173 16)(font "Arial" (font_size 8)))
+(text "flash_tristate_bridge_address[25..0] " (rect 391 489 565 505)(font "Arial" (font_size 8)))
 (line (pt 576 496)(pt 592 496)(line_width 3))
 )
 (port

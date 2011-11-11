@@ -94,8 +94,8 @@
 </os_spec>
 	<link_spec auto_gen_script="yes">
 		<script name="none">
-		<section memory="onchip_memory" name=".text"/>
-<section memory="onchip_memory" name=".rodata"/>
+		<section memory="ext_flash" name=".text"/>
+<section memory="ext_flash" name=".rodata"/>
 <section memory="onchip_memory" name=".rwdata"/>
 <section memory="onchip_memory" name=".stack"/>
 <section memory="onchip_memory" name=".heap"/>

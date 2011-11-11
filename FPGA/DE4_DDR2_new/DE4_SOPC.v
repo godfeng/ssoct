@@ -3605,7 +3605,7 @@ module DE4_SOPC_clock_0_in_arbitrator (
   //assign DE4_SOPC_clock_0_in_readdata_from_sa = DE4_SOPC_clock_0_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_0_in_readdata_from_sa = DE4_SOPC_clock_0_in_readdata;
 
-  assign cpu_data_master_requests_DE4_SOPC_clock_0_in = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102400) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_DE4_SOPC_clock_0_in = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h49102400) & (cpu_data_master_read | cpu_data_master_write);
   //assign DE4_SOPC_clock_0_in_waitrequest_from_sa = DE4_SOPC_clock_0_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_0_in_waitrequest_from_sa = DE4_SOPC_clock_0_in_waitrequest;
 
@@ -4114,7 +4114,7 @@ module DE4_SOPC_clock_1_in_arbitrator (
   //assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_1_in_readdata_from_sa = DE4_SOPC_clock_1_in_readdata;
 
-  assign cpu_data_master_requests_DE4_SOPC_clock_1_in = ({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h45102740) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_DE4_SOPC_clock_1_in = ({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h49102740) & (cpu_data_master_read | cpu_data_master_write);
   //assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DE4_SOPC_clock_1_in_waitrequest_from_sa = DE4_SOPC_clock_1_in_waitrequest;
 
@@ -16063,7 +16063,7 @@ module cpu_jtag_debug_module_arbitrator (
   //assign cpu_jtag_debug_module_readdata_from_sa = cpu_jtag_debug_module_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign cpu_jtag_debug_module_readdata_from_sa = cpu_jtag_debug_module_readdata;
 
-  assign cpu_data_master_requests_cpu_jtag_debug_module = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_cpu_jtag_debug_module = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h49101000) & (cpu_data_master_read | cpu_data_master_write);
   //cpu_jtag_debug_module_arb_share_counter set values, which is an e_mux
   assign cpu_jtag_debug_module_arb_share_set_values = 1;
 
@@ -16153,7 +16153,7 @@ module cpu_jtag_debug_module_arbitrator (
   //cpu_jtag_debug_module_writedata mux, which is an e_mux
   assign cpu_jtag_debug_module_writedata = cpu_data_master_writedata;
 
-  assign cpu_instruction_master_requests_cpu_jtag_debug_module = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_cpu_jtag_debug_module = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h49101000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted cpu/jtag_debug_module last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -17155,8 +17155,8 @@ module cpu_instruction_master_arbitrator (
   assign r_2 = 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
 
   //optimize select-logic by passing only those address bits which matter.
-  assign cpu_instruction_master_address_to_slave = {4'b1000,
-    cpu_instruction_master_address[26 : 0]};
+  assign cpu_instruction_master_address_to_slave = {3'b100,
+    cpu_instruction_master_address[27 : 0]};
 
   //cpu_instruction_master_read_but_no_slave_selected assignment, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -22186,7 +22186,7 @@ module descriptor_memory_s1_arbitrator (
   //assign descriptor_memory_s1_readdata_from_sa = descriptor_memory_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign descriptor_memory_s1_readdata_from_sa = descriptor_memory_s1_readdata;
 
-  assign cpu_data_master_requests_descriptor_memory_s1 = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101800) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_descriptor_memory_s1 = ({cpu_data_master_address_to_slave[30 : 11] , 11'b0} == 31'h49101800) & (cpu_data_master_read | cpu_data_master_write);
   //descriptor_memory_s1_arb_share_counter set values, which is an e_mux
   assign descriptor_memory_s1_arb_share_set_values = 1;
 
@@ -22485,7 +22485,7 @@ module descriptor_memory_s1_arbitrator (
   //mux descriptor_memory_s1_clken, which is an e_mux
   assign descriptor_memory_s1_clken = 1'b1;
 
-  assign cpu_instruction_master_requests_descriptor_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h45101800) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_descriptor_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 11] , 11'b0} == 31'h49101800) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted descriptor_memory/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -22523,7 +22523,7 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid cpu_instruction_master_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign cpu_instruction_master_read_data_valid_descriptor_memory_s1 = cpu_instruction_master_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_rx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_rx_descriptor_read_read)) & sgdma_rx_descriptor_read_read;
+  assign sgdma_rx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h49101800) & (sgdma_rx_descriptor_read_read)) & sgdma_rx_descriptor_read_read;
   assign sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 = sgdma_rx_descriptor_read_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_read_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
   //sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in = sgdma_rx_descriptor_read_granted_descriptor_memory_s1 & sgdma_rx_descriptor_read_read & ~descriptor_memory_s1_waits_for_read;
@@ -22544,9 +22544,9 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1 = sgdma_rx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_rx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_rx_descriptor_write_write)) & sgdma_rx_descriptor_write_write;
+  assign sgdma_rx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_rx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h49101800) & (sgdma_rx_descriptor_write_write)) & sgdma_rx_descriptor_write_write;
   assign sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 = sgdma_rx_descriptor_write_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_tx_descriptor_read_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
-  assign sgdma_tx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_tx_descriptor_read_read)) & sgdma_tx_descriptor_read_read;
+  assign sgdma_tx_descriptor_read_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_read_address_to_slave[31 : 11] , 11'b0} == 32'h49101800) & (sgdma_tx_descriptor_read_read)) & sgdma_tx_descriptor_read_read;
   assign sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 = sgdma_tx_descriptor_read_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_write_arbiterlock);
   //sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register_in = sgdma_tx_descriptor_read_granted_descriptor_memory_s1 & sgdma_tx_descriptor_read_read & ~descriptor_memory_s1_waits_for_read;
@@ -22567,7 +22567,7 @@ module descriptor_memory_s1_arbitrator (
   //local readdatavalid sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1, which is an e_mux
   assign sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1 = sgdma_tx_descriptor_read_read_data_valid_descriptor_memory_s1_shift_register;
 
-  assign sgdma_tx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h45101800) & (sgdma_tx_descriptor_write_write)) & sgdma_tx_descriptor_write_write;
+  assign sgdma_tx_descriptor_write_requests_descriptor_memory_s1 = (({sgdma_tx_descriptor_write_address_to_slave[31 : 11] , 11'b0} == 32'h49101800) & (sgdma_tx_descriptor_write_write)) & sgdma_tx_descriptor_write_write;
   assign sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 = sgdma_tx_descriptor_write_requests_descriptor_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_descriptor_read_arbiterlock | sgdma_rx_descriptor_write_arbiterlock | sgdma_tx_descriptor_read_arbiterlock);
   //allow new arb cycle for descriptor_memory/s1, which is an e_assign
   assign descriptor_memory_s1_allow_new_arb_cycle = ~cpu_data_master_arbiterlock & ~cpu_instruction_master_arbiterlock & ~sgdma_rx_descriptor_read_arbiterlock & ~sgdma_rx_descriptor_write_arbiterlock & ~sgdma_tx_descriptor_read_arbiterlock & ~sgdma_tx_descriptor_write_arbiterlock;
@@ -22836,7 +22836,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
   output           cpu_instruction_master_requests_ext_flash_s1;
   output           d1_flash_tristate_bridge_avalon_slave_end_xfer;
   output           ext_flash_s1_wait_counter_eq_0;
-  output  [ 24: 0] flash_tristate_bridge_address;
+  output  [ 25: 0] flash_tristate_bridge_address;
   inout   [ 15: 0] flash_tristate_bridge_data;
   output           flash_tristate_bridge_readn;
   output           flash_tristate_bridge_writen;
@@ -22887,15 +22887,15 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
   reg              d1_reasons_to_wait;
   reg              enable_nonzero_assertions;
   wire             end_xfer_arb_share_counter_term_flash_tristate_bridge_avalon_slave;
-  wire    [  3: 0] ext_flash_s1_counter_load_value;
+  wire    [  6: 0] ext_flash_s1_counter_load_value;
   wire             ext_flash_s1_in_a_read_cycle;
   wire             ext_flash_s1_in_a_write_cycle;
-  reg     [  3: 0] ext_flash_s1_wait_counter;
+  reg     [  6: 0] ext_flash_s1_wait_counter;
   wire             ext_flash_s1_wait_counter_eq_0;
   wire             ext_flash_s1_waits_for_read;
   wire             ext_flash_s1_waits_for_write;
   wire             ext_flash_s1_with_write_latency;
-  reg     [ 24: 0] flash_tristate_bridge_address /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
+  reg     [ 25: 0] flash_tristate_bridge_address /* synthesis ALTERA_ATTRIBUTE = "FAST_OUTPUT_REGISTER=ON"  */;
   wire             flash_tristate_bridge_avalon_slave_allgrants;
   wire             flash_tristate_bridge_avalon_slave_allow_new_arb_cycle;
   wire             flash_tristate_bridge_avalon_slave_any_bursting_master_saved_grant;
@@ -22951,7 +22951,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
   wire    [ 15: 0] outgoing_flash_tristate_bridge_data;
   wire    [  1: 0] p1_cpu_data_master_read_data_valid_ext_flash_s1_shift_register;
   wire    [  1: 0] p1_cpu_instruction_master_read_data_valid_ext_flash_s1_shift_register;
-  wire    [ 24: 0] p1_flash_tristate_bridge_address;
+  wire    [ 25: 0] p1_flash_tristate_bridge_address;
   wire             p1_flash_tristate_bridge_readn;
   wire             p1_flash_tristate_bridge_writen;
   wire             p1_select_n_to_the_ext_flash;
@@ -22968,7 +22968,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   assign flash_tristate_bridge_avalon_slave_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_ext_flash_s1 | cpu_instruction_master_qualified_request_ext_flash_s1));
-  assign cpu_data_master_requests_ext_flash_s1 = ({cpu_data_master_address_to_slave[30 : 25] , 25'b0} == 31'h42000000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_ext_flash_s1 = ({cpu_data_master_address_to_slave[30 : 26] , 26'b0} == 31'h44000000) & (cpu_data_master_read | cpu_data_master_write);
   //~select_n_to_the_ext_flash of type chipselect to ~p1_select_n_to_the_ext_flash, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -23132,7 +23132,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
   //outgoing_flash_tristate_bridge_data mux, which is an e_mux
   assign outgoing_flash_tristate_bridge_data = cpu_data_master_dbs_write_16;
 
-  assign cpu_instruction_master_requests_ext_flash_s1 = (({cpu_instruction_master_address_to_slave[30 : 25] , 25'b0} == 31'h42000000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_ext_flash_s1 = (({cpu_instruction_master_address_to_slave[30 : 26] , 26'b0} == 31'h44000000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted ext_flash/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -23254,7 +23254,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_readn assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 9));
+  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 36));
 
   //~flash_tristate_bridge_writen of type write to ~p1_flash_tristate_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -23267,7 +23267,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_writen assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 2) & (ext_flash_s1_wait_counter < 11));
+  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 36) & (ext_flash_s1_wait_counter < 72));
 
   //flash_tristate_bridge_address of type address to p1_flash_tristate_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -23325,8 +23325,8 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 10 :
-    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 12 :
+  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 70 :
+    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 106 :
     (~ext_flash_s1_wait_counter_eq_0)? ext_flash_s1_wait_counter - 1 :
     0;
 
@@ -23609,7 +23609,7 @@ module high_res_timer_s1_arbitrator (
   //assign high_res_timer_s1_readdata_from_sa = high_res_timer_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign high_res_timer_s1_readdata_from_sa = high_res_timer_s1_readdata;
 
-  assign cpu_data_master_requests_high_res_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102500) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_high_res_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h49102500) & (cpu_data_master_read | cpu_data_master_write);
   //high_res_timer_s1_arb_share_counter set values, which is an e_mux
   assign high_res_timer_s1_arb_share_set_values = 1;
 
@@ -24979,7 +24979,7 @@ module onchip_memory_s1_arbitrator (
   //assign onchip_memory_s1_readdata_from_sa = onchip_memory_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign onchip_memory_s1_readdata_from_sa = onchip_memory_s1_readdata;
 
-  assign cpu_data_master_requests_onchip_memory_s1 = ({cpu_data_master_address_to_slave[30 : 19] , 19'b0} == 31'h45080000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_onchip_memory_s1 = ({cpu_data_master_address_to_slave[30 : 19] , 19'b0} == 31'h49080000) & (cpu_data_master_read | cpu_data_master_write);
   //onchip_memory_s1_arb_share_counter set values, which is an e_mux
   assign onchip_memory_s1_arb_share_set_values = 1;
 
@@ -25167,7 +25167,7 @@ module onchip_memory_s1_arbitrator (
   //mux onchip_memory_s1_clken, which is an e_mux
   assign onchip_memory_s1_clken = 1'b1;
 
-  assign cpu_instruction_master_requests_onchip_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 19] , 19'b0} == 31'h45080000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
+  assign cpu_instruction_master_requests_onchip_memory_s1 = (({cpu_instruction_master_address_to_slave[30 : 19] , 19'b0} == 31'h49080000) & (cpu_instruction_master_read)) & cpu_instruction_master_read;
   //cpu/data_master granted onchip_memory/s1 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -25203,9 +25203,9 @@ module onchip_memory_s1_arbitrator (
   //local readdatavalid cpu_instruction_master_read_data_valid_onchip_memory_s1, which is an e_mux
   assign cpu_instruction_master_read_data_valid_onchip_memory_s1 = cpu_instruction_master_read_data_valid_onchip_memory_s1_shift_register;
 
-  assign sgdma_rx_m_write_requests_onchip_memory_s1 = (({sgdma_rx_m_write_address_to_slave[31 : 19] , 19'b0} == 32'h45080000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
+  assign sgdma_rx_m_write_requests_onchip_memory_s1 = (({sgdma_rx_m_write_address_to_slave[31 : 19] , 19'b0} == 32'h49080000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
   assign sgdma_rx_m_write_qualified_request_onchip_memory_s1 = sgdma_rx_m_write_requests_onchip_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_tx_m_read_arbiterlock);
-  assign sgdma_tx_m_read_requests_onchip_memory_s1 = (({sgdma_tx_m_read_address_to_slave[31 : 19] , 19'b0} == 32'h45080000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
+  assign sgdma_tx_m_read_requests_onchip_memory_s1 = (({sgdma_tx_m_read_address_to_slave[31 : 19] , 19'b0} == 32'h49080000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
   assign sgdma_tx_m_read_qualified_request_onchip_memory_s1 = sgdma_tx_m_read_requests_onchip_memory_s1 & ~(cpu_data_master_arbiterlock | cpu_instruction_master_arbiterlock | sgdma_rx_m_write_arbiterlock);
   //sgdma_tx_m_read_read_data_valid_onchip_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
   assign sgdma_tx_m_read_read_data_valid_onchip_memory_s1_shift_register_in = sgdma_tx_m_read_granted_onchip_memory_s1 & sgdma_tx_m_read_read & ~onchip_memory_s1_waits_for_read;
@@ -27098,7 +27098,7 @@ module peripheral_clock_crossing_s1_arbitrator (
   //assign peripheral_clock_crossing_s1_readdata_from_sa = peripheral_clock_crossing_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign peripheral_clock_crossing_s1_readdata_from_sa = peripheral_clock_crossing_s1_readdata;
 
-  assign cpu_data_master_requests_peripheral_clock_crossing_s1 = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h44000000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_peripheral_clock_crossing_s1 = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h48000000) & (cpu_data_master_read | cpu_data_master_write);
   //assign peripheral_clock_crossing_s1_waitrequest_from_sa = peripheral_clock_crossing_s1_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign peripheral_clock_crossing_s1_waitrequest_from_sa = peripheral_clock_crossing_s1_waitrequest;
 
@@ -31764,7 +31764,7 @@ module sgdma_rx_csr_arbitrator (
   //assign sgdma_rx_csr_readdata_from_sa = sgdma_rx_csr_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sgdma_rx_csr_readdata_from_sa = sgdma_rx_csr_readdata;
 
-  assign cpu_data_master_requests_sgdma_rx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h451027c0) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sgdma_rx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h491027c0) & (cpu_data_master_read | cpu_data_master_write);
   //sgdma_rx_csr_arb_share_counter set values, which is an e_mux
   assign sgdma_rx_csr_arb_share_set_values = 1;
 
@@ -32074,7 +32074,7 @@ module sgdma_rx_descriptor_read_arbitrator (
   assign sgdma_rx_descriptor_read_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_descriptor_read_address_to_slave = {21'b10001010001000000011,
+  assign sgdma_rx_descriptor_read_address_to_slave = {21'b10010010001000000011,
     sgdma_rx_descriptor_read_address[10 : 0]};
 
   //sgdma_rx_descriptor_read_read_but_no_slave_selected assignment, which is an e_register
@@ -32234,7 +32234,7 @@ module sgdma_rx_descriptor_write_arbitrator (
   assign sgdma_rx_descriptor_write_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_descriptor_write_address_to_slave = {21'b10001010001000000011,
+  assign sgdma_rx_descriptor_write_address_to_slave = {21'b10010010001000000011,
     sgdma_rx_descriptor_write_address[10 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -32377,7 +32377,7 @@ module sgdma_rx_m_write_arbitrator (
   assign sgdma_rx_m_write_run = r_2;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_rx_m_write_address_to_slave = {13'b100010100001,
+  assign sgdma_rx_m_write_address_to_slave = {13'b100100100001,
     sgdma_rx_m_write_address[18 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -32607,7 +32607,7 @@ module sgdma_tx_csr_arbitrator (
   //assign sgdma_tx_csr_readdata_from_sa = sgdma_tx_csr_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sgdma_tx_csr_readdata_from_sa = sgdma_tx_csr_readdata;
 
-  assign cpu_data_master_requests_sgdma_tx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h45102780) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sgdma_tx_csr = ({cpu_data_master_address_to_slave[30 : 6] , 6'b0} == 31'h49102780) & (cpu_data_master_read | cpu_data_master_write);
   //sgdma_tx_csr_arb_share_counter set values, which is an e_mux
   assign sgdma_tx_csr_arb_share_set_values = 1;
 
@@ -32840,7 +32840,7 @@ module sgdma_tx_descriptor_read_arbitrator (
   assign sgdma_tx_descriptor_read_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_descriptor_read_address_to_slave = {21'b10001010001000000011,
+  assign sgdma_tx_descriptor_read_address_to_slave = {21'b10010010001000000011,
     sgdma_tx_descriptor_read_address[10 : 0]};
 
   //sgdma_tx_descriptor_read_read_but_no_slave_selected assignment, which is an e_register
@@ -33000,7 +33000,7 @@ module sgdma_tx_descriptor_write_arbitrator (
   assign sgdma_tx_descriptor_write_run = r_1;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_descriptor_write_address_to_slave = {21'b10001010001000000011,
+  assign sgdma_tx_descriptor_write_address_to_slave = {21'b10010010001000000011,
     sgdma_tx_descriptor_write_address[10 : 0]};
 
   //actual waitrequest port, which is an e_assign
@@ -33155,7 +33155,7 @@ module sgdma_tx_m_read_arbitrator (
   assign sgdma_tx_m_read_run = r_2;
 
   //optimize select-logic by passing only those address bits which matter.
-  assign sgdma_tx_m_read_address_to_slave = {13'b100010100001,
+  assign sgdma_tx_m_read_address_to_slave = {13'b100100100001,
     sgdma_tx_m_read_address[18 : 0]};
 
   //sgdma_tx_m_read_read_but_no_slave_selected assignment, which is an e_register
@@ -33670,7 +33670,7 @@ module sys_timer_s1_arbitrator (
   //assign sys_timer_s1_readdata_from_sa = sys_timer_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sys_timer_s1_readdata_from_sa = sys_timer_s1_readdata;
 
-  assign cpu_data_master_requests_sys_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h45102600) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_sys_timer_s1 = ({cpu_data_master_address_to_slave[30 : 5] , 5'b0} == 31'h49102600) & (cpu_data_master_read | cpu_data_master_write);
   //sys_timer_s1_arb_share_counter set values, which is an e_mux
   assign sys_timer_s1_arb_share_set_values = 1;
 
@@ -33932,7 +33932,7 @@ module sysid_control_slave_arbitrator (
   //assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata;
 
-  assign cpu_data_master_requests_sysid_control_slave = (({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h45102700) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
+  assign cpu_data_master_requests_sysid_control_slave = (({cpu_data_master_address_to_slave[30 : 3] , 3'b0} == 31'h49102700) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
   //sysid_control_slave_arb_share_counter set values, which is an e_mux
   assign sysid_control_slave_arb_share_set_values = 1;
 
@@ -34200,7 +34200,7 @@ module tse_mac_control_port_arbitrator (
   //assign tse_mac_control_port_readdata_from_sa = tse_mac_control_port_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign tse_mac_control_port_readdata_from_sa = tse_mac_control_port_readdata;
 
-  assign cpu_data_master_requests_tse_mac_control_port = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h45102000) & (cpu_data_master_read | cpu_data_master_write);
+  assign cpu_data_master_requests_tse_mac_control_port = ({cpu_data_master_address_to_slave[30 : 10] , 10'b0} == 31'h49102000) & (cpu_data_master_read | cpu_data_master_write);
   //assign tse_mac_control_port_waitrequest_from_sa = tse_mac_control_port_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign tse_mac_control_port_waitrequest_from_sa = tse_mac_control_port_waitrequest;
 
@@ -35254,7 +35254,7 @@ module DE4_SOPC (
   output           ddr2_phy_clk_out;
   output           dll_reference_clk_from_the_ddr2;
   output  [  5: 0] dqs_delay_ctrl_export_from_the_ddr2;
-  output  [ 24: 0] flash_tristate_bridge_address;
+  output  [ 25: 0] flash_tristate_bridge_address;
   inout   [ 15: 0] flash_tristate_bridge_data;
   output           flash_tristate_bridge_readn;
   output           flash_tristate_bridge_writen;
@@ -35776,7 +35776,7 @@ module DE4_SOPC (
   wire             dll_reference_clk_from_the_ddr2;
   wire    [  5: 0] dqs_delay_ctrl_export_from_the_ddr2;
   wire             ext_flash_s1_wait_counter_eq_0;
-  wire    [ 24: 0] flash_tristate_bridge_address;
+  wire    [ 25: 0] flash_tristate_bridge_address;
   wire    [ 15: 0] flash_tristate_bridge_data;
   wire             flash_tristate_bridge_readn;
   wire             flash_tristate_bridge_writen;
@@ -38586,15 +38586,15 @@ module ext_flash_lane0_module (
 
   output  [  7: 0] q;
   input   [  7: 0] data;
-  input   [ 23: 0] rdaddress;
+  input   [ 24: 0] rdaddress;
   input            rdclken;
-  input   [ 23: 0] wraddress;
+  input   [ 24: 0] wraddress;
   input            wrclock;
   input            wren;
 
-  reg     [  7: 0] mem_array [16777215: 0];
+  reg     [  7: 0] mem_array [33554431: 0];
   wire    [  7: 0] q;
-  reg     [ 23: 0] read_address;
+  reg     [ 24: 0] read_address;
 
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
@@ -38645,7 +38645,7 @@ initial
 //           lpm_ram_dp_component.lpm_outdata = "UNREGISTERED",
 //           lpm_ram_dp_component.lpm_rdaddress_control = "UNREGISTERED",
 //           lpm_ram_dp_component.lpm_width = 8,
-//           lpm_ram_dp_component.lpm_widthad = 24,
+//           lpm_ram_dp_component.lpm_widthad = 25,
 //           lpm_ram_dp_component.lpm_wraddress_control = "REGISTERED",
 //           lpm_ram_dp_component.suppress_memory_conversion_warnings = "ON";
 //
@@ -38675,15 +38675,15 @@ module ext_flash_lane1_module (
 
   output  [  7: 0] q;
   input   [  7: 0] data;
-  input   [ 23: 0] rdaddress;
+  input   [ 24: 0] rdaddress;
   input            rdclken;
-  input   [ 23: 0] wraddress;
+  input   [ 24: 0] wraddress;
   input            wrclock;
   input            wren;
 
-  reg     [  7: 0] mem_array [16777215: 0];
+  reg     [  7: 0] mem_array [33554431: 0];
   wire    [  7: 0] q;
-  reg     [ 23: 0] read_address;
+  reg     [ 24: 0] read_address;
 
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
@@ -38734,7 +38734,7 @@ initial
 //           lpm_ram_dp_component.lpm_outdata = "UNREGISTERED",
 //           lpm_ram_dp_component.lpm_rdaddress_control = "UNREGISTERED",
 //           lpm_ram_dp_component.lpm_width = 8,
-//           lpm_ram_dp_component.lpm_widthad = 24,
+//           lpm_ram_dp_component.lpm_widthad = 25,
 //           lpm_ram_dp_component.lpm_wraddress_control = "REGISTERED",
 //           lpm_ram_dp_component.suppress_memory_conversion_warnings = "ON";
 //
@@ -38761,7 +38761,7 @@ module ext_flash (
 ;
 
   inout   [ 15: 0] data;
-  input   [ 23: 0] address;
+  input   [ 24: 0] address;
   input            read_n;
   input            select_n;
   input            write_n;
@@ -38922,7 +38922,7 @@ module test_bench
   wire             ddr2_phy_clk_out;
   wire             dll_reference_clk_from_the_ddr2;
   wire    [  5: 0] dqs_delay_ctrl_export_from_the_ddr2;
-  wire    [ 24: 0] flash_tristate_bridge_address;
+  wire    [ 25: 0] flash_tristate_bridge_address;
   wire    [ 15: 0] flash_tristate_bridge_data;
   wire             flash_tristate_bridge_readn;
   wire             flash_tristate_bridge_writen;
@@ -39067,7 +39067,7 @@ module test_bench
 
   ext_flash the_ext_flash
     (
-      .address  (flash_tristate_bridge_address[24 : 1]),
+      .address  (flash_tristate_bridge_address[25 : 1]),
       .data     (flash_tristate_bridge_data),
       .read_n   (flash_tristate_bridge_readn),
       .select_n (select_n_to_the_ext_flash),

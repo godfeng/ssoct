@@ -434,18 +434,25 @@ wire						led_crs_from_the_tse_mac;
 wire						led_disp_err_from_the_tse_mac;
 wire						led_link_from_the_tse_mac;
 
-// 50 kHz A-line trigger from swept source laser
+// FLASH address bus
+wire	[25:0]     			flash_address_bus;
+
+// Receive reset signal from LabView P0.4 to GPIO[4]
+wire						labviewReset;
+
+// Map 50 kHz A-line sweep signal to GPIO[0], connected to LAbView PFI0
 wire						sweepTrigger;
+
 // 50 kHz A-line trigger enabled by LabView
 wire						trigger50kHz;
 
-// Receive signal from LabView to record data to DDR2
+// Receive signal from LabView P0.6 to record data to DDR2 in GPIO[6]
 wire						enableRecording;
 
-// Receive signal from LabView when recording to DDR2 is done
+// Receive signal from LabView P0.5 to assert Volume recorded in GPIO[5]
 wire						volRecordingDone;
 
-// Transmit signal to LabView when a single volume is trasnferred via TCP/IP
+// Transmit signal to LabView PFI1 when a whole volume is transferred via TCP/IP in GPIO[1]
 wire						volTransferDone;
 
 // Position of the ADC sample in the RAM
@@ -544,8 +551,8 @@ ext_pll_ctrl ext_pll_ctrl_Inst (
 //  Structural coding
 //==============================================================================
 
-//// Global signals
-assign reset_n 				= CPU_RESET_n;
+//// Global signals (Reset from LabView and CPU)
+assign reset_n 				= CPU_RESET_n & ~labviewReset;
 
 //// Ethernet
 assign	ETH_RST_n			= enet_reset_n;
@@ -591,7 +598,10 @@ assign	ETH_MDC[3]			= enet_mdc;
 //// FLASH and SSRAM share bus
 assign	FLASH_ADV_n			= 1'b0;				// not used
 assign	FLASH_CLK			= 1'b0;				// not used
-assign	FLASH_RESET_n		= global_reset_n;
+assign 	FLASH_RESET_n 		= 1'b1;				// Disable Flash Reset
+												// FLASH_WP_n????
+												// Assign MSB to FLASH address bus
+assign FSM_A[25:1] 			= flash_address_bus[25:1];	
 //// SSRAM
 
 //==============================================================================
@@ -607,26 +617,32 @@ assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 // sinus wave to DA
 assign	DB					= o_sine;			// Output sinus wave to DAC B
 
-// Assign 50 kHz Sweep Trigger
+//==============================================================================
+// GPIO OUTPUTS
+//==============================================================================
+// Assign 50 kHz Sweep Trigger (from swept source)
 assign	sweepTrigger		= GCLKIN;
-// Map 50 kHz A-line sweep signal to GPIO[0]
+// Map 50 kHz A-line sweep signal to GPIO[0], connected to LAbView PFI0
 assign	GPIO[0]				= sweepTrigger;
-
-// Receive signal from LabView to record data to DDR2 in GPIO[6]
-assign	enableRecording		= GPIO[6];
-// Display enable signal from LabView
-assign	SEG0_DP				= ~enableRecording;
-
-// Receive signal from LabView to record data to DDR2 in GPIO[6]
-assign	volRecordingDone	= GPIO[5];
-
-// Acquisition is triggered only when LabView asserts the enable
-assign 	trigger50kHz		= enableRecording & sweepTrigger;
-
-// Transmit signal to LabView when a whole volume is transferred via TCP/IP in GPIO[1]
+// Transmit signal to LabView PFI1 when a whole volume is transferred via TCP/IP in GPIO[1]
 assign	GPIO[1]				= volTransferDone;
 // Display volume transfer done signal from NIOS
 assign	SEG1_DP				= ~volTransferDone;
+
+//==============================================================================
+// GPIO INPUTS
+//==============================================================================
+// Receive signal from LabView P0.6 to record data to DDR2 in GPIO[6]
+assign	enableRecording		= GPIO[6];
+// Display enable signal from LabView
+assign	SEG0_DP				= ~enableRecording;
+// Receive signal from LabView P0.5 to assert Volume recorded in GPIO[5]
+assign	volRecordingDone	= GPIO[5];
+// Receive reset signal from LabView P0.4 to GPIO[4]
+assign	labviewReset		= GPIO[4];
+
+// Acquisition is triggered only when LabView asserts the enable
+assign 	trigger50kHz		= enableRecording & sweepTrigger;
 
 // LED diagnostics (active LOW)
 assign	LED[6:0]			= ~stateLED;
@@ -798,7 +814,7 @@ DE4_SOPC DE4_SOPC_inst(
 	.user_write_buffer_to_the_master_write(user_write_buffer) ,				// input 	user_write_buffer
 	
 	// Flash Tristate Bridge Avalon Slave
-	.flash_tristate_bridge_address(FSM_A[24:0]) ,							// output 	[24:0] FSM_A[24:0]
+	.flash_tristate_bridge_address(flash_address_bus) ,						// output 	[25:0] flash_address_bus
 	.flash_tristate_bridge_data(FSM_D) ,									// inout 	[15:0] FSM_D
 	.flash_tristate_bridge_readn(FLASH_OE_n) ,								// output  	FLASH_OE_n
 	.flash_tristate_bridge_writen(FLASH_WE_n) ,								// output  	FLASH_WE_n

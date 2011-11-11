@@ -35,22 +35,20 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.h" partName="simple_socket_server.h" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.h" title="simple_socket_server.h" tooltip="simple_socket_server/simple_socket_server.h" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.h" partName="simple_socket_server.h" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.h" title="simple_socket_server.h" tooltip="simple_socket_server/simple_socket_server.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.h"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="iniche_init.c" partName="iniche_init.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/iniche_init.c" title="iniche_init.c" tooltip="simple_socket_server/iniche_init.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/iniche_init.c"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="simple_socket_server.c" partName="simple_socket_server.c" path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.c" title="simple_socket_server.c" tooltip="simple_socket_server/simple_socket_server.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/simple_socket_server/simple_socket_server.c"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.cdt.ui.CView" partName="C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
-<expanded>&#x0A;<element path="D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software\simple_socket_server"/>
-</expanded>
-<selection>&#x0A;<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server/simple_socket_server.c"/>
+<selection>&#x0A;<element path="D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/software/simple_socket_server"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.cdt.internal.ui.CView.ExecutableFilter" isEnabled="false"/>
 <child filterId="org.eclipse.cdt.internal.ui.CView.SharedFilter" isEnabled="false"/>
@@ -206,10 +204,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/simple_socket_server/simple_socket_server.h"/>
 </editors>
-<item historyLabel="simple_socket_server.c" index="0">
-<position info="not_deleted" x="20180" y="42"/>
-</item>
 <item historyLabel="simple_socket_server.h" index="1">
 <position/>
 </item>
@@ -354,8 +350,11 @@
 <item historyLabel="simple_socket_server.h" index="9">
 <position/>
 </item>
-<item active="true" historyLabel="simple_socket_server.c" index="5">
+<item historyLabel="simple_socket_server.c" index="5">
 <position info="not_deleted" x="1461" y="0"/>
+</item>
+<item active="true" historyLabel="simple_socket_server.h" index="10">
+<position/>
 </item>
 </navigationHistory>
 <stickyState/>

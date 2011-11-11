@@ -4,7 +4,7 @@
  kind="com_altera_sopcmodel_ensemble_Ensemble"
  version="9.1">
  <!-- Format version 9.1sp2 350 (Future versions may contain additional information.) -->
- <!-- 2011.10.18.15:40:41 -->
+ <!-- 2011.11.10.19:26:45 -->
  <!-- A collection of modules and connections -->
  <parameter name="deviceFamily">
   <type>com.altera.entityinterfaces.moduleext.IDeviceFamily$EDeviceFamily</type>
@@ -48,7 +48,7 @@
  </parameter>
  <parameter name="systemHash">
   <type>long</type>
-  <value>-55852309215</value>
+  <value>-50679517403</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -56,7 +56,7 @@
  </parameter>
  <parameter name="timeStamp">
   <type>long</type>
-  <value>1318966812123</value>
+  <value>1320971152791</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -6528,7 +6528,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetSlave</name>
-   <value>onchip_memory.s1</value>
+   <value>ext_flash.s1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.configuration.resetOffset</name>
@@ -6552,15 +6552,15 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.EXCEPTION_ADDR</name>
-   <value>0x45080020</value>
+   <value>0x49080020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.RESET_ADDR</name>
-   <value>0x45080000</value>
+   <value>0x44000000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.BREAK_ADDR</name>
-   <value>0x45101020</value>
+   <value>0x49101020</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.HAS_DEBUG_STUB</name>
@@ -6852,7 +6852,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="resetSlave">
    <type>com.altera.entityinterfaces.IConnectionPoint</type>
-   <value>onchip_memory.s1</value>
+   <value>ext_flash.s1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -7582,7 +7582,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>cpu</moduleName>
     <slaveName>jtag_debug_module</slaveName>
     <name>cpu.jtag_debug_module</name>
-    <baseAddress>1158680576</baseAddress>
+    <baseAddress>1225789440</baseAddress>
     <span>2048</span>
    </memoryBlock>
    <memoryBlock>
@@ -7590,7 +7590,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>onchip_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>onchip_memory.s1</name>
-    <baseAddress>1158152192</baseAddress>
+    <baseAddress>1225261056</baseAddress>
     <span>512000</span>
    </memoryBlock>
    <memoryBlock>
@@ -7598,15 +7598,15 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ext_flash</moduleName>
     <slaveName>s1</slaveName>
     <name>ext_flash.s1</name>
-    <baseAddress>1107296256</baseAddress>
-    <span>33554432</span>
+    <baseAddress>1140850688</baseAddress>
+    <span>67108864</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
   </interface>
@@ -7923,7 +7923,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>cpu</moduleName>
     <slaveName>jtag_debug_module</slaveName>
     <name>cpu.jtag_debug_module</name>
-    <baseAddress>1158680576</baseAddress>
+    <baseAddress>1225789440</baseAddress>
     <span>2048</span>
    </memoryBlock>
    <memoryBlock>
@@ -7931,7 +7931,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>onchip_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>onchip_memory.s1</name>
-    <baseAddress>1158152192</baseAddress>
+    <baseAddress>1225261056</baseAddress>
     <span>512000</span>
    </memoryBlock>
    <memoryBlock>
@@ -7939,7 +7939,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>pll</moduleName>
     <slaveName>s1</slaveName>
     <name>pll.s1</name>
-    <baseAddress>1158685696</baseAddress>
+    <baseAddress>1225794560</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -7947,15 +7947,15 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ext_flash</moduleName>
     <slaveName>s1</slaveName>
     <name>ext_flash.s1</name>
-    <baseAddress>1107296256</baseAddress>
-    <span>33554432</span>
+    <baseAddress>1140850688</baseAddress>
+    <span>67108864</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
     <moduleName>sysid</moduleName>
     <slaveName>control_slave</slaveName>
     <name>sysid.control_slave</name>
-    <baseAddress>1158686464</baseAddress>
+    <baseAddress>1225795328</baseAddress>
     <span>64</span>
    </memoryBlock>
    <memoryBlock>
@@ -7963,7 +7963,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>jtag_uart</moduleName>
     <slaveName>avalon_jtag_slave</slaveName>
     <name>jtag_uart.avalon_jtag_slave</name>
-    <baseAddress>1158686528</baseAddress>
+    <baseAddress>1225795392</baseAddress>
     <span>64</span>
    </memoryBlock>
    <memoryBlock>
@@ -7971,7 +7971,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>high_res_timer</moduleName>
     <slaveName>s1</slaveName>
     <name>high_res_timer.s1</name>
-    <baseAddress>1158685952</baseAddress>
+    <baseAddress>1225794816</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -7979,7 +7979,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sys_timer</moduleName>
     <slaveName>s1</slaveName>
     <name>sys_timer.s1</name>
-    <baseAddress>1158686208</baseAddress>
+    <baseAddress>1225795072</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -7987,7 +7987,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>tse_mac</moduleName>
     <slaveName>control_port</slaveName>
     <name>tse_mac.control_port</name>
-    <baseAddress>1158684672</baseAddress>
+    <baseAddress>1225793536</baseAddress>
     <span>1024</span>
    </memoryBlock>
    <memoryBlock>
@@ -7995,7 +7995,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sgdma_tx</moduleName>
     <slaveName>csr</slaveName>
     <name>sgdma_tx.csr</name>
-    <baseAddress>1158686592</baseAddress>
+    <baseAddress>1225795456</baseAddress>
     <span>64</span>
    </memoryBlock>
    <memoryBlock>
@@ -8003,7 +8003,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sgdma_rx</moduleName>
     <slaveName>csr</slaveName>
     <name>sgdma_rx.csr</name>
-    <baseAddress>1158686656</baseAddress>
+    <baseAddress>1225795520</baseAddress>
     <span>64</span>
    </memoryBlock>
    <memoryBlock>
@@ -8011,7 +8011,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
    <memoryBlock>
@@ -8035,7 +8035,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>peripheral_clock_crossing</moduleName>
     <slaveName>s1</slaveName>
     <name>peripheral_clock_crossing.s1</name>
-    <baseAddress>1140850688</baseAddress>
+    <baseAddress>1207959552</baseAddress>
     <span>1024</span>
    </memoryBlock>
    <memoryBlock>
@@ -8043,7 +8043,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>vol_transfer_done_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>vol_transfer_done_pio.s1</name>
-    <baseAddress>1140850688</baseAddress>
+    <baseAddress>1207959552</baseAddress>
     <span>128</span>
    </memoryBlock>
    <memoryBlock>
@@ -8051,7 +8051,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>vol_recording_done_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>vol_recording_done_pio.s1</name>
-    <baseAddress>1140850816</baseAddress>
+    <baseAddress>1207959680</baseAddress>
     <span>128</span>
    </memoryBlock>
    <memoryBlock>
@@ -8059,7 +8059,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>1140850944</baseAddress>
+    <baseAddress>1207959808</baseAddress>
     <span>128</span>
    </memoryBlock>
    <memoryBlock>
@@ -8067,7 +8067,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>sw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>sw_pio.s1</name>
-    <baseAddress>1140851072</baseAddress>
+    <baseAddress>1207959936</baseAddress>
     <span>128</span>
    </memoryBlock>
    <memoryBlock>
@@ -8075,7 +8075,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>pb_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>pb_pio.s1</name>
-    <baseAddress>1140851200</baseAddress>
+    <baseAddress>1207960064</baseAddress>
     <span>128</span>
    </memoryBlock>
    <memoryBlock>
@@ -8083,7 +8083,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>seven_seg_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>seven_seg_pio.s1</name>
-    <baseAddress>1140851328</baseAddress>
+    <baseAddress>1207960192</baseAddress>
     <span>128</span>
    </memoryBlock>
   </interface>
@@ -8696,15 +8696,15 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <assignment>
    <name>embeddedsw.CMacro.SETUP_VALUE</name>
-   <value>25</value>
+   <value>400</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.WAIT_VALUE</name>
-   <value>100</value>
+   <value>400</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.HOLD_VALUE</name>
-   <value>20</value>
+   <value>400</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMING_UNITS</name>
@@ -8712,7 +8712,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SIZE</name>
-   <value>33554432u</value>
+   <value>67108864u</value>
   </assignment>
   <assignment>
    <name>embeddedsw.memoryInfo.MEM_INIT_DATA_WIDTH</name>
@@ -8744,7 +8744,7 @@ the requested settings for a module instance. -->
   </assignment>
   <parameter name="actualHoldTime">
    <type>double</type>
-   <value>22.22222222222222</value>
+   <value>400.0</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8752,7 +8752,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="actualSetupTime">
    <type>double</type>
-   <value>33.33333333333333</value>
+   <value>400.0</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8760,7 +8760,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="actualWaitTime">
    <type>double</type>
-   <value>100.0</value>
+   <value>400.0</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8768,7 +8768,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="addressWidth">
    <type>int</type>
-   <value>24</value>
+   <value>25</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8800,7 +8800,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="holdTime">
    <type>int</type>
-   <value>20</value>
+   <value>400</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8808,7 +8808,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="setupTime">
    <type>int</type>
-   <value>25</value>
+   <value>400</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8832,7 +8832,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="waitTime">
    <type>int</type>
-   <value>100</value>
+   <value>400</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8951,7 +8951,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>long</type>
-    <value>33554432</value>
+    <value>67108864</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -8991,7 +8991,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="holdTime">
     <type>int</type>
-    <value>20</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -9079,7 +9079,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="readWaitStates">
     <type>int</type>
-    <value>100</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -9087,7 +9087,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="readWaitTime">
     <type>int</type>
-    <value>100</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -9111,7 +9111,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="setupTime">
     <type>int</type>
-    <value>25</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -9151,7 +9151,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="writeWaitStates">
     <type>int</type>
-    <value>100</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -9159,7 +9159,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="writeWaitTime">
     <type>int</type>
-    <value>100</value>
+    <value>400</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -9192,7 +9192,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>24</width>
+    <width>25</width>
     <role>address</role>
    </port>
    <port>
@@ -9758,8 +9758,8 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ext_flash</moduleName>
     <slaveName>s1</slaveName>
     <name>ext_flash.s1</name>
-    <baseAddress>1107296256</baseAddress>
-    <span>33554432</span>
+    <baseAddress>1140850688</baseAddress>
+    <span>67108864</span>
    </memoryBlock>
   </interface>
  </module>
@@ -9768,15 +9768,15 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <assignment>
    <name>embeddedsw.CMacro.ID</name>
-   <value>17734393u</value>
+   <value>1287393522u</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1318966812u</value>
+   <value>1320971153u</value>
   </assignment>
   <parameter name="id">
    <type>long</type>
-   <value>17734393</value>
+   <value>1287393522</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -9784,7 +9784,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>long</type>
-   <value>1318966812</value>
+   <value>1320971153</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -14509,7 +14509,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
   </interface>
@@ -14796,7 +14796,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
   </interface>
@@ -15142,7 +15142,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>onchip_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>onchip_memory.s1</name>
-    <baseAddress>1158152192</baseAddress>
+    <baseAddress>1225261056</baseAddress>
     <span>512000</span>
    </memoryBlock>
   </interface>
@@ -16206,7 +16206,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
   </interface>
@@ -16493,7 +16493,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>descriptor_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>descriptor_memory.s1</name>
-    <baseAddress>1158682624</baseAddress>
+    <baseAddress>1225791488</baseAddress>
     <span>2048</span>
    </memoryBlock>
   </interface>
@@ -16833,7 +16833,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>onchip_memory</moduleName>
     <slaveName>s1</slaveName>
     <name>onchip_memory.s1</name>
-    <baseAddress>1158152192</baseAddress>
+    <baseAddress>1225261056</baseAddress>
     <span>512000</span>
    </memoryBlock>
   </interface>
@@ -23368,7 +23368,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101000</value>
+   <value>0x49101000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23411,7 +23411,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101000</value>
+   <value>0x49101000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23454,7 +23454,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45080000</value>
+   <value>0x49080000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23497,7 +23497,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45080000</value>
+   <value>0x49080000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23540,7 +23540,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102400</value>
+   <value>0x49102400</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23750,7 +23750,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x42000000</value>
+   <value>0x44000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23793,7 +23793,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102700</value>
+   <value>0x49102700</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23863,7 +23863,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102740</value>
+   <value>0x49102740</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -23968,7 +23968,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102500</value>
+   <value>0x49102500</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24046,7 +24046,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102600</value>
+   <value>0x49102600</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24151,7 +24151,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102000</value>
+   <value>0x49102000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24275,7 +24275,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45102780</value>
+   <value>0x49102780</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24380,7 +24380,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x451027c0</value>
+   <value>0x491027c0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24485,7 +24485,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24528,7 +24528,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24652,7 +24652,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24695,7 +24695,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24738,7 +24738,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45080000</value>
+   <value>0x49080000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24781,7 +24781,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24824,7 +24824,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45101800</value>
+   <value>0x49101800</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -24867,7 +24867,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x45080000</value>
+   <value>0x49080000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -25093,7 +25093,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>long</type>
-   <value>0x44000000</value>
+   <value>0x48000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -25595,35 +25595,27 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>s1</endConnectionPoint>
  </connection>
  <plugin>
-  <instanceCount>1</instanceCount>
-  <name>avalon_tristate_slave</name>
+  <instanceCount>5</instanceCount>
+  <name>interrupt</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Tristate Slave</displayName>
+  <subtype>com.altera.entityinterfaces.IConnection</subtype>
+  <displayName>Interrupt Connection</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>avalon_slave</name>
+  <name>altera_nios2</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Nios II Processor</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>avalon_master</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Slave</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>altera_avalon_onchip_memory2</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>On-Chip Memory (RAM or ROM)</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>altera_avalon_timer</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Interval Timer</displayName>
+  <displayName>Avalon Memory Mapped Master</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
@@ -25636,34 +25628,26 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>avalon_tristate_master</name>
+  <name>altera_avalon_sysid</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Tristate Master</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>34</instanceCount>
-  <name>avalon</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Avalon Memory Mapped Connection</displayName>
-  <version>6.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>avalon_streaming_sink</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Streaming Sink</displayName>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>System ID Peripheral</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>altera_avalon_pll</name>
+  <name>clock_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>PLL</displayName>
+  <displayName>Clock Source</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>altera_avalon_sgdma</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Scatter-Gather DMA Controller</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
@@ -25676,10 +25660,26 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
-  <name>clock_source</name>
+  <name>altera_avalon_pll</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Clock Source</displayName>
+  <displayName>PLL</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>master_template</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>master_template</displayName>
+  <version>1.0</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>altera_avalon_timer</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Interval Timer</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
@@ -25691,23 +25691,95 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>6</instanceCount>
-  <name>altera_avalon_pio</name>
+  <instanceCount>27</instanceCount>
+  <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>PIO (Parallel I/O)</displayName>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Clock Input</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>29</instanceCount>
-  <name>clock</name>
+  <instanceCount>1</instanceCount>
+  <name>avalon_tristate</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Clock Connection</displayName>
+  <displayName>Avalon Memory Mapped Tristate Connection</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>27</instanceCount>
+  <instanceCount>7</instanceCount>
+  <name>conduit</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Conduit Endpoint</displayName>
+  <version>7.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>5</instanceCount>
+  <name>interrupt_sender</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Interrupt Sender</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>2</instanceCount>
+  <name>altera_avalon_clock_crossing</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Avalon-MM Clock Crossing Bridge</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>avalon_tristate_master</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Avalon Memory Mapped Tristate Master</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>nios_custom_instruction_master</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Custom Instruction Master</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>21</instanceCount>
+  <name>avalon_slave</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Avalon Memory Mapped Slave</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>altera_avalon_tri_state_bridge</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Avalon-MM Tristate Bridge</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>altera_avalon_pipeline_bridge</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Avalon-MM Pipeline Bridge</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>triple_speed_ethernet</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>Triple-Speed Ethernet</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>3</instanceCount>
   <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -25723,59 +25795,19 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_avalon_pipeline_bridge</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Avalon-MM Pipeline Bridge</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>5</instanceCount>
-  <name>interrupt</name>
+  <instanceCount>2</instanceCount>
+  <name>avalon_streaming</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Interrupt Connection</displayName>
+  <displayName>Avalon Streaming Connection</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
-  <name>triple_speed_ethernet</name>
+  <instanceCount>6</instanceCount>
+  <name>altera_avalon_pio</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Triple-Speed Ethernet</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>master_template</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>master_template</displayName>
-  <version>1.0</version>
- </plugin>
- <plugin>
-  <instanceCount>11</instanceCount>
-  <name>avalon_master</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Master</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>21</instanceCount>
-  <name>avalon_slave</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Avalon Memory Mapped Slave</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>5</instanceCount>
-  <name>interrupt_sender</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Interrupt Sender</displayName>
+  <displayName>PIO (Parallel I/O)</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
@@ -25787,30 +25819,6 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
-  <name>nios_custom_instruction_master</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Custom Instruction Master</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>altera_avalon_sgdma</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Scatter-Gather DMA Controller</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>2</instanceCount>
-  <name>avalon_streaming</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Avalon Streaming Connection</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
   <instanceCount>2</instanceCount>
   <name>avalon_streaming_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
@@ -25819,7 +25827,31 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>2</instanceCount>
+  <instanceCount>1</instanceCount>
+  <name>avalon_tristate_slave</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Avalon Memory Mapped Tristate Slave</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>34</instanceCount>
+  <name>avalon</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IConnection</subtype>
+  <displayName>Avalon Memory Mapped Connection</displayName>
+  <version>6.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>29</instanceCount>
+  <name>clock</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IConnection</subtype>
+  <displayName>Clock Connection</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>11</instanceCount>
   <name>avalon_master</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -25827,43 +25859,11 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
-  <instanceCount>3</instanceCount>
-  <name>clock_sink</name>
+  <instanceCount>2</instanceCount>
+  <name>avalon_streaming_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Clock Input</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_avalon_sysid</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>System ID Peripheral</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>7</instanceCount>
-  <name>conduit</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Conduit Endpoint</displayName>
-  <version>7.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_nios2</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Nios II Processor</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>3</instanceCount>
-  <name>clock_source</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
-  <displayName>Clock Output</displayName>
+  <displayName>Avalon Streaming Sink</displayName>
   <version>9.1</version>
  </plugin>
  <plugin>
@@ -25875,29 +25875,29 @@ parameters are a RESULT of the module parameters. -->
   <version>9.1</version>
  </plugin>
  <plugin>
+  <instanceCount>1</instanceCount>
+  <name>avalon_slave</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Avalon Memory Mapped Slave</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
+  <instanceCount>3</instanceCount>
+  <name>clock_source</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
+  <displayName>Clock Output</displayName>
+  <version>9.1</version>
+ </plugin>
+ <plugin>
   <instanceCount>2</instanceCount>
-  <name>altera_avalon_clock_crossing</name>
+  <name>altera_avalon_onchip_memory2</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Avalon-MM Clock Crossing Bridge</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>altera_avalon_tri_state_bridge</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IModule</subtype>
-  <displayName>Avalon-MM Tristate Bridge</displayName>
-  <version>9.1</version>
- </plugin>
- <plugin>
-  <instanceCount>1</instanceCount>
-  <name>avalon_tristate</name>
-  <type>com.altera.entityinterfaces.IElementClass</type>
-  <subtype>com.altera.entityinterfaces.IConnection</subtype>
-  <displayName>Avalon Memory Mapped Tristate Connection</displayName>
+  <displayName>On-Chip Memory (RAM or ROM)</displayName>
   <version>9.1</version>
  </plugin>
  <reportVersion>9.1sp2 350</reportVersion>
- <uniqueIdentifier>00259010848C000001331888DC54</uniqueIdentifier>
+ <uniqueIdentifier>00259010848C00000133900409AA</uniqueIdentifier>
 </EnsembleReport>
