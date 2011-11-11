@@ -423,7 +423,7 @@ void sss_exec_command(SSSConn* conn)
                     }
                 #endif
                 // Wait a little... Should know why...
-                usleep(600); // 0.6 ms if sys_clk @ 90MHz
+                usleep(1000); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
             printf("\nDDR2 address after reference: %lu\n",DDR2_address);
             menu = 1;
@@ -482,7 +482,7 @@ void sss_exec_command(SSSConn* conn)
                         // Send a single A-line to the client
                         bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
                         // Wait a little... Should know why...
-                        usleep(600); // 0.6 ms if sys_clk @ 90MHz
+                        usleep(1000); // 0.6 ms if sys_clk @ 90MHz
                     } // END of volume / B-frame loop
                     // Assert signal when the whole volume is transferred
                     IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);

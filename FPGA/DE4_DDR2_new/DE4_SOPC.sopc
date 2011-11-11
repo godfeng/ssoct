@@ -143,7 +143,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_DDR2_new}";
          type = "String";
       }
    }
@@ -275,23 +275,23 @@
          type = "String";
       }
    }
-   element pll.s1
+   element pb_pio.s1
    {
       datum baseAddress
       {
-         value = "1225794560";
+         value = "512";
          type = "long";
       }
    }
-   element led_pio.s1
+   element ext_flash.s1
    {
       datum baseAddress
       {
-         value = "256";
+         value = "1140850688";
          type = "long";
       }
    }
-   element vol_transfer_done_pio.s1
+   element clock_crossing_0.s1
    {
       datum baseAddress
       {
@@ -307,35 +307,11 @@
          type = "long";
       }
    }
-   element sys_timer.s1
+   element sw_pio.s1
    {
       datum baseAddress
       {
-         value = "1225795072";
-         type = "long";
-      }
-   }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1225791488";
-         type = "long";
-      }
-   }
-   element vol_recording_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "128";
+         value = "384";
          type = "long";
       }
    }
@@ -347,19 +323,43 @@
          type = "long";
       }
    }
-   element sw_pio.s1
+   element descriptor_memory.s1
    {
       datum baseAddress
       {
-         value = "384";
+         value = "1225791488";
          type = "long";
       }
    }
-   element ext_flash.s1
+   element sys_timer.s1
    {
       datum baseAddress
       {
-         value = "1140850688";
+         value = "1225795072";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "128";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
          type = "long";
       }
    }
@@ -371,6 +371,14 @@
          type = "long";
       }
    }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1225794816";
+         type = "long";
+      }
+   }
    element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
@@ -379,27 +387,19 @@
          type = "long";
       }
    }
-   element pb_pio.s1
+   element pll.s1
    {
       datum baseAddress
       {
-         value = "512";
+         value = "1225794560";
          type = "long";
       }
    }
-   element clock_crossing_0.s1
+   element led_pio.s1
    {
       datum baseAddress
       {
-         value = "0";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1225794816";
+         value = "256";
          type = "long";
       }
    }
@@ -527,8 +527,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="DE4_DDR2.qpf" />
- <parameter name="systemHash" value="-50679517403" />
- <parameter name="timeStamp" value="1320971152791" />
+ <parameter name="systemHash" value="-50199644501" />
+ <parameter name="timeStamp" value="1321024491690" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -1058,11 +1058,11 @@
   <parameter name="addressWidth" value="25" />
   <parameter name="corePreset" value="CUSTOM" />
   <parameter name="dataWidth" value="16" />
-  <parameter name="holdTime" value="400" />
-  <parameter name="setupTime" value="400" />
+  <parameter name="holdTime" value="40" />
+  <parameter name="setupTime" value="110" />
   <parameter name="sharedPorts">s1/address,s1/data,s1/read_n,s1/write_n</parameter>
   <parameter name="timingUnits" value="NS" />
-  <parameter name="waitTime" value="400" />
+  <parameter name="waitTime" value="160" />
  </module>
  <module
    name="flash_tristate_bridge"

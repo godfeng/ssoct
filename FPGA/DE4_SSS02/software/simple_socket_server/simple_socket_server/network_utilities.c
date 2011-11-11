@@ -123,23 +123,41 @@ error_t generate_and_store_mac_addr()
   
   while(!ser_num)
   {
-    printf("Please enter your 9-digit serial number. This is printed on a \n");
-    printf("label under your Nios dev. board. The first 3 digits of the \n");
-    printf("label are ASJ and the serial number follows this.\n -->");
+    //////////////////////////////////////////////////////////
+    // COMMENTED OUT
+    //////////////////////////////////////////////////////////
     
-    for(i=0; i<9; i++)
-    {
-      serial_number[i] = getchar();
-      putchar(serial_number[i]);
-      
-      /* Handle backspaces.  How civilized. */
-      if ((serial_number[i] == 0x08) && (i >= 0)) 
-      {
-        i--;
-      }
-    }
-    printf("\n");
-            
+//    printf("Please enter your 9-digit serial number. This is printed on a \n");
+//    printf("label under your Nios dev. board. The first 3 digits of the \n");
+//    printf("label are ASJ and the serial number follows this.\n -->");
+//    
+//    for(i=0; i<9; i++)
+//    {
+//      serial_number[i] = getchar();
+//      putchar(serial_number[i]);
+//      
+//      /* Handle backspaces.  How civilized. */
+//      if ((serial_number[i] == 0x08) && (i >= 0)) 
+//      {
+//        i--;
+//      }
+//    }
+//    printf("\n");
+    //////////////////////////////////////////////////////////
+    // COMMENTED OUT
+    //////////////////////////////////////////////////////////
+    
+    // Hardcoded serial number EGC modification 11/11/11
+    serial_number[0] = '1';
+    serial_number[1] = '2';
+    serial_number[2] = '3';
+    serial_number[3] = '4';
+    serial_number[4] = '5';
+    serial_number[5] = '6';
+    serial_number[6] = '7';
+    serial_number[7] = '8';
+    serial_number[8] = '9';
+    
     for(i=0; i<9; i++)
     {
       if (isdigit(serial_number[i]))

@@ -4331,3 +4331,136 @@ Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\softwa
 
 !ENTRY org.eclipse.ui 4 4 2011-11-10 19:36:30.702
 !MESSAGE Invalid Menu Extension (Path is invalid): RunAsLauterbachISS
+!SESSION 2011-11-11 09:47:18.300 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-11-11 09:47:21.050
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.
+
+!ENTRY com.altera.ide.core 1 0 2011-11-11 09:48:58.027
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 10:02:42.248
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 10:02:42.586
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 
+!SESSION 2011-11-11 11:50:03.178 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 11:50:24.384
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 11:50:24.723
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 
+
+!ENTRY com.altera.ide.core 1 0 2011-11-11 11:50:43.469
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-11-11 12:04:01.903 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 1 0 2011-11-11 12:04:25.156
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 12:05:12.426
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 12:05:12.775
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 
+
+!ENTRY org.eclipse.ui 4 4 2011-11-11 15:05:55.849
+!MESSAGE Unhandled event loop exception
+
+!ENTRY org.eclipse.ui 4 0 2011-11-11 15:05:55.852
+!MESSAGE java.lang.NullPointerException
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.cdt.managedbuilder.internal.macros.MbsMacroSupplier.getMacro(MbsMacroSupplier.java:418)
+	at org.eclipse.cdt.managedbuilder.internal.macros.MbsMacroSupplier.getMacro(MbsMacroSupplier.java:347)
+	at org.eclipse.cdt.managedbuilder.internal.macros.MbsMacroSupplier.getMacros(MbsMacroSupplier.java:665)
+	at org.eclipse.cdt.managedbuilder.internal.macros.BuildMacroProvider.getMacros(BuildMacroProvider.java:111)
+	at org.eclipse.cdt.managedbuilder.internal.macros.MacroResolver.checkIntegrity(MacroResolver.java:260)
+	at org.eclipse.cdt.managedbuilder.internal.ui.MacrosBlock.updateValues(MacrosBlock.java:921)
+	at org.eclipse.cdt.managedbuilder.internal.ui.MacrosSetBlock.updateValues(MacrosSetBlock.java:260)
+	at org.eclipse.cdt.managedbuilder.internal.ui.MacrosSetBlock.setVisible(MacrosSetBlock.java:221)
+	at org.eclipse.cdt.ui.dialogs.TabFolderOptionBlock.setCurrentPage(TabFolderOptionBlock.java:247)
+	at org.eclipse.cdt.ui.dialogs.TabFolderOptionBlock$1.widgetSelected(TabFolderOptionBlock.java:128)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:90)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:928)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3348)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2968)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:820)
+	at org.eclipse.jface.window.Window.open(Window.java:796)
+	at org.eclipse.ui.dialogs.PropertyDialogAction.run(PropertyDialogAction.java:156)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:499)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:539)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:488)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:400)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:928)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3348)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2968)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1914)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1878)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:419)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
+	at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:78)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:92)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:68)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:177)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
+	at org.eclipse.core.launcher.Main.basicRun(Main.java:280)
+	at org.eclipse.core.launcher.Main.run(Main.java:977)
+	at org.eclipse.core.launcher.Main.main(Main.java:952)
+
+!ENTRY org.eclipse.ui 4 4 2011-11-11 15:13:06.279
+!MESSAGE Invalid Menu Extension (Path is invalid): RunAsLauterbachISS
+
+!ENTRY org.eclipse.ui 4 4 2011-11-11 15:15:23.462
+!MESSAGE Invalid Menu Extension (Path is invalid): RunAsLauterbachISS
+!SESSION 2011-11-11 15:43:55.620 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 16:04:53.659
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 16:04:53.969
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 
+
+!ENTRY com.altera.ide.core 1 0 2011-11-11 16:05:03.318
+!MESSAGE C:\altera\91\quartus\bin\cygwin\bin/cygpath --unix --file - 
+!SESSION 2011-11-11 16:56:16.351 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 16:57:26.134
+!MESSAGE jtagconfig --listhardware 
+
+!ENTRY com.altera.nj.launch 1 0 2011-11-11 16:57:26.823
+!MESSAGE jtagconfig --cable USB-Blaster [USB-0] --extra-info 

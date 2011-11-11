@@ -13,16 +13,16 @@ function connect2FPGA
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % Creates tcp/ip connection to the specified 'hostname' and port
-SSOctDefaults.tcpConn = pnet('tcpconnect',SSOctDefaults.serverAddress,SSOctDefaults.portNumber );
+ssOCTdefaults.tcpConn = pnet('tcpconnect',ssOCTdefaults.serverAddress,ssOCTdefaults.portNumber );
 % Necessary pause
 pause(0.1);
 % specifies how long read and listen commands blocks before it timeouts.
-pnet(SSOctDefaults.tcpConn,'setreadtimeout',0.25);
-pnet(SSOctDefaults.tcpConn,'setwritetimeout',0.1);
-fprintf('Connection established to %s at port %d\n',SSOctDefaults.serverAddress,SSOctDefaults.portNumber)
+pnet(ssOCTdefaults.tcpConn,'setreadtimeout',0.25);
+pnet(ssOCTdefaults.tcpConn,'setwritetimeout',0.1);
+fprintf('Connection established to %s at port %d\n',ssOCTdefaults.serverAddress,ssOCTdefaults.portNumber)
 
 % ==============================================================================
 % [EOF]

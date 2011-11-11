@@ -90,17 +90,17 @@ xlim([0 100])
 %% ------------------------------ Edgar OCT -----------------------------------
 % Load default parameters
 ss_oct_get_defaults
-global SSOctDefaults
+global ssOCTdefaults
 load ('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\bobineData.mat')
 
 % Get filename
-[filename pathname] = uigetfile('*.dat','Choose a file',SSOctDefaults.dirCurrExp,...
+[filename pathname] = uigetfile('*.dat','Choose a file',ssOCTdefaults.dirCurrExp,...
     'MultiSelect', 'on');
 % Map file to memory
 A = memmapfile(fullfile(pathname,filename), 'format', 'double',...
     'writable', false);
-A.Format = {'double' [SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame...
-    SSOctDefaults.nFrames] 'rawData'};
+A.Format = {'double' [ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame...
+    ssOCTdefaults.nFrames] 'rawData'};
 for iFrames=1:55,
     % Get raw data
     rawBscan(:,:,iFrames) = squeeze(A.Data.rawData(:,:,iFrames+5));
@@ -122,7 +122,7 @@ figure;
 imagesc(log(mMode+1)); colormap(gray(255)); colorbar
 % title(sprintf('x-slice No: %d',sliceNo))
 xlabel('Alines')
-ylabel([SSOctDefaults.zAxis ' [um]'])
+ylabel([ssOCTdefaults.zAxis ' [um]'])
 
 %% FFT of M-mode image
 lineFreq = 0.9084370*size(Bscan,2);

@@ -13,10 +13,10 @@ function flush_data
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % Read elements at the beginning of connection to flush buffer
-flush = pnet(SSOctDefaults.tcpConn,'read',SSOctDefaults.MENUSIZE,'uint8');
+flush = pnet(ssOCTdefaults.tcpConn,'read',ssOCTdefaults.MENUSIZE,'uint8');
 % Show flushed data
 disp(char(flush))
 

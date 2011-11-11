@@ -19,23 +19,23 @@ function correctedBscan = correct_B_scan(rawBscan, varargin)
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % Values taken previously (see reference_measure.m)
 % Background signal from the reference arm (sample arm blocked)
-if isfield(SSOctDefaults,'refArm')
-    refArm      = SSOctDefaults.refArm;
+if isfield(ssOCTdefaults,'refArm')
+    refArm      = ssOCTdefaults.refArm;
 end
 
 % Calculate the reference signal as the median A-line of current B-scan
-if SSOctDefaults.medianRefArm,
-    SSOctDefaults.refArm    = median(rawBscan,2);
-    refArm                  = SSOctDefaults.refArm;
+if ssOCTdefaults.medianRefArm,
+    ssOCTdefaults.refArm    = median(rawBscan,2);
+    refArm                  = ssOCTdefaults.refArm;
 end
 
 % Self interference signal from the sample arm (reference arm blocked)
-% if isfield(SSOctDefaults,'sampleArm')
-%     sampleArm   = SSOctDefaults.sampleArm;
+% if isfield(ssOCTdefaults,'sampleArm')
+%     sampleArm   = ssOCTdefaults.sampleArm;
 % end
 
 % only want 2 optional inputs at most
@@ -59,12 +59,12 @@ optArgs(1:numVarArgs) = varargin;
 
 if correctBackground
     % Background signal from the reference arm (sample arm blocked)
-    % refMatrix       = repmat(refArm, [1 SSOctDefaults.nLinesPerFrame]);
+    % refMatrix       = repmat(refArm, [1 ssOCTdefaults.nLinesPerFrame]);
     % replacement of repmat is 2% faster this way!
-    refMatrix = refArm(:,ones(SSOctDefaults.nLinesPerFrame, 1));
+    refMatrix = refArm(:,ones(ssOCTdefaults.nLinesPerFrame, 1));
     
     % Self interference signal from the sample arm (reference arm blocked)
-    % sampleMatrix    = repmat(sampleArm, [1 SSOctDefaults.nLinesPerFrame]);
+    % sampleMatrix    = repmat(sampleArm, [1 ssOCTdefaults.nLinesPerFrame]);
 
     % Digital subtraction of background signal (reference signal when the sample
     % arm is blocked). Spectral shaping is done by dividing the interferogram by
@@ -74,12 +74,12 @@ else
     correctedBscan = double(rawBscan);
 end
 % Apply window to the interferogram
-% correctedBscan = correctedBscan.*repmat(winFunction(SSOctDefaults.NSAMPLES), ...
-%     [1 SSOctDefaults.nLinesPerFrame]);
+% correctedBscan = correctedBscan.*repmat(winFunction(ssOCTdefaults.NSAMPLES), ...
+%     [1 ssOCTdefaults.nLinesPerFrame]);
 
 % replacement of repmat is 2% faster this way!
-tmpCorrArray = winFunction(SSOctDefaults.NSAMPLES);
-correctedBscan = correctedBscan.*tmpCorrArray(:,ones(SSOctDefaults.nLinesPerFrame, 1));
+tmpCorrArray = winFunction(ssOCTdefaults.NSAMPLES);
+correctedBscan = correctedBscan.*tmpCorrArray(:,ones(ssOCTdefaults.nLinesPerFrame, 1));
 
 % ==============================================================================
 % [EOF]

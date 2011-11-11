@@ -22,7 +22,7 @@ showRefScan = false;
 pauseTime = 0.05;
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 % Load default parameters
 ss_oct_get_defaults
 % only want 1 optional inputs at most
@@ -50,16 +50,16 @@ optArgs(1:numVarArgs) = varargin;
 % ---------------------------- Display reference scan --------------------------
 % Load reference values
 load(fullfile(pathName,'Reference_Measurements.mat'));
-if SSOctDefaults.resampleData
+if ssOCTdefaults.resampleData
     % Resample reference B-scan
     resampledRawBscanRef = resample_B_scan(rawBscanRef);
     % Update reference A-line
-    SSOctDefaults.refArm = mean(resampledRawBscanRef,2);
+    ssOCTdefaults.refArm = mean(resampledRawBscanRef,2);
 else
     % Do not resample
     resampledRawBscanRef = rawBscanRef;
     % Update reference A-line
-    SSOctDefaults.refArm = mean(resampledRawBscanRef,2);
+    ssOCTdefaults.refArm = mean(resampledRawBscanRef,2);
 end
 % Get structure   
 resampledStruct2D = BmodeScan2struct(resampledRawBscanRef);
@@ -69,10 +69,10 @@ if showRefScan
     hRef = figure; set(gcf,'color','w')
     % Change figure name
     set(hRef,'Name', 'Reference Scan');
-    if SSOctDefaults.displayLog
+    if ssOCTdefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        resampledStruct2D = resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:);
+        resampledStruct2D = resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:);
 
         % noise_lower_fraction = 0.1
         noise_lower_fraction = 0.1;
@@ -87,24 +87,24 @@ if showRefScan
             maxColor = max(resampledStruct2D(:));
         end        
         
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
             resampledStruct2D,...
             [minColor maxColor]);
         title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
     else
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-            resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:));
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+            resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:));
         title('Reference')
     end
-    if SSOctDefaults.displayColorBar
+    if ssOCTdefaults.displayColorBar
         colorbar;
     else
         colorbar off;
     end
     axis tight
-    colormap(SSOctDefaults.OCTcolorMap)
+    colormap(ssOCTdefaults.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
 end
@@ -118,9 +118,9 @@ clear refArm sampleArm rawBscanRef resampledRawBscanRef
 hFig = figure;
 set(hFig,'color','w')
 % Change figure name
-set(hFig,'Name',[SSOctDefaults.acqParam{8,1} ': '...
-    SSOctDefaults.acqParam{8,2} '. ' SSOctDefaults.acqParam{9,1} ': '...
-    SSOctDefaults.acqParam{9,2} '.'])
+set(hFig,'Name',[ssOCTdefaults.acqParam{8,1} ': '...
+    ssOCTdefaults.acqParam{8,2} '. ' ssOCTdefaults.acqParam{9,1} ': '...
+    ssOCTdefaults.acqParam{9,2} '.'])
 tilefigs
 % Number of transferred frames
 nFrames = mappedFile.format{2}(3);
@@ -137,7 +137,7 @@ end
 for iFrames = framesRange,
     % Convert a single B-scan to double
     rawBscan = double(squeeze(mappedFile.Data.rawData(:,:,iFrames)));
-    if SSOctDefaults.resampleData
+    if ssOCTdefaults.resampleData
         % Resample/interpolate B-scan
         resampledRawBscan = resample_B_scan(rawBscan);
     else
@@ -152,10 +152,10 @@ for iFrames = framesRange,
     Bscan = resampledStruct2D;
     
     figure(hFig)
-    if SSOctDefaults.displayLog
+    if ssOCTdefaults.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        resampledStruct2D = resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:);
+        resampledStruct2D = resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:);
 
         % noise_lower_fraction = 0.1
         noise_lower_fraction = 0.1;
@@ -170,7 +170,7 @@ for iFrames = framesRange,
             maxColor = max(resampledStruct2D(:));
         end
         
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
             resampledStruct2D,...
             [minColor maxColor]);
         title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
@@ -182,18 +182,18 @@ for iFrames = framesRange,
             end
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-            resampledStruct2D(SSOctDefaults.NSAMPLES/2:-1:1,:),...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+            resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:),...
             [minColor maxColor]);
         title(sprintf('Frame %d of %d', iFrames, nFrames))
     end
-    if SSOctDefaults.displayColorBar
+    if ssOCTdefaults.displayColorBar
         colorbar;
     else
         colorbar off;
     end
     axis tight
-    colormap(SSOctDefaults.OCTcolorMap)
+    colormap(ssOCTdefaults.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
     pause(pauseTime)

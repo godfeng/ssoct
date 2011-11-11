@@ -1,5 +1,5 @@
 function ss_oct_defaults
-% Loads default values most common spm_lot variables to SSOctDefaults structure,
+% Loads default values most common spm_lot variables to ssOCTdefaults structure,
 % as a global variable
 % SYNTAX:
 % ss_oct_defaults
@@ -7,7 +7,7 @@ function ss_oct_defaults
 % None
 % OUTPUTS:
 % None:  Just a global structure containing defaults values of common spm_lot 
-%        variables named SSOctDefaults
+%        variables named ssOCTdefaults
 % Care must be taken when modifying this file!
 %_______________________________________________________________________________
 % Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
@@ -15,160 +15,160 @@ function ss_oct_defaults
 % Edgar Guevara
 % 2011/07/11
 
-% Default values for ss_oct in structure SSOctDefaults
-global SSOctDefaults
+% Default values for ss_oct in structure ssOCTdefaults
+global ssOCTdefaults
 
 %===============================================================================
 % Directories & file names
 %===============================================================================
 % Installation directory
-SSOctDefaults.dirUser           = 'D:\Edgar\Documents\ssoct\Matlab\';
+ssOCTdefaults.dirUser           = 'D:\Edgar\Documents\ssoct\Matlab\';
 % Data directory
-SSOctDefaults.dirExp            = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+ssOCTdefaults.dirExp            = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
 % Current Experiments folder
-SSOctDefaults.dirCurrExp        = [];
+ssOCTdefaults.dirCurrExp        = [];
 % LabView folder
-SSOctDefaults.dirLabView        = 'D:\Edgar\Documents\ssoct\LabView\SSS01\';
+ssOCTdefaults.dirLabView        = 'D:\Edgar\Documents\ssoct\LabView\';
 % Name of the file containing acquisition parameters
-SSOctDefaults.acqParamFileName  = 'acqParam.csv';
+ssOCTdefaults.acqParamFileName  = 'acqParam.csv';
 % Name of the subject
-SSOctDefaults.subjectID         = 'NO_NAME';
+ssOCTdefaults.subjectID         = 'NO_NAME';
 % Description of the experiment
-SSOctDefaults.expDescription    = 'EMPTY';
+ssOCTdefaults.expDescription    = 'EMPTY';
 % Maximize figure
-SSOctDefaults.screenSize        = get(0,'Screensize');
-SSOctDefaults.screenSize        = [1+SSOctDefaults.screenSize(3)/2 40 ...
-    SSOctDefaults.screenSize(3)/2 ...
-    SSOctDefaults.screenSize(4)-40];
+ssOCTdefaults.screenSize        = get(0,'Screensize');
+ssOCTdefaults.screenSize        = [1+ssOCTdefaults.screenSize(3)/2 40 ...
+    ssOCTdefaults.screenSize(3)/2 ...
+    ssOCTdefaults.screenSize(4)-40];
 
 %===============================================================================
 % SS-OCT experiment specific variables
 %===============================================================================
 % Server machine (FPGA)
-SSOctDefaults.serverAddress     = '192.168.1.234';
-SSOctDefaults.portNumber        = 30;
+ssOCTdefaults.serverAddress     = '192.168.1.234';
+ssOCTdefaults.portNumber        = 30;
 % Number of samples per A-line (1170)
-SSOctDefaults.NSAMPLES          = 1170;
+ssOCTdefaults.NSAMPLES          = 1170;
 % Number of bytes per A-line (2368) > NSAMPLES*2=2340
-SSOctDefaults.nBytesPerAline    = 2368;
+ssOCTdefaults.nBytesPerAline    = 2368;
 % Number of 16-bit words per A-line (nBytesPerAline/2)
-SSOctDefaults.nWordsPerAline    = SSOctDefaults.nBytesPerAline/2;
+ssOCTdefaults.nWordsPerAline    = ssOCTdefaults.nBytesPerAline/2;
 % Number of characters of startup menu
-SSOctDefaults.MENUSIZE          = 360;
+ssOCTdefaults.MENUSIZE          = 360;
 % Save to file
-SSOctDefaults.save2file         = true;
+ssOCTdefaults.save2file         = true;
 % Number of A-lines per frame
-SSOctDefaults.nLinesPerFrame    = 1024;
+ssOCTdefaults.nLinesPerFrame    = 1024;
 % Number of frames per volume
-SSOctDefaults.nFrames           = 64;
+ssOCTdefaults.nFrames           = 64;
 % Number of saved frames
-SSOctDefaults.nFramesSaved      = 0;
+ssOCTdefaults.nFramesSaved      = 0;
 % Number of total samples per scan
-SSOctDefaults.nAcqSamples       = SSOctDefaults.nLinesPerFrame *...
-    SSOctDefaults.nFrames;
+ssOCTdefaults.nAcqSamples       = ssOCTdefaults.nLinesPerFrame *...
+    ssOCTdefaults.nFrames;
 % Tx & Rx buffer size for all socket sends & receives
-SSOctDefaults.BUFFERSIZE        = SSOctDefaults.nBytesPerAline *...
-    SSOctDefaults.nLinesPerFrame;
+ssOCTdefaults.BUFFERSIZE        = ssOCTdefaults.nBytesPerAline *...
+    ssOCTdefaults.nLinesPerFrame;
 % Required pause between acquired volumes (depends on nSamplesPerVolume)
-SSOctDefaults.pauseTime         = 1.8;
+ssOCTdefaults.pauseTime         = 1.8;
 
 %===============================================================================
 % GUI parameters
 %===============================================================================
 % Display B-scan in log scale
-SSOctDefaults.displayLog        = false;
+ssOCTdefaults.displayLog        = false;
 % Display Color Bar
-SSOctDefaults.displayColorBar   = true;
+ssOCTdefaults.displayColorBar   = true;
 % Interferogram signal plot
-SSOctDefaults.displaySingleLine = true;
+ssOCTdefaults.displaySingleLine = true;
 % Resamling data at k-clock frequency
-SSOctDefaults.resampleData      = false;
+ssOCTdefaults.resampleData      = false;
 % Correct B-scan in real-time
-SSOctDefaults.corrBscan         = false;
+ssOCTdefaults.corrBscan         = false;
 % Show FWHM in real time
-SSOctDefaults.showFWHM          = false;
+ssOCTdefaults.showFWHM          = false;
 % Calculate reference signal as the median A-line of current B-scan
-SSOctDefaults.medianRefArm      = false;
+ssOCTdefaults.medianRefArm      = false;
 % Colormap to be used
-SSOctDefaults.OCTcolorMap       = get_colormaps('bow');
+ssOCTdefaults.OCTcolorMap       = get_colormaps('bow');
 
 %===============================================================================
 % Galvo mirrors parameters
 %===============================================================================
-SSOctDefaults.galvos.xStartVolt         = -1;
-SSOctDefaults.galvos.xEndVolt           = 1;
-SSOctDefaults.galvos.yStartVolt         = -1;
-SSOctDefaults.galvos.yEndVolt           = 1;
-SSOctDefaults.galvos.xStartUm           = -100;
-SSOctDefaults.galvos.xEndUm             = 100;
-SSOctDefaults.galvos.yStartUm           = -100;
-SSOctDefaults.galvos.yEndUm             = 100;
+ssOCTdefaults.galvos.xStartVolt         = -1;
+ssOCTdefaults.galvos.xEndVolt           = 1;
+ssOCTdefaults.galvos.yStartVolt         = -1;
+ssOCTdefaults.galvos.yEndVolt           = 1;
+ssOCTdefaults.galvos.xStartUm           = -100;
+ssOCTdefaults.galvos.xEndUm             = 100;
+ssOCTdefaults.galvos.yStartUm           = -100;
+ssOCTdefaults.galvos.yEndUm             = 100;
 % Number of samples per volume scan (given by LabView)
-SSOctDefaults.galvos.nSamplesPerVolume  = 1100;
+ssOCTdefaults.galvos.nSamplesPerVolume  = 1100;
 
 
 %===============================================================================
 % OCT axial resolution
 %===============================================================================
 % Center wavelength
-SSOctDefaults.lambda0           = 1310e-9;
+ssOCTdefaults.lambda0           = 1310e-9;
 % Wavelength range
-SSOctDefaults.minLambda         = 1258e-9;
-SSOctDefaults.maxLambda         = 1361.2e-9;
+ssOCTdefaults.minLambda         = 1258e-9;
+ssOCTdefaults.maxLambda         = 1361.2e-9;
 % FWHM in wavelength
-% SSOctDefaults.delta_lambda      = 100e-9;
-SSOctDefaults.delta_lambda      = SSOctDefaults.maxLambda - SSOctDefaults.minLambda;
+% ssOCTdefaults.delta_lambda      = 100e-9;
+ssOCTdefaults.delta_lambda      = ssOCTdefaults.maxLambda - ssOCTdefaults.minLambda;
 % Axial resolution in air
-SSOctDefaults.zr_air            = (2/pi)*log(2)*SSOctDefaults.lambda0^2 /...
-    SSOctDefaults.delta_lambda;
+ssOCTdefaults.zr_air            = (2/pi)*log(2)*ssOCTdefaults.lambda0^2 /...
+    ssOCTdefaults.delta_lambda;
 % Index of refraction of tissue
-SSOctDefaults.n                 = 1.4;
+ssOCTdefaults.n                 = 1.4;
 % Axial resolution in tissue
-SSOctDefaults.zr                = SSOctDefaults.zr_air / SSOctDefaults.n;
+ssOCTdefaults.zr                = ssOCTdefaults.zr_air / ssOCTdefaults.n;
 
 %===============================================================================
 % OCT transverse resolution
 %===============================================================================
 % Entrance pupil diameter
-SSOctDefaults.EP                = [4e-3 4e-3 4e-3];
+ssOCTdefaults.EP                = [4e-3 4e-3 4e-3];
 % F280APC-C beam diameter
-SSOctDefaults.beamWaist         = [3.4 3.4 3.4]*1e-3;
+ssOCTdefaults.beamWaist         = [3.4 3.4 3.4]*1e-3;
 % Effective Focal Length [LSM02 LSM03 LSM04]
-SSOctDefaults.EFL               = [18 36 54]*1e-3;
+ssOCTdefaults.EFL               = [18 36 54]*1e-3;
 % Numerical Aperture
-SSOctDefaults.NA                = sqrt(1 ./ (1 + (2.*SSOctDefaults.EFL ./ ...
-    SSOctDefaults.beamWaist).^2));  
+ssOCTdefaults.NA                = sqrt(1 ./ (1 + (2.*ssOCTdefaults.EFL ./ ...
+    ssOCTdefaults.beamWaist).^2));  
 % Transverse (lateral) resolution for different scan lenses [LSM02 LSM03 LSM04]
-SSOctDefaults.rr                = (2/pi)*SSOctDefaults.lambda0 ./ SSOctDefaults.NA;
+ssOCTdefaults.rr                = (2/pi)*ssOCTdefaults.lambda0 ./ ssOCTdefaults.NA;
 
 %===============================================================================
 % Maximum path difference (Scan Range of a FDOCT) (Penetration depth)
 %===============================================================================
-SSOctDefaults.delta_Z_Nq        = SSOctDefaults.lambda0^2 * ...
-    SSOctDefaults.NSAMPLES / (4*SSOctDefaults.delta_lambda*SSOctDefaults.n);
+ssOCTdefaults.delta_Z_Nq        = ssOCTdefaults.lambda0^2 * ...
+    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.delta_lambda*ssOCTdefaults.n);
 % Index of refraction of air
-SSOctDefaults.n_air             = 1;
-SSOctDefaults.delta_Z_Nq_air    = SSOctDefaults.lambda0^2 * ...
-    SSOctDefaults.NSAMPLES / (4*SSOctDefaults.delta_lambda*SSOctDefaults.n_air);
+ssOCTdefaults.n_air             = 1;
+ssOCTdefaults.delta_Z_Nq_air    = ssOCTdefaults.lambda0^2 * ...
+    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.delta_lambda*ssOCTdefaults.n_air);
 % Wavenumber range
-SSOctDefaults.minK              = 2*pi / SSOctDefaults.maxLambda;
-SSOctDefaults.maxK              = 2*pi / SSOctDefaults.minLambda;
+ssOCTdefaults.minK              = 2*pi / ssOCTdefaults.maxLambda;
+ssOCTdefaults.maxK              = 2*pi / ssOCTdefaults.minLambda;
 % Wavenumbers column vector
-SSOctDefaults.vectorK           = linspace(SSOctDefaults.maxK,...
-    SSOctDefaults.minK, SSOctDefaults.NSAMPLES)';
+ssOCTdefaults.vectorK           = linspace(ssOCTdefaults.maxK,...
+    ssOCTdefaults.minK, ssOCTdefaults.NSAMPLES)';
 % Lambda Column Vector (in nm)
-SSOctDefaults.vectorLambda      = 2*pi ./ SSOctDefaults.vectorK;
+ssOCTdefaults.vectorLambda      = 2*pi ./ ssOCTdefaults.vectorK;
 % z-axis in um (air)
-SSOctDefaults.zAxis_air         = linspace(SSOctDefaults.delta_Z_Nq_air ./...
-    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air,SSOctDefaults.NSAMPLES);
+ssOCTdefaults.zAxis_air         = linspace(ssOCTdefaults.delta_Z_Nq_air ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES);
 % z-axis in um (tissue)
-SSOctDefaults.zAxis             = linspace(SSOctDefaults.delta_Z_Nq ./...
-    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq,SSOctDefaults.NSAMPLES);
+ssOCTdefaults.zAxis             = linspace(ssOCTdefaults.delta_Z_Nq ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq,ssOCTdefaults.NSAMPLES);
 % Positive z-axis in um (air)
-SSOctDefaults.positiveZaxis_air = linspace(SSOctDefaults.delta_Z_Nq_air ./...
-    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq_air,SSOctDefaults.NSAMPLES/2);
+ssOCTdefaults.positiveZaxis_air = linspace(ssOCTdefaults.delta_Z_Nq_air ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES/2);
 % Positive z-axis in um (tissue)
-SSOctDefaults.positiveZaxis     = linspace(SSOctDefaults.delta_Z_Nq ./...
-    SSOctDefaults.NSAMPLES,SSOctDefaults.delta_Z_Nq,SSOctDefaults.NSAMPLES/2);
+ssOCTdefaults.positiveZaxis     = linspace(ssOCTdefaults.delta_Z_Nq ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq,ssOCTdefaults.NSAMPLES/2);
 % ==============================================================================
 % [EOF]

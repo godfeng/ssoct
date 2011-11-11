@@ -6,21 +6,21 @@ function disconnect_from_FPGA
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % Change timeouts
-pnet(SSOctDefaults.tcpConn,'setreadtimeout',1)
-pnet(SSOctDefaults.tcpConn,'setwritetimeout',1);
+pnet(ssOCTdefaults.tcpConn,'setreadtimeout',1)
+pnet(ssOCTdefaults.tcpConn,'setwritetimeout',1);
    
 % Closes a tcpconnection (send first a 'Q\n\r')
-pnet(SSOctDefaults.tcpConn,'write',[uint8(81) uint8(10) uint8(13)]);
+pnet(ssOCTdefaults.tcpConn,'write',[uint8(81) uint8(10) uint8(13)]);
 % Receive 35+2 characters from FPGA
-textReceived = uint8(swapbytes(pnet(SSOctDefaults.tcpConn,'read',[37 1],'uint8')));
+textReceived = uint8(swapbytes(pnet(ssOCTdefaults.tcpConn,'read',[37 1],'uint8')));
 if ~isempty(textReceived)
     disp(char(textReceived'))
 end
 % pause(0.1);
-pnet(SSOctDefaults.tcpConn,'close')
+pnet(ssOCTdefaults.tcpConn,'close')
 % Closes all pnet connections/sockets used in this matlab session.
 pnet('closeall')
 
@@ -31,7 +31,7 @@ pnet('closeall')
 % Kill Quartus programmer task
 [~,~] = system('taskkill /F /FI "IMAGENAME eq quartus_pgm.exe"'); 
 
-fprintf('Connection closed from %s at port %d\n',SSOctDefaults.serverAddress,SSOctDefaults.portNumber)
+fprintf('Connection closed from %s at port %d\n',ssOCTdefaults.serverAddress,ssOCTdefaults.portNumber)
 
 % ==============================================================================
 % [EOF]

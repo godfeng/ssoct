@@ -26,10 +26,10 @@ function varargout = ss_oct_get_defaults(defstr, varargin)
 fclose('all');
 
 % Just a name change to follow the variable created by spm_lot_defaults //EGC
-global SSOctDefaults;
+global ssOCTdefaults;
 
 % Initialize defaults structure
-if isempty(SSOctDefaults)
+if isempty(ssOCTdefaults)
     ss_oct_defaults;
 end
 

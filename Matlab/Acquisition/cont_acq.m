@@ -14,7 +14,7 @@ function cont_acq
 % 2011/09/15
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % ----------------------------- New figure -------------------------------------
 hContAcq = figure; 
@@ -23,12 +23,12 @@ set(hContAcq,'color','w')
 % Change figure name
 set(hContAcq,'Name','Continuous Acquisition')
 % Maximize figure
-set(hContAcq, 'OuterPosition', SSOctDefaults.screenSize);
+set(hContAcq, 'OuterPosition', ssOCTdefaults.screenSize);
 
 % ------ Transmit acquisition parameters ['A' nLinesPerFrame nFrames]-----------
-pnet(SSOctDefaults.tcpConn,'write',([uint8(65) ...
-    typecast(uint32(SSOctDefaults.nLinesPerFrame), 'uint8') ...
-    typecast(uint32(SSOctDefaults.nFrames), 'uint8')]));
+pnet(ssOCTdefaults.tcpConn,'write',([uint8(65) ...
+    typecast(uint32(ssOCTdefaults.nLinesPerFrame), 'uint8') ...
+    typecast(uint32(ssOCTdefaults.nFrames), 'uint8')]));
 pause(0.1)                              % Necessary to give time to NIOS
 
 % --------------------- Take reference measurements ----------------------------
@@ -36,24 +36,24 @@ pause(0.1)                              % Necessary to give time to NIOS
 
 
 % Send command chain ('C') to the socket server
-pnet(SSOctDefaults.tcpConn,'write',uint8(67));
+pnet(ssOCTdefaults.tcpConn,'write',uint8(67));
 pause(0.1)
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 % load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 
 % ------------------------------ Main Loop -------------------------------------
-if SSOctDefaults.save2file
+if ssOCTdefaults.save2file
     % Close all open files
     fclose('all');
     % Default file name
-    fileName = fullfile(SSOctDefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
+    fileName = fullfile(ssOCTdefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
     % Save file name of current experiment in global structure
-    SSOctDefaults.CurrExpFileName = fileName;
+    ssOCTdefaults.CurrExpFileName = fileName;
     % Create binary file
     fid = fopen(fileName, 'w');
     iFrames = 1;
     tic
-    while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
+    while ~exist(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'),'file')
         [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
@@ -65,20 +65,20 @@ if SSOctDefaults.save2file
     disp(['File saved as: ' fileName])
     pause(0.5);
     % Delete file created by LabView
-    delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
+    delete(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'))
 else
     %     Save data in a big variable
-    %     SSOctDefaults.OCTfullAcq = zeros([SSOctDefaults.nFrames SSOctDefaults.NSAMPLES ...
-    %         SSOctDefaults.nLinesPerFrame]);
+    %     ssOCTdefaults.OCTfullAcq = zeros([ssOCTdefaults.nFrames ssOCTdefaults.NSAMPLES ...
+    %         ssOCTdefaults.nLinesPerFrame]);
     iFrames = 1;
-    while ~exist(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'),'file')
+    while ~exist(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'),'file')
         displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')
     % Delete file created by LabView
     pause(0.5);
-    delete(fullfile(SSOctDefaults.dirCurrExp,'tostop.txt'))
+    delete(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'))
 end
 % Disconnect from socket server
 disconnect_from_FPGA

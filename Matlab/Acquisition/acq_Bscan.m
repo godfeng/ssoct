@@ -20,7 +20,7 @@ function [Bscan, varargout]  = acq_Bscan(varargin)
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 % only want 2 optional inputs at most
 numVarArgs = length(varargin);
 if numVarArgs > 2
@@ -41,25 +41,25 @@ optArgs(1:numVarArgs) = varargin;
 [winFunction correctBackground] = optArgs{:};
 
 % Preallocate
-Bscan = zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]);
-rawBscan16 = uint16(zeros([SSOctDefaults.NSAMPLES SSOctDefaults.nLinesPerFrame]));
+Bscan = zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]);
+rawBscan16 = uint16(zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]));
 % Initialize transfer time variable
 % transferTime = 0;
-for iLines = 1:SSOctDefaults.nLinesPerFrame,
+for iLines = 1:ssOCTdefaults.nLinesPerFrame,
 %     tic
     % Reads an array of nWordsPerAline elements from a connection
-    tempAline = pnet(SSOctDefaults.tcpConn,'read',[SSOctDefaults.nWordsPerAline 1],'uint16');
+    tempAline = pnet(ssOCTdefaults.tcpConn,'read',[ssOCTdefaults.nWordsPerAline 1],'uint16');
 %     transferTime = transferTime + toc;
     % Only keep NSAMPLES from transmitted data array (transposed)
-    Bscan(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
+    Bscan(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
     % B-scan saved as uint16
-    rawBscan16(:,iLines) = tempAline(1:SSOctDefaults.NSAMPLES)';
+    rawBscan16(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
 end
 
 % Average over nLinesPerFrame
-% transferTime = transferTime / SSOctDefaults.nLinesPerFrame;
+% transferTime = transferTime / ssOCTdefaults.nLinesPerFrame;
 % fprintf('Average transfer time = %03.2f Mbits/sec\n',...
-%     16*SSOctDefaults.nWordsPerAline/(transferTime*2^20))
+%     16*ssOCTdefaults.nWordsPerAline/(transferTime*2^20))
 
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground

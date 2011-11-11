@@ -11,9 +11,9 @@ function struct2D = BmodeScan2struct(Bmodescan)
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/07/11
-global SSOctDefaults
+global ssOCTdefaults
 
-if SSOctDefaults.resampleData
+if ssOCTdefaults.resampleData
     % K-clock resampling of a B-scan
     Bmodescan = resample_B_scan(Bmodescan);
 end

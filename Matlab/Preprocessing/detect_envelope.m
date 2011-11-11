@@ -46,11 +46,11 @@ function [posEnv negEnv] = detect_envelope(signal)
 % posEnv = abs(hil);
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
-posEnv = env_secant(1:SSOctDefaults.NSAMPLES, signal, 256, 'top');
+posEnv = env_secant(1:ssOCTdefaults.NSAMPLES, signal, 256, 'top');
 % Negative part envelope
-negEnv = env_secant(1:SSOctDefaults.NSAMPLES, signal, 256, 'bottom');
+negEnv = env_secant(1:ssOCTdefaults.NSAMPLES, signal, 256, 'bottom');
 
 % ==============================================================================
 % [EOF]

@@ -16,13 +16,13 @@ function [sampleArm, refArm] = reference_measure(hContAcq)
 % 2011/07/11
 
 % Modifies values of global variable
-global SSOctDefaults
+global ssOCTdefaults
 
 % Correct B-scan flag
-corrBscanFlag = SSOctDefaults.corrBscan;
+corrBscanFlag = ssOCTdefaults.corrBscan;
 
 % Signal from sample arm
-sampleArm   = zeros([SSOctDefaults.NSAMPLES 1]);
+sampleArm   = zeros([ssOCTdefaults.NSAMPLES 1]);
 fprintf('Taking reference measurement...Press <Ctrl>+<C> to cancel\n')
 
 figure(hContAcq)
@@ -30,22 +30,22 @@ subplot(121)
 title('Please block sample arm and press any key when ready...')
 pause()
 % Send command chain ('B') to the socket server.
-pnet(SSOctDefaults.tcpConn,'write',uint8(66));
+pnet(ssOCTdefaults.tcpConn,'write',uint8(66));
 pause(0.1)
 
 title('Acquiring data...')
 % Get data from reference arm
-pause(SSOctDefaults.pauseTime);         % Necessary pause before data transfer
+pause(ssOCTdefaults.pauseTime);         % Necessary pause before data transfer
 [rawBscanRef, ~] = acq_Bscan(@rectwin,false);
 % Average A-lines of reference arm
 refArm = mean(rawBscanRef,2);
 
 % Update global variable
-SSOctDefaults.refArm    = refArm;
-SSOctDefaults.sampleArm = sampleArm;
+ssOCTdefaults.refArm    = refArm;
+ssOCTdefaults.sampleArm = sampleArm;
 
 % Save reference and sample arm measurements
-save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
+save(fullfile(ssOCTdefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
     'refArm','rawBscanRef');
 
 [posEnv negEnv] = detect_envelope(refArm);
@@ -53,24 +53,24 @@ save(fullfile(SSOctDefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
 limitY = [0 2^14];
 
 subplot(222);
-if SSOctDefaults.displaySingleLine
+if ssOCTdefaults.displaySingleLine
     % -------------- Plot a single interferogram (A-line) ------------------
-    plot(1e9*SSOctDefaults.vectorLambda, refArm, 'k-',...
-        1e9*SSOctDefaults.vectorLambda, posEnv,'r:',...
-        1e9*SSOctDefaults.vectorLambda, negEnv,'b:');
+    plot(1e9*ssOCTdefaults.vectorLambda, refArm, 'k-',...
+        1e9*ssOCTdefaults.vectorLambda, posEnv,'r:',...
+        1e9*ssOCTdefaults.vectorLambda, negEnv,'b:');
     title('Reference measurement')
     xlabel('\lambda [nm]')
     ylabel('Intensity [ADC units]')
-    xlim(1e9*[SSOctDefaults.minLambda SSOctDefaults.maxLambda])
+    xlim(1e9*[ssOCTdefaults.minLambda ssOCTdefaults.maxLambda])
     ylim(limitY)
 else
     % -------------- Plot interferogram (B-scan) ------------------
-    imagesc(1:SSOctDefaults.nLinesPerFrame, 1e9*SSOctDefaults.vectorLambda, ...
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e9*ssOCTdefaults.vectorLambda, ...
         rawBscanRef, [0 16384]);
     title('Reference measurement')
     xlabel('A-lines')
     ylabel('\lambda [nm]')
-    if SSOctDefaults.displayColorBar
+    if ssOCTdefaults.displayColorBar
         colorbar;
     else
         colorbar off;
@@ -80,26 +80,26 @@ end
 % ------------------- Display a reference B-scan -------------------------------
 subplot(121)
 Bscan = BmodeScan2struct(rawBscanRef);
-if SSOctDefaults.displayLog
+if ssOCTdefaults.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
-%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-%         log(Bscan(SSOctDefaults.NSAMPLES/2+1:end,:)+1));
-    imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-            log(Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:)+1));
+%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+%         log(Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:)+1));
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+            log(Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:)+1));
 else
     % Display in linear scale, single-sided FFT, with z-axis in um
-%     imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-%         Bscan(SSOctDefaults.NSAMPLES/2+1:end,:))
-    imagesc(1:SSOctDefaults.nLinesPerFrame, 1e3*SSOctDefaults.zAxis_air,...
-        Bscan(SSOctDefaults.NSAMPLES/2:-1:1,:))
+%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+%         Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+        Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:))
 end
-if SSOctDefaults.displayColorBar
+if ssOCTdefaults.displayColorBar
     colorbar;
 else
     colorbar off;
 end
 axis tight
-colormap(SSOctDefaults.OCTcolorMap)
+colormap(ssOCTdefaults.OCTcolorMap)
 ylabel('z [mm]')
 xlabel('A-lines')
 
@@ -107,7 +107,7 @@ title('Please unblock both arms and press any key when ready...')
 
 pause()
 % Correct B-scan flag
-SSOctDefaults.corrBscan = corrBscanFlag;
+ssOCTdefaults.corrBscan = corrBscanFlag;
 return
 % ==============================================================================
 % [EOF]
