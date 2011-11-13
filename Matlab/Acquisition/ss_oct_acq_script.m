@@ -14,7 +14,7 @@
 
 % Clear global data
 clear global ssOCTdefaults
-% % Load default parameters
+% Load default parameters
 ss_oct_get_defaults
 
 %% ------------------------- MODIFY OPTIONS ------------------------------------

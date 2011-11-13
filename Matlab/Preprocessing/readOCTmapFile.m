@@ -55,6 +55,17 @@ if isempty(fileName)
         % Map the .dat file to a variable
         mappedFile = memmapfile(fullfile(pathName,fileName), 'format', 'uint16',...
             'writable', false);
+        
+        % --------- Correction to read files older than 2011/11/11 -------------
+        % File attributes
+        D = dir(fullfile(pathName,fileName));
+        % File modification date
+        fileDate = floor(D.datenum);
+        if fileDate <= datenum(2011,11,11)
+            ssOCTdefaults.NSAMPLES = 1170;
+        end
+        % -------------------- End of NSAMPLES correction ----------------------
+        
         % Calculate the number of recorded B-frames
         nFramesSaved = numel(mappedFile.Data) / ssOCTdefaults.NSAMPLES / ...
             ssOCTdefaults.nLinesPerFrame;
@@ -70,6 +81,17 @@ else
     % Map the .dat file to a variable
     mappedFile = memmapfile(fullfile(pathName,[fileName fileExt]), 'format', 'uint16',...
         'writable', false);
+    
+    % --------- Correction to read files older than 2011/11/11 -------------
+    % File attributes
+    D = dir(fullfile(pathName,[fileName fileExt]));
+    % File modification date
+    fileDate = floor(D.datenum);
+    if fileDate <= datenum(2011,11,11)
+        ssOCTdefaults.NSAMPLES = 1170;
+    end
+    % -------------------- End of NSAMPLES correction ----------------------
+    
     % Calculate the number of recorded B-frames
     nFramesSaved = numel(mappedFile.Data) / ssOCTdefaults.NSAMPLES / ...
         ssOCTdefaults.nLinesPerFrame;

@@ -1,12 +1,12 @@
-function [rawBscan refBscan Bscan hFig] = browseVolume(varargin)
+function [rawBscanOut refBscan Bscan hFig] = browseVolume(varargin)
 % Displays structural data from a volume (.dat file)
 % SYNTAX:
-% [rawBscan refBscan Bscan hFig] = browseVolume([frames], [filename])
+% [rawBscanOut refBscan Bscan hFig] = browseVolume([frames], [filename])
 % INPUTS:
 % [frames]      Index of B-scans to show
 % [fileName]    Optional input with the full file name (path+file.dat)
 % OUTPUTS:
-% rawBscan      Raw B-scan
+% rawBscanOut   Raw B-scans for the whole frames range
 % refBscan      Raw reference B-scan
 % Bscan         Processed B-scan structure
 % hFig          Handle to current figure
@@ -133,10 +133,15 @@ else
     framesRange = framesRange(framesRange<=nFrames);
 end
 
+% Preallocate output
+rawBscanOut = zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame numel(framesRange)]);
+
 % Display frames loop
 for iFrames = framesRange,
     % Convert a single B-scan to double
     rawBscan = double(squeeze(mappedFile.Data.rawData(:,:,iFrames)));
+    % Filling output array
+    rawBscanOut(:,:,iFrames) = rawBscan;
     if ssOCTdefaults.resampleData
         % Resample/interpolate B-scan
         resampledRawBscan = resample_B_scan(rawBscan);

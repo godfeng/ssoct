@@ -9,15 +9,15 @@ pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\';
 % Buffer size for textscan function
 BUFFER_SIZE = 2^16;
 % Number of rows that contain headers
-nHeaders = 25;
+nHeaders = 8;
 % Total number of columns in signaltap generated file
-nCols = 324;
+nCols = 44;
 textFormat = '%d ';
 textFormat = repmat(textFormat,[1 nCols]);
-% Read 17th and 32nd columns as a string of binary numbers
-textFormat(3*2-1) = 's';
-textFormat(3*17-1) = 's';
-textFormat(3*32-1) = 's';
+% Read 2nd, 17th and 32nd columns as a string of binary numbers
+% textFormat(3*2-1) = 's';
+% textFormat(3*17-1) = 's';
+% textFormat(3*32-1) = 's';
 % textFormat(3*33-1) = 's';
 [filename, pathname] = uigetfile({'*.csv', 'Comma Separated Value (*.csv)'},...
     'Pick a .CSV file',fullfile(pathname,filename));
