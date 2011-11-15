@@ -88,6 +88,7 @@ switch lower(map)
 end
 
 %% Calculate colormap
+% ----------------------- Piecewise linear interpolation -----------------------
 nSegments           = numel(x) - 1;
 samplesPerSegment   = diff(x);
 colormapOut         = zeros([sum(samplesPerSegment) 3]);
@@ -99,6 +100,15 @@ for iSegments = 1:nSegments,
         samplesPerSegment(iSegments)+1);
     end
 end
+% figure; plot(colormapOut)
+
+% ---------------------------- Spline interpolation ----------------------------
+% colormapOut(:,1) = spline(x, rgb(:,1), (x(1):x(end))');
+% colormapOut(:,2) = spline(x, rgb(:,2), (x(1):x(end))');
+% colormapOut(:,3) = spline(x, rgb(:,3), (x(1):x(end))');
+% colormapOut(colormapOut<0) = 0;         % Get rid of negative numbers
+% colormapOut(colormapOut>1) = 1;         % Truncate to 1
+% figure; plot(colormapOut)
 
 %% OCT Gold Alpha channel
 % x                   = [0; 22; 70; 123; 251] + 1;

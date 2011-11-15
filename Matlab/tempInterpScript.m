@@ -201,6 +201,8 @@ r = r(1:ssOCTdefaults.NSAMPLES);
 resr = resample_B_scan(r);
 figure;
 plot(1:ssOCTdefaults.NSAMPLES,B-r,'k-',1:ssOCTdefaults.NSAMPLES,resB-resr,'r-')
+legend({'fixed' 'resampled'})
+
 %% Spectrograms
 window      = 128;
 noverlap    = 120;

@@ -30,23 +30,6 @@ fixedSampling = linspace(0,ssOCTdefaults.NSAMPLES - 1,ssOCTdefaults.NSAMPLES)';
 % Position with k-clock sampling (variable sampling frequency)
 kClockSampling = ssOCTdefaults.kClockSampling;
 
-% Filter the sampling to avoid problems
-% filter_order = 50;
-% a = 1;
-% b = ones(1, filter_order)/filter_order;
-% kClockSampling = filter(b,a,kClockSampling);
-
-
-% first up-sampling the data
-% nSamplesFFT = 2^nextpow2(2*ssOCTdefaults.NSAMPLES);
-% using an FFT, zero padding and then performing IFFT.
-% fixedSamplingFFT = fft(fixedSampling);
-% kClockSampling = ifft(fft(kClockSampling,1170),nSamplesFFT);
-% Usually two to four times up-sampling is sufficient for this application.
-
-% fixedSampling = resample(fixedSampling,nSamplesFFT,ssOCTdefaults.NSAMPLES,FIRlength);
-% kClockSampling = resample(kClockSampling,nSamplesFFT,ssOCTdefaults.NSAMPLES,FIRlength);
-
 %%
 % Resampling (Interpolation/Decimation) along columns (A-lines)
 resampled_Bmodescan = interp1(kClockSampling, Bmodescan, fixedSampling, 'linear');
