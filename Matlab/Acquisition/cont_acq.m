@@ -46,7 +46,7 @@ if ssOCTdefaults.save2file
     % Close all open files
     fclose('all');
     % Default file name
-    fileName = fullfile(ssOCTdefaults.dirCurrExp,[datestr(now,'yyyy_mm_dd_HH_MM_SS') '.dat']);
+    fileName = fullfile(ssOCTdefaults.dirCurrExp,[datestr(now,'HH_MM_SS') '.dat']);
     % Save file name of current experiment in global structure
     ssOCTdefaults.CurrExpFileName = fileName;
     % Create binary file

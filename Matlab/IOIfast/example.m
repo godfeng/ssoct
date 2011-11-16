@@ -1,5 +1,5 @@
 %% Read TDMS file (works only with decimated data)
-filename='D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\EMGdata.tdms';
+filename='D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\EMGdata_long_decimated.tdms';
 
 [ConvertedData,ConvertVer,ChanNames,GroupNames,ci]=convertTDMS(1,filename);
 
@@ -31,23 +31,23 @@ t = t0 + dt*deltaSec*(0:Data(3).Total_Samples-1);
 %% 
 close all
 % Choose a data range to display (10000 samples = 1 second)
-dataRange = 1:350000;
+dataRange = (20:40)*10000+1;
 figure
+subplot(231)
 plot(t(dataRange), Data(3).Data(dataRange)) ,title('Monitor+')
 datetick('x',13)
-figure
+subplot(232)
 plot(t(dataRange), Data(4).Data(dataRange)) ,title('Monitor-')
 datetick('x',13)
-figure
+subplot(233)
 plot(t(dataRange), Data(5).Data(dataRange))  ,title('Nothing')
 datetick('x',13)
-figure
+subplot(234)
 plot(t(dataRange), Data(6).Data(dataRange)) ,title('Nothing')
 datetick('x',13)
-figure
+subplot(235)
 plot(t(dataRange), Data(7).Data(dataRange)) ,title('Stimulation ')
 datetick('x',13)
-tilefigs
 
 %% Number of samples/channel
 for i1=3:7
@@ -78,3 +78,12 @@ plot(temps,out(:,3))
  % extact certain frame
  images=LectureImageMultiFast('D:\Users\temp\AA01E51\','image',frameReadOut(30:33,:));
  
+
+ 
+ %% 
+ clc
+ for iLoop = 0:10,
+     nSamples = 1024;
+     offset = iLoop*(nSamples);
+     fprintf('offset = %d\n',offset)
+ end
