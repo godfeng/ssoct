@@ -755,7 +755,7 @@ for segCnt=1:NumOfSeg
                             %coded in the original function I downloaded from MATLAB Central.  But I found it to be 1 hour too
                             %much.  So, I changed it to '4/24'.
                             %propsValue=tsec/86400+695422-5/24;	%/864000 convert to days; +695422 days from Jan-0-0000 to Jan-1-1904
-                            propsValue=tsec/86400+695422-4/24;	%/864000 convert to days; +695422 days from Jan-0-0000 to Jan-1-1904
+                            propsValue=tsec/86400+695422-5/24;	%/864000 convert to days; +695422 days from Jan-0-0000 to Jan-1-1904
                         else
                             PropertyInfo(PropIndex).DataType='Numeric';
                             matType=LV2MatlabDataType(propsDataType);
@@ -916,7 +916,7 @@ for kk=1:length(fnm)
                         for mm=1:id.multiplier(rr)
                             dn=fread(fid,2*nvals,'uint64');
                             tsec=dn(1:2:end)/2^64+dn(2:2:end);
-                            data((mm-1)*nvals+1:(mm)*nvals)=tsec/86400+695422-4/24;
+                            data((mm-1)*nvals+1:(mm)*nvals)=tsec/86400+695422-5/24;
                             fseek(fid,id.skip(rr),'cof');
                         end
                         %{
