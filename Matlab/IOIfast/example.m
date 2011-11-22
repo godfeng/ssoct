@@ -1,5 +1,5 @@
 %% Read TDMS file (works only with decimated data)
-filename='D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\EMGdata_long_decimated.tdms';
+filename='D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\EMGdata_decimated.tdms';
 
 [ConvertedData,ConvertVer,ChanNames,GroupNames,ci]=convertTDMS(1,filename);
 
@@ -9,7 +9,7 @@ Data = ConvertedData.Data.MeasuredData;
 % samples on the x-axis. (in milliseconds)
 dt = Data(3).Property(3).Value;
 % increment of 1 second in serial date number 
-deltaSec = datenum('07-Apr-2008 23:00:01')- datenum('07-Apr-2008 23:00:00');
+deltaSec = datenum('07-Apr-2008 23:00:01') - datenum('07-Apr-2008 23:00:00');
 
 % wf_start_time: This property represents the time at which the waveform was
 % acquired or generated.
@@ -31,23 +31,23 @@ t = t0 + dt*deltaSec*(0:Data(3).Total_Samples-1);
 %% 
 close all
 % Choose a data range to display (10000 samples = 1 second)
-dataRange = (20:40)*10000+1;
+dataRange = 1:2*40000+1;
 figure
 subplot(231)
 plot(t(dataRange), Data(3).Data(dataRange)) ,title('Monitor+')
-datetick('x',13)
+axis tight; datetick('x',13)
 subplot(232)
 plot(t(dataRange), Data(4).Data(dataRange)) ,title('Monitor-')
-datetick('x',13)
+axis tight; datetick('x',13)
 subplot(233)
 plot(t(dataRange), Data(5).Data(dataRange))  ,title('Nothing')
-datetick('x',13)
+axis tight; datetick('x',13)
 subplot(234)
 plot(t(dataRange), Data(6).Data(dataRange)) ,title('Nothing')
-datetick('x',13)
-subplot(235)
-plot(t(dataRange), Data(7).Data(dataRange)) ,title('Stimulation ')
-datetick('x',13)
+axis tight; datetick('x',13)
+% subplot(235)
+% plot(t(dataRange), Data(7).Data(dataRange)) ,title('Stimulation ')
+% axis tight; datetick('x',13)
 
 %% Number of samples/channel
 for i1=3:7
