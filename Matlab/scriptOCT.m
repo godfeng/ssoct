@@ -122,7 +122,7 @@ figure;
 imagesc(log(mMode+1)); colormap(gray(255)); colorbar
 % title(sprintf('x-slice No: %d',sliceNo))
 xlabel('Alines')
-ylabel([ssOCTdefaults.zAxis ' [um]'])
+ylabel([ssOCTdefaults.range.zAxis ' [um]'])
 
 %% FFT of M-mode image
 lineFreq = 0.9084370*size(Bscan,2);

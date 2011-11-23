@@ -72,7 +72,7 @@ Alines = Alines ./ repmat(max(Alines),[ssOCTdefaults.NSAMPLES/2 1]);
 %% Plot A-lines
 figure;
 for iFiles = 1:nFiles,
-    plot(ssOCTdefaults.zAxis(1:2:end), Alines(:,iFiles));
+    plot(ssOCTdefaults.range.zAxis(1:2:end), Alines(:,iFiles));
     title(sprintf('File: %d',iFiles))
     pause(0.5)
 end
@@ -87,7 +87,7 @@ plot(FWHM); title('FWHM')
 % 
 % figure
 % % Display in linear scale, single-sided FFT, with z-axis in um
-% imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis,...
+% imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis,...
 %     Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))
 % axis tight
 % colormap(gray(255))

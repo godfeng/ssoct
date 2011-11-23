@@ -32,20 +32,20 @@ while(1),
     [posEnv negEnv] = detect_envelope(rawBscan(:,2));
     % -------------- Plot a single interferogram (A-line) ------------------
     subplot(222);
-    plot(1e9*ssOCTdefaults.vectorLambda, rawBscan(:,2), 'k-',...
-        1e9*ssOCTdefaults.vectorLambda, posEnv,'r:',...
-        1e9*ssOCTdefaults.vectorLambda, negEnv,'b:');
+    plot(1e9*ssOCTdefaults.range.vectorLambda, rawBscan(:,2), 'k-',...
+        1e9*ssOCTdefaults.range.vectorLambda, posEnv,'r:',...
+        1e9*ssOCTdefaults.range.vectorLambda, negEnv,'b:');
     title('Interferogram')
     xlabel('\lambda [nm]')
-    xlim(1e9*[ssOCTdefaults.minLambda ssOCTdefaults.maxLambda])
+    xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
 %     ylim([0 2^14]);
     % ------------ Plot the phase of a single A-line -----------------------
     subplot(248)
-    plot(1e9*ssOCTdefaults.vectorLambda, unwrap(angle(hilbert...
+    plot(1e9*ssOCTdefaults.range.vectorLambda, unwrap(angle(hilbert...
         (rawBscan(:,2)))),'-k')
     title('Interferogram phase')
     xlabel('\lambda [nm]')
-    xlim(1e9*[ssOCTdefaults.minLambda ssOCTdefaults.maxLambda])
+    xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
     % --------------- Plot the a single A-line (FFT) -----------------------
     subplot(247)
     Aline = BmodeScan2struct(rawBscan(:,2));
@@ -62,7 +62,7 @@ while(1),
     subplot(121)
     Bscan = BmodeScan2struct(rawBscan);
     % Display in linear scale, single-sided FFT, with z-axis in um
-    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis,...
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis,...
         Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))
     axis tight
     colormap(gray(255))

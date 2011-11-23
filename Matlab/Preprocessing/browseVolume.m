@@ -69,7 +69,7 @@ if showRefScan
     hRef = figure; set(gcf,'color','w')
     % Change figure name
     set(hRef,'Name', 'Reference Scan');
-    if ssOCTdefaults.displayLog
+    if ssOCTdefaults.GUI.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
         resampledStruct2D = resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:);
@@ -87,24 +87,24 @@ if showRefScan
             maxColor = max(resampledStruct2D(:));
         end        
         
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
             resampledStruct2D,...
             [minColor maxColor]);
         title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
     else
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
             resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:));
         title('Reference')
     end
-    if ssOCTdefaults.displayColorBar
+    if ssOCTdefaults.GUI.displayColorBar
         colorbar;
     else
         colorbar off;
     end
     axis tight
-    colormap(ssOCTdefaults.OCTcolorMap)
+    colormap(ssOCTdefaults.GUI.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
 end
@@ -157,7 +157,7 @@ for iFrames = framesRange,
     Bscan = resampledStruct2D;
     
     figure(hFig)
-    if ssOCTdefaults.displayLog
+    if ssOCTdefaults.GUI.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
         resampledStruct2D = resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:);
@@ -175,7 +175,7 @@ for iFrames = framesRange,
             maxColor = max(resampledStruct2D(:));
         end
         
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
             resampledStruct2D,...
             [minColor maxColor]);
         title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
@@ -187,18 +187,18 @@ for iFrames = framesRange,
             end
         % Display in linear scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
             resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:),...
             [minColor maxColor]);
         title(sprintf('Frame %d of %d', iFrames, nFrames))
     end
-    if ssOCTdefaults.displayColorBar
+    if ssOCTdefaults.GUI.displayColorBar
         colorbar;
     else
         colorbar off;
     end
     axis tight
-    colormap(ssOCTdefaults.OCTcolorMap)
+    colormap(ssOCTdefaults.GUI.OCTcolorMap)
     ylabel('z [mm]')
     xlabel('A-lines')
     pause(pauseTime)

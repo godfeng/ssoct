@@ -82,21 +82,22 @@ ssOCTdefaults.pauseTime         = 1.8;
 % GUI parameters
 %===============================================================================
 % Display B-scan in log scale
-ssOCTdefaults.displayLog        = false;
+ssOCTdefaults.GUI.displayLog        = false;
 % Display Color Bar
-ssOCTdefaults.displayColorBar   = true;
+ssOCTdefaults.GUI.displayColorBar   = true;
 % Interferogram signal plot
-ssOCTdefaults.displaySingleLine = true;
-% Resamling data at k-clock frequency
-ssOCTdefaults.resampleData      = false;
-% Correct B-scan in real-time
-ssOCTdefaults.corrBscan         = false;
-% Show FWHM in real time
-ssOCTdefaults.showFWHM          = false;
-% Calculate reference signal as the median A-line of current B-scan
-ssOCTdefaults.medianRefArm      = false;
+ssOCTdefaults.GUI.displaySingleLine = true;
 % Colormap to be used
-ssOCTdefaults.OCTcolorMap       = get_colormaps('bow');
+ssOCTdefaults.GUI.OCTcolorMap       = get_colormaps('bow');
+% Show FWHM in real time
+ssOCTdefaults.GUI.showFWHM          = false;
+% Correct B-scan in real-time
+ssOCTdefaults.corrBscan             = false;
+% ResamPling data at k-clock frequency
+ssOCTdefaults.resampleData          = false;
+% Calculate reference signal as the median A-line of current B-scan
+ssOCTdefaults.medianRefArm          = false;
+
 
 %===============================================================================
 % Galvo mirrors parameters
@@ -117,64 +118,66 @@ ssOCTdefaults.galvos.nSamplesPerVolume  = 1100;
 % OCT axial resolution
 %===============================================================================
 % Center wavelength
-ssOCTdefaults.lambda0           = 1310e-9;
+ssOCTdefaults.axial.lambda0             = 1310e-9;
 % Wavelength range
-ssOCTdefaults.minLambda         = 1258e-9;
-ssOCTdefaults.maxLambda         = 1361.2e-9;
+ssOCTdefaults.axial.minLambda           = 1258e-9;
+ssOCTdefaults.axial.maxLambda           = 1361.2e-9;
 % FWHM in wavelength
-% ssOCTdefaults.delta_lambda      = 100e-9;
-ssOCTdefaults.delta_lambda      = ssOCTdefaults.maxLambda - ssOCTdefaults.minLambda;
+% ssOCTdefaults.axial.delta_lambda      = 100e-9;
+ssOCTdefaults.axial.delta_lambda        = ssOCTdefaults.axial.maxLambda - ...
+    ssOCTdefaults.axial.minLambda;
 % Axial resolution in air
-ssOCTdefaults.zr_air            = (2/pi)*log(2)*ssOCTdefaults.lambda0^2 /...
-    ssOCTdefaults.delta_lambda;
+ssOCTdefaults.axial.zr_air              = (2/pi)*log(2)*...
+    ssOCTdefaults.axial.lambda0^2 / ssOCTdefaults.axial.delta_lambda;
 % Index of refraction of tissue
-ssOCTdefaults.n                 = 1.4;
+ssOCTdefaults.axial.n                   = 1.4;
 % Axial resolution in tissue
-ssOCTdefaults.zr                = ssOCTdefaults.zr_air / ssOCTdefaults.n;
+ssOCTdefaults.axial.zr                  = ssOCTdefaults.axial.zr_air / ssOCTdefaults.axial.n;
 
 %===============================================================================
-% OCT transverse resolution
+% OCT transverse (lateral) resolution
 %===============================================================================
 % Entrance pupil diameter
-ssOCTdefaults.EP                = [4e-3 4e-3 4e-3];
+ssOCTdefaults.lateral.EP                = [4e-3 4e-3 4e-3];
 % F280APC-C beam diameter
-ssOCTdefaults.beamWaist         = [3.4 3.4 3.4]*1e-3;
+ssOCTdefaults.lateral.beamWaist         = [3.4 3.4 3.4]*1e-3;
 % Effective Focal Length [LSM02 LSM03 LSM04]
-ssOCTdefaults.EFL               = [18 36 54]*1e-3;
+ssOCTdefaults.lateral.EFL               = [18 36 54]*1e-3;
 % Numerical Aperture
-ssOCTdefaults.NA                = sqrt(1 ./ (1 + (2.*ssOCTdefaults.EFL ./ ...
-    ssOCTdefaults.beamWaist).^2));  
+ssOCTdefaults.lateral.NA                = sqrt(1 ./ (1 + (2.*...
+    ssOCTdefaults.lateral.EFL ./ ssOCTdefaults.lateral.beamWaist).^2));  
 % Transverse (lateral) resolution for different scan lenses [LSM02 LSM03 LSM04]
-ssOCTdefaults.rr                = (2/pi)*ssOCTdefaults.lambda0 ./ ssOCTdefaults.NA;
+ssOCTdefaults.lateral.rr                = (2/pi)*ssOCTdefaults.axial.lambda0 ./ ...
+    ssOCTdefaults.lateral.NA;
 
 %===============================================================================
 % Maximum path difference (Scan Range of a FDOCT) (Penetration depth)
 %===============================================================================
-ssOCTdefaults.delta_Z_Nq        = ssOCTdefaults.lambda0^2 * ...
-    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.delta_lambda*ssOCTdefaults.n);
+ssOCTdefaults.range.delta_Z_Nq          = ssOCTdefaults.axial.lambda0^2 * ...
+    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.axial.delta_lambda*ssOCTdefaults.axial.n);
 % Index of refraction of air
-ssOCTdefaults.n_air             = 1;
-ssOCTdefaults.delta_Z_Nq_air    = ssOCTdefaults.lambda0^2 * ...
-    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.delta_lambda*ssOCTdefaults.n_air);
+ssOCTdefaults.range.n_air               = 1;
+ssOCTdefaults.range.delta_Z_Nq_air      = ssOCTdefaults.axial.lambda0^2 * ...
+    ssOCTdefaults.NSAMPLES / (4*ssOCTdefaults.axial.delta_lambda*ssOCTdefaults.range.n_air);
 % Wavenumber range
-ssOCTdefaults.minK              = 2*pi / ssOCTdefaults.maxLambda;
-ssOCTdefaults.maxK              = 2*pi / ssOCTdefaults.minLambda;
+ssOCTdefaults.range.minK                = 2*pi / ssOCTdefaults.axial.maxLambda;
+ssOCTdefaults.range.maxK                = 2*pi / ssOCTdefaults.axial.minLambda;
 % Wavenumbers column vector
-ssOCTdefaults.vectorK           = linspace(ssOCTdefaults.maxK,...
-    ssOCTdefaults.minK, ssOCTdefaults.NSAMPLES)';
+ssOCTdefaults.range.vectorK             = linspace(ssOCTdefaults.range.maxK,...
+    ssOCTdefaults.range.minK, ssOCTdefaults.NSAMPLES)';
 % Lambda Column Vector (in nm)
-ssOCTdefaults.vectorLambda      = 2*pi ./ ssOCTdefaults.vectorK;
+ssOCTdefaults.range.vectorLambda        = 2*pi ./ ssOCTdefaults.range.vectorK;
 % z-axis in um (air)
-ssOCTdefaults.zAxis_air         = linspace(ssOCTdefaults.delta_Z_Nq_air ./...
-    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES);
+ssOCTdefaults.range.zAxis_air           = linspace(ssOCTdefaults.range.delta_Z_Nq_air ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.range.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES);
 % z-axis in um (tissue)
-ssOCTdefaults.zAxis             = linspace(ssOCTdefaults.delta_Z_Nq ./...
-    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq,ssOCTdefaults.NSAMPLES);
+ssOCTdefaults.range.zAxis               = linspace(ssOCTdefaults.range.delta_Z_Nq ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.range.delta_Z_Nq,ssOCTdefaults.NSAMPLES);
 % Positive z-axis in um (air)
-ssOCTdefaults.positiveZaxis_air = linspace(ssOCTdefaults.delta_Z_Nq_air ./...
-    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES/2);
+ssOCTdefaults.range.posZaxis_air        = linspace(ssOCTdefaults.range.delta_Z_Nq_air ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.range.delta_Z_Nq_air,ssOCTdefaults.NSAMPLES/2);
 % Positive z-axis in um (tissue)
-ssOCTdefaults.positiveZaxis     = linspace(ssOCTdefaults.delta_Z_Nq ./...
-    ssOCTdefaults.NSAMPLES,ssOCTdefaults.delta_Z_Nq,ssOCTdefaults.NSAMPLES/2);
+ssOCTdefaults.range.posZaxis            = linspace(ssOCTdefaults.range.delta_Z_Nq ./...
+    ssOCTdefaults.NSAMPLES,ssOCTdefaults.range.delta_Z_Nq,ssOCTdefaults.NSAMPLES/2);
 % ==============================================================================
 % [EOF]

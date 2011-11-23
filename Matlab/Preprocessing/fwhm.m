@@ -18,10 +18,10 @@ function [FWHM, peak_pos, FWHM_um, peak_pos_m] = fwhm(signal)
 % Modifies values of global variable
 global ssOCTdefaults
 % Echo theoretical resolution to screen
-% fprintf('Theoretical axial resolution (in air): %.3g um\n',1e6*ssOCTdefaults.zr_air)
+% fprintf('Theoretical axial resolution (in air): %.3g um\n',1e6*ssOCTdefaults.axial.zr_air)
 
 %Pixel width (in m)
-pixelWidth = 2*ssOCTdefaults.delta_Z_Nq_air ./ (ssOCTdefaults.NSAMPLES+1);
+pixelWidth = 2*ssOCTdefaults.range.delta_Z_Nq_air ./ (ssOCTdefaults.NSAMPLES+1);
 % Calculate FWHM of given signal
 [FWHM, peak_pos] = calculate_FWHM(signal);
 

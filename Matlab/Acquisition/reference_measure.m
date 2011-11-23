@@ -53,24 +53,24 @@ save(fullfile(ssOCTdefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
 limitY = [0 2^14];
 
 subplot(222);
-if ssOCTdefaults.displaySingleLine
+if ssOCTdefaults.GUI.displaySingleLine
     % -------------- Plot a single interferogram (A-line) ------------------
-    plot(1e9*ssOCTdefaults.vectorLambda, refArm, 'k-',...
-        1e9*ssOCTdefaults.vectorLambda, posEnv,'r:',...
-        1e9*ssOCTdefaults.vectorLambda, negEnv,'b:');
+    plot(1e9*ssOCTdefaults.range.vectorLambda, refArm, 'k-',...
+        1e9*ssOCTdefaults.range.vectorLambda, posEnv,'r:',...
+        1e9*ssOCTdefaults.range.vectorLambda, negEnv,'b:');
     title('Reference measurement')
     xlabel('\lambda [nm]')
     ylabel('Intensity [ADC units]')
-    xlim(1e9*[ssOCTdefaults.minLambda ssOCTdefaults.maxLambda])
+    xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
     ylim(limitY)
 else
     % -------------- Plot interferogram (B-scan) ------------------
-    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e9*ssOCTdefaults.vectorLambda, ...
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e9*ssOCTdefaults.range.vectorLambda, ...
         rawBscanRef, [0 16384]);
     title('Reference measurement')
     xlabel('A-lines')
     ylabel('\lambda [nm]')
-    if ssOCTdefaults.displayColorBar
+    if ssOCTdefaults.GUI.displayColorBar
         colorbar;
     else
         colorbar off;
@@ -80,26 +80,26 @@ end
 % ------------------- Display a reference B-scan -------------------------------
 subplot(121)
 Bscan = BmodeScan2struct(rawBscanRef);
-if ssOCTdefaults.displayLog
+if ssOCTdefaults.GUI.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
-%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
 %         log(Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:)+1));
-    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
             log(Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:)+1));
 else
     % Display in linear scale, single-sided FFT, with z-axis in um
-%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+%     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
 %         Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))
-    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis_air,...
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
         Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:))
 end
-if ssOCTdefaults.displayColorBar
+if ssOCTdefaults.GUI.displayColorBar
     colorbar;
 else
     colorbar off;
 end
 axis tight
-colormap(ssOCTdefaults.OCTcolorMap)
+colormap(ssOCTdefaults.GUI.OCTcolorMap)
 ylabel('z [mm]')
 xlabel('A-lines')
 

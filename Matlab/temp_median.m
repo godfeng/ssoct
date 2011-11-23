@@ -7,7 +7,7 @@ ss_oct_get_defaults
 global ssOCTdefaults
 ssOCTdefaults.resampleData      = false;
 ssOCTdefaults.medianRefArm      = false;
-ssOCTdefaults.displayLog        = true;
+ssOCTdefaults.GUI.displayLog        = true;
 
 %% Get finger data
 [rawBscan refBscan Bscan hFig] = browseVolume(125,...
@@ -55,8 +55,8 @@ imageLimit = 2;                         % +- 4 dB
 minColor = min(structBscan(:)) + imageLimit;
 maxColor = max(structBscan(:)) - imageLimit;
 figure; set(gcf,'color','w')
-imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.zAxis,...
-    structBscan,[minColor maxColor]); colormap(ssOCTdefaults.OCTcolorMap); colorbar
+imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis,...
+    structBscan,[minColor maxColor]); colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar
 title('Subtraction of the complex median of each horizontal-line data')
 ylabel('z [mm] in tissue')
 xlabel('A-lines')

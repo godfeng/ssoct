@@ -26,26 +26,26 @@ resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'true');
 figure; set(gcf,'color','w')
 subplot(231)
 imagesc(rawBscanRef,[0 2^14]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Reference B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Reference B-scan')
 subplot(232)
 imagesc(rawBscan,[0 2^14]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Raw B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Raw B-scan')
 subplot(233)
 imagesc(correctedBscan,[-2^13 2^13]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Corrected B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Corrected B-scan')
 subplot(234)
 imagesc(resampledRawBscanRef,[0 2^14]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Resampled Reference B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled Reference B-scan')
 subplot(235)
 imagesc(rawBscan,[0 2^14]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Resampled B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled B-scan')
 subplot(236)
 imagesc(resampledCorrectedBscan,[-2^13 2^13]); 
-colormap(ssOCTdefaults.OCTcolorMap); colorbar; title('Resampled Corrected B-scan')
+colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled Corrected B-scan')
 
 %% Example of interpolation
-figure; plot(1e9*ssOCTdefaults.vectorLambda,mean(correctedBscan,2),'k-',...
-   1e9* ssOCTdefaults.vectorLambda,mean(resampledCorrectedBscan,2),'r:'); 
+figure; plot(1e9*ssOCTdefaults.range.vectorLambda,mean(correctedBscan,2),'k-',...
+   1e9* ssOCTdefaults.range.vectorLambda,mean(resampledCorrectedBscan,2),'r:'); 
 legend('Original Interferogram','Resampled Interferogram'); set(gcf,'color','w')
 xlabel('\lambda [nm]')
 
@@ -69,28 +69,28 @@ legend('Original A-line','Resampled A-line');
 figure; set(gcf,'color','w')
 subplot(221)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(AlineRight);
-plot(1e3*ssOCTdefaults.positiveZaxis_air,AlineRight,'k-',...
+plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineRight,'k-',...
     1e3*peak_pos_m,AlineRight(peak_pos),'ro')
 legend('Original (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
 subplot(222)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(AlineLeft);
-plot(1e3*ssOCTdefaults.positiveZaxis_air,AlineLeft,'k-',...
+plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineLeft,'k-',...
     1e3*peak_pos_m,AlineLeft(peak_pos),'ro')
 legend('Original (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
 subplot(223)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineRight);
-plot(1e3*ssOCTdefaults.positiveZaxis_air,resampledAlineRight,'k-',...
+plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineRight,'k-',...
     1e3*peak_pos_m,resampledAlineRight(peak_pos),'ro')
 legend('Resampled (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
 subplot(224)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineLeft);
-plot(1e3*ssOCTdefaults.positiveZaxis_air,resampledAlineLeft,'k-',...
+plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineLeft,'k-',...
     1e3*peak_pos_m,resampledAlineLeft(peak_pos),'ro')
 legend('Resampled (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
