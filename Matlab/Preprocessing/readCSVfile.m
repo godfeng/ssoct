@@ -86,14 +86,14 @@ if (fid >= 3)
         case 12
             % fourth version with 11 fields
             ssOCTdefaults.nLinesPerFrame            = outputCell{1,2};
-            ssOCTdefaults.nFrames                   = outputCell{2,2};
+            ssOCTdefaults.nFramesPerVol             = outputCell{2,2};
             ssOCTdefaults.galvos.xStartVolt         = outputCell{3,2};
             ssOCTdefaults.galvos.xEndVolt           = outputCell{4,2};
             ssOCTdefaults.galvos.yStartVolt         = outputCell{5,2};
             ssOCTdefaults.galvos.yEndVolt           = outputCell{6,2};
             ssOCTdefaults.dirCurrExp                = outputCell{7,2};
             ssOCTdefaults.subjectID                 = outputCell{8,2};
-            ssOCTdefaults.expDescription            = outputCell{9,2};
+            ssOCTdefaults.expID                     = outputCell{9,2};
             ssOCTdefaults.galvos.nSamplesPerVolume  = outputCell{10,2};
             ssOCTdefaults.pauseTime                 = 1.1 * ...
                 ssOCTdefaults.galvos.nSamplesPerVolume / 50e3;
@@ -101,32 +101,32 @@ if (fid >= 3)
         case 10
             % third version with 10 fields
             ssOCTdefaults.nLinesPerFrame            = outputCell{1,2};
-            ssOCTdefaults.nFrames                   = outputCell{2,2};
+            ssOCTdefaults.nFramesPerVol                   = outputCell{2,2};
             ssOCTdefaults.galvos.xStartVolt         = outputCell{3,2};
             ssOCTdefaults.galvos.xEndVolt           = outputCell{4,2};
             ssOCTdefaults.galvos.yStartVolt         = outputCell{5,2};
             ssOCTdefaults.galvos.yEndVolt           = outputCell{6,2};
             ssOCTdefaults.dirCurrExp                = outputCell{7,2};
             ssOCTdefaults.subjectID                 = outputCell{8,2};
-            ssOCTdefaults.expDescription            = outputCell{9,2};
+            ssOCTdefaults.expID                     = outputCell{9,2};
             ssOCTdefaults.galvos.nSamplesPerVolume  = outputCell{10,2};
             ssOCTdefaults.pauseTime                 = 1.1 * ...
                 ssOCTdefaults.galvos.nSamplesPerVolume / 50e3;
         case 9
             % second version with 9 fields
             ssOCTdefaults.nLinesPerFrame    = outputCell{1,2};
-            ssOCTdefaults.nFrames           = outputCell{2,2};
+            ssOCTdefaults.nFramesPerVol     = outputCell{2,2};
             ssOCTdefaults.galvos.xStartVolt = outputCell{3,2};
             ssOCTdefaults.galvos.xEndVolt   = outputCell{4,2};
             ssOCTdefaults.galvos.yStartVolt = outputCell{5,2};
             ssOCTdefaults.galvos.yEndVolt   = outputCell{6,2};
             ssOCTdefaults.dirCurrExp        = outputCell{7,2};
             ssOCTdefaults.subjectID         = outputCell{8,2};
-            ssOCTdefaults.expDescription    = outputCell{9,2};
+            ssOCTdefaults.expID             = outputCell{9,2};
         otherwise
             % Default case (first version with 7 fields)
             ssOCTdefaults.nLinesPerFrame    = outputCell{1,2};
-            ssOCTdefaults.nFrames           = outputCell{2,2};
+            ssOCTdefaults.nFramesPerVol     = outputCell{2,2};
             ssOCTdefaults.galvos.xStartVolt = outputCell{3,2};
             ssOCTdefaults.galvos.xEndVolt   = outputCell{4,2};
             ssOCTdefaults.galvos.yStartVolt = outputCell{5,2};

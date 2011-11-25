@@ -36,7 +36,7 @@ ssOCTdefaults.refArm    = refArm;
 %     fid = fopen(fileName{iFiles},'rb'); % open file in binary read mode
 %     % Read data in 'double' format
 %     A16 = uint16(fread(fid,ssOCTdefaults.NSAMPLES*ssOCTdefaults.nLinesPerFrame*...
-%         ssOCTdefaults.nFrames,'double'));
+%         ssOCTdefaults.nFramesPerVol,'double'));
 %     fclose(fid);
 %     fid = fopen(fullfile(ssOCTdefaults.dirCurrExp,fileName{iFiles}),'w+b'); % open file in binary write mode
 %     fwrite(fid, A16, 'uint16');         % Write uint16 data

@@ -34,7 +34,7 @@ ssOCTdefaults.acqParamFileName  = 'acqParam.csv';
 % Name of the subject
 ssOCTdefaults.subjectID         = 'NO_NAME';
 % Description of the experiment
-ssOCTdefaults.expDescription    = 'EMPTY';
+ssOCTdefaults.expID             = 'EMPTY';
 % Maximize figure
 ssOCTdefaults.screenSize        = get(0,'Screensize');
 ssOCTdefaults.screenSize        = [1+ssOCTdefaults.screenSize(3)/2 40 ...
@@ -61,17 +61,15 @@ ssOCTdefaults.nBytesPerAline    = 2368;
 ssOCTdefaults.nWordsPerAline    = ssOCTdefaults.nBytesPerAline/2;
 % Number of characters of startup menu
 ssOCTdefaults.MENUSIZE          = 360;
-% Save to file
-ssOCTdefaults.save2file         = true;
 % Number of A-lines per frame
 ssOCTdefaults.nLinesPerFrame    = 1024;
 % Number of frames per volume
-ssOCTdefaults.nFrames           = 64;
+ssOCTdefaults.nFramesPerVol     = 64;
 % Number of saved frames
 ssOCTdefaults.nFramesSaved      = 0;
 % Number of total samples per scan
 ssOCTdefaults.nAcqSamples       = ssOCTdefaults.nLinesPerFrame *...
-    ssOCTdefaults.nFrames;
+    ssOCTdefaults.nFramesPerVol;
 % Tx & Rx buffer size for all socket sends & receives
 ssOCTdefaults.BUFFERSIZE        = ssOCTdefaults.nBytesPerAline *...
     ssOCTdefaults.nLinesPerFrame;
@@ -91,6 +89,8 @@ ssOCTdefaults.GUI.displaySingleLine = true;
 ssOCTdefaults.GUI.OCTcolorMap       = get_colormaps('bow');
 % Show FWHM in real time
 ssOCTdefaults.GUI.showFWHM          = false;
+% Save to file
+ssOCTdefaults.GUI.save2file         = true;
 % Correct B-scan in real-time
 ssOCTdefaults.corrBscan             = false;
 % ResamPling data at k-clock frequency

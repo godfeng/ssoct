@@ -48,7 +48,7 @@ unsigned long   DDR2_address    = 0;
 unsigned char*  dataPointer;
 char            menu            = 1;
 unsigned long   nLinesPerFrame  = 0;
-unsigned long   nFrames         = 0;
+unsigned long   nFramesPerVol   = 0;
 signed short    iParameters     = 0;
 unsigned char   volAcqFinished  = 0;
 
@@ -343,14 +343,14 @@ void sss_exec_command(SSSConn* conn)
                     case 2: nLinesPerFrame  += SSSCommand * 65536;          break;
                     case 3: nLinesPerFrame  += SSSCommand * 16777216;       break;
                     
-                    case 4: nFrames          = SSSCommand;                  break;
-                    case 5: nFrames         += SSSCommand * 256;            break;
-                    case 6: nFrames         += SSSCommand * 65536;          break;
-                    case 7: nFrames         += SSSCommand * 16777216; 
+                    case 4: nFramesPerVol   = SSSCommand;                  break;
+                    case 5: nFramesPerVol   += SSSCommand * 256;            break;
+                    case 6: nFramesPerVol   += SSSCommand * 65536;          break;
+                    case 7: nFramesPerVol   += SSSCommand * 16777216; 
                             menu = 1;       iParameters = -1;               break;
                     default:                                                break;
                 }  
-                printf("nLinesPerFrame: %lu nFrames: %lu Count: %i\n", nLinesPerFrame, nFrames, iParameters);
+                printf("nLinesPerFrame: %lu nFramesPerVol: %lu Count: %i\n", nLinesPerFrame, nFramesPerVol, iParameters);
                 iParameters++;
             }
         } // END else -> menu != 1  
@@ -369,7 +369,7 @@ void sss_exec_command(SSSConn* conn)
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
             printf("Reference trigger sent!\n");
-            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFrames);
+            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFramesPerVol);
             
             // Wait for volume recording to be done
             while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
@@ -445,7 +445,7 @@ void sss_exec_command(SSSConn* conn)
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
             printf("Acquisition start trigger sent!\n");
-            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFrames);
+            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFramesPerVol);
          
             while(1)
             {
@@ -458,7 +458,7 @@ void sss_exec_command(SSSConn* conn)
                     //////////////////////////////////////////////////////////
                     // B-frame transfer loop
                     //////////////////////////////////////////////////////////
-                    for (iLines = 0; iLines < nLinesPerFrame*nFrames; iLines++)
+                    for (iLines = 0; iLines < nLinesPerFrame*nFramesPerVol; iLines++)
                     {
                         // Begin the transfer
                         tx_wr_pos = tx_buf;

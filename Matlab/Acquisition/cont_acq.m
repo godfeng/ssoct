@@ -28,7 +28,7 @@ set(hContAcq, 'OuterPosition', ssOCTdefaults.screenSize);
 % ------ Transmit acquisition parameters ['A' nLinesPerFrame nFrames]-----------
 pnet(ssOCTdefaults.tcpConn,'write',([uint8(65) ...
     typecast(uint32(ssOCTdefaults.nLinesPerFrame), 'uint8') ...
-    typecast(uint32(ssOCTdefaults.nFrames), 'uint8')]));
+    typecast(uint32(ssOCTdefaults.nFramesPerVol), 'uint8')]));
 pause(0.1)                              % Necessary to give time to NIOS
 
 % --------------------- Take reference measurements ----------------------------
@@ -42,7 +42,7 @@ fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
 % load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
 
 % ------------------------------ Main Loop -------------------------------------
-if ssOCTdefaults.save2file
+if ssOCTdefaults.GUI.save2file
     % Close all open files
     fclose('all');
     % Default file name
@@ -68,7 +68,7 @@ if ssOCTdefaults.save2file
     delete(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'))
 else
     %     Save data in a big variable
-    %     ssOCTdefaults.OCTfullAcq = zeros([ssOCTdefaults.nFrames ssOCTdefaults.NSAMPLES ...
+    %     ssOCTdefaults.OCTfullAcq = zeros([ssOCTdefaults.nFramesPerVol ssOCTdefaults.NSAMPLES ...
     %         ssOCTdefaults.nLinesPerFrame]);
     iFrames = 1;
     while ~exist(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'),'file')

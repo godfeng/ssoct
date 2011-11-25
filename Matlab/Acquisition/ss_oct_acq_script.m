@@ -22,7 +22,7 @@ global ssOCTdefaults
 % dbstop if error                       % Debug (Stop if error)
 ssOCTdefaults.GUI.displayLog            = false;
 % Save files
-ssOCTdefaults.save2file                 = true;
+ssOCTdefaults.GUI.save2file                 = true;
 % Display single line/multiple lines in the interferogram plot
 ssOCTdefaults.GUI.displaySingleLine     = true;
 % Resample data in real-time

@@ -4,14 +4,14 @@
 	</section>
 	<section name="org.eclipse.cdt.internal.ui.browser.opentype.OpenTypeDialogSettings">
 		<item value="true" key="show_enums"/>
-		<item value="551" key="height"/>
 		<item value="true" key="show_structs"/>
+		<item value="551" key="height"/>
 		<item value="false" key="show_lowlevel"/>
-		<item value="354" key="width"/>
-		<item value="true" key="show_typedefs"/>
 		<item value="true" key="show_classes"/>
-		<item value="true" key="show_unions"/>
+		<item value="true" key="show_typedefs"/>
+		<item value="354" key="width"/>
 		<item value="true" key="show_namespaces"/>
+		<item value="true" key="show_unions"/>
 		<item value="151" key="y"/>
 		<item value="303" key="x"/>
 	</section>

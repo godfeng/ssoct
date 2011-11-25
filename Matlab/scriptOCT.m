@@ -100,7 +100,7 @@ load ('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\bobineData.mat')
 A = memmapfile(fullfile(pathname,filename), 'format', 'double',...
     'writable', false);
 A.Format = {'double' [ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame...
-    ssOCTdefaults.nFrames] 'rawData'};
+    ssOCTdefaults.nFramesPerVol] 'rawData'};
 for iFrames=1:55,
     % Get raw data
     rawBscan(:,:,iFrames) = squeeze(A.Data.rawData(:,:,iFrames+5));

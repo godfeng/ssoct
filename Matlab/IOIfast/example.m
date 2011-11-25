@@ -31,23 +31,23 @@ t = t0 + dt*deltaSec*(0:Data(3).Total_Samples-1);
 %% 
 close all
 % Choose a data range to display (10000 samples = 1 second)
-dataRange = 1:2*40000+1;
+dataRange = 1:Data(3).Total_Samples-1;
 figure
 subplot(231)
-plot(t(dataRange), Data(3).Data(dataRange)) ,title('Monitor+')
-axis tight; datetick('x',13)
+plot(t(dataRange), Data(3).Data(dataRange)) ,title('EMG1')
+axis tight; datetick('x',13, 'keeplimits', 'keepticks')
 subplot(232)
-plot(t(dataRange), Data(4).Data(dataRange)) ,title('Monitor-')
-axis tight; datetick('x',13)
+plot(t(dataRange), Data(4).Data(dataRange)) ,title('EMG2')
+axis tight; datetick('x',13, 'keeplimits', 'keepticks')
 subplot(233)
-plot(t(dataRange), Data(5).Data(dataRange))  ,title('Nothing')
-axis tight; datetick('x',13)
+plot(t(dataRange), Data(5).Data(dataRange))  ,title('EMG3')
+axis tight; datetick('x',13, 'keeplimits', 'keepticks')
 subplot(234)
-plot(t(dataRange), Data(6).Data(dataRange)) ,title('Nothing')
-axis tight; datetick('x',13)
-% subplot(235)
-% plot(t(dataRange), Data(7).Data(dataRange)) ,title('Stimulation ')
-% axis tight; datetick('x',13)
+plot(t(dataRange), Data(6).Data(dataRange)) ,title('EMG4')
+axis tight; datetick('x',13, 'keeplimits', 'keepticks')
+subplot(235)
+plot(t(dataRange), Data(7).Data(dataRange)) ,title('Stimulation ')
+axis tight; datetick('x',13, 'keeplimits', 'keepticks')
 
 %% Number of samples/channel
 for i1=3:7
