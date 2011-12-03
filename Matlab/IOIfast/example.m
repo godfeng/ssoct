@@ -1,5 +1,6 @@
 %% Read TDMS file (works only with decimated data)
-filename='D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\EMGdata_decimated.tdms';
+
+filename='D:\Edgar\Documents\ssoct\LabView\Stimulateur opto-génétique\Data\2011_12_02_EMG\17_03_51_Test\17_03_51_Test_decimated.tdms';
 
 [ConvertedData,ConvertVer,ChanNames,GroupNames,ci]=convertTDMS(1,filename);
 
@@ -30,8 +31,9 @@ t = t0 + dt*deltaSec*(0:Data(3).Total_Samples-1);
 
 %% 
 close all
-% Choose a data range to display (10000 samples = 1 second)
-dataRange = 1:Data(3).Total_Samples-1;
+% Choose a data range to display (5000 samples = 1 second)
+% dataRange = 1:Data(3).Total_Samples-1;
+dataRange = 1:30*5000;
 figure
 subplot(231)
 plot(t(dataRange), Data(3).Data(dataRange)) ,title('EMG1')
