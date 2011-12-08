@@ -1,8 +1,19 @@
+%% Convert TDMS from interleaved to decimated
+% NOTE: Avoid all spaces in the pathname
+fileName='D:\Edgar\Documents\ssoct\LabView\OptoGenStim\Data\2011_12_02_EMG\17_03_51_Test\17_03_51_Test.tdms';
+% Path to LAbView executable that converts interleaved TDMS to decimated
+TDMS_inter2dec = 'D:\Edgar\Documents\ssoct\LabView\OptoGenStim\TDMS_project\exe\TDMS.exe';
+% Call LabView executable with full TDMS filename as the command line argument
+system([TDMS_inter2dec ' ' fileName]);
+disp('Conversion from interleaved to decimated data done!')
+
 %% Read TDMS file (works only with decimated data)
+[pathName fileName fileExt] = fileparts(fileName);
+% Get the name of new file
+fileName = fullfile(pathName,[fileName '_decimated' fileExt]);
 
-filename='D:\Edgar\Documents\ssoct\LabView\Stimulateur opto-génétique\Data\2011_12_02_EMG\17_03_51_Test\17_03_51_Test_decimated.tdms';
-
-[ConvertedData,ConvertVer,ChanNames,GroupNames,ci]=convertTDMS(1,filename);
+% Convert decimated TDMS to .mat file
+[ConvertedData,ConvertVer,ChanNames,GroupNames,ci]=convertTDMS(1,fileName);
 
 Data = ConvertedData.Data.MeasuredData;
 
