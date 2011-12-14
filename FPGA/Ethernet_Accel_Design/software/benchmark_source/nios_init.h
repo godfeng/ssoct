@@ -10,20 +10,24 @@
  *           IP: 192.168.1.234
  *      Gateway: 192.168.1.1
  *  Subnet Mask: 255.255.255.0
+ * OCT acquisition address:
+ *			 IP: 192.168.1.234
+ *      Gateway: 192.168.1.1
+ *  Subnet Mask: 255.255.255.0
  */
 //#define IPADDR0   192
 //#define IPADDR1   168
 //#define IPADDR2   0
 //#define IPADDR3   50     //howard may7
 
-#define IPADDR0   137      //howard may7
-#define IPADDR1   57
-#define IPADDR2   235
-#define IPADDR3   80
+#define IPADDR0   192      //Edgar
+#define IPADDR1   168
+#define IPADDR2   1
+#define IPADDR3   234
 
 #define GWADDR0   192
 #define GWADDR1   168
-#define GWADDR2   0
+#define GWADDR2   1
 #define GWADDR3   1
 
 #define MSKADDR0  255

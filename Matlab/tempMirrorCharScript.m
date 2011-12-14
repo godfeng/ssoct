@@ -6,8 +6,8 @@ ss_oct_get_defaults
 % Access global variable
 global ssOCTdefaults
 ssOCTdefaults.resampleData = false;
-dirExp = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_28_Mirror\18_07_47_TestInterp';
-mappedFile = readOCTmapFile(fullfile(dirExp,'2011_10_28_18_09_25.dat'));
+dirExp = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_11_Mirror\17_34_56_interpTest';
+mappedFile = readOCTmapFile(fullfile(dirExp,'2011_11_11_17_38_25.dat'));
 load(fullfile(dirExp,'Reference_Measurements.mat'));
 clear refArm sampleArm
 
@@ -59,6 +59,10 @@ AlineRight = Aline(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
 AlineLeft = Aline (ssOCTdefaults.NSAMPLES/2 :-1 :1);
 resampledAlineRight = resampledAline(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
 resampledAlineLeft = resampledAline (ssOCTdefaults.NSAMPLES/2 :-1 :1);
+
+%% Resampled comparison
+spectrogram(Aline);
+
 
 %% Figures and FWHM computation
 figure; set(gcf,'color','w');

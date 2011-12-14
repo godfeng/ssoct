@@ -1,7 +1,7 @@
-function [mappedFile, varargout] = readOCTmapFile(varargin)
-% Maps a .dat file into memory
+function [mappedFile, varargout] = correctOCTmapFile(varargin)
+% Corrects the number of samples of a .dat file (files acquired before 2011/11/11)
 % SYNTAX:
-% mappedFile = readOCTmapFile(fileName)
+% mappedFile = correctOCTmapFile(fileName)
 % INPUTS:
 % [fileName]    Optional input with the full file name (path+file.dat)
 % OUTPUTS:
@@ -54,17 +54,17 @@ if isempty(fileName)
             ssOCTdefaults.acqParamFileName));
         % Map the .dat file to a variable
         mappedFile = memmapfile(fullfile(pathName,fileName), 'format', 'uint16',...
-            'writable', false);
+            'writable', true);
         
-%         % --------- Correction to read files older than 2011/11/11 -------------
-%         % File attributes
-%         D = dir(fullfile(pathName,fileName));
-%         % File modification date
-%         fileDate = floor(D.datenum);
-%         if fileDate <= datenum(2011,11,11)
-%             ssOCTdefaults.NSAMPLES = 1170;
-%         end
-%         % -------------------- End of NSAMPLES correction ----------------------
+        % --------- Correction to read files older than 2011/11/11 -------------
+        % File attributes
+        D = dir(fullfile(pathName,fileName));
+        % File modification date
+        fileDate = floor(D.datenum);
+        if fileDate <= datenum(2011,11,11)
+            ssOCTdefaults.NSAMPLES = 1170;
+        end
+        % -------------------- End of NSAMPLES correction ----------------------
         
         % Calculate the number of recorded B-frames
         nFramesSaved = numel(mappedFile.Data) / ssOCTdefaults.NSAMPLES / ...
@@ -80,17 +80,17 @@ else
         ssOCTdefaults.acqParamFileName));
     % Map the .dat file to a variable
     mappedFile = memmapfile(fullfile(pathName,[fileName fileExt]), 'format', 'uint16',...
-        'writable', false);
+        'writable', true);
     
-%     % --------- Correction to read files older than 2011/11/11 -------------
-%     % File attributes
-%     D = dir(fullfile(pathName,[fileName fileExt]));
-%     % File modification date
-%     fileDate = floor(D.datenum);
-%     if fileDate <= datenum(2011,11,11)
-%         ssOCTdefaults.NSAMPLES = 1170;
-%     end
-%     % -------------------- End of NSAMPLES correction ----------------------
+    % --------- Correction to read files older than 2011/11/11 -------------
+    % File attributes
+    D = dir(fullfile(pathName,[fileName fileExt]));
+    % File modification date
+    fileDate = floor(D.datenum);
+    if fileDate <= datenum(2011,11,11)
+        ssOCTdefaults.NSAMPLES = 1170;
+    end
+    % -------------------- End of NSAMPLES correction ----------------------
     
     % Calculate the number of recorded B-frames
     nFramesSaved = numel(mappedFile.Data) / ssOCTdefaults.NSAMPLES / ...
@@ -108,5 +108,23 @@ switch nArgsOut
         varargout{1} = pathName;
         varargout{2} = fileName;
 end
+
+% Keep only 1128 samples acquired @ 125MHz
+rawData = mappedFile.Data.rawData;
+rawData = rawData(1:1128,:,:);
+clear mappedFile
+% Create binary file
+fid = fopen(fullfile(pathName,fileName), 'w');
+for iFrames = 1:nFramesSaved,
+    % --------------------- Save a B-scan frame ----------------------------
+    fwrite(fid, squeeze(rawData(:,:,iFrames)), 'uint16');
+end
+fclose(fid);
+load(fullfile(pathName,'Reference_Measurements.mat'),'rawBscanRef','refArm','sampleArm')
+rawBscanRef     = rawBscanRef(1:1128,:);
+refArm          = refArm(1:1128,:);
+sampleArm       = sampleArm(1:1128,:);
+save(fullfile(pathName,'Reference_Measurements.mat'),'rawBscanRef','refArm','sampleArm')
+% Keep 1128 samples on the reference measurement
 % ==============================================================================
 % [EOF]

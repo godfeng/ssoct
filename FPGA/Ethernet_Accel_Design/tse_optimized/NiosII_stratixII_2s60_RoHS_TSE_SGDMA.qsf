@@ -28,7 +28,7 @@ set_global_assignment -name FAMILY "Stratix II"
 set_global_assignment -name DEVICE EP2S60F672C3
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 7.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:11:59  SEPTEMBER 26, 2007"
-set_global_assignment -name LAST_QUARTUS_VERSION 9.0
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
 
 set_instance_assignment -name TCO_REQUIREMENT "3.3 ns" -from * -to adsc_n_to_the_ext_ssram
 set_instance_assignment -name TCO_REQUIREMENT "3.3 ns" -from * -to bwe_n_to_the_ext_ssram
