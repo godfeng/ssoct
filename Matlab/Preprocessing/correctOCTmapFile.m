@@ -107,24 +107,19 @@ switch nArgsOut
     case 2
         varargout{1} = pathName;
         varargout{2} = fileName;
+    case 3
+        varargout{1} = pathName;
+        varargout{2} = fileName;
+        varargout{3} = nFramesSaved;
 end
 
-% Keep only 1128 samples acquired @ 125MHz
-rawData = mappedFile.Data.rawData;
-rawData = rawData(1:1128,:,:);
-clear mappedFile
-% Create binary file
-fid = fopen(fullfile(pathName,fileName), 'w');
-for iFrames = 1:nFramesSaved,
-    % --------------------- Save a B-scan frame ----------------------------
-    fwrite(fid, squeeze(rawData(:,:,iFrames)), 'uint16');
-end
-fclose(fid);
+% Keep 1128 samples on the reference measurement
 load(fullfile(pathName,'Reference_Measurements.mat'),'rawBscanRef','refArm','sampleArm')
 rawBscanRef     = rawBscanRef(1:1128,:);
 refArm          = refArm(1:1128,:);
 sampleArm       = sampleArm(1:1128,:);
 save(fullfile(pathName,'Reference_Measurements.mat'),'rawBscanRef','refArm','sampleArm')
-% Keep 1128 samples on the reference measurement
+disp([fullfile(pathName,fileName) ' corrected to 1128 samples'])
+
 % ==============================================================================
 % [EOF]

@@ -11,16 +11,33 @@ mappedFile = readOCTmapFile(fullfile(dirExp,'2011_11_11_17_38_25.dat'));
 load(fullfile(dirExp,'Reference_Measurements.mat'));
 clear refArm sampleArm
 
+%% Synthetic signal
+fs          = 125E6;                    % Sampling frequency = 125 MHz
+% 1128 samples time vector
+t = 0:(1/fs):(ssOCTdefaults.NSAMPLES-1)/fs;
+% phase offset
+phi = pi/10;
+% sinus frequency
+f = 2.5e6;
+% DC offset
+dcOffset = 2^13;
+% Sinus amplitude
+A = 0.75*2^13;
+% Column vector synthetic A-line
+synthAline = dcOffset + A*sin(2*pi*f*t + phi)';
+% Synthetic B-scan
+synthBscan = synthAline(:,ones([size(rawBscanRef,2) 1]));
+
 %% Interpolation and resampling
 rawBscan = double(squeeze(mappedFile.Data.rawData(:,:,end-1)));
 % Update reference A-line
 ssOCTdefaults.refArm = mean(rawBscanRef,2);
-correctedBscan = correct_B_scan(rawBscan,@hann,'true');
+correctedBscan = correct_B_scan(rawBscan,@hann,true);
 resampledRawBscan   = resample_B_scan(rawBscan);
 resampledRawBscanRef = resample_B_scan(rawBscanRef);
 % Update reference A-line
 ssOCTdefaults.refArm = mean(resampledRawBscanRef,2);
-resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'true');
+resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,true);
 
 %% Figures of interferograms
 figure; set(gcf,'color','w')
@@ -37,68 +54,112 @@ subplot(234)
 imagesc(resampledRawBscanRef,[0 2^14]); 
 colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled Reference B-scan')
 subplot(235)
-imagesc(rawBscan,[0 2^14]); 
+imagesc(resampledRawBscan,[0 2^14]); 
 colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled B-scan')
 subplot(236)
 imagesc(resampledCorrectedBscan,[-2^13 2^13]); 
 colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Resampled Corrected B-scan')
 
-%% Example of interpolation
-figure; plot(1e9*ssOCTdefaults.range.vectorLambda,mean(correctedBscan,2),'k-',...
-   1e9* ssOCTdefaults.range.vectorLambda,mean(resampledCorrectedBscan,2),'r:'); 
+%% Spectrogram of non-interpolated vs. interpolated
+figure;
+windowSize  = 128;
+nOverlap    = 120;
+nFFT        = 128;
+fs          = 125E6;
+spectrogram(correctedBscan(:,size(correctedBscan,2)/2),windowSize,nOverlap,nFFT,fs);
+title('non interpolated A-line')
+figure;
+spectrogram(resampledCorrectedBscan(:,size(resampledCorrectedBscan,2)/2),...
+    windowSize,nOverlap,nFFT,fs);
+title('interpolated A-line')
+figure;
+spectrogram(synthAline, windowSize,nOverlap,nFFT,fs);
+title('synthetic A-line')
+tilefigs
+
+%% Comparison between interpolated vs. non-interpolated
+figure; 
+subplot(211)
+plot(1e9*ssOCTdefaults.range.vectorLambda,median(rawBscan,2),'k-',...
+   1e9* ssOCTdefaults.range.vectorLambda,median(resampledRawBscan,2),'r:'); 
 legend('Original Interferogram','Resampled Interferogram'); set(gcf,'color','w')
 xlabel('\lambda [nm]')
+% Comparison between interpolated vs. synthetic
+subplot(212)
+plot(1e9*ssOCTdefaults.range.vectorLambda,synthAline,'b-',...
+   1e9* ssOCTdefaults.range.vectorLambda,mean(resampledRawBscan,2),'r:'); 
+legend('Synthetic Interferogram','Resampled Interferogram'); set(gcf,'color','w')
+xlabel('\lambda [nm]')
+
 
 %% Structural data
 %  A-line obtained from average along the rows [NSAMPLES 1]
+ssOCTdefaults.GUI.displayLog        = false;
 struct2D = BmodeScan2struct(correctedBscan);
 resampledStruct2D = BmodeScan2struct(resampledCorrectedBscan);
 Aline = BmodeScan2struct(mean(correctedBscan,2));
 resampledAline = BmodeScan2struct(mean(resampledCorrectedBscan,2));
+synthAlinefft = BmodeScan2struct(synthAline - 2^13); % hi-pass filter
+
 AlineRight = Aline(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
 AlineLeft = Aline (ssOCTdefaults.NSAMPLES/2 :-1 :1);
 resampledAlineRight = resampledAline(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
 resampledAlineLeft = resampledAline (ssOCTdefaults.NSAMPLES/2 :-1 :1);
-
-%% Resampled comparison
-spectrogram(Aline);
+synthAlinefftRight = synthAlinefft(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
+synthAlinefftLeft = synthAlinefft (ssOCTdefaults.NSAMPLES/2 :-1 :1);
 
 
 %% Figures and FWHM computation
 figure; set(gcf,'color','w');
 plot(1:ssOCTdefaults.NSAMPLES,Aline,'k-',...
-    1:ssOCTdefaults.NSAMPLES,resampledAline,'r:'); 
-legend('Original A-line','Resampled A-line'); 
+    1:ssOCTdefaults.NSAMPLES,resampledAline,'r:',...
+    1:ssOCTdefaults.NSAMPLES,synthAlinefft,'b--'); 
+legend('Original A-line','Resampled A-line','Synthetic A-line'); 
 
 figure; set(gcf,'color','w')
-subplot(221)
+subplot(231)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(AlineRight);
 plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineRight,'k-',...
     1e3*peak_pos_m,AlineRight(peak_pos),'ro')
 legend('Original (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
-subplot(222)
+subplot(234)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(AlineLeft);
 plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineLeft,'k-',...
     1e3*peak_pos_m,AlineLeft(peak_pos),'ro')
 legend('Original (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
-subplot(223)
+subplot(232)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineRight);
 plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineRight,'k-',...
     1e3*peak_pos_m,resampledAlineRight(peak_pos),'ro')
 legend('Resampled (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
-subplot(224)
+subplot(235)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineLeft);
 plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineLeft,'k-',...
     1e3*peak_pos_m,resampledAlineLeft(peak_pos),'ro')
 legend('Resampled (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
 xlabel('z [mm]')
+subplot(233)
+[~, peak_pos, FWHMum, peak_pos_m] = fwhm(synthAlinefftRight);
+plot(1e3*ssOCTdefaults.range.posZaxis_air,synthAlinefftRight,'k-',...
+    1e3*peak_pos_m,synthAlinefftRight(peak_pos),'ro')
+legend('Synthetic (Right side)')
+title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
+xlabel('z [mm]')
+subplot(236)
+[~, peak_pos, FWHMum, peak_pos_m] = fwhm(synthAlinefftLeft);
+plot(1e3*ssOCTdefaults.range.posZaxis_air,synthAlinefftLeft,'k-',...
+    1e3*peak_pos_m,synthAlinefftLeft(peak_pos),'ro')
+legend('Synthetic (Left side)')
+title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
+xlabel('z [mm]')
+
 
 %% 
 
