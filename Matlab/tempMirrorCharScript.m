@@ -99,7 +99,7 @@ struct2D = BmodeScan2struct(correctedBscan);
 resampledStruct2D = BmodeScan2struct(resampledCorrectedBscan);
 Aline = BmodeScan2struct(mean(correctedBscan,2));
 resampledAline = BmodeScan2struct(mean(resampledCorrectedBscan,2));
-synthAlinefft = BmodeScan2struct(synthAline - 2^13); % hi-pass filter
+synthAlinefft = BmodeScan2struct(synthAline - dcOffset); % hi-pass filter
 
 AlineRight = Aline(ssOCTdefaults.NSAMPLES/2 + 1 :ssOCTdefaults.NSAMPLES);
 AlineLeft = Aline (ssOCTdefaults.NSAMPLES/2 :-1 :1);
