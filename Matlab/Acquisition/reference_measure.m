@@ -19,7 +19,7 @@ function [sampleArm, refArm] = reference_measure(hContAcq)
 global ssOCTdefaults
 
 % Correct B-scan flag
-corrBscanFlag = ssOCTdefaults.corrBscan;
+corrBscanFlag = ssOCTdefaults.GUI.corrBscan;
 
 % Signal from sample arm
 sampleArm   = zeros([ssOCTdefaults.NSAMPLES 1]);
@@ -45,7 +45,7 @@ ssOCTdefaults.refArm    = refArm;
 ssOCTdefaults.sampleArm = sampleArm;
 
 % Save reference and sample arm measurements
-save(fullfile(ssOCTdefaults.dirCurrExp,'Reference_Measurements'),'sampleArm',...
+save(fullfile(ssOCTdefaults.folders.dirCurrExp,'Reference_Measurements'),'sampleArm',...
     'refArm','rawBscanRef');
 
 [posEnv negEnv] = detect_envelope(refArm);
@@ -107,7 +107,7 @@ title('Please unblock both arms and press any key when ready...')
 
 pause()
 % Correct B-scan flag
-ssOCTdefaults.corrBscan = corrBscanFlag;
+ssOCTdefaults.GUI.corrBscan = corrBscanFlag;
 return
 % ==============================================================================
 % [EOF]

@@ -22,8 +22,11 @@ hContAcq = figure;
 set(hContAcq,'color','w')
 % Change figure name
 set(hContAcq,'Name','Continuous Acquisition')
+% Normalized units
+set(0, 'Units', 'normalized')
+set(hContAcq, 'Units', 'normalized');
 % Maximize figure
-set(hContAcq, 'OuterPosition', ssOCTdefaults.screenSize);
+set(hContAcq, 'OuterPosition', ssOCTdefaults.GUI.screenSize);
 
 % ------ Transmit acquisition parameters ['A' nLinesPerFrame nFrames]-----------
 pnet(ssOCTdefaults.tcpConn,'write',([uint8(65) ...
@@ -46,14 +49,14 @@ if ssOCTdefaults.GUI.save2file
     % Close all open files
     fclose('all');
     % Default file name
-    fileName = fullfile(ssOCTdefaults.dirCurrExp,[datestr(now,'HH_MM_SS') '.dat']);
+    fileName = fullfile(ssOCTdefaults.folders.dirCurrExp,[datestr(now,'HH_MM_SS') '.dat']);
     % Save file name of current experiment in global structure
     ssOCTdefaults.CurrExpFileName = fileName;
     % Create binary file
     fid = fopen(fileName, 'w');
     iFrames = 1;
     tic
-    while ~exist(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'),'file')
+    while ~exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'),'file')
         [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
@@ -65,20 +68,20 @@ if ssOCTdefaults.GUI.save2file
     disp(['File saved as: ' fileName])
     pause(0.5);
     % Delete file created by LabView
-    delete(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'))
+    delete(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'))
 else
     %     Save data in a big variable
     %     ssOCTdefaults.OCTfullAcq = zeros([ssOCTdefaults.nFramesPerVol ssOCTdefaults.NSAMPLES ...
     %         ssOCTdefaults.nLinesPerFrame]);
     iFrames = 1;
-    while ~exist(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'),'file')
+    while ~exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'),'file')
         displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
     end
     disp('Transfer done!')
     % Delete file created by LabView
     pause(0.5);
-    delete(fullfile(ssOCTdefaults.dirCurrExp,'tostop.txt'))
+    delete(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'))
 end
 % Disconnect from socket server
 disconnect_from_FPGA

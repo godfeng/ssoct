@@ -30,7 +30,8 @@ synthBscan = synthAline(:,ones([size(rawBscanRef,2) 1]));
 
 % -------------------- Interpolation and resampling ----------------------------
 rawBscan = double(squeeze(mappedFile.Data.rawData(:,:,end-1)));
-% If true take reference signal as the complex median of B-scan
+% If true take reference signal as the complex median of B-scan. Works only with
+% tissue / multiple scatterers (i.e. Not a mirror)
 ssOCTdefaults.medianRefArm = false;
 % Type of window to test
 win = @myhann;
@@ -50,6 +51,7 @@ synthBscan              = correct_B_scan(synthBscan,win,true);
 
 %% Figures of interferograms
 figure; set(gcf,'color','w')
+set(gcf,'name',sprintf('Window: %s.',func2str(win)))
 subplot(241)
 imagesc(rawBscanRef,[0 2^14]); 
 colormap(ssOCTdefaults.GUI.OCTcolorMap); colorbar; title('Reference B-scan')
@@ -90,7 +92,7 @@ xlabel('\lambda [nm]')
 % Comparison between interpolated vs. synthetic
 subplot(212)
 plot(1e9*ssOCTdefaults.range.vectorLambda,synthAline,'b-',...
-   1e9* ssOCTdefaults.range.vectorLambda,mean(resampledRawBscan,2),'r:'); 
+   1e9* ssOCTdefaults.range.vectorLambda,median(resampledRawBscan,2),'r:'); 
 legend('Synthetic Interferogram','Resampled Interferogram'); set(gcf,'color','w')
 xlabel('\lambda [nm]')
 
@@ -120,9 +122,14 @@ resampledStruct2D   = BmodeScan2struct(resampledCorrectedBscan);
 synthStruct2D       = BmodeScan2struct(synthBscan);
 
 %  A-line obtained from average along the rows [nSamplesFFT 1]
-Aline               = BmodeScan2struct(median(correctedBscan,2));
-resampledAline      = BmodeScan2struct(median(resampledCorrectedBscan,2));
-synthAlinefft       = BmodeScan2struct(median(synthBscan,2));
+% Aline               = BmodeScan2struct(median(correctedBscan,2));
+% resampledAline      = BmodeScan2struct(median(resampledCorrectedBscan,2));
+% synthAlinefft       = BmodeScan2struct(median(synthBscan,2));
+
+Aline               = struct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);
+resampledAline      = resampledStruct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);
+synthAlinefft       = synthStruct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);
+ 
 
 % Normalize maximum peak to 1
 Aline               = Aline ./ max(Aline);
@@ -153,7 +160,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineRight,'k-',...
     1e3*peak_pos_m,AlineRight(peak_pos),'ro')
 legend('Original (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 subplot(234)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(AlineLeft);
@@ -161,7 +168,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,AlineLeft,'k-',...
     1e3*peak_pos_m,AlineLeft(peak_pos),'ro')
 legend('Original (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 subplot(232)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineRight);
@@ -169,7 +176,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineRight,'k-',...
     1e3*peak_pos_m,resampledAlineRight(peak_pos),'ro')
 legend('Resampled (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 subplot(235)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(resampledAlineLeft);
@@ -177,7 +184,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,resampledAlineLeft,'k-',...
     1e3*peak_pos_m,resampledAlineLeft(peak_pos),'ro')
 legend('Resampled (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 subplot(233)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(synthAlinefftRight);
@@ -185,7 +192,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,synthAlinefftRight,'k-',...
     1e3*peak_pos_m,synthAlinefftRight(peak_pos),'ro')
 legend('Synthetic (Right side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 subplot(236)
 [~, peak_pos, FWHMum, peak_pos_m] = fwhm(synthAlinefftLeft);
@@ -193,7 +200,7 @@ plot(1e3*ssOCTdefaults.range.posZaxis_air,synthAlinefftLeft,'k-',...
     1e3*peak_pos_m,synthAlinefftLeft(peak_pos),'ro')
 legend('Synthetic (Left side)')
 title([sprintf('FWHM = %.2f',FWHMum) ' \mum'])
-xlabel('z [mm]')
+xlabel('z [mm]'); xlim([0 0.5])
 
 
 %% 

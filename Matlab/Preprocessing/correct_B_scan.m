@@ -29,8 +29,8 @@ end
 
 % Calculate the reference signal as the median A-line of current B-scan
 if ssOCTdefaults.medianRefArm,
-    ssOCTdefaults.refArm    = median(rawBscan,2);
-    refArm                  = ssOCTdefaults.refArm;
+%     ssOCTdefaults.refArm    = median(rawBscan,2);
+%     refArm                  = ssOCTdefaults.refArm;
 end
 
 % Self interference signal from the sample arm (reference arm blocked)

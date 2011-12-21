@@ -20,7 +20,7 @@ if rem(iFrames-1, ssOCTdefaults.nFramesPerVol) == 0,
     pause(ssOCTdefaults.pauseTime);         % Necessary pause before data transfer
 end
 % Acquire raw B-scan
-if ssOCTdefaults.corrBscan
+if ssOCTdefaults.GUI.corrBscan
     [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
     limitY = [-2^13 2^13];
 else
