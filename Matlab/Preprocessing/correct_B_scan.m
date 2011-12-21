@@ -1,6 +1,6 @@
 function correctedBscan = correct_B_scan(rawBscan, varargin)
 % SYNTAX:
-% correctedBscan = correct_B_scan(rawBscan, windowType, correctBackground)
+% correctedBscan = correct_B_scan(rawBscan, windowType, subtractBackground)
 % INPUTS:
 % rawBscan          raw B-scan from OCT (set of interferograms)
 % [windowType]      Function handle to the window function to use:
@@ -8,7 +8,7 @@ function correctedBscan = correct_B_scan(rawBscan, varargin)
 %                   @bohmanwin      @flattopwin @gausswin   @hamming
 %                   @hann           @nuttallwin @parzenwin  @rectwin
 %                   @taylorwin      @triang
-% [correctBackground] if true, applies correction method to raw B-scan
+% [subtractBackground] if true, subtracts reference signal from raw B-scan
 % OUTPUTS:
 % correctedBscan    set of A/lines, already windowed and corrected for
 %                   background signal
@@ -55,9 +55,9 @@ optArgs(1:numVarArgs) = varargin;
 % [optargs{1:numvarargs}] = varargin{:};
 
 % Place optional args in memorable variable names
-[winFunction correctBackground] = optArgs{:};
+[winFunction subtractBackground] = optArgs{:};
 
-if correctBackground
+if subtractBackground
     % Background signal from the reference arm (sample arm blocked)
     % refMatrix       = repmat(refArm, [1 ssOCTdefaults.nLinesPerFrame]);
     % replacement of repmat is 2% faster this way!
@@ -67,8 +67,7 @@ if correctBackground
     % sampleMatrix    = repmat(sampleArm, [1 ssOCTdefaults.nLinesPerFrame]);
 
     % Digital subtraction of background signal (reference signal when the sample
-    % arm is blocked). Spectral shaping is done by dividing the interferogram by
-    % the self-interference term.
+    % arm is blocked). 
     correctedBscan = (double(rawBscan) - refMatrix);
 else
     correctedBscan = double(rawBscan);
@@ -76,7 +75,6 @@ end
 % Apply window to the interferogram
 % correctedBscan = correctedBscan.*repmat(winFunction(ssOCTdefaults.NSAMPLES), ...
 %     [1 ssOCTdefaults.nLinesPerFrame]);
-
 % replacement of repmat is 2% faster this way!
 tmpCorrArray = winFunction(ssOCTdefaults.NSAMPLES);
 correctedBscan = correctedBscan.*tmpCorrArray(:,ones(ssOCTdefaults.nLinesPerFrame, 1));

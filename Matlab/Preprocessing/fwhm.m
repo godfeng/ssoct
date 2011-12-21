@@ -21,7 +21,8 @@ global ssOCTdefaults
 % fprintf('Theoretical axial resolution (in air): %.3g um\n',1e6*ssOCTdefaults.axial.zr_air)
 
 %Pixel width (in m)
-pixelWidth = 2*ssOCTdefaults.range.delta_Z_Nq_air ./ (ssOCTdefaults.NSAMPLES+1);
+pixelWidth = 2*ssOCTdefaults.range.delta_Z_Nq_air ./ (ssOCTdefaults.nSamplesFFT+1);
+
 % Calculate FWHM of given signal
 [FWHM, peak_pos] = calculate_FWHM(signal);
 

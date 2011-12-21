@@ -19,8 +19,9 @@ if ssOCTdefaults.resampleData
 end
 
 % FFT of the interferogram is a reflectivity profile, applying the FFT across
-% the columns (dimension = 1) 
-struct2D = abs(fftshift(fft(double(Bmodescan),[],1),1));
+% the columns (dimension = 1), with ssOCTdefaults.nSamplesFFT points
+struct2D = abs(fftshift(fft(double(Bmodescan),ssOCTdefaults.nSamplesFFT,1),1));
+% struct2D = abs(fftshift(fft(double(Bmodescan),[],1),1)); % OLD WAY TO DO IT
 
 % ==============================================================================
 % [EOF]
