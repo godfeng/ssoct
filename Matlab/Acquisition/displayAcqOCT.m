@@ -21,7 +21,7 @@ if rem(iFrames-1, ssOCTdefaults.nFramesPerVol) == 0,
 end
 % Acquire raw B-scan
 if ssOCTdefaults.GUI.corrBscan
-    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
+    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@myhann,true);
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
@@ -71,10 +71,11 @@ xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
 
 % --------------- Plot the a single A-line (FFT) -----------------------
 subplot(247)
-singleAline = BmodeScan2struct(correctedBscan(:,2));    % log FFT
+limitX = [-0.1 5];
+singleAline = BmodeScan2struct(correctedBscan(:,2));    % abs FFT
 % Take only left part of spectrum
-singleAline = singleAline(ssOCTdefaults.NSAMPLES/2:-1:1);
-if ssOCTdefaults.GUI.displayLog
+singleAline = singleAline(ssOCTdefaults.nSamplesFFT/2:-1:1);
+if ssOCTdefaults.GUI.displayLog                         % log scale display
     singleAline = log(singleAline + 1);
     plot(10^3*ssOCTdefaults.range.posZaxis_air, singleAline,'k-')
     ylabel('log(R) [a.u.]')
@@ -95,6 +96,7 @@ else
 end
 hold off
 xlabel('z [mm]')
+xlim(limitX)
 
 % --------------- Display a B-scan (single frame) ----------------------
 subplot(121)
@@ -103,13 +105,13 @@ if ssOCTdefaults.GUI.displayLog
     % Display in log scale, single-sided FFT (left part of spectrum), with
     % z-axis in um
     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
-        log(Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:)+1));
+        log(Bscan(ssOCTdefaults.nSamplesFFT/2:-1:1,:)+1));
     title(sprintf('log(R). Continuous Transfer. Frame %d',iFrames))
 else
     % Display in linear scale, single-sided FFT (left part of spectrum), with
     % z-axis in um
     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
-        Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:));
+        Bscan(ssOCTdefaults.nSamplesFFT/2:-1:1,:));
     title(sprintf('Continuous Transfer. Frame %d',iFrames))
 end
 if ssOCTdefaults.GUI.displayColorBar

@@ -86,6 +86,8 @@ ssOCTdefaults.GUI.displayColorBar   = true;
 ssOCTdefaults.GUI.displaySingleLine = true;
 % Colormap to be used
 ssOCTdefaults.GUI.OCTcolorMap       = get_colormaps('bow');
+% Display figure on black background
+ssOCTdefaults.GUI.blackBgd          = true;
 % Show FWHM in real time
 ssOCTdefaults.GUI.showFWHM          = false;
 % Save to file

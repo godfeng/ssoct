@@ -90,8 +90,8 @@ else
     % Display in linear scale, single-sided FFT, with z-axis in um
 %     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
 %         Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))
-    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
-        Bscan(ssOCTdefaults.NSAMPLES/2:-1:1,:))
+    imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.posZaxis_air,...
+        Bscan(ssOCTdefaults.nSamplesFFT/2:-1:1,:))
 end
 if ssOCTdefaults.GUI.displayColorBar
     colorbar;
