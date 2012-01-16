@@ -13,11 +13,11 @@ function struct2D = BmodeScan2struct(Bmodescan)
 % 2011/07/11
 global ssOCTdefaults
 
-% Resampling in k-space
-if ssOCTdefaults.resampleData
-    % K-clock resampling of a B-scan
-    Bmodescan = resample_B_scan(Bmodescan);
-end
+% % Resampling in k-space
+% if ssOCTdefaults.resampleData
+%     % K-clock resampling of a B-scan
+%     Bmodescan = resample_B_scan(Bmodescan);
+% end
 
 % Complex median subtraction (works only on tissue/multiple scatterers)
 if ssOCTdefaults.medianRefArm

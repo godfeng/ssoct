@@ -37,6 +37,13 @@ title('Acquiring data...')
 % Get data from reference arm
 pause(ssOCTdefaults.pauseTime);         % Necessary pause before data transfer
 [rawBscanRef, ~] = acq_Bscan(@rectwin,false);
+
+% Resampling in k-space
+if ssOCTdefaults.resampleData
+    % K-clock resampling of a B-scan
+    rawBscanRef = resample_B_scan(rawBscanRef);
+end
+
 % Average A-lines of reference arm
 refArm = mean(rawBscanRef,2);
 

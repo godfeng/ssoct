@@ -24,7 +24,7 @@ ssOCTdefaults.GUI.displayLog            = false;
 % Save files
 ssOCTdefaults.GUI.save2file             = true;
 % Display single line/multiple lines in the interferogram plot
-ssOCTdefaults.GUI.displaySingleLine     = true;
+ssOCTdefaults.GUI.displaySingleLine     = false;
 % Resample data in real-time
 ssOCTdefaults.resampleData              = true;
 % Apply background subtraction to B-scan in real time

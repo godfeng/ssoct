@@ -21,7 +21,7 @@ if rem(iFrames-1, ssOCTdefaults.nFramesPerVol) == 0,
 end
 % Acquire raw B-scan
 if ssOCTdefaults.GUI.corrBscan
-    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@myhann,true);
+    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
@@ -35,6 +35,12 @@ end
 
 % Go to specific figure
 figure(hContAcq)
+
+% Resampling in k-space
+if ssOCTdefaults.resampleData
+    % K-clock resampling of a B-scan
+    correctedBscan = resample_B_scan(correctedBscan);
+end
 
 subplot(222);
 if ssOCTdefaults.GUI.displaySingleLine
@@ -72,6 +78,7 @@ xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
 % --------------- Plot the a single A-line (FFT) -----------------------
 subplot(247)
 limitX = [-0.1 5];
+% Resampling here?
 singleAline = BmodeScan2struct(correctedBscan(:,2));    % abs FFT
 % Take only left part of spectrum
 singleAline = singleAline(ssOCTdefaults.nSamplesFFT/2:-1:1);
@@ -100,6 +107,11 @@ xlim(limitX)
 
 % --------------- Display a B-scan (single frame) ----------------------
 subplot(121)
+% Resampling in k-space
+if ssOCTdefaults.resampleData
+    % K-clock resampling of a B-scan
+    correctedBscan = resample_B_scan(correctedBscan);
+end
 Bscan = BmodeScan2struct(correctedBscan);
 if ssOCTdefaults.GUI.displayLog
     % Display in log scale, single-sided FFT (left part of spectrum), with
