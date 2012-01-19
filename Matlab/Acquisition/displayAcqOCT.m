@@ -21,7 +21,7 @@ if rem(iFrames-1, ssOCTdefaults.nFramesPerVol) == 0,
 end
 % Acquire raw B-scan
 if ssOCTdefaults.GUI.corrBscan
-    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
+    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@myhann,true);
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);
@@ -36,16 +36,10 @@ end
 % Go to specific figure
 figure(hContAcq)
 
-% Resampling in k-space
-if ssOCTdefaults.resampleData
-    % K-clock resampling of a B-scan
-    correctedBscan = resample_B_scan(correctedBscan);
-end
-
 subplot(222);
 if ssOCTdefaults.GUI.displaySingleLine
     % -------------- Plot a single interferogram (A-line) ------------------
-    plot(1e9*ssOCTdefaults.range.vectorLambda, correctedBscan(:,2), 'k-',...
+    plot(1e9*ssOCTdefaults.range.vectorLambda, correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2), 'k-',...
         1e9*ssOCTdefaults.range.vectorLambda, posEnv,'r:',...
         1e9*ssOCTdefaults.range.vectorLambda, negEnv,'b:');
     title('Interferogram')
@@ -69,8 +63,14 @@ end
 
 % ------------ Plot the phase of a single A-line -----------------------
 subplot(248)
+% 4096 Samples Lambda Column Vector (in m)
+% vectorLambdaNFFT = 2*pi ./ linspace(ssOCTdefaults.range.maxK,ssOCTdefaults.range.minK, ssOCTdefaults.nSamplesFFT)';
+% plot(1e9*vectorLambdaNFFT, unwrap(angle(hilbert...
+%     (correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2),ssOCTdefaults.nSamplesFFT...
+%     ))),'-k')
+% Hilbert transform on NSAMPLES (1128)
 plot(1e9*ssOCTdefaults.range.vectorLambda, unwrap(angle(hilbert...
-    (correctedBscan(:,2)))),'-k')
+    (correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2)))),'-k')
 title('Interferogram phase')
 xlabel('\lambda [nm]')
 xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
@@ -78,8 +78,7 @@ xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
 % --------------- Plot the a single A-line (FFT) -----------------------
 subplot(247)
 limitX = [-0.1 5];
-% Resampling here?
-singleAline = BmodeScan2struct(correctedBscan(:,2));    % abs FFT
+singleAline = BmodeScan2struct(correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2));    % abs FFT
 % Take only left part of spectrum
 singleAline = singleAline(ssOCTdefaults.nSamplesFFT/2:-1:1);
 if ssOCTdefaults.GUI.displayLog                         % log scale display
@@ -107,11 +106,6 @@ xlim(limitX)
 
 % --------------- Display a B-scan (single frame) ----------------------
 subplot(121)
-% Resampling in k-space
-if ssOCTdefaults.resampleData
-    % K-clock resampling of a B-scan
-    correctedBscan = resample_B_scan(correctedBscan);
-end
 Bscan = BmodeScan2struct(correctedBscan);
 if ssOCTdefaults.GUI.displayLog
     % Display in log scale, single-sided FFT (left part of spectrum), with

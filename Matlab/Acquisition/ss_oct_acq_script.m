@@ -34,7 +34,7 @@ ssOCTdefaults.GUI.showFWHM              = true;
 % Calculate reference from median A-line of current B-scan
 ssOCTdefaults.medianRefArm              = false;
 % Colormap to be used
-ssOCTdefaults.GUI.OCTcolorMap           = get_colormaps('octgold');
+ssOCTdefaults.GUI.OCTcolorMap           = get_colormaps('wob');
 % Display figure on black background
 ssOCTdefaults.GUI.blackBgd              = true;
 % ------------------------------------------------------------------------------

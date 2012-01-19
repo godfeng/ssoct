@@ -1,0 +1,149 @@
+Altera SOPC Builder Version 9.12 Build 350
+Copyright (c) 1999-2009 Altera Corporation.  All rights reserved.
+
+
+No .sopc_builder configuration file(!)
+# 2012.01.19 11:42:01 (*) mk_custom_sdk starting
+# 2012.01.19 11:42:01 (*) Reading project D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC.ptf.
+
+# 2012.01.19 11:42:02 (*) Finding all CPUs
+# 2012.01.19 11:42:02 (*) Finding all available components
+# 2012.01.19 11:42:02 (*) Reading D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/.sopc_builder/install.ptf
+
+# 2012.01.19 11:42:02 (*) Found 67 components
+
+# 2012.01.19 11:42:03 (*) Finding all peripherals
+
+# 2012.01.19 11:42:03 (*) Finding software components
+
+# 2012.01.19 11:42:03 (*) (Legacy SDK Generation Skipped)
+# 2012.01.19 11:42:03 (*) (All TCL Script Generation Skipped)
+# 2012.01.19 11:42:03 (*) (No Libraries Built)
+# 2012.01.19 11:42:03 (*) (Contents Generation Skipped)
+# 2012.01.19 11:42:03 (*) mk_custom_sdk finishing
+
+# 2012.01.19 11:42:03 (*) Starting generation for system: DE4_SOPC.
+
+..
+.
+.
+.
+.
+.
+.
+.
+....
+..
+.....
+...
+......
+.
+
+# 2012.01.19 11:42:05 (*) Running Generator Program for ddr2
+
+# 2012.01.19 11:42:06 (*) Running Generator Program for onchip_memory
+
+# 2012.01.19 11:42:11 (*) Running Generator Program for pll
+
+# 2012.01.19 11:42:37 (*) Running Generator Program for cpu
+
+# 2012.01.19 11:42:38 (*) Starting Nios II generation
+# 2012.01.19 11:42:38 (*)   Checking for plaintext license.
+# 2012.01.19 11:42:39 (*)   Plaintext license not found.
+# 2012.01.19 11:42:39 (*)   Checking for encrypted license (non-evaluation).
+# 2012.01.19 11:42:39 (*)   Encrypted license found.  SOF will not be time-limited.
+# 2012.01.19 11:42:39 (*)   Getting CPU configuration settings
+# 2012.01.19 11:42:39 (*)   Elaborating CPU configuration settings
+# 2012.01.19 11:42:40 (*)   Creating all objects for CPU
+
+# 2012.01.19 11:42:40 (*)     Testbench
+# 2012.01.19 11:42:40 (*)     Instruction decoding
+# 2012.01.19 11:42:40 (*)       Instruction fields
+# 2012.01.19 11:42:40 (*)       Instruction decodes
+# 2012.01.19 11:42:41 (*)       Signals for RTL simulation waveforms
+# 2012.01.19 11:42:41 (*)       Instruction controls
+# 2012.01.19 11:42:41 (*)     Pipeline frontend
+# 2012.01.19 11:42:41 (*)     Pipeline backend
+# 2012.01.19 11:42:45 (*)   Generating HDL from CPU objects
+# 2012.01.19 11:42:48 (*)   Creating encrypted HDL
+
+# 2012.01.19 11:42:50 (*) Done Nios II generation
+
+# 2012.01.19 11:42:51 (*) Running Generator Program for ext_flash
+
+# 2012.01.19 11:42:52 (*) Running Generator Program for sysid
+
+# 2012.01.19 11:42:54 (*) Running Generator Program for jtag_uart
+
+# 2012.01.19 11:42:55 (*) Running Generator Program for high_res_timer
+
+# 2012.01.19 11:42:57 (*) Running Generator Program for sys_timer
+
+# 2012.01.19 11:42:59 (*) Running Generator Program for sgdma_tx
+
+# 2012.01.19 11:43:01 (*) Running Generator Program for sgdma_rx
+
+# 2012.01.19 11:43:04 (*) Running Generator Program for descriptor_memory
+
+# 2012.01.19 11:43:06 (*) Running Generator Program for vol_transfer_done_pio
+
+# 2012.01.19 11:43:07 (*) Running Generator Program for vol_recording_done_pio
+
+# 2012.01.19 11:43:09 (*) Running Generator Program for led_pio
+
+# 2012.01.19 11:43:10 (*) Running Generator Program for sw_pio
+
+# 2012.01.19 11:43:12 (*) Running Generator Program for pb_pio
+
+# 2012.01.19 11:43:14 (*) Running Generator Program for seven_seg_pio
+
+# 2012.01.19 11:43:15 (*) Running Generator Program for DE4_SOPC_clock_0
+
+# 2012.01.19 11:43:17 (*) Running Generator Program for DE4_SOPC_clock_1
+
+# 2012.01.19 11:43:19 (*) Running Generator Program for DE4_SOPC_clock_2
+
+# 2012.01.19 11:43:21 (*) Running Generator Program for DE4_SOPC_clock_3
+
+# 2012.01.19 11:43:23 (*) Running Generator Program for DE4_SOPC_clock_4
+
+# 2012.01.19 11:43:25 (*) Running Generator Program for DE4_SOPC_clock_5
+
+# 2012.01.19 11:43:27 (*) Running Generator Program for DE4_SOPC_clock_6
+
+# 2012.01.19 11:43:29 (*) Running Generator Program for DE4_SOPC_clock_7
+
+# 2012.01.19 11:43:31 (*) Running Generator Program for DE4_SOPC_burst_0
+
+# 2012.01.19 11:43:33 (*) Running Generator Program for clock_crossing_0
+
+# 2012.01.19 11:43:35 (*) Running Generator Program for pipeline_bridge_ddr2
+
+# 2012.01.19 11:43:38 (*) Running Generator Program for peripheral_clock_crossing
+
+.
+
+
+# 2012.01.19 11:43:40 (*) Running Test Generator Program for ddr2
+
+# 2012.01.19 11:43:40 (*) Making arbitration and system (top) modules.
+
+# 2012.01.19 11:44:10 (*) Generating Quartus symbol for top level: DE4_SOPC
+
+# 2012.01.19 11:44:10 (*) Generating Symbol D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC.bsf
+
+# 2012.01.19 11:44:10 (*) Creating command-line system-generation script: D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC_generation_script
+
+# 2012.01.19 11:44:10 (*) Running setup for HDL simulator: modelsim
+
+
+# 2012.01.19 11:44:11 (*) Completed generation for system: DE4_SOPC.
+# 2012.01.19 11:44:11 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
+  SOPC Builder database : D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC.ptf 
+  System HDL Model : D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC.v 
+  System Generation Script : D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/DE4_SOPC_generation_script 
+
+# 2012.01.19 11:44:11 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
+
+
+Press 'Exit' to exit.

@@ -1,4 +1,6 @@
 function correctedBscan = correct_B_scan(rawBscan, varargin)
+% Subtracts reference signal from raw B-scan, applies window function and
+% resamples B-scan, depending on flags set in global variable ssOCTdefaults
 % SYNTAX:
 % correctedBscan = correct_B_scan(rawBscan, windowType, subtractBackground)
 % INPUTS:
@@ -72,6 +74,13 @@ if subtractBackground
 else
     correctedBscan = double(rawBscan);
 end
+
+% Resampling in k-space
+if ssOCTdefaults.resampleData
+    % K-clock resampling of a B-scan
+    correctedBscan = resample_B_scan(correctedBscan);
+end
+
 % Apply window to the interferogram
 % correctedBscan = correctedBscan.*repmat(winFunction(ssOCTdefaults.NSAMPLES), ...
 %     [1 ssOCTdefaults.nLinesPerFrame]);

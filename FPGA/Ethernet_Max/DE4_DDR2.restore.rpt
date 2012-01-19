@@ -1,0 +1,509 @@
+Restore Archived Project report for DE4_DDR2
+Thu Jan 19 11:35:36 2012
+Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Thu Jan 19 11:35:36 2012 ;
+; Revision Name                   ; DE4_DDR2                              ;
+; Top-level Entity Name           ; DE4_DDR2                              ;
+; Family                          ; Stratix IV                            ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored 'D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/DE4_DDR2_tmp_archive.qar' into the 'D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max' directory
+Info: Generated report 'DE4_DDR2.restore.rpt'
+
+
++----------------------------------------------------------------------+
+; Files Restored                                                       ;
++----------------------------------------------------------------------+
+; File Name                                                            ;
++----------------------------------------------------------------------+
+; DE4_DDR2.dpf                                                         ;
+; DE4_DDR2.sdc                                                         ;
+; DE4_SOPC.sopc                                                        ;
+; altera_avalon_half_rate_bridge_constraints.sdc                       ;
+; cpu.sdc                                                              ;
+; ddr2_example_top.sdc                                                 ;
+; ddr2_phy_autodetectedpins.tcl                                        ;
+; ddr2_phy_ddr_pins.tcl                                                ;
+; ddr2_phy_ddr_timing.sdc                                              ;
+; ddr2_phy_ddr_timing.tcl                                              ;
+; ddr2_phy_report_timing.tcl                                           ;
+; ddr2_phy_report_timing_core.tcl                                      ;
+; ddr2_pin_assignments.tcl                                             ;
+; pll.sdc                                                              ;
+; sopc_add_qip_file.tcl                                                ;
+; altera_avalon_clock_adapter.sdc                                      ;
+; Avalon_MM-Master_Templates/burst_read_master.v                       ;
+; Avalon_MM-Master_Templates/burst_write_master.v                      ;
+; Avalon_MM-Master_Templates/custom_master.v                           ;
+; Avalon_MM-Master_Templates/custom_masters_hw.tcl                     ;
+; Avalon_MM-Master_Templates/latency_aware_read_master.v               ;
+; Avalon_MM-Master_Templates/write_master.v                            ;
+; DE4_DDR2.dpf                                                         ;
+; DE4_DDR2.qpf                                                         ;
+; DE4_DDR2.qsf                                                         ;
+; DE4_DDR2.sdc                                                         ;
+; DE4_DDR2_assignment_defaults.qdf                                     ;
+; DE4_DDR2_logic_analyzer.stp                                          ;
+; DE4_DDR2_time_limited.cdf                                            ;
+; DE4_SOPC.qip                                                         ;
+; DE4_SOPC.sopc                                                        ;
+; DE4_SOPC.v                                                           ;
+; DE4_SOPC_burst_0.v                                                   ;
+; DE4_SOPC_clock_0.v                                                   ;
+; DE4_SOPC_clock_1.v                                                   ;
+; DE4_SOPC_clock_2.v                                                   ;
+; DE4_SOPC_clock_3.v                                                   ;
+; DE4_SOPC_clock_4.v                                                   ;
+; DE4_SOPC_clock_5.v                                                   ;
+; DE4_SOPC_clock_6.v                                                   ;
+; DE4_SOPC_clock_7.v                                                   ;
+; EXT_PLL_CTRL.v                                                       ;
+; FAN_PWM.v                                                            ;
+; FlipFlopT.qip                                                        ;
+; FlipFlopT.v                                                          ;
+; FlipFlopT_inst.v                                                     ;
+; LED_glow.v                                                           ;
+; PowerOn_RST.vhd                                                      ;
+; RAM.qip                                                              ;
+; RAM.v                                                                ;
+; RAM_inst.v                                                           ;
+; RAMtoDDR2.vhd                                                        ;
+; TestRead.vhd                                                         ;
+; TestWrite.vhd                                                        ;
+; alt_ddrx_addr_cmd.v                                                  ;
+; alt_ddrx_afi_block.v                                                 ;
+; alt_ddrx_avalon_if.v                                                 ;
+; alt_ddrx_bank_tracking.v                                             ;
+; alt_ddrx_cmd_queue.v                                                 ;
+; alt_ddrx_controller.v                                                ;
+; alt_ddrx_csr.v                                                       ;
+; alt_ddrx_ddr2_odt_gen.v                                              ;
+; alt_ddrx_ecc.v                                                       ;
+; alt_ddrx_input_if.v                                                  ;
+; alt_ddrx_odt_gen.v                                                   ;
+; alt_ddrx_state_machine.v                                             ;
+; alt_ddrx_timers.v                                                    ;
+; alt_ddrx_timers_fsm.v                                                ;
+; alt_ddrx_wdata_fifo.v                                                ;
+; alt_mem_phy_defines.v                                                ;
+; altera_avalon_half_rate_bridge_constraints.sdc                       ;
+; altpllpll.v                                                          ;
+; clock_crossing_0.v                                                   ;
+; clock_divider.v                                                      ;
+; cpu.ocp                                                              ;
+; cpu.sdc                                                              ;
+; cpu.v                                                                ;
+; cpu_bht_ram.mif                                                      ;
+; cpu_dc_tag_ram.mif                                                   ;
+; cpu_ic_tag_ram.mif                                                   ;
+; cpu_jtag_debug_module_sysclk.v                                       ;
+; cpu_jtag_debug_module_tck.v                                          ;
+; cpu_jtag_debug_module_wrapper.v                                      ;
+; cpu_mult_cell.v                                                      ;
+; cpu_oci_test_bench.v                                                 ;
+; cpu_ociram_default_contents.mif                                      ;
+; cpu_rf_ram_a.mif                                                     ;
+; cpu_rf_ram_b.mif                                                     ;
+; cpu_test_bench.v                                                     ;
+; ddr2.v                                                               ;
+; ddr2_alt_ddrx_controller_wrapper.v                                   ;
+; ddr2_controller_phy.v                                                ;
+; ddr2_example_top.sdc                                                 ;
+; ddr2_phy.v                                                           ;
+; ddr2_phy_alt_mem_phy.v                                               ;
+; ddr2_phy_alt_mem_phy_pll.v                                           ;
+; ddr2_phy_alt_mem_phy_seq.vhd                                         ;
+; ddr2_phy_alt_mem_phy_seq_wrapper.v                                   ;
+; ddr2_phy_autodetectedpins.tcl                                        ;
+; ddr2_phy_ddr_pins.tcl                                                ;
+; ddr2_phy_ddr_timing.sdc                                              ;
+; ddr2_phy_ddr_timing.tcl                                              ;
+; ddr2_phy_report_timing.tcl                                           ;
+; ddr2_phy_report_timing_core.tcl                                      ;
+; ddr2_pin_assignments.tcl                                             ;
+; de4_ddr2.v                                                           ;
+; descriptor_memory.hex                                                ;
+; descriptor_memory.v                                                  ;
+; gen_reset_n.v                                                        ;
+; high_res_timer.v                                                     ;
+; jtag_uart.v                                                          ;
+; led_pio.v                                                            ;
+; master_read.v                                                        ;
+; master_write.v                                                       ;
+; my_incl.v                                                            ;
+; nco-library/asj_altq.ocp                                             ;
+; nco-library/asj_altq.v                                               ;
+; nco-library/asj_altqmcash.ocp                                        ;
+; nco-library/asj_altqmcash.v                                          ;
+; nco-library/asj_altqmcpipe.ocp                                       ;
+; nco-library/asj_altqmcpipe.v                                         ;
+; nco-library/asj_altqmcpipe_rst.v                                     ;
+; nco-library/asj_crd.v                                                ;
+; nco-library/asj_crs.v                                                ;
+; nco-library/asj_dxx.v                                                ;
+; nco-library/asj_dxx_g.v                                              ;
+; nco-library/asj_gal.v                                                ;
+; nco-library/asj_gam.v                                                ;
+; nco-library/asj_gam_dp.v                                             ;
+; nco-library/asj_gar.v                                                ;
+; nco-library/asj_nco_apr_dxx.v                                        ;
+; nco-library/asj_nco_aprid_dxx.v                                      ;
+; nco-library/asj_nco_as_m.v                                           ;
+; nco-library/asj_nco_as_m_cen.v                                       ;
+; nco-library/asj_nco_as_m_dp.v                                        ;
+; nco-library/asj_nco_as_m_dp_cen.v                                    ;
+; nco-library/asj_nco_d1gam.v                                          ;
+; nco-library/asj_nco_derot.v                                          ;
+; nco-library/asj_nco_fxx.v                                            ;
+; nco-library/asj_nco_isdr.v                                           ;
+; nco-library/asj_nco_isdr_mc.v                                        ;
+; nco-library/asj_nco_isdr_throughput2.v                               ;
+; nco-library/asj_nco_lp_m.v                                           ;
+; nco-library/asj_nco_m.v                                              ;
+; nco-library/asj_nco_madx.v                                           ;
+; nco-library/asj_nco_madx_cen.v                                       ;
+; nco-library/asj_nco_mady.v                                           ;
+; nco-library/asj_nco_mady_cen.v                                       ;
+; nco-library/asj_nco_mcin.v                                           ;
+; nco-library/asj_nco_mciosel.v                                        ;
+; nco-library/asj_nco_mcout.v                                          ;
+; nco-library/asj_nco_mob_rw.v                                         ;
+; nco-library/asj_nco_mob_sw.v                                         ;
+; nco-library/asj_nco_mob_w.v                                          ;
+; nco-library/asj_nco_pmd2.v                                           ;
+; nco-library/asj_nco_pmd2gam.v                                        ;
+; nco-library/asj_nco_pxx.v                                            ;
+; nco-library/asj_xnqg.v                                               ;
+; nco-library/auk_dspip_avalon_streaming_block_sink.vhd                ;
+; nco-library/auk_dspip_avalon_streaming_block_source.vhd              ;
+; nco-library/auk_dspip_avalon_streaming_controller.vhd                ;
+; nco-library/auk_dspip_avalon_streaming_controller_pe.vhd             ;
+; nco-library/auk_dspip_avalon_streaming_sink.vhd                      ;
+; nco-library/auk_dspip_avalon_streaming_source.vhd                    ;
+; nco-library/auk_dspip_delay.vhd                                      ;
+; nco-library/auk_dspip_lib_pkg.vhd                                    ;
+; nco-library/auk_dspip_math_pkg.vhd                                   ;
+; nco-library/auk_dspip_text_pkg.vhd                                   ;
+; nco-library/cord_2c.v                                                ;
+; nco-library/cord_acc_ena.v                                           ;
+; nco-library/cord_en.v                                                ;
+; nco-library/cord_fs.v                                                ;
+; nco-library/cord_init.v                                              ;
+; nco-library/cord_init_pm.v                                           ;
+; nco-library/cord_init_ser.v                                          ;
+; nco-library/cord_init_ser_pm.v                                       ;
+; nco-library/cord_lut.v                                               ;
+; nco-library/cord_lut_1p.v                                            ;
+; nco-library/cord_rot_dual.v                                          ;
+; nco-library/cord_rot_sgl.v                                           ;
+; nco-library/cord_seg_sel.v                                           ;
+; nco-library/cordic_10_m.v                                            ;
+; nco-library/cordic_11_m.v                                            ;
+; nco-library/cordic_12_m.v                                            ;
+; nco-library/cordic_13_m.v                                            ;
+; nco-library/cordic_14_m.v                                            ;
+; nco-library/cordic_15_m.v                                            ;
+; nco-library/cordic_16_m.v                                            ;
+; nco-library/cordic_17_m.v                                            ;
+; nco-library/cordic_18_m.v                                            ;
+; nco-library/cordic_19_m.v                                            ;
+; nco-library/cordic_20_m.v                                            ;
+; nco-library/cordic_21_m.v                                            ;
+; nco-library/cordic_22_m.v                                            ;
+; nco-library/cordic_23_m.v                                            ;
+; nco-library/cordic_24_m.v                                            ;
+; nco-library/cordic_25_m.v                                            ;
+; nco-library/cordic_26_m.v                                            ;
+; nco-library/cordic_27_m.v                                            ;
+; nco-library/cordic_28_m.v                                            ;
+; nco-library/cordic_29_m.v                                            ;
+; nco-library/cordic_30_m.v                                            ;
+; nco-library/cordic_31_m.v                                            ;
+; nco-library/cordic_32_m.v                                            ;
+; nco-library/cordic_3_m.v                                             ;
+; nco-library/cordic_4_m.v                                             ;
+; nco-library/cordic_5_m.v                                             ;
+; nco-library/cordic_6_m.v                                             ;
+; nco-library/cordic_7_m.v                                             ;
+; nco-library/cordic_8_m.v                                             ;
+; nco-library/cordic_9_m.v                                             ;
+; nco-library/cordic_axor_0p_lpm.v                                     ;
+; nco-library/cordic_axor_1p_lpm.v                                     ;
+; nco-library/cordic_axor_2p_lpm.v                                     ;
+; nco-library/cordic_axor_ser.v                                        ;
+; nco-library/cordic_cnt.v                                             ;
+; nco-library/cordic_cnt_sig.v                                         ;
+; nco-library/cordic_reg_ser.v                                         ;
+; nco-library/cordic_sxor_0p_lpm.v                                     ;
+; nco-library/cordic_sxor_1p_lpm.v                                     ;
+; nco-library/cordic_sxor_2p_lpm.v                                     ;
+; nco-library/cordic_sxor_ser.v                                        ;
+; nco-library/cordic_zxor_0p_lpm.v                                     ;
+; nco-library/cordic_zxor_1p_lpm.v                                     ;
+; nco-library/cordic_zxor_2p_lpm.v                                     ;
+; nco-library/cordic_zxor_ser.v                                        ;
+; nco-library/dop_reg.v                                                ;
+; nco-library/freq_sel_st.v                                            ;
+; nco-library/las.v                                                    ;
+; nco-library/lms.v                                                    ;
+; nco-library/lmsd.v                                                   ;
+; nco-library/m_output_blk_reg.v                                       ;
+; nco-library/m_output_blk_rw.v                                        ;
+; nco-library/m_output_blk_w.v                                         ;
+; nco-library/mac_i_lpm.v                                              ;
+; nco-library/mac_i_lpmd.v                                             ;
+; nco-library/segment_arr_tdl.v                                        ;
+; nco-library/segment_sel.v                                            ;
+; nco-library/segment_sel_sgl.v                                        ;
+; nco-library/sid_2c_1p.v                                              ;
+; nco-library/sop_reg.v                                                ;
+; onchip_memory.v                                                      ;
+; pb_pio.v                                                             ;
+; peripheral_clock_crossing.v                                          ;
+; pipeline_bridge_ddr2.v                                               ;
+; pll.sdc                                                              ;
+; pll.v                                                                ;
+; pll_125.v                                                            ;
+; pll_150.ppf                                                          ;
+; pll_150.qip                                                          ;
+; pll_150.v                                                            ;
+; pll_150_inst.v                                                       ;
+; pll_50.ppf                                                           ;
+; pll_50.qip                                                           ;
+; pll_50.v                                                             ;
+; pll_50_inst.v                                                        ;
+; pll_DCO.ppf                                                          ;
+; pll_DCO.qip                                                          ;
+; pll_DCO.v                                                            ;
+; pll_DCO_inst.v                                                       ;
+; sample_addressing_custom.v                                           ;
+; seven_seg_pio.v                                                      ;
+; sgdma_rx.v                                                           ;
+; sgdma_tx.v                                                           ;
+; sin400k.bsf                                                          ;
+; sin400k.html                                                         ;
+; sin400k.qip                                                          ;
+; sin400k.v                                                            ;
+; sin400k.vec                                                          ;
+; sin400k_bb.v                                                         ;
+; sin400k_cos.hex                                                      ;
+; sin400k_model.m                                                      ;
+; sin400k_nativelink.tcl                                               ;
+; sin400k_sin.hex                                                      ;
+; sin400k_st.v                                                         ;
+; sin400k_tb.m                                                         ;
+; sin400k_tb.v                                                         ;
+; sin400k_vho_msim.tcl                                                 ;
+; sin400k_vo_msim.tcl                                                  ;
+; sin400k_wave.do                                                      ;
+; sopc_add_qip_file.tcl                                                ;
+; sw_pio.v                                                             ;
+; sys_timer.v                                                          ;
+; sysid.v                                                              ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_13.v                 ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_24.v                 ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_34.v                 ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_opt_1246.v           ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_opt_14_44.v          ;
+; triple_speed_ethernet-library/altera_tse_a_fifo_opt_36_10.v          ;
+; triple_speed_ethernet-library/altera_tse_align_sync.v                ;
+; triple_speed_ethernet-library/altera_tse_alt2gxb_arriagx.v           ;
+; triple_speed_ethernet-library/altera_tse_alt2gxb_basic.v             ;
+; triple_speed_ethernet-library/altera_tse_alt2gxb_gige.v              ;
+; triple_speed_ethernet-library/altera_tse_alt4gxb_gige.v              ;
+; triple_speed_ethernet-library/altera_tse_altgx_civgx_gige.v          ;
+; triple_speed_ethernet-library/altera_tse_altshifttaps.v              ;
+; triple_speed_ethernet-library/altera_tse_altsyncram_dpm_fifo.v       ;
+; triple_speed_ethernet-library/altera_tse_bin_cnt.v                   ;
+; triple_speed_ethernet-library/altera_tse_carrier_sense.v             ;
+; triple_speed_ethernet-library/altera_tse_clk_cntl.v                  ;
+; triple_speed_ethernet-library/altera_tse_clk_gen.v                   ;
+; triple_speed_ethernet-library/altera_tse_colision_detect.v           ;
+; triple_speed_ethernet-library/altera_tse_crc328checker.v             ;
+; triple_speed_ethernet-library/altera_tse_crc328generator.v           ;
+; triple_speed_ethernet-library/altera_tse_crc32ctl8.v                 ;
+; triple_speed_ethernet-library/altera_tse_crc32galois8.v              ;
+; triple_speed_ethernet-library/altera_tse_dc_fifo.v                   ;
+; triple_speed_ethernet-library/altera_tse_dec10b8b.v                  ;
+; triple_speed_ethernet-library/altera_tse_dec_func.v                  ;
+; triple_speed_ethernet-library/altera_tse_dpram_16x32.v               ;
+; triple_speed_ethernet-library/altera_tse_dpram_8x32.v                ;
+; triple_speed_ethernet-library/altera_tse_enc8b10b.v                  ;
+; triple_speed_ethernet-library/altera_tse_fifoless_mac_rx.v           ;
+; triple_speed_ethernet-library/altera_tse_fifoless_mac_tx.v           ;
+; triple_speed_ethernet-library/altera_tse_fifoless_retransmit_cntl.v  ;
+; triple_speed_ethernet-library/altera_tse_geth_pcs_wo_ratematch.v     ;
+; triple_speed_ethernet-library/altera_tse_gige_reset_ctrl.v           ;
+; triple_speed_ethernet-library/altera_tse_gmii_io.v                   ;
+; triple_speed_ethernet-library/altera_tse_gray_cnt.v                  ;
+; triple_speed_ethernet-library/altera_tse_gxb_aligned_rxsync.v        ;
+; triple_speed_ethernet-library/altera_tse_gxb_gige_inst.v             ;
+; triple_speed_ethernet-library/altera_tse_hashing.v                   ;
+; triple_speed_ethernet-library/altera_tse_host_control.v              ;
+; triple_speed_ethernet-library/altera_tse_host_control_small.v        ;
+; triple_speed_ethernet-library/altera_tse_lb_read_cntl.v              ;
+; triple_speed_ethernet-library/altera_tse_lb_wrt_cntl.v               ;
+; triple_speed_ethernet-library/altera_tse_lfsr_10.v                   ;
+; triple_speed_ethernet-library/altera_tse_loopback_ff.v               ;
+; triple_speed_ethernet-library/altera_tse_mac.v                       ;
+; triple_speed_ethernet-library/altera_tse_mac_control.v               ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs.v                   ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_gige_woff.v         ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_pma.v               ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_pma_ena.v           ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_pma_gige.v          ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_pma_strx_gx_ena.v   ;
+; triple_speed_ethernet-library/altera_tse_mac_pcs_woff.v              ;
+; triple_speed_ethernet-library/altera_tse_mac_rx.v                    ;
+; triple_speed_ethernet-library/altera_tse_mac_tx.v                    ;
+; triple_speed_ethernet-library/altera_tse_mac_woff.ocp                ;
+; triple_speed_ethernet-library/altera_tse_mac_woff.v                  ;
+; triple_speed_ethernet-library/altera_tse_magic_detection.v           ;
+; triple_speed_ethernet-library/altera_tse_mdio.v                      ;
+; triple_speed_ethernet-library/altera_tse_mdio_clk_gen.v              ;
+; triple_speed_ethernet-library/altera_tse_mdio_cntl.v                 ;
+; triple_speed_ethernet-library/altera_tse_mdio_reg.v                  ;
+; triple_speed_ethernet-library/altera_tse_mii_rx_if.v                 ;
+; triple_speed_ethernet-library/altera_tse_mii_rx_if_pcs.v             ;
+; triple_speed_ethernet-library/altera_tse_mii_tx_if.v                 ;
+; triple_speed_ethernet-library/altera_tse_mii_tx_if_pcs.v             ;
+; triple_speed_ethernet-library/altera_tse_multi_channel_arbiter.v     ;
+; triple_speed_ethernet-library/altera_tse_multi_mac.v                 ;
+; triple_speed_ethernet-library/altera_tse_multi_mac_pcs.v             ;
+; triple_speed_ethernet-library/altera_tse_multi_mac_pcs_pma.v         ;
+; triple_speed_ethernet-library/altera_tse_multi_mac_pcs_pma_gige.v    ;
+; triple_speed_ethernet-library/altera_tse_pcs.v                       ;
+; triple_speed_ethernet-library/altera_tse_pcs_control.v               ;
+; triple_speed_ethernet-library/altera_tse_pcs_host_control.v          ;
+; triple_speed_ethernet-library/altera_tse_pcs_pma.v                   ;
+; triple_speed_ethernet-library/altera_tse_pcs_pma_gige.v              ;
+; triple_speed_ethernet-library/altera_tse_pma_lvds_rx.v               ;
+; triple_speed_ethernet-library/altera_tse_pma_lvds_tx.v               ;
+; triple_speed_ethernet-library/altera_tse_quad_16x32.v                ;
+; triple_speed_ethernet-library/altera_tse_quad_8x32.v                 ;
+; triple_speed_ethernet-library/altera_tse_register_map.v              ;
+; triple_speed_ethernet-library/altera_tse_register_map_small.v        ;
+; triple_speed_ethernet-library/altera_tse_retransmit_cntl.v           ;
+; triple_speed_ethernet-library/altera_tse_rgmii_in1.v                 ;
+; triple_speed_ethernet-library/altera_tse_rgmii_in4.v                 ;
+; triple_speed_ethernet-library/altera_tse_rgmii_module.v              ;
+; triple_speed_ethernet-library/altera_tse_rgmii_out1.v                ;
+; triple_speed_ethernet-library/altera_tse_rgmii_out4.v                ;
+; triple_speed_ethernet-library/altera_tse_rx_converter.v              ;
+; triple_speed_ethernet-library/altera_tse_rx_counter_cntl.v           ;
+; triple_speed_ethernet-library/altera_tse_rx_encapsulation.v          ;
+; triple_speed_ethernet-library/altera_tse_rx_encapsulation_strx_gx.v  ;
+; triple_speed_ethernet-library/altera_tse_rx_ff.v                     ;
+; triple_speed_ethernet-library/altera_tse_rx_ff_cntrl.v               ;
+; triple_speed_ethernet-library/altera_tse_rx_ff_cntrl_32.v            ;
+; triple_speed_ethernet-library/altera_tse_rx_ff_cntrl_32_shift16.v    ;
+; triple_speed_ethernet-library/altera_tse_rx_ff_length.v              ;
+; triple_speed_ethernet-library/altera_tse_rx_fifo_rd.v                ;
+; triple_speed_ethernet-library/altera_tse_rx_min_ff.v                 ;
+; triple_speed_ethernet-library/altera_tse_rx_stat_extract.v           ;
+; triple_speed_ethernet-library/altera_tse_rx_sync.v                   ;
+; triple_speed_ethernet-library/altera_tse_sdpm_altsyncram.v           ;
+; triple_speed_ethernet-library/altera_tse_sdpm_gen.v                  ;
+; triple_speed_ethernet-library/altera_tse_sgmii_clk_cntl.v            ;
+; triple_speed_ethernet-library/altera_tse_sgmii_clk_div.v             ;
+; triple_speed_ethernet-library/altera_tse_sgmii_clk_enable.v          ;
+; triple_speed_ethernet-library/altera_tse_sgmii_clk_scheduler.v       ;
+; triple_speed_ethernet-library/altera_tse_shared_mac_control.v        ;
+; triple_speed_ethernet-library/altera_tse_shared_register_map.v       ;
+; triple_speed_ethernet-library/altera_tse_timing_adapter32.v          ;
+; triple_speed_ethernet-library/altera_tse_timing_adapter8.v           ;
+; triple_speed_ethernet-library/altera_tse_timing_adapter_fifo32.v     ;
+; triple_speed_ethernet-library/altera_tse_timing_adapter_fifo8.v      ;
+; triple_speed_ethernet-library/altera_tse_top_1000_base_x.ocp         ;
+; triple_speed_ethernet-library/altera_tse_top_1000_base_x.v           ;
+; triple_speed_ethernet-library/altera_tse_top_1000_base_x_strx_gx.ocp ;
+; triple_speed_ethernet-library/altera_tse_top_1000_base_x_strx_gx.v   ;
+; triple_speed_ethernet-library/altera_tse_top_1geth.v                 ;
+; triple_speed_ethernet-library/altera_tse_top_autoneg.v               ;
+; triple_speed_ethernet-library/altera_tse_top_fifoless_1geth.v        ;
+; triple_speed_ethernet-library/altera_tse_top_gen_host.ocp            ;
+; triple_speed_ethernet-library/altera_tse_top_gen_host.v              ;
+; triple_speed_ethernet-library/altera_tse_top_mdio.v                  ;
+; triple_speed_ethernet-library/altera_tse_top_multi_mac.v             ;
+; triple_speed_ethernet-library/altera_tse_top_multi_mac_pcs.v         ;
+; triple_speed_ethernet-library/altera_tse_top_multi_mac_pcs_gige.v    ;
+; triple_speed_ethernet-library/altera_tse_top_pcs.v                   ;
+; triple_speed_ethernet-library/altera_tse_top_pcs_strx_gx.v           ;
+; triple_speed_ethernet-library/altera_tse_top_rx.v                    ;
+; triple_speed_ethernet-library/altera_tse_top_rx_converter.v          ;
+; triple_speed_ethernet-library/altera_tse_top_sgmii.v                 ;
+; triple_speed_ethernet-library/altera_tse_top_sgmii_strx_gx.v         ;
+; triple_speed_ethernet-library/altera_tse_top_tx.v                    ;
+; triple_speed_ethernet-library/altera_tse_top_tx_converter.v          ;
+; triple_speed_ethernet-library/altera_tse_top_w_fifo.v                ;
+; triple_speed_ethernet-library/altera_tse_top_w_fifo_10_100_1000.v    ;
+; triple_speed_ethernet-library/altera_tse_top_wo_fifo.v               ;
+; triple_speed_ethernet-library/altera_tse_top_wo_fifo_10_100_1000.v   ;
+; triple_speed_ethernet-library/altera_tse_tx_converter.v              ;
+; triple_speed_ethernet-library/altera_tse_tx_counter_cntl.v           ;
+; triple_speed_ethernet-library/altera_tse_tx_encapsulation.v          ;
+; triple_speed_ethernet-library/altera_tse_tx_ff.v                     ;
+; triple_speed_ethernet-library/altera_tse_tx_ff_cntrl.v               ;
+; triple_speed_ethernet-library/altera_tse_tx_ff_cntrl_32.v            ;
+; triple_speed_ethernet-library/altera_tse_tx_ff_cntrl_32_shift16.v    ;
+; triple_speed_ethernet-library/altera_tse_tx_ff_length.v              ;
+; triple_speed_ethernet-library/altera_tse_tx_ff_read_cntl.v           ;
+; triple_speed_ethernet-library/altera_tse_tx_min_ff.v                 ;
+; triple_speed_ethernet-library/altera_tse_tx_stat_extract.v           ;
+; tse_mac.html                                                         ;
+; tse_mac.qip                                                          ;
+; tse_mac.v                                                            ;
+; tse_mac_constraints.sdc                                              ;
+; tse_mac_constraints.tcl                                              ;
+; vol_recording_done_pio.v                                             ;
+; vol_transfer_done_pio.v                                              ;
+; altera_avalon_clock_adapter.sdc                                      ;
++----------------------------------------------------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+

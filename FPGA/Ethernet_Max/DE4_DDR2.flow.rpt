@@ -1,0 +1,123 @@
+Flow report for DE4_DDR2
+Thu Jan 19 12:24:27 2012
+Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Flow Summary                                                                      ;
++-----------------------------------+-----------------------------------------------+
+; Flow Status                       ; Successful - Thu Jan 19 12:22:41 2012         ;
+; Quartus II 64-Bit Version         ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
+; Revision Name                     ; DE4_DDR2                                      ;
+; Top-level Entity Name             ; DE4_DDR2                                      ;
+; Family                            ; Stratix IV                                    ;
+; Device                            ; EP4SGX230KF40C2                               ;
+; Timing Models                     ; Final                                         ;
+; Met timing requirements           ; N/A                                           ;
+; Logic utilization                 ; 11 %                                          ;
+;     Combinational ALUTs           ; 14,425 / 182,400 ( 8 % )                      ;
+;     Memory ALUTs                  ; 373 / 91,200 ( < 1 % )                        ;
+;     Dedicated logic registers     ; 14,339 / 182,400 ( 8 % )                      ;
+; Total registers                   ; 14847                                         ;
+; Total pins                        ; 394 / 888 ( 44 % )                            ;
+; Total virtual pins                ; 1                                             ;
+; Total block memory bits           ; 6,558,692 / 14,625,792 ( 45 % )               ;
+; DSP block 18-bit elements         ; 4 / 1,288 ( < 1 % )                           ;
+; Total GXB Receiver Channel PCS    ; 0 / 24 ( 0 % )                                ;
+; Total GXB Receiver Channel PMA    ; 0 / 36 ( 0 % )                                ;
+; Total GXB Transmitter Channel PCS ; 0 / 24 ( 0 % )                                ;
+; Total GXB Transmitter Channel PMA ; 0 / 36 ( 0 % )                                ;
+; Total PLLs                        ; 4 / 8 ( 50 % )                                ;
+; Total DLLs                        ; 1 / 4 ( 25 % )                                ;
++-----------------------------------+-----------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 01/19/2012 11:35:35 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; DE4_DDR2            ;
++-------------------+---------------------+
+
+
++--------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                   ;
++-----------------+-------+---------------+-------------+------------+
+; Assignment Name ; Value ; Default Value ; Entity Name ; Section Id ;
++-----------------+-------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:08:29     ; 2.8                     ; 926 MB              ; 00:08:59                           ;
+; Partition Merge           ; 00:00:14     ; 1.0                     ; 545 MB              ; 00:00:13                           ;
+; Fitter                    ; 00:26:53     ; 2.3                     ; 1352 MB             ; 00:30:07                           ;
+; TimeQuest Timing Analyzer ; 00:02:39     ; 1.1                     ; 925 MB              ; 00:02:45                           ;
+; Assembler                 ; 00:00:56     ; 1.0                     ; 932 MB              ; 00:00:52                           ;
+; Total                     ; 00:38:15     ; --                      ; --                  ; 00:42:04                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                            ;
++---------------------------+------------------+---------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name       ; OS Version ; Processor type ;
++---------------------------+------------------+---------------+------------+----------------+
+; Analysis & Synthesis      ; LIOM3            ; Windows Vista ; 6.1        ; x86_64         ;
+; Partition Merge           ; LIOM3            ; Windows Vista ; 6.1        ; x86_64         ;
+; Fitter                    ; LIOM3            ; Windows Vista ; 6.1        ; x86_64         ;
+; Assembler                 ; LIOM3            ; Windows Vista ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; LIOM3            ; Windows Vista ; 6.1        ; x86_64         ;
++---------------------------+------------------+---------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_sh --disable_all_banners --restore -output D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max -disable_search_path_update DE4_DDR2_tmp_archive.qar
+quartus_map --read_settings_files=on --write_settings_files=off SS_OCT -c DE4_DDR2
+quartus_cdb --read_settings_files=off --write_settings_files=off SS_OCT -c DE4_DDR2 --merge=on
+quartus_fit --read_settings_files=off --write_settings_files=off SS_OCT -c DE4_DDR2
+quartus_asm --read_settings_files=off --write_settings_files=off SS_OCT -c DE4_DDR2
+quartus_sta SS_OCT -c DE4_DDR2
+
+
+
