@@ -1,0 +1,5 @@
+cd D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/software/ss_oct/workstation
+
+./bm –m :50 –p tcp –b 2000
+
+bm –m 192.168.1.9:50 –p tcp –b 1458 –d 100000000
