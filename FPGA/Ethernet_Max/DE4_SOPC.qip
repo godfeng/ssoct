@@ -12,5 +12,5 @@ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/burst_read_m
  set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/latency_aware_read_master.v
  set_global_assignment -name VERILOG_FILE master_read.v
  set_global_assignment -name SDC_FILE tse_mac_constraints.sdc
-set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C00000134F6D5F1A6 
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C00000134FC8C8B92 
  

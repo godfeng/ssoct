@@ -9,7 +9,7 @@
    {
       datum baseAddress
       {
-         value = "1225795392";
+         value = "1225860928";
          type = "long";
       }
    }
@@ -54,7 +54,7 @@
    {
       datum baseAddress
       {
-         value = "1225793536";
+         value = "1225859072";
          type = "long";
       }
    }
@@ -62,7 +62,7 @@
    {
       datum baseAddress
       {
-         value = "1225795328";
+         value = "1225860864";
          type = "long";
       }
    }
@@ -79,19 +79,19 @@
          type = "String";
       }
    }
-   element sgdma_rx.csr
-   {
-      datum baseAddress
-      {
-         value = "1225795520";
-         type = "long";
-      }
-   }
    element sgdma_tx.csr
    {
       datum baseAddress
       {
-         value = "1225795456";
+         value = "1225860992";
+         type = "long";
+      }
+   }
+   element sgdma_rx.csr
+   {
+      datum baseAddress
+      {
+         value = "1225861056";
          type = "long";
       }
    }
@@ -164,7 +164,7 @@
    {
       datum baseAddress
       {
-         value = "1225789440";
+         value = "1225854976";
          type = "long";
       }
    }
@@ -215,6 +215,19 @@
       datum _sortIndex
       {
          value = "7";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{}";
+         type = "String";
+      }
+   }
+   element packet_memory
+   {
+      datum _sortIndex
+      {
+         value = "26";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -275,75 +288,11 @@
          type = "String";
       }
    }
-   element high_res_timer.s1
+   element onchip_memory.s1
    {
       datum baseAddress
       {
-         value = "1225794816";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "1207959552";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "1140850688";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1225791488";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1225795072";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "384";
-         type = "long";
-      }
-   }
-   element vol_transfer_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
+         value = "1225261056";
          type = "long";
       }
    }
@@ -355,7 +304,31 @@
          type = "long";
       }
    }
-   element ddr2.s1
+   element pb_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "512";
+         type = "long";
+      }
+   }
+   element ext_flash.s1
+   {
+      datum baseAddress
+      {
+         value = "1140850688";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1225860352";
+         type = "long";
+      }
+   }
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
@@ -363,19 +336,11 @@
          type = "long";
       }
    }
-   element pll.s1
+   element ddr2.s1
    {
       datum baseAddress
       {
-         value = "1225794560";
-         type = "long";
-      }
-   }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1225261056";
+         value = "0";
          type = "long";
       }
    }
@@ -387,11 +352,11 @@
          type = "long";
       }
    }
-   element pb_pio.s1
+   element pll.s1
    {
       datum baseAddress
       {
-         value = "512";
+         value = "1225860096";
          type = "long";
       }
    }
@@ -400,6 +365,70 @@
       datum baseAddress
       {
          value = "640";
+         type = "long";
+      }
+   }
+   element clock_crossing_0.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1225860608";
+         type = "long";
+      }
+   }
+   element peripheral_clock_crossing.s1
+   {
+      datum baseAddress
+      {
+         value = "1207959552";
+         type = "long";
+      }
+   }
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1225785344";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "384";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1225857024";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element packet_memory.s2
+   {
+      datum baseAddress
+      {
+         value = "1225785344";
          type = "long";
       }
    }
@@ -527,8 +556,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
- <parameter name="systemHash" value="-50199644501" />
- <parameter name="timeStamp" value="1326991139009" />
+ <parameter name="systemHash" value="-60079899980" />
+ <parameter name="timeStamp" value="1327086804972" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -1350,6 +1379,27 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="16" />
  </module>
+ <module
+   name="packet_memory"
+   kind="altera_avalon_onchip_memory2"
+   version="9.1"
+   enabled="1">
+  <parameter name="allowInSystemMemoryContentEditor" value="false" />
+  <parameter name="blockType" value="M144K" />
+  <parameter name="dataWidth" value="32" />
+  <parameter name="dualPort" value="true" />
+  <parameter name="initMemContent" value="false" />
+  <parameter name="initializationFileName" value="packet_memory" />
+  <parameter name="instanceID" value="NONE" />
+  <parameter name="memorySize" value="65536" />
+  <parameter name="readDuringWriteMode" value="DONT_CARE" />
+  <parameter name="simAllowMRAMContentsFile" value="false" />
+  <parameter name="slave1Latency" value="1" />
+  <parameter name="slave2Latency" value="1" />
+  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="useShallowMemBlocks" value="false" />
+  <parameter name="writable" value="true" />
+ </module>
  <connection kind="clock" version="9.1" start="clk_50.clk" end="ddr2.refclk" />
  <connection
    kind="clock"
@@ -1395,7 +1445,7 @@
    start="cpu.instruction_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101000" />
+  <parameter name="baseAddress" value="0x49111000" />
  </connection>
  <connection
    kind="avalon"
@@ -1403,7 +1453,7 @@
    start="cpu.data_master"
    end="cpu.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101000" />
+  <parameter name="baseAddress" value="0x49111000" />
  </connection>
  <connection
    kind="avalon"
@@ -1423,7 +1473,7 @@
  </connection>
  <connection kind="avalon" version="6.1" start="cpu.data_master" end="pll.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102400" />
+  <parameter name="baseAddress" value="0x49112400" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="cpu.clk" />
  <connection kind="clock" version="9.1" start="pll.c0" end="ext_flash.clk" />
@@ -1462,7 +1512,7 @@
    start="cpu.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102700" />
+  <parameter name="baseAddress" value="0x49112700" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sysid.clk" />
  <connection
@@ -1471,7 +1521,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102740" />
+  <parameter name="baseAddress" value="0x49112740" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
@@ -1483,7 +1533,7 @@
    start="cpu.data_master"
    end="high_res_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102500" />
+  <parameter name="baseAddress" value="0x49112500" />
  </connection>
  <connection
    kind="interrupt"
@@ -1498,7 +1548,7 @@
    start="cpu.data_master"
    end="sys_timer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102600" />
+  <parameter name="baseAddress" value="0x49112600" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="sys_timer.irq">
   <parameter name="irqNumber" value="2" />
@@ -1510,7 +1560,7 @@
    start="cpu.data_master"
    end="tse_mac.control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102000" />
+  <parameter name="baseAddress" value="0x49112000" />
  </connection>
  <connection
    kind="clock"
@@ -1533,7 +1583,7 @@
    start="cpu.data_master"
    end="sgdma_tx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49102780" />
+  <parameter name="baseAddress" value="0x49112780" />
  </connection>
  <connection
    kind="interrupt"
@@ -1549,7 +1599,7 @@
    start="cpu.data_master"
    end="sgdma_rx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x491027c0" />
+  <parameter name="baseAddress" value="0x491127c0" />
  </connection>
  <connection
    kind="interrupt"
@@ -1565,7 +1615,7 @@
    start="cpu.instruction_master"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="avalon"
@@ -1573,7 +1623,7 @@
    start="cpu.data_master"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="clock"
@@ -1596,7 +1646,7 @@
    start="sgdma_tx.descriptor_read"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="avalon"
@@ -1604,7 +1654,7 @@
    start="sgdma_tx.descriptor_write"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="avalon"
@@ -1620,7 +1670,7 @@
    start="sgdma_rx.descriptor_read"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="avalon"
@@ -1628,7 +1678,7 @@
    start="sgdma_rx.descriptor_write"
    end="descriptor_memory.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49101800" />
+  <parameter name="baseAddress" value="0x49111800" />
  </connection>
  <connection
    kind="avalon"
@@ -1743,5 +1793,39 @@
    end="seven_seg_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0280" />
+ </connection>
+ <connection
+   kind="clock"
+   version="9.1"
+   start="clk_50.clk"
+   end="packet_memory.clk1" />
+ <connection
+   kind="clock"
+   version="9.1"
+   start="clk_50.clk"
+   end="packet_memory.clk2" />
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="cpu.data_master"
+   end="packet_memory.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x49100000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="sgdma_rx.m_write"
+   end="packet_memory.s2">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x49100000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="sgdma_tx.m_read"
+   end="packet_memory.s2">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x49100000" />
  </connection>
 </system>
