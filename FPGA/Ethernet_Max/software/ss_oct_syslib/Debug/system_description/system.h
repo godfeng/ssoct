@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * d:\Edgar\Documents\ssoct\FPGA\Ethernet_Max\software\ss_oct_syslib\..\..\DE4_SOPC.ptf
  *
- * Generated: 2012-01-23 10:06:06.178
+ * Generated: 2012-01-23 17:41:23.021
  *
  */
 
@@ -78,7 +78,7 @@ DO NOT MODIFY THIS FILE
 #define ALT_STDERR_BASE 0x49112740
 #define ALT_STDERR_DEV jtag_uart
 #define ALT_STDERR_PRESENT
-#define ALT_CPU_FREQ 90000000
+#define ALT_CPU_FREQ 150000000
 #define ALT_IRQ_BASE NULL
 #define ALT_LEGACY_INTERRUPT_API_PRESENT
 
@@ -126,6 +126,7 @@ DO NOT MODIFY THIS FILE
 #define __ALTERA_AVALON_PIPELINE_BRIDGE
 #define __ALTERA_AVALON_CLOCK_CROSSING
 #define __ALTERA_AVALON_PIO
+#define __ACCELERATOR_SS_OCT_ALT_CKSUM
 
 /*
  * ddr2 configuration
@@ -245,8 +246,8 @@ DO NOT MODIFY THIS FILE
 #define SYSID_TYPE "altera_avalon_sysid"
 #define SYSID_BASE 0x49112700
 #define SYSID_SPAN 8
-#define SYSID_ID 2097841511u
-#define SYSID_TIMESTAMP 1327086805u
+#define SYSID_ID 1368189285u
+#define SYSID_TIMESTAMP 1327357851u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 
@@ -291,11 +292,11 @@ DO NOT MODIFY THIS FILE
 #define HIGH_RES_TIMER_PERIOD_UNITS "ms"
 #define HIGH_RES_TIMER_RESET_OUTPUT 0
 #define HIGH_RES_TIMER_TIMEOUT_PULSE_OUTPUT 0
-#define HIGH_RES_TIMER_LOAD_VALUE 89999
+#define HIGH_RES_TIMER_LOAD_VALUE 149999
 #define HIGH_RES_TIMER_COUNTER_SIZE 32
 #define HIGH_RES_TIMER_MULT 0.0010
 #define HIGH_RES_TIMER_TICKS_PER_SEC 1000
-#define HIGH_RES_TIMER_FREQ 90000000
+#define HIGH_RES_TIMER_FREQ 150000000
 #define ALT_MODULE_CLASS_high_res_timer altera_avalon_timer
 
 /*
@@ -316,11 +317,11 @@ DO NOT MODIFY THIS FILE
 #define SYS_TIMER_PERIOD_UNITS "ms"
 #define SYS_TIMER_RESET_OUTPUT 0
 #define SYS_TIMER_TIMEOUT_PULSE_OUTPUT 0
-#define SYS_TIMER_LOAD_VALUE 899999
+#define SYS_TIMER_LOAD_VALUE 1499999
 #define SYS_TIMER_COUNTER_SIZE 32
 #define SYS_TIMER_MULT 0.0010
 #define SYS_TIMER_TICKS_PER_SEC 100
-#define SYS_TIMER_FREQ 90000000
+#define SYS_TIMER_FREQ 150000000
 #define ALT_MODULE_CLASS_sys_timer altera_avalon_timer
 
 /*
@@ -662,8 +663,19 @@ DO NOT MODIFY THIS FILE
 #define PACKET_MEMORY_INSTANCE_ID "NONE"
 #define PACKET_MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
 #define PACKET_MEMORY_IGNORE_AUTO_BLOCK_TYPE_ASSIGNMENT 1
-#define PACKET_MEMORY_CONTENTS_INFO "QUARTUS_PROJECT_DIR/packet_memory.hex 1327087271"
+#define PACKET_MEMORY_CONTENTS_INFO ""
 #define ALT_MODULE_CLASS_packet_memory altera_avalon_onchip_memory2
+
+/*
+ * accelerator_ss_oct_alt_cksum_managed_instance configuration
+ *
+ */
+
+#define ACCELERATOR_SS_OCT_ALT_CKSUM_MANAGED_INSTANCE_NAME "/dev/accelerator_ss_oct_alt_cksum_managed_instance"
+#define ACCELERATOR_SS_OCT_ALT_CKSUM_MANAGED_INSTANCE_TYPE "accelerator_ss_oct_alt_cksum"
+#define ACCELERATOR_SS_OCT_ALT_CKSUM_MANAGED_INSTANCE_BASE 0x40000000
+#define ACCELERATOR_SS_OCT_ALT_CKSUM_MANAGED_INSTANCE_SPAN 16
+#define ALT_MODULE_CLASS_accelerator_ss_oct_alt_cksum_managed_instance accelerator_ss_oct_alt_cksum
 
 /*
  * MicroC/OS-II configuration

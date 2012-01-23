@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4SGX230KF40) Path("D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/") File("DE4_DDR2.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4SGX230KF40) Path("D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/") File("DE4_DDR2_time_limited.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

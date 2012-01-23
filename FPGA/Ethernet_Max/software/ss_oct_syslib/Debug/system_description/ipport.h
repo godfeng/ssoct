@@ -48,6 +48,9 @@
 #include <string.h>
 #include "system.h"
 
+/* NicheStack networking library will make use of the C2H hardware checksum */
+#define ALT_CKSUM
+
 /*
  * Altera Niche Stack Nios port modifcation:
  * _POSIX_SOURCE not defined; newlib types.h contains u_int typedef.

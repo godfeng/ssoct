@@ -72,7 +72,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_c0
          {
-            frequency = "90000000";
+            frequency = "150000000";
             source = "";
             Is_Clock_Source = "1";
             display_name = "c0 from pll";
@@ -81,7 +81,7 @@ SYSTEM DE4_SOPC
          }
          CLOCK pll_sys_clk
          {
-            frequency = "90000000";
+            frequency = "150000000";
             source = "pll_c0";
             Is_Clock_Source = "0";
             display_name = "pll_sys_clk";
@@ -1884,12 +1884,12 @@ SYSTEM DE4_SOPC
          {
             CLOCK c0
             {
-               DIVIDE_BY = "5";
+               DIVIDE_BY = "1";
                DUTY_CYCLE = "50";
-               MULTIPLY_BY = "9";
+               MULTIPLY_BY = "3";
                PHASE_SHIFT = "0";
                clk_index = "0";
-               clock_freq = "90000000";
+               clock_freq = "150000000";
                clock_unit = "MHz";
                type = "out_clk";
             }
@@ -1974,9 +1974,9 @@ SYSTEM DE4_SOPC
                }
                NUMERIC 
                {
-                  CLK0_DIVIDE_BY = "5";
+                  CLK0_DIVIDE_BY = "1";
                   CLK0_DUTY_CYCLE = "50";
-                  CLK0_MULTIPLY_BY = "9";
+                  CLK0_MULTIPLY_BY = "3";
                   CLK1_DIVIDE_BY = "5";
                   CLK1_DUTY_CYCLE = "50";
                   CLK1_MULTIPLY_BY = "7";
@@ -2007,7 +2007,7 @@ SYSTEM DE4_SOPC
                   DEVICE_SPEED_GRADE = "Any";
                   DUTY_CYCLE0 = "50.00000000";
                   DUTY_CYCLE1 = "50.00000000";
-                  EFF_OUTPUT_FREQ_VALUE0 = "90.000000";
+                  EFF_OUTPUT_FREQ_VALUE0 = "150.000000";
                   EFF_OUTPUT_FREQ_VALUE1 = "70.000000";
                   EXPLICIT_SWITCHOVER_COUNTER = "0";
                   EXT_FEEDBACK_RADIO = "0";
@@ -2030,7 +2030,7 @@ SYSTEM DE4_SOPC
                   LVDS_PHASE_SHIFT_UNIT1 = "ps";
                   MIG_DEVICE_SPEED_GRADE = "Any";
                   NORMAL_MODE_RADIO = "1";
-                  OUTPUT_FREQ0 = "90.00000000";
+                  OUTPUT_FREQ0 = "150.00000000";
                   OUTPUT_FREQ1 = "70.00000000";
                   OUTPUT_FREQ_MODE0 = "1";
                   OUTPUT_FREQ_MODE1 = "1";
@@ -2734,6 +2734,12 @@ SYSTEM DE4_SOPC
             {
                address = "0x49100000";
                span = "0x00010000";
+               is_bridge = "0";
+            }
+            Entry accelerator_ss_oct_alt_cksum_managed_instance/cpu_interface0
+            {
+               address = "0x40000000";
+               span = "0x00000080";
                is_bridge = "0";
             }
          }
@@ -4086,7 +4092,7 @@ SYSTEM DE4_SOPC
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>7D0A8567</b>    (unique ID tag) <br> <b>4F19BCD5</b> (timestamp: Fri Jan 20, 2012 @2:13 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>518CE965</b>    (unique ID tag) <br> <b>4F1DDF9B</b> (timestamp: Mon Jan 23, 2012 @5:30 PM)";
             MESSAGES 
             {
             }
@@ -4094,8 +4100,8 @@ SYSTEM DE4_SOPC
       }
       WIZARD_SCRIPT_ARGUMENTS 
       {
-         id = "2097841511u";
-         timestamp = "1327086805u";
+         id = "1368189285u";
+         timestamp = "1327357851u";
          regenerate_values = "0";
          MAKE 
          {
@@ -4104,7 +4110,7 @@ SYSTEM DE4_SOPC
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x49112700 --id=2097841511 --timestamp=1327086805";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x49112700 --id=1368189285 --timestamp=1327357851";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -4505,7 +4511,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "89999";
+         load_value = "149999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "1000";
@@ -4655,7 +4661,7 @@ SYSTEM DE4_SOPC
          period_units = "ms";
          reset_output = "0";
          timeout_pulse_output = "0";
-         load_value = "899999";
+         load_value = "1499999";
          counter_size = "32";
          mult = "0.0010";
          ticks_per_sec = "100";
@@ -4738,12 +4744,12 @@ SYSTEM DE4_SOPC
          {
             Bus_Type = "atlantic";
             Accepts_Internal_Connections = "1";
-            Clock_Source = "pll_sys_clk";
-            Has_Clock = "1";
             MASTERED_BY sgdma_tx/out
             {
                priority = "0";
             }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
             Address_Group = "0";
             Base_Address = "0x00000000";
          }
@@ -6735,6 +6741,16 @@ SYSTEM DE4_SOPC
                priority = "1";
                Offset_Address = "0x00000000";
             }
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/accelerator_ss_oct_alt_cksum_master_resource1
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/accelerator_ss_oct_alt_cksum_master_resource0
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
             Base_Address = "0x00000000";
             Has_IRQ = "0";
             Address_Group = "0";
@@ -8284,9 +8300,19 @@ SYSTEM DE4_SOPC
             Always_Burst_Max_Burst = "0";
             Is_Big_Endian = "0";
             Is_Enabled = "1";
-            Clock_Source = "clk_50";
-            Has_Clock = "1";
             MASTERED_BY cpu/data_master
+            {
+               priority = "1";
+               Offset_Address = "0x49100000";
+            }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/accelerator_ss_oct_alt_cksum_master_resource1
+            {
+               priority = "1";
+               Offset_Address = "0x49100000";
+            }
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/accelerator_ss_oct_alt_cksum_master_resource0
             {
                priority = "1";
                Offset_Address = "0x49100000";
@@ -8394,8 +8420,6 @@ SYSTEM DE4_SOPC
             Always_Burst_Max_Burst = "0";
             Is_Big_Endian = "0";
             Is_Enabled = "1";
-            Clock_Source = "clk_50";
-            Has_Clock = "1";
             MASTERED_BY sgdma_rx/m_write
             {
                priority = "1";
@@ -8406,6 +8430,8 @@ SYSTEM DE4_SOPC
                priority = "1";
                Offset_Address = "0x49100000";
             }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
             Base_Address = "0x49100000";
             Address_Group = "0";
             Has_IRQ = "0";
@@ -8464,7 +8490,7 @@ SYSTEM DE4_SOPC
                }
             }
          }
-         contents_info = "QUARTUS_PROJECT_DIR/packet_memory.hex 1327087271 ";
+         contents_info = "";
       }
       SIMULATION 
       {
@@ -8561,6 +8587,615 @@ SYSTEM DE4_SOPC
          Synthesis_Only_Files = "";
       }
       PORT_WIRING 
+      {
+      }
+   }
+   MODULE accelerator_ss_oct_alt_cksum_managed_instance
+   {
+      SLAVE sub_alt_cksum0
+      {
+         PORT_WIRING 
+         {
+            PORT clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT reset_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_readdata0
+            {
+               type = "readdata";
+               width = "16";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT alt_cksum_select0
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT alt_cksum_read0
+            {
+               type = "read";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT alt_cksum_waitrequest_n0
+            {
+               type = "waitrequest_n";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT alt_cksum_begin0
+            {
+               type = "begintransfer";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "native";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "16";
+            Address_Width = "0";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/internal_master0
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+            Base_Address = "0x00000000";
+            Address_Group = "0";
+         }
+      }
+      SLAVE cpu_interface0
+      {
+         PORT_WIRING 
+         {
+            PORT cpu_clk
+            {
+               type = "clk";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_reset_n
+            {
+               type = "reset_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_readdata1
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT cpu_writedata0
+            {
+               type = "writedata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_waitrequest_n0
+            {
+               type = "waitrequest_n";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT cpu_address0
+            {
+               type = "address";
+               width = "2";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_write0
+            {
+               type = "write";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT cpu_select0
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Read_Wait_States = "peripheral_controlled";
+            Write_Wait_States = "peripheral_controlled";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "native";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "2";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY cpu/data_master
+            {
+               priority = "1";
+               Offset_Address = "0x40000000";
+            }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+            Base_Address = "0x40000000";
+            Address_Group = "1";
+            IRQ_MASTER cpu/data_master
+            {
+               IRQ_Number = "NC";
+            }
+         }
+      }
+      SLAVE dummy_slave
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Write_Wait_States = "0cycles";
+            Read_Wait_States = "1cycles";
+            Hold_Time = "0cycles";
+            Setup_Time = "0cycles";
+            Is_Printable_Device = "0";
+            Address_Alignment = "native";
+            Well_Behaved_Waitrequest = "0";
+            Is_Nonvolatile_Storage = "0";
+            Read_Latency = "0";
+            Is_Memory_Device = "0";
+            Maximum_Pending_Read_Transactions = "0";
+            Minimum_Uninterrupted_Run_Length = "1";
+            Accepts_Internal_Connections = "1";
+            Write_Latency = "0";
+            Is_Flash = "0";
+            Data_Width = "32";
+            Address_Width = "1";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            MASTERED_BY accelerator_ss_oct_alt_cksum_managed_instance/dummy_master
+            {
+               priority = "1";
+               Offset_Address = "0x00000000";
+            }
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+            Base_Address = "0x00000000";
+            Address_Group = "2";
+         }
+         PORT_WIRING 
+         {
+            PORT dummy_slave_chipselect
+            {
+               type = "chipselect";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT dummy_slave_address
+            {
+               type = "address";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT dummy_slave_readdata
+            {
+               type = "readdata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+      }
+      MASTER dummy_master
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "1";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "32";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT dummy_master_write
+            {
+               type = "write";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dummy_master_writedata
+            {
+               type = "writedata";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dummy_master_address
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT dummy_master_waitrequest
+            {
+               type = "waitrequest";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry accelerator_ss_oct_alt_cksum_managed_instance/dummy_slave
+            {
+               address = "0x00000000";
+               span = "0x00000040";
+               is_bridge = "0";
+            }
+         }
+      }
+      MASTER internal_master0
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "32";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT slave_readdata0
+            {
+               type = "readdata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT slave_address0
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT slave_read0
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT slave_waitrequest_n0
+            {
+               type = "waitrequest_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry accelerator_ss_oct_alt_cksum_managed_instance/sub_alt_cksum0
+            {
+               address = "0x00000000";
+               span = "0x00000020";
+               is_bridge = "0";
+            }
+         }
+      }
+      MASTER accelerator_ss_oct_alt_cksum_master_resource0
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "32";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_waitrequest_n0
+            {
+               type = "waitrequest_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_address0
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_readdata0
+            {
+               type = "readdata";
+               width = "32";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_flush0
+            {
+               type = "flush";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_readdatavalid0
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource0_read0
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry packet_memory/s1
+            {
+               address = "0x49100000";
+               span = "0x00010000";
+               is_bridge = "0";
+            }
+            Entry pipeline_bridge_ddr2/s1
+            {
+               address = "0x00000000";
+               span = "0x40000000";
+               is_bridge = "1";
+            }
+            Entry ddr2/s1
+            {
+               address = "0x00000000";
+               span = "0x40000000";
+               is_bridge = "0";
+            }
+         }
+      }
+      MASTER accelerator_ss_oct_alt_cksum_master_resource1
+      {
+         SYSTEM_BUILDER_INFO 
+         {
+            Bus_Type = "avalon";
+            Is_Asynchronous = "0";
+            DBS_Big_Endian = "0";
+            Adapts_To = "";
+            Do_Stream_Reads = "0";
+            Do_Stream_Writes = "0";
+            Max_Address_Width = "32";
+            Data_Width = "16";
+            Address_Width = "32";
+            Maximum_Burst_Size = "1";
+            Register_Incoming_Signals = "0";
+            Register_Outgoing_Signals = "0";
+            Interleave_Bursts = "0";
+            Linewrap_Bursts = "0";
+            Burst_On_Burst_Boundaries_Only = "0";
+            Always_Burst_Max_Burst = "0";
+            Is_Big_Endian = "0";
+            Is_Enabled = "1";
+            Clock_Source = "pll_sys_clk";
+            Has_Clock = "1";
+         }
+         PORT_WIRING 
+         {
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_readdata0
+            {
+               type = "readdata";
+               width = "16";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_flush0
+            {
+               type = "flush";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_read0
+            {
+               type = "read";
+               width = "1";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_address0
+            {
+               type = "address";
+               width = "32";
+               direction = "output";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_readdatavalid0
+            {
+               type = "readdatavalid";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+            PORT accelerator_ss_oct_alt_cksum_master_resource1_waitrequest_n0
+            {
+               type = "waitrequest_n";
+               width = "1";
+               direction = "input";
+               Is_Enabled = "1";
+            }
+         }
+         MEMORY_MAP 
+         {
+            Entry packet_memory/s1
+            {
+               address = "0x49100000";
+               span = "0x00010000";
+               is_bridge = "0";
+            }
+            Entry pipeline_bridge_ddr2/s1
+            {
+               address = "0x00000000";
+               span = "0x40000000";
+               is_bridge = "1";
+            }
+            Entry ddr2/s1
+            {
+               address = "0x00000000";
+               span = "0x40000000";
+               is_bridge = "0";
+            }
+         }
+      }
+      class = "no_legacy_module";
+      class_version = "7.080912";
+      gtf_class_name = "accelerator_ss_oct_alt_cksum";
+      gtf_class_version = "1.0";
+      SYSTEM_BUILDER_INFO 
+      {
+         Do_Not_Generate = "1";
+         Instantiate_In_System_Module = "1";
+         Is_Bridge = "0";
+         Is_Enabled = "1";
+         Clock_Source = "clk_50";
+         View 
+         {
+            MESSAGES 
+            {
+            }
+         }
+      }
+      HDL_INFO 
+      {
+         Simulation_HDL_Files = "__PROJECT_DIRECTORY__/D:/Edgar/Documents/ssoct/FPGA/Ethernet_Max/accelerator_ss_oct_alt_cksum.v,__PROJECT_DIRECTORY__/accelerator_ss_oct_alt_cksum_managed_instance.v";
+      }
+      WIZARD_SCRIPT_ARGUMENTS 
       {
       }
    }

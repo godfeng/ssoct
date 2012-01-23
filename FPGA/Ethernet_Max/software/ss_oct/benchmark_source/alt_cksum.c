@@ -15,7 +15,8 @@
  */
 
 
-#pragma altera_accelerate connect_variable alt_cksum/addr to ext_ssram_bus
+//#pragma altera_accelerate connect_variable alt_cksum/addr to ext_ssram_bus
+#pragma altera_accelerate connect_variable alt_cksum/addr to pipeline_bridge_ddr2
 #pragma altera_accelerate connect_variable alt_cksum/addr to packet_memory/s1
 //#pragma altera_accelerate connect_variable alt_cksum/addr to ddr_sdram_0
 
