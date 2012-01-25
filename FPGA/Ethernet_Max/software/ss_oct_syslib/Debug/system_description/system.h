@@ -3,7 +3,7 @@
  * Machine generated for a CPU named "cpu" as defined in:
  * d:\Edgar\Documents\ssoct\FPGA\Ethernet_Max\software\ss_oct_syslib\..\..\DE4_SOPC.ptf
  *
- * Generated: 2012-01-23 17:41:23.021
+ * Generated: 2012-01-24 16:05:57.477
  *
  */
 
@@ -247,7 +247,7 @@ DO NOT MODIFY THIS FILE
 #define SYSID_BASE 0x49112700
 #define SYSID_SPAN 8
 #define SYSID_ID 1368189285u
-#define SYSID_TIMESTAMP 1327357851u
+#define SYSID_TIMESTAMP 1327438570u
 #define SYSID_REGENERATE_VALUES 0
 #define ALT_MODULE_CLASS_sysid altera_avalon_sysid
 

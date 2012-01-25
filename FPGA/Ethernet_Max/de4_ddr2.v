@@ -11,7 +11,7 @@
 //==============================================================================
 `include "my_incl.v"			// Verilog include file
 
-module DE4_DDR2(
+module de4_ddr2(
 
 	//////// CLOCK //////////
 	GCLKIN,
@@ -706,7 +706,7 @@ RAMtoDDR2 RAMtoDDR2_inst
 );
 
 // Ethernet clock PLL
-pll_125 pll_125_ins (
+pll_125 pll_125_inst (
 	.inclk0(clk50MHz),							// Dedicated clock clk50MHz
 	.c0(enet_refclk_125MHz)
 	);

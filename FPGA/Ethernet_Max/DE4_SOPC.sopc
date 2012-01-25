@@ -5,40 +5,11 @@
    element DE4_SOPC
    {
    }
-   element accelerator_ss_oct_alt_cksum_managed_instance
-   {
-      datum _sortIndex
-      {
-         value = "27";
-         type = "int";
-      }
-      datum c2hAcceleratorGroup
-      {
-         value = "ss_oct";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource0
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource1
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
    element jtag_uart.avalon_jtag_slave
    {
       datum baseAddress
       {
-         value = "1225860928";
+         value = "768";
          type = "long";
       }
    }
@@ -64,14 +35,6 @@
       {
          value = "0";
          type = "int";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.clock
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
       }
    }
    element clock_crossing_0
@@ -116,28 +79,7 @@
          type = "String";
       }
    }
-   element accelerator_ss_oct_alt_cksum_managed_instance.cpu_clock
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.cpu_interface0
-   {
-      datum baseAddress
-      {
-         value = "1073741824";
-         type = "long";
-      }
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
-   element sgdma_tx.csr
+   element sgdma_rx.csr
    {
       datum baseAddress
       {
@@ -145,11 +87,11 @@
          type = "long";
       }
    }
-   element sgdma_rx.csr
+   element sgdma_tx.csr
    {
       datum baseAddress
       {
-         value = "1225861056";
+         value = "1225860928";
          type = "long";
       }
    }
@@ -176,27 +118,6 @@
       datum megawizard_uipreferences
       {
          value = "{}";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.dummy_master
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.dummy_slave
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-      datum connection_manager
-      {
-         value = "C2HGenerate";
          type = "String";
       }
    }
@@ -239,14 +160,6 @@
          type = "String";
       }
    }
-   element accelerator_ss_oct_alt_cksum_managed_instance.internal_master0
-   {
-      datum connection_manager
-      {
-         value = "C2HGenerate";
-         type = "String";
-      }
-   }
    element cpu.jtag_debug_module
    {
       datum baseAddress
@@ -259,7 +172,7 @@
    {
       datum _sortIndex
       {
-         value = "18";
+         value = "19";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -340,7 +253,7 @@
    {
       datum _sortIndex
       {
-         value = "19";
+         value = "18";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -375,11 +288,11 @@
          type = "String";
       }
    }
-   element vol_recording_done_pio.s1
+   element vol_transfer_done_pio.s1
    {
       datum baseAddress
       {
-         value = "128";
+         value = "0";
          type = "long";
       }
    }
@@ -391,11 +304,35 @@
          type = "long";
       }
    }
-   element packet_memory.s1
+   element sw_pio.s1
    {
       datum baseAddress
       {
-         value = "1225785344";
+         value = "384";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1225857024";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "128";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1225261056";
          type = "long";
       }
    }
@@ -407,7 +344,39 @@
          type = "long";
       }
    }
-   element clock_crossing_0.s1
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1225785344";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1225860608";
+         type = "long";
+      }
+   }
+   element peripheral_clock_crossing.s1
+   {
+      datum baseAddress
+      {
+         value = "1207959552";
+         type = "long";
+      }
+   }
+   element pb_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "512";
+         type = "long";
+      }
+   }
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
@@ -431,62 +400,6 @@
          type = "long";
       }
    }
-   element pb_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "512";
-         type = "long";
-      }
-   }
-   element peripheral_clock_crossing.s1
-   {
-      datum baseAddress
-      {
-         value = "1207959552";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1225860608";
-         type = "long";
-      }
-   }
-   element vol_transfer_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "384";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "1225860096";
-         type = "long";
-      }
-   }
    element ddr2.s1
    {
       datum baseAddress
@@ -495,19 +408,19 @@
          type = "long";
       }
    }
-   element descriptor_memory.s1
+   element clock_crossing_0.s1
    {
       datum baseAddress
       {
-         value = "1225857024";
+         value = "0";
          type = "long";
       }
    }
-   element onchip_memory.s1
+   element pll.s1
    {
       datum baseAddress
       {
-         value = "1225261056";
+         value = "1225860096";
          type = "long";
       }
    }
@@ -555,19 +468,6 @@
       datum megawizard_uipreferences
       {
          value = "{}";
-         type = "String";
-      }
-   }
-   element accelerator_ss_oct_alt_cksum_managed_instance.sub_alt_cksum0
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-      datum connection_manager
-      {
-         value = "C2HGenerate";
          type = "String";
       }
    }
@@ -655,9 +555,9 @@
  <parameter name="generateLegacySim" value="false" />
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
- <parameter name="projectName" value="SS_OCT" />
- <parameter name="systemHash" value="-87267535165" />
- <parameter name="timeStamp" value="1327357850844" />
+ <parameter name="projectName" value="SS_OCT.qpf" />
+ <parameter name="systemHash" value="-82845163176" />
+ <parameter name="timeStamp" value="1327442508294" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -908,7 +808,7 @@
  <module name="pll" kind="altera_avalon_pll" version="9.1" enabled="1">
   <parameter name="c0"><![CDATA[tap c0 mult 3 div 1 phase 0 enabled true inputfreq 50000000 outputfreq 150000000 
 ]]></parameter>
-  <parameter name="c1"><![CDATA[tap c1 mult 7 div 5 phase 0 enabled true inputfreq 50000000 outputfreq 70000000 
+  <parameter name="c1"><![CDATA[tap c1 mult 3 div 2 phase 0 enabled true inputfreq 50000000 outputfreq 75000000 
 ]]></parameter>
   <parameter name="c2"><![CDATA[tap c2 mult 1 div 1 phase 0 enabled false inputfreq 0 outputfreq 0 
 ]]></parameter>
@@ -967,7 +867,7 @@
 // Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 // Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
 // Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "150.000000"
-// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "70.000000"
+// Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "75.000000"
 // Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 // Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 // Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -975,7 +875,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.0"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.000"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -994,7 +894,7 @@
 // Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
 // Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "150.00000000"
-// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "70.00000000"
+// Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "75.00000000"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 // Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
@@ -1042,9 +942,9 @@
 // Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
 // Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "3"
 // Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
-// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "5"
+// Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "2"
 // Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
-// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "7"
+// Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "3"
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
 // Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 // Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
@@ -1134,7 +1034,7 @@
   <parameter name="setting_activateModelChecker" value="false" />
   <parameter name="setting_HDLSimCachesCleared" value="true" />
   <parameter name="setting_HBreakTest" value="false" />
-  <parameter name="resetSlave" value="ext_flash.s1" />
+  <parameter name="resetSlave" value="onchip_memory.s1" />
   <parameter name="resetOffset" value="0" />
   <parameter name="muldiv_multiplierType" value="DSPBlock" />
   <parameter name="muldiv_divider" value="false" />
@@ -1500,11 +1400,6 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
- <module
-   name="accelerator_ss_oct_alt_cksum_managed_instance"
-   kind="accelerator_ss_oct_alt_cksum"
-   version="1.0"
-   enabled="1" />
  <connection kind="clock" version="9.1" start="clk_50.clk" end="ddr2.refclk" />
  <connection
    kind="clock"
@@ -1619,14 +1514,6 @@
   <parameter name="baseAddress" value="0x49112700" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sysid.clk" />
- <connection
-   kind="avalon"
-   version="6.1"
-   start="cpu.data_master"
-   end="jtag_uart.avalon_jtag_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49112740" />
- </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
@@ -1670,11 +1557,6 @@
    kind="clock"
    version="9.1"
    start="pll.c0"
-   end="tse_mac.control_port_clock_connection" />
- <connection
-   kind="clock"
-   version="9.1"
-   start="pll.c0"
    end="tse_mac.transmit_clock_connection" />
  <connection
    kind="avalon"
@@ -1682,7 +1564,7 @@
    start="cpu.data_master"
    end="sgdma_tx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49112780" />
+  <parameter name="baseAddress" value="0x49112740" />
  </connection>
  <connection
    kind="interrupt"
@@ -1698,7 +1580,7 @@
    start="cpu.data_master"
    end="sgdma_rx.csr">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x491127c0" />
+  <parameter name="baseAddress" value="0x49112780" />
  </connection>
  <connection
    kind="interrupt"
@@ -1845,11 +1727,6 @@
   <parameter name="baseAddress" value="0x0000" />
  </connection>
  <connection
-   kind="clock"
-   version="9.1"
-   start="clk_50.clk"
-   end="vol_recording_done_pio.clk" />
- <connection
    kind="avalon"
    version="6.1"
    start="peripheral_clock_crossing.m1"
@@ -1857,7 +1734,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0080" />
  </connection>
- <connection kind="clock" version="9.1" start="clk_50.clk" end="led_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1866,9 +1742,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0100" />
  </connection>
- <connection kind="clock" version="9.1" start="clk_50.clk" end="sw_pio.clk" />
- <connection kind="clock" version="9.1" start="clk_50.clk" end="pb_pio.clk" />
- <connection kind="clock" version="9.1" start="clk_50.clk" end="seven_seg_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1926,69 +1799,25 @@
  <connection kind="clock" version="9.1" start="pll.c0" end="packet_memory.clk1" />
  <connection kind="clock" version="9.1" start="pll.c0" end="packet_memory.clk2" />
  <connection
-   kind="avalon"
-   version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource1"
-   end="packet_memory.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49100000" />
- </connection>
+   kind="clock"
+   version="9.1"
+   start="pll.c1"
+   end="vol_recording_done_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="led_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="sw_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="pb_pio.clk" />
+ <connection kind="clock" version="9.1" start="pll.c1" end="seven_seg_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource1"
-   end="pipeline_bridge_ddr2.s1">
+   start="peripheral_clock_crossing.m1"
+   end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource0"
-   end="packet_memory.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x49100000" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.accelerator_ss_oct_alt_cksum_master_resource0"
-   end="pipeline_bridge_ddr2.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.dummy_master"
-   end="accelerator_ss_oct_alt_cksum_managed_instance.dummy_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="accelerator_ss_oct_alt_cksum_managed_instance.internal_master0"
-   end="accelerator_ss_oct_alt_cksum_managed_instance.sub_alt_cksum0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="cpu.data_master"
-   end="accelerator_ss_oct_alt_cksum_managed_instance.cpu_interface0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x40000000" />
+  <parameter name="baseAddress" value="0x0300" />
  </connection>
  <connection
    kind="clock"
    version="9.1"
    start="pll.c0"
-   end="accelerator_ss_oct_alt_cksum_managed_instance.clock" />
- <connection
-   kind="clock"
-   version="9.1"
-   start="pll.c0"
-   end="accelerator_ss_oct_alt_cksum_managed_instance.cpu_clock" />
+   end="tse_mac.control_port_clock_connection" />
 </system>

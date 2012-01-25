@@ -541,8 +541,8 @@ endmodule
 // Retrieval info:      <PRIVATE name = "filename" value="ddr2_phy_syn.v"  type="STRING"  enable="1" />
 // Retrieval info:     </NAMESPACE>
 // Retrieval info:     <NAMESPACE name = "quartus_settings">
-// Retrieval info:      <PRIVATE name = "DEVICE" value="EP4SGX230KF40C2"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "FAMILY" value="Stratix IV"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "DEVICE" value="AUTO"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "FAMILY" value="Stratix II"  type="STRING"  enable="1" />
 // Retrieval info:     </NAMESPACE>
 // Retrieval info:     <NAMESPACE name = "serializer"/>
 // Retrieval info:    </PRIVATES>

@@ -443,9 +443,9 @@ module DE4_SOPC_clock_1 (
                         )
 ;
 
-  output  [  2: 0] master_address;
+  output  [ 29: 0] master_address;
   output  [  3: 0] master_byteenable;
-  output           master_nativeaddress;
+  output  [ 27: 0] master_nativeaddress;
   output           master_read;
   output           master_write;
   output  [ 31: 0] master_writedata;
@@ -457,18 +457,18 @@ module DE4_SOPC_clock_1 (
   input   [ 31: 0] master_readdata;
   input            master_reset_n;
   input            master_waitrequest;
-  input   [  2: 0] slave_address;
+  input   [ 29: 0] slave_address;
   input   [  3: 0] slave_byteenable;
   input            slave_clk;
-  input            slave_nativeaddress;
+  input   [ 27: 0] slave_nativeaddress;
   input            slave_read;
   input            slave_reset_n;
   input            slave_write;
   input   [ 31: 0] slave_writedata;
 
-  reg     [  2: 0] master_address /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  reg     [ 29: 0] master_address /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
   reg     [  3: 0] master_byteenable /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
-  reg              master_nativeaddress /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
+  reg     [ 27: 0] master_nativeaddress /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
   wire             master_read;
   wire             master_read_done;
   wire             master_read_done_sync;
@@ -478,10 +478,10 @@ module DE4_SOPC_clock_1 (
   wire             master_write_done_sync;
   wire             master_write_done_token;
   reg     [ 31: 0] master_writedata /* synthesis ALTERA_ATTRIBUTE = "PRESERVE_REGISTER=ON"  */;
-  reg     [  2: 0] slave_address_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg     [ 29: 0] slave_address_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   reg     [  3: 0] slave_byteenable_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   wire             slave_endofpacket;
-  reg              slave_nativeaddress_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
+  reg     [ 27: 0] slave_nativeaddress_d1 /* synthesis ALTERA_ATTRIBUTE = "{-to \"*\"} CUT=ON ; PRESERVE_REGISTER=ON"  */;
   wire             slave_read_request;
   wire             slave_read_request_sync;
   wire             slave_read_request_token;

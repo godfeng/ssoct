@@ -48,8 +48,8 @@
 #include <string.h>
 #include "system.h"
 
-/* NicheStack networking library will make use of the C2H hardware checksum */
-#define ALT_CKSUM
+/* If ALT_CKSUM is defined NicheStack networking library will make use of the C2H hardware checksum */
+// #define ALT_CKSUM
 
 /*
  * Altera Niche Stack Nios port modifcation:
