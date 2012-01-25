@@ -1,4 +1,4 @@
-%QUARTUS_ROOTDIR%\\bin\\quartus_pgm.exe -z -m JTAG -c USB-Blaster[USB-0] -o "p;DE4_DDR2_time_limited.sof"
+%QUARTUS_ROOTDIR%\\bin\\quartus_pgm.exe -z -m JTAG -c USB-Blaster[USB-0] -o "p;SS_OCT_time_limited.sof"
 @ set SOPC_BUILDER_PATH_71=%SOPC_KIT_NIOS2%+%SOPC_BUILDER_PATH_71%
 @ set SOPC_BUILDER_PATH_72=%SOPC_KIT_NIOS2%+%SOPC_BUILDER_PATH_72%
 @ set SOPC_BUILDER_PATH_80=%SOPC_KIT_NIOS2%+%SOPC_BUILDER_PATH_80%

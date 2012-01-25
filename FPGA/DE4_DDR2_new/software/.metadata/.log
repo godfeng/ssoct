@@ -4473,3 +4473,13 @@ Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\softwa
 
 !ENTRY org.eclipse.ui 4 4 2011-12-13 12:38:39.232
 !MESSAGE Invalid Menu Extension (Path is invalid): RunAsLauterbachISS
+!SESSION 2012-01-25 11:58:30.716 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.6.0_14
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -data D:\Edgar\Documents\ssoct\FPGA\DE4_DDR2_new\software -os win32 -ws win32 -arch x86
+
+!ENTRY com.altera.ide.core 4 0 2012-01-25 11:58:40.091
+!MESSAGE Error: creation of local folder bin failed
+

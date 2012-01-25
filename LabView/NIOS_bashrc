@@ -8,7 +8,7 @@ alias nios-debug=nios2-debug
 alias nc=nios2-console
 alias nios-console=nios2-console
 
-cmd="nios2-download simple_socket_server.elf -c USB-Blaster[USB-0] -r -g"
+cmd="nios2-download ss_oct_nios_socket.elf -c USB-Blaster[USB-0] -r -g"
 $cmd || {
     echo "download failed"
     exit 1
