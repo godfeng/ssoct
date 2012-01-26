@@ -3,7 +3,7 @@ write transcript nco_vo_transcript
 if {[file exist [project env]] > 0} {
 project close
 }
-if {[file exist "D:/Edgar/Documents/ssoct/FPGA/DE4_DDR2_new/sin400k.mpf"] == 0} {
+if {[file exist "D:/Edgar/Documents/ssoct/FPGA/SS_OCT/sin400k.mpf"] == 0} {
   project new [pwd] sin400k
 } else	{
 project open sin400k

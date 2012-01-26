@@ -4505,1498 +4505,6 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module SS_OCT_SOPC_clock_2_in_arbitrator (
-                                           // inputs:
-                                            SS_OCT_SOPC_clock_2_in_endofpacket,
-                                            SS_OCT_SOPC_clock_2_in_readdata,
-                                            SS_OCT_SOPC_clock_2_in_waitrequest,
-                                            clk,
-                                            cpu_data_master_address_to_slave,
-                                            cpu_data_master_byteenable,
-                                            cpu_data_master_latency_counter,
-                                            cpu_data_master_read,
-                                            cpu_data_master_write,
-                                            cpu_data_master_writedata,
-                                            reset_n,
-
-                                           // outputs:
-                                            SS_OCT_SOPC_clock_2_in_address,
-                                            SS_OCT_SOPC_clock_2_in_byteenable,
-                                            SS_OCT_SOPC_clock_2_in_endofpacket_from_sa,
-                                            SS_OCT_SOPC_clock_2_in_nativeaddress,
-                                            SS_OCT_SOPC_clock_2_in_read,
-                                            SS_OCT_SOPC_clock_2_in_readdata_from_sa,
-                                            SS_OCT_SOPC_clock_2_in_reset_n,
-                                            SS_OCT_SOPC_clock_2_in_waitrequest_from_sa,
-                                            SS_OCT_SOPC_clock_2_in_write,
-                                            SS_OCT_SOPC_clock_2_in_writedata,
-                                            cpu_data_master_granted_SS_OCT_SOPC_clock_2_in,
-                                            cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in,
-                                            cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in,
-                                            cpu_data_master_requests_SS_OCT_SOPC_clock_2_in,
-                                            d1_SS_OCT_SOPC_clock_2_in_end_xfer
-                                         )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_2_in_address;
-  output  [  3: 0] SS_OCT_SOPC_clock_2_in_byteenable;
-  output           SS_OCT_SOPC_clock_2_in_endofpacket_from_sa;
-  output  [ 13: 0] SS_OCT_SOPC_clock_2_in_nativeaddress;
-  output           SS_OCT_SOPC_clock_2_in_read;
-  output  [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata_from_sa;
-  output           SS_OCT_SOPC_clock_2_in_reset_n;
-  output           SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
-  output           SS_OCT_SOPC_clock_2_in_write;
-  output  [ 31: 0] SS_OCT_SOPC_clock_2_in_writedata;
-  output           cpu_data_master_granted_SS_OCT_SOPC_clock_2_in;
-  output           cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in;
-  output           cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in;
-  output           cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
-  output           d1_SS_OCT_SOPC_clock_2_in_end_xfer;
-  input            SS_OCT_SOPC_clock_2_in_endofpacket;
-  input   [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata;
-  input            SS_OCT_SOPC_clock_2_in_waitrequest;
-  input            clk;
-  input   [ 30: 0] cpu_data_master_address_to_slave;
-  input   [  3: 0] cpu_data_master_byteenable;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_write;
-  input   [ 31: 0] cpu_data_master_writedata;
-  input            reset_n;
-
-  wire    [ 15: 0] SS_OCT_SOPC_clock_2_in_address;
-  wire             SS_OCT_SOPC_clock_2_in_allgrants;
-  wire             SS_OCT_SOPC_clock_2_in_allow_new_arb_cycle;
-  wire             SS_OCT_SOPC_clock_2_in_any_bursting_master_saved_grant;
-  wire             SS_OCT_SOPC_clock_2_in_any_continuerequest;
-  wire             SS_OCT_SOPC_clock_2_in_arb_counter_enable;
-  reg     [  1: 0] SS_OCT_SOPC_clock_2_in_arb_share_counter;
-  wire    [  1: 0] SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value;
-  wire    [  1: 0] SS_OCT_SOPC_clock_2_in_arb_share_set_values;
-  wire             SS_OCT_SOPC_clock_2_in_beginbursttransfer_internal;
-  wire             SS_OCT_SOPC_clock_2_in_begins_xfer;
-  wire    [  3: 0] SS_OCT_SOPC_clock_2_in_byteenable;
-  wire             SS_OCT_SOPC_clock_2_in_end_xfer;
-  wire             SS_OCT_SOPC_clock_2_in_endofpacket_from_sa;
-  wire             SS_OCT_SOPC_clock_2_in_firsttransfer;
-  wire             SS_OCT_SOPC_clock_2_in_grant_vector;
-  wire             SS_OCT_SOPC_clock_2_in_in_a_read_cycle;
-  wire             SS_OCT_SOPC_clock_2_in_in_a_write_cycle;
-  wire             SS_OCT_SOPC_clock_2_in_master_qreq_vector;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_2_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_2_in_non_bursting_master_requests;
-  wire             SS_OCT_SOPC_clock_2_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata_from_sa;
-  reg              SS_OCT_SOPC_clock_2_in_reg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_2_in_reset_n;
-  reg              SS_OCT_SOPC_clock_2_in_slavearbiterlockenable;
-  wire             SS_OCT_SOPC_clock_2_in_slavearbiterlockenable2;
-  wire             SS_OCT_SOPC_clock_2_in_unreg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_2_in_waits_for_read;
-  wire             SS_OCT_SOPC_clock_2_in_waits_for_write;
-  wire             SS_OCT_SOPC_clock_2_in_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_in_writedata;
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_SS_OCT_SOPC_clock_2_in;
-  wire             cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in;
-  wire             cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in;
-  wire             cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
-  wire             cpu_data_master_saved_grant_SS_OCT_SOPC_clock_2_in;
-  reg              d1_SS_OCT_SOPC_clock_2_in_end_xfer;
-  reg              d1_reasons_to_wait;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire             wait_for_SS_OCT_SOPC_clock_2_in_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~SS_OCT_SOPC_clock_2_in_end_xfer;
-    end
-
-
-  assign SS_OCT_SOPC_clock_2_in_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in));
-  //assign SS_OCT_SOPC_clock_2_in_readdata_from_sa = SS_OCT_SOPC_clock_2_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_readdata_from_sa = SS_OCT_SOPC_clock_2_in_readdata;
-
-  assign cpu_data_master_requests_SS_OCT_SOPC_clock_2_in = ({cpu_data_master_address_to_slave[30 : 16] , 16'b0} == 31'h48100000) & (cpu_data_master_read | cpu_data_master_write);
-  //assign SS_OCT_SOPC_clock_2_in_waitrequest_from_sa = SS_OCT_SOPC_clock_2_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_waitrequest_from_sa = SS_OCT_SOPC_clock_2_in_waitrequest;
-
-  //SS_OCT_SOPC_clock_2_in_arb_share_counter set values, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_arb_share_set_values = 1;
-
-  //SS_OCT_SOPC_clock_2_in_non_bursting_master_requests mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_non_bursting_master_requests = cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
-
-  //SS_OCT_SOPC_clock_2_in_any_bursting_master_saved_grant mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_any_bursting_master_saved_grant = 0;
-
-  //SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value = SS_OCT_SOPC_clock_2_in_firsttransfer ? (SS_OCT_SOPC_clock_2_in_arb_share_set_values - 1) : |SS_OCT_SOPC_clock_2_in_arb_share_counter ? (SS_OCT_SOPC_clock_2_in_arb_share_counter - 1) : 0;
-
-  //SS_OCT_SOPC_clock_2_in_allgrants all slave grants, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_allgrants = |SS_OCT_SOPC_clock_2_in_grant_vector;
-
-  //SS_OCT_SOPC_clock_2_in_end_xfer assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_end_xfer = ~(SS_OCT_SOPC_clock_2_in_waits_for_read | SS_OCT_SOPC_clock_2_in_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in = SS_OCT_SOPC_clock_2_in_end_xfer & (~SS_OCT_SOPC_clock_2_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //SS_OCT_SOPC_clock_2_in_arb_share_counter arbitration counter enable, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_arb_counter_enable = (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in & SS_OCT_SOPC_clock_2_in_allgrants) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in & ~SS_OCT_SOPC_clock_2_in_non_bursting_master_requests);
-
-  //SS_OCT_SOPC_clock_2_in_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_in_arb_share_counter <= 0;
-      else if (SS_OCT_SOPC_clock_2_in_arb_counter_enable)
-          SS_OCT_SOPC_clock_2_in_arb_share_counter <= SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_in_slavearbiterlockenable <= 0;
-      else if ((|SS_OCT_SOPC_clock_2_in_master_qreq_vector & end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_2_in & ~SS_OCT_SOPC_clock_2_in_non_bursting_master_requests))
-          SS_OCT_SOPC_clock_2_in_slavearbiterlockenable <= |SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value;
-    end
-
-
-  //cpu/data_master SS_OCT_SOPC_clock_2/in arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = SS_OCT_SOPC_clock_2_in_slavearbiterlockenable & cpu_data_master_continuerequest;
-
-  //SS_OCT_SOPC_clock_2_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_slavearbiterlockenable2 = |SS_OCT_SOPC_clock_2_in_arb_share_counter_next_value;
-
-  //cpu/data_master SS_OCT_SOPC_clock_2/in arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = SS_OCT_SOPC_clock_2_in_slavearbiterlockenable2 & cpu_data_master_continuerequest;
-
-  //SS_OCT_SOPC_clock_2_in_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_any_continuerequest = 1;
-
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
-
-  assign cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in = cpu_data_master_requests_SS_OCT_SOPC_clock_2_in & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0))));
-  //local readdatavalid cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in, which is an e_mux
-  assign cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in = cpu_data_master_granted_SS_OCT_SOPC_clock_2_in & cpu_data_master_read & ~SS_OCT_SOPC_clock_2_in_waits_for_read;
-
-  //SS_OCT_SOPC_clock_2_in_writedata mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_writedata = cpu_data_master_writedata;
-
-  //assign SS_OCT_SOPC_clock_2_in_endofpacket_from_sa = SS_OCT_SOPC_clock_2_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_endofpacket_from_sa = SS_OCT_SOPC_clock_2_in_endofpacket;
-
-  //master is always granted when requested
-  assign cpu_data_master_granted_SS_OCT_SOPC_clock_2_in = cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in;
-
-  //cpu/data_master saved-grant SS_OCT_SOPC_clock_2/in, which is an e_assign
-  assign cpu_data_master_saved_grant_SS_OCT_SOPC_clock_2_in = cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
-
-  //allow new arb cycle for SS_OCT_SOPC_clock_2/in, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign SS_OCT_SOPC_clock_2_in_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign SS_OCT_SOPC_clock_2_in_master_qreq_vector = 1;
-
-  //SS_OCT_SOPC_clock_2_in_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_reset_n = reset_n;
-
-  //SS_OCT_SOPC_clock_2_in_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_firsttransfer = SS_OCT_SOPC_clock_2_in_begins_xfer ? SS_OCT_SOPC_clock_2_in_unreg_firsttransfer : SS_OCT_SOPC_clock_2_in_reg_firsttransfer;
-
-  //SS_OCT_SOPC_clock_2_in_unreg_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_unreg_firsttransfer = ~(SS_OCT_SOPC_clock_2_in_slavearbiterlockenable & SS_OCT_SOPC_clock_2_in_any_continuerequest);
-
-  //SS_OCT_SOPC_clock_2_in_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_in_reg_firsttransfer <= 1'b1;
-      else if (SS_OCT_SOPC_clock_2_in_begins_xfer)
-          SS_OCT_SOPC_clock_2_in_reg_firsttransfer <= SS_OCT_SOPC_clock_2_in_unreg_firsttransfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_beginbursttransfer_internal = SS_OCT_SOPC_clock_2_in_begins_xfer;
-
-  //SS_OCT_SOPC_clock_2_in_read assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_read = cpu_data_master_granted_SS_OCT_SOPC_clock_2_in & cpu_data_master_read;
-
-  //SS_OCT_SOPC_clock_2_in_write assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_write = cpu_data_master_granted_SS_OCT_SOPC_clock_2_in & cpu_data_master_write;
-
-  //SS_OCT_SOPC_clock_2_in_address mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_address = cpu_data_master_address_to_slave;
-
-  //slaveid SS_OCT_SOPC_clock_2_in_nativeaddress nativeaddress mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_nativeaddress = cpu_data_master_address_to_slave >> 2;
-
-  //d1_SS_OCT_SOPC_clock_2_in_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_SS_OCT_SOPC_clock_2_in_end_xfer <= 1;
-      else 
-        d1_SS_OCT_SOPC_clock_2_in_end_xfer <= SS_OCT_SOPC_clock_2_in_end_xfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_in_waits_for_read in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_waits_for_read = SS_OCT_SOPC_clock_2_in_in_a_read_cycle & SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_2_in_in_a_read_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_in_a_read_cycle = cpu_data_master_granted_SS_OCT_SOPC_clock_2_in & cpu_data_master_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = SS_OCT_SOPC_clock_2_in_in_a_read_cycle;
-
-  //SS_OCT_SOPC_clock_2_in_waits_for_write in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_waits_for_write = SS_OCT_SOPC_clock_2_in_in_a_write_cycle & SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_2_in_in_a_write_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_in_in_a_write_cycle = cpu_data_master_granted_SS_OCT_SOPC_clock_2_in & cpu_data_master_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = SS_OCT_SOPC_clock_2_in_in_a_write_cycle;
-
-  assign wait_for_SS_OCT_SOPC_clock_2_in_counter = 0;
-  //SS_OCT_SOPC_clock_2_in_byteenable byte enable port mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_in_byteenable = (cpu_data_master_granted_SS_OCT_SOPC_clock_2_in)? cpu_data_master_byteenable :
-    -1;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_2/in enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module SS_OCT_SOPC_clock_2_out_arbitrator (
-                                            // inputs:
-                                             SS_OCT_SOPC_clock_2_out_address,
-                                             SS_OCT_SOPC_clock_2_out_byteenable,
-                                             SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1,
-                                             SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1,
-                                             SS_OCT_SOPC_clock_2_out_read,
-                                             SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1,
-                                             SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1,
-                                             SS_OCT_SOPC_clock_2_out_write,
-                                             SS_OCT_SOPC_clock_2_out_writedata,
-                                             clk,
-                                             d1_packet_memory_s1_end_xfer,
-                                             packet_memory_s1_readdata_from_sa,
-                                             reset_n,
-
-                                            // outputs:
-                                             SS_OCT_SOPC_clock_2_out_address_to_slave,
-                                             SS_OCT_SOPC_clock_2_out_readdata,
-                                             SS_OCT_SOPC_clock_2_out_reset_n,
-                                             SS_OCT_SOPC_clock_2_out_waitrequest
-                                          )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_2_out_address_to_slave;
-  output  [ 31: 0] SS_OCT_SOPC_clock_2_out_readdata;
-  output           SS_OCT_SOPC_clock_2_out_reset_n;
-  output           SS_OCT_SOPC_clock_2_out_waitrequest;
-  input   [ 15: 0] SS_OCT_SOPC_clock_2_out_address;
-  input   [  3: 0] SS_OCT_SOPC_clock_2_out_byteenable;
-  input            SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1;
-  input            SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1;
-  input            SS_OCT_SOPC_clock_2_out_read;
-  input            SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1;
-  input            SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
-  input            SS_OCT_SOPC_clock_2_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_2_out_writedata;
-  input            clk;
-  input            d1_packet_memory_s1_end_xfer;
-  input   [ 31: 0] packet_memory_s1_readdata_from_sa;
-  input            reset_n;
-
-  reg     [ 15: 0] SS_OCT_SOPC_clock_2_out_address_last_time;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_2_out_address_to_slave;
-  reg     [  3: 0] SS_OCT_SOPC_clock_2_out_byteenable_last_time;
-  reg              SS_OCT_SOPC_clock_2_out_read_last_time;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_out_readdata;
-  wire             SS_OCT_SOPC_clock_2_out_reset_n;
-  wire             SS_OCT_SOPC_clock_2_out_run;
-  wire             SS_OCT_SOPC_clock_2_out_waitrequest;
-  reg              SS_OCT_SOPC_clock_2_out_write_last_time;
-  reg     [ 31: 0] SS_OCT_SOPC_clock_2_out_writedata_last_time;
-  reg              active_and_waiting_last_time;
-  wire             r_2;
-  //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 | SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1 | ~SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1) & ((~SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 | ~SS_OCT_SOPC_clock_2_out_read | (SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1 & SS_OCT_SOPC_clock_2_out_read))) & ((~SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 | ~(SS_OCT_SOPC_clock_2_out_read | SS_OCT_SOPC_clock_2_out_write) | (1 & (SS_OCT_SOPC_clock_2_out_read | SS_OCT_SOPC_clock_2_out_write))));
-
-  //cascaded wait assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_run = r_2;
-
-  //optimize select-logic by passing only those address bits which matter.
-  assign SS_OCT_SOPC_clock_2_out_address_to_slave = SS_OCT_SOPC_clock_2_out_address;
-
-  //SS_OCT_SOPC_clock_2/out readdata mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_out_readdata = packet_memory_s1_readdata_from_sa;
-
-  //actual waitrequest port, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_waitrequest = ~SS_OCT_SOPC_clock_2_out_run;
-
-  //SS_OCT_SOPC_clock_2_out_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_reset_n = reset_n;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_2_out_address check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_address_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_2_out_address_last_time <= SS_OCT_SOPC_clock_2_out_address;
-    end
-
-
-  //SS_OCT_SOPC_clock_2/out waited last time, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          active_and_waiting_last_time <= 0;
-      else 
-        active_and_waiting_last_time <= SS_OCT_SOPC_clock_2_out_waitrequest & (SS_OCT_SOPC_clock_2_out_read | SS_OCT_SOPC_clock_2_out_write);
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_address matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_2_out_address != SS_OCT_SOPC_clock_2_out_address_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_2_out_address did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_byteenable check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_byteenable_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_2_out_byteenable_last_time <= SS_OCT_SOPC_clock_2_out_byteenable;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_byteenable matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_2_out_byteenable != SS_OCT_SOPC_clock_2_out_byteenable_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_2_out_byteenable did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_read check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_read_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_2_out_read_last_time <= SS_OCT_SOPC_clock_2_out_read;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_read matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_2_out_read != SS_OCT_SOPC_clock_2_out_read_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_2_out_read did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_write check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_write_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_2_out_write_last_time <= SS_OCT_SOPC_clock_2_out_write;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_write matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_2_out_write != SS_OCT_SOPC_clock_2_out_write_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_2_out_write did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_writedata check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_writedata_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_2_out_writedata_last_time <= SS_OCT_SOPC_clock_2_out_writedata;
-    end
-
-
-  //SS_OCT_SOPC_clock_2_out_writedata matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_2_out_writedata != SS_OCT_SOPC_clock_2_out_writedata_last_time) & SS_OCT_SOPC_clock_2_out_write)
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_2_out_writedata did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module SS_OCT_SOPC_clock_3_in_arbitrator (
-                                           // inputs:
-                                            SS_OCT_SOPC_clock_3_in_endofpacket,
-                                            SS_OCT_SOPC_clock_3_in_readdata,
-                                            SS_OCT_SOPC_clock_3_in_waitrequest,
-                                            clk,
-                                            reset_n,
-                                            sgdma_rx_m_write_address_to_slave,
-                                            sgdma_rx_m_write_byteenable,
-                                            sgdma_rx_m_write_write,
-                                            sgdma_rx_m_write_writedata,
-
-                                           // outputs:
-                                            SS_OCT_SOPC_clock_3_in_address,
-                                            SS_OCT_SOPC_clock_3_in_byteenable,
-                                            SS_OCT_SOPC_clock_3_in_endofpacket_from_sa,
-                                            SS_OCT_SOPC_clock_3_in_nativeaddress,
-                                            SS_OCT_SOPC_clock_3_in_read,
-                                            SS_OCT_SOPC_clock_3_in_readdata_from_sa,
-                                            SS_OCT_SOPC_clock_3_in_reset_n,
-                                            SS_OCT_SOPC_clock_3_in_waitrequest_from_sa,
-                                            SS_OCT_SOPC_clock_3_in_write,
-                                            SS_OCT_SOPC_clock_3_in_writedata,
-                                            d1_SS_OCT_SOPC_clock_3_in_end_xfer,
-                                            sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in,
-                                            sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in,
-                                            sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in
-                                         )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_3_in_address;
-  output  [  3: 0] SS_OCT_SOPC_clock_3_in_byteenable;
-  output           SS_OCT_SOPC_clock_3_in_endofpacket_from_sa;
-  output  [ 13: 0] SS_OCT_SOPC_clock_3_in_nativeaddress;
-  output           SS_OCT_SOPC_clock_3_in_read;
-  output  [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata_from_sa;
-  output           SS_OCT_SOPC_clock_3_in_reset_n;
-  output           SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
-  output           SS_OCT_SOPC_clock_3_in_write;
-  output  [ 31: 0] SS_OCT_SOPC_clock_3_in_writedata;
-  output           d1_SS_OCT_SOPC_clock_3_in_end_xfer;
-  output           sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in;
-  output           sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in;
-  output           sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
-  input            SS_OCT_SOPC_clock_3_in_endofpacket;
-  input   [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata;
-  input            SS_OCT_SOPC_clock_3_in_waitrequest;
-  input            clk;
-  input            reset_n;
-  input   [ 31: 0] sgdma_rx_m_write_address_to_slave;
-  input   [  3: 0] sgdma_rx_m_write_byteenable;
-  input            sgdma_rx_m_write_write;
-  input   [ 31: 0] sgdma_rx_m_write_writedata;
-
-  wire    [ 15: 0] SS_OCT_SOPC_clock_3_in_address;
-  wire             SS_OCT_SOPC_clock_3_in_allgrants;
-  wire             SS_OCT_SOPC_clock_3_in_allow_new_arb_cycle;
-  wire             SS_OCT_SOPC_clock_3_in_any_bursting_master_saved_grant;
-  wire             SS_OCT_SOPC_clock_3_in_any_continuerequest;
-  wire             SS_OCT_SOPC_clock_3_in_arb_counter_enable;
-  reg              SS_OCT_SOPC_clock_3_in_arb_share_counter;
-  wire             SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value;
-  wire             SS_OCT_SOPC_clock_3_in_arb_share_set_values;
-  wire             SS_OCT_SOPC_clock_3_in_beginbursttransfer_internal;
-  wire             SS_OCT_SOPC_clock_3_in_begins_xfer;
-  wire    [  3: 0] SS_OCT_SOPC_clock_3_in_byteenable;
-  wire             SS_OCT_SOPC_clock_3_in_end_xfer;
-  wire             SS_OCT_SOPC_clock_3_in_endofpacket_from_sa;
-  wire             SS_OCT_SOPC_clock_3_in_firsttransfer;
-  wire             SS_OCT_SOPC_clock_3_in_grant_vector;
-  wire             SS_OCT_SOPC_clock_3_in_in_a_read_cycle;
-  wire             SS_OCT_SOPC_clock_3_in_in_a_write_cycle;
-  wire             SS_OCT_SOPC_clock_3_in_master_qreq_vector;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_3_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_3_in_non_bursting_master_requests;
-  wire             SS_OCT_SOPC_clock_3_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata_from_sa;
-  reg              SS_OCT_SOPC_clock_3_in_reg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_3_in_reset_n;
-  reg              SS_OCT_SOPC_clock_3_in_slavearbiterlockenable;
-  wire             SS_OCT_SOPC_clock_3_in_slavearbiterlockenable2;
-  wire             SS_OCT_SOPC_clock_3_in_unreg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_3_in_waits_for_read;
-  wire             SS_OCT_SOPC_clock_3_in_waits_for_write;
-  wire             SS_OCT_SOPC_clock_3_in_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_writedata;
-  reg              d1_SS_OCT_SOPC_clock_3_in_end_xfer;
-  reg              d1_reasons_to_wait;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire             sgdma_rx_m_write_arbiterlock;
-  wire             sgdma_rx_m_write_arbiterlock2;
-  wire             sgdma_rx_m_write_continuerequest;
-  wire             sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in;
-  wire             sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in;
-  wire             sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
-  wire             sgdma_rx_m_write_saved_grant_SS_OCT_SOPC_clock_3_in;
-  wire             wait_for_SS_OCT_SOPC_clock_3_in_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~SS_OCT_SOPC_clock_3_in_end_xfer;
-    end
-
-
-  assign SS_OCT_SOPC_clock_3_in_begins_xfer = ~d1_reasons_to_wait & ((sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in));
-  //assign SS_OCT_SOPC_clock_3_in_readdata_from_sa = SS_OCT_SOPC_clock_3_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_readdata_from_sa = SS_OCT_SOPC_clock_3_in_readdata;
-
-  assign sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in = (({sgdma_rx_m_write_address_to_slave[31 : 16] , 16'b0} == 32'h48100000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
-  //assign SS_OCT_SOPC_clock_3_in_waitrequest_from_sa = SS_OCT_SOPC_clock_3_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_waitrequest_from_sa = SS_OCT_SOPC_clock_3_in_waitrequest;
-
-  //SS_OCT_SOPC_clock_3_in_arb_share_counter set values, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_arb_share_set_values = 1;
-
-  //SS_OCT_SOPC_clock_3_in_non_bursting_master_requests mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_non_bursting_master_requests = sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
-
-  //SS_OCT_SOPC_clock_3_in_any_bursting_master_saved_grant mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_any_bursting_master_saved_grant = 0;
-
-  //SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value = SS_OCT_SOPC_clock_3_in_firsttransfer ? (SS_OCT_SOPC_clock_3_in_arb_share_set_values - 1) : |SS_OCT_SOPC_clock_3_in_arb_share_counter ? (SS_OCT_SOPC_clock_3_in_arb_share_counter - 1) : 0;
-
-  //SS_OCT_SOPC_clock_3_in_allgrants all slave grants, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_allgrants = |SS_OCT_SOPC_clock_3_in_grant_vector;
-
-  //SS_OCT_SOPC_clock_3_in_end_xfer assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_end_xfer = ~(SS_OCT_SOPC_clock_3_in_waits_for_read | SS_OCT_SOPC_clock_3_in_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in = SS_OCT_SOPC_clock_3_in_end_xfer & (~SS_OCT_SOPC_clock_3_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //SS_OCT_SOPC_clock_3_in_arb_share_counter arbitration counter enable, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_arb_counter_enable = (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in & SS_OCT_SOPC_clock_3_in_allgrants) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in & ~SS_OCT_SOPC_clock_3_in_non_bursting_master_requests);
-
-  //SS_OCT_SOPC_clock_3_in_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_in_arb_share_counter <= 0;
-      else if (SS_OCT_SOPC_clock_3_in_arb_counter_enable)
-          SS_OCT_SOPC_clock_3_in_arb_share_counter <= SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_in_slavearbiterlockenable <= 0;
-      else if ((|SS_OCT_SOPC_clock_3_in_master_qreq_vector & end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_3_in & ~SS_OCT_SOPC_clock_3_in_non_bursting_master_requests))
-          SS_OCT_SOPC_clock_3_in_slavearbiterlockenable <= |SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value;
-    end
-
-
-  //sgdma_rx/m_write SS_OCT_SOPC_clock_3/in arbiterlock, which is an e_assign
-  assign sgdma_rx_m_write_arbiterlock = SS_OCT_SOPC_clock_3_in_slavearbiterlockenable & sgdma_rx_m_write_continuerequest;
-
-  //SS_OCT_SOPC_clock_3_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_slavearbiterlockenable2 = |SS_OCT_SOPC_clock_3_in_arb_share_counter_next_value;
-
-  //sgdma_rx/m_write SS_OCT_SOPC_clock_3/in arbiterlock2, which is an e_assign
-  assign sgdma_rx_m_write_arbiterlock2 = SS_OCT_SOPC_clock_3_in_slavearbiterlockenable2 & sgdma_rx_m_write_continuerequest;
-
-  //SS_OCT_SOPC_clock_3_in_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_any_continuerequest = 1;
-
-  //sgdma_rx_m_write_continuerequest continued request, which is an e_assign
-  assign sgdma_rx_m_write_continuerequest = 1;
-
-  assign sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in = sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
-  //SS_OCT_SOPC_clock_3_in_writedata mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_writedata = sgdma_rx_m_write_writedata;
-
-  //assign SS_OCT_SOPC_clock_3_in_endofpacket_from_sa = SS_OCT_SOPC_clock_3_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_endofpacket_from_sa = SS_OCT_SOPC_clock_3_in_endofpacket;
-
-  //master is always granted when requested
-  assign sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in = sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in;
-
-  //sgdma_rx/m_write saved-grant SS_OCT_SOPC_clock_3/in, which is an e_assign
-  assign sgdma_rx_m_write_saved_grant_SS_OCT_SOPC_clock_3_in = sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
-
-  //allow new arb cycle for SS_OCT_SOPC_clock_3/in, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign SS_OCT_SOPC_clock_3_in_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign SS_OCT_SOPC_clock_3_in_master_qreq_vector = 1;
-
-  //SS_OCT_SOPC_clock_3_in_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_reset_n = reset_n;
-
-  //SS_OCT_SOPC_clock_3_in_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_firsttransfer = SS_OCT_SOPC_clock_3_in_begins_xfer ? SS_OCT_SOPC_clock_3_in_unreg_firsttransfer : SS_OCT_SOPC_clock_3_in_reg_firsttransfer;
-
-  //SS_OCT_SOPC_clock_3_in_unreg_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_unreg_firsttransfer = ~(SS_OCT_SOPC_clock_3_in_slavearbiterlockenable & SS_OCT_SOPC_clock_3_in_any_continuerequest);
-
-  //SS_OCT_SOPC_clock_3_in_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_in_reg_firsttransfer <= 1'b1;
-      else if (SS_OCT_SOPC_clock_3_in_begins_xfer)
-          SS_OCT_SOPC_clock_3_in_reg_firsttransfer <= SS_OCT_SOPC_clock_3_in_unreg_firsttransfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_beginbursttransfer_internal = SS_OCT_SOPC_clock_3_in_begins_xfer;
-
-  //SS_OCT_SOPC_clock_3_in_read assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_read = 0;
-
-  //SS_OCT_SOPC_clock_3_in_write assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_write = sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in & sgdma_rx_m_write_write;
-
-  //SS_OCT_SOPC_clock_3_in_address mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_address = sgdma_rx_m_write_address_to_slave;
-
-  //slaveid SS_OCT_SOPC_clock_3_in_nativeaddress nativeaddress mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_nativeaddress = sgdma_rx_m_write_address_to_slave >> 2;
-
-  //d1_SS_OCT_SOPC_clock_3_in_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_SS_OCT_SOPC_clock_3_in_end_xfer <= 1;
-      else 
-        d1_SS_OCT_SOPC_clock_3_in_end_xfer <= SS_OCT_SOPC_clock_3_in_end_xfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_in_waits_for_read in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_waits_for_read = SS_OCT_SOPC_clock_3_in_in_a_read_cycle & SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_3_in_in_a_read_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_in_a_read_cycle = 0;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = SS_OCT_SOPC_clock_3_in_in_a_read_cycle;
-
-  //SS_OCT_SOPC_clock_3_in_waits_for_write in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_waits_for_write = SS_OCT_SOPC_clock_3_in_in_a_write_cycle & SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_3_in_in_a_write_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_in_in_a_write_cycle = sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in & sgdma_rx_m_write_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = SS_OCT_SOPC_clock_3_in_in_a_write_cycle;
-
-  assign wait_for_SS_OCT_SOPC_clock_3_in_counter = 0;
-  //SS_OCT_SOPC_clock_3_in_byteenable byte enable port mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_in_byteenable = (sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in)? sgdma_rx_m_write_byteenable :
-    -1;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_3/in enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module SS_OCT_SOPC_clock_3_out_arbitrator (
-                                            // inputs:
-                                             SS_OCT_SOPC_clock_3_out_address,
-                                             SS_OCT_SOPC_clock_3_out_byteenable,
-                                             SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_3_out_read,
-                                             SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_3_out_write,
-                                             SS_OCT_SOPC_clock_3_out_writedata,
-                                             clk,
-                                             d1_packet_memory_s2_end_xfer,
-                                             packet_memory_s2_readdata_from_sa,
-                                             reset_n,
-
-                                            // outputs:
-                                             SS_OCT_SOPC_clock_3_out_address_to_slave,
-                                             SS_OCT_SOPC_clock_3_out_readdata,
-                                             SS_OCT_SOPC_clock_3_out_reset_n,
-                                             SS_OCT_SOPC_clock_3_out_waitrequest
-                                          )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_3_out_address_to_slave;
-  output  [ 31: 0] SS_OCT_SOPC_clock_3_out_readdata;
-  output           SS_OCT_SOPC_clock_3_out_reset_n;
-  output           SS_OCT_SOPC_clock_3_out_waitrequest;
-  input   [ 15: 0] SS_OCT_SOPC_clock_3_out_address;
-  input   [  3: 0] SS_OCT_SOPC_clock_3_out_byteenable;
-  input            SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_3_out_read;
-  input            SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_3_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_3_out_writedata;
-  input            clk;
-  input            d1_packet_memory_s2_end_xfer;
-  input   [ 31: 0] packet_memory_s2_readdata_from_sa;
-  input            reset_n;
-
-  reg     [ 15: 0] SS_OCT_SOPC_clock_3_out_address_last_time;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_3_out_address_to_slave;
-  reg     [  3: 0] SS_OCT_SOPC_clock_3_out_byteenable_last_time;
-  reg              SS_OCT_SOPC_clock_3_out_read_last_time;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_out_readdata;
-  wire             SS_OCT_SOPC_clock_3_out_reset_n;
-  wire             SS_OCT_SOPC_clock_3_out_run;
-  wire             SS_OCT_SOPC_clock_3_out_waitrequest;
-  reg              SS_OCT_SOPC_clock_3_out_write_last_time;
-  reg     [ 31: 0] SS_OCT_SOPC_clock_3_out_writedata_last_time;
-  reg              active_and_waiting_last_time;
-  wire             r_2;
-  //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 | SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2 | ~SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2) & (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 | ~SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2) & ((~SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 | ~SS_OCT_SOPC_clock_3_out_read | (SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_read))) & ((~SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 | ~(SS_OCT_SOPC_clock_3_out_read | SS_OCT_SOPC_clock_3_out_write) | (1 & (SS_OCT_SOPC_clock_3_out_read | SS_OCT_SOPC_clock_3_out_write))));
-
-  //cascaded wait assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_run = r_2;
-
-  //optimize select-logic by passing only those address bits which matter.
-  assign SS_OCT_SOPC_clock_3_out_address_to_slave = SS_OCT_SOPC_clock_3_out_address;
-
-  //SS_OCT_SOPC_clock_3/out readdata mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_out_readdata = packet_memory_s2_readdata_from_sa;
-
-  //actual waitrequest port, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_waitrequest = ~SS_OCT_SOPC_clock_3_out_run;
-
-  //SS_OCT_SOPC_clock_3_out_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_reset_n = reset_n;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_3_out_address check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_address_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_address_last_time <= SS_OCT_SOPC_clock_3_out_address;
-    end
-
-
-  //SS_OCT_SOPC_clock_3/out waited last time, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          active_and_waiting_last_time <= 0;
-      else 
-        active_and_waiting_last_time <= SS_OCT_SOPC_clock_3_out_waitrequest & (SS_OCT_SOPC_clock_3_out_read | SS_OCT_SOPC_clock_3_out_write);
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_address matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_3_out_address != SS_OCT_SOPC_clock_3_out_address_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_3_out_address did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_byteenable check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_byteenable_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_byteenable_last_time <= SS_OCT_SOPC_clock_3_out_byteenable;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_byteenable matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_3_out_byteenable != SS_OCT_SOPC_clock_3_out_byteenable_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_3_out_byteenable did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_read check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_read_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_read_last_time <= SS_OCT_SOPC_clock_3_out_read;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_read matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_3_out_read != SS_OCT_SOPC_clock_3_out_read_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_3_out_read did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_write check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_write_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_write_last_time <= SS_OCT_SOPC_clock_3_out_write;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_write matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_3_out_write != SS_OCT_SOPC_clock_3_out_write_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_3_out_write did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_writedata check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_writedata_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_writedata_last_time <= SS_OCT_SOPC_clock_3_out_writedata;
-    end
-
-
-  //SS_OCT_SOPC_clock_3_out_writedata matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_3_out_writedata != SS_OCT_SOPC_clock_3_out_writedata_last_time) & SS_OCT_SOPC_clock_3_out_write)
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_3_out_writedata did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module SS_OCT_SOPC_clock_4_in_arbitrator (
-                                           // inputs:
-                                            SS_OCT_SOPC_clock_4_in_endofpacket,
-                                            SS_OCT_SOPC_clock_4_in_readdata,
-                                            SS_OCT_SOPC_clock_4_in_waitrequest,
-                                            clk,
-                                            reset_n,
-                                            sgdma_tx_m_read_address_to_slave,
-                                            sgdma_tx_m_read_latency_counter,
-                                            sgdma_tx_m_read_read,
-
-                                           // outputs:
-                                            SS_OCT_SOPC_clock_4_in_address,
-                                            SS_OCT_SOPC_clock_4_in_byteenable,
-                                            SS_OCT_SOPC_clock_4_in_endofpacket_from_sa,
-                                            SS_OCT_SOPC_clock_4_in_nativeaddress,
-                                            SS_OCT_SOPC_clock_4_in_read,
-                                            SS_OCT_SOPC_clock_4_in_readdata_from_sa,
-                                            SS_OCT_SOPC_clock_4_in_reset_n,
-                                            SS_OCT_SOPC_clock_4_in_waitrequest_from_sa,
-                                            SS_OCT_SOPC_clock_4_in_write,
-                                            d1_SS_OCT_SOPC_clock_4_in_end_xfer,
-                                            sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in,
-                                            sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in,
-                                            sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in,
-                                            sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in
-                                         )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_4_in_address;
-  output  [  3: 0] SS_OCT_SOPC_clock_4_in_byteenable;
-  output           SS_OCT_SOPC_clock_4_in_endofpacket_from_sa;
-  output  [ 13: 0] SS_OCT_SOPC_clock_4_in_nativeaddress;
-  output           SS_OCT_SOPC_clock_4_in_read;
-  output  [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata_from_sa;
-  output           SS_OCT_SOPC_clock_4_in_reset_n;
-  output           SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
-  output           SS_OCT_SOPC_clock_4_in_write;
-  output           d1_SS_OCT_SOPC_clock_4_in_end_xfer;
-  output           sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in;
-  output           sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in;
-  output           sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in;
-  output           sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
-  input            SS_OCT_SOPC_clock_4_in_endofpacket;
-  input   [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata;
-  input            SS_OCT_SOPC_clock_4_in_waitrequest;
-  input            clk;
-  input            reset_n;
-  input   [ 31: 0] sgdma_tx_m_read_address_to_slave;
-  input            sgdma_tx_m_read_latency_counter;
-  input            sgdma_tx_m_read_read;
-
-  wire    [ 15: 0] SS_OCT_SOPC_clock_4_in_address;
-  wire             SS_OCT_SOPC_clock_4_in_allgrants;
-  wire             SS_OCT_SOPC_clock_4_in_allow_new_arb_cycle;
-  wire             SS_OCT_SOPC_clock_4_in_any_bursting_master_saved_grant;
-  wire             SS_OCT_SOPC_clock_4_in_any_continuerequest;
-  wire             SS_OCT_SOPC_clock_4_in_arb_counter_enable;
-  reg              SS_OCT_SOPC_clock_4_in_arb_share_counter;
-  wire             SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value;
-  wire             SS_OCT_SOPC_clock_4_in_arb_share_set_values;
-  wire             SS_OCT_SOPC_clock_4_in_beginbursttransfer_internal;
-  wire             SS_OCT_SOPC_clock_4_in_begins_xfer;
-  wire    [  3: 0] SS_OCT_SOPC_clock_4_in_byteenable;
-  wire             SS_OCT_SOPC_clock_4_in_end_xfer;
-  wire             SS_OCT_SOPC_clock_4_in_endofpacket_from_sa;
-  wire             SS_OCT_SOPC_clock_4_in_firsttransfer;
-  wire             SS_OCT_SOPC_clock_4_in_grant_vector;
-  wire             SS_OCT_SOPC_clock_4_in_in_a_read_cycle;
-  wire             SS_OCT_SOPC_clock_4_in_in_a_write_cycle;
-  wire             SS_OCT_SOPC_clock_4_in_master_qreq_vector;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_4_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_4_in_non_bursting_master_requests;
-  wire             SS_OCT_SOPC_clock_4_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata_from_sa;
-  reg              SS_OCT_SOPC_clock_4_in_reg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_4_in_reset_n;
-  reg              SS_OCT_SOPC_clock_4_in_slavearbiterlockenable;
-  wire             SS_OCT_SOPC_clock_4_in_slavearbiterlockenable2;
-  wire             SS_OCT_SOPC_clock_4_in_unreg_firsttransfer;
-  wire             SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_4_in_waits_for_read;
-  wire             SS_OCT_SOPC_clock_4_in_waits_for_write;
-  wire             SS_OCT_SOPC_clock_4_in_write;
-  reg              d1_SS_OCT_SOPC_clock_4_in_end_xfer;
-  reg              d1_reasons_to_wait;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire             sgdma_tx_m_read_arbiterlock;
-  wire             sgdma_tx_m_read_arbiterlock2;
-  wire             sgdma_tx_m_read_continuerequest;
-  wire             sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in;
-  wire             sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in;
-  wire             sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in;
-  wire             sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
-  wire             sgdma_tx_m_read_saved_grant_SS_OCT_SOPC_clock_4_in;
-  wire             wait_for_SS_OCT_SOPC_clock_4_in_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~SS_OCT_SOPC_clock_4_in_end_xfer;
-    end
-
-
-  assign SS_OCT_SOPC_clock_4_in_begins_xfer = ~d1_reasons_to_wait & ((sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in));
-  //assign SS_OCT_SOPC_clock_4_in_readdata_from_sa = SS_OCT_SOPC_clock_4_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_readdata_from_sa = SS_OCT_SOPC_clock_4_in_readdata;
-
-  assign sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in = (({sgdma_tx_m_read_address_to_slave[31 : 16] , 16'b0} == 32'h48100000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
-  //assign SS_OCT_SOPC_clock_4_in_waitrequest_from_sa = SS_OCT_SOPC_clock_4_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_waitrequest_from_sa = SS_OCT_SOPC_clock_4_in_waitrequest;
-
-  //SS_OCT_SOPC_clock_4_in_arb_share_counter set values, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_arb_share_set_values = 1;
-
-  //SS_OCT_SOPC_clock_4_in_non_bursting_master_requests mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_non_bursting_master_requests = sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
-
-  //SS_OCT_SOPC_clock_4_in_any_bursting_master_saved_grant mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_any_bursting_master_saved_grant = 0;
-
-  //SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value = SS_OCT_SOPC_clock_4_in_firsttransfer ? (SS_OCT_SOPC_clock_4_in_arb_share_set_values - 1) : |SS_OCT_SOPC_clock_4_in_arb_share_counter ? (SS_OCT_SOPC_clock_4_in_arb_share_counter - 1) : 0;
-
-  //SS_OCT_SOPC_clock_4_in_allgrants all slave grants, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_allgrants = |SS_OCT_SOPC_clock_4_in_grant_vector;
-
-  //SS_OCT_SOPC_clock_4_in_end_xfer assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_end_xfer = ~(SS_OCT_SOPC_clock_4_in_waits_for_read | SS_OCT_SOPC_clock_4_in_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in = SS_OCT_SOPC_clock_4_in_end_xfer & (~SS_OCT_SOPC_clock_4_in_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //SS_OCT_SOPC_clock_4_in_arb_share_counter arbitration counter enable, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_arb_counter_enable = (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in & SS_OCT_SOPC_clock_4_in_allgrants) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in & ~SS_OCT_SOPC_clock_4_in_non_bursting_master_requests);
-
-  //SS_OCT_SOPC_clock_4_in_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_in_arb_share_counter <= 0;
-      else if (SS_OCT_SOPC_clock_4_in_arb_counter_enable)
-          SS_OCT_SOPC_clock_4_in_arb_share_counter <= SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_in_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_in_slavearbiterlockenable <= 0;
-      else if ((|SS_OCT_SOPC_clock_4_in_master_qreq_vector & end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in) | (end_xfer_arb_share_counter_term_SS_OCT_SOPC_clock_4_in & ~SS_OCT_SOPC_clock_4_in_non_bursting_master_requests))
-          SS_OCT_SOPC_clock_4_in_slavearbiterlockenable <= |SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value;
-    end
-
-
-  //sgdma_tx/m_read SS_OCT_SOPC_clock_4/in arbiterlock, which is an e_assign
-  assign sgdma_tx_m_read_arbiterlock = SS_OCT_SOPC_clock_4_in_slavearbiterlockenable & sgdma_tx_m_read_continuerequest;
-
-  //SS_OCT_SOPC_clock_4_in_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_slavearbiterlockenable2 = |SS_OCT_SOPC_clock_4_in_arb_share_counter_next_value;
-
-  //sgdma_tx/m_read SS_OCT_SOPC_clock_4/in arbiterlock2, which is an e_assign
-  assign sgdma_tx_m_read_arbiterlock2 = SS_OCT_SOPC_clock_4_in_slavearbiterlockenable2 & sgdma_tx_m_read_continuerequest;
-
-  //SS_OCT_SOPC_clock_4_in_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_any_continuerequest = 1;
-
-  //sgdma_tx_m_read_continuerequest continued request, which is an e_assign
-  assign sgdma_tx_m_read_continuerequest = 1;
-
-  assign sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in = sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in & ~((sgdma_tx_m_read_read & ((sgdma_tx_m_read_latency_counter != 0))));
-  //local readdatavalid sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in, which is an e_mux
-  assign sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in = sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in & sgdma_tx_m_read_read & ~SS_OCT_SOPC_clock_4_in_waits_for_read;
-
-  //assign SS_OCT_SOPC_clock_4_in_endofpacket_from_sa = SS_OCT_SOPC_clock_4_in_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_endofpacket_from_sa = SS_OCT_SOPC_clock_4_in_endofpacket;
-
-  //master is always granted when requested
-  assign sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in = sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in;
-
-  //sgdma_tx/m_read saved-grant SS_OCT_SOPC_clock_4/in, which is an e_assign
-  assign sgdma_tx_m_read_saved_grant_SS_OCT_SOPC_clock_4_in = sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
-
-  //allow new arb cycle for SS_OCT_SOPC_clock_4/in, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign SS_OCT_SOPC_clock_4_in_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign SS_OCT_SOPC_clock_4_in_master_qreq_vector = 1;
-
-  //SS_OCT_SOPC_clock_4_in_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_reset_n = reset_n;
-
-  //SS_OCT_SOPC_clock_4_in_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_firsttransfer = SS_OCT_SOPC_clock_4_in_begins_xfer ? SS_OCT_SOPC_clock_4_in_unreg_firsttransfer : SS_OCT_SOPC_clock_4_in_reg_firsttransfer;
-
-  //SS_OCT_SOPC_clock_4_in_unreg_firsttransfer first transaction, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_unreg_firsttransfer = ~(SS_OCT_SOPC_clock_4_in_slavearbiterlockenable & SS_OCT_SOPC_clock_4_in_any_continuerequest);
-
-  //SS_OCT_SOPC_clock_4_in_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_in_reg_firsttransfer <= 1'b1;
-      else if (SS_OCT_SOPC_clock_4_in_begins_xfer)
-          SS_OCT_SOPC_clock_4_in_reg_firsttransfer <= SS_OCT_SOPC_clock_4_in_unreg_firsttransfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_in_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_beginbursttransfer_internal = SS_OCT_SOPC_clock_4_in_begins_xfer;
-
-  //SS_OCT_SOPC_clock_4_in_read assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_read = sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in & sgdma_tx_m_read_read;
-
-  //SS_OCT_SOPC_clock_4_in_write assignment, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_write = 0;
-
-  //SS_OCT_SOPC_clock_4_in_address mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_address = sgdma_tx_m_read_address_to_slave;
-
-  //slaveid SS_OCT_SOPC_clock_4_in_nativeaddress nativeaddress mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_nativeaddress = sgdma_tx_m_read_address_to_slave >> 2;
-
-  //d1_SS_OCT_SOPC_clock_4_in_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_SS_OCT_SOPC_clock_4_in_end_xfer <= 1;
-      else 
-        d1_SS_OCT_SOPC_clock_4_in_end_xfer <= SS_OCT_SOPC_clock_4_in_end_xfer;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_in_waits_for_read in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_waits_for_read = SS_OCT_SOPC_clock_4_in_in_a_read_cycle & SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_4_in_in_a_read_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_in_a_read_cycle = sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in & sgdma_tx_m_read_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = SS_OCT_SOPC_clock_4_in_in_a_read_cycle;
-
-  //SS_OCT_SOPC_clock_4_in_waits_for_write in a cycle, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_waits_for_write = SS_OCT_SOPC_clock_4_in_in_a_write_cycle & SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
-
-  //SS_OCT_SOPC_clock_4_in_in_a_write_cycle assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_in_in_a_write_cycle = 0;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = SS_OCT_SOPC_clock_4_in_in_a_write_cycle;
-
-  assign wait_for_SS_OCT_SOPC_clock_4_in_counter = 0;
-  //SS_OCT_SOPC_clock_4_in_byteenable byte enable port mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_in_byteenable = -1;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_4/in enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module SS_OCT_SOPC_clock_4_out_arbitrator (
-                                            // inputs:
-                                             SS_OCT_SOPC_clock_4_out_address,
-                                             SS_OCT_SOPC_clock_4_out_byteenable,
-                                             SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_4_out_read,
-                                             SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2,
-                                             SS_OCT_SOPC_clock_4_out_write,
-                                             SS_OCT_SOPC_clock_4_out_writedata,
-                                             clk,
-                                             d1_packet_memory_s2_end_xfer,
-                                             packet_memory_s2_readdata_from_sa,
-                                             reset_n,
-
-                                            // outputs:
-                                             SS_OCT_SOPC_clock_4_out_address_to_slave,
-                                             SS_OCT_SOPC_clock_4_out_readdata,
-                                             SS_OCT_SOPC_clock_4_out_reset_n,
-                                             SS_OCT_SOPC_clock_4_out_waitrequest
-                                          )
-;
-
-  output  [ 15: 0] SS_OCT_SOPC_clock_4_out_address_to_slave;
-  output  [ 31: 0] SS_OCT_SOPC_clock_4_out_readdata;
-  output           SS_OCT_SOPC_clock_4_out_reset_n;
-  output           SS_OCT_SOPC_clock_4_out_waitrequest;
-  input   [ 15: 0] SS_OCT_SOPC_clock_4_out_address;
-  input   [  3: 0] SS_OCT_SOPC_clock_4_out_byteenable;
-  input            SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_4_out_read;
-  input            SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
-  input            SS_OCT_SOPC_clock_4_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_4_out_writedata;
-  input            clk;
-  input            d1_packet_memory_s2_end_xfer;
-  input   [ 31: 0] packet_memory_s2_readdata_from_sa;
-  input            reset_n;
-
-  reg     [ 15: 0] SS_OCT_SOPC_clock_4_out_address_last_time;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_4_out_address_to_slave;
-  reg     [  3: 0] SS_OCT_SOPC_clock_4_out_byteenable_last_time;
-  reg              SS_OCT_SOPC_clock_4_out_read_last_time;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_out_readdata;
-  wire             SS_OCT_SOPC_clock_4_out_reset_n;
-  wire             SS_OCT_SOPC_clock_4_out_run;
-  wire             SS_OCT_SOPC_clock_4_out_waitrequest;
-  reg              SS_OCT_SOPC_clock_4_out_write_last_time;
-  reg     [ 31: 0] SS_OCT_SOPC_clock_4_out_writedata_last_time;
-  reg              active_and_waiting_last_time;
-  wire             r_2;
-  //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 | SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2 | ~SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2) & (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 | ~SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2) & ((~SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 | ~SS_OCT_SOPC_clock_4_out_read | (SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_read))) & ((~SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 | ~(SS_OCT_SOPC_clock_4_out_read | SS_OCT_SOPC_clock_4_out_write) | (1 & (SS_OCT_SOPC_clock_4_out_read | SS_OCT_SOPC_clock_4_out_write))));
-
-  //cascaded wait assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_run = r_2;
-
-  //optimize select-logic by passing only those address bits which matter.
-  assign SS_OCT_SOPC_clock_4_out_address_to_slave = SS_OCT_SOPC_clock_4_out_address;
-
-  //SS_OCT_SOPC_clock_4/out readdata mux, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_out_readdata = packet_memory_s2_readdata_from_sa;
-
-  //actual waitrequest port, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_waitrequest = ~SS_OCT_SOPC_clock_4_out_run;
-
-  //SS_OCT_SOPC_clock_4_out_reset_n assignment, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_reset_n = reset_n;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //SS_OCT_SOPC_clock_4_out_address check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_address_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_4_out_address_last_time <= SS_OCT_SOPC_clock_4_out_address;
-    end
-
-
-  //SS_OCT_SOPC_clock_4/out waited last time, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          active_and_waiting_last_time <= 0;
-      else 
-        active_and_waiting_last_time <= SS_OCT_SOPC_clock_4_out_waitrequest & (SS_OCT_SOPC_clock_4_out_read | SS_OCT_SOPC_clock_4_out_write);
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_address matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_4_out_address != SS_OCT_SOPC_clock_4_out_address_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_4_out_address did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_byteenable check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_byteenable_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_4_out_byteenable_last_time <= SS_OCT_SOPC_clock_4_out_byteenable;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_byteenable matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_4_out_byteenable != SS_OCT_SOPC_clock_4_out_byteenable_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_4_out_byteenable did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_read check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_read_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_4_out_read_last_time <= SS_OCT_SOPC_clock_4_out_read;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_read matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_4_out_read != SS_OCT_SOPC_clock_4_out_read_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_4_out_read did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_write check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_write_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_4_out_write_last_time <= SS_OCT_SOPC_clock_4_out_write;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_write matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_4_out_write != SS_OCT_SOPC_clock_4_out_write_last_time))
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_4_out_write did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_writedata check against wait, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_writedata_last_time <= 0;
-      else 
-        SS_OCT_SOPC_clock_4_out_writedata_last_time <= SS_OCT_SOPC_clock_4_out_writedata;
-    end
-
-
-  //SS_OCT_SOPC_clock_4_out_writedata matches last port_name, which is an e_process
-  always @(posedge clk)
-    begin
-      if (active_and_waiting_last_time & (SS_OCT_SOPC_clock_4_out_writedata != SS_OCT_SOPC_clock_4_out_writedata_last_time) & SS_OCT_SOPC_clock_4_out_write)
-        begin
-          $write("%0d ns: SS_OCT_SOPC_clock_4_out_writedata did not heed wait!!!", $time);
-          $stop;
-        end
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
 module burstcount_fifo_for_clock_crossing_0_s1_module (
                                                         // inputs:
                                                          clear_fifo,
@@ -14899,15 +13407,12 @@ module cpu_data_master_arbitrator (
                                      SS_OCT_SOPC_clock_0_in_waitrequest_from_sa,
                                      SS_OCT_SOPC_clock_1_in_readdata_from_sa,
                                      SS_OCT_SOPC_clock_1_in_waitrequest_from_sa,
-                                     SS_OCT_SOPC_clock_2_in_readdata_from_sa,
-                                     SS_OCT_SOPC_clock_2_in_waitrequest_from_sa,
                                      clk,
                                      cpu_data_master_address,
                                      cpu_data_master_byteenable,
                                      cpu_data_master_byteenable_ext_flash_s1,
                                      cpu_data_master_granted_SS_OCT_SOPC_clock_0_in,
                                      cpu_data_master_granted_SS_OCT_SOPC_clock_1_in,
-                                     cpu_data_master_granted_SS_OCT_SOPC_clock_2_in,
                                      cpu_data_master_granted_cpu_jtag_debug_module,
                                      cpu_data_master_granted_descriptor_memory_s1,
                                      cpu_data_master_granted_ext_flash_s1,
@@ -14915,6 +13420,7 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_granted_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_granted_led_pio_s1,
                                      cpu_data_master_granted_onchip_memory_s1,
+                                     cpu_data_master_granted_packet_memory_s1,
                                      cpu_data_master_granted_pb_pio_s1,
                                      cpu_data_master_granted_seven_seg_pio_s1,
                                      cpu_data_master_granted_sgdma_rx_csr,
@@ -14927,7 +13433,6 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_granted_vol_transfer_done_pio_s1,
                                      cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in,
                                      cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in,
-                                     cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in,
                                      cpu_data_master_qualified_request_cpu_jtag_debug_module,
                                      cpu_data_master_qualified_request_descriptor_memory_s1,
                                      cpu_data_master_qualified_request_ext_flash_s1,
@@ -14935,6 +13440,7 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_qualified_request_led_pio_s1,
                                      cpu_data_master_qualified_request_onchip_memory_s1,
+                                     cpu_data_master_qualified_request_packet_memory_s1,
                                      cpu_data_master_qualified_request_pb_pio_s1,
                                      cpu_data_master_qualified_request_seven_seg_pio_s1,
                                      cpu_data_master_qualified_request_sgdma_rx_csr,
@@ -14948,7 +13454,6 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_read,
                                      cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_0_in,
                                      cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in,
-                                     cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in,
                                      cpu_data_master_read_data_valid_cpu_jtag_debug_module,
                                      cpu_data_master_read_data_valid_descriptor_memory_s1,
                                      cpu_data_master_read_data_valid_ext_flash_s1,
@@ -14956,6 +13461,7 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_read_data_valid_led_pio_s1,
                                      cpu_data_master_read_data_valid_onchip_memory_s1,
+                                     cpu_data_master_read_data_valid_packet_memory_s1,
                                      cpu_data_master_read_data_valid_pb_pio_s1,
                                      cpu_data_master_read_data_valid_seven_seg_pio_s1,
                                      cpu_data_master_read_data_valid_sgdma_rx_csr,
@@ -14968,7 +13474,6 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_read_data_valid_vol_transfer_done_pio_s1,
                                      cpu_data_master_requests_SS_OCT_SOPC_clock_0_in,
                                      cpu_data_master_requests_SS_OCT_SOPC_clock_1_in,
-                                     cpu_data_master_requests_SS_OCT_SOPC_clock_2_in,
                                      cpu_data_master_requests_cpu_jtag_debug_module,
                                      cpu_data_master_requests_descriptor_memory_s1,
                                      cpu_data_master_requests_ext_flash_s1,
@@ -14976,6 +13481,7 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_requests_jtag_uart_avalon_jtag_slave,
                                      cpu_data_master_requests_led_pio_s1,
                                      cpu_data_master_requests_onchip_memory_s1,
+                                     cpu_data_master_requests_packet_memory_s1,
                                      cpu_data_master_requests_pb_pio_s1,
                                      cpu_data_master_requests_seven_seg_pio_s1,
                                      cpu_data_master_requests_sgdma_rx_csr,
@@ -14991,7 +13497,6 @@ module cpu_data_master_arbitrator (
                                      cpu_jtag_debug_module_readdata_from_sa,
                                      d1_SS_OCT_SOPC_clock_0_in_end_xfer,
                                      d1_SS_OCT_SOPC_clock_1_in_end_xfer,
-                                     d1_SS_OCT_SOPC_clock_2_in_end_xfer,
                                      d1_cpu_jtag_debug_module_end_xfer,
                                      d1_descriptor_memory_s1_end_xfer,
                                      d1_flash_tristate_bridge_avalon_slave_end_xfer,
@@ -14999,6 +13504,7 @@ module cpu_data_master_arbitrator (
                                      d1_jtag_uart_avalon_jtag_slave_end_xfer,
                                      d1_led_pio_s1_end_xfer,
                                      d1_onchip_memory_s1_end_xfer,
+                                     d1_packet_memory_s1_end_xfer,
                                      d1_pb_pio_s1_end_xfer,
                                      d1_seven_seg_pio_s1_end_xfer,
                                      d1_sgdma_rx_csr_end_xfer,
@@ -15019,6 +13525,7 @@ module cpu_data_master_arbitrator (
                                      jtag_uart_avalon_jtag_slave_waitrequest_from_sa,
                                      led_pio_s1_readdata_from_sa,
                                      onchip_memory_s1_readdata_from_sa,
+                                     packet_memory_s1_readdata_from_sa,
                                      pb_pio_s1_readdata_from_sa,
                                      reset_n,
                                      seven_seg_pio_s1_readdata_from_sa,
@@ -15059,15 +13566,12 @@ module cpu_data_master_arbitrator (
   input            SS_OCT_SOPC_clock_0_in_waitrequest_from_sa;
   input   [ 31: 0] SS_OCT_SOPC_clock_1_in_readdata_from_sa;
   input            SS_OCT_SOPC_clock_1_in_waitrequest_from_sa;
-  input   [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata_from_sa;
-  input            SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
   input            clk;
   input   [ 30: 0] cpu_data_master_address;
   input   [  3: 0] cpu_data_master_byteenable;
   input   [  1: 0] cpu_data_master_byteenable_ext_flash_s1;
   input            cpu_data_master_granted_SS_OCT_SOPC_clock_0_in;
   input            cpu_data_master_granted_SS_OCT_SOPC_clock_1_in;
-  input            cpu_data_master_granted_SS_OCT_SOPC_clock_2_in;
   input            cpu_data_master_granted_cpu_jtag_debug_module;
   input            cpu_data_master_granted_descriptor_memory_s1;
   input            cpu_data_master_granted_ext_flash_s1;
@@ -15075,6 +13579,7 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_granted_led_pio_s1;
   input            cpu_data_master_granted_onchip_memory_s1;
+  input            cpu_data_master_granted_packet_memory_s1;
   input            cpu_data_master_granted_pb_pio_s1;
   input            cpu_data_master_granted_seven_seg_pio_s1;
   input            cpu_data_master_granted_sgdma_rx_csr;
@@ -15087,7 +13592,6 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_granted_vol_transfer_done_pio_s1;
   input            cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in;
   input            cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in;
-  input            cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in;
   input            cpu_data_master_qualified_request_cpu_jtag_debug_module;
   input            cpu_data_master_qualified_request_descriptor_memory_s1;
   input            cpu_data_master_qualified_request_ext_flash_s1;
@@ -15095,6 +13599,7 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_qualified_request_led_pio_s1;
   input            cpu_data_master_qualified_request_onchip_memory_s1;
+  input            cpu_data_master_qualified_request_packet_memory_s1;
   input            cpu_data_master_qualified_request_pb_pio_s1;
   input            cpu_data_master_qualified_request_seven_seg_pio_s1;
   input            cpu_data_master_qualified_request_sgdma_rx_csr;
@@ -15108,7 +13613,6 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_read;
   input            cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_0_in;
   input            cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in;
-  input            cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in;
   input            cpu_data_master_read_data_valid_cpu_jtag_debug_module;
   input            cpu_data_master_read_data_valid_descriptor_memory_s1;
   input            cpu_data_master_read_data_valid_ext_flash_s1;
@@ -15116,6 +13620,7 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_read_data_valid_led_pio_s1;
   input            cpu_data_master_read_data_valid_onchip_memory_s1;
+  input            cpu_data_master_read_data_valid_packet_memory_s1;
   input            cpu_data_master_read_data_valid_pb_pio_s1;
   input            cpu_data_master_read_data_valid_seven_seg_pio_s1;
   input            cpu_data_master_read_data_valid_sgdma_rx_csr;
@@ -15128,7 +13633,6 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_read_data_valid_vol_transfer_done_pio_s1;
   input            cpu_data_master_requests_SS_OCT_SOPC_clock_0_in;
   input            cpu_data_master_requests_SS_OCT_SOPC_clock_1_in;
-  input            cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
   input            cpu_data_master_requests_cpu_jtag_debug_module;
   input            cpu_data_master_requests_descriptor_memory_s1;
   input            cpu_data_master_requests_ext_flash_s1;
@@ -15136,6 +13640,7 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
   input            cpu_data_master_requests_led_pio_s1;
   input            cpu_data_master_requests_onchip_memory_s1;
+  input            cpu_data_master_requests_packet_memory_s1;
   input            cpu_data_master_requests_pb_pio_s1;
   input            cpu_data_master_requests_seven_seg_pio_s1;
   input            cpu_data_master_requests_sgdma_rx_csr;
@@ -15151,7 +13656,6 @@ module cpu_data_master_arbitrator (
   input   [ 31: 0] cpu_jtag_debug_module_readdata_from_sa;
   input            d1_SS_OCT_SOPC_clock_0_in_end_xfer;
   input            d1_SS_OCT_SOPC_clock_1_in_end_xfer;
-  input            d1_SS_OCT_SOPC_clock_2_in_end_xfer;
   input            d1_cpu_jtag_debug_module_end_xfer;
   input            d1_descriptor_memory_s1_end_xfer;
   input            d1_flash_tristate_bridge_avalon_slave_end_xfer;
@@ -15159,6 +13663,7 @@ module cpu_data_master_arbitrator (
   input            d1_jtag_uart_avalon_jtag_slave_end_xfer;
   input            d1_led_pio_s1_end_xfer;
   input            d1_onchip_memory_s1_end_xfer;
+  input            d1_packet_memory_s1_end_xfer;
   input            d1_pb_pio_s1_end_xfer;
   input            d1_seven_seg_pio_s1_end_xfer;
   input            d1_sgdma_rx_csr_end_xfer;
@@ -15179,6 +13684,7 @@ module cpu_data_master_arbitrator (
   input            jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
   input   [  7: 0] led_pio_s1_readdata_from_sa;
   input   [ 31: 0] onchip_memory_s1_readdata_from_sa;
+  input   [ 31: 0] packet_memory_s1_readdata_from_sa;
   input   [  3: 0] pb_pio_s1_readdata_from_sa;
   input            reset_n;
   input   [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
@@ -15233,16 +13739,16 @@ module cpu_data_master_arbitrator (
   wire             r_3;
   wire             r_4;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_2_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_2_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1);
+  assign r_0 = 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1);
 
   //cascaded wait assignment, which is an e_assign
   assign cpu_data_master_run = r_0 & r_1 & r_2 & r_3 & r_4;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1) & (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~cpu_data_master_requests_jtag_uart_avalon_jtag_slave) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_requests_led_pio_s1) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_read | (1 & ~d1_led_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1;
+  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~cpu_data_master_requests_jtag_uart_avalon_jtag_slave) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_requests_led_pio_s1) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_read | (1 & ~d1_led_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write))));
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_requests_pb_pio_s1) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_read | (1 & ~d1_pb_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_requests_seven_seg_pio_s1) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_read | (1 & ~d1_seven_seg_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write)));
+  assign r_2 = 1 & (cpu_data_master_qualified_request_packet_memory_s1 | ~cpu_data_master_requests_packet_memory_s1) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_requests_pb_pio_s1) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_read | (1 & ~d1_pb_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_requests_seven_seg_pio_s1) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_read | (1 & ~d1_seven_seg_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write)));
 
   //r_3 master_run cascaded wait assignment, which is an e_assign
   assign r_3 = 1 & (cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_requests_sw_pio_s1) & ((~cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_read | (1 & ~d1_sw_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_requests_vol_recording_done_pio_s1) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_read | (1 & ~d1_vol_recording_done_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write)));
@@ -15266,7 +13772,6 @@ module cpu_data_master_arbitrator (
   //some slave is getting selected, which is an e_mux
   assign cpu_data_master_is_granted_some_slave = cpu_data_master_granted_SS_OCT_SOPC_clock_0_in |
     cpu_data_master_granted_SS_OCT_SOPC_clock_1_in |
-    cpu_data_master_granted_SS_OCT_SOPC_clock_2_in |
     cpu_data_master_granted_cpu_jtag_debug_module |
     cpu_data_master_granted_descriptor_memory_s1 |
     cpu_data_master_granted_ext_flash_s1 |
@@ -15274,6 +13779,7 @@ module cpu_data_master_arbitrator (
     cpu_data_master_granted_jtag_uart_avalon_jtag_slave |
     cpu_data_master_granted_led_pio_s1 |
     cpu_data_master_granted_onchip_memory_s1 |
+    cpu_data_master_granted_packet_memory_s1 |
     cpu_data_master_granted_pb_pio_s1 |
     cpu_data_master_granted_seven_seg_pio_s1 |
     cpu_data_master_granted_sgdma_rx_csr |
@@ -15288,7 +13794,8 @@ module cpu_data_master_arbitrator (
   //latent slave read data valids which may be flushed, which is an e_mux
   assign pre_flush_cpu_data_master_readdatavalid = cpu_data_master_read_data_valid_descriptor_memory_s1 |
     (cpu_data_master_read_data_valid_ext_flash_s1 & dbs_rdv_counter_overflow) |
-    cpu_data_master_read_data_valid_onchip_memory_s1;
+    cpu_data_master_read_data_valid_onchip_memory_s1 |
+    cpu_data_master_read_data_valid_packet_memory_s1;
 
   //latent slave read data valid which is not flushed, which is an e_mux
   assign cpu_data_master_readdatavalid = cpu_data_master_read_but_no_slave_selected |
@@ -15297,9 +13804,6 @@ module cpu_data_master_arbitrator (
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_cpu_jtag_debug_module |
@@ -15316,6 +13820,8 @@ module cpu_data_master_arbitrator (
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_led_pio_s1 |
+    cpu_data_master_read_but_no_slave_selected |
+    pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_but_no_slave_selected |
@@ -15352,7 +13858,6 @@ module cpu_data_master_arbitrator (
   //cpu/data_master readdata mux, which is an e_mux
   assign cpu_data_master_readdata = ({32 {~(cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in & cpu_data_master_read)}} | SS_OCT_SOPC_clock_0_in_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in & cpu_data_master_read)}} | SS_OCT_SOPC_clock_1_in_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in & cpu_data_master_read)}} | SS_OCT_SOPC_clock_2_in_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_cpu_jtag_debug_module & cpu_data_master_read)}} | cpu_jtag_debug_module_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_descriptor_memory_s1}} | descriptor_memory_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_ext_flash_s1}} | {incoming_flash_tristate_bridge_data_with_Xs_converted_to_0[15 : 0],
@@ -15361,6 +13866,7 @@ module cpu_data_master_arbitrator (
     ({32 {~(cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave & cpu_data_master_read)}} | jtag_uart_avalon_jtag_slave_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_led_pio_s1 & cpu_data_master_read)}} | led_pio_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_onchip_memory_s1}} | onchip_memory_s1_readdata_from_sa) &
+    ({32 {~cpu_data_master_read_data_valid_packet_memory_s1}} | packet_memory_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_pb_pio_s1 & cpu_data_master_read)}} | pb_pio_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_seven_seg_pio_s1 & cpu_data_master_read)}} | seven_seg_pio_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sgdma_rx_csr & cpu_data_master_read)}} | sgdma_rx_csr_readdata_from_sa) &
@@ -15393,7 +13899,8 @@ module cpu_data_master_arbitrator (
   //read latency load values, which is an e_mux
   assign latency_load_value = ({2 {cpu_data_master_requests_descriptor_memory_s1}} & 1) |
     ({2 {cpu_data_master_requests_ext_flash_s1}} & 2) |
-    ({2 {cpu_data_master_requests_onchip_memory_s1}} & 1);
+    ({2 {cpu_data_master_requests_onchip_memory_s1}} & 1) |
+    ({2 {cpu_data_master_requests_packet_memory_s1}} & 1);
 
   //pre dbs count enable, which is an e_mux
   assign pre_dbs_count_enable = (((~0) & cpu_data_master_requests_ext_flash_s1 & cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1)) |
@@ -15734,18 +14241,14 @@ module cpu_instruction_master_arbitrator (
   wire             pre_flush_cpu_instruction_master_readdatavalid;
   wire             r_0;
   wire             r_1;
-  wire             r_2;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~cpu_instruction_master_requests_descriptor_memory_s1);
+  assign r_0 = 1 & (cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_requests_cpu_jtag_debug_module) & (cpu_instruction_master_granted_cpu_jtag_debug_module | ~cpu_instruction_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_instruction_master_qualified_request_cpu_jtag_debug_module | ~cpu_instruction_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~cpu_instruction_master_requests_descriptor_memory_s1) & (cpu_instruction_master_granted_descriptor_memory_s1 | ~cpu_instruction_master_qualified_request_descriptor_memory_s1) & ((~cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_instruction_master_run = r_0 & r_1 & r_2;
+  assign cpu_instruction_master_run = r_0 & r_1;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (cpu_instruction_master_granted_descriptor_memory_s1 | ~cpu_instruction_master_qualified_request_descriptor_memory_s1) & ((~cpu_instruction_master_qualified_request_descriptor_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read)))) & 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read)));
-
-  //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
+  assign r_1 = 1 & (cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_requests_ext_flash_s1) & (cpu_instruction_master_granted_ext_flash_s1 | ~cpu_instruction_master_qualified_request_ext_flash_s1) & ((~cpu_instruction_master_qualified_request_ext_flash_s1 | ~cpu_instruction_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_instruction_master_dbs_address[1]) & cpu_instruction_master_read))) & 1 & (cpu_instruction_master_qualified_request_onchip_memory_s1 | ~cpu_instruction_master_requests_onchip_memory_s1) & (cpu_instruction_master_granted_onchip_memory_s1 | ~cpu_instruction_master_qualified_request_onchip_memory_s1) & ((~cpu_instruction_master_qualified_request_onchip_memory_s1 | ~(cpu_instruction_master_read) | (1 & (cpu_instruction_master_read))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_instruction_master_address_to_slave = {3'b100,
@@ -24017,20 +22520,21 @@ endmodule
 
 module packet_memory_s1_arbitrator (
                                      // inputs:
-                                      SS_OCT_SOPC_clock_2_out_address_to_slave,
-                                      SS_OCT_SOPC_clock_2_out_byteenable,
-                                      SS_OCT_SOPC_clock_2_out_read,
-                                      SS_OCT_SOPC_clock_2_out_write,
-                                      SS_OCT_SOPC_clock_2_out_writedata,
                                       clk,
+                                      cpu_data_master_address_to_slave,
+                                      cpu_data_master_byteenable,
+                                      cpu_data_master_latency_counter,
+                                      cpu_data_master_read,
+                                      cpu_data_master_write,
+                                      cpu_data_master_writedata,
                                       packet_memory_s1_readdata,
                                       reset_n,
 
                                      // outputs:
-                                      SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1,
-                                      SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1,
-                                      SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1,
-                                      SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1,
+                                      cpu_data_master_granted_packet_memory_s1,
+                                      cpu_data_master_qualified_request_packet_memory_s1,
+                                      cpu_data_master_read_data_valid_packet_memory_s1,
+                                      cpu_data_master_requests_packet_memory_s1,
                                       d1_packet_memory_s1_end_xfer,
                                       packet_memory_s1_address,
                                       packet_memory_s1_byteenable,
@@ -24042,10 +22546,10 @@ module packet_memory_s1_arbitrator (
                                    )
 ;
 
-  output           SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1;
-  output           SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1;
-  output           SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1;
-  output           SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
+  output           cpu_data_master_granted_packet_memory_s1;
+  output           cpu_data_master_qualified_request_packet_memory_s1;
+  output           cpu_data_master_read_data_valid_packet_memory_s1;
+  output           cpu_data_master_requests_packet_memory_s1;
   output           d1_packet_memory_s1_end_xfer;
   output  [ 13: 0] packet_memory_s1_address;
   output  [  3: 0] packet_memory_s1_byteenable;
@@ -24054,41 +22558,42 @@ module packet_memory_s1_arbitrator (
   output  [ 31: 0] packet_memory_s1_readdata_from_sa;
   output           packet_memory_s1_write;
   output  [ 31: 0] packet_memory_s1_writedata;
-  input   [ 15: 0] SS_OCT_SOPC_clock_2_out_address_to_slave;
-  input   [  3: 0] SS_OCT_SOPC_clock_2_out_byteenable;
-  input            SS_OCT_SOPC_clock_2_out_read;
-  input            SS_OCT_SOPC_clock_2_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_2_out_writedata;
   input            clk;
+  input   [ 30: 0] cpu_data_master_address_to_slave;
+  input   [  3: 0] cpu_data_master_byteenable;
+  input   [  1: 0] cpu_data_master_latency_counter;
+  input            cpu_data_master_read;
+  input            cpu_data_master_write;
+  input   [ 31: 0] cpu_data_master_writedata;
   input   [ 31: 0] packet_memory_s1_readdata;
   input            reset_n;
 
-  wire             SS_OCT_SOPC_clock_2_out_arbiterlock;
-  wire             SS_OCT_SOPC_clock_2_out_arbiterlock2;
-  wire             SS_OCT_SOPC_clock_2_out_continuerequest;
-  wire             SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1;
-  wire             SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1;
-  wire             SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1;
-  reg              SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register;
-  wire             SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register_in;
-  wire             SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
-  wire             SS_OCT_SOPC_clock_2_out_saved_grant_packet_memory_s1;
+  wire             cpu_data_master_arbiterlock;
+  wire             cpu_data_master_arbiterlock2;
+  wire             cpu_data_master_continuerequest;
+  wire             cpu_data_master_granted_packet_memory_s1;
+  wire             cpu_data_master_qualified_request_packet_memory_s1;
+  wire             cpu_data_master_read_data_valid_packet_memory_s1;
+  reg              cpu_data_master_read_data_valid_packet_memory_s1_shift_register;
+  wire             cpu_data_master_read_data_valid_packet_memory_s1_shift_register_in;
+  wire             cpu_data_master_requests_packet_memory_s1;
+  wire             cpu_data_master_saved_grant_packet_memory_s1;
   reg              d1_packet_memory_s1_end_xfer;
   reg              d1_reasons_to_wait;
   reg              enable_nonzero_assertions;
   wire             end_xfer_arb_share_counter_term_packet_memory_s1;
   wire             in_a_read_cycle;
   wire             in_a_write_cycle;
-  wire             p1_SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register;
+  wire             p1_cpu_data_master_read_data_valid_packet_memory_s1_shift_register;
   wire    [ 13: 0] packet_memory_s1_address;
   wire             packet_memory_s1_allgrants;
   wire             packet_memory_s1_allow_new_arb_cycle;
   wire             packet_memory_s1_any_bursting_master_saved_grant;
   wire             packet_memory_s1_any_continuerequest;
   wire             packet_memory_s1_arb_counter_enable;
-  reg              packet_memory_s1_arb_share_counter;
-  wire             packet_memory_s1_arb_share_counter_next_value;
-  wire             packet_memory_s1_arb_share_set_values;
+  reg     [  1: 0] packet_memory_s1_arb_share_counter;
+  wire    [  1: 0] packet_memory_s1_arb_share_counter_next_value;
+  wire    [  1: 0] packet_memory_s1_arb_share_set_values;
   wire             packet_memory_s1_beginbursttransfer_internal;
   wire             packet_memory_s1_begins_xfer;
   wire    [  3: 0] packet_memory_s1_byteenable;
@@ -24110,7 +22615,7 @@ module packet_memory_s1_arbitrator (
   wire             packet_memory_s1_waits_for_write;
   wire             packet_memory_s1_write;
   wire    [ 31: 0] packet_memory_s1_writedata;
-  wire    [ 15: 0] shifted_address_to_packet_memory_s1_from_SS_OCT_SOPC_clock_2_out;
+  wire    [ 30: 0] shifted_address_to_packet_memory_s1_from_cpu_data_master;
   wire             wait_for_packet_memory_s1_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -24121,16 +22626,16 @@ module packet_memory_s1_arbitrator (
     end
 
 
-  assign packet_memory_s1_begins_xfer = ~d1_reasons_to_wait & ((SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1));
+  assign packet_memory_s1_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_packet_memory_s1));
   //assign packet_memory_s1_readdata_from_sa = packet_memory_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign packet_memory_s1_readdata_from_sa = packet_memory_s1_readdata;
 
-  assign SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1 = (1) & (SS_OCT_SOPC_clock_2_out_read | SS_OCT_SOPC_clock_2_out_write);
+  assign cpu_data_master_requests_packet_memory_s1 = ({cpu_data_master_address_to_slave[30 : 16] , 16'b0} == 31'h48100000) & (cpu_data_master_read | cpu_data_master_write);
   //packet_memory_s1_arb_share_counter set values, which is an e_mux
   assign packet_memory_s1_arb_share_set_values = 1;
 
   //packet_memory_s1_non_bursting_master_requests mux, which is an e_mux
-  assign packet_memory_s1_non_bursting_master_requests = SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
+  assign packet_memory_s1_non_bursting_master_requests = cpu_data_master_requests_packet_memory_s1;
 
   //packet_memory_s1_any_bursting_master_saved_grant mux, which is an e_mux
   assign packet_memory_s1_any_bursting_master_saved_grant = 0;
@@ -24170,52 +22675,52 @@ module packet_memory_s1_arbitrator (
     end
 
 
-  //SS_OCT_SOPC_clock_2/out packet_memory/s1 arbiterlock, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_arbiterlock = packet_memory_s1_slavearbiterlockenable & SS_OCT_SOPC_clock_2_out_continuerequest;
+  //cpu/data_master packet_memory/s1 arbiterlock, which is an e_assign
+  assign cpu_data_master_arbiterlock = packet_memory_s1_slavearbiterlockenable & cpu_data_master_continuerequest;
 
   //packet_memory_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
   assign packet_memory_s1_slavearbiterlockenable2 = |packet_memory_s1_arb_share_counter_next_value;
 
-  //SS_OCT_SOPC_clock_2/out packet_memory/s1 arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_arbiterlock2 = packet_memory_s1_slavearbiterlockenable2 & SS_OCT_SOPC_clock_2_out_continuerequest;
+  //cpu/data_master packet_memory/s1 arbiterlock2, which is an e_assign
+  assign cpu_data_master_arbiterlock2 = packet_memory_s1_slavearbiterlockenable2 & cpu_data_master_continuerequest;
 
   //packet_memory_s1_any_continuerequest at least one master continues requesting, which is an e_assign
   assign packet_memory_s1_any_continuerequest = 1;
 
-  //SS_OCT_SOPC_clock_2_out_continuerequest continued request, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_continuerequest = 1;
+  //cpu_data_master_continuerequest continued request, which is an e_assign
+  assign cpu_data_master_continuerequest = 1;
 
-  assign SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 = SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1 & ~((SS_OCT_SOPC_clock_2_out_read & ((|SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register))));
-  //SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register_in = SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1 & SS_OCT_SOPC_clock_2_out_read & ~packet_memory_s1_waits_for_read & ~(|SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register);
+  assign cpu_data_master_qualified_request_packet_memory_s1 = cpu_data_master_requests_packet_memory_s1 & ~((cpu_data_master_read & ((1 < cpu_data_master_latency_counter))));
+  //cpu_data_master_read_data_valid_packet_memory_s1_shift_register_in mux for readlatency shift register, which is an e_mux
+  assign cpu_data_master_read_data_valid_packet_memory_s1_shift_register_in = cpu_data_master_granted_packet_memory_s1 & cpu_data_master_read & ~packet_memory_s1_waits_for_read;
 
-  //shift register p1 SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register in if flush, otherwise shift left, which is an e_mux
-  assign p1_SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register = {SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register, SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register_in};
+  //shift register p1 cpu_data_master_read_data_valid_packet_memory_s1_shift_register in if flush, otherwise shift left, which is an e_mux
+  assign p1_cpu_data_master_read_data_valid_packet_memory_s1_shift_register = {cpu_data_master_read_data_valid_packet_memory_s1_shift_register, cpu_data_master_read_data_valid_packet_memory_s1_shift_register_in};
 
-  //SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register for remembering which master asked for a fixed latency read, which is an e_register
+  //cpu_data_master_read_data_valid_packet_memory_s1_shift_register for remembering which master asked for a fixed latency read, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register <= 0;
+          cpu_data_master_read_data_valid_packet_memory_s1_shift_register <= 0;
       else 
-        SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register <= p1_SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register;
+        cpu_data_master_read_data_valid_packet_memory_s1_shift_register <= p1_cpu_data_master_read_data_valid_packet_memory_s1_shift_register;
     end
 
 
-  //local readdatavalid SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1, which is an e_mux
-  assign SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1 = SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1_shift_register;
+  //local readdatavalid cpu_data_master_read_data_valid_packet_memory_s1, which is an e_mux
+  assign cpu_data_master_read_data_valid_packet_memory_s1 = cpu_data_master_read_data_valid_packet_memory_s1_shift_register;
 
   //packet_memory_s1_writedata mux, which is an e_mux
-  assign packet_memory_s1_writedata = SS_OCT_SOPC_clock_2_out_writedata;
+  assign packet_memory_s1_writedata = cpu_data_master_writedata;
 
   //mux packet_memory_s1_clken, which is an e_mux
   assign packet_memory_s1_clken = 1'b1;
 
   //master is always granted when requested
-  assign SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1 = SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1;
+  assign cpu_data_master_granted_packet_memory_s1 = cpu_data_master_qualified_request_packet_memory_s1;
 
-  //SS_OCT_SOPC_clock_2/out saved-grant packet_memory/s1, which is an e_assign
-  assign SS_OCT_SOPC_clock_2_out_saved_grant_packet_memory_s1 = SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
+  //cpu/data_master saved-grant packet_memory/s1, which is an e_assign
+  assign cpu_data_master_saved_grant_packet_memory_s1 = cpu_data_master_requests_packet_memory_s1;
 
   //allow new arb cycle for packet_memory/s1, which is an e_assign
   assign packet_memory_s1_allow_new_arb_cycle = 1;
@@ -24226,7 +22731,7 @@ module packet_memory_s1_arbitrator (
   //placeholder vector of master qualified-requests
   assign packet_memory_s1_master_qreq_vector = 1;
 
-  assign packet_memory_s1_chipselect = SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1;
+  assign packet_memory_s1_chipselect = cpu_data_master_granted_packet_memory_s1;
   //packet_memory_s1_firsttransfer first transaction, which is an e_assign
   assign packet_memory_s1_firsttransfer = packet_memory_s1_begins_xfer ? packet_memory_s1_unreg_firsttransfer : packet_memory_s1_reg_firsttransfer;
 
@@ -24247,11 +22752,11 @@ module packet_memory_s1_arbitrator (
   assign packet_memory_s1_beginbursttransfer_internal = packet_memory_s1_begins_xfer;
 
   //packet_memory_s1_write assignment, which is an e_mux
-  assign packet_memory_s1_write = SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1 & SS_OCT_SOPC_clock_2_out_write;
+  assign packet_memory_s1_write = cpu_data_master_granted_packet_memory_s1 & cpu_data_master_write;
 
-  assign shifted_address_to_packet_memory_s1_from_SS_OCT_SOPC_clock_2_out = SS_OCT_SOPC_clock_2_out_address_to_slave;
+  assign shifted_address_to_packet_memory_s1_from_cpu_data_master = cpu_data_master_address_to_slave;
   //packet_memory_s1_address mux, which is an e_mux
-  assign packet_memory_s1_address = shifted_address_to_packet_memory_s1_from_SS_OCT_SOPC_clock_2_out >> 2;
+  assign packet_memory_s1_address = shifted_address_to_packet_memory_s1_from_cpu_data_master >> 2;
 
   //d1_packet_memory_s1_end_xfer register, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -24267,7 +22772,7 @@ module packet_memory_s1_arbitrator (
   assign packet_memory_s1_waits_for_read = packet_memory_s1_in_a_read_cycle & 0;
 
   //packet_memory_s1_in_a_read_cycle assignment, which is an e_assign
-  assign packet_memory_s1_in_a_read_cycle = SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1 & SS_OCT_SOPC_clock_2_out_read;
+  assign packet_memory_s1_in_a_read_cycle = cpu_data_master_granted_packet_memory_s1 & cpu_data_master_read;
 
   //in_a_read_cycle assignment, which is an e_mux
   assign in_a_read_cycle = packet_memory_s1_in_a_read_cycle;
@@ -24276,14 +22781,14 @@ module packet_memory_s1_arbitrator (
   assign packet_memory_s1_waits_for_write = packet_memory_s1_in_a_write_cycle & 0;
 
   //packet_memory_s1_in_a_write_cycle assignment, which is an e_assign
-  assign packet_memory_s1_in_a_write_cycle = SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1 & SS_OCT_SOPC_clock_2_out_write;
+  assign packet_memory_s1_in_a_write_cycle = cpu_data_master_granted_packet_memory_s1 & cpu_data_master_write;
 
   //in_a_write_cycle assignment, which is an e_mux
   assign in_a_write_cycle = packet_memory_s1_in_a_write_cycle;
 
   assign wait_for_packet_memory_s1_counter = 0;
   //packet_memory_s1_byteenable byte enable port mux, which is an e_mux
-  assign packet_memory_s1_byteenable = (SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1)? SS_OCT_SOPC_clock_2_out_byteenable :
+  assign packet_memory_s1_byteenable = (cpu_data_master_granted_packet_memory_s1)? cpu_data_master_byteenable :
     -1;
 
 
@@ -24314,29 +22819,18 @@ endmodule
 
 module packet_memory_s2_arbitrator (
                                      // inputs:
-                                      SS_OCT_SOPC_clock_3_out_address_to_slave,
-                                      SS_OCT_SOPC_clock_3_out_byteenable,
-                                      SS_OCT_SOPC_clock_3_out_read,
-                                      SS_OCT_SOPC_clock_3_out_write,
-                                      SS_OCT_SOPC_clock_3_out_writedata,
-                                      SS_OCT_SOPC_clock_4_out_address_to_slave,
-                                      SS_OCT_SOPC_clock_4_out_byteenable,
-                                      SS_OCT_SOPC_clock_4_out_read,
-                                      SS_OCT_SOPC_clock_4_out_write,
-                                      SS_OCT_SOPC_clock_4_out_writedata,
                                       clk,
                                       packet_memory_s2_readdata,
                                       reset_n,
+                                      sgdma_rx_m_write_address_to_slave,
+                                      sgdma_rx_m_write_byteenable,
+                                      sgdma_rx_m_write_write,
+                                      sgdma_rx_m_write_writedata,
+                                      sgdma_tx_m_read_address_to_slave,
+                                      sgdma_tx_m_read_latency_counter,
+                                      sgdma_tx_m_read_read,
 
                                      // outputs:
-                                      SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2,
-                                      SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2,
                                       d1_packet_memory_s2_end_xfer,
                                       packet_memory_s2_address,
                                       packet_memory_s2_byteenable,
@@ -24344,18 +22838,17 @@ module packet_memory_s2_arbitrator (
                                       packet_memory_s2_clken,
                                       packet_memory_s2_readdata_from_sa,
                                       packet_memory_s2_write,
-                                      packet_memory_s2_writedata
+                                      packet_memory_s2_writedata,
+                                      sgdma_rx_m_write_granted_packet_memory_s2,
+                                      sgdma_rx_m_write_qualified_request_packet_memory_s2,
+                                      sgdma_rx_m_write_requests_packet_memory_s2,
+                                      sgdma_tx_m_read_granted_packet_memory_s2,
+                                      sgdma_tx_m_read_qualified_request_packet_memory_s2,
+                                      sgdma_tx_m_read_read_data_valid_packet_memory_s2,
+                                      sgdma_tx_m_read_requests_packet_memory_s2
                                    )
 ;
 
-  output           SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2;
-  output           SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
   output           d1_packet_memory_s2_end_xfer;
   output  [ 13: 0] packet_memory_s2_address;
   output  [  3: 0] packet_memory_s2_byteenable;
@@ -24364,50 +22857,33 @@ module packet_memory_s2_arbitrator (
   output  [ 31: 0] packet_memory_s2_readdata_from_sa;
   output           packet_memory_s2_write;
   output  [ 31: 0] packet_memory_s2_writedata;
-  input   [ 15: 0] SS_OCT_SOPC_clock_3_out_address_to_slave;
-  input   [  3: 0] SS_OCT_SOPC_clock_3_out_byteenable;
-  input            SS_OCT_SOPC_clock_3_out_read;
-  input            SS_OCT_SOPC_clock_3_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_3_out_writedata;
-  input   [ 15: 0] SS_OCT_SOPC_clock_4_out_address_to_slave;
-  input   [  3: 0] SS_OCT_SOPC_clock_4_out_byteenable;
-  input            SS_OCT_SOPC_clock_4_out_read;
-  input            SS_OCT_SOPC_clock_4_out_write;
-  input   [ 31: 0] SS_OCT_SOPC_clock_4_out_writedata;
+  output           sgdma_rx_m_write_granted_packet_memory_s2;
+  output           sgdma_rx_m_write_qualified_request_packet_memory_s2;
+  output           sgdma_rx_m_write_requests_packet_memory_s2;
+  output           sgdma_tx_m_read_granted_packet_memory_s2;
+  output           sgdma_tx_m_read_qualified_request_packet_memory_s2;
+  output           sgdma_tx_m_read_read_data_valid_packet_memory_s2;
+  output           sgdma_tx_m_read_requests_packet_memory_s2;
   input            clk;
   input   [ 31: 0] packet_memory_s2_readdata;
   input            reset_n;
+  input   [ 31: 0] sgdma_rx_m_write_address_to_slave;
+  input   [  3: 0] sgdma_rx_m_write_byteenable;
+  input            sgdma_rx_m_write_write;
+  input   [ 31: 0] sgdma_rx_m_write_writedata;
+  input   [ 31: 0] sgdma_tx_m_read_address_to_slave;
+  input            sgdma_tx_m_read_latency_counter;
+  input            sgdma_tx_m_read_read;
 
-  wire             SS_OCT_SOPC_clock_3_out_arbiterlock;
-  wire             SS_OCT_SOPC_clock_3_out_arbiterlock2;
-  wire             SS_OCT_SOPC_clock_3_out_continuerequest;
-  wire             SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2;
-  reg              SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register;
-  wire             SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register_in;
-  wire             SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_3_out_saved_grant_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_arbiterlock;
-  wire             SS_OCT_SOPC_clock_4_out_arbiterlock2;
-  wire             SS_OCT_SOPC_clock_4_out_continuerequest;
-  wire             SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2;
-  reg              SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register;
-  wire             SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register_in;
-  wire             SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_saved_grant_packet_memory_s2;
   reg              d1_packet_memory_s2_end_xfer;
   reg              d1_reasons_to_wait;
   reg              enable_nonzero_assertions;
   wire             end_xfer_arb_share_counter_term_packet_memory_s2;
   wire             in_a_read_cycle;
   wire             in_a_write_cycle;
-  reg              last_cycle_SS_OCT_SOPC_clock_3_out_granted_slave_packet_memory_s2;
-  reg              last_cycle_SS_OCT_SOPC_clock_4_out_granted_slave_packet_memory_s2;
-  wire             p1_SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register;
-  wire             p1_SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register;
+  reg              last_cycle_sgdma_rx_m_write_granted_slave_packet_memory_s2;
+  reg              last_cycle_sgdma_tx_m_read_granted_slave_packet_memory_s2;
+  wire             p1_sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register;
   wire    [ 13: 0] packet_memory_s2_address;
   wire             packet_memory_s2_allgrants;
   wire             packet_memory_s2_allow_new_arb_cycle;
@@ -24444,8 +22920,25 @@ module packet_memory_s2_arbitrator (
   wire             packet_memory_s2_waits_for_write;
   wire             packet_memory_s2_write;
   wire    [ 31: 0] packet_memory_s2_writedata;
-  wire    [ 15: 0] shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_3_out;
-  wire    [ 15: 0] shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_4_out;
+  wire             sgdma_rx_m_write_arbiterlock;
+  wire             sgdma_rx_m_write_arbiterlock2;
+  wire             sgdma_rx_m_write_continuerequest;
+  wire             sgdma_rx_m_write_granted_packet_memory_s2;
+  wire             sgdma_rx_m_write_qualified_request_packet_memory_s2;
+  wire             sgdma_rx_m_write_requests_packet_memory_s2;
+  wire             sgdma_rx_m_write_saved_grant_packet_memory_s2;
+  wire             sgdma_tx_m_read_arbiterlock;
+  wire             sgdma_tx_m_read_arbiterlock2;
+  wire             sgdma_tx_m_read_continuerequest;
+  wire             sgdma_tx_m_read_granted_packet_memory_s2;
+  wire             sgdma_tx_m_read_qualified_request_packet_memory_s2;
+  wire             sgdma_tx_m_read_read_data_valid_packet_memory_s2;
+  reg              sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register;
+  wire             sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register_in;
+  wire             sgdma_tx_m_read_requests_packet_memory_s2;
+  wire             sgdma_tx_m_read_saved_grant_packet_memory_s2;
+  wire    [ 31: 0] shifted_address_to_packet_memory_s2_from_sgdma_rx_m_write;
+  wire    [ 31: 0] shifted_address_to_packet_memory_s2_from_sgdma_tx_m_read;
   wire             wait_for_packet_memory_s2_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -24456,19 +22949,19 @@ module packet_memory_s2_arbitrator (
     end
 
 
-  assign packet_memory_s2_begins_xfer = ~d1_reasons_to_wait & ((SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 | SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2));
+  assign packet_memory_s2_begins_xfer = ~d1_reasons_to_wait & ((sgdma_rx_m_write_qualified_request_packet_memory_s2 | sgdma_tx_m_read_qualified_request_packet_memory_s2));
   //assign packet_memory_s2_readdata_from_sa = packet_memory_s2_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign packet_memory_s2_readdata_from_sa = packet_memory_s2_readdata;
 
-  assign SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2 = (1) & (SS_OCT_SOPC_clock_3_out_read | SS_OCT_SOPC_clock_3_out_write);
+  assign sgdma_rx_m_write_requests_packet_memory_s2 = (({sgdma_rx_m_write_address_to_slave[31 : 16] , 16'b0} == 32'h48100000) & (sgdma_rx_m_write_write)) & sgdma_rx_m_write_write;
   //packet_memory_s2_arb_share_counter set values, which is an e_mux
   assign packet_memory_s2_arb_share_set_values = 1;
 
   //packet_memory_s2_non_bursting_master_requests mux, which is an e_mux
-  assign packet_memory_s2_non_bursting_master_requests = SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2 |
-    SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2 |
-    SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2 |
-    SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
+  assign packet_memory_s2_non_bursting_master_requests = sgdma_rx_m_write_requests_packet_memory_s2 |
+    sgdma_tx_m_read_requests_packet_memory_s2 |
+    sgdma_rx_m_write_requests_packet_memory_s2 |
+    sgdma_tx_m_read_requests_packet_memory_s2;
 
   //packet_memory_s2_any_bursting_master_saved_grant mux, which is an e_mux
   assign packet_memory_s2_any_bursting_master_saved_grant = 0;
@@ -24511,119 +23004,99 @@ module packet_memory_s2_arbitrator (
     end
 
 
-  //SS_OCT_SOPC_clock_3/out packet_memory/s2 arbiterlock, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_arbiterlock = packet_memory_s2_slavearbiterlockenable & SS_OCT_SOPC_clock_3_out_continuerequest;
+  //sgdma_rx/m_write packet_memory/s2 arbiterlock, which is an e_assign
+  assign sgdma_rx_m_write_arbiterlock = packet_memory_s2_slavearbiterlockenable & sgdma_rx_m_write_continuerequest;
 
   //packet_memory_s2_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
   assign packet_memory_s2_slavearbiterlockenable2 = |packet_memory_s2_arb_share_counter_next_value;
 
-  //SS_OCT_SOPC_clock_3/out packet_memory/s2 arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_arbiterlock2 = packet_memory_s2_slavearbiterlockenable2 & SS_OCT_SOPC_clock_3_out_continuerequest;
+  //sgdma_rx/m_write packet_memory/s2 arbiterlock2, which is an e_assign
+  assign sgdma_rx_m_write_arbiterlock2 = packet_memory_s2_slavearbiterlockenable2 & sgdma_rx_m_write_continuerequest;
 
-  //SS_OCT_SOPC_clock_4/out packet_memory/s2 arbiterlock, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_arbiterlock = packet_memory_s2_slavearbiterlockenable & SS_OCT_SOPC_clock_4_out_continuerequest;
+  //sgdma_tx/m_read packet_memory/s2 arbiterlock, which is an e_assign
+  assign sgdma_tx_m_read_arbiterlock = packet_memory_s2_slavearbiterlockenable & sgdma_tx_m_read_continuerequest;
 
-  //SS_OCT_SOPC_clock_4/out packet_memory/s2 arbiterlock2, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_arbiterlock2 = packet_memory_s2_slavearbiterlockenable2 & SS_OCT_SOPC_clock_4_out_continuerequest;
+  //sgdma_tx/m_read packet_memory/s2 arbiterlock2, which is an e_assign
+  assign sgdma_tx_m_read_arbiterlock2 = packet_memory_s2_slavearbiterlockenable2 & sgdma_tx_m_read_continuerequest;
 
-  //SS_OCT_SOPC_clock_4/out granted packet_memory/s2 last time, which is an e_register
+  //sgdma_tx/m_read granted packet_memory/s2 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          last_cycle_SS_OCT_SOPC_clock_4_out_granted_slave_packet_memory_s2 <= 0;
+          last_cycle_sgdma_tx_m_read_granted_slave_packet_memory_s2 <= 0;
       else 
-        last_cycle_SS_OCT_SOPC_clock_4_out_granted_slave_packet_memory_s2 <= SS_OCT_SOPC_clock_4_out_saved_grant_packet_memory_s2 ? 1 : (packet_memory_s2_arbitration_holdoff_internal | ~SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2) ? 0 : last_cycle_SS_OCT_SOPC_clock_4_out_granted_slave_packet_memory_s2;
+        last_cycle_sgdma_tx_m_read_granted_slave_packet_memory_s2 <= sgdma_tx_m_read_saved_grant_packet_memory_s2 ? 1 : (packet_memory_s2_arbitration_holdoff_internal | ~sgdma_tx_m_read_requests_packet_memory_s2) ? 0 : last_cycle_sgdma_tx_m_read_granted_slave_packet_memory_s2;
     end
 
 
-  //SS_OCT_SOPC_clock_4_out_continuerequest continued request, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_out_continuerequest = last_cycle_SS_OCT_SOPC_clock_4_out_granted_slave_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
+  //sgdma_tx_m_read_continuerequest continued request, which is an e_mux
+  assign sgdma_tx_m_read_continuerequest = last_cycle_sgdma_tx_m_read_granted_slave_packet_memory_s2 & sgdma_tx_m_read_requests_packet_memory_s2;
 
   //packet_memory_s2_any_continuerequest at least one master continues requesting, which is an e_mux
-  assign packet_memory_s2_any_continuerequest = SS_OCT_SOPC_clock_4_out_continuerequest |
-    SS_OCT_SOPC_clock_3_out_continuerequest;
+  assign packet_memory_s2_any_continuerequest = sgdma_tx_m_read_continuerequest |
+    sgdma_rx_m_write_continuerequest;
 
-  assign SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 = SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2 & ~((SS_OCT_SOPC_clock_3_out_read & ((|SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register))) | SS_OCT_SOPC_clock_4_out_arbiterlock);
-  //SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register_in mux for readlatency shift register, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register_in = SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_read & ~packet_memory_s2_waits_for_read & ~(|SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register);
-
-  //shift register p1 SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register in if flush, otherwise shift left, which is an e_mux
-  assign p1_SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register = {SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register, SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register_in};
-
-  //SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register for remembering which master asked for a fixed latency read, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register <= 0;
-      else 
-        SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register <= p1_SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register;
-    end
-
-
-  //local readdatavalid SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2 = SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2_shift_register;
-
+  assign sgdma_rx_m_write_qualified_request_packet_memory_s2 = sgdma_rx_m_write_requests_packet_memory_s2 & ~(sgdma_tx_m_read_arbiterlock);
   //packet_memory_s2_writedata mux, which is an e_mux
-  assign packet_memory_s2_writedata = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2)? SS_OCT_SOPC_clock_3_out_writedata :
-    SS_OCT_SOPC_clock_4_out_writedata;
+  assign packet_memory_s2_writedata = sgdma_rx_m_write_writedata;
 
   //mux packet_memory_s2_clken, which is an e_mux
   assign packet_memory_s2_clken = 1'b1;
 
-  assign SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2 = (1) & (SS_OCT_SOPC_clock_4_out_read | SS_OCT_SOPC_clock_4_out_write);
-  //SS_OCT_SOPC_clock_3/out granted packet_memory/s2 last time, which is an e_register
+  assign sgdma_tx_m_read_requests_packet_memory_s2 = (({sgdma_tx_m_read_address_to_slave[31 : 16] , 16'b0} == 32'h48100000) & (sgdma_tx_m_read_read)) & sgdma_tx_m_read_read;
+  //sgdma_rx/m_write granted packet_memory/s2 last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          last_cycle_SS_OCT_SOPC_clock_3_out_granted_slave_packet_memory_s2 <= 0;
+          last_cycle_sgdma_rx_m_write_granted_slave_packet_memory_s2 <= 0;
       else 
-        last_cycle_SS_OCT_SOPC_clock_3_out_granted_slave_packet_memory_s2 <= SS_OCT_SOPC_clock_3_out_saved_grant_packet_memory_s2 ? 1 : (packet_memory_s2_arbitration_holdoff_internal | ~SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2) ? 0 : last_cycle_SS_OCT_SOPC_clock_3_out_granted_slave_packet_memory_s2;
+        last_cycle_sgdma_rx_m_write_granted_slave_packet_memory_s2 <= sgdma_rx_m_write_saved_grant_packet_memory_s2 ? 1 : (packet_memory_s2_arbitration_holdoff_internal | ~sgdma_rx_m_write_requests_packet_memory_s2) ? 0 : last_cycle_sgdma_rx_m_write_granted_slave_packet_memory_s2;
     end
 
 
-  //SS_OCT_SOPC_clock_3_out_continuerequest continued request, which is an e_mux
-  assign SS_OCT_SOPC_clock_3_out_continuerequest = last_cycle_SS_OCT_SOPC_clock_3_out_granted_slave_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
+  //sgdma_rx_m_write_continuerequest continued request, which is an e_mux
+  assign sgdma_rx_m_write_continuerequest = last_cycle_sgdma_rx_m_write_granted_slave_packet_memory_s2 & sgdma_rx_m_write_requests_packet_memory_s2;
 
-  assign SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 = SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2 & ~((SS_OCT_SOPC_clock_4_out_read & ((|SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register))) | SS_OCT_SOPC_clock_3_out_arbiterlock);
-  //SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register_in mux for readlatency shift register, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register_in = SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_read & ~packet_memory_s2_waits_for_read & ~(|SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register);
+  assign sgdma_tx_m_read_qualified_request_packet_memory_s2 = sgdma_tx_m_read_requests_packet_memory_s2 & ~((sgdma_tx_m_read_read & ((1 < sgdma_tx_m_read_latency_counter))) | sgdma_rx_m_write_arbiterlock);
+  //sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register_in mux for readlatency shift register, which is an e_mux
+  assign sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register_in = sgdma_tx_m_read_granted_packet_memory_s2 & sgdma_tx_m_read_read & ~packet_memory_s2_waits_for_read;
 
-  //shift register p1 SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register in if flush, otherwise shift left, which is an e_mux
-  assign p1_SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register = {SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register, SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register_in};
+  //shift register p1 sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register in if flush, otherwise shift left, which is an e_mux
+  assign p1_sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register = {sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register, sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register_in};
 
-  //SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register for remembering which master asked for a fixed latency read, which is an e_register
+  //sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register for remembering which master asked for a fixed latency read, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register <= 0;
+          sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register <= 0;
       else 
-        SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register <= p1_SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register;
+        sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register <= p1_sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register;
     end
 
 
-  //local readdatavalid SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2, which is an e_mux
-  assign SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2 = SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2_shift_register;
+  //local readdatavalid sgdma_tx_m_read_read_data_valid_packet_memory_s2, which is an e_mux
+  assign sgdma_tx_m_read_read_data_valid_packet_memory_s2 = sgdma_tx_m_read_read_data_valid_packet_memory_s2_shift_register;
 
   //allow new arb cycle for packet_memory/s2, which is an e_assign
-  assign packet_memory_s2_allow_new_arb_cycle = ~SS_OCT_SOPC_clock_3_out_arbiterlock & ~SS_OCT_SOPC_clock_4_out_arbiterlock;
+  assign packet_memory_s2_allow_new_arb_cycle = ~sgdma_rx_m_write_arbiterlock & ~sgdma_tx_m_read_arbiterlock;
 
-  //SS_OCT_SOPC_clock_4/out assignment into master qualified-requests vector for packet_memory/s2, which is an e_assign
-  assign packet_memory_s2_master_qreq_vector[0] = SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2;
+  //sgdma_tx/m_read assignment into master qualified-requests vector for packet_memory/s2, which is an e_assign
+  assign packet_memory_s2_master_qreq_vector[0] = sgdma_tx_m_read_qualified_request_packet_memory_s2;
 
-  //SS_OCT_SOPC_clock_4/out grant packet_memory/s2, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 = packet_memory_s2_grant_vector[0];
+  //sgdma_tx/m_read grant packet_memory/s2, which is an e_assign
+  assign sgdma_tx_m_read_granted_packet_memory_s2 = packet_memory_s2_grant_vector[0];
 
-  //SS_OCT_SOPC_clock_4/out saved-grant packet_memory/s2, which is an e_assign
-  assign SS_OCT_SOPC_clock_4_out_saved_grant_packet_memory_s2 = packet_memory_s2_arb_winner[0] && SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
+  //sgdma_tx/m_read saved-grant packet_memory/s2, which is an e_assign
+  assign sgdma_tx_m_read_saved_grant_packet_memory_s2 = packet_memory_s2_arb_winner[0] && sgdma_tx_m_read_requests_packet_memory_s2;
 
-  //SS_OCT_SOPC_clock_3/out assignment into master qualified-requests vector for packet_memory/s2, which is an e_assign
-  assign packet_memory_s2_master_qreq_vector[1] = SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2;
+  //sgdma_rx/m_write assignment into master qualified-requests vector for packet_memory/s2, which is an e_assign
+  assign packet_memory_s2_master_qreq_vector[1] = sgdma_rx_m_write_qualified_request_packet_memory_s2;
 
-  //SS_OCT_SOPC_clock_3/out grant packet_memory/s2, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 = packet_memory_s2_grant_vector[1];
+  //sgdma_rx/m_write grant packet_memory/s2, which is an e_assign
+  assign sgdma_rx_m_write_granted_packet_memory_s2 = packet_memory_s2_grant_vector[1];
 
-  //SS_OCT_SOPC_clock_3/out saved-grant packet_memory/s2, which is an e_assign
-  assign SS_OCT_SOPC_clock_3_out_saved_grant_packet_memory_s2 = packet_memory_s2_arb_winner[1] && SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
+  //sgdma_rx/m_write saved-grant packet_memory/s2, which is an e_assign
+  assign sgdma_rx_m_write_saved_grant_packet_memory_s2 = packet_memory_s2_arb_winner[1] && sgdma_rx_m_write_requests_packet_memory_s2;
 
   //packet_memory/s2 chosen-master double-vector, which is an e_assign
   assign packet_memory_s2_chosen_master_double_vector = {packet_memory_s2_master_qreq_vector, packet_memory_s2_master_qreq_vector} & ({~packet_memory_s2_master_qreq_vector, ~packet_memory_s2_master_qreq_vector} + packet_memory_s2_arb_addend);
@@ -24658,7 +23131,7 @@ module packet_memory_s2_arbitrator (
     end
 
 
-  assign packet_memory_s2_chipselect = SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 | SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2;
+  assign packet_memory_s2_chipselect = sgdma_rx_m_write_granted_packet_memory_s2 | sgdma_tx_m_read_granted_packet_memory_s2;
   //packet_memory_s2_firsttransfer first transaction, which is an e_assign
   assign packet_memory_s2_firsttransfer = packet_memory_s2_begins_xfer ? packet_memory_s2_unreg_firsttransfer : packet_memory_s2_reg_firsttransfer;
 
@@ -24682,14 +23155,14 @@ module packet_memory_s2_arbitrator (
   assign packet_memory_s2_arbitration_holdoff_internal = packet_memory_s2_begins_xfer & packet_memory_s2_firsttransfer;
 
   //packet_memory_s2_write assignment, which is an e_mux
-  assign packet_memory_s2_write = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_write) | (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_write);
+  assign packet_memory_s2_write = sgdma_rx_m_write_granted_packet_memory_s2 & sgdma_rx_m_write_write;
 
-  assign shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_3_out = SS_OCT_SOPC_clock_3_out_address_to_slave;
+  assign shifted_address_to_packet_memory_s2_from_sgdma_rx_m_write = sgdma_rx_m_write_address_to_slave;
   //packet_memory_s2_address mux, which is an e_mux
-  assign packet_memory_s2_address = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2)? (shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_3_out >> 2) :
-    (shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_4_out >> 2);
+  assign packet_memory_s2_address = (sgdma_rx_m_write_granted_packet_memory_s2)? (shifted_address_to_packet_memory_s2_from_sgdma_rx_m_write >> 2) :
+    (shifted_address_to_packet_memory_s2_from_sgdma_tx_m_read >> 2);
 
-  assign shifted_address_to_packet_memory_s2_from_SS_OCT_SOPC_clock_4_out = SS_OCT_SOPC_clock_4_out_address_to_slave;
+  assign shifted_address_to_packet_memory_s2_from_sgdma_tx_m_read = sgdma_tx_m_read_address_to_slave;
   //d1_packet_memory_s2_end_xfer register, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -24704,7 +23177,7 @@ module packet_memory_s2_arbitrator (
   assign packet_memory_s2_waits_for_read = packet_memory_s2_in_a_read_cycle & 0;
 
   //packet_memory_s2_in_a_read_cycle assignment, which is an e_assign
-  assign packet_memory_s2_in_a_read_cycle = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_read) | (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_read);
+  assign packet_memory_s2_in_a_read_cycle = sgdma_tx_m_read_granted_packet_memory_s2 & sgdma_tx_m_read_read;
 
   //in_a_read_cycle assignment, which is an e_mux
   assign in_a_read_cycle = packet_memory_s2_in_a_read_cycle;
@@ -24713,15 +23186,14 @@ module packet_memory_s2_arbitrator (
   assign packet_memory_s2_waits_for_write = packet_memory_s2_in_a_write_cycle & 0;
 
   //packet_memory_s2_in_a_write_cycle assignment, which is an e_assign
-  assign packet_memory_s2_in_a_write_cycle = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_3_out_write) | (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 & SS_OCT_SOPC_clock_4_out_write);
+  assign packet_memory_s2_in_a_write_cycle = sgdma_rx_m_write_granted_packet_memory_s2 & sgdma_rx_m_write_write;
 
   //in_a_write_cycle assignment, which is an e_mux
   assign in_a_write_cycle = packet_memory_s2_in_a_write_cycle;
 
   assign wait_for_packet_memory_s2_counter = 0;
   //packet_memory_s2_byteenable byte enable port mux, which is an e_mux
-  assign packet_memory_s2_byteenable = (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2)? SS_OCT_SOPC_clock_3_out_byteenable :
-    (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2)? SS_OCT_SOPC_clock_4_out_byteenable :
+  assign packet_memory_s2_byteenable = (sgdma_rx_m_write_granted_packet_memory_s2)? sgdma_rx_m_write_byteenable :
     -1;
 
 
@@ -24740,7 +23212,7 @@ module packet_memory_s2_arbitrator (
   //grant signals are active simultaneously, which is an e_process
   always @(posedge clk)
     begin
-      if (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2 + SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2 > 1)
+      if (sgdma_rx_m_write_granted_packet_memory_s2 + sgdma_tx_m_read_granted_packet_memory_s2 > 1)
         begin
           $write("%0d ns: > 1 of grant signals are active simultaneously", $time);
           $stop;
@@ -24751,7 +23223,7 @@ module packet_memory_s2_arbitrator (
   //saved_grant signals are active simultaneously, which is an e_process
   always @(posedge clk)
     begin
-      if (SS_OCT_SOPC_clock_3_out_saved_grant_packet_memory_s2 + SS_OCT_SOPC_clock_4_out_saved_grant_packet_memory_s2 > 1)
+      if (sgdma_rx_m_write_saved_grant_packet_memory_s2 + sgdma_tx_m_read_saved_grant_packet_memory_s2 > 1)
         begin
           $write("%0d ns: > 1 of saved_grant signals are active simultaneously", $time);
           $stop;
@@ -29398,7 +27870,6 @@ module sgdma_rx_descriptor_read_arbitrator (
   wire             p1_sgdma_rx_descriptor_read_latency_counter;
   wire             pre_flush_sgdma_rx_descriptor_read_readdatavalid;
   wire             r_0;
-  wire             r_1;
   reg     [ 31: 0] sgdma_rx_descriptor_read_address_last_time;
   wire    [ 31: 0] sgdma_rx_descriptor_read_address_to_slave;
   wire             sgdma_rx_descriptor_read_is_granted_some_slave;
@@ -29410,13 +27881,10 @@ module sgdma_rx_descriptor_read_arbitrator (
   wire             sgdma_rx_descriptor_read_run;
   wire             sgdma_rx_descriptor_read_waitrequest;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_requests_descriptor_memory_s1);
+  assign r_0 = 1 & (sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_requests_descriptor_memory_s1) & (sgdma_rx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_read_read) | (1 & (sgdma_rx_descriptor_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_descriptor_read_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_rx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_read_read) | (1 & (sgdma_rx_descriptor_read_read))));
+  assign sgdma_rx_descriptor_read_run = r_0;
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_rx_descriptor_read_address_to_slave = {21'b10010000001000100011,
@@ -29566,7 +28034,6 @@ module sgdma_rx_descriptor_write_arbitrator (
 
   reg              active_and_waiting_last_time;
   wire             r_0;
-  wire             r_1;
   reg     [ 31: 0] sgdma_rx_descriptor_write_address_last_time;
   wire    [ 31: 0] sgdma_rx_descriptor_write_address_to_slave;
   wire             sgdma_rx_descriptor_write_run;
@@ -29574,13 +28041,10 @@ module sgdma_rx_descriptor_write_arbitrator (
   reg              sgdma_rx_descriptor_write_write_last_time;
   reg     [ 31: 0] sgdma_rx_descriptor_write_writedata_last_time;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_requests_descriptor_memory_s1);
+  assign r_0 = 1 & (sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_requests_descriptor_memory_s1) & (sgdma_rx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_write_write) | (1 & (sgdma_rx_descriptor_write_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_descriptor_write_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_rx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_rx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_rx_descriptor_write_write) | (1 & (sgdma_rx_descriptor_write_write))));
+  assign sgdma_rx_descriptor_write_run = r_0;
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_rx_descriptor_write_address_to_slave = {21'b10010000001000100011,
@@ -29680,19 +28144,18 @@ endmodule
 
 module sgdma_rx_m_write_arbitrator (
                                      // inputs:
-                                      SS_OCT_SOPC_clock_3_in_waitrequest_from_sa,
                                       clk,
-                                      d1_SS_OCT_SOPC_clock_3_in_end_xfer,
                                       d1_onchip_memory_s1_end_xfer,
+                                      d1_packet_memory_s2_end_xfer,
                                       reset_n,
                                       sgdma_rx_m_write_address,
                                       sgdma_rx_m_write_byteenable,
-                                      sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in,
                                       sgdma_rx_m_write_granted_onchip_memory_s1,
-                                      sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in,
+                                      sgdma_rx_m_write_granted_packet_memory_s2,
                                       sgdma_rx_m_write_qualified_request_onchip_memory_s1,
-                                      sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in,
+                                      sgdma_rx_m_write_qualified_request_packet_memory_s2,
                                       sgdma_rx_m_write_requests_onchip_memory_s1,
+                                      sgdma_rx_m_write_requests_packet_memory_s2,
                                       sgdma_rx_m_write_write,
                                       sgdma_rx_m_write_writedata,
 
@@ -29704,24 +28167,23 @@ module sgdma_rx_m_write_arbitrator (
 
   output  [ 31: 0] sgdma_rx_m_write_address_to_slave;
   output           sgdma_rx_m_write_waitrequest;
-  input            SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
   input            clk;
-  input            d1_SS_OCT_SOPC_clock_3_in_end_xfer;
   input            d1_onchip_memory_s1_end_xfer;
+  input            d1_packet_memory_s2_end_xfer;
   input            reset_n;
   input   [ 31: 0] sgdma_rx_m_write_address;
   input   [  3: 0] sgdma_rx_m_write_byteenable;
-  input            sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in;
   input            sgdma_rx_m_write_granted_onchip_memory_s1;
-  input            sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in;
+  input            sgdma_rx_m_write_granted_packet_memory_s2;
   input            sgdma_rx_m_write_qualified_request_onchip_memory_s1;
-  input            sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
+  input            sgdma_rx_m_write_qualified_request_packet_memory_s2;
   input            sgdma_rx_m_write_requests_onchip_memory_s1;
+  input            sgdma_rx_m_write_requests_packet_memory_s2;
   input            sgdma_rx_m_write_write;
   input   [ 31: 0] sgdma_rx_m_write_writedata;
 
   reg              active_and_waiting_last_time;
-  wire             r_0;
+  wire             r_1;
   wire             r_2;
   reg     [ 31: 0] sgdma_rx_m_write_address_last_time;
   wire    [ 31: 0] sgdma_rx_m_write_address_to_slave;
@@ -29730,14 +28192,14 @@ module sgdma_rx_m_write_arbitrator (
   wire             sgdma_rx_m_write_waitrequest;
   reg              sgdma_rx_m_write_write_last_time;
   reg     [ 31: 0] sgdma_rx_m_write_writedata_last_time;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & ((~sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in | ~(sgdma_rx_m_write_write) | (1 & ~SS_OCT_SOPC_clock_3_in_waitrequest_from_sa & (sgdma_rx_m_write_write))));
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1);
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_rx_m_write_run = r_0 & r_2;
+  assign sgdma_rx_m_write_run = r_1 & r_2;
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1) & ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
+  assign r_2 = ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write)))) & 1 & (sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~sgdma_rx_m_write_requests_packet_memory_s2) & (sgdma_rx_m_write_granted_packet_memory_s2 | ~sgdma_rx_m_write_qualified_request_packet_memory_s2) & ((~sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_rx_m_write_address_to_slave = {11'b1001000000,
@@ -30184,7 +28646,6 @@ module sgdma_tx_descriptor_read_arbitrator (
   wire             p1_sgdma_tx_descriptor_read_latency_counter;
   wire             pre_flush_sgdma_tx_descriptor_read_readdatavalid;
   wire             r_0;
-  wire             r_1;
   reg     [ 31: 0] sgdma_tx_descriptor_read_address_last_time;
   wire    [ 31: 0] sgdma_tx_descriptor_read_address_to_slave;
   wire             sgdma_tx_descriptor_read_is_granted_some_slave;
@@ -30196,13 +28657,10 @@ module sgdma_tx_descriptor_read_arbitrator (
   wire             sgdma_tx_descriptor_read_run;
   wire             sgdma_tx_descriptor_read_waitrequest;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_requests_descriptor_memory_s1);
+  assign r_0 = 1 & (sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_requests_descriptor_memory_s1) & (sgdma_tx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_read_read) | (1 & (sgdma_tx_descriptor_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_descriptor_read_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_tx_descriptor_read_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_read_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_read_read) | (1 & (sgdma_tx_descriptor_read_read))));
+  assign sgdma_tx_descriptor_read_run = r_0;
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_tx_descriptor_read_address_to_slave = {21'b10010000001000100011,
@@ -30352,7 +28810,6 @@ module sgdma_tx_descriptor_write_arbitrator (
 
   reg              active_and_waiting_last_time;
   wire             r_0;
-  wire             r_1;
   reg     [ 31: 0] sgdma_tx_descriptor_write_address_last_time;
   wire    [ 31: 0] sgdma_tx_descriptor_write_address_to_slave;
   wire             sgdma_tx_descriptor_write_run;
@@ -30360,13 +28817,10 @@ module sgdma_tx_descriptor_write_arbitrator (
   reg              sgdma_tx_descriptor_write_write_last_time;
   reg     [ 31: 0] sgdma_tx_descriptor_write_writedata_last_time;
   //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_requests_descriptor_memory_s1);
+  assign r_0 = 1 & (sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_requests_descriptor_memory_s1) & (sgdma_tx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_write_write) | (1 & (sgdma_tx_descriptor_write_write))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_descriptor_write_run = r_0 & r_1;
-
-  //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (sgdma_tx_descriptor_write_granted_descriptor_memory_s1 | ~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1) & ((~sgdma_tx_descriptor_write_qualified_request_descriptor_memory_s1 | ~(sgdma_tx_descriptor_write_write) | (1 & (sgdma_tx_descriptor_write_write))));
+  assign sgdma_tx_descriptor_write_run = r_0;
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_tx_descriptor_write_address_to_slave = {21'b10010000001000100011,
@@ -30466,23 +28920,22 @@ endmodule
 
 module sgdma_tx_m_read_arbitrator (
                                     // inputs:
-                                     SS_OCT_SOPC_clock_4_in_readdata_from_sa,
-                                     SS_OCT_SOPC_clock_4_in_waitrequest_from_sa,
                                      clk,
-                                     d1_SS_OCT_SOPC_clock_4_in_end_xfer,
                                      d1_onchip_memory_s1_end_xfer,
+                                     d1_packet_memory_s2_end_xfer,
                                      onchip_memory_s1_readdata_from_sa,
+                                     packet_memory_s2_readdata_from_sa,
                                      reset_n,
                                      sgdma_tx_m_read_address,
-                                     sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in,
                                      sgdma_tx_m_read_granted_onchip_memory_s1,
-                                     sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in,
+                                     sgdma_tx_m_read_granted_packet_memory_s2,
                                      sgdma_tx_m_read_qualified_request_onchip_memory_s1,
+                                     sgdma_tx_m_read_qualified_request_packet_memory_s2,
                                      sgdma_tx_m_read_read,
-                                     sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in,
                                      sgdma_tx_m_read_read_data_valid_onchip_memory_s1,
-                                     sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in,
+                                     sgdma_tx_m_read_read_data_valid_packet_memory_s2,
                                      sgdma_tx_m_read_requests_onchip_memory_s1,
+                                     sgdma_tx_m_read_requests_packet_memory_s2,
 
                                     // outputs:
                                      sgdma_tx_m_read_address_to_slave,
@@ -30498,29 +28951,28 @@ module sgdma_tx_m_read_arbitrator (
   output  [ 31: 0] sgdma_tx_m_read_readdata;
   output           sgdma_tx_m_read_readdatavalid;
   output           sgdma_tx_m_read_waitrequest;
-  input   [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata_from_sa;
-  input            SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
   input            clk;
-  input            d1_SS_OCT_SOPC_clock_4_in_end_xfer;
   input            d1_onchip_memory_s1_end_xfer;
+  input            d1_packet_memory_s2_end_xfer;
   input   [ 31: 0] onchip_memory_s1_readdata_from_sa;
+  input   [ 31: 0] packet_memory_s2_readdata_from_sa;
   input            reset_n;
   input   [ 31: 0] sgdma_tx_m_read_address;
-  input            sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in;
   input            sgdma_tx_m_read_granted_onchip_memory_s1;
-  input            sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in;
+  input            sgdma_tx_m_read_granted_packet_memory_s2;
   input            sgdma_tx_m_read_qualified_request_onchip_memory_s1;
+  input            sgdma_tx_m_read_qualified_request_packet_memory_s2;
   input            sgdma_tx_m_read_read;
-  input            sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in;
   input            sgdma_tx_m_read_read_data_valid_onchip_memory_s1;
-  input            sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
+  input            sgdma_tx_m_read_read_data_valid_packet_memory_s2;
   input            sgdma_tx_m_read_requests_onchip_memory_s1;
+  input            sgdma_tx_m_read_requests_packet_memory_s2;
 
   reg              active_and_waiting_last_time;
   wire             latency_load_value;
   wire             p1_sgdma_tx_m_read_latency_counter;
   wire             pre_flush_sgdma_tx_m_read_readdatavalid;
-  wire             r_0;
+  wire             r_1;
   wire             r_2;
   reg     [ 31: 0] sgdma_tx_m_read_address_last_time;
   wire    [ 31: 0] sgdma_tx_m_read_address_to_slave;
@@ -30532,14 +28984,14 @@ module sgdma_tx_m_read_arbitrator (
   wire             sgdma_tx_m_read_readdatavalid;
   wire             sgdma_tx_m_read_run;
   wire             sgdma_tx_m_read_waitrequest;
-  //r_0 master_run cascaded wait assignment, which is an e_assign
-  assign r_0 = 1 & (sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in | ~sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in) & ((~sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in | ~(sgdma_tx_m_read_read) | (1 & ~SS_OCT_SOPC_clock_4_in_waitrequest_from_sa & (sgdma_tx_m_read_read))));
+  //r_1 master_run cascaded wait assignment, which is an e_assign
+  assign r_1 = 1 & (sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~sgdma_tx_m_read_requests_onchip_memory_s1) & (sgdma_tx_m_read_granted_onchip_memory_s1 | ~sgdma_tx_m_read_qualified_request_onchip_memory_s1) & ((~sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~(sgdma_tx_m_read_read) | (1 & (sgdma_tx_m_read_read))));
 
   //cascaded wait assignment, which is an e_assign
-  assign sgdma_tx_m_read_run = r_0 & r_2;
+  assign sgdma_tx_m_read_run = r_1 & r_2;
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~sgdma_tx_m_read_requests_onchip_memory_s1) & (sgdma_tx_m_read_granted_onchip_memory_s1 | ~sgdma_tx_m_read_qualified_request_onchip_memory_s1) & ((~sgdma_tx_m_read_qualified_request_onchip_memory_s1 | ~(sgdma_tx_m_read_read) | (1 & (sgdma_tx_m_read_read))));
+  assign r_2 = 1 & (sgdma_tx_m_read_qualified_request_packet_memory_s2 | ~sgdma_tx_m_read_requests_packet_memory_s2) & (sgdma_tx_m_read_granted_packet_memory_s2 | ~sgdma_tx_m_read_qualified_request_packet_memory_s2) & ((~sgdma_tx_m_read_qualified_request_packet_memory_s2 | ~(sgdma_tx_m_read_read) | (1 & (sgdma_tx_m_read_read))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_tx_m_read_address_to_slave = {11'b1001000000,
@@ -30556,22 +29008,22 @@ module sgdma_tx_m_read_arbitrator (
 
 
   //some slave is getting selected, which is an e_mux
-  assign sgdma_tx_m_read_is_granted_some_slave = sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in |
-    sgdma_tx_m_read_granted_onchip_memory_s1;
+  assign sgdma_tx_m_read_is_granted_some_slave = sgdma_tx_m_read_granted_onchip_memory_s1 |
+    sgdma_tx_m_read_granted_packet_memory_s2;
 
   //latent slave read data valids which may be flushed, which is an e_mux
-  assign pre_flush_sgdma_tx_m_read_readdatavalid = sgdma_tx_m_read_read_data_valid_onchip_memory_s1;
+  assign pre_flush_sgdma_tx_m_read_readdatavalid = sgdma_tx_m_read_read_data_valid_onchip_memory_s1 |
+    sgdma_tx_m_read_read_data_valid_packet_memory_s2;
 
   //latent slave read data valid which is not flushed, which is an e_mux
   assign sgdma_tx_m_read_readdatavalid = sgdma_tx_m_read_read_but_no_slave_selected |
     pre_flush_sgdma_tx_m_read_readdatavalid |
-    sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in |
     sgdma_tx_m_read_read_but_no_slave_selected |
     pre_flush_sgdma_tx_m_read_readdatavalid;
 
   //sgdma_tx/m_read readdata mux, which is an e_mux
-  assign sgdma_tx_m_read_readdata = ({32 {~(sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in & sgdma_tx_m_read_read)}} | SS_OCT_SOPC_clock_4_in_readdata_from_sa) &
-    ({32 {~sgdma_tx_m_read_read_data_valid_onchip_memory_s1}} | onchip_memory_s1_readdata_from_sa);
+  assign sgdma_tx_m_read_readdata = ({32 {~sgdma_tx_m_read_read_data_valid_onchip_memory_s1}} | onchip_memory_s1_readdata_from_sa) &
+    ({32 {~sgdma_tx_m_read_read_data_valid_packet_memory_s2}} | packet_memory_s2_readdata_from_sa);
 
   //actual waitrequest port, which is an e_assign
   assign sgdma_tx_m_read_waitrequest = ~sgdma_tx_m_read_run;
@@ -30592,7 +29044,8 @@ module sgdma_tx_m_read_arbitrator (
     0;
 
   //read latency load values, which is an e_mux
-  assign latency_load_value = {1 {sgdma_tx_m_read_requests_onchip_memory_s1}} & 1;
+  assign latency_load_value = ({1 {sgdma_tx_m_read_requests_onchip_memory_s1}} & 1) |
+    ({1 {sgdma_tx_m_read_requests_packet_memory_s2}} & 1);
 
 
 //synthesis translate_off
@@ -32757,90 +31210,6 @@ module SS_OCT_SOPC (
   wire             SS_OCT_SOPC_clock_1_out_waitrequest;
   wire             SS_OCT_SOPC_clock_1_out_write;
   wire    [ 31: 0] SS_OCT_SOPC_clock_1_out_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_2_in_address;
-  wire    [  3: 0] SS_OCT_SOPC_clock_2_in_byteenable;
-  wire             SS_OCT_SOPC_clock_2_in_endofpacket;
-  wire             SS_OCT_SOPC_clock_2_in_endofpacket_from_sa;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_2_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_2_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_in_readdata_from_sa;
-  wire             SS_OCT_SOPC_clock_2_in_reset_n;
-  wire             SS_OCT_SOPC_clock_2_in_waitrequest;
-  wire             SS_OCT_SOPC_clock_2_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_2_in_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_in_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_2_out_address;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_2_out_address_to_slave;
-  wire    [  3: 0] SS_OCT_SOPC_clock_2_out_byteenable;
-  wire             SS_OCT_SOPC_clock_2_out_endofpacket;
-  wire             SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_2_out_nativeaddress;
-  wire             SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1;
-  wire             SS_OCT_SOPC_clock_2_out_read;
-  wire             SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_out_readdata;
-  wire             SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1;
-  wire             SS_OCT_SOPC_clock_2_out_reset_n;
-  wire             SS_OCT_SOPC_clock_2_out_waitrequest;
-  wire             SS_OCT_SOPC_clock_2_out_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_2_out_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_3_in_address;
-  wire    [  3: 0] SS_OCT_SOPC_clock_3_in_byteenable;
-  wire             SS_OCT_SOPC_clock_3_in_endofpacket;
-  wire             SS_OCT_SOPC_clock_3_in_endofpacket_from_sa;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_3_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_3_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata_from_sa;
-  wire             SS_OCT_SOPC_clock_3_in_reset_n;
-  wire             SS_OCT_SOPC_clock_3_in_waitrequest;
-  wire             SS_OCT_SOPC_clock_3_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_3_in_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_3_out_address;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_3_out_address_to_slave;
-  wire    [  3: 0] SS_OCT_SOPC_clock_3_out_byteenable;
-  wire             SS_OCT_SOPC_clock_3_out_endofpacket;
-  wire             SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_3_out_nativeaddress;
-  wire             SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_3_out_read;
-  wire             SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_out_readdata;
-  wire             SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_3_out_reset_n;
-  wire             SS_OCT_SOPC_clock_3_out_waitrequest;
-  wire             SS_OCT_SOPC_clock_3_out_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_out_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_4_in_address;
-  wire    [  3: 0] SS_OCT_SOPC_clock_4_in_byteenable;
-  wire             SS_OCT_SOPC_clock_4_in_endofpacket;
-  wire             SS_OCT_SOPC_clock_4_in_endofpacket_from_sa;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_4_in_nativeaddress;
-  wire             SS_OCT_SOPC_clock_4_in_read;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_in_readdata_from_sa;
-  wire             SS_OCT_SOPC_clock_4_in_reset_n;
-  wire             SS_OCT_SOPC_clock_4_in_waitrequest;
-  wire             SS_OCT_SOPC_clock_4_in_waitrequest_from_sa;
-  wire             SS_OCT_SOPC_clock_4_in_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_in_writedata;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_4_out_address;
-  wire    [ 15: 0] SS_OCT_SOPC_clock_4_out_address_to_slave;
-  wire    [  3: 0] SS_OCT_SOPC_clock_4_out_byteenable;
-  wire             SS_OCT_SOPC_clock_4_out_endofpacket;
-  wire             SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_4_out_nativeaddress;
-  wire             SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_read;
-  wire             SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_out_readdata;
-  wire             SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2;
-  wire             SS_OCT_SOPC_clock_4_out_reset_n;
-  wire             SS_OCT_SOPC_clock_4_out_waitrequest;
-  wire             SS_OCT_SOPC_clock_4_out_write;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_out_writedata;
   wire             aux_scan_clk_from_the_ddr2;
   wire             aux_scan_clk_reset_n_from_the_ddr2;
   wire             clk_50_reset_n;
@@ -32890,7 +31259,6 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_debugaccess;
   wire             cpu_data_master_granted_SS_OCT_SOPC_clock_0_in;
   wire             cpu_data_master_granted_SS_OCT_SOPC_clock_1_in;
-  wire             cpu_data_master_granted_SS_OCT_SOPC_clock_2_in;
   wire             cpu_data_master_granted_cpu_jtag_debug_module;
   wire             cpu_data_master_granted_descriptor_memory_s1;
   wire             cpu_data_master_granted_ext_flash_s1;
@@ -32898,6 +31266,7 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_granted_led_pio_s1;
   wire             cpu_data_master_granted_onchip_memory_s1;
+  wire             cpu_data_master_granted_packet_memory_s1;
   wire             cpu_data_master_granted_pb_pio_s1;
   wire             cpu_data_master_granted_seven_seg_pio_s1;
   wire             cpu_data_master_granted_sgdma_rx_csr;
@@ -32912,7 +31281,6 @@ module SS_OCT_SOPC (
   wire    [  1: 0] cpu_data_master_latency_counter;
   wire             cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in;
   wire             cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in;
-  wire             cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in;
   wire             cpu_data_master_qualified_request_cpu_jtag_debug_module;
   wire             cpu_data_master_qualified_request_descriptor_memory_s1;
   wire             cpu_data_master_qualified_request_ext_flash_s1;
@@ -32920,6 +31288,7 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_qualified_request_led_pio_s1;
   wire             cpu_data_master_qualified_request_onchip_memory_s1;
+  wire             cpu_data_master_qualified_request_packet_memory_s1;
   wire             cpu_data_master_qualified_request_pb_pio_s1;
   wire             cpu_data_master_qualified_request_seven_seg_pio_s1;
   wire             cpu_data_master_qualified_request_sgdma_rx_csr;
@@ -32933,7 +31302,6 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_read;
   wire             cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_0_in;
   wire             cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in;
-  wire             cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in;
   wire             cpu_data_master_read_data_valid_cpu_jtag_debug_module;
   wire             cpu_data_master_read_data_valid_descriptor_memory_s1;
   wire             cpu_data_master_read_data_valid_ext_flash_s1;
@@ -32941,6 +31309,7 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_read_data_valid_led_pio_s1;
   wire             cpu_data_master_read_data_valid_onchip_memory_s1;
+  wire             cpu_data_master_read_data_valid_packet_memory_s1;
   wire             cpu_data_master_read_data_valid_pb_pio_s1;
   wire             cpu_data_master_read_data_valid_seven_seg_pio_s1;
   wire             cpu_data_master_read_data_valid_sgdma_rx_csr;
@@ -32955,7 +31324,6 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_readdatavalid;
   wire             cpu_data_master_requests_SS_OCT_SOPC_clock_0_in;
   wire             cpu_data_master_requests_SS_OCT_SOPC_clock_1_in;
-  wire             cpu_data_master_requests_SS_OCT_SOPC_clock_2_in;
   wire             cpu_data_master_requests_cpu_jtag_debug_module;
   wire             cpu_data_master_requests_descriptor_memory_s1;
   wire             cpu_data_master_requests_ext_flash_s1;
@@ -32963,6 +31331,7 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
   wire             cpu_data_master_requests_led_pio_s1;
   wire             cpu_data_master_requests_onchip_memory_s1;
+  wire             cpu_data_master_requests_packet_memory_s1;
   wire             cpu_data_master_requests_pb_pio_s1;
   wire             cpu_data_master_requests_seven_seg_pio_s1;
   wire             cpu_data_master_requests_sgdma_rx_csr;
@@ -33015,9 +31384,6 @@ module SS_OCT_SOPC (
   wire             d1_SS_OCT_SOPC_burst_0_upstream_end_xfer;
   wire             d1_SS_OCT_SOPC_clock_0_in_end_xfer;
   wire             d1_SS_OCT_SOPC_clock_1_in_end_xfer;
-  wire             d1_SS_OCT_SOPC_clock_2_in_end_xfer;
-  wire             d1_SS_OCT_SOPC_clock_3_in_end_xfer;
-  wire             d1_SS_OCT_SOPC_clock_4_in_end_xfer;
   wire             d1_clock_crossing_0_s1_end_xfer;
   wire             d1_cpu_jtag_debug_module_end_xfer;
   wire             d1_ddr2_s1_end_xfer;
@@ -33295,12 +31661,12 @@ module SS_OCT_SOPC (
   wire    [ 31: 0] sgdma_rx_m_write_address;
   wire    [ 31: 0] sgdma_rx_m_write_address_to_slave;
   wire    [  3: 0] sgdma_rx_m_write_byteenable;
-  wire             sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in;
   wire             sgdma_rx_m_write_granted_onchip_memory_s1;
-  wire             sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in;
+  wire             sgdma_rx_m_write_granted_packet_memory_s2;
   wire             sgdma_rx_m_write_qualified_request_onchip_memory_s1;
-  wire             sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in;
+  wire             sgdma_rx_m_write_qualified_request_packet_memory_s2;
   wire             sgdma_rx_m_write_requests_onchip_memory_s1;
+  wire             sgdma_rx_m_write_requests_packet_memory_s2;
   wire             sgdma_rx_m_write_waitrequest;
   wire             sgdma_rx_m_write_write;
   wire    [ 31: 0] sgdma_rx_m_write_writedata;
@@ -33335,18 +31701,18 @@ module SS_OCT_SOPC (
   wire    [ 31: 0] sgdma_tx_descriptor_write_writedata;
   wire    [ 31: 0] sgdma_tx_m_read_address;
   wire    [ 31: 0] sgdma_tx_m_read_address_to_slave;
-  wire             sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in;
   wire             sgdma_tx_m_read_granted_onchip_memory_s1;
+  wire             sgdma_tx_m_read_granted_packet_memory_s2;
   wire             sgdma_tx_m_read_latency_counter;
-  wire             sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in;
   wire             sgdma_tx_m_read_qualified_request_onchip_memory_s1;
+  wire             sgdma_tx_m_read_qualified_request_packet_memory_s2;
   wire             sgdma_tx_m_read_read;
-  wire             sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in;
   wire             sgdma_tx_m_read_read_data_valid_onchip_memory_s1;
+  wire             sgdma_tx_m_read_read_data_valid_packet_memory_s2;
   wire    [ 31: 0] sgdma_tx_m_read_readdata;
   wire             sgdma_tx_m_read_readdatavalid;
-  wire             sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in;
   wire             sgdma_tx_m_read_requests_onchip_memory_s1;
+  wire             sgdma_tx_m_read_requests_packet_memory_s2;
   wire             sgdma_tx_m_read_waitrequest;
   wire    [ 31: 0] sgdma_tx_out_data;
   wire    [  1: 0] sgdma_tx_out_empty;
@@ -33655,230 +32021,6 @@ module SS_OCT_SOPC (
       .slave_writedata      (SS_OCT_SOPC_clock_1_in_writedata)
     );
 
-  SS_OCT_SOPC_clock_2_in_arbitrator the_SS_OCT_SOPC_clock_2_in
-    (
-      .SS_OCT_SOPC_clock_2_in_address                           (SS_OCT_SOPC_clock_2_in_address),
-      .SS_OCT_SOPC_clock_2_in_byteenable                        (SS_OCT_SOPC_clock_2_in_byteenable),
-      .SS_OCT_SOPC_clock_2_in_endofpacket                       (SS_OCT_SOPC_clock_2_in_endofpacket),
-      .SS_OCT_SOPC_clock_2_in_endofpacket_from_sa               (SS_OCT_SOPC_clock_2_in_endofpacket_from_sa),
-      .SS_OCT_SOPC_clock_2_in_nativeaddress                     (SS_OCT_SOPC_clock_2_in_nativeaddress),
-      .SS_OCT_SOPC_clock_2_in_read                              (SS_OCT_SOPC_clock_2_in_read),
-      .SS_OCT_SOPC_clock_2_in_readdata                          (SS_OCT_SOPC_clock_2_in_readdata),
-      .SS_OCT_SOPC_clock_2_in_readdata_from_sa                  (SS_OCT_SOPC_clock_2_in_readdata_from_sa),
-      .SS_OCT_SOPC_clock_2_in_reset_n                           (SS_OCT_SOPC_clock_2_in_reset_n),
-      .SS_OCT_SOPC_clock_2_in_waitrequest                       (SS_OCT_SOPC_clock_2_in_waitrequest),
-      .SS_OCT_SOPC_clock_2_in_waitrequest_from_sa               (SS_OCT_SOPC_clock_2_in_waitrequest_from_sa),
-      .SS_OCT_SOPC_clock_2_in_write                             (SS_OCT_SOPC_clock_2_in_write),
-      .SS_OCT_SOPC_clock_2_in_writedata                         (SS_OCT_SOPC_clock_2_in_writedata),
-      .clk                                                      (pll_sys_clk),
-      .cpu_data_master_address_to_slave                         (cpu_data_master_address_to_slave),
-      .cpu_data_master_byteenable                               (cpu_data_master_byteenable),
-      .cpu_data_master_granted_SS_OCT_SOPC_clock_2_in           (cpu_data_master_granted_SS_OCT_SOPC_clock_2_in),
-      .cpu_data_master_latency_counter                          (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in),
-      .cpu_data_master_read                                     (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in   (cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in),
-      .cpu_data_master_requests_SS_OCT_SOPC_clock_2_in          (cpu_data_master_requests_SS_OCT_SOPC_clock_2_in),
-      .cpu_data_master_write                                    (cpu_data_master_write),
-      .cpu_data_master_writedata                                (cpu_data_master_writedata),
-      .d1_SS_OCT_SOPC_clock_2_in_end_xfer                       (d1_SS_OCT_SOPC_clock_2_in_end_xfer),
-      .reset_n                                                  (pll_sys_clk_reset_n)
-    );
-
-  SS_OCT_SOPC_clock_2_out_arbitrator the_SS_OCT_SOPC_clock_2_out
-    (
-      .SS_OCT_SOPC_clock_2_out_address                            (SS_OCT_SOPC_clock_2_out_address),
-      .SS_OCT_SOPC_clock_2_out_address_to_slave                   (SS_OCT_SOPC_clock_2_out_address_to_slave),
-      .SS_OCT_SOPC_clock_2_out_byteenable                         (SS_OCT_SOPC_clock_2_out_byteenable),
-      .SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1           (SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 (SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_read                               (SS_OCT_SOPC_clock_2_out_read),
-      .SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1   (SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_readdata                           (SS_OCT_SOPC_clock_2_out_readdata),
-      .SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1          (SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_reset_n                            (SS_OCT_SOPC_clock_2_out_reset_n),
-      .SS_OCT_SOPC_clock_2_out_waitrequest                        (SS_OCT_SOPC_clock_2_out_waitrequest),
-      .SS_OCT_SOPC_clock_2_out_write                              (SS_OCT_SOPC_clock_2_out_write),
-      .SS_OCT_SOPC_clock_2_out_writedata                          (SS_OCT_SOPC_clock_2_out_writedata),
-      .clk                                                        (clk_50),
-      .d1_packet_memory_s1_end_xfer                               (d1_packet_memory_s1_end_xfer),
-      .packet_memory_s1_readdata_from_sa                          (packet_memory_s1_readdata_from_sa),
-      .reset_n                                                    (clk_50_reset_n)
-    );
-
-  SS_OCT_SOPC_clock_2 the_SS_OCT_SOPC_clock_2
-    (
-      .master_address       (SS_OCT_SOPC_clock_2_out_address),
-      .master_byteenable    (SS_OCT_SOPC_clock_2_out_byteenable),
-      .master_clk           (clk_50),
-      .master_endofpacket   (SS_OCT_SOPC_clock_2_out_endofpacket),
-      .master_nativeaddress (SS_OCT_SOPC_clock_2_out_nativeaddress),
-      .master_read          (SS_OCT_SOPC_clock_2_out_read),
-      .master_readdata      (SS_OCT_SOPC_clock_2_out_readdata),
-      .master_reset_n       (SS_OCT_SOPC_clock_2_out_reset_n),
-      .master_waitrequest   (SS_OCT_SOPC_clock_2_out_waitrequest),
-      .master_write         (SS_OCT_SOPC_clock_2_out_write),
-      .master_writedata     (SS_OCT_SOPC_clock_2_out_writedata),
-      .slave_address        (SS_OCT_SOPC_clock_2_in_address),
-      .slave_byteenable     (SS_OCT_SOPC_clock_2_in_byteenable),
-      .slave_clk            (pll_sys_clk),
-      .slave_endofpacket    (SS_OCT_SOPC_clock_2_in_endofpacket),
-      .slave_nativeaddress  (SS_OCT_SOPC_clock_2_in_nativeaddress),
-      .slave_read           (SS_OCT_SOPC_clock_2_in_read),
-      .slave_readdata       (SS_OCT_SOPC_clock_2_in_readdata),
-      .slave_reset_n        (SS_OCT_SOPC_clock_2_in_reset_n),
-      .slave_waitrequest    (SS_OCT_SOPC_clock_2_in_waitrequest),
-      .slave_write          (SS_OCT_SOPC_clock_2_in_write),
-      .slave_writedata      (SS_OCT_SOPC_clock_2_in_writedata)
-    );
-
-  SS_OCT_SOPC_clock_3_in_arbitrator the_SS_OCT_SOPC_clock_3_in
-    (
-      .SS_OCT_SOPC_clock_3_in_address                            (SS_OCT_SOPC_clock_3_in_address),
-      .SS_OCT_SOPC_clock_3_in_byteenable                         (SS_OCT_SOPC_clock_3_in_byteenable),
-      .SS_OCT_SOPC_clock_3_in_endofpacket                        (SS_OCT_SOPC_clock_3_in_endofpacket),
-      .SS_OCT_SOPC_clock_3_in_endofpacket_from_sa                (SS_OCT_SOPC_clock_3_in_endofpacket_from_sa),
-      .SS_OCT_SOPC_clock_3_in_nativeaddress                      (SS_OCT_SOPC_clock_3_in_nativeaddress),
-      .SS_OCT_SOPC_clock_3_in_read                               (SS_OCT_SOPC_clock_3_in_read),
-      .SS_OCT_SOPC_clock_3_in_readdata                           (SS_OCT_SOPC_clock_3_in_readdata),
-      .SS_OCT_SOPC_clock_3_in_readdata_from_sa                   (SS_OCT_SOPC_clock_3_in_readdata_from_sa),
-      .SS_OCT_SOPC_clock_3_in_reset_n                            (SS_OCT_SOPC_clock_3_in_reset_n),
-      .SS_OCT_SOPC_clock_3_in_waitrequest                        (SS_OCT_SOPC_clock_3_in_waitrequest),
-      .SS_OCT_SOPC_clock_3_in_waitrequest_from_sa                (SS_OCT_SOPC_clock_3_in_waitrequest_from_sa),
-      .SS_OCT_SOPC_clock_3_in_write                              (SS_OCT_SOPC_clock_3_in_write),
-      .SS_OCT_SOPC_clock_3_in_writedata                          (SS_OCT_SOPC_clock_3_in_writedata),
-      .clk                                                       (pll_sys_clk),
-      .d1_SS_OCT_SOPC_clock_3_in_end_xfer                        (d1_SS_OCT_SOPC_clock_3_in_end_xfer),
-      .reset_n                                                   (pll_sys_clk_reset_n),
-      .sgdma_rx_m_write_address_to_slave                         (sgdma_rx_m_write_address_to_slave),
-      .sgdma_rx_m_write_byteenable                               (sgdma_rx_m_write_byteenable),
-      .sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in           (sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in (sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in          (sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_write                                    (sgdma_rx_m_write_write),
-      .sgdma_rx_m_write_writedata                                (sgdma_rx_m_write_writedata)
-    );
-
-  SS_OCT_SOPC_clock_3_out_arbitrator the_SS_OCT_SOPC_clock_3_out
-    (
-      .SS_OCT_SOPC_clock_3_out_address                            (SS_OCT_SOPC_clock_3_out_address),
-      .SS_OCT_SOPC_clock_3_out_address_to_slave                   (SS_OCT_SOPC_clock_3_out_address_to_slave),
-      .SS_OCT_SOPC_clock_3_out_byteenable                         (SS_OCT_SOPC_clock_3_out_byteenable),
-      .SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2           (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 (SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_read                               (SS_OCT_SOPC_clock_3_out_read),
-      .SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2   (SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_readdata                           (SS_OCT_SOPC_clock_3_out_readdata),
-      .SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2          (SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_reset_n                            (SS_OCT_SOPC_clock_3_out_reset_n),
-      .SS_OCT_SOPC_clock_3_out_waitrequest                        (SS_OCT_SOPC_clock_3_out_waitrequest),
-      .SS_OCT_SOPC_clock_3_out_write                              (SS_OCT_SOPC_clock_3_out_write),
-      .SS_OCT_SOPC_clock_3_out_writedata                          (SS_OCT_SOPC_clock_3_out_writedata),
-      .clk                                                        (clk_50),
-      .d1_packet_memory_s2_end_xfer                               (d1_packet_memory_s2_end_xfer),
-      .packet_memory_s2_readdata_from_sa                          (packet_memory_s2_readdata_from_sa),
-      .reset_n                                                    (clk_50_reset_n)
-    );
-
-  SS_OCT_SOPC_clock_3 the_SS_OCT_SOPC_clock_3
-    (
-      .master_address       (SS_OCT_SOPC_clock_3_out_address),
-      .master_byteenable    (SS_OCT_SOPC_clock_3_out_byteenable),
-      .master_clk           (clk_50),
-      .master_endofpacket   (SS_OCT_SOPC_clock_3_out_endofpacket),
-      .master_nativeaddress (SS_OCT_SOPC_clock_3_out_nativeaddress),
-      .master_read          (SS_OCT_SOPC_clock_3_out_read),
-      .master_readdata      (SS_OCT_SOPC_clock_3_out_readdata),
-      .master_reset_n       (SS_OCT_SOPC_clock_3_out_reset_n),
-      .master_waitrequest   (SS_OCT_SOPC_clock_3_out_waitrequest),
-      .master_write         (SS_OCT_SOPC_clock_3_out_write),
-      .master_writedata     (SS_OCT_SOPC_clock_3_out_writedata),
-      .slave_address        (SS_OCT_SOPC_clock_3_in_address),
-      .slave_byteenable     (SS_OCT_SOPC_clock_3_in_byteenable),
-      .slave_clk            (pll_sys_clk),
-      .slave_endofpacket    (SS_OCT_SOPC_clock_3_in_endofpacket),
-      .slave_nativeaddress  (SS_OCT_SOPC_clock_3_in_nativeaddress),
-      .slave_read           (SS_OCT_SOPC_clock_3_in_read),
-      .slave_readdata       (SS_OCT_SOPC_clock_3_in_readdata),
-      .slave_reset_n        (SS_OCT_SOPC_clock_3_in_reset_n),
-      .slave_waitrequest    (SS_OCT_SOPC_clock_3_in_waitrequest),
-      .slave_write          (SS_OCT_SOPC_clock_3_in_write),
-      .slave_writedata      (SS_OCT_SOPC_clock_3_in_writedata)
-    );
-
-  SS_OCT_SOPC_clock_4_in_arbitrator the_SS_OCT_SOPC_clock_4_in
-    (
-      .SS_OCT_SOPC_clock_4_in_address                           (SS_OCT_SOPC_clock_4_in_address),
-      .SS_OCT_SOPC_clock_4_in_byteenable                        (SS_OCT_SOPC_clock_4_in_byteenable),
-      .SS_OCT_SOPC_clock_4_in_endofpacket                       (SS_OCT_SOPC_clock_4_in_endofpacket),
-      .SS_OCT_SOPC_clock_4_in_endofpacket_from_sa               (SS_OCT_SOPC_clock_4_in_endofpacket_from_sa),
-      .SS_OCT_SOPC_clock_4_in_nativeaddress                     (SS_OCT_SOPC_clock_4_in_nativeaddress),
-      .SS_OCT_SOPC_clock_4_in_read                              (SS_OCT_SOPC_clock_4_in_read),
-      .SS_OCT_SOPC_clock_4_in_readdata                          (SS_OCT_SOPC_clock_4_in_readdata),
-      .SS_OCT_SOPC_clock_4_in_readdata_from_sa                  (SS_OCT_SOPC_clock_4_in_readdata_from_sa),
-      .SS_OCT_SOPC_clock_4_in_reset_n                           (SS_OCT_SOPC_clock_4_in_reset_n),
-      .SS_OCT_SOPC_clock_4_in_waitrequest                       (SS_OCT_SOPC_clock_4_in_waitrequest),
-      .SS_OCT_SOPC_clock_4_in_waitrequest_from_sa               (SS_OCT_SOPC_clock_4_in_waitrequest_from_sa),
-      .SS_OCT_SOPC_clock_4_in_write                             (SS_OCT_SOPC_clock_4_in_write),
-      .clk                                                      (pll_sys_clk),
-      .d1_SS_OCT_SOPC_clock_4_in_end_xfer                       (d1_SS_OCT_SOPC_clock_4_in_end_xfer),
-      .reset_n                                                  (pll_sys_clk_reset_n),
-      .sgdma_tx_m_read_address_to_slave                         (sgdma_tx_m_read_address_to_slave),
-      .sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in           (sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_latency_counter                          (sgdma_tx_m_read_latency_counter),
-      .sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in (sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_read                                     (sgdma_tx_m_read_read),
-      .sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in   (sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in          (sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in)
-    );
-
-  SS_OCT_SOPC_clock_4_out_arbitrator the_SS_OCT_SOPC_clock_4_out
-    (
-      .SS_OCT_SOPC_clock_4_out_address                            (SS_OCT_SOPC_clock_4_out_address),
-      .SS_OCT_SOPC_clock_4_out_address_to_slave                   (SS_OCT_SOPC_clock_4_out_address_to_slave),
-      .SS_OCT_SOPC_clock_4_out_byteenable                         (SS_OCT_SOPC_clock_4_out_byteenable),
-      .SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2           (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 (SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_read                               (SS_OCT_SOPC_clock_4_out_read),
-      .SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2   (SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_readdata                           (SS_OCT_SOPC_clock_4_out_readdata),
-      .SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2          (SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_reset_n                            (SS_OCT_SOPC_clock_4_out_reset_n),
-      .SS_OCT_SOPC_clock_4_out_waitrequest                        (SS_OCT_SOPC_clock_4_out_waitrequest),
-      .SS_OCT_SOPC_clock_4_out_write                              (SS_OCT_SOPC_clock_4_out_write),
-      .SS_OCT_SOPC_clock_4_out_writedata                          (SS_OCT_SOPC_clock_4_out_writedata),
-      .clk                                                        (clk_50),
-      .d1_packet_memory_s2_end_xfer                               (d1_packet_memory_s2_end_xfer),
-      .packet_memory_s2_readdata_from_sa                          (packet_memory_s2_readdata_from_sa),
-      .reset_n                                                    (clk_50_reset_n)
-    );
-
-  SS_OCT_SOPC_clock_4 the_SS_OCT_SOPC_clock_4
-    (
-      .master_address       (SS_OCT_SOPC_clock_4_out_address),
-      .master_byteenable    (SS_OCT_SOPC_clock_4_out_byteenable),
-      .master_clk           (clk_50),
-      .master_endofpacket   (SS_OCT_SOPC_clock_4_out_endofpacket),
-      .master_nativeaddress (SS_OCT_SOPC_clock_4_out_nativeaddress),
-      .master_read          (SS_OCT_SOPC_clock_4_out_read),
-      .master_readdata      (SS_OCT_SOPC_clock_4_out_readdata),
-      .master_reset_n       (SS_OCT_SOPC_clock_4_out_reset_n),
-      .master_waitrequest   (SS_OCT_SOPC_clock_4_out_waitrequest),
-      .master_write         (SS_OCT_SOPC_clock_4_out_write),
-      .master_writedata     (SS_OCT_SOPC_clock_4_out_writedata),
-      .slave_address        (SS_OCT_SOPC_clock_4_in_address),
-      .slave_byteenable     (SS_OCT_SOPC_clock_4_in_byteenable),
-      .slave_clk            (pll_sys_clk),
-      .slave_endofpacket    (SS_OCT_SOPC_clock_4_in_endofpacket),
-      .slave_nativeaddress  (SS_OCT_SOPC_clock_4_in_nativeaddress),
-      .slave_read           (SS_OCT_SOPC_clock_4_in_read),
-      .slave_readdata       (SS_OCT_SOPC_clock_4_in_readdata),
-      .slave_reset_n        (SS_OCT_SOPC_clock_4_in_reset_n),
-      .slave_waitrequest    (SS_OCT_SOPC_clock_4_in_waitrequest),
-      .slave_write          (SS_OCT_SOPC_clock_4_in_write),
-      .slave_writedata      (SS_OCT_SOPC_clock_4_in_writedata)
-    );
-
   clock_crossing_0_s1_arbitrator the_clock_crossing_0_s1
     (
       .clk                                                            (clk_50),
@@ -34017,8 +32159,6 @@ module SS_OCT_SOPC (
       .SS_OCT_SOPC_clock_0_in_waitrequest_from_sa                    (SS_OCT_SOPC_clock_0_in_waitrequest_from_sa),
       .SS_OCT_SOPC_clock_1_in_readdata_from_sa                       (SS_OCT_SOPC_clock_1_in_readdata_from_sa),
       .SS_OCT_SOPC_clock_1_in_waitrequest_from_sa                    (SS_OCT_SOPC_clock_1_in_waitrequest_from_sa),
-      .SS_OCT_SOPC_clock_2_in_readdata_from_sa                       (SS_OCT_SOPC_clock_2_in_readdata_from_sa),
-      .SS_OCT_SOPC_clock_2_in_waitrequest_from_sa                    (SS_OCT_SOPC_clock_2_in_waitrequest_from_sa),
       .clk                                                           (pll_sys_clk),
       .cpu_data_master_address                                       (cpu_data_master_address),
       .cpu_data_master_address_to_slave                              (cpu_data_master_address_to_slave),
@@ -34028,7 +32168,6 @@ module SS_OCT_SOPC (
       .cpu_data_master_dbs_write_16                                  (cpu_data_master_dbs_write_16),
       .cpu_data_master_granted_SS_OCT_SOPC_clock_0_in                (cpu_data_master_granted_SS_OCT_SOPC_clock_0_in),
       .cpu_data_master_granted_SS_OCT_SOPC_clock_1_in                (cpu_data_master_granted_SS_OCT_SOPC_clock_1_in),
-      .cpu_data_master_granted_SS_OCT_SOPC_clock_2_in                (cpu_data_master_granted_SS_OCT_SOPC_clock_2_in),
       .cpu_data_master_granted_cpu_jtag_debug_module                 (cpu_data_master_granted_cpu_jtag_debug_module),
       .cpu_data_master_granted_descriptor_memory_s1                  (cpu_data_master_granted_descriptor_memory_s1),
       .cpu_data_master_granted_ext_flash_s1                          (cpu_data_master_granted_ext_flash_s1),
@@ -34036,6 +32175,7 @@ module SS_OCT_SOPC (
       .cpu_data_master_granted_jtag_uart_avalon_jtag_slave           (cpu_data_master_granted_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_granted_led_pio_s1                            (cpu_data_master_granted_led_pio_s1),
       .cpu_data_master_granted_onchip_memory_s1                      (cpu_data_master_granted_onchip_memory_s1),
+      .cpu_data_master_granted_packet_memory_s1                      (cpu_data_master_granted_packet_memory_s1),
       .cpu_data_master_granted_pb_pio_s1                             (cpu_data_master_granted_pb_pio_s1),
       .cpu_data_master_granted_seven_seg_pio_s1                      (cpu_data_master_granted_seven_seg_pio_s1),
       .cpu_data_master_granted_sgdma_rx_csr                          (cpu_data_master_granted_sgdma_rx_csr),
@@ -34050,7 +32190,6 @@ module SS_OCT_SOPC (
       .cpu_data_master_latency_counter                               (cpu_data_master_latency_counter),
       .cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in      (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in),
       .cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in      (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in),
-      .cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in      (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_2_in),
       .cpu_data_master_qualified_request_cpu_jtag_debug_module       (cpu_data_master_qualified_request_cpu_jtag_debug_module),
       .cpu_data_master_qualified_request_descriptor_memory_s1        (cpu_data_master_qualified_request_descriptor_memory_s1),
       .cpu_data_master_qualified_request_ext_flash_s1                (cpu_data_master_qualified_request_ext_flash_s1),
@@ -34058,6 +32197,7 @@ module SS_OCT_SOPC (
       .cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_qualified_request_led_pio_s1                  (cpu_data_master_qualified_request_led_pio_s1),
       .cpu_data_master_qualified_request_onchip_memory_s1            (cpu_data_master_qualified_request_onchip_memory_s1),
+      .cpu_data_master_qualified_request_packet_memory_s1            (cpu_data_master_qualified_request_packet_memory_s1),
       .cpu_data_master_qualified_request_pb_pio_s1                   (cpu_data_master_qualified_request_pb_pio_s1),
       .cpu_data_master_qualified_request_seven_seg_pio_s1            (cpu_data_master_qualified_request_seven_seg_pio_s1),
       .cpu_data_master_qualified_request_sgdma_rx_csr                (cpu_data_master_qualified_request_sgdma_rx_csr),
@@ -34071,7 +32211,6 @@ module SS_OCT_SOPC (
       .cpu_data_master_read                                          (cpu_data_master_read),
       .cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_0_in        (cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_0_in),
       .cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in        (cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_1_in),
-      .cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in        (cpu_data_master_read_data_valid_SS_OCT_SOPC_clock_2_in),
       .cpu_data_master_read_data_valid_cpu_jtag_debug_module         (cpu_data_master_read_data_valid_cpu_jtag_debug_module),
       .cpu_data_master_read_data_valid_descriptor_memory_s1          (cpu_data_master_read_data_valid_descriptor_memory_s1),
       .cpu_data_master_read_data_valid_ext_flash_s1                  (cpu_data_master_read_data_valid_ext_flash_s1),
@@ -34079,6 +32218,7 @@ module SS_OCT_SOPC (
       .cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave   (cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_read_data_valid_led_pio_s1                    (cpu_data_master_read_data_valid_led_pio_s1),
       .cpu_data_master_read_data_valid_onchip_memory_s1              (cpu_data_master_read_data_valid_onchip_memory_s1),
+      .cpu_data_master_read_data_valid_packet_memory_s1              (cpu_data_master_read_data_valid_packet_memory_s1),
       .cpu_data_master_read_data_valid_pb_pio_s1                     (cpu_data_master_read_data_valid_pb_pio_s1),
       .cpu_data_master_read_data_valid_seven_seg_pio_s1              (cpu_data_master_read_data_valid_seven_seg_pio_s1),
       .cpu_data_master_read_data_valid_sgdma_rx_csr                  (cpu_data_master_read_data_valid_sgdma_rx_csr),
@@ -34093,7 +32233,6 @@ module SS_OCT_SOPC (
       .cpu_data_master_readdatavalid                                 (cpu_data_master_readdatavalid),
       .cpu_data_master_requests_SS_OCT_SOPC_clock_0_in               (cpu_data_master_requests_SS_OCT_SOPC_clock_0_in),
       .cpu_data_master_requests_SS_OCT_SOPC_clock_1_in               (cpu_data_master_requests_SS_OCT_SOPC_clock_1_in),
-      .cpu_data_master_requests_SS_OCT_SOPC_clock_2_in               (cpu_data_master_requests_SS_OCT_SOPC_clock_2_in),
       .cpu_data_master_requests_cpu_jtag_debug_module                (cpu_data_master_requests_cpu_jtag_debug_module),
       .cpu_data_master_requests_descriptor_memory_s1                 (cpu_data_master_requests_descriptor_memory_s1),
       .cpu_data_master_requests_ext_flash_s1                         (cpu_data_master_requests_ext_flash_s1),
@@ -34101,6 +32240,7 @@ module SS_OCT_SOPC (
       .cpu_data_master_requests_jtag_uart_avalon_jtag_slave          (cpu_data_master_requests_jtag_uart_avalon_jtag_slave),
       .cpu_data_master_requests_led_pio_s1                           (cpu_data_master_requests_led_pio_s1),
       .cpu_data_master_requests_onchip_memory_s1                     (cpu_data_master_requests_onchip_memory_s1),
+      .cpu_data_master_requests_packet_memory_s1                     (cpu_data_master_requests_packet_memory_s1),
       .cpu_data_master_requests_pb_pio_s1                            (cpu_data_master_requests_pb_pio_s1),
       .cpu_data_master_requests_seven_seg_pio_s1                     (cpu_data_master_requests_seven_seg_pio_s1),
       .cpu_data_master_requests_sgdma_rx_csr                         (cpu_data_master_requests_sgdma_rx_csr),
@@ -34117,7 +32257,6 @@ module SS_OCT_SOPC (
       .cpu_jtag_debug_module_readdata_from_sa                        (cpu_jtag_debug_module_readdata_from_sa),
       .d1_SS_OCT_SOPC_clock_0_in_end_xfer                            (d1_SS_OCT_SOPC_clock_0_in_end_xfer),
       .d1_SS_OCT_SOPC_clock_1_in_end_xfer                            (d1_SS_OCT_SOPC_clock_1_in_end_xfer),
-      .d1_SS_OCT_SOPC_clock_2_in_end_xfer                            (d1_SS_OCT_SOPC_clock_2_in_end_xfer),
       .d1_cpu_jtag_debug_module_end_xfer                             (d1_cpu_jtag_debug_module_end_xfer),
       .d1_descriptor_memory_s1_end_xfer                              (d1_descriptor_memory_s1_end_xfer),
       .d1_flash_tristate_bridge_avalon_slave_end_xfer                (d1_flash_tristate_bridge_avalon_slave_end_xfer),
@@ -34125,6 +32264,7 @@ module SS_OCT_SOPC (
       .d1_jtag_uart_avalon_jtag_slave_end_xfer                       (d1_jtag_uart_avalon_jtag_slave_end_xfer),
       .d1_led_pio_s1_end_xfer                                        (d1_led_pio_s1_end_xfer),
       .d1_onchip_memory_s1_end_xfer                                  (d1_onchip_memory_s1_end_xfer),
+      .d1_packet_memory_s1_end_xfer                                  (d1_packet_memory_s1_end_xfer),
       .d1_pb_pio_s1_end_xfer                                         (d1_pb_pio_s1_end_xfer),
       .d1_seven_seg_pio_s1_end_xfer                                  (d1_seven_seg_pio_s1_end_xfer),
       .d1_sgdma_rx_csr_end_xfer                                      (d1_sgdma_rx_csr_end_xfer),
@@ -34145,6 +32285,7 @@ module SS_OCT_SOPC (
       .jtag_uart_avalon_jtag_slave_waitrequest_from_sa               (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
       .led_pio_s1_readdata_from_sa                                   (led_pio_s1_readdata_from_sa),
       .onchip_memory_s1_readdata_from_sa                             (onchip_memory_s1_readdata_from_sa),
+      .packet_memory_s1_readdata_from_sa                             (packet_memory_s1_readdata_from_sa),
       .pb_pio_s1_readdata_from_sa                                    (pb_pio_s1_readdata_from_sa),
       .reset_n                                                       (pll_sys_clk_reset_n),
       .seven_seg_pio_s1_readdata_from_sa                             (seven_seg_pio_s1_readdata_from_sa),
@@ -34724,59 +32865,56 @@ module SS_OCT_SOPC (
 
   packet_memory_s1_arbitrator the_packet_memory_s1
     (
-      .SS_OCT_SOPC_clock_2_out_address_to_slave                   (SS_OCT_SOPC_clock_2_out_address_to_slave),
-      .SS_OCT_SOPC_clock_2_out_byteenable                         (SS_OCT_SOPC_clock_2_out_byteenable),
-      .SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1           (SS_OCT_SOPC_clock_2_out_granted_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1 (SS_OCT_SOPC_clock_2_out_qualified_request_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_read                               (SS_OCT_SOPC_clock_2_out_read),
-      .SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1   (SS_OCT_SOPC_clock_2_out_read_data_valid_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1          (SS_OCT_SOPC_clock_2_out_requests_packet_memory_s1),
-      .SS_OCT_SOPC_clock_2_out_write                              (SS_OCT_SOPC_clock_2_out_write),
-      .SS_OCT_SOPC_clock_2_out_writedata                          (SS_OCT_SOPC_clock_2_out_writedata),
-      .clk                                                        (clk_50),
-      .d1_packet_memory_s1_end_xfer                               (d1_packet_memory_s1_end_xfer),
-      .packet_memory_s1_address                                   (packet_memory_s1_address),
-      .packet_memory_s1_byteenable                                (packet_memory_s1_byteenable),
-      .packet_memory_s1_chipselect                                (packet_memory_s1_chipselect),
-      .packet_memory_s1_clken                                     (packet_memory_s1_clken),
-      .packet_memory_s1_readdata                                  (packet_memory_s1_readdata),
-      .packet_memory_s1_readdata_from_sa                          (packet_memory_s1_readdata_from_sa),
-      .packet_memory_s1_write                                     (packet_memory_s1_write),
-      .packet_memory_s1_writedata                                 (packet_memory_s1_writedata),
-      .reset_n                                                    (clk_50_reset_n)
+      .clk                                                (pll_sys_clk),
+      .cpu_data_master_address_to_slave                   (cpu_data_master_address_to_slave),
+      .cpu_data_master_byteenable                         (cpu_data_master_byteenable),
+      .cpu_data_master_granted_packet_memory_s1           (cpu_data_master_granted_packet_memory_s1),
+      .cpu_data_master_latency_counter                    (cpu_data_master_latency_counter),
+      .cpu_data_master_qualified_request_packet_memory_s1 (cpu_data_master_qualified_request_packet_memory_s1),
+      .cpu_data_master_read                               (cpu_data_master_read),
+      .cpu_data_master_read_data_valid_packet_memory_s1   (cpu_data_master_read_data_valid_packet_memory_s1),
+      .cpu_data_master_requests_packet_memory_s1          (cpu_data_master_requests_packet_memory_s1),
+      .cpu_data_master_write                              (cpu_data_master_write),
+      .cpu_data_master_writedata                          (cpu_data_master_writedata),
+      .d1_packet_memory_s1_end_xfer                       (d1_packet_memory_s1_end_xfer),
+      .packet_memory_s1_address                           (packet_memory_s1_address),
+      .packet_memory_s1_byteenable                        (packet_memory_s1_byteenable),
+      .packet_memory_s1_chipselect                        (packet_memory_s1_chipselect),
+      .packet_memory_s1_clken                             (packet_memory_s1_clken),
+      .packet_memory_s1_readdata                          (packet_memory_s1_readdata),
+      .packet_memory_s1_readdata_from_sa                  (packet_memory_s1_readdata_from_sa),
+      .packet_memory_s1_write                             (packet_memory_s1_write),
+      .packet_memory_s1_writedata                         (packet_memory_s1_writedata),
+      .reset_n                                            (pll_sys_clk_reset_n)
     );
 
   packet_memory_s2_arbitrator the_packet_memory_s2
     (
-      .SS_OCT_SOPC_clock_3_out_address_to_slave                   (SS_OCT_SOPC_clock_3_out_address_to_slave),
-      .SS_OCT_SOPC_clock_3_out_byteenable                         (SS_OCT_SOPC_clock_3_out_byteenable),
-      .SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2           (SS_OCT_SOPC_clock_3_out_granted_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2 (SS_OCT_SOPC_clock_3_out_qualified_request_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_read                               (SS_OCT_SOPC_clock_3_out_read),
-      .SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2   (SS_OCT_SOPC_clock_3_out_read_data_valid_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2          (SS_OCT_SOPC_clock_3_out_requests_packet_memory_s2),
-      .SS_OCT_SOPC_clock_3_out_write                              (SS_OCT_SOPC_clock_3_out_write),
-      .SS_OCT_SOPC_clock_3_out_writedata                          (SS_OCT_SOPC_clock_3_out_writedata),
-      .SS_OCT_SOPC_clock_4_out_address_to_slave                   (SS_OCT_SOPC_clock_4_out_address_to_slave),
-      .SS_OCT_SOPC_clock_4_out_byteenable                         (SS_OCT_SOPC_clock_4_out_byteenable),
-      .SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2           (SS_OCT_SOPC_clock_4_out_granted_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2 (SS_OCT_SOPC_clock_4_out_qualified_request_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_read                               (SS_OCT_SOPC_clock_4_out_read),
-      .SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2   (SS_OCT_SOPC_clock_4_out_read_data_valid_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2          (SS_OCT_SOPC_clock_4_out_requests_packet_memory_s2),
-      .SS_OCT_SOPC_clock_4_out_write                              (SS_OCT_SOPC_clock_4_out_write),
-      .SS_OCT_SOPC_clock_4_out_writedata                          (SS_OCT_SOPC_clock_4_out_writedata),
-      .clk                                                        (clk_50),
-      .d1_packet_memory_s2_end_xfer                               (d1_packet_memory_s2_end_xfer),
-      .packet_memory_s2_address                                   (packet_memory_s2_address),
-      .packet_memory_s2_byteenable                                (packet_memory_s2_byteenable),
-      .packet_memory_s2_chipselect                                (packet_memory_s2_chipselect),
-      .packet_memory_s2_clken                                     (packet_memory_s2_clken),
-      .packet_memory_s2_readdata                                  (packet_memory_s2_readdata),
-      .packet_memory_s2_readdata_from_sa                          (packet_memory_s2_readdata_from_sa),
-      .packet_memory_s2_write                                     (packet_memory_s2_write),
-      .packet_memory_s2_writedata                                 (packet_memory_s2_writedata),
-      .reset_n                                                    (clk_50_reset_n)
+      .clk                                                 (pll_sys_clk),
+      .d1_packet_memory_s2_end_xfer                        (d1_packet_memory_s2_end_xfer),
+      .packet_memory_s2_address                            (packet_memory_s2_address),
+      .packet_memory_s2_byteenable                         (packet_memory_s2_byteenable),
+      .packet_memory_s2_chipselect                         (packet_memory_s2_chipselect),
+      .packet_memory_s2_clken                              (packet_memory_s2_clken),
+      .packet_memory_s2_readdata                           (packet_memory_s2_readdata),
+      .packet_memory_s2_readdata_from_sa                   (packet_memory_s2_readdata_from_sa),
+      .packet_memory_s2_write                              (packet_memory_s2_write),
+      .packet_memory_s2_writedata                          (packet_memory_s2_writedata),
+      .reset_n                                             (pll_sys_clk_reset_n),
+      .sgdma_rx_m_write_address_to_slave                   (sgdma_rx_m_write_address_to_slave),
+      .sgdma_rx_m_write_byteenable                         (sgdma_rx_m_write_byteenable),
+      .sgdma_rx_m_write_granted_packet_memory_s2           (sgdma_rx_m_write_granted_packet_memory_s2),
+      .sgdma_rx_m_write_qualified_request_packet_memory_s2 (sgdma_rx_m_write_qualified_request_packet_memory_s2),
+      .sgdma_rx_m_write_requests_packet_memory_s2          (sgdma_rx_m_write_requests_packet_memory_s2),
+      .sgdma_rx_m_write_write                              (sgdma_rx_m_write_write),
+      .sgdma_rx_m_write_writedata                          (sgdma_rx_m_write_writedata),
+      .sgdma_tx_m_read_address_to_slave                    (sgdma_tx_m_read_address_to_slave),
+      .sgdma_tx_m_read_granted_packet_memory_s2            (sgdma_tx_m_read_granted_packet_memory_s2),
+      .sgdma_tx_m_read_latency_counter                     (sgdma_tx_m_read_latency_counter),
+      .sgdma_tx_m_read_qualified_request_packet_memory_s2  (sgdma_tx_m_read_qualified_request_packet_memory_s2),
+      .sgdma_tx_m_read_read                                (sgdma_tx_m_read_read),
+      .sgdma_tx_m_read_read_data_valid_packet_memory_s2    (sgdma_tx_m_read_read_data_valid_packet_memory_s2),
+      .sgdma_tx_m_read_requests_packet_memory_s2           (sgdma_tx_m_read_requests_packet_memory_s2)
     );
 
   packet_memory the_packet_memory
@@ -34787,8 +32925,8 @@ module SS_OCT_SOPC (
       .byteenable2 (packet_memory_s2_byteenable),
       .chipselect  (packet_memory_s1_chipselect),
       .chipselect2 (packet_memory_s2_chipselect),
-      .clk         (clk_50),
-      .clk2        (clk_50),
+      .clk         (pll_sys_clk),
+      .clk2        (pll_sys_clk),
       .clken       (packet_memory_s1_clken),
       .clken2      (packet_memory_s2_clken),
       .readdata    (packet_memory_s1_readdata),
@@ -35083,23 +33221,22 @@ module SS_OCT_SOPC (
 
   sgdma_rx_m_write_arbitrator the_sgdma_rx_m_write
     (
-      .SS_OCT_SOPC_clock_3_in_waitrequest_from_sa                (SS_OCT_SOPC_clock_3_in_waitrequest_from_sa),
-      .clk                                                       (pll_sys_clk),
-      .d1_SS_OCT_SOPC_clock_3_in_end_xfer                        (d1_SS_OCT_SOPC_clock_3_in_end_xfer),
-      .d1_onchip_memory_s1_end_xfer                              (d1_onchip_memory_s1_end_xfer),
-      .reset_n                                                   (pll_sys_clk_reset_n),
-      .sgdma_rx_m_write_address                                  (sgdma_rx_m_write_address),
-      .sgdma_rx_m_write_address_to_slave                         (sgdma_rx_m_write_address_to_slave),
-      .sgdma_rx_m_write_byteenable                               (sgdma_rx_m_write_byteenable),
-      .sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in           (sgdma_rx_m_write_granted_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_granted_onchip_memory_s1                 (sgdma_rx_m_write_granted_onchip_memory_s1),
-      .sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in (sgdma_rx_m_write_qualified_request_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_qualified_request_onchip_memory_s1       (sgdma_rx_m_write_qualified_request_onchip_memory_s1),
-      .sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in          (sgdma_rx_m_write_requests_SS_OCT_SOPC_clock_3_in),
-      .sgdma_rx_m_write_requests_onchip_memory_s1                (sgdma_rx_m_write_requests_onchip_memory_s1),
-      .sgdma_rx_m_write_waitrequest                              (sgdma_rx_m_write_waitrequest),
-      .sgdma_rx_m_write_write                                    (sgdma_rx_m_write_write),
-      .sgdma_rx_m_write_writedata                                (sgdma_rx_m_write_writedata)
+      .clk                                                 (pll_sys_clk),
+      .d1_onchip_memory_s1_end_xfer                        (d1_onchip_memory_s1_end_xfer),
+      .d1_packet_memory_s2_end_xfer                        (d1_packet_memory_s2_end_xfer),
+      .reset_n                                             (pll_sys_clk_reset_n),
+      .sgdma_rx_m_write_address                            (sgdma_rx_m_write_address),
+      .sgdma_rx_m_write_address_to_slave                   (sgdma_rx_m_write_address_to_slave),
+      .sgdma_rx_m_write_byteenable                         (sgdma_rx_m_write_byteenable),
+      .sgdma_rx_m_write_granted_onchip_memory_s1           (sgdma_rx_m_write_granted_onchip_memory_s1),
+      .sgdma_rx_m_write_granted_packet_memory_s2           (sgdma_rx_m_write_granted_packet_memory_s2),
+      .sgdma_rx_m_write_qualified_request_onchip_memory_s1 (sgdma_rx_m_write_qualified_request_onchip_memory_s1),
+      .sgdma_rx_m_write_qualified_request_packet_memory_s2 (sgdma_rx_m_write_qualified_request_packet_memory_s2),
+      .sgdma_rx_m_write_requests_onchip_memory_s1          (sgdma_rx_m_write_requests_onchip_memory_s1),
+      .sgdma_rx_m_write_requests_packet_memory_s2          (sgdma_rx_m_write_requests_packet_memory_s2),
+      .sgdma_rx_m_write_waitrequest                        (sgdma_rx_m_write_waitrequest),
+      .sgdma_rx_m_write_write                              (sgdma_rx_m_write_write),
+      .sgdma_rx_m_write_writedata                          (sgdma_rx_m_write_writedata)
     );
 
   sgdma_rx the_sgdma_rx
@@ -35198,28 +33335,27 @@ module SS_OCT_SOPC (
 
   sgdma_tx_m_read_arbitrator the_sgdma_tx_m_read
     (
-      .SS_OCT_SOPC_clock_4_in_readdata_from_sa                  (SS_OCT_SOPC_clock_4_in_readdata_from_sa),
-      .SS_OCT_SOPC_clock_4_in_waitrequest_from_sa               (SS_OCT_SOPC_clock_4_in_waitrequest_from_sa),
-      .clk                                                      (pll_sys_clk),
-      .d1_SS_OCT_SOPC_clock_4_in_end_xfer                       (d1_SS_OCT_SOPC_clock_4_in_end_xfer),
-      .d1_onchip_memory_s1_end_xfer                             (d1_onchip_memory_s1_end_xfer),
-      .onchip_memory_s1_readdata_from_sa                        (onchip_memory_s1_readdata_from_sa),
-      .reset_n                                                  (pll_sys_clk_reset_n),
-      .sgdma_tx_m_read_address                                  (sgdma_tx_m_read_address),
-      .sgdma_tx_m_read_address_to_slave                         (sgdma_tx_m_read_address_to_slave),
-      .sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in           (sgdma_tx_m_read_granted_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_granted_onchip_memory_s1                 (sgdma_tx_m_read_granted_onchip_memory_s1),
-      .sgdma_tx_m_read_latency_counter                          (sgdma_tx_m_read_latency_counter),
-      .sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in (sgdma_tx_m_read_qualified_request_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_qualified_request_onchip_memory_s1       (sgdma_tx_m_read_qualified_request_onchip_memory_s1),
-      .sgdma_tx_m_read_read                                     (sgdma_tx_m_read_read),
-      .sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in   (sgdma_tx_m_read_read_data_valid_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_read_data_valid_onchip_memory_s1         (sgdma_tx_m_read_read_data_valid_onchip_memory_s1),
-      .sgdma_tx_m_read_readdata                                 (sgdma_tx_m_read_readdata),
-      .sgdma_tx_m_read_readdatavalid                            (sgdma_tx_m_read_readdatavalid),
-      .sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in          (sgdma_tx_m_read_requests_SS_OCT_SOPC_clock_4_in),
-      .sgdma_tx_m_read_requests_onchip_memory_s1                (sgdma_tx_m_read_requests_onchip_memory_s1),
-      .sgdma_tx_m_read_waitrequest                              (sgdma_tx_m_read_waitrequest)
+      .clk                                                (pll_sys_clk),
+      .d1_onchip_memory_s1_end_xfer                       (d1_onchip_memory_s1_end_xfer),
+      .d1_packet_memory_s2_end_xfer                       (d1_packet_memory_s2_end_xfer),
+      .onchip_memory_s1_readdata_from_sa                  (onchip_memory_s1_readdata_from_sa),
+      .packet_memory_s2_readdata_from_sa                  (packet_memory_s2_readdata_from_sa),
+      .reset_n                                            (pll_sys_clk_reset_n),
+      .sgdma_tx_m_read_address                            (sgdma_tx_m_read_address),
+      .sgdma_tx_m_read_address_to_slave                   (sgdma_tx_m_read_address_to_slave),
+      .sgdma_tx_m_read_granted_onchip_memory_s1           (sgdma_tx_m_read_granted_onchip_memory_s1),
+      .sgdma_tx_m_read_granted_packet_memory_s2           (sgdma_tx_m_read_granted_packet_memory_s2),
+      .sgdma_tx_m_read_latency_counter                    (sgdma_tx_m_read_latency_counter),
+      .sgdma_tx_m_read_qualified_request_onchip_memory_s1 (sgdma_tx_m_read_qualified_request_onchip_memory_s1),
+      .sgdma_tx_m_read_qualified_request_packet_memory_s2 (sgdma_tx_m_read_qualified_request_packet_memory_s2),
+      .sgdma_tx_m_read_read                               (sgdma_tx_m_read_read),
+      .sgdma_tx_m_read_read_data_valid_onchip_memory_s1   (sgdma_tx_m_read_read_data_valid_onchip_memory_s1),
+      .sgdma_tx_m_read_read_data_valid_packet_memory_s2   (sgdma_tx_m_read_read_data_valid_packet_memory_s2),
+      .sgdma_tx_m_read_readdata                           (sgdma_tx_m_read_readdata),
+      .sgdma_tx_m_read_readdatavalid                      (sgdma_tx_m_read_readdatavalid),
+      .sgdma_tx_m_read_requests_onchip_memory_s1          (sgdma_tx_m_read_requests_onchip_memory_s1),
+      .sgdma_tx_m_read_requests_packet_memory_s2          (sgdma_tx_m_read_requests_packet_memory_s2),
+      .sgdma_tx_m_read_waitrequest                        (sgdma_tx_m_read_waitrequest)
     );
 
   sgdma_tx_out_arbitrator the_sgdma_tx_out
@@ -35543,18 +33679,6 @@ module SS_OCT_SOPC (
   //SS_OCT_SOPC_clock_0_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign SS_OCT_SOPC_clock_0_out_endofpacket = 0;
 
-  //SS_OCT_SOPC_clock_2_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
-  assign SS_OCT_SOPC_clock_2_out_endofpacket = 0;
-
-  //SS_OCT_SOPC_clock_3_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
-  assign SS_OCT_SOPC_clock_3_out_endofpacket = 0;
-
-  //SS_OCT_SOPC_clock_4_in_writedata of type writedata does not connect to anything so wire it to default (0)
-  assign SS_OCT_SOPC_clock_4_in_writedata = 0;
-
-  //SS_OCT_SOPC_clock_4_out_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
-  assign SS_OCT_SOPC_clock_4_out_endofpacket = 0;
-
   //clock_crossing_0_m1_endofpacket of type endofpacket does not connect to anything so wire it to default (0)
   assign clock_crossing_0_m1_endofpacket = 0;
 
@@ -35853,7 +33977,6 @@ endmodule
 `include "clock_crossing_0.v"
 `include "high_res_timer.v"
 `include "sys_timer.v"
-`include "SS_OCT_SOPC_clock_4.v"
 `include "led_pio.v"
 `include "jtag_uart.v"
 `include "sgdma_rx.v"
@@ -35872,11 +33995,9 @@ endmodule
 `include "sgdma_tx.v"
 `include "packet_memory.v"
 `include "seven_seg_pio.v"
-`include "SS_OCT_SOPC_clock_3.v"
 `include "SS_OCT_SOPC_clock_0.v"
 `include "pb_pio.v"
 `include "SS_OCT_SOPC_burst_0.v"
-`include "SS_OCT_SOPC_clock_2.v"
 
 `timescale 1ns / 1ps
 
@@ -35889,17 +34010,6 @@ module test_bench
   wire             SS_OCT_SOPC_clock_0_in_endofpacket_from_sa;
   wire             SS_OCT_SOPC_clock_0_out_endofpacket;
   wire             SS_OCT_SOPC_clock_1_in_endofpacket_from_sa;
-  wire             SS_OCT_SOPC_clock_2_in_endofpacket_from_sa;
-  wire             SS_OCT_SOPC_clock_2_out_endofpacket;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_2_out_nativeaddress;
-  wire             SS_OCT_SOPC_clock_3_in_endofpacket_from_sa;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_3_in_readdata_from_sa;
-  wire             SS_OCT_SOPC_clock_3_out_endofpacket;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_3_out_nativeaddress;
-  wire             SS_OCT_SOPC_clock_4_in_endofpacket_from_sa;
-  wire    [ 31: 0] SS_OCT_SOPC_clock_4_in_writedata;
-  wire             SS_OCT_SOPC_clock_4_out_endofpacket;
-  wire    [ 13: 0] SS_OCT_SOPC_clock_4_out_nativeaddress;
   wire             aux_scan_clk_from_the_ddr2;
   wire             aux_scan_clk_reset_n_from_the_ddr2;
   wire             clk;

@@ -267,11 +267,43 @@
          type = "String";
       }
    }
-   element ddr2.s1
+   element high_res_timer.s1
    {
       datum baseAddress
       {
-         value = "0";
+         value = "1209083136";
+         type = "long";
+      }
+   }
+   element pb_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209084160";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083776";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083648";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "1209082880";
          type = "long";
       }
    }
@@ -283,7 +315,15 @@
          type = "long";
       }
    }
-   element pipeline_bridge_ddr2.s1
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209084288";
+         type = "long";
+      }
+   }
+   element ddr2.s1
    {
       datum baseAddress
       {
@@ -299,35 +339,11 @@
          type = "long";
       }
    }
-   element high_res_timer.s1
+   element onchip_memory.s1
    {
       datum baseAddress
       {
-         value = "1209083136";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "1209082880";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209084288";
-         type = "long";
-      }
-   }
-   element packet_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209008128";
+         value = "1208483840";
          type = "long";
       }
    }
@@ -339,43 +355,19 @@
          type = "long";
       }
    }
-   element vol_transfer_done_pio.s1
+   element packet_memory.s1
    {
       datum baseAddress
       {
-         value = "1209083648";
+         value = "1209008128";
          type = "long";
       }
    }
-   element sw_pio.s1
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
-         value = "1209084032";
-         type = "long";
-      }
-   }
-   element vol_recording_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083776";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209079808";
-         type = "long";
-      }
-   }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1208483840";
+         value = "0";
          type = "long";
       }
    }
@@ -387,11 +379,19 @@
          type = "long";
       }
    }
-   element pb_pio.s1
+   element sw_pio.s1
    {
       datum baseAddress
       {
-         value = "1209084160";
+         value = "1209084032";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209079808";
          type = "long";
       }
    }
@@ -527,8 +527,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
- <parameter name="systemHash" value="-57408697671" />
- <parameter name="timeStamp" value="1327446276865" />
+ <parameter name="systemHash" value="-62021543721" />
+ <parameter name="timeStamp" value="1327597520632" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -843,7 +843,7 @@
 // Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 // Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 // Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
-// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.000"
+// Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "50.0"
 // Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -1704,16 +1704,6 @@
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sgdma_tx.clk" />
  <connection
-   kind="clock"
-   version="9.1"
-   start="clk_50.clk"
-   end="packet_memory.clk1" />
- <connection
-   kind="clock"
-   version="9.1"
-   start="clk_50.clk"
-   end="packet_memory.clk2" />
- <connection
    kind="avalon"
    version="6.1"
    start="cpu.data_master"
@@ -1737,4 +1727,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x48100000" />
  </connection>
+ <connection kind="clock" version="9.1" start="pll.c0" end="packet_memory.clk1" />
+ <connection kind="clock" version="9.1" start="pll.c0" end="packet_memory.clk2" />
 </system>

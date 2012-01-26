@@ -25,7 +25,9 @@
  * networking stack and MicroC/OS-II Real-Time Operating System.  
  */
 
-#define USE_ORIGINAL // Use original files from the simple socket server version
+#define     USE_ORIGINAL    1// Use original files from the simple socket server version
+//#define     DEBUG CODE    1// Print messages when debugging code
+#define     PRINT_TIME    1// Print timer values
 
 #include <stdio.h>
 #include <string.h>
@@ -44,6 +46,10 @@
 
 /* Altera Avalon registers */
 #include "altera_avalon_pio_regs.h" 
+
+/* Timer stuf */
+#include <time.h>
+#include <sys/alt_timestamp.h>
 
 /* Global variables */
 unsigned long   DDR2_address    = 0;
@@ -292,6 +298,15 @@ void sss_exec_command(SSSConn* conn)
     unsigned long   RAM_address     = 0;
     unsigned short  bytes_sent;
     unsigned long   iLines          = 0;
+    
+    #if PRINT_TIME
+        // timer stuff
+        unsigned int   num_ticks = 0;
+        unsigned int   time1=0;
+        unsigned int   time2=0;
+        unsigned int   time3=0;
+        unsigned int   timer_overhead=0;
+    #endif
 
     /*
     * "SSSCommand" is declared static so that the data will reside 
@@ -367,7 +382,7 @@ void sss_exec_command(SSSConn* conn)
             printf("Reference measurements\n");
             // Transmit initial trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            usleep(1000);               // Pause 1 000 microseconds
+            usleep(20);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
             printf("Reference trigger sent!\n");
@@ -425,7 +440,7 @@ void sss_exec_command(SSSConn* conn)
                     }
                 #endif
                 // Wait a little... Should know why...
-                usleep(500); // 0.6 ms if sys_clk @ 90MHz
+                usleep(20); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
             printf("\nDDR2 address after reference: %lu\n",DDR2_address);
             menu = 1;
@@ -434,6 +449,24 @@ void sss_exec_command(SSSConn* conn)
 
         if(menu == 67)
         {
+            #if PRINT_TIME
+                // This is some timer code to help you time the amount of time it 
+                // takes to run your functions. 
+                if(alt_timestamp_start() < 0)
+                {
+                    printf ("No timestamp device available\n");
+                    //return 1;
+                }
+            else
+                {
+                    printf("Timer init done! \n");
+                    // Get the number of clocks it takes + record time stamp:
+                    time1 = alt_timestamp();
+                    time2 = alt_timestamp();
+                    timer_overhead = time2 - time1;
+                    printf ("Number of ticks per second = %u\n", (unsigned int)alt_timestamp_freq());
+                }
+            #endif
             //////////////////////////////////////////////////////////
             // Continuous Acquisition
             //////////////////////////////////////////////////////////
@@ -443,7 +476,7 @@ void sss_exec_command(SSSConn* conn)
             #endif
             // Transmit initial trigger to LabView  
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            usleep(500);               // Pause 1 000 microseconds
+            usleep(20);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
             printf("Acquisition start trigger sent!\n");
@@ -460,6 +493,25 @@ void sss_exec_command(SSSConn* conn)
                     //////////////////////////////////////////////////////////
                     // B-frame transfer loop
                     //////////////////////////////////////////////////////////
+                    
+                    #if PRINT_TIME
+                        // Reset timer
+                        if(alt_timestamp_start() < 0)
+                        {
+                            printf ("No timestamp device available\n");                            
+                        }
+                        else
+                        {
+                            printf ("Timestamp reset!\n");
+                            // Get the number of clocks it takes + record time stamp:
+                            time1 = alt_timestamp();
+                            time2 = alt_timestamp();
+                            timer_overhead = time2 - time1;
+                            // start timer for B-frame 
+                            time1 = alt_timestamp();
+                        }
+                    #endif
+                    
                     for (iLines = 0; iLines < nLinesPerFrame*nFramesPerVol; iLines++)
                     {
                         // Begin the transfer
@@ -488,7 +540,15 @@ void sss_exec_command(SSSConn* conn)
                     } // END of volume / B-frame loop
                     // Assert signal when the whole volume is transferred
                     IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                    usleep(500);       // Pause 1 000 microseconds
+                    usleep(20);       // Pause 1 000 microseconds
+                    
+                    #if PRINT_TIME
+                        // retrieve time values for a B-frame
+                        time2 = alt_timestamp();
+                        num_ticks = time2 - time1 - timer_overhead;
+                        printf("Volume done! Number of ticks: %u\n", (unsigned int) num_ticks);
+                    #endif
+                    
                 } // END if volume acquisition finished
             } // END of continuous transfer loop
             menu = 1;
