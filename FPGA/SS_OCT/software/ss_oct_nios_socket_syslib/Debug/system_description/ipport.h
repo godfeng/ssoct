@@ -20,6 +20,11 @@
 #ifndef _IPPORT_H_
 #define _IPPORT_H_ 1
 
+/* Enabling the fast packet memory optimization */ 
+#define ALTERA_MRAM_FOR_PACKETS     1   
+#define ALTERA_MRAM_ALLOC_BASE      PACKET_MEMORY_BASE    
+#define ALTERA_MRAM_ALLOC_SPAN      PACKET_MEMORY_SPAN
+
 
  /*
   * Altera Niche Stack Nios port modification:
@@ -549,17 +554,24 @@ void     npfree(void * ptr);
  * pointers as cache-bypassed.
  */
 #ifdef ALTERA_TRIPLE_SPEED_MAC
-char * ncpalloc(unsigned size);
-void ncpfree(void *ptr);
-#define BB_ALLOC(size)     ncpalloc(size)  /* Big packet buffer alloc */
-#define BB_FREE(ptr)       ncpfree(ptr)
-#define LB_ALLOC(size)     ncpalloc(size)  /* Little packet buffer alloc */
-#define LB_FREE(ptr)       ncpfree(ptr)
+    char * ncpalloc(unsigned size);
+    void ncpfree(void *ptr);
+    #if ALTERA_MRAM_FOR_PACKETS
+        #define BB_ALLOC(size)      ncpballoc(size)
+        #define BB_FREE(ptr)        ncpbfree(ptr)
+        #define LB_ALLOC(size)      ncpballoc(size)
+        #define LB_FREE(ptr)        ncpbfree(ptr)
+    #else /* Not ALTERA_MRAM_FOR_PACKETS*/
+        #define BB_ALLOC(size)     ncpalloc(size)  /* Big packet buffer alloc */
+        #define BB_FREE(ptr)       ncpfree(ptr)
+        #define LB_ALLOC(size)     ncpalloc(size)  /* Little packet buffer alloc */
+        #define LB_FREE(ptr)       ncpfree(ptr)
+    #endif /* ALTERA_MRAM_FOR_PACKETS */
 #else /* Not ALTERA_TRIPLE_SPEED_MAC */
-#define BB_ALLOC(size)     npalloc(size)  /* Big packet buffer alloc */
-#define BB_FREE(ptr)       npfree(ptr)
-#define LB_ALLOC(size)     npalloc(size)  /* Little packet buffer alloc */
-#define LB_FREE(ptr)       npfree(ptr)
+    #define BB_ALLOC(size)     npalloc(size)  /* Big packet buffer alloc */
+    #define BB_FREE(ptr)       npfree(ptr)
+    #define LB_ALLOC(size)     npalloc(size)  /* Little packet buffer alloc */
+    #define LB_FREE(ptr)       npfree(ptr)
 #endif /* ALTERA_TRIPLE_SPEED_MAC */
 
 #define UC_ALLOC(size)     npalloc(size)  /* UDP connection block alloc */
@@ -594,16 +606,32 @@ extern void dtrap( void );
 int   prep_ppp(int);    /* in ..\ppp\sys_np.c */
 int   prep_ifaces(int firstIface);   /* set up interfaces */
 
-/* 
- * define number and sizes of free packet buffers 
- */
-#define NUMBIGBUFS   30
-#define NUMLILBUFS   30
 
-/* some maximum packet buffer numbers */
-#define MAXBIGPKTS   30
-#define MAXLILPKTS   30
-#define MAXPACKETS (MAXLILPKTS+MAXBIGPKTS)
+/* decrease the number of big buffers and little buffers used by the stack 
+ * because the MRAM is limited to 64 Kbytes of memory */
+#if ALTERA_MRAM_FOR_PACKETS
+    #define NUMBIGBUFS   30
+    #define NUMLILBUFS   30
+
+    /* some maximum packet buffer numbers */
+    #define MAXBIGPKTS   30
+    #define MAXLILPKTS   30
+    #define MAXPACKETS (MAXLILPKTS+MAXBIGPKTS)
+
+    #define BIGBUFSIZE   1536
+    #define LILBUFSIZE   128
+#else /* Not ALTERA_MRAM_FOR_PACKETS*/
+    /* 
+     * define number and sizes of free packet buffers 
+     */
+    #define NUMBIGBUFS   30
+    #define NUMLILBUFS   30
+    
+    /* some maximum packet buffer numbers */
+    #define MAXBIGPKTS   30
+    #define MAXLILPKTS   30
+    #define MAXPACKETS (MAXLILPKTS+MAXBIGPKTS)
+#endif /* ALTERA_MRAM_FOR_PACKETS */
 
 
 /********************* ipport.h_h common ****************************/

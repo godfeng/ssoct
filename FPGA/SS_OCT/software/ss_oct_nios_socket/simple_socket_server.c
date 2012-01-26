@@ -25,10 +25,6 @@
  * networking stack and MicroC/OS-II Real-Time Operating System.  
  */
 
-#define     USE_ORIGINAL    1// Use original files from the simple socket server version
-//#define     DEBUG CODE    1// Print messages when debugging code
-#define     PRINT_TIME    1// Print timer values
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -366,8 +362,10 @@ void sss_exec_command(SSSConn* conn)
                     case 7: nFramesPerVol   += SSSCommand * 16777216; 
                             menu = 1;       iParameters = -1;               break;
                     default:                                                break;
-                }  
-                printf("nLinesPerFrame: %lu nFramesPerVol: %lu Count: %i\n", nLinesPerFrame, nFramesPerVol, iParameters);
+                }
+                #if DEBUG_CODE  
+                    printf("nLinesPerFrame: %lu nFramesPerVol: %lu Count: %i\n", nLinesPerFrame, nFramesPerVol, iParameters);
+                #endif
                 iParameters++;
             }
         } // END else -> menu != 1  
@@ -485,71 +483,69 @@ void sss_exec_command(SSSConn* conn)
             while(1)
             {
                 // Read if volumeAcqfinished then transfer
-                volAcqFinished = IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE);
-                if (volAcqFinished)
-                {
-                    // Transferred volume signal = 0
-                    IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-                    //////////////////////////////////////////////////////////
-                    // B-frame transfer loop
-                    //////////////////////////////////////////////////////////
-                    
-                    #if PRINT_TIME
-                        // Reset timer
-                        if(alt_timestamp_start() < 0)
-                        {
-                            printf ("No timestamp device available\n");                            
-                        }
-                        else
-                        {
-                            printf ("Timestamp reset!\n");
-                            // Get the number of clocks it takes + record time stamp:
-                            time1 = alt_timestamp();
-                            time2 = alt_timestamp();
-                            timer_overhead = time2 - time1;
-                            // start timer for B-frame 
-                            time1 = alt_timestamp();
-                        }
-                    #endif
-                    
-                    for (iLines = 0; iLines < nLinesPerFrame*nFramesPerVol; iLines++)
+                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+                
+                // Transferred volume signal = 0
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                //////////////////////////////////////////////////////////
+                // B-frame transfer loop
+                //////////////////////////////////////////////////////////
+                
+                #if PRINT_TIME
+                    // Reset timer
+                    if(alt_timestamp_start() < 0)
                     {
-                        // Begin the transfer
-                        tx_wr_pos = tx_buf;
-
-                        //////////////////////////////////////////////////////////
-                        // Send single A-line
-                        //////////////////////////////////////////////////////////
-                        for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
-                            {
-                                // Write address port (to RAM)
-                                dataPointer = (unsigned char*)DDR2_address;
-                                // Send 16-bit data (swapped upper and lower bytes)
-                                *tx_wr_pos++ = dataPointer[1]; 
-                                *tx_wr_pos++ = dataPointer[0];
-                                // Read 2 bytes
-                                DDR2_address += 2;
-                                if (DDR2_address >= DDR2_SIZE_BYTES)
-                                    // Reset DDR2 address if greater than 1Gbyte
-                                    DDR2_address -= DDR2_SIZE_BYTES;
-                            } // END of A-line loop
-                        // Send a single A-line to the client
-                        bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                        // Wait a little... Should know why...
-                        //usleep(500); // 0.6 ms if sys_clk @ 90MHz
-                    } // END of volume / B-frame loop
-                    // Assert signal when the whole volume is transferred
-                    IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                    usleep(20);       // Pause 1 000 microseconds
-                    
-                    #if PRINT_TIME
-                        // retrieve time values for a B-frame
+                        printf ("No timestamp device available\n");                            
+                    }
+                    else
+                    {
+                        printf ("Timestamp reset!\n");
+                        // Get the number of clocks it takes + record time stamp:
+                        time1 = alt_timestamp();
                         time2 = alt_timestamp();
-                        num_ticks = time2 - time1 - timer_overhead;
-                        printf("Volume done! Number of ticks: %u\n", (unsigned int) num_ticks);
-                    #endif
+                        timer_overhead = time2 - time1;
+                        // start timer for B-frame 
+                        time1 = alt_timestamp();
+                    }
+                #endif
+                
+                for (iLines = 0; iLines < nLinesPerFrame*nFramesPerVol; iLines++)
+                {
+                    // Begin the transfer
+                    tx_wr_pos = tx_buf;
+
+                    //////////////////////////////////////////////////////////
+                    // Send single A-line
+                    //////////////////////////////////////////////////////////
+                    for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+                        {
+                            // Write address port (to RAM)
+                            dataPointer = (unsigned char*)DDR2_address;
+                            // Send 16-bit data (swapped upper and lower bytes)
+                            *tx_wr_pos++ = dataPointer[1]; 
+                            *tx_wr_pos++ = dataPointer[0];
+                            // Read 2 bytes
+                            DDR2_address += 2;
+                            if (DDR2_address >= DDR2_SIZE_BYTES)
+                                // Reset DDR2 address if greater than 1Gbyte
+                                DDR2_address -= DDR2_SIZE_BYTES;
+                        } // END of A-line loop
+                    // Send a single A-line to the client
+                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+
+                } // END of volume / B-frame loop
+                // Assert signal when the whole volume is transferred
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                usleep(20);       // Pause 1 000 microseconds
+                
+                #if PRINT_TIME
+                    // retrieve time values for a B-frame
+                    time2 = alt_timestamp();
+                    num_ticks = time2 - time1 - timer_overhead;
+                    printf("Volume done! Number of ticks: %u\n", (unsigned int) num_ticks);
+                #endif
                     
-                } // END if volume acquisition finished
+                 // END if volume acquisition finished
             } // END of continuous transfer loop
             menu = 1;
             iParameters = 0;

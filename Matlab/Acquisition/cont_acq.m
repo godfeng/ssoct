@@ -76,7 +76,6 @@ if ssOCTdefaults.GUI.save2file
     % Create binary file
     fid = fopen(fileName, 'w');
     iFrames = 1;
-    toc;
     tic
     while ~exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'),'file')
         [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq);
