@@ -482,15 +482,6 @@ void sss_exec_command(SSSConn* conn)
          
             while(1)
             {
-                // Read if volumeAcqfinished then transfer
-                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
-                
-                // Transferred volume signal = 0
-                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-                //////////////////////////////////////////////////////////
-                // B-frame transfer loop
-                //////////////////////////////////////////////////////////
-                
                 #if PRINT_TIME
                     // Reset timer
                     if(alt_timestamp_start() < 0)
@@ -508,7 +499,13 @@ void sss_exec_command(SSSConn* conn)
                         time1 = alt_timestamp();
                     }
                 #endif
+                    
+                // Read if volumeAcqfinished then transfer
+                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
                 
+                //////////////////////////////////////////////////////////
+                // B-frame transfer loop
+                //////////////////////////////////////////////////////////
                 for (iLines = 0; iLines < nLinesPerFrame*nFramesPerVol; iLines++)
                 {
                     // Begin the transfer
@@ -532,24 +529,22 @@ void sss_exec_command(SSSConn* conn)
                         } // END of A-line loop
                     // Send a single A-line to the client
                     bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-
                 } // END of volume / B-frame loop
                 // Assert signal when the whole volume is transferred
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
                 usleep(20);       // Pause 1 000 microseconds
-                
+                // Transferred volume signal = 0
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
                 #if PRINT_TIME
                     // retrieve time values for a B-frame
                     time2 = alt_timestamp();
                     num_ticks = time2 - time1 - timer_overhead;
-                    printf("Volume done! Number of ticks: %u\n", (unsigned int) num_ticks);
+                    printf("B-frame transfer time! No. ticks: %u\n", (unsigned int) num_ticks);
                 #endif
-                    
-                 // END if volume acquisition finished
             } // END of continuous transfer loop
             menu = 1;
             iParameters = 0;
-        }
+        } // END case 67
         
         if(menu == 68)
         {                
