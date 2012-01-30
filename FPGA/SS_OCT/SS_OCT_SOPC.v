@@ -13997,11 +13997,11 @@ module cpu_data_master_arbitrator (
     1'b0,
     1'b0,
     1'b0,
-    sgdma_rx_csr_irq_from_sa,
-    sgdma_tx_csr_irq_from_sa,
     sys_timer_s1_irq_from_sa,
     high_res_timer_s1_irq_from_sa,
-    jtag_uart_avalon_jtag_slave_irq_from_sa};
+    jtag_uart_avalon_jtag_slave_irq_from_sa,
+    sgdma_rx_csr_irq_from_sa,
+    sgdma_tx_csr_irq_from_sa};
 
 
 //synthesis translate_off

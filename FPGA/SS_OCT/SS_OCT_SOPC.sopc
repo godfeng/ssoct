@@ -267,67 +267,11 @@
          type = "String";
       }
    }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083136";
-         type = "long";
-      }
-   }
    element pb_pio.s1
    {
       datum baseAddress
       {
          value = "1209084160";
-         type = "long";
-      }
-   }
-   element vol_recording_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083776";
-         type = "long";
-      }
-   }
-   element vol_transfer_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083648";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "1209082880";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element seven_seg_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209084288";
-         type = "long";
-      }
-   }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
          type = "long";
       }
    }
@@ -339,14 +283,6 @@
          type = "long";
       }
    }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1208483840";
-         type = "long";
-      }
-   }
    element ext_flash.s1
    {
       datum baseAddress
@@ -355,27 +291,11 @@
          type = "long";
       }
    }
-   element packet_memory.s1
+   element vol_transfer_done_pio.s1
    {
       datum baseAddress
       {
-         value = "1209008128";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element led_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083904";
+         value = "1209083648";
          type = "long";
       }
    }
@@ -387,11 +307,91 @@
          type = "long";
       }
    }
+   element seven_seg_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209084288";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083904";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1208483840";
+         type = "long";
+      }
+   }
    element descriptor_memory.s1
    {
       datum baseAddress
       {
          value = "1209079808";
+         type = "long";
+      }
+   }
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209008128";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083136";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083776";
+         type = "long";
+      }
+   }
+   element clock_crossing_0.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "1209082880";
+         type = "long";
+      }
+   }
+   element pipeline_bridge_ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
          type = "long";
       }
    }
@@ -527,8 +527,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
- <parameter name="systemHash" value="-62021543721" />
- <parameter name="timeStamp" value="1327597520632" />
+ <parameter name="systemHash" value="-65014571582" />
+ <parameter name="timeStamp" value="1327618554175" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -1117,17 +1117,17 @@
   <parameter name="dataBitsPerSymbol" value="8" />
   <parameter name="dev_version" value="2305" />
   <parameter name="deviceFamily" value="STRATIXIV" />
-  <parameter name="eg_addr" value="12" />
+  <parameter name="eg_addr" value="14" />
   <parameter name="ena_hash" value="true" />
   <parameter name="enable_alt_reconfig" value="false" />
   <parameter name="enable_clk_sharing" value="false" />
   <parameter name="enable_ena" value="32" />
   <parameter name="enable_fifoless" value="false" />
-  <parameter name="enable_gmii_loopback" value="false" />
+  <parameter name="enable_gmii_loopback" value="true" />
   <parameter name="enable_hd_logic" value="true" />
   <parameter name="enable_mac_flow_ctrl" value="true" />
   <parameter name="enable_mac_txaddr_set" value="true" />
-  <parameter name="enable_mac_vlan" value="true" />
+  <parameter name="enable_mac_vlan" value="false" />
   <parameter name="enable_maclite" value="false" />
   <parameter name="enable_magic_detect" value="true" />
   <parameter name="enable_multi_channel" value="false" />
@@ -1144,7 +1144,7 @@
   <parameter name="gigeAdvanceMode" value="true" />
   <parameter name="ifGMII" value="MII_GMII" />
   <parameter name="ifPCSuseEmbeddedSerdes" value="true" />
-  <parameter name="ing_addr" value="11" />
+  <parameter name="ing_addr" value="13" />
   <parameter name="insert_ta" value="true" />
   <parameter name="maclite_gige" value="false" />
   <parameter name="max_channels" value="1" />
@@ -1463,7 +1463,7 @@
   <parameter name="baseAddress" value="0x48112a40" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="jtag_uart.irq">
-  <parameter name="irqNumber" value="0" />
+  <parameter name="irqNumber" value="2" />
  </connection>
  <connection
    kind="avalon"
@@ -1478,7 +1478,7 @@
    version="9.1"
    start="cpu.d_irq"
    end="high_res_timer.irq">
-  <parameter name="irqNumber" value="1" />
+  <parameter name="irqNumber" value="3" />
  </connection>
  <connection
    kind="avalon"
@@ -1489,7 +1489,7 @@
   <parameter name="baseAddress" value="0x48112600" />
  </connection>
  <connection kind="interrupt" version="9.1" start="cpu.d_irq" end="sys_timer.irq">
-  <parameter name="irqNumber" value="2" />
+  <parameter name="irqNumber" value="4" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sys_timer.clk" />
  <connection
@@ -1528,7 +1528,7 @@
    version="9.1"
    start="cpu.d_irq"
    end="sgdma_tx.csr_irq">
-  <parameter name="irqNumber" value="3" />
+  <parameter name="irqNumber" value="0" />
  </connection>
  <connection
    kind="avalon"
@@ -1543,7 +1543,7 @@
    version="9.1"
    start="cpu.d_irq"
    end="sgdma_rx.csr_irq">
-  <parameter name="irqNumber" value="4" />
+  <parameter name="irqNumber" value="1" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sgdma_rx.clk" />
  <connection

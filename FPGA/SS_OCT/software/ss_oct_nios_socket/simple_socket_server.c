@@ -292,7 +292,7 @@ void sss_exec_command(SSSConn* conn)
     INT8U*          tx_wr_pos = tx_buf;
     // Local variables
     unsigned long   RAM_address     = 0;
-    unsigned short  bytes_sent;
+    unsigned short  bytes_sent      = 0;
     unsigned long   iLines          = 0;
     
     #if PRINT_TIME
@@ -384,7 +384,7 @@ void sss_exec_command(SSSConn* conn)
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
             printf("Reference trigger sent!\n");
-            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFramesPerVol);
+            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
             
             // Wait for volume recording to be done
             while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
@@ -499,9 +499,16 @@ void sss_exec_command(SSSConn* conn)
                         time1 = alt_timestamp();
                     }
                 #endif
-                    
+                
                 // Read if volumeAcqfinished then transfer
                 while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+                
+                #if PRINT_TIME
+                    // retrieve time values
+                    time3 = alt_timestamp();
+                    num_ticks = time3 - time1 - timer_overhead;
+                    printf("LabView signal sent No. ticks: %u\n",(unsigned int) num_ticks);
+                #endif
                 
                 //////////////////////////////////////////////////////////
                 // B-frame transfer loop
@@ -527,8 +534,10 @@ void sss_exec_command(SSSConn* conn)
                                 // Reset DDR2 address if greater than 1Gbyte
                                 DDR2_address -= DDR2_SIZE_BYTES;
                         } // END of A-line loop
+
                     // Send a single A-line to the client
                     bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                    
                 } // END of volume / B-frame loop
                 // Assert signal when the whole volume is transferred
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
@@ -539,7 +548,7 @@ void sss_exec_command(SSSConn* conn)
                     // retrieve time values for a B-frame
                     time2 = alt_timestamp();
                     num_ticks = time2 - time1 - timer_overhead;
-                    printf("B-frame transfer time! No. ticks: %u\n", (unsigned int) num_ticks);
+                    printf("%lu B-frames sent! No. ticks: %u\n", nFramesPerVol, (unsigned int) num_ticks);
                 #endif
             } // END of continuous transfer loop
             menu = 1;
