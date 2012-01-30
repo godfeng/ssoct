@@ -20,8 +20,8 @@ ssOCTdefaults.tcpConn = pnet('tcpconnect',ssOCTdefaults.serverAddress,ssOCTdefau
 % Necessary pause
 pause(0.1);
 % specifies how long read and listen commands blocks before it timeouts.
-pnet(ssOCTdefaults.tcpConn,'setreadtimeout',0.25);
-pnet(ssOCTdefaults.tcpConn,'setwritetimeout',0.1);
+pnet(ssOCTdefaults.tcpConn,'setreadtimeout',10);
+pnet(ssOCTdefaults.tcpConn,'setwritetimeout',10);
 fprintf('Connection established to %s at port %d\n',ssOCTdefaults.serverAddress,ssOCTdefaults.portNumber)
 
 % ==============================================================================

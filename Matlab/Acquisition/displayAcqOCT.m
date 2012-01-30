@@ -21,7 +21,7 @@ if rem(iFrames-1, ssOCTdefaults.nFramesPerVol) == 0,
 end
 % Acquire raw B-scan
 if ssOCTdefaults.GUI.corrBscan
-    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@hann,true);
+    [rawBscan rawBscan16 correctedBscan] = acq_Bscan(@myhann,true);
     limitY = [-2^13 2^13];
 else
     [rawBscan rawBscan16] = acq_Bscan(@rectwin,false);

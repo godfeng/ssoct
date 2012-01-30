@@ -44,12 +44,12 @@ optArgs(1:numVarArgs) = varargin;
 Bscan = zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]);
 rawBscan16 = uint16(zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]));
 % Initialize transfer time variable
-% transferTime = 0;
+transferTime = 0;
 for iLines = 1:ssOCTdefaults.nLinesPerFrame,
-%     tic
+    tic
     % Reads an array of nWordsPerAline elements from a connection
     tempAline = pnet(ssOCTdefaults.tcpConn,'read',[ssOCTdefaults.nWordsPerAline 1],'uint16');
-%     transferTime = transferTime + toc;
+    transferTime = transferTime + toc;
     % Only keep NSAMPLES from transmitted data array (transposed)
     Bscan(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
     % B-scan saved as uint16
@@ -57,9 +57,9 @@ for iLines = 1:ssOCTdefaults.nLinesPerFrame,
 end
 
 % Average over nLinesPerFrame
-% transferTime = transferTime / ssOCTdefaults.nLinesPerFrame;
-% fprintf('Average transfer time = %03.2f Mbits/sec\n',...
-%     16*ssOCTdefaults.nWordsPerAline/(transferTime*2^20))
+transferTime = transferTime / ssOCTdefaults.nLinesPerFrame;
+fprintf('Average transfer time = %03.2f Mbits/sec\n',...
+    16*ssOCTdefaults.nWordsPerAline/(transferTime*2^20))
 
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground
