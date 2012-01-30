@@ -19,6 +19,9 @@ function [Bscan, varargout]  = acq_Bscan(varargin)
 % Edgar Guevara
 % 2011/07/11
 
+% Display transfer time
+displayTransferTime = false;
+
 % Modifies values of global variable
 global ssOCTdefaults
 % only want 2 optional inputs at most
@@ -43,23 +46,39 @@ optArgs(1:numVarArgs) = varargin;
 % Preallocate
 Bscan = zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]);
 rawBscan16 = uint16(zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame]));
-% Initialize transfer time variable
-transferTime = 0;
-for iLines = 1:ssOCTdefaults.nLinesPerFrame,
-    tic
-    % Reads an array of nWordsPerAline elements from a connection
-    tempAline = pnet(ssOCTdefaults.tcpConn,'read',[ssOCTdefaults.nWordsPerAline 1],'uint16');
-    transferTime = transferTime + toc;
-    % Only keep NSAMPLES from transmitted data array (transposed)
-    Bscan(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
-    % B-scan saved as uint16
-    rawBscan16(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
+if displayTransferTime
+    % Initialize transfer time variable
+    transferTime = 0;
 end
 
-% Average over nLinesPerFrame
-transferTime = transferTime / ssOCTdefaults.nLinesPerFrame;
-fprintf('Average transfer time = %03.2f Mbits/sec\n',...
-    16*ssOCTdefaults.nWordsPerAline/(transferTime*2^20))
+% Get line by line
+% for iLines = 1:ssOCTdefaults.nLinesPerFrame,
+%     if displayTransferTime
+%         tic
+%     end
+%     % Reads an array of nWordsPerAline elements from a connection
+%     tempAline = pnet(ssOCTdefaults.tcpConn,'read',[ssOCTdefaults.nWordsPerAline 1],'uint16');
+%     if displayTransferTime
+%         transferTime = transferTime + toc;
+%     end
+%     % Only keep NSAMPLES from transmitted data array (transposed)
+%     Bscan(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
+%     % B-scan saved as uint16
+%     rawBscan16(:,iLines) = tempAline(1:ssOCTdefaults.NSAMPLES)';
+% end
+
+% Get whole frame
+tempFrame = pnet(ssOCTdefaults.tcpConn,'read',[ssOCTdefaults.nWordsPerAline*ssOCTdefaults.nLinesPerFrame 1],'uint16');
+tempFrame = reshape(tempFrame,[ssOCTdefaults.nWordsPerAline ssOCTdefaults.nLinesPerFrame]);
+Bscan = tempFrame(1:ssOCTdefaults.NSAMPLES,:);
+rawBscan16 = tempFrame(1:ssOCTdefaults.NSAMPLES,:);
+
+if displayTransferTime
+    % Average over nLinesPerFrame
+    transferTime = transferTime / ssOCTdefaults.nLinesPerFrame;
+    fprintf('Average transfer time = %03.2f Mbits/sec\n',...
+        16*ssOCTdefaults.nWordsPerAline/(transferTime*2^20))
+end
 
 % CORRECTION ALGORITHM HERE!!!!
 if correctBackground

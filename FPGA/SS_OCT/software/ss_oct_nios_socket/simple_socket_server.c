@@ -54,6 +54,7 @@ char            menu            = 1;
 unsigned long   nLinesPerFrame  = 0;
 unsigned long   nFramesPerVol   = 0;
 unsigned long   nLinesPerVol    = 0;
+unsigned long   nBytesPerFrame  = 0;
 signed short    iParameters     = 0;
 unsigned char   volAcqFinished  = 0;
 
@@ -295,6 +296,7 @@ void sss_exec_command(SSSConn* conn)
     unsigned long   RAM_address     = 0;
     unsigned short  bytes_sent      = 0;
     unsigned long   iLines          = 0;
+    unsigned short  iFrames         = 0;
     
     #if PRINT_TIME
         // timer stuff
@@ -357,7 +359,7 @@ void sss_exec_command(SSSConn* conn)
                     case 2: nLinesPerFrame  += SSSCommand * 65536;          break;
                     case 3: nLinesPerFrame  += SSSCommand * 16777216;       break;
                     
-                    case 4: nFramesPerVol   = SSSCommand;                  break;
+                    case 4: nFramesPerVol   = SSSCommand;                   break;
                     case 5: nFramesPerVol   += SSSCommand * 256;            break;
                     case 6: nFramesPerVol   += SSSCommand * 65536;          break;
                     case 7: nFramesPerVol   += SSSCommand * 16777216; 
@@ -441,7 +443,7 @@ void sss_exec_command(SSSConn* conn)
                 // Wait a little... Should know why...
                 usleep(20); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
-            printf("\nDDR2 address after reference: 0x%8lX\n",DDR2_address);
+            printf("\nDDR2 address after reference: 0x%08lX\n",DDR2_address);
             menu = 1;
             iParameters = 0;
         }
@@ -479,8 +481,9 @@ void sss_exec_command(SSSConn* conn)
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
             printf("Acquisition start trigger sent!\n");
-            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n",nLinesPerFrame,nFramesPerVol);
-            nLinesPerVol = nLinesPerFrame*nFramesPerVol;
+            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
+            nLinesPerVol = nLinesPerFrame * nFramesPerVol;
+            nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
          
             while(1)
             {
@@ -514,35 +517,16 @@ void sss_exec_command(SSSConn* conn)
                 #endif
                 
                 //////////////////////////////////////////////////////////
-                // Volume transfer loop
+                // B-Frame transfer loop
                 //////////////////////////////////////////////////////////
-                for (iLines = 0; iLines < nLinesPerVol; iLines++)
+                for (iFrames = 0; iFrames < nFramesPerVol; iFrames++)
                 {
-                    // Begin the transfer
-//                    tx_wr_pos = tx_buf;
-
-                    //////////////////////////////////////////////////////////
-                    // Send single A-line
-                    //////////////////////////////////////////////////////////
-//                    for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
-//                        {
-//                            // Write address port (to RAM)
-//                            dataPointer = (unsigned char*)DDR2_address;
-//                            // Send 16-bit data (swapped upper and lower bytes)
-//                            *tx_wr_pos++ = dataPointer[1]; 
-//                            *tx_wr_pos++ = dataPointer[0];
-//                            // Read 2 bytes
-//                            DDR2_address += 2;
-//                            if (DDR2_address >= DDR2_SIZE_BYTES)
-//                                // Reset DDR2 address if greater than 1Gbyte
-//                                DDR2_address -= DDR2_SIZE_BYTES;
-//                        } // END of A-line loop
-
-                    // Send a single A-line to the client
+                    // Send a single A-line to the workstation
 //                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                    bytes_sent = send(conn->fd, (unsigned char*)DDR2_address, NBYTES_PER_ALINE, 0);
+                    // Send a whole B-frame to the workstation
+                    bytes_sent = send(conn->fd, (unsigned char*)DDR2_address, nBytesPerFrame, 0);
                     // Increase DDR2 Address
-                    DDR2_address += NBYTES_PER_ALINE;
+                    DDR2_address += nBytesPerFrame;
                     if (DDR2_address >= DDR2_SIZE_BYTES)
                         // Reset DDR2 address if greater than 1Gbyte
                         DDR2_address -= DDR2_SIZE_BYTES;
@@ -558,7 +542,7 @@ void sss_exec_command(SSSConn* conn)
                     time2 = alt_timestamp();
                     num_ticks = time2 - time1 - timer_overhead;
                     printf("%lu B-frames sent! No. ticks: %u\n", nFramesPerVol, (unsigned int) num_ticks);
-                    printf("DDR2_address 0x%8lX\n", DDR2_address);
+                    printf("DDR2_address 0x%08lX\n", DDR2_address);
                 #endif
             } // END of continuous transfer loop
             menu = 1;
