@@ -76,14 +76,14 @@ if ssOCTdefaults.GUI.save2file
     % Create binary file
     fid = fopen(fileName, 'w');
     iFrames = 1;
-    tic
+    temps = tic;
     while ~exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'),'file')
         [~, rawBscan16, ~] = displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
         % --------------------- Save a B-scan frame ----------------------------
         fwrite(fid, rawBscan16, 'uint16');
     end
-    frameRate = iFrames/toc;
+    frameRate = iFrames/toc(temps);
     fprintf('Approximate Frame Rate = %.3f fps\n',frameRate)
     fclose(fid);
     disp(['File saved as: ' fileName])
@@ -95,10 +95,14 @@ else
     %     ssOCTdefaults.OCTfullAcq = zeros([ssOCTdefaults.nFramesPerVol ssOCTdefaults.NSAMPLES ...
     %         ssOCTdefaults.nLinesPerFrame]);
     iFrames = 1;
+    temps = tic;
     while ~exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'tostop.txt'),'file')
         displayAcqOCT(iFrames,hContAcq);
         iFrames = iFrames + 1;
     end
+    frameRate = iFrames/toc(temps);
+    fprintf('Approximate Frame Rate = %.3f fps\n',frameRate)
+    fprintf('%.3f Mbits/B-frame \n',16*ssOCTdefaults.nWordsPerAline*ssOCTdefaults.nLinesPerFrame/2^20);
     disp('Transfer done!')
     % Delete file created by LabView
     pause(0.5);

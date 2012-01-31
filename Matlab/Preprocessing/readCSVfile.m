@@ -110,7 +110,7 @@ if (fid >= 3)
             ssOCTdefaults.folders.subjectID         = outputCell{8,2};
             ssOCTdefaults.folders.expID             = outputCell{9,2};
             ssOCTdefaults.galvos.nSamplesPerVolume  = outputCell{10,2};
-            ssOCTdefaults.pauseTime                 = 1.1 * ...
+            ssOCTdefaults.pauseTime                 = 1.3 * ...
                 ssOCTdefaults.galvos.nSamplesPerVolume / 50e3;
         case 9
             % second version with 9 fields
