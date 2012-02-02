@@ -383,7 +383,7 @@ void sss_exec_command(SSSConn* conn)
             printf("Reference measurements\n");
             // Transmit initial trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            usleep(20);               // Pause 1 000 microseconds
+            usleep(1000);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
             printf("Reference trigger sent!\n");
@@ -422,6 +422,12 @@ void sss_exec_command(SSSConn* conn)
                             // Reset DDR2 address if greater than 1Gbyte
                             DDR2_address -= DDR2_SIZE_BYTES;
                         #if DEBUG_CODE
+                            if ((iLines == 0) && (RAM_address == 32))
+                                printf("16th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
+                            if ((iLines == 0) && (RAM_address == 34))
+                                printf("17th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
+                            if ((iLines == 0) && (RAM_address == 36))
+                                printf("18th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
                             if ((iLines == nLinesPerFrame-1) && (RAM_address == NBYTES_PER_ALINE-2)) 
                                 printf("tx_wr_pos at end = %p\n",tx_wr_pos);
                         #endif
