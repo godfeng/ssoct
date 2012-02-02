@@ -267,27 +267,67 @@
          type = "String";
       }
    }
-   element pb_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209084160";
-         type = "long";
-      }
-   }
-   element sys_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083392";
-         type = "long";
-      }
-   }
    element ext_flash.s1
    {
       datum baseAddress
       {
          value = "1140850688";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083776";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element sw_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209084032";
+         type = "long";
+      }
+   }
+   element pipeline_bridge_ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209079808";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083136";
+         type = "long";
+      }
+   }
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209008128";
          type = "long";
       }
    }
@@ -299,11 +339,43 @@
          type = "long";
       }
    }
-   element sw_pio.s1
+   element clock_crossing_0.s1
    {
       datum baseAddress
       {
-         value = "1209084032";
+         value = "0";
+         type = "long";
+      }
+   }
+   element pb_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209084160";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "1209082880";
+         type = "long";
+      }
+   }
+   element sys_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083392";
+         type = "long";
+      }
+   }
+   element onchip_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1208483840";
          type = "long";
       }
    }
@@ -320,78 +392,6 @@
       datum baseAddress
       {
          value = "1209083904";
-         type = "long";
-      }
-   }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element onchip_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1208483840";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209079808";
-         type = "long";
-      }
-   }
-   element packet_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209008128";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083136";
-         type = "long";
-      }
-   }
-   element vol_recording_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083776";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "1209082880";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
          type = "long";
       }
    }
@@ -528,7 +528,7 @@
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
  <parameter name="systemHash" value="-65014571582" />
- <parameter name="timeStamp" value="1327618554175" />
+ <parameter name="timeStamp" value="1328122207966" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />

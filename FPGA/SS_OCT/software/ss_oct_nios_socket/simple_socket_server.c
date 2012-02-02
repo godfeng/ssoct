@@ -391,6 +391,9 @@ void sss_exec_command(SSSConn* conn)
             
             // Wait for volume recording to be done
             while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+             #if DEBUG_CODE
+                printf("Volume recording done sent from LabView\nTransfer begins\n");
+            #endif  
             
             //////////////////////////////////////////////////////////
             // B-frame transfer loop
@@ -628,30 +631,30 @@ void sss_handle_receive(SSSConn* conn)
         */
         conn->state = conn->close ? CLOSE : READY;
         #if DEBUG_CODE
-            printf("Command executed1\n");
+            printf("Command executed_1\n");
         #endif
         /* Manage buffer */
         data_used = conn->rx_rd_pos - conn->rx_buffer;
         #if DEBUG_CODE
-            printf("Command executed2: wr_pos %p rd_pos %p\n",conn->rx_wr_pos, conn->rx_rd_pos);
-            printf("Data used %i\n",data_used);
+            printf("Command executed_2: wr_pos %p rd_pos %p\n",conn->rx_wr_pos, conn->rx_rd_pos);
+            printf("Data used: %i\n",data_used);
         #endif
         memmove(conn->rx_buffer, conn->rx_rd_pos, 
            conn->rx_wr_pos - conn->rx_rd_pos);
         #if DEBUG_CODE
-            printf("Command executed3\n");
+            printf("Command executed_3\n");
         #endif
         conn->rx_rd_pos = conn->rx_buffer;
         #if DEBUG_CODE
-            printf("Command executed4\n");
+            printf("Command executed_4\n");
         #endif
         conn->rx_wr_pos -= data_used;
         #if DEBUG_CODE
-            printf("Command executed5\n");
+            printf("Command executed_5\n");
         #endif
         //memset(conn->rx_wr_pos, 0, data_used);
         #if DEBUG_CODE
-            printf("Command executed6\n");
+            printf("Command executed_6\n");
         #endif
     }
     printf("[sss_handle_receive] closing connection\n");
