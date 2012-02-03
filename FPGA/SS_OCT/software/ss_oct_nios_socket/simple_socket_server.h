@@ -67,9 +67,10 @@
 #define         DDR2_SIZE_BYTES     1073741824  // 1073741824   DDR2 size = 1GBbyte
 #define         NSAMPLES            1170        // 1170         (Fixed by the swept source laser)
 #define         NBYTES_PER_ALINE    2368        // 1170*2=2340  (Must be a multiple of 32 bytes) -> SSS_TX_BUF_SIZE
-#define         DEBUG_CODE          1           // Display debug messages if 1
+#define         DEBUG_CODE_0        0           // Display debug messages if 1
+#define         DEBUG_CODE          1           // Display other debug messages if 1
 #define         USE_ORIGINAL        1           // Use original files from the simple socket server version
-#define         PRINT_TIME          1           // Print timer values
+#define         PRINT_TIME          0           // Print timer values
 
 
 /*

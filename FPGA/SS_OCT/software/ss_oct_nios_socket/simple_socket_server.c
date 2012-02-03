@@ -223,7 +223,7 @@ void sss_send_menu(SSSConn* conn)
     tx_wr_pos += sprintf(tx_wr_pos,"Enter your choice & press return:      \n");
     
     bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-    #if DEBUG_CODE
+    #if DEBUG_CODE_0
         printf("Bytes sent from the menu = %d\n",bytes_sent);
     #endif
       
@@ -320,7 +320,7 @@ void sss_exec_command(SSSConn* conn)
     //static INT8U SSSCommand;
     static unsigned char SSSCommand;
     
-    #if DEBUG_CODE
+    #if DEBUG_CODE_0
         printf("bytes to process %d\n", bytes_to_process);
     #endif
     
@@ -366,7 +366,7 @@ void sss_exec_command(SSSConn* conn)
                             menu = 1;       iParameters = -1;               break;
                     default:                                                break;
                 }
-                #if DEBUG_CODE  
+                #if DEBUG_CODE_0  
                     printf("nLinesPerFrame: %lu nFramesPerVol: %lu Count: %i\n", nLinesPerFrame, nFramesPerVol, iParameters);
                 #endif
                 iParameters++;
@@ -380,7 +380,7 @@ void sss_exec_command(SSSConn* conn)
             //////////////////////////////////////////////////////////
             // Reference measurements
             //////////////////////////////////////////////////////////
-            printf("Reference measurements\n");
+            printf("Reference measurements start\n");
             // Transmit initial trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
             usleep(1000);               // Pause 1 000 microseconds
@@ -392,7 +392,7 @@ void sss_exec_command(SSSConn* conn)
             // Wait for volume recording to be done
             while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
              #if DEBUG_CODE
-                printf("Volume recording done sent from LabView\nTransfer begins\n");
+                printf("Volume recording done sent from LabView\nReference frame transfer begins\n");
             #endif  
             
             //////////////////////////////////////////////////////////
@@ -407,7 +407,7 @@ void sss_exec_command(SSSConn* conn)
                 //////////////////////////////////////////////////////////
                 for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
                     {
-                        #if DEBUG_CODE
+                        #if DEBUG_CODE_0
                             if ((iLines == nLinesPerFrame-1) && (RAM_address == 0)) 
                                 printf("tx_wr_pos at beginning = %p\n",tx_wr_pos);
                         #endif
@@ -428,17 +428,20 @@ void sss_exec_command(SSSConn* conn)
                                 printf("17th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
                             if ((iLines == 0) && (RAM_address == 36))
                                 printf("18th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
+                        #endif
+                        #if DEBUG_CODE_0
                             if ((iLines == nLinesPerFrame-1) && (RAM_address == NBYTES_PER_ALINE-2)) 
                                 printf("tx_wr_pos at end = %p\n",tx_wr_pos);
                         #endif
+                            
                     } // END of A-line loop
-                    #if DEBUG_CODE
+                    #if DEBUG_CODE_0
                         if (iLines == nLinesPerFrame-1) 
                             printf("tx_wr_pos after A-line= %p\n",tx_wr_pos);
                     #endif
                 // Send a single A-line to the client
                 bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                #if DEBUG_CODE
+                #if DEBUG_CODE_0
                     if (iLines == nLinesPerFrame-1)
                     {
                         printf("tx_wr_pos after send = %p\n",tx_wr_pos);
@@ -453,6 +456,9 @@ void sss_exec_command(SSSConn* conn)
                 usleep(20); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
             printf("\nDDR2 address after reference: 0x%08lX\n",DDR2_address);
+             #if DEBUG_CODE
+                printf("REFERENCE B-FRAME SENT\n");
+             #endif
             menu = 1;
             iParameters = 0;
         }
@@ -568,7 +574,7 @@ void sss_exec_command(SSSConn* conn)
             iParameters = 0;
         }
     } // END while(bytes_to_process--)
-    #if DEBUG_CODE
+    #if DEBUG_CODE_0
         printf("Processed all bytes\n");
     #endif
     return;
@@ -608,7 +614,7 @@ void sss_handle_receive(SSSConn* conn)
     while(conn->state != CLOSE)
     {
         //Receiving bytes
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("\nNumber of bytes we are looking for: %li\n",
             SSS_RX_BUF_SIZE - (conn->rx_wr_pos - conn->rx_buffer) -1);
         #endif
@@ -621,13 +627,13 @@ void sss_handle_receive(SSSConn* conn)
             // Zero terminate so we can use string functions
             *(conn->rx_wr_pos+1) = 0; 
         }
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Data received addr: %p \n",conn->rx_wr_pos-n_bytes_received);  
             printf("rX buffer addr: %p \n",conn->rx_buffer);
         #endif    
         /* go off and do whatever the user wanted us to do */
         sss_exec_command(conn);
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed\n");
         #endif
          
@@ -636,30 +642,30 @@ void sss_handle_receive(SSSConn* conn)
         * we can exit the while() loop and close the connection
         */
         conn->state = conn->close ? CLOSE : READY;
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_1\n");
         #endif
         /* Manage buffer */
         data_used = conn->rx_rd_pos - conn->rx_buffer;
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_2: wr_pos %p rd_pos %p\n",conn->rx_wr_pos, conn->rx_rd_pos);
             printf("Data used: %i\n",data_used);
         #endif
         memmove(conn->rx_buffer, conn->rx_rd_pos, 
            conn->rx_wr_pos - conn->rx_rd_pos);
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_3\n");
         #endif
         conn->rx_rd_pos = conn->rx_buffer;
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_4\n");
         #endif
         conn->rx_wr_pos -= data_used;
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_5\n");
         #endif
         //memset(conn->rx_wr_pos, 0, data_used);
-        #if DEBUG_CODE
+        #if DEBUG_CODE_0
             printf("Command executed_6\n");
         #endif
     }
