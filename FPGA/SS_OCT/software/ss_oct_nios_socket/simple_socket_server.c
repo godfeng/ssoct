@@ -356,16 +356,6 @@ void sss_exec_command(SSSConn* conn)
                 //////////////////////////////////////////////////////////
                 switch (iParameters)
                 {
-//                    case 0: nLinesPerFrame   = SSSCommand;                  break;
-//                    case 1: nLinesPerFrame  += SSSCommand * 256;            break;
-//                    case 2: nLinesPerFrame  += SSSCommand * 65536;          break;
-//                    case 3: nLinesPerFrame  += SSSCommand * 16777216;       break;
-//                    
-//                    case 4: nFramesPerVol   = SSSCommand;                   break;
-//                    case 5: nFramesPerVol   += SSSCommand * 256;            break;
-//                    case 6: nFramesPerVol   += SSSCommand * 65536;          break;
-//                    case 7: nFramesPerVol   += SSSCommand * 16777216; 
-//                            menu = 1;       iParameters = -1;               break;
                     case 0: nLinesPerFrame   = SSSCommand;                  break;
                     case 1: nLinesPerFrame  += SSSCommand << 8;             break;
                     case 2: nLinesPerFrame  += SSSCommand << 16;            break;
