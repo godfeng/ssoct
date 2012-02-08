@@ -71,6 +71,7 @@
 #define         DEBUG_CODE          1           // Display other debug messages if 1
 #define         USE_ORIGINAL        1           // Use original files from the simple socket server version
 #define         PRINT_TIME          0           // Print timer values
+#define         TMPBFRAMESISE       37888       // Temporary B-frame stored in onchip memory (2368*16)
 
 
 /*

@@ -297,6 +297,7 @@ void sss_exec_command(SSSConn* conn)
     unsigned short  bytes_sent      = 0;
     unsigned long   iLines          = 0;
     unsigned short  iFrames         = 0;
+    //unsigned char   tmpBframe[TMPBFRAMESISE]; // temporary space to send data to workstation
     
     #if PRINT_TIME
         // timer stuff
@@ -331,18 +332,17 @@ void sss_exec_command(SSSConn* conn)
         #if DEBUG_CODE
             printf("Value of SSSCommand %i.\n", (INT8U)SSSCommand);
         #endif
-         printf("Value of menuDub %c.\n", menu);
         if(menu == 1)
         {
             // Initial menu
             switch (SSSCommand)
             {
-                case 65:   printf("A   : Send acquisition parameters      \n");    menu = 65;   break;
-                case 66:   printf("BB   : Take reference measurements      \n");    menu = 66;   break;
-                case 67:   printf("C   : Continuously send data to PC     \n");    menu = 67;   break;
-                case 68:   printf("D   : Test Menu                        \n");    menu = 68;   break;
-                case 69:   printf("E   : Test Menu                        \n");    menu = 69;   break;
-                case 70:   printf("F   : Test Menu                        \n");    menu = 70;   break;
+                case 65:   printf("\nA   : Send acquisition parameters    \n");    menu = 65;   break;
+                case 66:   printf("\nB   : Take reference measurements    \n");    menu = 66;   break;
+                case 67:   printf("\nC   : Continuously send data to PC   \n");    menu = 67;   break;
+                case 68:   printf("\nD   : Test Menu                      \n");    menu = 68;   break;
+                case 69:   printf("\nE   : Test Menu                      \n");    menu = 69;   break;
+                case 70:   printf("\nF   : Test Menu                      \n");    menu = 70;   break;
                 default:                                                                        break;
             }
         }
@@ -356,15 +356,25 @@ void sss_exec_command(SSSConn* conn)
                 //////////////////////////////////////////////////////////
                 switch (iParameters)
                 {
+//                    case 0: nLinesPerFrame   = SSSCommand;                  break;
+//                    case 1: nLinesPerFrame  += SSSCommand * 256;            break;
+//                    case 2: nLinesPerFrame  += SSSCommand * 65536;          break;
+//                    case 3: nLinesPerFrame  += SSSCommand * 16777216;       break;
+//                    
+//                    case 4: nFramesPerVol   = SSSCommand;                   break;
+//                    case 5: nFramesPerVol   += SSSCommand * 256;            break;
+//                    case 6: nFramesPerVol   += SSSCommand * 65536;          break;
+//                    case 7: nFramesPerVol   += SSSCommand * 16777216; 
+//                            menu = 1;       iParameters = -1;               break;
                     case 0: nLinesPerFrame   = SSSCommand;                  break;
-                    case 1: nLinesPerFrame  += SSSCommand * 256;            break;
-                    case 2: nLinesPerFrame  += SSSCommand * 65536;          break;
-                    case 3: nLinesPerFrame  += SSSCommand * 16777216;       break;
+                    case 1: nLinesPerFrame  += SSSCommand << 8;             break;
+                    case 2: nLinesPerFrame  += SSSCommand << 16;            break;
+                    case 3: nLinesPerFrame  += SSSCommand << 24;            break;
                     
                     case 4: nFramesPerVol   = SSSCommand;                   break;
-                    case 5: nFramesPerVol   += SSSCommand * 256;            break;
-                    case 6: nFramesPerVol   += SSSCommand * 65536;          break;
-                    case 7: nFramesPerVol   += SSSCommand * 16777216; 
+                    case 5: nFramesPerVol   += SSSCommand << 8;             break;
+                    case 6: nFramesPerVol   += SSSCommand << 16;            break;
+                    case 7: nFramesPerVol   += SSSCommand << 24; 
                             menu = 1;       iParameters = -1;               break;
                     default:                                                break;
                 }
@@ -377,6 +387,7 @@ void sss_exec_command(SSSConn* conn)
         #if DEBUG_CODE
             printf("menu = %d\n",menu);
         #endif          
+        
         if(menu == 66)//mode B
         {
             //////////////////////////////////////////////////////////
@@ -457,15 +468,15 @@ void sss_exec_command(SSSConn* conn)
                 // Wait a little... Should know why...
                 usleep(20); // 0.6 ms if sys_clk @ 90MHz
             } // END of volume / B-frame loop
-            printf("\nDDR2 address after reference: 0x%08lX\n",DDR2_address);
              #if DEBUG_CODE
+             printf("DDR2 address after reference: %lu\n",DDR2_address);
                 printf("REFERENCE B-FRAME SENT\n");
              #endif
             menu = 1;
             iParameters = 0;
         }
 
-        if(menu == 67)//mode c
+        if(menu == 67)//mode C
         {
             #if PRINT_TIME
                 // This is some timer code to help you time the amount of time it 
@@ -488,20 +499,22 @@ void sss_exec_command(SSSConn* conn)
             //////////////////////////////////////////////////////////
             // Continuous Acquisition
             //////////////////////////////////////////////////////////
-            printf("Continuous acquisition\n");
+            printf("\nCONTINUOUS ACQUISITION STARTED\n");
             #if DEBUG_CODE
                 printf("DDR2 address: %lu (same as before)\n",DDR2_address);
             #endif
             // Transmit initial trigger to LabView  
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            usleep(20);               // Pause 1 000 microseconds
+            usleep(20);               // Pause 20 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
             printf("Acquisition start trigger sent!\n");
             printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
             nLinesPerVol = nLinesPerFrame * nFramesPerVol;
             nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
-         
+            // Increment DDR2 address +1byte
+            DDR2_address ++;
+            
             while(1)
             {
                 #if PRINT_TIME
@@ -522,7 +535,7 @@ void sss_exec_command(SSSConn* conn)
                     }
                 #endif
                 
-                // Read if volumeAcqfinished then transfer
+                // Wait for volumeAcqfinished to be 1, and then transfer
                 while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
                 
                 #if PRINT_TIME
@@ -532,14 +545,12 @@ void sss_exec_command(SSSConn* conn)
                     printf("LabView signal sent after %u ticks.\n",(unsigned int) num_ticks);
                     printf("Volume transfer started...\n");
                 #endif
-                printf("DDR2 address: %lu (same as before)\n",DDR2_address);
+                
                 //////////////////////////////////////////////////////////
                 // B-Frame transfer loop
                 //////////////////////////////////////////////////////////
                 for (iFrames = 0; iFrames < nFramesPerVol; iFrames++)
                 {
-                    // Send a single A-line to the workstation
-//                    bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
                     // Send a whole B-frame to the workstation
                     bytes_sent = send(conn->fd, (unsigned char*)DDR2_address, nBytesPerFrame, 0);
                     // Increase DDR2 Address
@@ -549,11 +560,13 @@ void sss_exec_command(SSSConn* conn)
                         DDR2_address -= DDR2_SIZE_BYTES;
                     
                 } // END of volume / B-frame loop
+                
                 // Assert signal when the whole volume is transferred
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-                usleep(20);       // Pause 1 000 microseconds
+                // NO NEED TO WAIT (LabView is capable to detect fast rising edges)
                 // Transferred volume signal = 0
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                
                 #if PRINT_TIME
                     // retrieve time values for a B-frame
                     time2 = alt_timestamp();
@@ -561,11 +574,75 @@ void sss_exec_command(SSSConn* conn)
                     printf("%lu B-frames sent! No. ticks: %u\n", nFramesPerVol, (unsigned int) num_ticks);
                     printf("DDR2_address 0x%08lX\n", DDR2_address);
                 #endif
+                
+                #if DEBUG_CODE
+                    printf("%lu B-frames sent!\n", nFramesPerVol);      
+                    printf("DDR2 address: %lu\n", DDR2_address);
+                #endif
+                
             } // END of continuous transfer loop
             menu = 1;
             iParameters = 0;
         } // END case 67
-         if(menu == 70)//mode F
+         
+        if(menu == 69)//mode E
+        {
+            //////////////////////////////////////////////////////////
+            // Continuous Acquisition
+            //////////////////////////////////////////////////////////
+            printf("\nSENDING DATA FROM ONCHIP MEMORY\n");
+            #if DEBUG_CODE
+                printf("DDR2 address: %lu (same as before)\n",DDR2_address);
+            #endif
+            // Transmit initial trigger to LabView  
+            IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+            usleep(20);               // Pause 20 microseconds
+            // Reset trigger to LabView
+            IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
+            printf("Acquisition start trigger sent!\n");
+            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
+            nLinesPerVol = nLinesPerFrame * nFramesPerVol;
+            nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
+            // Increment DDR2 address +1byte
+            //DDR2_address++;
+         
+            while(1)
+            {
+                
+                // Wait for volumeAcqfinished to be 1, and then transfer
+                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+                //////////////////////////////////////////////////////////
+                // B-Frame transfer loop
+                //////////////////////////////////////////////////////////
+                for (iFrames = 0; iFrames < nFramesPerVol; iFrames++)
+                {
+                    // Send a whole B-frame to the workstation
+                    //bytes_sent = send(conn->fd, (unsigned char*)tmpBframe, TMPBFRAMESISE, 0);
+                    // Increase DDR2 Address
+                    //DDR2_address += nBytesPerFrame;
+                    //if (DDR2_address >= DDR2_SIZE_BYTES)
+                        // Reset DDR2 address if greater than 1Gbyte
+                        //DDR2_address -= DDR2_SIZE_BYTES;
+                    
+                } // END of volume / B-frame loop
+                
+                // Assert signal when the whole volume is transferred
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
+                // NO NEED TO WAIT (LabView is capable to detect fast rising edges)
+                // Transferred volume signal = 0
+                IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
+                
+                #if DEBUG_CODE
+                    printf("%lu B-frames sent!\n", nFramesPerVol);      
+                    printf("DDR2 address: %lu\n", DDR2_address);
+                #endif
+                
+            } // END of continuous transfer loop
+            menu = 1;
+            iParameters = 0;            
+        } // END case 69 
+         
+         if(menu == 70)//mode F (Test Dubeau)
         {
             #if PRINT_TIME
                 // This is some timer code to help you time the amount of time it 
@@ -666,98 +743,9 @@ void sss_exec_command(SSSConn* conn)
             } // END of continuous transfer loop
             menu = 1;
             iParameters = 0;
-        } // END case 67
+        } // END case 70
         
-        if(menu == 69)//mode e
-        {
-            //////////////////////////////////////////////////////////
-            // Continuous Acquisition
-            //////////////////////////////////////////////////////////
-            printf("Dubeau's acquisition\n");
-            #if DEBUG_CODE
-                printf("DDR2 address: %lu (same as before)\n",DDR2_address);
-            #endif
-            // Transmit initial trigger to LabView  
-            IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
-            usleep(20);               // Pause 1 000 microseconds
-            // Reset trigger to LabView
-            IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
-            printf("Acquisition start trigger sent!\n");
-            printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
-            nLinesPerVol = nLinesPerFrame * nFramesPerVol;
-            nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
-         
-            while(1)
-            {
-            // Read if volumeAcqfinished then transfer
-                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
-             
-             printf("DDR2 address: %lu (same as before)\n",DDR2_address);
-           //////////////////////////////////////////////////////////
-            // B-frame transfer loop
-            //////////////////////////////////////////////////////////
-            for (iLines = 0; iLines < nLinesPerFrame; iLines++)
-            {
-                // Begin the transfer
-                tx_wr_pos = tx_buf;
-                //////////////////////////////////////////////////////////
-                // Send single A-line
-                //////////////////////////////////////////////////////////
-                for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
-                    {
-                        #if DEBUG_CODE_0
-                            if ((iLines == nLinesPerFrame-1) && (RAM_address == 0)) 
-                                printf("tx_wr_pos at beginning = %p\n",tx_wr_pos);
-                        #endif
-                        // Write address port (to RAM)
-                        dataPointer = (unsigned char*)DDR2_address;
-                        // Send 16-bit data (swapped upper and lower bytes)
-                        *tx_wr_pos++ = dataPointer[1]; 
-                        *tx_wr_pos++ = dataPointer[0];
-                        // Read 2 bytes
-                        DDR2_address += 2;
-                        if (DDR2_address >= DDR2_SIZE_BYTES)
-                            // Reset DDR2 address if greater than 1Gbyte
-                            DDR2_address -= DDR2_SIZE_BYTES;
-                        #if DEBUG_CODE
-                            if ((iLines == 0) && (RAM_address == 32))
-                                printf("16th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
-                            if ((iLines == 0) && (RAM_address == 34))
-                                printf("17th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
-                            if ((iLines == 0) && (RAM_address == 36))
-                                printf("18th U16 = 0x%X%X = %u\n", *(dataPointer + 1), *dataPointer, *(dataPointer + 1) << 8 | *dataPointer);
-                        #endif
-                        #if DEBUG_CODE_0
-                            if ((iLines == nLinesPerFrame-1) && (RAM_address == NBYTES_PER_ALINE-2)) 
-                                printf("tx_wr_pos at end = %p\n",tx_wr_pos);
-                        #endif
-                            
-                    } // END of A-line loop
-                    #if DEBUG_CODE_0
-                        if (iLines == nLinesPerFrame-1) 
-                            printf("tx_wr_pos after A-line= %p\n",tx_wr_pos);
-                    #endif
-                // Send a single A-line to the client
-                bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
-                #if DEBUG_CODE_0
-                    if (iLines == nLinesPerFrame-1)
-                    {
-                        printf("tx_wr_pos after send = %p\n",tx_wr_pos);
-                        printf("tx_wr_pos after send = %p\n",tx_wr_pos);
-                        printf("bytes_sent = %i\n",bytes_sent);
-                        printf("tx_wr_pos - tx_buf = %li\n",tx_wr_pos - tx_buf);
-                        printf("First address of tx_buf = %p\n",&tx_buf[0]);
-                        printf("Last address of tx_buf = %p\n",&tx_buf[SSS_TX_BUF_SIZE]);
-                    }
-                #endif
-                // Wait a little... Should know why...
-                usleep(20); // 0.6 ms if sys_clk @ 90MHz
-            } // END of volume / B-frame loop 
-            }
-            menu = 1;
-            iParameters = 0;            
-        }
-        if(menu == 68)
+        if(menu == 90)
         {                
             //////////////////////////////////////////////////////////
             // Test menu
