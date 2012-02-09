@@ -297,7 +297,6 @@ void sss_exec_command(SSSConn* conn)
     unsigned short  bytes_sent      = 0;
     unsigned long   iLines          = 0;
     unsigned short  iFrames         = 0;
-    //unsigned char   tmpBframe[TMPBFRAMESISE]; // temporary space to send data to workstation
     
     #if PRINT_TIME
         // timer stuff
@@ -383,14 +382,14 @@ void sss_exec_command(SSSConn* conn)
             //////////////////////////////////////////////////////////
             // Reference measurements
             //////////////////////////////////////////////////////////
-            printf("Reference measurements start\n");
+            printf("REFERENCE MEASUREMENT STARTED\n");
             // Transmit initial trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
             usleep(1000);               // Pause 1 000 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);
-            printf("Reference trigger sent!\n");
             printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
+            printf("Reference trigger sent!\n");
             
             // Wait for volume recording to be done
             while(IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
@@ -489,7 +488,7 @@ void sss_exec_command(SSSConn* conn)
             //////////////////////////////////////////////////////////
             // Continuous Acquisition
             //////////////////////////////////////////////////////////
-            printf("\nCONTINUOUS ACQUISITION STARTED\n");
+            printf("CONTINUOUS ACQUISITION STARTED\n");
             #if DEBUG_CODE
                 printf("DDR2 address: %lu (same as before)\n",DDR2_address);
             #endif
@@ -498,8 +497,8 @@ void sss_exec_command(SSSConn* conn)
             usleep(20);               // Pause 20 microseconds
             // Reset trigger to LabView
             IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,0);           
-            printf("Acquisition start trigger sent!\n");
             printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
+            printf("Acquisition start trigger sent!\n");
             nLinesPerVol = nLinesPerFrame * nFramesPerVol;
             nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
             // Increment/decrement DDR2 address +1 / -1 bytes????????
@@ -548,7 +547,6 @@ void sss_exec_command(SSSConn* conn)
                     if (DDR2_address >= DDR2_SIZE_BYTES)
                         // Reset DDR2 address if greater than 1Gbyte
                         DDR2_address -= DDR2_SIZE_BYTES;
-                    
                 } // END of volume / B-frame loop
                 
                 // Assert signal when the whole volume is transferred
@@ -569,7 +567,6 @@ void sss_exec_command(SSSConn* conn)
                     printf("%lu B-frames sent!\n", nFramesPerVol);      
                     printf("DDR2 address: %lu\n", DDR2_address);
                 #endif
-                
             } // END of continuous transfer loop
             menu = 1;
             iParameters = 0;
