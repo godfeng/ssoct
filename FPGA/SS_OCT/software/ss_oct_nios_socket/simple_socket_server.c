@@ -1,5 +1,5 @@
 // OCT acquisition and data transfer via TCP/IP
-// Version Dubeau
+// LabView Version
 /******************************************************************************
 * Copyright (c) 2006 Altera Corporation, San Jose, California, USA.           *
 * All rights reserved. All use of this software and documentation is          *
@@ -48,7 +48,7 @@
 #include <sys/alt_timestamp.h>
 
 /* Global variables */
-unsigned long   DDR2_address    = 0;
+unsigned long   DDR2_address    = DDR2_BASE;
 unsigned char*  dataPointer;
 char            menu            = 1;
 unsigned long   nLinesPerFrame  = 0;
@@ -293,7 +293,7 @@ void sss_exec_command(SSSConn* conn)
     INT8U           tx_buf[SSS_TX_BUF_SIZE];
     INT8U*          tx_wr_pos = tx_buf;
     // Local variables
-    unsigned long   RAM_address     = 0;
+    unsigned short  RAM_address     = 0;
     unsigned short  bytes_sent      = 0;
     unsigned long   iLines          = 0;
     unsigned short  iFrames         = 0;
@@ -502,8 +502,8 @@ void sss_exec_command(SSSConn* conn)
             printf("A-lines per B-frame: %lu. B-frames per volume: %lu\n", nLinesPerFrame, nFramesPerVol);
             nLinesPerVol = nLinesPerFrame * nFramesPerVol;
             nBytesPerFrame = NBYTES_PER_ALINE * nLinesPerFrame;
-            // Increment DDR2 address +1byte
-            DDR2_address ++;
+            // Increment/decrement DDR2 address +1 / -1 bytes????????
+            DDR2_address--;
             
             while(1)
             {
@@ -599,22 +599,53 @@ void sss_exec_command(SSSConn* conn)
             while(1)
             {
                 
-                // Wait for volumeAcqfinished to be 1, and then transfer
-                while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+            // Wait for volumeAcqfinished to be 1, and then transfer
+            while (IORD_ALTERA_AVALON_PIO_DATA(VOL_RECORDING_DONE_PIO_BASE) == 0);
+            //////////////////////////////////////////////////////////
+            // B-frame transfer loop
+            //////////////////////////////////////////////////////////
+            for (iLines = 0; iLines < nLinesPerFrame; iLines++)
+            {
+                // Begin the transfer
+                tx_wr_pos = tx_buf;
                 //////////////////////////////////////////////////////////
-                // B-Frame transfer loop
+                // Send single A-line
                 //////////////////////////////////////////////////////////
-                for (iFrames = 0; iFrames < nFramesPerVol; iFrames++)
-                {
-                    // Send a whole B-frame to the workstation
-                    //bytes_sent = send(conn->fd, (unsigned char*)tmpBframe, TMPBFRAMESISE, 0);
-                    // Increase DDR2 Address
-                    //DDR2_address += nBytesPerFrame;
-                    //if (DDR2_address >= DDR2_SIZE_BYTES)
-                        // Reset DDR2 address if greater than 1Gbyte
-                        //DDR2_address -= DDR2_SIZE_BYTES;
-                    
-                } // END of volume / B-frame loop
+                for (RAM_address = 0; RAM_address < NBYTES_PER_ALINE; RAM_address += 2)
+                    {
+                        #if DEBUG_CODE_0
+                            if ((iLines == nLinesPerFrame-1) && (RAM_address == 0)) 
+                                printf("tx_wr_pos at beginning = %p\n",tx_wr_pos);
+                        #endif
+                        // Write address port (to RAM)
+                        //dataPointer = (unsigned char*)&RAM_address;
+                        // Send 16-bit data (swapped upper and lower bytes)
+                        *tx_wr_pos++ = 0x7A; //(RAM_address>>8)&0xFF; // Hi byte
+                        *tx_wr_pos++ = 0x58; //RAM_address&0xFF;; // Low Byte
+
+                        // Read 2 bytes
+                        #if DEBUG_CODE
+                            if ((iLines == 0) && (RAM_address == NBYTES_PER_ALINE-4))
+                                printf("1182th U16 = 0x%X%X = %u\n", (RAM_address>>8), RAM_address&0xFF, ((RAM_address>>8)&0xFF) | (RAM_address&0xFF) );
+                            if ((iLines == 0) && (RAM_address == NBYTES_PER_ALINE-2))
+                                printf("1183th U16 = 0x%X%X = %u\n", (RAM_address>>8), RAM_address&0xFF, ((RAM_address>>8)&0xFF) | (RAM_address&0xFF) );
+                        #endif
+                        #if DEBUG_CODE_0
+                            if ((iLines == nLinesPerFrame-1) && (RAM_address == NBYTES_PER_ALINE-2)) 
+                                printf("tx_wr_pos at end = %p\n",tx_wr_pos);
+                        #endif
+                            
+                    } // END of A-line loop
+                    #if DEBUG_CODE_0
+                        if (iLines == nLinesPerFrame-1) 
+                            printf("tx_wr_pos after A-line= %p\n",tx_wr_pos);
+                    #endif
+                // Send a single A-line to the client
+                bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                
+                // Wait a little... Should know why...
+                usleep(20); // 0.6 ms if sys_clk @ 90MHz
+            } // END of volume / B-frame loop
                 
                 // Assert signal when the whole volume is transferred
                 IOWR_ALTERA_AVALON_PIO_DATA(VOL_TRANSFER_DONE_PIO_BASE,1);
