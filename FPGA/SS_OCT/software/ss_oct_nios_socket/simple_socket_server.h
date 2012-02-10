@@ -101,8 +101,8 @@ void SSSCreateTasks();
  * 
  *  MicroC/OS-II only allows one task (thread) per priority number.   
  */
-#define LED_MANAGEMENT_TASK_PRIORITY            7
-#define LED_7SEG_LIGHTSHOW_TASK_PRIORITY        18
+//#define LED_MANAGEMENT_TASK_PRIORITY            7
+//#define LED_7SEG_LIGHTSHOW_TASK_PRIORITY        18
 #define SSS_SIMPLE_SOCKET_SERVER_TASK_PRIORITY  6
 #define SSS_INITIAL_TASK_PRIORITY               5
 
@@ -144,28 +144,28 @@ void SSSCreateTasks();
 /* 
  * Defined commands for the sss server to interpret
  */
-#define CMD_LEDS_BIT_0_TOGGLE   '0'
-#define CMD_LEDS_BIT_1_TOGGLE   '1'
-#define CMD_LEDS_BIT_2_TOGGLE   '2'
-#define CMD_LEDS_BIT_3_TOGGLE   '3'
-#define CMD_LEDS_BIT_4_TOGGLE   '4'
-#define CMD_LEDS_BIT_5_TOGGLE   '5'
-#define CMD_LEDS_BIT_6_TOGGLE   '6'
-#define CMD_LEDS_BIT_7_TOGGLE   '7'
-#define CMD_LEDS_LIGHTSHOW      'S'
+//#define CMD_LEDS_BIT_0_TOGGLE   '0'
+//#define CMD_LEDS_BIT_1_TOGGLE   '1'
+//#define CMD_LEDS_BIT_2_TOGGLE   '2'
+//#define CMD_LEDS_BIT_3_TOGGLE   '3'
+//#define CMD_LEDS_BIT_4_TOGGLE   '4'
+//#define CMD_LEDS_BIT_5_TOGGLE   '5'
+//#define CMD_LEDS_BIT_6_TOGGLE   '6'
+//#define CMD_LEDS_BIT_7_TOGGLE   '7'
+//#define CMD_LEDS_LIGHTSHOW      'S'
 #define CMD_QUIT                'Q'
   
 /* 
  * Bit Masks for LED Toggles 
  */
-#define BIT_0 0x1
-#define BIT_1 0x2
-#define BIT_2 0x4
-#define BIT_3 0x8
-#define BIT_4 0x10
-#define BIT_5 0x20
-#define BIT_6 0x40
-#define BIT_7 0x80
+//#define BIT_0 0x1
+//#define BIT_1 0x2
+//#define BIT_2 0x4
+//#define BIT_3 0x8
+//#define BIT_4 0x10
+//#define BIT_5 0x20
+//#define BIT_6 0x40
+//#define BIT_7 0x80
 
 /* 
  * TX & RX buffer sizes for all socket sends & receives in our sss app
