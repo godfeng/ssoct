@@ -72,16 +72,18 @@ unsigned char   volAcqFinished  = 0;
  * the Q for sending commands received on the TCP-IP socket from the 
  * SSSSimpleSocketServerTask to the LEDManagementTask.
  */
-OS_EVENT  *SSSLEDCommandQ;
-#define SSS_LED_COMMAND_Q_SIZE  30  /* Message capacity of SSSLEDCommandQ */
-void *SSSLEDCommandQTbl[SSS_LED_COMMAND_Q_SIZE]; /*Storage for SSSLEDCommandQ*/
+ 
+//OS_EVENT  *SSSLEDCommandQ;
+//#define SSS_LED_COMMAND_Q_SIZE  30  /* Message capacity of SSSLEDCommandQ */
+//void *SSSLEDCommandQTbl[SSS_LED_COMMAND_Q_SIZE]; /*Storage for SSSLEDCommandQ*/
 
 
 /*
  * Handle to our MicroC/OS-II LED Event Flag.  Each flag corresponds to one of
  * the LEDs on the Nios Development board, D0 - D7. 
  */
-OS_FLAG_GRP *SSSLEDEventFlag;
+ 
+//OS_FLAG_GRP *SSSLEDEventFlag;
 
 /*
  * Handle to our MicroC/OS-II LED Lightshow Semaphore. The semaphore is checked 
@@ -92,34 +94,35 @@ OS_FLAG_GRP *SSSLEDEventFlag;
  * command sent from the SSSSimpleSocketServerTask when the user sends a toggle 
  * lightshow command over the TCPIP socket.
  */
-OS_EVENT *SSSLEDLightshowSem;
+ 
+//OS_EVENT *SSSLEDLightshowSem;
 
 /* Definition of Task Stacks for tasks not invoked by TK_NEWTASK 
  * (do not use NicheStack) 
  */
 
-OS_STK    LEDManagementTaskStk[TASK_STACKSIZE];
-OS_STK    LED7SegLightshowTaskStk[TASK_STACKSIZE];
+//OS_STK    LEDManagementTaskStk[TASK_STACKSIZE];
+//OS_STK    LED7SegLightshowTaskStk[TASK_STACKSIZE];
 
 /*
  * Create our MicroC/OS-II resources. All of the resources beginning with 
  * "SSS" are declared in this file, and created in this function.
  */
-void SSSCreateOSDataStructs(void)
-{
-  INT8U error_code;
-  
-  /*
-  * Create the resource for our MicroC/OS-II Queue for sending commands 
-  * received on the TCP/IP socket from the SSSSimpleSocketServerTask()
-  * to the LEDManagementTask().
-  */
-  SSSLEDCommandQ = OSQCreate(&SSSLEDCommandQTbl[0], SSS_LED_COMMAND_Q_SIZE);
-  if (!SSSLEDCommandQ)
-  {
-     alt_uCOSIIErrorHandler(EXPANDED_DIAGNOSIS_CODE, 
-     "Failed to create SSSLEDCommandQ.\n");
-  }
+//void SSSCreateOSDataStructs(void)
+//{
+//  INT8U error_code;
+//  
+//  /*
+//  * Create the resource for our MicroC/OS-II Queue for sending commands 
+//  * received on the TCP/IP socket from the SSSSimpleSocketServerTask()
+//  * to the LEDManagementTask().
+//  */
+//  SSSLEDCommandQ = OSQCreate(&SSSLEDCommandQTbl[0], SSS_LED_COMMAND_Q_SIZE);
+//  if (!SSSLEDCommandQ)
+//  {
+//     alt_uCOSIIErrorHandler(EXPANDED_DIAGNOSIS_CODE, 
+//     "Failed to create SSSLEDCommandQ.\n");
+//  }
   
  /* Create our MicroC/OS-II LED Lightshow Semaphore.  The semaphore is checked 
   * by the SSSLEDLightshowTask each time it updates 7 segment LED displays, 
@@ -129,57 +132,59 @@ void SSSCreateOSDataStructs(void)
   * command sent from the SSSSimpleSocketServerTask when the user sends the 
   * toggle lightshow command over the TCPIP socket.
   */
-  SSSLEDLightshowSem = OSSemCreate(1);
-  if (!SSSLEDLightshowSem)
-  {
-     alt_uCOSIIErrorHandler(EXPANDED_DIAGNOSIS_CODE, 
-                            "Failed to create SSSLEDLightshowSem.\n");
-  }
+
+//  SSSLEDLightshowSem = OSSemCreate(1);
+//  if (!SSSLEDLightshowSem)
+//  {
+//     alt_uCOSIIErrorHandler(EXPANDED_DIAGNOSIS_CODE, 
+//                            "Failed to create SSSLEDLightshowSem.\n");
+//  }
   
  /*
   * Create our MicroC/OS-II LED Event Flag.  Each flag corresponds to one of
   * the LEDs on the Nios Development board, D0 - D7. 
   */   
-  SSSLEDEventFlag = OSFlagCreate(0, &error_code);
-  if (!SSSLEDEventFlag)
-  {
-     alt_uCOSIIErrorHandler(error_code, 0);
-  }
-}
+  
+//  SSSLEDEventFlag = OSFlagCreate(0, &error_code);
+//  if (!SSSLEDEventFlag)
+//  {
+//     alt_uCOSIIErrorHandler(error_code, 0);
+//  }
+//}
 
 /* This function creates tasks used in this example which do not use sockets.
  * Tasks which use Interniche sockets must be created with TK_NEWTASK.
  */
  
-void SSSCreateTasks(void)
-{
-   INT8U error_code;
-  
-   error_code = OSTaskCreateExt(LED7SegLightshowTask,
-                             NULL,
-                             (void *)&LED7SegLightshowTaskStk[TASK_STACKSIZE-1],
-                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
-                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
-                             LED7SegLightshowTaskStk,
-                             TASK_STACKSIZE,
-                             NULL,
-                             0);
-   
-   alt_uCOSIIErrorHandler(error_code, 0);
-  
-   error_code = OSTaskCreateExt(LEDManagementTask,
-                              NULL,
-                              (void *)&LEDManagementTaskStk[TASK_STACKSIZE-1],
-                              LED_MANAGEMENT_TASK_PRIORITY,
-                              LED_MANAGEMENT_TASK_PRIORITY,
-                              LEDManagementTaskStk,
-                              TASK_STACKSIZE,
-                              NULL,
-                              0);
-
-   alt_uCOSIIErrorHandler(error_code, 0);
-
-}
+//void SSSCreateTasks(void)
+//{
+//   INT8U error_code;
+//  
+//   error_code = OSTaskCreateExt(LED7SegLightshowTask,
+//                             NULL,
+//                             (void *)&LED7SegLightshowTaskStk[TASK_STACKSIZE-1],
+//                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
+//                             LED_7SEG_LIGHTSHOW_TASK_PRIORITY,
+//                             LED7SegLightshowTaskStk,
+//                             TASK_STACKSIZE,
+//                             NULL,
+//                             0);
+//   
+//   alt_uCOSIIErrorHandler(error_code, 0);
+//  
+//   error_code = OSTaskCreateExt(LEDManagementTask,
+//                              NULL,
+//                              (void *)&LEDManagementTaskStk[TASK_STACKSIZE-1],
+//                              LED_MANAGEMENT_TASK_PRIORITY,
+//                              LED_MANAGEMENT_TASK_PRIORITY,
+//                              LEDManagementTaskStk,
+//                              TASK_STACKSIZE,
+//                              NULL,
+//                              0);
+//
+//   alt_uCOSIIErrorHandler(error_code, 0);
+//
+//}
 
 
 /*
