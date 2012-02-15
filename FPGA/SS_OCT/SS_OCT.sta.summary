@@ -3,20 +3,20 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -3.682
-TNS   : -15.167
-
-Type  : Slow 900mV 85C Model Setup 'OSC_50_BANK3'
-Slack : -1.831
-TNS   : -29.243
+Slack : -3.728
+TNS   : -12.795
 
 Type  : Slow 900mV 85C Model Setup 'ADA_DCO'
-Slack : -1.152
-TNS   : -516.578
+Slack : -1.159
+TNS   : -516.208
+
+Type  : Slow 900mV 85C Model Setup 'OSC_50_BANK3'
+Slack : -1.029
+TNS   : -15.634
 
 Type  : Slow 900mV 85C Model Setup 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.457
-TNS   : -3.672
+Slack : -0.620
+TNS   : -3.461
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDQSS'
 Slack : 0.233
@@ -35,7 +35,7 @@ Slack : 0.263
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.292
+Slack : 0.331
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDSS'
@@ -55,7 +55,7 @@ Slack : 0.392
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.409
+Slack : 0.517
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[4]'
@@ -63,39 +63,39 @@ Slack : 0.526
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
-Slack : 0.574
+Slack : 0.567
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
-Slack : 0.577
+Slack : 0.576
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_fall'
-Slack : 0.586
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
-Slack : 0.589
+Slack : 0.579
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
-Slack : 0.592
+Slack : 0.585
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
+Slack : 0.588
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
-Slack : 0.595
+Slack : 0.594
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_fall'
-Slack : 0.604
+Slack : 0.597
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_rise'
-Slack : 0.607
+Slack : 0.606
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
-Slack : 0.894
+Slack : 0.920
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
@@ -111,26 +111,6 @@ Slack : 1.041
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.041
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.041
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.041
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.041
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.041
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
 Slack : 1.041
 TNS   : 0.000
 
@@ -150,6 +130,22 @@ Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_ph
 Slack : 1.042
 TNS   : 0.000
 
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.042
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.042
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.042
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.042
+TNS   : 0.000
+
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
 Slack : 1.042
 TNS   : 0.000
@@ -158,100 +154,104 @@ Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_ph
 Slack : 1.042
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
 Slack : 1.042
 TNS   : 0.000
 
+Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.043
+TNS   : 0.000
+
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 1.494
+Slack : 1.518
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 2.560
+Slack : 2.820
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.273
+Slack : 3.225
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.600
+Slack : 7.980
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Setup 'altera_reserved_tck'
-Slack : 43.726
+Slack : 44.518
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -1.296
-TNS   : -8.199
+Slack : -1.607
+TNS   : -5.831
 
 Type  : Slow 900mV 85C Model Hold 'altera_reserved_tck'
-Slack : -0.097
-TNS   : -0.097
+Slack : -0.466
+TNS   : -0.466
 
 Type  : Slow 900mV 85C Model Hold 'ADA_DCO'
-Slack : 0.043
+Slack : 0.021
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
 Slack : 0.088
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.130
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.131
+Slack : 0.103
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 0.134
+Slack : 0.115
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 0.143
+Slack : 0.123
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.149
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'OSC_50_BANK3'
-Slack : 0.162
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.163
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.167
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.172
+Slack : 0.136
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.183
+Slack : 0.144
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.156
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.177
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.184
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'OSC_50_BANK3'
+Slack : 0.226
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.236
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.244
+Slack : 0.235
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 0.252
+Slack : 0.244
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.256
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.303
+Slack : 0.293
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_tDQSS'
@@ -271,27 +271,27 @@ Slack : 0.499
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.515
+Slack : 0.513
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_fall'
-Slack : 0.559
+Slack : 0.554
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_rise'
-Slack : 0.568
+Slack : 0.555
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
+Slack : 0.566
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
+Slack : 0.567
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_tDSS'
 Slack : 0.568
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
-Slack : 0.571
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
-Slack : 0.580
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_tDSS'
@@ -299,31 +299,27 @@ Slack : 0.580
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_fall'
-Slack : 0.606
+Slack : 0.601
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
-Slack : 0.615
+Slack : 0.602
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
+Slack : 0.613
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
+Slack : 0.614
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_tDSS'
 Slack : 0.615
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
-Slack : 0.618
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
-Slack : 0.627
-TNS   : 0.000
-
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDSS'
 Slack : 0.627
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.060
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
@@ -334,15 +330,7 @@ Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy
 Slack : 1.061
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.061
 TNS   : 0.000
 
@@ -351,6 +339,18 @@ Slack : 1.062
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.062
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.062
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.062
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.062
 TNS   : 0.000
 
@@ -363,86 +363,86 @@ Slack : 1.657
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.132
+Slack : 0.139
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.169
+Slack : 0.303
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.540
+Slack : 0.406
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.208
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.425
+Slack : 1.681
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.606
+Slack : 1.881
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.675
+Slack : 1.929
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.467
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.712
+Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.968
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 3.033
+Slack : 2.110
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.198
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 3.230
+Slack : 3.301
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.339
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 3.815
+Slack : 3.691
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 4.141
+Slack : 4.150
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'OSC_50_BANK3'
-Slack : 5.267
+Slack : 4.276
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 19.127
+Slack : 19.115
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'altera_reserved_tck'
-Slack : 45.754
+Slack : 45.664
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'altera_reserved_tck'
-Slack : -1.344
-TNS   : -1.344
+Slack : -1.351
+TNS   : -1.351
 
 Type  : Slow 900mV 85C Model Removal 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.196
-TNS   : -185.491
+Slack : -0.168
+TNS   : -151.416
 
 Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.287
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'OSC_50_BANK3'
-Slack : 0.325
+Slack : 0.280
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.427
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'OSC_50_BANK3'
 Slack : 0.431
 TNS   : 0.000
 
@@ -450,44 +450,44 @@ Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_
 Slack : 0.440
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.495
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.462
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.501
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
+Slack : 0.510
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.534
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.601
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.649
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 0.661
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.712
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.747
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.812
+Slack : 0.524
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.975
+Slack : 0.557
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.641
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.660
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 0.695
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.700
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.732
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.775
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
@@ -543,11 +543,11 @@ Slack : 1.693
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 1.718
+Slack : 1.711
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 1.759
+Slack : 1.763
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
@@ -559,6 +559,10 @@ Slack : 2.348
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.348
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
 Slack : 2.348
 TNS   : 0.000
 
@@ -582,49 +586,45 @@ Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2
 Slack : 2.349
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.349
-TNS   : 0.000
-
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 2.537
+Slack : 2.538
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'ADA_DCO'
-Slack : 2.563
+Slack : 2.562
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.073
+Slack : 3.065
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 3.205
+Slack : 3.212
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'OSC_50_BANK3'
-Slack : 8.951
+Slack : 8.957
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.961
+Slack : 8.966
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -3.481
-TNS   : -11.988
-
-Type  : Slow 900mV 0C Model Setup 'OSC_50_BANK3'
-Slack : -1.802
-TNS   : -28.776
+Slack : -3.537
+TNS   : -12.070
 
 Type  : Slow 900mV 0C Model Setup 'ADA_DCO'
-Slack : -1.087
-TNS   : -487.865
+Slack : -1.101
+TNS   : -488.296
+
+Type  : Slow 900mV 0C Model Setup 'OSC_50_BANK3'
+Slack : -1.043
+TNS   : -16.015
 
 Type  : Slow 900mV 0C Model Setup 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.391
-TNS   : -2.601
+Slack : -0.520
+TNS   : -2.605
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDQSS'
 Slack : 0.275
@@ -659,7 +659,7 @@ Slack : 0.412
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.416
+Slack : 0.422
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[4]'
@@ -667,19 +667,15 @@ Slack : 0.543
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
-Slack : 0.627
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.634
+Slack : 0.625
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_fall'
-Slack : 0.637
+Slack : 0.635
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
-Slack : 0.640
+Slack : 0.638
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
@@ -687,7 +683,7 @@ Slack : 0.645
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_fall'
-Slack : 0.651
+Slack : 0.649
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
@@ -702,8 +698,28 @@ Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy
 Slack : 0.669
 TNS   : 0.000
 
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.684
+TNS   : 0.000
+
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
-Slack : 0.928
+Slack : 0.938
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.060
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.060
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.060
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.060
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
@@ -730,31 +746,23 @@ Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy
 Slack : 1.061
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.061
-TNS   : 0.000
-
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.062
+Slack : 1.061
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.062
+Slack : 1.061
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.061
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 1.062
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.062
 TNS   : 0.000
 
@@ -762,104 +770,96 @@ Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy
 Slack : 1.062
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 1.063
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.063
-TNS   : 0.000
-
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 1.527
+Slack : 1.537
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 2.635
+Slack : 2.888
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.301
+Slack : 3.259
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.625
+Slack : 8.051
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'altera_reserved_tck'
-Slack : 44.007
+Slack : 44.700
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -1.215
-TNS   : -11.379
+Slack : -1.561
+TNS   : -8.991
 
 Type  : Slow 900mV 0C Model Hold 'altera_reserved_tck'
-Slack : -0.097
-TNS   : -0.097
+Slack : -0.414
+TNS   : -0.414
 
 Type  : Slow 900mV 0C Model Hold 'ADA_DCO'
-Slack : 0.025
+Slack : 0.009
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.076
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.083
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.086
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
 Slack : 0.095
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.099
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.100
-TNS   : 0.000
-
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.121
+Slack : 0.107
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 0.123
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.126
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'OSC_50_BANK3'
-Slack : 0.143
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.144
+Slack : 0.107
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.152
+Slack : 0.121
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.122
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.144
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.153
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.166
+Slack : 0.174
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.235
+Type  : Slow 900mV 0C Model Hold 'OSC_50_BANK3'
+Slack : 0.204
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.235
+Slack : 0.234
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 0.249
+Slack : 0.245
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.245
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.292
+Slack : 0.286
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_tDQSS'
@@ -875,7 +875,7 @@ Slack : 0.506
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.513
+Slack : 0.511
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDQSS'
@@ -883,43 +883,43 @@ Slack : 0.516
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_rise'
+Slack : 0.551
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
 Slack : 0.561
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_fall'
-Slack : 0.564
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
-Slack : 0.571
+Slack : 0.563
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
-Slack : 0.574
+Slack : 0.573
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_tDSS'
 Slack : 0.594
 TNS   : 0.000
 
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
+Slack : 0.595
+TNS   : 0.000
+
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_tDSS'
 Slack : 0.604
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
 Slack : 0.605
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_fall'
-Slack : 0.608
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
-Slack : 0.615
+Slack : 0.607
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
-Slack : 0.618
+Slack : 0.617
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_tDSS'
@@ -928,10 +928,6 @@ TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDSS'
 Slack : 0.648
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.075
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
@@ -947,19 +943,23 @@ Slack : 1.075
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.076
+Slack : 1.075
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.075
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.076
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.077
+Slack : 1.076
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.077
+Slack : 1.076
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
@@ -967,135 +967,135 @@ Slack : 1.155
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[4]'
-Slack : 1.674
+Slack : 1.673
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.220
+Slack : 0.225
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.293
+Slack : 0.354
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.780
+Slack : 0.673
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.353
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.546
+Slack : 1.802
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.720
+Slack : 1.987
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.790
+Slack : 2.027
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.555
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.784
+Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 2.081
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 3.117
+Slack : 2.261
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.269
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 3.308
+Slack : 3.344
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.386
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 3.860
+Slack : 3.743
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 4.165
+Slack : 4.177
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'OSC_50_BANK3'
-Slack : 5.432
+Slack : 4.530
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 19.148
+Slack : 19.137
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 46.223
+Slack : 46.163
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'altera_reserved_tck'
-Slack : -1.204
-TNS   : -1.204
+Slack : -1.211
+TNS   : -1.211
 
 Type  : Slow 900mV 0C Model Removal 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.236
-TNS   : -229.582
-
-Type  : Slow 900mV 0C Model Removal 'OSC_50_BANK3'
-Slack : 0.248
-TNS   : 0.000
+Slack : -0.207
+TNS   : -181.509
 
 Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.258
+Slack : 0.208
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.414
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'OSC_50_BANK3'
 Slack : 0.416
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 0.424
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.482
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.490
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.507
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.570
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.625
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 0.643
+Slack : 0.426
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.676
+Slack : 0.446
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.715
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
+Slack : 0.494
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.764
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.495
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.910
+Slack : 0.538
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.615
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.636
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 0.680
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.690
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.705
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.755
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
@@ -1118,6 +1118,10 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 0.723
 TNS   : 0.000
 
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.710
+TNS   : 0.000
+
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
 Slack : 1.710
 TNS   : 0.000
@@ -1126,15 +1130,7 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 1.710
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 1.711
-TNS   : 0.000
-
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.711
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
 Slack : 1.711
 TNS   : 0.000
 
@@ -1150,16 +1146,24 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 1.711
 TNS   : 0.000
 
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 1.712
+TNS   : 0.000
+
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 1.720
+Slack : 1.714
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 1.778
+Slack : 1.783
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 1.850
+Slack : 1.848
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.361
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
@@ -1170,15 +1174,7 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 2.361
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.362
-TNS   : 0.000
-
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.362
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
 Slack : 2.362
 TNS   : 0.000
 
@@ -1194,8 +1190,12 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 2.362
 TNS   : 0.000
 
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.363
+TNS   : 0.000
+
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 2.547
+Slack : 2.554
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'ADA_DCO'
@@ -1203,7 +1203,7 @@ Slack : 2.558
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.077
+Slack : 3.070
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
@@ -1211,27 +1211,27 @@ Slack : 3.215
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'OSC_50_BANK3'
-Slack : 8.956
+Slack : 8.962
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.959
+Slack : 8.964
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -1.767
-TNS   : -5.884
-
-Type  : Fast 900mV 0C Model Setup 'OSC_50_BANK3'
-Slack : -0.997
-TNS   : -15.108
+Slack : -1.777
+TNS   : -5.924
 
 Type  : Fast 900mV 0C Model Setup 'ADA_DCO'
-Slack : -0.813
-TNS   : -370.511
+Slack : -0.822
+TNS   : -369.598
+
+Type  : Fast 900mV 0C Model Setup 'OSC_50_BANK3'
+Slack : -0.472
+TNS   : -6.128
 
 Type  : Fast 900mV 0C Model Setup 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.218
+Slack : 0.167
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_tDQSS'
@@ -1303,27 +1303,19 @@ Slack : 0.815
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 1.108
+Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.108
+Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.108
+Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.108
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 1.108
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.108
+Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
@@ -1331,6 +1323,14 @@ Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.109
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 1.109
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.109
 TNS   : 0.000
 
@@ -1367,111 +1367,111 @@ Slack : 1.109
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
-Slack : 1.118
+Slack : 1.134
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 1.303
+Slack : 1.291
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 1.344
+Slack : 1.368
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 1.715
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 3.436
+Slack : 1.729
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.510
+Slack : 3.454
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
+Slack : 3.643
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.863
+Slack : 8.339
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'altera_reserved_tck'
-Slack : 46.891
+Slack : 46.950
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.912
-TNS   : -4.231
+Slack : -1.030
+TNS   : -3.433
 
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.082
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.085
+Type  : Fast 900mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.053
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'OSC_50_BANK3'
-Slack : 0.091
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'altera_reserved_tck'
-Slack : 0.091
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'ADA_DCO'
-Slack : 0.096
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.098
+Slack : 0.065
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 0.099
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.107
+Slack : 0.069
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.111
+Slack : 0.082
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'ADA_DCO'
+Slack : 0.090
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.095
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.100
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 0.121
+Slack : 0.115
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.124
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.128
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.115
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.129
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.129
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 0.130
+Slack : 0.119
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.135
+Slack : 0.122
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.128
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.130
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
+Slack : 0.131
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.131
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.132
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.162
+Slack : 0.155
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.440
+Slack : 0.438
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_tDQSS'
@@ -1483,19 +1483,19 @@ Slack : 0.493
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_fall'
-Slack : 0.502
+Slack : 0.504
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_fall'
-Slack : 0.503
+Slack : 0.505
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_ac_rise'
-Slack : 0.519
+Slack : 0.516
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_ac_rise'
-Slack : 0.520
+Slack : 0.517
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDQSS'
@@ -1507,43 +1507,39 @@ Slack : 0.520
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_fall'
-Slack : 0.530
+Slack : 0.532
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_fall'
-Slack : 0.530
+Slack : 0.532
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_ac_rise'
-Slack : 0.547
+Slack : 0.544
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_ac_rise'
-Slack : 0.547
+Slack : 0.544
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[0]_tDSS'
-Slack : 0.605
+Slack : 0.604
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_n_M1_DDR2_clk_n[1]_tDSS'
-Slack : 0.606
+Slack : 0.605
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[0]_tDSS'
-Slack : 0.633
+Slack : 0.632
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_ck_p_M1_DDR2_clk[1]_tDSS'
-Slack : 0.633
+Slack : 0.632
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
 Slack : 1.082
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.129
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
@@ -1554,12 +1550,12 @@ Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_
 Slack : 1.129
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
 Slack : 1.129
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
-Slack : 1.129
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.130
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
@@ -1574,136 +1570,140 @@ Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_
 Slack : 1.130
 TNS   : 0.000
 
+Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[1].clk_div_slave|clkout'
+Slack : 1.130
+TNS   : 0.000
+
 Type  : Fast 900mV 0C Model Hold 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[4]'
-Slack : 1.494
+Slack : 1.495
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.088
+Slack : 0.187
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.484
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.689
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.837
+Slack : 0.494
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 2.866
+Slack : 2.761
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 2.949
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.948
+Slack : 3.082
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 2.978
+Slack : 3.120
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 3.513
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 3.681
+Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.147
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 3.797
+Slack : 3.244
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
+Slack : 3.953
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 3.996
+Slack : 4.025
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 4.063
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 4.328
+Slack : 4.255
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 4.501
+Slack : 4.511
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'OSC_50_BANK3'
-Slack : 5.678
+Slack : 5.007
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 19.497
+Slack : 19.490
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 46.770
+Slack : 46.784
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'altera_reserved_tck'
-Slack : -0.998
-TNS   : -0.998
+Slack : -1.002
+TNS   : -1.002
 
 Type  : Fast 900mV 0C Model Removal 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -0.153
-TNS   : -154.322
+Slack : -0.103
+TNS   : -88.589
 
 Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.239
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'OSC_50_BANK3'
-Slack : 0.240
+Slack : 0.236
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_pll|the_pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.244
+Slack : 0.241
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'OSC_50_BANK3'
+Slack : 0.242
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 0.248
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 0.280
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.300
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.333
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.352
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.352
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 0.354
+Slack : 0.249
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.396
+Slack : 0.262
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.410
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
+Slack : 0.288
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 0.460
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[6].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.327
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[0].clk_div_slave|clkout'
-Slack : 0.589
+Slack : 0.330
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.344
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[5].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.376
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 0.388
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.401
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[0].clk_div_slave|clkout'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
+Slack : 0.442
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
@@ -1715,7 +1715,7 @@ Slack : 0.168
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.492
+Slack : 0.491
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[3]'
@@ -1723,11 +1723,7 @@ Slack : 0.493
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[4]'
-Slack : 0.700
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
-Slack : 1.702
+Slack : 0.701
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[0].clk_div_slave|clkout'
@@ -1758,36 +1754,36 @@ Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 1.702
 TNS   : 0.000
 
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.clk_div_master|clkout'
+Slack : 1.703
+TNS   : 0.000
+
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 1.716
+Slack : 1.711
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[6]'
-Slack : 1.742
+Slack : 1.746
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|half_rate.pll|altpll_component|auto_generated|pll1|clk[5]'
-Slack : 2.093
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.396
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.396
+Slack : 2.094
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[2].slaves_gen[1].clk_div_slave|clkout'
 Slack : 2.396
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.396
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[0].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.397
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
-Slack : 2.396
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[1].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.397
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[3].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.397
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[4].slaves_gen[1].clk_div_slave|clkout'
@@ -1802,6 +1798,10 @@ Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_
 Slack : 2.397
 TNS   : 0.000
 
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|dpio|ddr_clkdiv_gen.grp_gen[7].slaves_gen[1].clk_div_slave|clkout'
+Slack : 2.397
+TNS   : 0.000
+
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'ADA_DCO'
 Slack : 2.536
 TNS   : 0.000
@@ -1811,19 +1811,19 @@ Slack : 2.539
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_tse_mac|altera_tse_mac_pcs_pma_inst|the_altera_tse_pma_lvds_rx|altlvds_rx_component|auto_generated|rx[0]|clk0'
-Slack : 3.190
+Slack : 3.184
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'pll_125_ins|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 3.207
+Slack : 3.211
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'SS_OCT_SOPC_inst|the_ddr2|ddr2_controller_phy_inst|ddr2_phy_inst|ddr2_phy_alt_mem_phy_inst|clk|scan_clk|q_clock'
-Slack : 8.972
+Slack : 8.973
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'OSC_50_BANK3'
-Slack : 9.096
+Slack : 9.100
 TNS   : 0.000
 
 ------------------------------------------------------------
