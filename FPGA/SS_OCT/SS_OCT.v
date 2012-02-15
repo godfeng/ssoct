@@ -383,7 +383,7 @@ wire						global_reset_n;		// delayed reset signal
 wire						enet_reset_n;		// reset signal for ethernet
 wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
-wire						clk150MHz;			// clock from internal PLL @ 150 MHz
+wire						clk150MHz;			// clock from internal PLL @ 150 MHz (actually 125 MHz)
 wire						clockVar;			// output of the PLL fed by ADA_DCO
 
 //// External PLL
@@ -478,7 +478,7 @@ wire		[7:0]			clk_div_out_sig;
 
 // sinus wave signal
 wire		[13:0]			raw_sine;
-// output to DAC A
+// output to DAC B
 reg			[13:0]			o_sine;
 
 //LED diagnostics from state machine RAMtoDDR2
@@ -615,6 +615,9 @@ assign	ADA_SPI_CS			= 1'b1;				// disable serial port interface A (1)
 assign	ADB_OE				= 1'b1;				// enable ADB output (active LOW)
 assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 
+//==============================================================================
+// assign for DAC sinus output
+//==============================================================================
 // sinus wave to DA
 assign	DB					= o_sine;			// Output sinus wave to DAC B
 
@@ -655,7 +658,7 @@ assign	SEG1_D				= 7'h7F;
 // Assign 156.25 MHz external clock PLL_CLKIN_p to clk156MHz
 assign	clk156MHz			= PLL_CLKIN_p;
 
-// Assign clk150MHz to differential outputs to HSMC-B board
+// Assign clk150MHz (actually 125 MHz) to differential outputs to HSMC-B board
 assign	FPGA_CLK_B_P		=  clk150MHz;
 assign	FPGA_CLK_B_N		= ~clk150MHz;
 
@@ -683,7 +686,7 @@ RAM	RAM_inst (
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( {2'b0, ADA_D} ),					// input [15:0] 16-bit data
 	.rdaddress({dualMSB_read,read_RAM_address}),// input [7:0] Read address ({dualMSB_read,read_RAM_address}) from NIOS
-	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz)
+	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz) (actually 125 MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 
@@ -864,7 +867,7 @@ SS_OCT_SOPC SS_OCT_SOPC_inst(
 pll_150 pll_150_inst
 (
 	.inclk0(clk50MHz) ,							// input  clk50MHz
-	.c0(clk150MHz) 								// output  clk150MHz
+	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
 );
 
 // PLL dephasing ADA_DCO
@@ -888,7 +891,7 @@ LED_glow LED_glow_inst (
 	.LED( LED[7] ) 								// output LED_sig
 	);
 
-// Generate sinus wave in DAC A to test acquisition
+// Generate sinus wave in DAC B to test acquisition
 sin400k_st sin400k_st_inst (
 	.clk( clk50MHz ) ,							// input  clk50MHz 50 MHz clock
 	.reset_n( global_reset_n ) ,				// input  global_reset_n
@@ -899,7 +902,7 @@ sin400k_st sin400k_st_inst (
 	.out_valid() 								// output  N.C.
 	);
 
-// Synchronize DAC A output (sinus wave) with system clock
+// Synchronize DAC B output (sinus wave) with system clock
 always @(negedge global_reset_n or posedge clk50MHz)
 begin
 	if (!global_reset_n) begin
