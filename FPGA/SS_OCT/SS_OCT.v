@@ -684,7 +684,7 @@ RAM	RAM_inst (
 	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
 	.wrclock ( clockVar ),						// input Write clock (ADA_DCO)
 	.wren ( acq_busy ),							// input acq_busy
-	.data ( {4'b0, write_RAM_address} ),		// input [15:0] 16-bit data (Original connection: {2'b0, ADA_D})
+	.data ( {5'b0, write_RAM_address} ),		// input [15:0] 16-bit data (Original connection: {2'b0, ADA_D})
 	.rdaddress({dualMSB_read,read_RAM_address}),// input [7:0] Read address ({dualMSB_read,read_RAM_address}) from NIOS
 	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz) (actually 125 MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
