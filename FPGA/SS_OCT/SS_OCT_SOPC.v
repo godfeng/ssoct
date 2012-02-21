@@ -13418,14 +13418,10 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_granted_ext_flash_s1,
                                      cpu_data_master_granted_high_res_timer_s1,
                                      cpu_data_master_granted_jtag_uart_avalon_jtag_slave,
-                                     cpu_data_master_granted_led_pio_s1,
                                      cpu_data_master_granted_onchip_memory_s1,
                                      cpu_data_master_granted_packet_memory_s1,
-                                     cpu_data_master_granted_pb_pio_s1,
-                                     cpu_data_master_granted_seven_seg_pio_s1,
                                      cpu_data_master_granted_sgdma_rx_csr,
                                      cpu_data_master_granted_sgdma_tx_csr,
-                                     cpu_data_master_granted_sw_pio_s1,
                                      cpu_data_master_granted_sys_timer_s1,
                                      cpu_data_master_granted_sysid_control_slave,
                                      cpu_data_master_granted_tse_mac_control_port,
@@ -13438,14 +13434,10 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_qualified_request_ext_flash_s1,
                                      cpu_data_master_qualified_request_high_res_timer_s1,
                                      cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave,
-                                     cpu_data_master_qualified_request_led_pio_s1,
                                      cpu_data_master_qualified_request_onchip_memory_s1,
                                      cpu_data_master_qualified_request_packet_memory_s1,
-                                     cpu_data_master_qualified_request_pb_pio_s1,
-                                     cpu_data_master_qualified_request_seven_seg_pio_s1,
                                      cpu_data_master_qualified_request_sgdma_rx_csr,
                                      cpu_data_master_qualified_request_sgdma_tx_csr,
-                                     cpu_data_master_qualified_request_sw_pio_s1,
                                      cpu_data_master_qualified_request_sys_timer_s1,
                                      cpu_data_master_qualified_request_sysid_control_slave,
                                      cpu_data_master_qualified_request_tse_mac_control_port,
@@ -13459,14 +13451,10 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_read_data_valid_ext_flash_s1,
                                      cpu_data_master_read_data_valid_high_res_timer_s1,
                                      cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave,
-                                     cpu_data_master_read_data_valid_led_pio_s1,
                                      cpu_data_master_read_data_valid_onchip_memory_s1,
                                      cpu_data_master_read_data_valid_packet_memory_s1,
-                                     cpu_data_master_read_data_valid_pb_pio_s1,
-                                     cpu_data_master_read_data_valid_seven_seg_pio_s1,
                                      cpu_data_master_read_data_valid_sgdma_rx_csr,
                                      cpu_data_master_read_data_valid_sgdma_tx_csr,
-                                     cpu_data_master_read_data_valid_sw_pio_s1,
                                      cpu_data_master_read_data_valid_sys_timer_s1,
                                      cpu_data_master_read_data_valid_sysid_control_slave,
                                      cpu_data_master_read_data_valid_tse_mac_control_port,
@@ -13479,14 +13467,10 @@ module cpu_data_master_arbitrator (
                                      cpu_data_master_requests_ext_flash_s1,
                                      cpu_data_master_requests_high_res_timer_s1,
                                      cpu_data_master_requests_jtag_uart_avalon_jtag_slave,
-                                     cpu_data_master_requests_led_pio_s1,
                                      cpu_data_master_requests_onchip_memory_s1,
                                      cpu_data_master_requests_packet_memory_s1,
-                                     cpu_data_master_requests_pb_pio_s1,
-                                     cpu_data_master_requests_seven_seg_pio_s1,
                                      cpu_data_master_requests_sgdma_rx_csr,
                                      cpu_data_master_requests_sgdma_tx_csr,
-                                     cpu_data_master_requests_sw_pio_s1,
                                      cpu_data_master_requests_sys_timer_s1,
                                      cpu_data_master_requests_sysid_control_slave,
                                      cpu_data_master_requests_tse_mac_control_port,
@@ -13502,14 +13486,10 @@ module cpu_data_master_arbitrator (
                                      d1_flash_tristate_bridge_avalon_slave_end_xfer,
                                      d1_high_res_timer_s1_end_xfer,
                                      d1_jtag_uart_avalon_jtag_slave_end_xfer,
-                                     d1_led_pio_s1_end_xfer,
                                      d1_onchip_memory_s1_end_xfer,
                                      d1_packet_memory_s1_end_xfer,
-                                     d1_pb_pio_s1_end_xfer,
-                                     d1_seven_seg_pio_s1_end_xfer,
                                      d1_sgdma_rx_csr_end_xfer,
                                      d1_sgdma_tx_csr_end_xfer,
-                                     d1_sw_pio_s1_end_xfer,
                                      d1_sys_timer_s1_end_xfer,
                                      d1_sysid_control_slave_end_xfer,
                                      d1_tse_mac_control_port_end_xfer,
@@ -13523,17 +13503,13 @@ module cpu_data_master_arbitrator (
                                      jtag_uart_avalon_jtag_slave_irq_from_sa,
                                      jtag_uart_avalon_jtag_slave_readdata_from_sa,
                                      jtag_uart_avalon_jtag_slave_waitrequest_from_sa,
-                                     led_pio_s1_readdata_from_sa,
                                      onchip_memory_s1_readdata_from_sa,
                                      packet_memory_s1_readdata_from_sa,
-                                     pb_pio_s1_readdata_from_sa,
                                      reset_n,
-                                     seven_seg_pio_s1_readdata_from_sa,
                                      sgdma_rx_csr_irq_from_sa,
                                      sgdma_rx_csr_readdata_from_sa,
                                      sgdma_tx_csr_irq_from_sa,
                                      sgdma_tx_csr_readdata_from_sa,
-                                     sw_pio_s1_readdata_from_sa,
                                      sys_timer_s1_irq_from_sa,
                                      sys_timer_s1_readdata_from_sa,
                                      sysid_control_slave_readdata_from_sa,
@@ -13577,14 +13553,10 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_granted_ext_flash_s1;
   input            cpu_data_master_granted_high_res_timer_s1;
   input            cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
-  input            cpu_data_master_granted_led_pio_s1;
   input            cpu_data_master_granted_onchip_memory_s1;
   input            cpu_data_master_granted_packet_memory_s1;
-  input            cpu_data_master_granted_pb_pio_s1;
-  input            cpu_data_master_granted_seven_seg_pio_s1;
   input            cpu_data_master_granted_sgdma_rx_csr;
   input            cpu_data_master_granted_sgdma_tx_csr;
-  input            cpu_data_master_granted_sw_pio_s1;
   input            cpu_data_master_granted_sys_timer_s1;
   input            cpu_data_master_granted_sysid_control_slave;
   input            cpu_data_master_granted_tse_mac_control_port;
@@ -13597,14 +13569,10 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_qualified_request_ext_flash_s1;
   input            cpu_data_master_qualified_request_high_res_timer_s1;
   input            cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
-  input            cpu_data_master_qualified_request_led_pio_s1;
   input            cpu_data_master_qualified_request_onchip_memory_s1;
   input            cpu_data_master_qualified_request_packet_memory_s1;
-  input            cpu_data_master_qualified_request_pb_pio_s1;
-  input            cpu_data_master_qualified_request_seven_seg_pio_s1;
   input            cpu_data_master_qualified_request_sgdma_rx_csr;
   input            cpu_data_master_qualified_request_sgdma_tx_csr;
-  input            cpu_data_master_qualified_request_sw_pio_s1;
   input            cpu_data_master_qualified_request_sys_timer_s1;
   input            cpu_data_master_qualified_request_sysid_control_slave;
   input            cpu_data_master_qualified_request_tse_mac_control_port;
@@ -13618,14 +13586,10 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_read_data_valid_ext_flash_s1;
   input            cpu_data_master_read_data_valid_high_res_timer_s1;
   input            cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
-  input            cpu_data_master_read_data_valid_led_pio_s1;
   input            cpu_data_master_read_data_valid_onchip_memory_s1;
   input            cpu_data_master_read_data_valid_packet_memory_s1;
-  input            cpu_data_master_read_data_valid_pb_pio_s1;
-  input            cpu_data_master_read_data_valid_seven_seg_pio_s1;
   input            cpu_data_master_read_data_valid_sgdma_rx_csr;
   input            cpu_data_master_read_data_valid_sgdma_tx_csr;
-  input            cpu_data_master_read_data_valid_sw_pio_s1;
   input            cpu_data_master_read_data_valid_sys_timer_s1;
   input            cpu_data_master_read_data_valid_sysid_control_slave;
   input            cpu_data_master_read_data_valid_tse_mac_control_port;
@@ -13638,14 +13602,10 @@ module cpu_data_master_arbitrator (
   input            cpu_data_master_requests_ext_flash_s1;
   input            cpu_data_master_requests_high_res_timer_s1;
   input            cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
-  input            cpu_data_master_requests_led_pio_s1;
   input            cpu_data_master_requests_onchip_memory_s1;
   input            cpu_data_master_requests_packet_memory_s1;
-  input            cpu_data_master_requests_pb_pio_s1;
-  input            cpu_data_master_requests_seven_seg_pio_s1;
   input            cpu_data_master_requests_sgdma_rx_csr;
   input            cpu_data_master_requests_sgdma_tx_csr;
-  input            cpu_data_master_requests_sw_pio_s1;
   input            cpu_data_master_requests_sys_timer_s1;
   input            cpu_data_master_requests_sysid_control_slave;
   input            cpu_data_master_requests_tse_mac_control_port;
@@ -13661,14 +13621,10 @@ module cpu_data_master_arbitrator (
   input            d1_flash_tristate_bridge_avalon_slave_end_xfer;
   input            d1_high_res_timer_s1_end_xfer;
   input            d1_jtag_uart_avalon_jtag_slave_end_xfer;
-  input            d1_led_pio_s1_end_xfer;
   input            d1_onchip_memory_s1_end_xfer;
   input            d1_packet_memory_s1_end_xfer;
-  input            d1_pb_pio_s1_end_xfer;
-  input            d1_seven_seg_pio_s1_end_xfer;
   input            d1_sgdma_rx_csr_end_xfer;
   input            d1_sgdma_tx_csr_end_xfer;
-  input            d1_sw_pio_s1_end_xfer;
   input            d1_sys_timer_s1_end_xfer;
   input            d1_sysid_control_slave_end_xfer;
   input            d1_tse_mac_control_port_end_xfer;
@@ -13682,17 +13638,13 @@ module cpu_data_master_arbitrator (
   input            jtag_uart_avalon_jtag_slave_irq_from_sa;
   input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata_from_sa;
   input            jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
-  input   [  7: 0] led_pio_s1_readdata_from_sa;
   input   [ 31: 0] onchip_memory_s1_readdata_from_sa;
   input   [ 31: 0] packet_memory_s1_readdata_from_sa;
-  input   [  3: 0] pb_pio_s1_readdata_from_sa;
   input            reset_n;
-  input   [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
   input            sgdma_rx_csr_irq_from_sa;
   input   [ 31: 0] sgdma_rx_csr_readdata_from_sa;
   input            sgdma_tx_csr_irq_from_sa;
   input   [ 31: 0] sgdma_tx_csr_readdata_from_sa;
-  input   [  7: 0] sw_pio_s1_readdata_from_sa;
   input            sys_timer_s1_irq_from_sa;
   input   [ 15: 0] sys_timer_s1_readdata_from_sa;
   input   [ 31: 0] sysid_control_slave_readdata_from_sa;
@@ -13737,24 +13689,20 @@ module cpu_data_master_arbitrator (
   wire             r_1;
   wire             r_2;
   wire             r_3;
-  wire             r_4;
   //r_0 master_run cascaded wait assignment, which is an e_assign
   assign r_0 = 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_0_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_0_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_0_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~cpu_data_master_requests_SS_OCT_SOPC_clock_1_in) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_SS_OCT_SOPC_clock_1_in | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~SS_OCT_SOPC_clock_1_in_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_requests_cpu_jtag_debug_module) & (cpu_data_master_granted_cpu_jtag_debug_module | ~cpu_data_master_qualified_request_cpu_jtag_debug_module) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_read | (1 & ~d1_cpu_jtag_debug_module_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_cpu_jtag_debug_module | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_descriptor_memory_s1 | ~cpu_data_master_requests_descriptor_memory_s1) & (cpu_data_master_granted_descriptor_memory_s1 | ~cpu_data_master_qualified_request_descriptor_memory_s1) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_descriptor_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_ext_flash_s1 | (cpu_data_master_write & !cpu_data_master_byteenable_ext_flash_s1 & cpu_data_master_dbs_address[1]) | ~cpu_data_master_requests_ext_flash_s1);
 
   //cascaded wait assignment, which is an e_assign
-  assign cpu_data_master_run = r_0 & r_1 & r_2 & r_3 & r_4;
+  assign cpu_data_master_run = r_0 & r_1 & r_2 & r_3;
 
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~cpu_data_master_requests_jtag_uart_avalon_jtag_slave) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_requests_led_pio_s1) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_read | (1 & ~d1_led_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_led_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write))));
+  assign r_1 = (cpu_data_master_granted_ext_flash_s1 | ~cpu_data_master_qualified_request_ext_flash_s1) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_read | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_ext_flash_s1 | ~cpu_data_master_write | (1 & ((ext_flash_s1_wait_counter_eq_0 & ~d1_flash_tristate_bridge_avalon_slave_end_xfer)) & (cpu_data_master_dbs_address[1]) & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_requests_high_res_timer_s1) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_read | (1 & ~d1_high_res_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_high_res_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~cpu_data_master_requests_jtag_uart_avalon_jtag_slave) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~jtag_uart_avalon_jtag_slave_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_onchip_memory_s1 | ~cpu_data_master_requests_onchip_memory_s1) & (cpu_data_master_granted_onchip_memory_s1 | ~cpu_data_master_qualified_request_onchip_memory_s1) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_onchip_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_packet_memory_s1 | ~cpu_data_master_requests_packet_memory_s1) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write))));
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = 1 & (cpu_data_master_qualified_request_packet_memory_s1 | ~cpu_data_master_requests_packet_memory_s1) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_packet_memory_s1 | ~(cpu_data_master_read | cpu_data_master_write) | (1 & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_requests_pb_pio_s1) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_read | (1 & ~d1_pb_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_pb_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_requests_seven_seg_pio_s1) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_read | (1 & ~d1_seven_seg_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_seven_seg_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write)));
+  assign r_2 = 1 & (cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_requests_sgdma_rx_csr) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_rx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_rx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_requests_sgdma_tx_csr) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_read | (1 & ~d1_sgdma_tx_csr_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sgdma_tx_csr | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write))));
 
   //r_3 master_run cascaded wait assignment, which is an e_assign
-  assign r_3 = 1 & (cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_requests_sw_pio_s1) & ((~cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_read | (1 & ~d1_sw_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sw_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_requests_sys_timer_s1) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_read | (1 & ~d1_sys_timer_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sys_timer_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_requests_sysid_control_slave) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_read | (1 & ~d1_sysid_control_slave_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_sysid_control_slave | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_tse_mac_control_port | ~cpu_data_master_requests_tse_mac_control_port) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & ((~cpu_data_master_qualified_request_tse_mac_control_port | ~(cpu_data_master_read | cpu_data_master_write) | (1 & ~tse_mac_control_port_waitrequest_from_sa & (cpu_data_master_read | cpu_data_master_write)))) & 1 & (cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_requests_vol_recording_done_pio_s1) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_read | (1 & ~d1_vol_recording_done_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write)));
-
-  //r_4 master_run cascaded wait assignment, which is an e_assign
-  assign r_4 = 1 & (cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_requests_vol_transfer_done_pio_s1) & ((~cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_read | (1 & ~d1_vol_transfer_done_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write)));
+  assign r_3 = 1 & (cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_requests_vol_recording_done_pio_s1) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_read | (1 & ~d1_vol_recording_done_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_vol_recording_done_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write))) & 1 & (cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_requests_vol_transfer_done_pio_s1) & ((~cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_read | (1 & ~d1_vol_transfer_done_pio_s1_end_xfer & cpu_data_master_read))) & ((~cpu_data_master_qualified_request_vol_transfer_done_pio_s1 | ~cpu_data_master_write | (1 & cpu_data_master_write)));
 
   //optimize select-logic by passing only those address bits which matter.
   assign cpu_data_master_address_to_slave = cpu_data_master_address[30 : 0];
@@ -13777,14 +13725,10 @@ module cpu_data_master_arbitrator (
     cpu_data_master_granted_ext_flash_s1 |
     cpu_data_master_granted_high_res_timer_s1 |
     cpu_data_master_granted_jtag_uart_avalon_jtag_slave |
-    cpu_data_master_granted_led_pio_s1 |
     cpu_data_master_granted_onchip_memory_s1 |
     cpu_data_master_granted_packet_memory_s1 |
-    cpu_data_master_granted_pb_pio_s1 |
-    cpu_data_master_granted_seven_seg_pio_s1 |
     cpu_data_master_granted_sgdma_rx_csr |
     cpu_data_master_granted_sgdma_tx_csr |
-    cpu_data_master_granted_sw_pio_s1 |
     cpu_data_master_granted_sys_timer_s1 |
     cpu_data_master_granted_sysid_control_slave |
     cpu_data_master_granted_tse_mac_control_port |
@@ -13819,26 +13763,14 @@ module cpu_data_master_arbitrator (
     cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_led_pio_s1 |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_pb_pio_s1 |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_seven_seg_pio_s1 |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_sgdma_rx_csr |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_sgdma_tx_csr |
-    cpu_data_master_read_but_no_slave_selected |
-    pre_flush_cpu_data_master_readdatavalid |
-    cpu_data_master_read_data_valid_sw_pio_s1 |
     cpu_data_master_read_but_no_slave_selected |
     pre_flush_cpu_data_master_readdatavalid |
     cpu_data_master_read_data_valid_sys_timer_s1 |
@@ -13864,14 +13796,10 @@ module cpu_data_master_arbitrator (
     dbs_latent_16_reg_segment_0}) &
     ({32 {~(cpu_data_master_qualified_request_high_res_timer_s1 & cpu_data_master_read)}} | high_res_timer_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave & cpu_data_master_read)}} | jtag_uart_avalon_jtag_slave_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_led_pio_s1 & cpu_data_master_read)}} | led_pio_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_onchip_memory_s1}} | onchip_memory_s1_readdata_from_sa) &
     ({32 {~cpu_data_master_read_data_valid_packet_memory_s1}} | packet_memory_s1_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_pb_pio_s1 & cpu_data_master_read)}} | pb_pio_s1_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_seven_seg_pio_s1 & cpu_data_master_read)}} | seven_seg_pio_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sgdma_rx_csr & cpu_data_master_read)}} | sgdma_rx_csr_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sgdma_tx_csr & cpu_data_master_read)}} | sgdma_tx_csr_readdata_from_sa) &
-    ({32 {~(cpu_data_master_qualified_request_sw_pio_s1 & cpu_data_master_read)}} | sw_pio_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sys_timer_s1 & cpu_data_master_read)}} | sys_timer_s1_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_sysid_control_slave & cpu_data_master_read)}} | sysid_control_slave_readdata_from_sa) &
     ({32 {~(cpu_data_master_qualified_request_tse_mac_control_port & cpu_data_master_read)}} | tse_mac_control_port_readdata_from_sa) &
@@ -21178,284 +21106,6 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module led_pio_s1_arbitrator (
-                               // inputs:
-                                clk,
-                                cpu_data_master_address_to_slave,
-                                cpu_data_master_byteenable,
-                                cpu_data_master_latency_counter,
-                                cpu_data_master_read,
-                                cpu_data_master_write,
-                                cpu_data_master_writedata,
-                                led_pio_s1_readdata,
-                                reset_n,
-
-                               // outputs:
-                                cpu_data_master_granted_led_pio_s1,
-                                cpu_data_master_qualified_request_led_pio_s1,
-                                cpu_data_master_read_data_valid_led_pio_s1,
-                                cpu_data_master_requests_led_pio_s1,
-                                d1_led_pio_s1_end_xfer,
-                                led_pio_s1_address,
-                                led_pio_s1_chipselect,
-                                led_pio_s1_readdata_from_sa,
-                                led_pio_s1_reset_n,
-                                led_pio_s1_write_n,
-                                led_pio_s1_writedata
-                             )
-;
-
-  output           cpu_data_master_granted_led_pio_s1;
-  output           cpu_data_master_qualified_request_led_pio_s1;
-  output           cpu_data_master_read_data_valid_led_pio_s1;
-  output           cpu_data_master_requests_led_pio_s1;
-  output           d1_led_pio_s1_end_xfer;
-  output  [  1: 0] led_pio_s1_address;
-  output           led_pio_s1_chipselect;
-  output  [  7: 0] led_pio_s1_readdata_from_sa;
-  output           led_pio_s1_reset_n;
-  output           led_pio_s1_write_n;
-  output  [  7: 0] led_pio_s1_writedata;
-  input            clk;
-  input   [ 30: 0] cpu_data_master_address_to_slave;
-  input   [  3: 0] cpu_data_master_byteenable;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_write;
-  input   [ 31: 0] cpu_data_master_writedata;
-  input   [  7: 0] led_pio_s1_readdata;
-  input            reset_n;
-
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_led_pio_s1;
-  wire             cpu_data_master_qualified_request_led_pio_s1;
-  wire             cpu_data_master_read_data_valid_led_pio_s1;
-  wire             cpu_data_master_requests_led_pio_s1;
-  wire             cpu_data_master_saved_grant_led_pio_s1;
-  reg              d1_led_pio_s1_end_xfer;
-  reg              d1_reasons_to_wait;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_led_pio_s1;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire    [  1: 0] led_pio_s1_address;
-  wire             led_pio_s1_allgrants;
-  wire             led_pio_s1_allow_new_arb_cycle;
-  wire             led_pio_s1_any_bursting_master_saved_grant;
-  wire             led_pio_s1_any_continuerequest;
-  wire             led_pio_s1_arb_counter_enable;
-  reg     [  1: 0] led_pio_s1_arb_share_counter;
-  wire    [  1: 0] led_pio_s1_arb_share_counter_next_value;
-  wire    [  1: 0] led_pio_s1_arb_share_set_values;
-  wire             led_pio_s1_beginbursttransfer_internal;
-  wire             led_pio_s1_begins_xfer;
-  wire             led_pio_s1_chipselect;
-  wire             led_pio_s1_end_xfer;
-  wire             led_pio_s1_firsttransfer;
-  wire             led_pio_s1_grant_vector;
-  wire             led_pio_s1_in_a_read_cycle;
-  wire             led_pio_s1_in_a_write_cycle;
-  wire             led_pio_s1_master_qreq_vector;
-  wire             led_pio_s1_non_bursting_master_requests;
-  wire             led_pio_s1_pretend_byte_enable;
-  wire    [  7: 0] led_pio_s1_readdata_from_sa;
-  reg              led_pio_s1_reg_firsttransfer;
-  wire             led_pio_s1_reset_n;
-  reg              led_pio_s1_slavearbiterlockenable;
-  wire             led_pio_s1_slavearbiterlockenable2;
-  wire             led_pio_s1_unreg_firsttransfer;
-  wire             led_pio_s1_waits_for_read;
-  wire             led_pio_s1_waits_for_write;
-  wire             led_pio_s1_write_n;
-  wire    [  7: 0] led_pio_s1_writedata;
-  wire    [ 30: 0] shifted_address_to_led_pio_s1_from_cpu_data_master;
-  wire             wait_for_led_pio_s1_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~led_pio_s1_end_xfer;
-    end
-
-
-  assign led_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_led_pio_s1));
-  //assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign led_pio_s1_readdata_from_sa = led_pio_s1_readdata;
-
-  assign cpu_data_master_requests_led_pio_s1 = ({cpu_data_master_address_to_slave[30 : 4] , 4'b0} == 31'h48112800) & (cpu_data_master_read | cpu_data_master_write);
-  //led_pio_s1_arb_share_counter set values, which is an e_mux
-  assign led_pio_s1_arb_share_set_values = 1;
-
-  //led_pio_s1_non_bursting_master_requests mux, which is an e_mux
-  assign led_pio_s1_non_bursting_master_requests = cpu_data_master_requests_led_pio_s1;
-
-  //led_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
-  assign led_pio_s1_any_bursting_master_saved_grant = 0;
-
-  //led_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
-  assign led_pio_s1_arb_share_counter_next_value = led_pio_s1_firsttransfer ? (led_pio_s1_arb_share_set_values - 1) : |led_pio_s1_arb_share_counter ? (led_pio_s1_arb_share_counter - 1) : 0;
-
-  //led_pio_s1_allgrants all slave grants, which is an e_mux
-  assign led_pio_s1_allgrants = |led_pio_s1_grant_vector;
-
-  //led_pio_s1_end_xfer assignment, which is an e_assign
-  assign led_pio_s1_end_xfer = ~(led_pio_s1_waits_for_read | led_pio_s1_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_led_pio_s1 arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_led_pio_s1 = led_pio_s1_end_xfer & (~led_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //led_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
-  assign led_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_led_pio_s1 & led_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests);
-
-  //led_pio_s1_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          led_pio_s1_arb_share_counter <= 0;
-      else if (led_pio_s1_arb_counter_enable)
-          led_pio_s1_arb_share_counter <= led_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //led_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          led_pio_s1_slavearbiterlockenable <= 0;
-      else if ((|led_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_led_pio_s1) | (end_xfer_arb_share_counter_term_led_pio_s1 & ~led_pio_s1_non_bursting_master_requests))
-          led_pio_s1_slavearbiterlockenable <= |led_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //cpu/data_master led_pio/s1 arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = led_pio_s1_slavearbiterlockenable & cpu_data_master_continuerequest;
-
-  //led_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign led_pio_s1_slavearbiterlockenable2 = |led_pio_s1_arb_share_counter_next_value;
-
-  //cpu/data_master led_pio/s1 arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = led_pio_s1_slavearbiterlockenable2 & cpu_data_master_continuerequest;
-
-  //led_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign led_pio_s1_any_continuerequest = 1;
-
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
-
-  assign cpu_data_master_qualified_request_led_pio_s1 = cpu_data_master_requests_led_pio_s1 & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0))));
-  //local readdatavalid cpu_data_master_read_data_valid_led_pio_s1, which is an e_mux
-  assign cpu_data_master_read_data_valid_led_pio_s1 = cpu_data_master_granted_led_pio_s1 & cpu_data_master_read & ~led_pio_s1_waits_for_read;
-
-  //led_pio_s1_writedata mux, which is an e_mux
-  assign led_pio_s1_writedata = cpu_data_master_writedata;
-
-  //master is always granted when requested
-  assign cpu_data_master_granted_led_pio_s1 = cpu_data_master_qualified_request_led_pio_s1;
-
-  //cpu/data_master saved-grant led_pio/s1, which is an e_assign
-  assign cpu_data_master_saved_grant_led_pio_s1 = cpu_data_master_requests_led_pio_s1;
-
-  //allow new arb cycle for led_pio/s1, which is an e_assign
-  assign led_pio_s1_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign led_pio_s1_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign led_pio_s1_master_qreq_vector = 1;
-
-  //led_pio_s1_reset_n assignment, which is an e_assign
-  assign led_pio_s1_reset_n = reset_n;
-
-  assign led_pio_s1_chipselect = cpu_data_master_granted_led_pio_s1;
-  //led_pio_s1_firsttransfer first transaction, which is an e_assign
-  assign led_pio_s1_firsttransfer = led_pio_s1_begins_xfer ? led_pio_s1_unreg_firsttransfer : led_pio_s1_reg_firsttransfer;
-
-  //led_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
-  assign led_pio_s1_unreg_firsttransfer = ~(led_pio_s1_slavearbiterlockenable & led_pio_s1_any_continuerequest);
-
-  //led_pio_s1_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          led_pio_s1_reg_firsttransfer <= 1'b1;
-      else if (led_pio_s1_begins_xfer)
-          led_pio_s1_reg_firsttransfer <= led_pio_s1_unreg_firsttransfer;
-    end
-
-
-  //led_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign led_pio_s1_beginbursttransfer_internal = led_pio_s1_begins_xfer;
-
-  //~led_pio_s1_write_n assignment, which is an e_mux
-  assign led_pio_s1_write_n = ~(((cpu_data_master_granted_led_pio_s1 & cpu_data_master_write)) & led_pio_s1_pretend_byte_enable);
-
-  assign shifted_address_to_led_pio_s1_from_cpu_data_master = cpu_data_master_address_to_slave;
-  //led_pio_s1_address mux, which is an e_mux
-  assign led_pio_s1_address = shifted_address_to_led_pio_s1_from_cpu_data_master >> 2;
-
-  //d1_led_pio_s1_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_led_pio_s1_end_xfer <= 1;
-      else 
-        d1_led_pio_s1_end_xfer <= led_pio_s1_end_xfer;
-    end
-
-
-  //led_pio_s1_waits_for_read in a cycle, which is an e_mux
-  assign led_pio_s1_waits_for_read = led_pio_s1_in_a_read_cycle & led_pio_s1_begins_xfer;
-
-  //led_pio_s1_in_a_read_cycle assignment, which is an e_assign
-  assign led_pio_s1_in_a_read_cycle = cpu_data_master_granted_led_pio_s1 & cpu_data_master_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = led_pio_s1_in_a_read_cycle;
-
-  //led_pio_s1_waits_for_write in a cycle, which is an e_mux
-  assign led_pio_s1_waits_for_write = led_pio_s1_in_a_write_cycle & 0;
-
-  //led_pio_s1_in_a_write_cycle assignment, which is an e_assign
-  assign led_pio_s1_in_a_write_cycle = cpu_data_master_granted_led_pio_s1 & cpu_data_master_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = led_pio_s1_in_a_write_cycle;
-
-  assign wait_for_led_pio_s1_counter = 0;
-  //led_pio_s1_pretend_byte_enable byte enable port mux, which is an e_mux
-  assign led_pio_s1_pretend_byte_enable = (cpu_data_master_granted_led_pio_s1)? cpu_data_master_byteenable :
-    -1;
-
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //led_pio/s1 enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
 module master_read_avalon_master_arbitrator (
                                               // inputs:
                                                clk,
@@ -23228,259 +22878,6 @@ module packet_memory_s2_arbitrator (
           $write("%0d ns: > 1 of saved_grant signals are active simultaneously", $time);
           $stop;
         end
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module pb_pio_s1_arbitrator (
-                              // inputs:
-                               clk,
-                               cpu_data_master_address_to_slave,
-                               cpu_data_master_latency_counter,
-                               cpu_data_master_read,
-                               cpu_data_master_write,
-                               pb_pio_s1_readdata,
-                               reset_n,
-
-                              // outputs:
-                               cpu_data_master_granted_pb_pio_s1,
-                               cpu_data_master_qualified_request_pb_pio_s1,
-                               cpu_data_master_read_data_valid_pb_pio_s1,
-                               cpu_data_master_requests_pb_pio_s1,
-                               d1_pb_pio_s1_end_xfer,
-                               pb_pio_s1_address,
-                               pb_pio_s1_readdata_from_sa,
-                               pb_pio_s1_reset_n
-                            )
-;
-
-  output           cpu_data_master_granted_pb_pio_s1;
-  output           cpu_data_master_qualified_request_pb_pio_s1;
-  output           cpu_data_master_read_data_valid_pb_pio_s1;
-  output           cpu_data_master_requests_pb_pio_s1;
-  output           d1_pb_pio_s1_end_xfer;
-  output  [  1: 0] pb_pio_s1_address;
-  output  [  3: 0] pb_pio_s1_readdata_from_sa;
-  output           pb_pio_s1_reset_n;
-  input            clk;
-  input   [ 30: 0] cpu_data_master_address_to_slave;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_write;
-  input   [  3: 0] pb_pio_s1_readdata;
-  input            reset_n;
-
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_pb_pio_s1;
-  wire             cpu_data_master_qualified_request_pb_pio_s1;
-  wire             cpu_data_master_read_data_valid_pb_pio_s1;
-  wire             cpu_data_master_requests_pb_pio_s1;
-  wire             cpu_data_master_saved_grant_pb_pio_s1;
-  reg              d1_pb_pio_s1_end_xfer;
-  reg              d1_reasons_to_wait;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_pb_pio_s1;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire    [  1: 0] pb_pio_s1_address;
-  wire             pb_pio_s1_allgrants;
-  wire             pb_pio_s1_allow_new_arb_cycle;
-  wire             pb_pio_s1_any_bursting_master_saved_grant;
-  wire             pb_pio_s1_any_continuerequest;
-  wire             pb_pio_s1_arb_counter_enable;
-  reg     [  1: 0] pb_pio_s1_arb_share_counter;
-  wire    [  1: 0] pb_pio_s1_arb_share_counter_next_value;
-  wire    [  1: 0] pb_pio_s1_arb_share_set_values;
-  wire             pb_pio_s1_beginbursttransfer_internal;
-  wire             pb_pio_s1_begins_xfer;
-  wire             pb_pio_s1_end_xfer;
-  wire             pb_pio_s1_firsttransfer;
-  wire             pb_pio_s1_grant_vector;
-  wire             pb_pio_s1_in_a_read_cycle;
-  wire             pb_pio_s1_in_a_write_cycle;
-  wire             pb_pio_s1_master_qreq_vector;
-  wire             pb_pio_s1_non_bursting_master_requests;
-  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
-  reg              pb_pio_s1_reg_firsttransfer;
-  wire             pb_pio_s1_reset_n;
-  reg              pb_pio_s1_slavearbiterlockenable;
-  wire             pb_pio_s1_slavearbiterlockenable2;
-  wire             pb_pio_s1_unreg_firsttransfer;
-  wire             pb_pio_s1_waits_for_read;
-  wire             pb_pio_s1_waits_for_write;
-  wire    [ 30: 0] shifted_address_to_pb_pio_s1_from_cpu_data_master;
-  wire             wait_for_pb_pio_s1_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~pb_pio_s1_end_xfer;
-    end
-
-
-  assign pb_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_pb_pio_s1));
-  //assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign pb_pio_s1_readdata_from_sa = pb_pio_s1_readdata;
-
-  assign cpu_data_master_requests_pb_pio_s1 = (({cpu_data_master_address_to_slave[30 : 4] , 4'b0} == 31'h48112900) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
-  //pb_pio_s1_arb_share_counter set values, which is an e_mux
-  assign pb_pio_s1_arb_share_set_values = 1;
-
-  //pb_pio_s1_non_bursting_master_requests mux, which is an e_mux
-  assign pb_pio_s1_non_bursting_master_requests = cpu_data_master_requests_pb_pio_s1;
-
-  //pb_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
-  assign pb_pio_s1_any_bursting_master_saved_grant = 0;
-
-  //pb_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
-  assign pb_pio_s1_arb_share_counter_next_value = pb_pio_s1_firsttransfer ? (pb_pio_s1_arb_share_set_values - 1) : |pb_pio_s1_arb_share_counter ? (pb_pio_s1_arb_share_counter - 1) : 0;
-
-  //pb_pio_s1_allgrants all slave grants, which is an e_mux
-  assign pb_pio_s1_allgrants = |pb_pio_s1_grant_vector;
-
-  //pb_pio_s1_end_xfer assignment, which is an e_assign
-  assign pb_pio_s1_end_xfer = ~(pb_pio_s1_waits_for_read | pb_pio_s1_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_pb_pio_s1 arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_pb_pio_s1 = pb_pio_s1_end_xfer & (~pb_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //pb_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
-  assign pb_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_pb_pio_s1 & pb_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests);
-
-  //pb_pio_s1_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          pb_pio_s1_arb_share_counter <= 0;
-      else if (pb_pio_s1_arb_counter_enable)
-          pb_pio_s1_arb_share_counter <= pb_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //pb_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          pb_pio_s1_slavearbiterlockenable <= 0;
-      else if ((|pb_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_pb_pio_s1) | (end_xfer_arb_share_counter_term_pb_pio_s1 & ~pb_pio_s1_non_bursting_master_requests))
-          pb_pio_s1_slavearbiterlockenable <= |pb_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //cpu/data_master pb_pio/s1 arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = pb_pio_s1_slavearbiterlockenable & cpu_data_master_continuerequest;
-
-  //pb_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign pb_pio_s1_slavearbiterlockenable2 = |pb_pio_s1_arb_share_counter_next_value;
-
-  //cpu/data_master pb_pio/s1 arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = pb_pio_s1_slavearbiterlockenable2 & cpu_data_master_continuerequest;
-
-  //pb_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign pb_pio_s1_any_continuerequest = 1;
-
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
-
-  assign cpu_data_master_qualified_request_pb_pio_s1 = cpu_data_master_requests_pb_pio_s1 & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0))));
-  //local readdatavalid cpu_data_master_read_data_valid_pb_pio_s1, which is an e_mux
-  assign cpu_data_master_read_data_valid_pb_pio_s1 = cpu_data_master_granted_pb_pio_s1 & cpu_data_master_read & ~pb_pio_s1_waits_for_read;
-
-  //master is always granted when requested
-  assign cpu_data_master_granted_pb_pio_s1 = cpu_data_master_qualified_request_pb_pio_s1;
-
-  //cpu/data_master saved-grant pb_pio/s1, which is an e_assign
-  assign cpu_data_master_saved_grant_pb_pio_s1 = cpu_data_master_requests_pb_pio_s1;
-
-  //allow new arb cycle for pb_pio/s1, which is an e_assign
-  assign pb_pio_s1_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign pb_pio_s1_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign pb_pio_s1_master_qreq_vector = 1;
-
-  //pb_pio_s1_reset_n assignment, which is an e_assign
-  assign pb_pio_s1_reset_n = reset_n;
-
-  //pb_pio_s1_firsttransfer first transaction, which is an e_assign
-  assign pb_pio_s1_firsttransfer = pb_pio_s1_begins_xfer ? pb_pio_s1_unreg_firsttransfer : pb_pio_s1_reg_firsttransfer;
-
-  //pb_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
-  assign pb_pio_s1_unreg_firsttransfer = ~(pb_pio_s1_slavearbiterlockenable & pb_pio_s1_any_continuerequest);
-
-  //pb_pio_s1_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          pb_pio_s1_reg_firsttransfer <= 1'b1;
-      else if (pb_pio_s1_begins_xfer)
-          pb_pio_s1_reg_firsttransfer <= pb_pio_s1_unreg_firsttransfer;
-    end
-
-
-  //pb_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign pb_pio_s1_beginbursttransfer_internal = pb_pio_s1_begins_xfer;
-
-  assign shifted_address_to_pb_pio_s1_from_cpu_data_master = cpu_data_master_address_to_slave;
-  //pb_pio_s1_address mux, which is an e_mux
-  assign pb_pio_s1_address = shifted_address_to_pb_pio_s1_from_cpu_data_master >> 2;
-
-  //d1_pb_pio_s1_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_pb_pio_s1_end_xfer <= 1;
-      else 
-        d1_pb_pio_s1_end_xfer <= pb_pio_s1_end_xfer;
-    end
-
-
-  //pb_pio_s1_waits_for_read in a cycle, which is an e_mux
-  assign pb_pio_s1_waits_for_read = pb_pio_s1_in_a_read_cycle & pb_pio_s1_begins_xfer;
-
-  //pb_pio_s1_in_a_read_cycle assignment, which is an e_assign
-  assign pb_pio_s1_in_a_read_cycle = cpu_data_master_granted_pb_pio_s1 & cpu_data_master_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = pb_pio_s1_in_a_read_cycle;
-
-  //pb_pio_s1_waits_for_write in a cycle, which is an e_mux
-  assign pb_pio_s1_waits_for_write = pb_pio_s1_in_a_write_cycle & 0;
-
-  //pb_pio_s1_in_a_write_cycle assignment, which is an e_assign
-  assign pb_pio_s1_in_a_write_cycle = cpu_data_master_granted_pb_pio_s1 & cpu_data_master_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = pb_pio_s1_in_a_write_cycle;
-
-  assign wait_for_pb_pio_s1_counter = 0;
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //pb_pio/s1 enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
     end
 
 
@@ -27194,277 +26591,6 @@ endmodule
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module seven_seg_pio_s1_arbitrator (
-                                     // inputs:
-                                      clk,
-                                      cpu_data_master_address_to_slave,
-                                      cpu_data_master_latency_counter,
-                                      cpu_data_master_read,
-                                      cpu_data_master_write,
-                                      cpu_data_master_writedata,
-                                      reset_n,
-                                      seven_seg_pio_s1_readdata,
-
-                                     // outputs:
-                                      cpu_data_master_granted_seven_seg_pio_s1,
-                                      cpu_data_master_qualified_request_seven_seg_pio_s1,
-                                      cpu_data_master_read_data_valid_seven_seg_pio_s1,
-                                      cpu_data_master_requests_seven_seg_pio_s1,
-                                      d1_seven_seg_pio_s1_end_xfer,
-                                      seven_seg_pio_s1_address,
-                                      seven_seg_pio_s1_chipselect,
-                                      seven_seg_pio_s1_readdata_from_sa,
-                                      seven_seg_pio_s1_reset_n,
-                                      seven_seg_pio_s1_write_n,
-                                      seven_seg_pio_s1_writedata
-                                   )
-;
-
-  output           cpu_data_master_granted_seven_seg_pio_s1;
-  output           cpu_data_master_qualified_request_seven_seg_pio_s1;
-  output           cpu_data_master_read_data_valid_seven_seg_pio_s1;
-  output           cpu_data_master_requests_seven_seg_pio_s1;
-  output           d1_seven_seg_pio_s1_end_xfer;
-  output  [  1: 0] seven_seg_pio_s1_address;
-  output           seven_seg_pio_s1_chipselect;
-  output  [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
-  output           seven_seg_pio_s1_reset_n;
-  output           seven_seg_pio_s1_write_n;
-  output  [ 15: 0] seven_seg_pio_s1_writedata;
-  input            clk;
-  input   [ 30: 0] cpu_data_master_address_to_slave;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_write;
-  input   [ 31: 0] cpu_data_master_writedata;
-  input            reset_n;
-  input   [ 15: 0] seven_seg_pio_s1_readdata;
-
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_seven_seg_pio_s1;
-  wire             cpu_data_master_qualified_request_seven_seg_pio_s1;
-  wire             cpu_data_master_read_data_valid_seven_seg_pio_s1;
-  wire             cpu_data_master_requests_seven_seg_pio_s1;
-  wire             cpu_data_master_saved_grant_seven_seg_pio_s1;
-  reg              d1_reasons_to_wait;
-  reg              d1_seven_seg_pio_s1_end_xfer;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_seven_seg_pio_s1;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire    [  1: 0] seven_seg_pio_s1_address;
-  wire             seven_seg_pio_s1_allgrants;
-  wire             seven_seg_pio_s1_allow_new_arb_cycle;
-  wire             seven_seg_pio_s1_any_bursting_master_saved_grant;
-  wire             seven_seg_pio_s1_any_continuerequest;
-  wire             seven_seg_pio_s1_arb_counter_enable;
-  reg     [  1: 0] seven_seg_pio_s1_arb_share_counter;
-  wire    [  1: 0] seven_seg_pio_s1_arb_share_counter_next_value;
-  wire    [  1: 0] seven_seg_pio_s1_arb_share_set_values;
-  wire             seven_seg_pio_s1_beginbursttransfer_internal;
-  wire             seven_seg_pio_s1_begins_xfer;
-  wire             seven_seg_pio_s1_chipselect;
-  wire             seven_seg_pio_s1_end_xfer;
-  wire             seven_seg_pio_s1_firsttransfer;
-  wire             seven_seg_pio_s1_grant_vector;
-  wire             seven_seg_pio_s1_in_a_read_cycle;
-  wire             seven_seg_pio_s1_in_a_write_cycle;
-  wire             seven_seg_pio_s1_master_qreq_vector;
-  wire             seven_seg_pio_s1_non_bursting_master_requests;
-  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
-  reg              seven_seg_pio_s1_reg_firsttransfer;
-  wire             seven_seg_pio_s1_reset_n;
-  reg              seven_seg_pio_s1_slavearbiterlockenable;
-  wire             seven_seg_pio_s1_slavearbiterlockenable2;
-  wire             seven_seg_pio_s1_unreg_firsttransfer;
-  wire             seven_seg_pio_s1_waits_for_read;
-  wire             seven_seg_pio_s1_waits_for_write;
-  wire             seven_seg_pio_s1_write_n;
-  wire    [ 15: 0] seven_seg_pio_s1_writedata;
-  wire    [ 30: 0] shifted_address_to_seven_seg_pio_s1_from_cpu_data_master;
-  wire             wait_for_seven_seg_pio_s1_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~seven_seg_pio_s1_end_xfer;
-    end
-
-
-  assign seven_seg_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_seven_seg_pio_s1));
-  //assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign seven_seg_pio_s1_readdata_from_sa = seven_seg_pio_s1_readdata;
-
-  assign cpu_data_master_requests_seven_seg_pio_s1 = ({cpu_data_master_address_to_slave[30 : 4] , 4'b0} == 31'h48112980) & (cpu_data_master_read | cpu_data_master_write);
-  //seven_seg_pio_s1_arb_share_counter set values, which is an e_mux
-  assign seven_seg_pio_s1_arb_share_set_values = 1;
-
-  //seven_seg_pio_s1_non_bursting_master_requests mux, which is an e_mux
-  assign seven_seg_pio_s1_non_bursting_master_requests = cpu_data_master_requests_seven_seg_pio_s1;
-
-  //seven_seg_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
-  assign seven_seg_pio_s1_any_bursting_master_saved_grant = 0;
-
-  //seven_seg_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
-  assign seven_seg_pio_s1_arb_share_counter_next_value = seven_seg_pio_s1_firsttransfer ? (seven_seg_pio_s1_arb_share_set_values - 1) : |seven_seg_pio_s1_arb_share_counter ? (seven_seg_pio_s1_arb_share_counter - 1) : 0;
-
-  //seven_seg_pio_s1_allgrants all slave grants, which is an e_mux
-  assign seven_seg_pio_s1_allgrants = |seven_seg_pio_s1_grant_vector;
-
-  //seven_seg_pio_s1_end_xfer assignment, which is an e_assign
-  assign seven_seg_pio_s1_end_xfer = ~(seven_seg_pio_s1_waits_for_read | seven_seg_pio_s1_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_seven_seg_pio_s1 arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_seven_seg_pio_s1 = seven_seg_pio_s1_end_xfer & (~seven_seg_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //seven_seg_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
-  assign seven_seg_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & seven_seg_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests);
-
-  //seven_seg_pio_s1_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          seven_seg_pio_s1_arb_share_counter <= 0;
-      else if (seven_seg_pio_s1_arb_counter_enable)
-          seven_seg_pio_s1_arb_share_counter <= seven_seg_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //seven_seg_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          seven_seg_pio_s1_slavearbiterlockenable <= 0;
-      else if ((|seven_seg_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_seven_seg_pio_s1) | (end_xfer_arb_share_counter_term_seven_seg_pio_s1 & ~seven_seg_pio_s1_non_bursting_master_requests))
-          seven_seg_pio_s1_slavearbiterlockenable <= |seven_seg_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //cpu/data_master seven_seg_pio/s1 arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = seven_seg_pio_s1_slavearbiterlockenable & cpu_data_master_continuerequest;
-
-  //seven_seg_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign seven_seg_pio_s1_slavearbiterlockenable2 = |seven_seg_pio_s1_arb_share_counter_next_value;
-
-  //cpu/data_master seven_seg_pio/s1 arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = seven_seg_pio_s1_slavearbiterlockenable2 & cpu_data_master_continuerequest;
-
-  //seven_seg_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign seven_seg_pio_s1_any_continuerequest = 1;
-
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
-
-  assign cpu_data_master_qualified_request_seven_seg_pio_s1 = cpu_data_master_requests_seven_seg_pio_s1 & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0))));
-  //local readdatavalid cpu_data_master_read_data_valid_seven_seg_pio_s1, which is an e_mux
-  assign cpu_data_master_read_data_valid_seven_seg_pio_s1 = cpu_data_master_granted_seven_seg_pio_s1 & cpu_data_master_read & ~seven_seg_pio_s1_waits_for_read;
-
-  //seven_seg_pio_s1_writedata mux, which is an e_mux
-  assign seven_seg_pio_s1_writedata = cpu_data_master_writedata;
-
-  //master is always granted when requested
-  assign cpu_data_master_granted_seven_seg_pio_s1 = cpu_data_master_qualified_request_seven_seg_pio_s1;
-
-  //cpu/data_master saved-grant seven_seg_pio/s1, which is an e_assign
-  assign cpu_data_master_saved_grant_seven_seg_pio_s1 = cpu_data_master_requests_seven_seg_pio_s1;
-
-  //allow new arb cycle for seven_seg_pio/s1, which is an e_assign
-  assign seven_seg_pio_s1_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign seven_seg_pio_s1_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign seven_seg_pio_s1_master_qreq_vector = 1;
-
-  //seven_seg_pio_s1_reset_n assignment, which is an e_assign
-  assign seven_seg_pio_s1_reset_n = reset_n;
-
-  assign seven_seg_pio_s1_chipselect = cpu_data_master_granted_seven_seg_pio_s1;
-  //seven_seg_pio_s1_firsttransfer first transaction, which is an e_assign
-  assign seven_seg_pio_s1_firsttransfer = seven_seg_pio_s1_begins_xfer ? seven_seg_pio_s1_unreg_firsttransfer : seven_seg_pio_s1_reg_firsttransfer;
-
-  //seven_seg_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
-  assign seven_seg_pio_s1_unreg_firsttransfer = ~(seven_seg_pio_s1_slavearbiterlockenable & seven_seg_pio_s1_any_continuerequest);
-
-  //seven_seg_pio_s1_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          seven_seg_pio_s1_reg_firsttransfer <= 1'b1;
-      else if (seven_seg_pio_s1_begins_xfer)
-          seven_seg_pio_s1_reg_firsttransfer <= seven_seg_pio_s1_unreg_firsttransfer;
-    end
-
-
-  //seven_seg_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign seven_seg_pio_s1_beginbursttransfer_internal = seven_seg_pio_s1_begins_xfer;
-
-  //~seven_seg_pio_s1_write_n assignment, which is an e_mux
-  assign seven_seg_pio_s1_write_n = ~(cpu_data_master_granted_seven_seg_pio_s1 & cpu_data_master_write);
-
-  assign shifted_address_to_seven_seg_pio_s1_from_cpu_data_master = cpu_data_master_address_to_slave;
-  //seven_seg_pio_s1_address mux, which is an e_mux
-  assign seven_seg_pio_s1_address = shifted_address_to_seven_seg_pio_s1_from_cpu_data_master >> 2;
-
-  //d1_seven_seg_pio_s1_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_seven_seg_pio_s1_end_xfer <= 1;
-      else 
-        d1_seven_seg_pio_s1_end_xfer <= seven_seg_pio_s1_end_xfer;
-    end
-
-
-  //seven_seg_pio_s1_waits_for_read in a cycle, which is an e_mux
-  assign seven_seg_pio_s1_waits_for_read = seven_seg_pio_s1_in_a_read_cycle & seven_seg_pio_s1_begins_xfer;
-
-  //seven_seg_pio_s1_in_a_read_cycle assignment, which is an e_assign
-  assign seven_seg_pio_s1_in_a_read_cycle = cpu_data_master_granted_seven_seg_pio_s1 & cpu_data_master_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = seven_seg_pio_s1_in_a_read_cycle;
-
-  //seven_seg_pio_s1_waits_for_write in a cycle, which is an e_mux
-  assign seven_seg_pio_s1_waits_for_write = seven_seg_pio_s1_in_a_write_cycle & 0;
-
-  //seven_seg_pio_s1_in_a_write_cycle assignment, which is an e_assign
-  assign seven_seg_pio_s1_in_a_write_cycle = cpu_data_master_granted_seven_seg_pio_s1 & cpu_data_master_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = seven_seg_pio_s1_in_a_write_cycle;
-
-  assign wait_for_seven_seg_pio_s1_counter = 0;
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //seven_seg_pio/s1 enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
 module sgdma_rx_csr_arbitrator (
                                  // inputs:
                                   clk,
@@ -28193,13 +27319,13 @@ module sgdma_rx_m_write_arbitrator (
   reg              sgdma_rx_m_write_write_last_time;
   reg     [ 31: 0] sgdma_rx_m_write_writedata_last_time;
   //r_1 master_run cascaded wait assignment, which is an e_assign
-  assign r_1 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1);
+  assign r_1 = 1 & (sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~sgdma_rx_m_write_requests_onchip_memory_s1) & (sgdma_rx_m_write_granted_onchip_memory_s1 | ~sgdma_rx_m_write_qualified_request_onchip_memory_s1) & ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
 
   //cascaded wait assignment, which is an e_assign
   assign sgdma_rx_m_write_run = r_1 & r_2;
 
   //r_2 master_run cascaded wait assignment, which is an e_assign
-  assign r_2 = ((~sgdma_rx_m_write_qualified_request_onchip_memory_s1 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write)))) & 1 & (sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~sgdma_rx_m_write_requests_packet_memory_s2) & (sgdma_rx_m_write_granted_packet_memory_s2 | ~sgdma_rx_m_write_qualified_request_packet_memory_s2) & ((~sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
+  assign r_2 = 1 & (sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~sgdma_rx_m_write_requests_packet_memory_s2) & (sgdma_rx_m_write_granted_packet_memory_s2 | ~sgdma_rx_m_write_qualified_request_packet_memory_s2) & ((~sgdma_rx_m_write_qualified_request_packet_memory_s2 | ~(sgdma_rx_m_write_write) | (1 & (sgdma_rx_m_write_write))));
 
   //optimize select-logic by passing only those address bits which matter.
   assign sgdma_rx_m_write_address_to_slave = {11'b1001000000,
@@ -29147,259 +28273,6 @@ module sgdma_tx_out_arbitrator (
   //mux sgdma_tx_out_ready, which is an e_mux
   assign sgdma_tx_out_ready = tse_mac_transmit_ready_from_sa;
 
-
-endmodule
-
-
-
-// turn off superfluous verilog processor warnings 
-// altera message_level Level1 
-// altera message_off 10034 10035 10036 10037 10230 10240 10030 
-
-module sw_pio_s1_arbitrator (
-                              // inputs:
-                               clk,
-                               cpu_data_master_address_to_slave,
-                               cpu_data_master_latency_counter,
-                               cpu_data_master_read,
-                               cpu_data_master_write,
-                               reset_n,
-                               sw_pio_s1_readdata,
-
-                              // outputs:
-                               cpu_data_master_granted_sw_pio_s1,
-                               cpu_data_master_qualified_request_sw_pio_s1,
-                               cpu_data_master_read_data_valid_sw_pio_s1,
-                               cpu_data_master_requests_sw_pio_s1,
-                               d1_sw_pio_s1_end_xfer,
-                               sw_pio_s1_address,
-                               sw_pio_s1_readdata_from_sa,
-                               sw_pio_s1_reset_n
-                            )
-;
-
-  output           cpu_data_master_granted_sw_pio_s1;
-  output           cpu_data_master_qualified_request_sw_pio_s1;
-  output           cpu_data_master_read_data_valid_sw_pio_s1;
-  output           cpu_data_master_requests_sw_pio_s1;
-  output           d1_sw_pio_s1_end_xfer;
-  output  [  1: 0] sw_pio_s1_address;
-  output  [  7: 0] sw_pio_s1_readdata_from_sa;
-  output           sw_pio_s1_reset_n;
-  input            clk;
-  input   [ 30: 0] cpu_data_master_address_to_slave;
-  input   [  1: 0] cpu_data_master_latency_counter;
-  input            cpu_data_master_read;
-  input            cpu_data_master_write;
-  input            reset_n;
-  input   [  7: 0] sw_pio_s1_readdata;
-
-  wire             cpu_data_master_arbiterlock;
-  wire             cpu_data_master_arbiterlock2;
-  wire             cpu_data_master_continuerequest;
-  wire             cpu_data_master_granted_sw_pio_s1;
-  wire             cpu_data_master_qualified_request_sw_pio_s1;
-  wire             cpu_data_master_read_data_valid_sw_pio_s1;
-  wire             cpu_data_master_requests_sw_pio_s1;
-  wire             cpu_data_master_saved_grant_sw_pio_s1;
-  reg              d1_reasons_to_wait;
-  reg              d1_sw_pio_s1_end_xfer;
-  reg              enable_nonzero_assertions;
-  wire             end_xfer_arb_share_counter_term_sw_pio_s1;
-  wire             in_a_read_cycle;
-  wire             in_a_write_cycle;
-  wire    [ 30: 0] shifted_address_to_sw_pio_s1_from_cpu_data_master;
-  wire    [  1: 0] sw_pio_s1_address;
-  wire             sw_pio_s1_allgrants;
-  wire             sw_pio_s1_allow_new_arb_cycle;
-  wire             sw_pio_s1_any_bursting_master_saved_grant;
-  wire             sw_pio_s1_any_continuerequest;
-  wire             sw_pio_s1_arb_counter_enable;
-  reg     [  1: 0] sw_pio_s1_arb_share_counter;
-  wire    [  1: 0] sw_pio_s1_arb_share_counter_next_value;
-  wire    [  1: 0] sw_pio_s1_arb_share_set_values;
-  wire             sw_pio_s1_beginbursttransfer_internal;
-  wire             sw_pio_s1_begins_xfer;
-  wire             sw_pio_s1_end_xfer;
-  wire             sw_pio_s1_firsttransfer;
-  wire             sw_pio_s1_grant_vector;
-  wire             sw_pio_s1_in_a_read_cycle;
-  wire             sw_pio_s1_in_a_write_cycle;
-  wire             sw_pio_s1_master_qreq_vector;
-  wire             sw_pio_s1_non_bursting_master_requests;
-  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
-  reg              sw_pio_s1_reg_firsttransfer;
-  wire             sw_pio_s1_reset_n;
-  reg              sw_pio_s1_slavearbiterlockenable;
-  wire             sw_pio_s1_slavearbiterlockenable2;
-  wire             sw_pio_s1_unreg_firsttransfer;
-  wire             sw_pio_s1_waits_for_read;
-  wire             sw_pio_s1_waits_for_write;
-  wire             wait_for_sw_pio_s1_counter;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_reasons_to_wait <= 0;
-      else 
-        d1_reasons_to_wait <= ~sw_pio_s1_end_xfer;
-    end
-
-
-  assign sw_pio_s1_begins_xfer = ~d1_reasons_to_wait & ((cpu_data_master_qualified_request_sw_pio_s1));
-  //assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
-  assign sw_pio_s1_readdata_from_sa = sw_pio_s1_readdata;
-
-  assign cpu_data_master_requests_sw_pio_s1 = (({cpu_data_master_address_to_slave[30 : 4] , 4'b0} == 31'h48112880) & (cpu_data_master_read | cpu_data_master_write)) & cpu_data_master_read;
-  //sw_pio_s1_arb_share_counter set values, which is an e_mux
-  assign sw_pio_s1_arb_share_set_values = 1;
-
-  //sw_pio_s1_non_bursting_master_requests mux, which is an e_mux
-  assign sw_pio_s1_non_bursting_master_requests = cpu_data_master_requests_sw_pio_s1;
-
-  //sw_pio_s1_any_bursting_master_saved_grant mux, which is an e_mux
-  assign sw_pio_s1_any_bursting_master_saved_grant = 0;
-
-  //sw_pio_s1_arb_share_counter_next_value assignment, which is an e_assign
-  assign sw_pio_s1_arb_share_counter_next_value = sw_pio_s1_firsttransfer ? (sw_pio_s1_arb_share_set_values - 1) : |sw_pio_s1_arb_share_counter ? (sw_pio_s1_arb_share_counter - 1) : 0;
-
-  //sw_pio_s1_allgrants all slave grants, which is an e_mux
-  assign sw_pio_s1_allgrants = |sw_pio_s1_grant_vector;
-
-  //sw_pio_s1_end_xfer assignment, which is an e_assign
-  assign sw_pio_s1_end_xfer = ~(sw_pio_s1_waits_for_read | sw_pio_s1_waits_for_write);
-
-  //end_xfer_arb_share_counter_term_sw_pio_s1 arb share counter enable term, which is an e_assign
-  assign end_xfer_arb_share_counter_term_sw_pio_s1 = sw_pio_s1_end_xfer & (~sw_pio_s1_any_bursting_master_saved_grant | in_a_read_cycle | in_a_write_cycle);
-
-  //sw_pio_s1_arb_share_counter arbitration counter enable, which is an e_assign
-  assign sw_pio_s1_arb_counter_enable = (end_xfer_arb_share_counter_term_sw_pio_s1 & sw_pio_s1_allgrants) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests);
-
-  //sw_pio_s1_arb_share_counter counter, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          sw_pio_s1_arb_share_counter <= 0;
-      else if (sw_pio_s1_arb_counter_enable)
-          sw_pio_s1_arb_share_counter <= sw_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //sw_pio_s1_slavearbiterlockenable slave enables arbiterlock, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          sw_pio_s1_slavearbiterlockenable <= 0;
-      else if ((|sw_pio_s1_master_qreq_vector & end_xfer_arb_share_counter_term_sw_pio_s1) | (end_xfer_arb_share_counter_term_sw_pio_s1 & ~sw_pio_s1_non_bursting_master_requests))
-          sw_pio_s1_slavearbiterlockenable <= |sw_pio_s1_arb_share_counter_next_value;
-    end
-
-
-  //cpu/data_master sw_pio/s1 arbiterlock, which is an e_assign
-  assign cpu_data_master_arbiterlock = sw_pio_s1_slavearbiterlockenable & cpu_data_master_continuerequest;
-
-  //sw_pio_s1_slavearbiterlockenable2 slave enables arbiterlock2, which is an e_assign
-  assign sw_pio_s1_slavearbiterlockenable2 = |sw_pio_s1_arb_share_counter_next_value;
-
-  //cpu/data_master sw_pio/s1 arbiterlock2, which is an e_assign
-  assign cpu_data_master_arbiterlock2 = sw_pio_s1_slavearbiterlockenable2 & cpu_data_master_continuerequest;
-
-  //sw_pio_s1_any_continuerequest at least one master continues requesting, which is an e_assign
-  assign sw_pio_s1_any_continuerequest = 1;
-
-  //cpu_data_master_continuerequest continued request, which is an e_assign
-  assign cpu_data_master_continuerequest = 1;
-
-  assign cpu_data_master_qualified_request_sw_pio_s1 = cpu_data_master_requests_sw_pio_s1 & ~((cpu_data_master_read & ((cpu_data_master_latency_counter != 0))));
-  //local readdatavalid cpu_data_master_read_data_valid_sw_pio_s1, which is an e_mux
-  assign cpu_data_master_read_data_valid_sw_pio_s1 = cpu_data_master_granted_sw_pio_s1 & cpu_data_master_read & ~sw_pio_s1_waits_for_read;
-
-  //master is always granted when requested
-  assign cpu_data_master_granted_sw_pio_s1 = cpu_data_master_qualified_request_sw_pio_s1;
-
-  //cpu/data_master saved-grant sw_pio/s1, which is an e_assign
-  assign cpu_data_master_saved_grant_sw_pio_s1 = cpu_data_master_requests_sw_pio_s1;
-
-  //allow new arb cycle for sw_pio/s1, which is an e_assign
-  assign sw_pio_s1_allow_new_arb_cycle = 1;
-
-  //placeholder chosen master
-  assign sw_pio_s1_grant_vector = 1;
-
-  //placeholder vector of master qualified-requests
-  assign sw_pio_s1_master_qreq_vector = 1;
-
-  //sw_pio_s1_reset_n assignment, which is an e_assign
-  assign sw_pio_s1_reset_n = reset_n;
-
-  //sw_pio_s1_firsttransfer first transaction, which is an e_assign
-  assign sw_pio_s1_firsttransfer = sw_pio_s1_begins_xfer ? sw_pio_s1_unreg_firsttransfer : sw_pio_s1_reg_firsttransfer;
-
-  //sw_pio_s1_unreg_firsttransfer first transaction, which is an e_assign
-  assign sw_pio_s1_unreg_firsttransfer = ~(sw_pio_s1_slavearbiterlockenable & sw_pio_s1_any_continuerequest);
-
-  //sw_pio_s1_reg_firsttransfer first transaction, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          sw_pio_s1_reg_firsttransfer <= 1'b1;
-      else if (sw_pio_s1_begins_xfer)
-          sw_pio_s1_reg_firsttransfer <= sw_pio_s1_unreg_firsttransfer;
-    end
-
-
-  //sw_pio_s1_beginbursttransfer_internal begin burst transfer, which is an e_assign
-  assign sw_pio_s1_beginbursttransfer_internal = sw_pio_s1_begins_xfer;
-
-  assign shifted_address_to_sw_pio_s1_from_cpu_data_master = cpu_data_master_address_to_slave;
-  //sw_pio_s1_address mux, which is an e_mux
-  assign sw_pio_s1_address = shifted_address_to_sw_pio_s1_from_cpu_data_master >> 2;
-
-  //d1_sw_pio_s1_end_xfer register, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          d1_sw_pio_s1_end_xfer <= 1;
-      else 
-        d1_sw_pio_s1_end_xfer <= sw_pio_s1_end_xfer;
-    end
-
-
-  //sw_pio_s1_waits_for_read in a cycle, which is an e_mux
-  assign sw_pio_s1_waits_for_read = sw_pio_s1_in_a_read_cycle & sw_pio_s1_begins_xfer;
-
-  //sw_pio_s1_in_a_read_cycle assignment, which is an e_assign
-  assign sw_pio_s1_in_a_read_cycle = cpu_data_master_granted_sw_pio_s1 & cpu_data_master_read;
-
-  //in_a_read_cycle assignment, which is an e_mux
-  assign in_a_read_cycle = sw_pio_s1_in_a_read_cycle;
-
-  //sw_pio_s1_waits_for_write in a cycle, which is an e_mux
-  assign sw_pio_s1_waits_for_write = sw_pio_s1_in_a_write_cycle & 0;
-
-  //sw_pio_s1_in_a_write_cycle assignment, which is an e_assign
-  assign sw_pio_s1_in_a_write_cycle = cpu_data_master_granted_sw_pio_s1 & cpu_data_master_write;
-
-  //in_a_write_cycle assignment, which is an e_mux
-  assign in_a_write_cycle = sw_pio_s1_in_a_write_cycle;
-
-  assign wait_for_sw_pio_s1_counter = 0;
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  //sw_pio/s1 enable non-zero assertions, which is an e_register
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          enable_nonzero_assertions <= 0;
-      else 
-        enable_nonzero_assertions <= 1'b1;
-    end
-
-
-
-//////////////// END SIMULATION-ONLY CONTENTS
-
-//synthesis translate_on
 
 endmodule
 
@@ -30991,9 +29864,6 @@ module SS_OCT_SOPC (
                       flash_tristate_bridge_writen,
                       select_n_to_the_ext_flash,
 
-                     // the_led_pio
-                      out_port_from_the_led_pio,
-
                      // the_master_read
                       control_done_from_the_master_read,
                       control_early_done_from_the_master_read,
@@ -31014,15 +29884,6 @@ module SS_OCT_SOPC (
                       user_buffer_full_from_the_master_write,
                       user_buffer_input_data_to_the_master_write,
                       user_write_buffer_to_the_master_write,
-
-                     // the_pb_pio
-                      in_port_to_the_pb_pio,
-
-                     // the_seven_seg_pio
-                      out_port_from_the_seven_seg_pio,
-
-                     // the_sw_pio
-                      in_port_to_the_sw_pio,
 
                      // the_tse_mac
                       led_an_from_the_tse_mac,
@@ -31087,8 +29948,6 @@ module SS_OCT_SOPC (
   output           mem_odt_from_the_ddr2;
   output           mem_ras_n_from_the_ddr2;
   output           mem_we_n_from_the_ddr2;
-  output  [  7: 0] out_port_from_the_led_pio;
-  output  [ 15: 0] out_port_from_the_seven_seg_pio;
   output           out_port_from_the_vol_transfer_done_pio;
   output           pll_sys_clk;
   output           reset_phy_clk_n_from_the_ddr2;
@@ -31107,8 +29966,6 @@ module SS_OCT_SOPC (
   input   [ 29: 0] control_write_base_to_the_master_write;
   input   [ 29: 0] control_write_length_to_the_master_write;
   input            global_reset_n_to_the_ddr2;
-  input   [  3: 0] in_port_to_the_pb_pio;
-  input   [  7: 0] in_port_to_the_sw_pio;
   input            in_port_to_the_vol_recording_done_pio;
   input            mdio_in_to_the_tse_mac;
   input   [ 13: 0] oct_ctl_rs_value_to_the_ddr2;
@@ -31264,14 +30121,10 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_granted_ext_flash_s1;
   wire             cpu_data_master_granted_high_res_timer_s1;
   wire             cpu_data_master_granted_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_granted_led_pio_s1;
   wire             cpu_data_master_granted_onchip_memory_s1;
   wire             cpu_data_master_granted_packet_memory_s1;
-  wire             cpu_data_master_granted_pb_pio_s1;
-  wire             cpu_data_master_granted_seven_seg_pio_s1;
   wire             cpu_data_master_granted_sgdma_rx_csr;
   wire             cpu_data_master_granted_sgdma_tx_csr;
-  wire             cpu_data_master_granted_sw_pio_s1;
   wire             cpu_data_master_granted_sys_timer_s1;
   wire             cpu_data_master_granted_sysid_control_slave;
   wire             cpu_data_master_granted_tse_mac_control_port;
@@ -31286,14 +30139,10 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_qualified_request_ext_flash_s1;
   wire             cpu_data_master_qualified_request_high_res_timer_s1;
   wire             cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_qualified_request_led_pio_s1;
   wire             cpu_data_master_qualified_request_onchip_memory_s1;
   wire             cpu_data_master_qualified_request_packet_memory_s1;
-  wire             cpu_data_master_qualified_request_pb_pio_s1;
-  wire             cpu_data_master_qualified_request_seven_seg_pio_s1;
   wire             cpu_data_master_qualified_request_sgdma_rx_csr;
   wire             cpu_data_master_qualified_request_sgdma_tx_csr;
-  wire             cpu_data_master_qualified_request_sw_pio_s1;
   wire             cpu_data_master_qualified_request_sys_timer_s1;
   wire             cpu_data_master_qualified_request_sysid_control_slave;
   wire             cpu_data_master_qualified_request_tse_mac_control_port;
@@ -31307,14 +30156,10 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_read_data_valid_ext_flash_s1;
   wire             cpu_data_master_read_data_valid_high_res_timer_s1;
   wire             cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_read_data_valid_led_pio_s1;
   wire             cpu_data_master_read_data_valid_onchip_memory_s1;
   wire             cpu_data_master_read_data_valid_packet_memory_s1;
-  wire             cpu_data_master_read_data_valid_pb_pio_s1;
-  wire             cpu_data_master_read_data_valid_seven_seg_pio_s1;
   wire             cpu_data_master_read_data_valid_sgdma_rx_csr;
   wire             cpu_data_master_read_data_valid_sgdma_tx_csr;
-  wire             cpu_data_master_read_data_valid_sw_pio_s1;
   wire             cpu_data_master_read_data_valid_sys_timer_s1;
   wire             cpu_data_master_read_data_valid_sysid_control_slave;
   wire             cpu_data_master_read_data_valid_tse_mac_control_port;
@@ -31329,14 +30174,10 @@ module SS_OCT_SOPC (
   wire             cpu_data_master_requests_ext_flash_s1;
   wire             cpu_data_master_requests_high_res_timer_s1;
   wire             cpu_data_master_requests_jtag_uart_avalon_jtag_slave;
-  wire             cpu_data_master_requests_led_pio_s1;
   wire             cpu_data_master_requests_onchip_memory_s1;
   wire             cpu_data_master_requests_packet_memory_s1;
-  wire             cpu_data_master_requests_pb_pio_s1;
-  wire             cpu_data_master_requests_seven_seg_pio_s1;
   wire             cpu_data_master_requests_sgdma_rx_csr;
   wire             cpu_data_master_requests_sgdma_tx_csr;
-  wire             cpu_data_master_requests_sw_pio_s1;
   wire             cpu_data_master_requests_sys_timer_s1;
   wire             cpu_data_master_requests_sysid_control_slave;
   wire             cpu_data_master_requests_tse_mac_control_port;
@@ -31391,17 +30232,13 @@ module SS_OCT_SOPC (
   wire             d1_flash_tristate_bridge_avalon_slave_end_xfer;
   wire             d1_high_res_timer_s1_end_xfer;
   wire             d1_jtag_uart_avalon_jtag_slave_end_xfer;
-  wire             d1_led_pio_s1_end_xfer;
   wire             d1_onchip_memory_s1_end_xfer;
   wire             d1_packet_memory_s1_end_xfer;
   wire             d1_packet_memory_s2_end_xfer;
-  wire             d1_pb_pio_s1_end_xfer;
   wire             d1_pipeline_bridge_ddr2_s1_end_xfer;
   wire             d1_pll_s1_end_xfer;
-  wire             d1_seven_seg_pio_s1_end_xfer;
   wire             d1_sgdma_rx_csr_end_xfer;
   wire             d1_sgdma_tx_csr_end_xfer;
-  wire             d1_sw_pio_s1_end_xfer;
   wire             d1_sys_timer_s1_end_xfer;
   wire             d1_sysid_control_slave_end_xfer;
   wire             d1_tse_mac_control_port_end_xfer;
@@ -31473,13 +30310,6 @@ module SS_OCT_SOPC (
   wire             led_crs_from_the_tse_mac;
   wire             led_disp_err_from_the_tse_mac;
   wire             led_link_from_the_tse_mac;
-  wire    [  1: 0] led_pio_s1_address;
-  wire             led_pio_s1_chipselect;
-  wire    [  7: 0] led_pio_s1_readdata;
-  wire    [  7: 0] led_pio_s1_readdata_from_sa;
-  wire             led_pio_s1_reset_n;
-  wire             led_pio_s1_write_n;
-  wire    [  7: 0] led_pio_s1_writedata;
   wire             local_init_done_from_the_ddr2;
   wire             local_refresh_ack_from_the_ddr2;
   wire             local_wdata_req_from_the_ddr2;
@@ -31538,8 +30368,6 @@ module SS_OCT_SOPC (
   wire             out_clk_ddr2_aux_half_rate_clk;
   wire             out_clk_ddr2_phy_clk;
   wire             out_clk_pll_c0;
-  wire    [  7: 0] out_port_from_the_led_pio;
-  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             out_port_from_the_vol_transfer_done_pio;
   wire    [ 13: 0] packet_memory_s1_address;
   wire    [  3: 0] packet_memory_s1_byteenable;
@@ -31557,10 +30385,6 @@ module SS_OCT_SOPC (
   wire    [ 31: 0] packet_memory_s2_readdata_from_sa;
   wire             packet_memory_s2_write;
   wire    [ 31: 0] packet_memory_s2_writedata;
-  wire    [  1: 0] pb_pio_s1_address;
-  wire    [  3: 0] pb_pio_s1_readdata;
-  wire    [  3: 0] pb_pio_s1_readdata_from_sa;
-  wire             pb_pio_s1_reset_n;
   wire    [ 29: 0] pipeline_bridge_ddr2_m1_address;
   wire    [ 29: 0] pipeline_bridge_ddr2_m1_address_to_slave;
   wire             pipeline_bridge_ddr2_m1_burstcount;
@@ -31614,13 +30438,6 @@ module SS_OCT_SOPC (
   wire             reset_n_sources;
   wire             reset_phy_clk_n_from_the_ddr2;
   wire             select_n_to_the_ext_flash;
-  wire    [  1: 0] seven_seg_pio_s1_address;
-  wire             seven_seg_pio_s1_chipselect;
-  wire    [ 15: 0] seven_seg_pio_s1_readdata;
-  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
-  wire             seven_seg_pio_s1_reset_n;
-  wire             seven_seg_pio_s1_write_n;
-  wire    [ 15: 0] seven_seg_pio_s1_writedata;
   wire    [  3: 0] sgdma_rx_csr_address;
   wire             sgdma_rx_csr_chipselect;
   wire             sgdma_rx_csr_irq;
@@ -31721,10 +30538,6 @@ module SS_OCT_SOPC (
   wire             sgdma_tx_out_ready;
   wire             sgdma_tx_out_startofpacket;
   wire             sgdma_tx_out_valid;
-  wire    [  1: 0] sw_pio_s1_address;
-  wire    [  7: 0] sw_pio_s1_readdata;
-  wire    [  7: 0] sw_pio_s1_readdata_from_sa;
-  wire             sw_pio_s1_reset_n;
   wire    [  2: 0] sys_timer_s1_address;
   wire             sys_timer_s1_chipselect;
   wire             sys_timer_s1_irq;
@@ -32173,14 +30986,10 @@ module SS_OCT_SOPC (
       .cpu_data_master_granted_ext_flash_s1                          (cpu_data_master_granted_ext_flash_s1),
       .cpu_data_master_granted_high_res_timer_s1                     (cpu_data_master_granted_high_res_timer_s1),
       .cpu_data_master_granted_jtag_uart_avalon_jtag_slave           (cpu_data_master_granted_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_granted_led_pio_s1                            (cpu_data_master_granted_led_pio_s1),
       .cpu_data_master_granted_onchip_memory_s1                      (cpu_data_master_granted_onchip_memory_s1),
       .cpu_data_master_granted_packet_memory_s1                      (cpu_data_master_granted_packet_memory_s1),
-      .cpu_data_master_granted_pb_pio_s1                             (cpu_data_master_granted_pb_pio_s1),
-      .cpu_data_master_granted_seven_seg_pio_s1                      (cpu_data_master_granted_seven_seg_pio_s1),
       .cpu_data_master_granted_sgdma_rx_csr                          (cpu_data_master_granted_sgdma_rx_csr),
       .cpu_data_master_granted_sgdma_tx_csr                          (cpu_data_master_granted_sgdma_tx_csr),
-      .cpu_data_master_granted_sw_pio_s1                             (cpu_data_master_granted_sw_pio_s1),
       .cpu_data_master_granted_sys_timer_s1                          (cpu_data_master_granted_sys_timer_s1),
       .cpu_data_master_granted_sysid_control_slave                   (cpu_data_master_granted_sysid_control_slave),
       .cpu_data_master_granted_tse_mac_control_port                  (cpu_data_master_granted_tse_mac_control_port),
@@ -32195,14 +31004,10 @@ module SS_OCT_SOPC (
       .cpu_data_master_qualified_request_ext_flash_s1                (cpu_data_master_qualified_request_ext_flash_s1),
       .cpu_data_master_qualified_request_high_res_timer_s1           (cpu_data_master_qualified_request_high_res_timer_s1),
       .cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave (cpu_data_master_qualified_request_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_qualified_request_led_pio_s1                  (cpu_data_master_qualified_request_led_pio_s1),
       .cpu_data_master_qualified_request_onchip_memory_s1            (cpu_data_master_qualified_request_onchip_memory_s1),
       .cpu_data_master_qualified_request_packet_memory_s1            (cpu_data_master_qualified_request_packet_memory_s1),
-      .cpu_data_master_qualified_request_pb_pio_s1                   (cpu_data_master_qualified_request_pb_pio_s1),
-      .cpu_data_master_qualified_request_seven_seg_pio_s1            (cpu_data_master_qualified_request_seven_seg_pio_s1),
       .cpu_data_master_qualified_request_sgdma_rx_csr                (cpu_data_master_qualified_request_sgdma_rx_csr),
       .cpu_data_master_qualified_request_sgdma_tx_csr                (cpu_data_master_qualified_request_sgdma_tx_csr),
-      .cpu_data_master_qualified_request_sw_pio_s1                   (cpu_data_master_qualified_request_sw_pio_s1),
       .cpu_data_master_qualified_request_sys_timer_s1                (cpu_data_master_qualified_request_sys_timer_s1),
       .cpu_data_master_qualified_request_sysid_control_slave         (cpu_data_master_qualified_request_sysid_control_slave),
       .cpu_data_master_qualified_request_tse_mac_control_port        (cpu_data_master_qualified_request_tse_mac_control_port),
@@ -32216,14 +31021,10 @@ module SS_OCT_SOPC (
       .cpu_data_master_read_data_valid_ext_flash_s1                  (cpu_data_master_read_data_valid_ext_flash_s1),
       .cpu_data_master_read_data_valid_high_res_timer_s1             (cpu_data_master_read_data_valid_high_res_timer_s1),
       .cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave   (cpu_data_master_read_data_valid_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_read_data_valid_led_pio_s1                    (cpu_data_master_read_data_valid_led_pio_s1),
       .cpu_data_master_read_data_valid_onchip_memory_s1              (cpu_data_master_read_data_valid_onchip_memory_s1),
       .cpu_data_master_read_data_valid_packet_memory_s1              (cpu_data_master_read_data_valid_packet_memory_s1),
-      .cpu_data_master_read_data_valid_pb_pio_s1                     (cpu_data_master_read_data_valid_pb_pio_s1),
-      .cpu_data_master_read_data_valid_seven_seg_pio_s1              (cpu_data_master_read_data_valid_seven_seg_pio_s1),
       .cpu_data_master_read_data_valid_sgdma_rx_csr                  (cpu_data_master_read_data_valid_sgdma_rx_csr),
       .cpu_data_master_read_data_valid_sgdma_tx_csr                  (cpu_data_master_read_data_valid_sgdma_tx_csr),
-      .cpu_data_master_read_data_valid_sw_pio_s1                     (cpu_data_master_read_data_valid_sw_pio_s1),
       .cpu_data_master_read_data_valid_sys_timer_s1                  (cpu_data_master_read_data_valid_sys_timer_s1),
       .cpu_data_master_read_data_valid_sysid_control_slave           (cpu_data_master_read_data_valid_sysid_control_slave),
       .cpu_data_master_read_data_valid_tse_mac_control_port          (cpu_data_master_read_data_valid_tse_mac_control_port),
@@ -32238,14 +31039,10 @@ module SS_OCT_SOPC (
       .cpu_data_master_requests_ext_flash_s1                         (cpu_data_master_requests_ext_flash_s1),
       .cpu_data_master_requests_high_res_timer_s1                    (cpu_data_master_requests_high_res_timer_s1),
       .cpu_data_master_requests_jtag_uart_avalon_jtag_slave          (cpu_data_master_requests_jtag_uart_avalon_jtag_slave),
-      .cpu_data_master_requests_led_pio_s1                           (cpu_data_master_requests_led_pio_s1),
       .cpu_data_master_requests_onchip_memory_s1                     (cpu_data_master_requests_onchip_memory_s1),
       .cpu_data_master_requests_packet_memory_s1                     (cpu_data_master_requests_packet_memory_s1),
-      .cpu_data_master_requests_pb_pio_s1                            (cpu_data_master_requests_pb_pio_s1),
-      .cpu_data_master_requests_seven_seg_pio_s1                     (cpu_data_master_requests_seven_seg_pio_s1),
       .cpu_data_master_requests_sgdma_rx_csr                         (cpu_data_master_requests_sgdma_rx_csr),
       .cpu_data_master_requests_sgdma_tx_csr                         (cpu_data_master_requests_sgdma_tx_csr),
-      .cpu_data_master_requests_sw_pio_s1                            (cpu_data_master_requests_sw_pio_s1),
       .cpu_data_master_requests_sys_timer_s1                         (cpu_data_master_requests_sys_timer_s1),
       .cpu_data_master_requests_sysid_control_slave                  (cpu_data_master_requests_sysid_control_slave),
       .cpu_data_master_requests_tse_mac_control_port                 (cpu_data_master_requests_tse_mac_control_port),
@@ -32262,14 +31059,10 @@ module SS_OCT_SOPC (
       .d1_flash_tristate_bridge_avalon_slave_end_xfer                (d1_flash_tristate_bridge_avalon_slave_end_xfer),
       .d1_high_res_timer_s1_end_xfer                                 (d1_high_res_timer_s1_end_xfer),
       .d1_jtag_uart_avalon_jtag_slave_end_xfer                       (d1_jtag_uart_avalon_jtag_slave_end_xfer),
-      .d1_led_pio_s1_end_xfer                                        (d1_led_pio_s1_end_xfer),
       .d1_onchip_memory_s1_end_xfer                                  (d1_onchip_memory_s1_end_xfer),
       .d1_packet_memory_s1_end_xfer                                  (d1_packet_memory_s1_end_xfer),
-      .d1_pb_pio_s1_end_xfer                                         (d1_pb_pio_s1_end_xfer),
-      .d1_seven_seg_pio_s1_end_xfer                                  (d1_seven_seg_pio_s1_end_xfer),
       .d1_sgdma_rx_csr_end_xfer                                      (d1_sgdma_rx_csr_end_xfer),
       .d1_sgdma_tx_csr_end_xfer                                      (d1_sgdma_tx_csr_end_xfer),
-      .d1_sw_pio_s1_end_xfer                                         (d1_sw_pio_s1_end_xfer),
       .d1_sys_timer_s1_end_xfer                                      (d1_sys_timer_s1_end_xfer),
       .d1_sysid_control_slave_end_xfer                               (d1_sysid_control_slave_end_xfer),
       .d1_tse_mac_control_port_end_xfer                              (d1_tse_mac_control_port_end_xfer),
@@ -32283,17 +31076,13 @@ module SS_OCT_SOPC (
       .jtag_uart_avalon_jtag_slave_irq_from_sa                       (jtag_uart_avalon_jtag_slave_irq_from_sa),
       .jtag_uart_avalon_jtag_slave_readdata_from_sa                  (jtag_uart_avalon_jtag_slave_readdata_from_sa),
       .jtag_uart_avalon_jtag_slave_waitrequest_from_sa               (jtag_uart_avalon_jtag_slave_waitrequest_from_sa),
-      .led_pio_s1_readdata_from_sa                                   (led_pio_s1_readdata_from_sa),
       .onchip_memory_s1_readdata_from_sa                             (onchip_memory_s1_readdata_from_sa),
       .packet_memory_s1_readdata_from_sa                             (packet_memory_s1_readdata_from_sa),
-      .pb_pio_s1_readdata_from_sa                                    (pb_pio_s1_readdata_from_sa),
       .reset_n                                                       (pll_sys_clk_reset_n),
-      .seven_seg_pio_s1_readdata_from_sa                             (seven_seg_pio_s1_readdata_from_sa),
       .sgdma_rx_csr_irq_from_sa                                      (sgdma_rx_csr_irq_from_sa),
       .sgdma_rx_csr_readdata_from_sa                                 (sgdma_rx_csr_readdata_from_sa),
       .sgdma_tx_csr_irq_from_sa                                      (sgdma_tx_csr_irq_from_sa),
       .sgdma_tx_csr_readdata_from_sa                                 (sgdma_tx_csr_readdata_from_sa),
-      .sw_pio_s1_readdata_from_sa                                    (sw_pio_s1_readdata_from_sa),
       .sys_timer_s1_irq_from_sa                                      (sys_timer_s1_irq_from_sa),
       .sys_timer_s1_readdata_from_sa                                 (sys_timer_s1_readdata_from_sa),
       .sysid_control_slave_readdata_from_sa                          (sysid_control_slave_readdata_from_sa),
@@ -32684,42 +31473,6 @@ module SS_OCT_SOPC (
       .rst_n          (jtag_uart_avalon_jtag_slave_reset_n)
     );
 
-  led_pio_s1_arbitrator the_led_pio_s1
-    (
-      .clk                                          (pll_sys_clk),
-      .cpu_data_master_address_to_slave             (cpu_data_master_address_to_slave),
-      .cpu_data_master_byteenable                   (cpu_data_master_byteenable),
-      .cpu_data_master_granted_led_pio_s1           (cpu_data_master_granted_led_pio_s1),
-      .cpu_data_master_latency_counter              (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_led_pio_s1 (cpu_data_master_qualified_request_led_pio_s1),
-      .cpu_data_master_read                         (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_led_pio_s1   (cpu_data_master_read_data_valid_led_pio_s1),
-      .cpu_data_master_requests_led_pio_s1          (cpu_data_master_requests_led_pio_s1),
-      .cpu_data_master_write                        (cpu_data_master_write),
-      .cpu_data_master_writedata                    (cpu_data_master_writedata),
-      .d1_led_pio_s1_end_xfer                       (d1_led_pio_s1_end_xfer),
-      .led_pio_s1_address                           (led_pio_s1_address),
-      .led_pio_s1_chipselect                        (led_pio_s1_chipselect),
-      .led_pio_s1_readdata                          (led_pio_s1_readdata),
-      .led_pio_s1_readdata_from_sa                  (led_pio_s1_readdata_from_sa),
-      .led_pio_s1_reset_n                           (led_pio_s1_reset_n),
-      .led_pio_s1_write_n                           (led_pio_s1_write_n),
-      .led_pio_s1_writedata                         (led_pio_s1_writedata),
-      .reset_n                                      (pll_sys_clk_reset_n)
-    );
-
-  led_pio the_led_pio
-    (
-      .address    (led_pio_s1_address),
-      .chipselect (led_pio_s1_chipselect),
-      .clk        (pll_sys_clk),
-      .out_port   (out_port_from_the_led_pio),
-      .readdata   (led_pio_s1_readdata),
-      .reset_n    (led_pio_s1_reset_n),
-      .write_n    (led_pio_s1_write_n),
-      .writedata  (led_pio_s1_writedata)
-    );
-
   master_read_avalon_master_arbitrator the_master_read_avalon_master
     (
       .clk                                                            (clk_50),
@@ -32937,34 +31690,6 @@ module SS_OCT_SOPC (
       .writedata2  (packet_memory_s2_writedata)
     );
 
-  pb_pio_s1_arbitrator the_pb_pio_s1
-    (
-      .clk                                         (pll_sys_clk),
-      .cpu_data_master_address_to_slave            (cpu_data_master_address_to_slave),
-      .cpu_data_master_granted_pb_pio_s1           (cpu_data_master_granted_pb_pio_s1),
-      .cpu_data_master_latency_counter             (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_pb_pio_s1 (cpu_data_master_qualified_request_pb_pio_s1),
-      .cpu_data_master_read                        (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_pb_pio_s1   (cpu_data_master_read_data_valid_pb_pio_s1),
-      .cpu_data_master_requests_pb_pio_s1          (cpu_data_master_requests_pb_pio_s1),
-      .cpu_data_master_write                       (cpu_data_master_write),
-      .d1_pb_pio_s1_end_xfer                       (d1_pb_pio_s1_end_xfer),
-      .pb_pio_s1_address                           (pb_pio_s1_address),
-      .pb_pio_s1_readdata                          (pb_pio_s1_readdata),
-      .pb_pio_s1_readdata_from_sa                  (pb_pio_s1_readdata_from_sa),
-      .pb_pio_s1_reset_n                           (pb_pio_s1_reset_n),
-      .reset_n                                     (pll_sys_clk_reset_n)
-    );
-
-  pb_pio the_pb_pio
-    (
-      .address  (pb_pio_s1_address),
-      .clk      (pll_sys_clk),
-      .in_port  (in_port_to_the_pb_pio),
-      .readdata (pb_pio_s1_readdata),
-      .reset_n  (pb_pio_s1_reset_n)
-    );
-
   pipeline_bridge_ddr2_s1_arbitrator the_pipeline_bridge_ddr2_s1
     (
       .SS_OCT_SOPC_clock_1_out_address_to_slave                                       (SS_OCT_SOPC_clock_1_out_address_to_slave),
@@ -33102,41 +31827,6 @@ module SS_OCT_SOPC (
       .resetrequest (pll_s1_resetrequest),
       .write        (pll_s1_write),
       .writedata    (pll_s1_writedata)
-    );
-
-  seven_seg_pio_s1_arbitrator the_seven_seg_pio_s1
-    (
-      .clk                                                (pll_sys_clk),
-      .cpu_data_master_address_to_slave                   (cpu_data_master_address_to_slave),
-      .cpu_data_master_granted_seven_seg_pio_s1           (cpu_data_master_granted_seven_seg_pio_s1),
-      .cpu_data_master_latency_counter                    (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_seven_seg_pio_s1 (cpu_data_master_qualified_request_seven_seg_pio_s1),
-      .cpu_data_master_read                               (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_seven_seg_pio_s1   (cpu_data_master_read_data_valid_seven_seg_pio_s1),
-      .cpu_data_master_requests_seven_seg_pio_s1          (cpu_data_master_requests_seven_seg_pio_s1),
-      .cpu_data_master_write                              (cpu_data_master_write),
-      .cpu_data_master_writedata                          (cpu_data_master_writedata),
-      .d1_seven_seg_pio_s1_end_xfer                       (d1_seven_seg_pio_s1_end_xfer),
-      .reset_n                                            (pll_sys_clk_reset_n),
-      .seven_seg_pio_s1_address                           (seven_seg_pio_s1_address),
-      .seven_seg_pio_s1_chipselect                        (seven_seg_pio_s1_chipselect),
-      .seven_seg_pio_s1_readdata                          (seven_seg_pio_s1_readdata),
-      .seven_seg_pio_s1_readdata_from_sa                  (seven_seg_pio_s1_readdata_from_sa),
-      .seven_seg_pio_s1_reset_n                           (seven_seg_pio_s1_reset_n),
-      .seven_seg_pio_s1_write_n                           (seven_seg_pio_s1_write_n),
-      .seven_seg_pio_s1_writedata                         (seven_seg_pio_s1_writedata)
-    );
-
-  seven_seg_pio the_seven_seg_pio
-    (
-      .address    (seven_seg_pio_s1_address),
-      .chipselect (seven_seg_pio_s1_chipselect),
-      .clk        (pll_sys_clk),
-      .out_port   (out_port_from_the_seven_seg_pio),
-      .readdata   (seven_seg_pio_s1_readdata),
-      .reset_n    (seven_seg_pio_s1_reset_n),
-      .write_n    (seven_seg_pio_s1_write_n),
-      .writedata  (seven_seg_pio_s1_writedata)
     );
 
   sgdma_rx_csr_arbitrator the_sgdma_rx_csr
@@ -33404,34 +32094,6 @@ module SS_OCT_SOPC (
       .out_startofpacket             (sgdma_tx_out_startofpacket),
       .out_valid                     (sgdma_tx_out_valid),
       .system_reset_n                (sgdma_tx_csr_reset_n)
-    );
-
-  sw_pio_s1_arbitrator the_sw_pio_s1
-    (
-      .clk                                         (pll_sys_clk),
-      .cpu_data_master_address_to_slave            (cpu_data_master_address_to_slave),
-      .cpu_data_master_granted_sw_pio_s1           (cpu_data_master_granted_sw_pio_s1),
-      .cpu_data_master_latency_counter             (cpu_data_master_latency_counter),
-      .cpu_data_master_qualified_request_sw_pio_s1 (cpu_data_master_qualified_request_sw_pio_s1),
-      .cpu_data_master_read                        (cpu_data_master_read),
-      .cpu_data_master_read_data_valid_sw_pio_s1   (cpu_data_master_read_data_valid_sw_pio_s1),
-      .cpu_data_master_requests_sw_pio_s1          (cpu_data_master_requests_sw_pio_s1),
-      .cpu_data_master_write                       (cpu_data_master_write),
-      .d1_sw_pio_s1_end_xfer                       (d1_sw_pio_s1_end_xfer),
-      .reset_n                                     (pll_sys_clk_reset_n),
-      .sw_pio_s1_address                           (sw_pio_s1_address),
-      .sw_pio_s1_readdata                          (sw_pio_s1_readdata),
-      .sw_pio_s1_readdata_from_sa                  (sw_pio_s1_readdata_from_sa),
-      .sw_pio_s1_reset_n                           (sw_pio_s1_reset_n)
-    );
-
-  sw_pio the_sw_pio
-    (
-      .address  (sw_pio_s1_address),
-      .clk      (pll_sys_clk),
-      .in_port  (in_port_to_the_sw_pio),
-      .readdata (sw_pio_s1_readdata),
-      .reset_n  (sw_pio_s1_reset_n)
     );
 
   sys_timer_s1_arbitrator the_sys_timer_s1
@@ -33977,7 +32639,6 @@ endmodule
 `include "clock_crossing_0.v"
 `include "high_res_timer.v"
 `include "sys_timer.v"
-`include "led_pio.v"
 `include "jtag_uart.v"
 `include "sgdma_rx.v"
 `include "onchip_memory.v"
@@ -33990,13 +32651,10 @@ endmodule
 `include "cpu.v"
 `include "SS_OCT_SOPC_clock_1.v"
 `include "vol_recording_done_pio.v"
-`include "sw_pio.v"
 `include "pipeline_bridge_ddr2.v"
 `include "sgdma_tx.v"
 `include "packet_memory.v"
-`include "seven_seg_pio.v"
 `include "SS_OCT_SOPC_clock_0.v"
-`include "pb_pio.v"
 `include "SS_OCT_SOPC_burst_0.v"
 
 `timescale 1ns / 1ps
@@ -34038,8 +32696,6 @@ module test_bench
   wire             flash_tristate_bridge_readn;
   wire             flash_tristate_bridge_writen;
   wire             global_reset_n_to_the_ddr2;
-  wire    [  3: 0] in_port_to_the_pb_pio;
-  wire    [  7: 0] in_port_to_the_sw_pio;
   wire             in_port_to_the_vol_recording_done_pio;
   wire             jtag_uart_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_avalon_jtag_slave_readyfordata_from_sa;
@@ -34072,8 +32728,6 @@ module test_bench
   wire             mem_we_n_from_the_ddr2;
   wire    [ 13: 0] oct_ctl_rs_value_to_the_ddr2;
   wire    [ 13: 0] oct_ctl_rt_value_to_the_ddr2;
-  wire    [  7: 0] out_port_from_the_led_pio;
-  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             out_port_from_the_vol_transfer_done_pio;
   wire             pipeline_bridge_ddr2_m1_debugaccess;
   wire             pipeline_bridge_ddr2_m1_endofpacket;
@@ -34123,8 +32777,6 @@ module test_bench
       .flash_tristate_bridge_readn                  (flash_tristate_bridge_readn),
       .flash_tristate_bridge_writen                 (flash_tristate_bridge_writen),
       .global_reset_n_to_the_ddr2                   (global_reset_n_to_the_ddr2),
-      .in_port_to_the_pb_pio                        (in_port_to_the_pb_pio),
-      .in_port_to_the_sw_pio                        (in_port_to_the_sw_pio),
       .in_port_to_the_vol_recording_done_pio        (in_port_to_the_vol_recording_done_pio),
       .led_an_from_the_tse_mac                      (led_an_from_the_tse_mac),
       .led_char_err_from_the_tse_mac                (led_char_err_from_the_tse_mac),
@@ -34155,8 +32807,6 @@ module test_bench
       .mem_we_n_from_the_ddr2                       (mem_we_n_from_the_ddr2),
       .oct_ctl_rs_value_to_the_ddr2                 (oct_ctl_rs_value_to_the_ddr2),
       .oct_ctl_rt_value_to_the_ddr2                 (oct_ctl_rt_value_to_the_ddr2),
-      .out_port_from_the_led_pio                    (out_port_from_the_led_pio),
-      .out_port_from_the_seven_seg_pio              (out_port_from_the_seven_seg_pio),
       .out_port_from_the_vol_transfer_done_pio      (out_port_from_the_vol_transfer_done_pio),
       .pll_sys_clk                                  (pll_sys_clk),
       .ref_clk_to_the_tse_mac                       (ref_clk_to_the_tse_mac),

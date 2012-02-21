@@ -71,19 +71,19 @@
          type = "String";
       }
    }
-   element sgdma_rx.csr
-   {
-      datum baseAddress
-      {
-         value = "1209084608";
-         type = "long";
-      }
-   }
    element sgdma_tx.csr
    {
       datum baseAddress
       {
          value = "1209084544";
+         type = "long";
+      }
+   }
+   element sgdma_rx.csr
+   {
+      datum baseAddress
+      {
+         value = "1209084608";
          type = "long";
       }
    }
@@ -173,19 +173,6 @@
          type = "String";
       }
    }
-   element led_pio
-   {
-      datum _sortIndex
-      {
-         value = "21";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
    element master_read
    {
       datum _sortIndex
@@ -219,20 +206,7 @@
    {
       datum _sortIndex
       {
-         value = "25";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
-   element pb_pio
-   {
-      datum _sortIndex
-      {
-         value = "23";
+         value = "21";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -267,91 +241,11 @@
          type = "String";
       }
    }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "1140850688";
-         type = "long";
-      }
-   }
-   element vol_recording_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083776";
-         type = "long";
-      }
-   }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element sw_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209084032";
-         type = "long";
-      }
-   }
-   element pipeline_bridge_ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209079808";
-         type = "long";
-      }
-   }
-   element high_res_timer.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083136";
-         type = "long";
-      }
-   }
-   element packet_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209008128";
-         type = "long";
-      }
-   }
-   element vol_transfer_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083648";
-         type = "long";
-      }
-   }
    element clock_crossing_0.s1
    {
       datum baseAddress
       {
          value = "0";
-         type = "long";
-      }
-   }
-   element pb_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209084160";
          type = "long";
       }
    }
@@ -363,11 +257,27 @@
          type = "long";
       }
    }
-   element sys_timer.s1
+   element descriptor_memory.s1
    {
       datum baseAddress
       {
-         value = "1209083392";
+         value = "1209079808";
+         type = "long";
+      }
+   }
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209008128";
+         type = "long";
+      }
+   }
+   element ext_flash.s1
+   {
+      datum baseAddress
+      {
+         value = "1140850688";
          type = "long";
       }
    }
@@ -379,19 +289,51 @@
          type = "long";
       }
    }
-   element seven_seg_pio.s1
+   element sys_timer.s1
    {
       datum baseAddress
       {
-         value = "1209084288";
+         value = "1209083392";
          type = "long";
       }
    }
-   element led_pio.s1
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
-         value = "1209083904";
+         value = "0";
+         type = "long";
+      }
+   }
+   element vol_recording_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083776";
+         type = "long";
+      }
+   }
+   element high_res_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083136";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083648";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
          type = "long";
       }
    }
@@ -401,19 +343,6 @@
       {
          value = "1209008128";
          type = "long";
-      }
-   }
-   element seven_seg_pio
-   {
-      datum _sortIndex
-      {
-         value = "24";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
       }
    }
    element sgdma_rx
@@ -434,19 +363,6 @@
       datum _sortIndex
       {
          value = "15";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
-   element sw_pio
-   {
-      datum _sortIndex
-      {
-         value = "22";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -527,8 +443,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
- <parameter name="systemHash" value="-65014571582" />
- <parameter name="timeStamp" value="1328122207966" />
+ <parameter name="systemHash" value="-87704262680" />
+ <parameter name="timeStamp" value="1329838581633" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -1262,62 +1178,6 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="1" />
  </module>
- <module name="led_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
- <module name="sw_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
- <module name="pb_pio" kind="altera_avalon_pio" version="9.1" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="4" />
- </module>
- <module
-   name="seven_seg_pio"
-   kind="altera_avalon_pio"
-   version="9.1"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="16" />
- </module>
  <module
    name="packet_memory"
    kind="altera_avalon_onchip_memory2"
@@ -1662,10 +1522,6 @@
    version="9.1"
    start="pll.c0"
    end="vol_recording_done_pio.clk" />
- <connection kind="clock" version="9.1" start="pll.c0" end="led_pio.clk" />
- <connection kind="clock" version="9.1" start="pll.c0" end="sw_pio.clk" />
- <connection kind="clock" version="9.1" start="pll.c0" end="pb_pio.clk" />
- <connection kind="clock" version="9.1" start="pll.c0" end="seven_seg_pio.clk" />
  <connection
    kind="avalon"
    version="6.1"
@@ -1681,26 +1537,6 @@
    end="vol_recording_done_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x48112780" />
- </connection>
- <connection kind="avalon" version="6.1" start="cpu.data_master" end="led_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x48112800" />
- </connection>
- <connection kind="avalon" version="6.1" start="cpu.data_master" end="sw_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x48112880" />
- </connection>
- <connection kind="avalon" version="6.1" start="cpu.data_master" end="pb_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x48112900" />
- </connection>
- <connection
-   kind="avalon"
-   version="6.1"
-   start="cpu.data_master"
-   end="seven_seg_pio.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x48112980" />
  </connection>
  <connection kind="clock" version="9.1" start="pll.c0" end="sgdma_tx.clk" />
  <connection

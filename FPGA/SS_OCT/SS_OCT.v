@@ -460,6 +460,8 @@ wire						volTransferDone;
 wire		[ 6:0]			read_RAM_address;
 wire		[10:0]			write_RAM_address;
 
+// Data input to internal RAM
+wire		[15:0] 			RAMdata_in;
 // Data output from internal RAM
 wire		[255:0]			RAMdata;
 
@@ -670,7 +672,7 @@ assign	clockVar			=  ADA_DCO;
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
-	.clock( clockVar ) ,						// input  clock_sig (ADA_DCO)
+	.clock( clockVar ) ,						// input  clock_sig (clk150MHz) Original connection: clockVar (ADA_DCO) 
 	.sclr( ~trigger50kHz ) ,					// input  ~trigger50kHz
 	.sample_position( write_RAM_address ) ,		// output [10:0] write_RAM_address
 	.acq_busy( acq_busy ) ,						// output acq_busy
@@ -684,7 +686,7 @@ RAM	RAM_inst (
 	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
 	.wrclock ( clockVar ),						// input Write clock (ADA_DCO)
 	.wren ( acq_busy ),							// input acq_busy
-	.data ( {5'b0, write_RAM_address} ),		// input [15:0] 16-bit data (Original connection: {2'b0, ADA_D})
+	.data ( RAMdata_in ),						// input [15:0] 16-bit data (Original connection: {2'b0, ADA_D})
 	.rdaddress({dualMSB_read,read_RAM_address}),// input [7:0] Read address ({dualMSB_read,read_RAM_address}) from NIOS
 	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz) (actually 125 MHz)
 	.q ( RAMdata )								// output [255:0] data read by NIOS
@@ -843,25 +845,20 @@ SS_OCT_SOPC SS_OCT_SOPC_inst(
 	.out_port_from_the_vol_transfer_done_pio(volTransferDone) ,				// output  	volTransferDone
 	// PIO pin to receive signal when data recording to DDR2 is done
 	.in_port_to_the_vol_recording_done_pio(volRecordingDone) ,				// input 	volRecordingDone
-	
-	// the_pb_pio
-	.in_port_to_the_pb_pio(BUTTON),
-
-	// the_sw_pio
-	.in_port_to_the_sw_pio(SW),
-
-	// the_seven_seg_pio
-	.out_port_from_the_seven_seg_pio(),
-	//.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
-
-	// the_led_pio
-	.out_port_from_the_led_pio()
-	//.out_port_from_the_seven_seg_pio({SEG1_DP,SEG1_D[6:0],SEG0_DP,SEG0_D[6:0]}),
 	);
 
 //==============================================================================
 // Optional modules
 //==============================================================================
+
+// Mux to choose input from ADC or hard-wired ramp
+
+mux_input	mux_input_inst (
+	.data0x ( {2'b0, ADA_D} ),
+	.data1x ( {5'b0, write_RAM_address} ),
+	.sel ( SLIDE_SW[3] ),
+	.result ( RAMdata_in )
+	);
 
 // External clock to sample the ADC
 pll_150 pll_150_inst
@@ -870,12 +867,6 @@ pll_150 pll_150_inst
 	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
 );
 
-// PLL dephasing ADA_DCO
-//pll_DCO pll_DCO_inst
-//(
-//	.inclk0(ADA_DCO) ,							// input  ADA_DCO
-//	.c0(clockVar) 								// output  clockVar
-//);
 
 // Fan Control
 FAN_PWM FAN_PWM_inst (
