@@ -76,21 +76,13 @@
 /*
  * Task Prototypes:
  * 
- *    LEDManagementTask() - Manages the LEDs on the Nios Development Board, 
- * driven by commands received via a MicroC/OS-II queue, SSSLEDCommmandQ.
- * 
  *    SSSSimpleSocketServerTask() - Manages the socket server connection and 
  * calls relevant subroutines to manage the socket connection.
  * 
- *    LED7SegLightshowTask() blinks the 7-segment LEDs with a random pattern. 
- * The pattern stops and starts in response to LEDManagementTask's posting and 
- * pending to the MicroC/OS-II semaphore named SSSLEDLightshowSem.
  * 
  *    SSSInitialTask() instantiates all of the MicroC/OS-II resources.
  * 
  */
-//void LEDManagementTask();
-//void LED7SegLightshowTask();
 void SSSSimpleSocketServerTask();
 
 void SSSCreateOSDataStructs();
@@ -101,8 +93,6 @@ void SSSCreateTasks();
  * 
  *  MicroC/OS-II only allows one task (thread) per priority number.   
  */
-//#define LED_MANAGEMENT_TASK_PRIORITY            7
-//#define LED_7SEG_LIGHTSHOW_TASK_PRIORITY        18
 #define SSS_SIMPLE_SOCKET_SERVER_TASK_PRIORITY  6
 #define SSS_INITIAL_TASK_PRIORITY               5
 
@@ -144,29 +134,8 @@ void SSSCreateTasks();
 /* 
  * Defined commands for the sss server to interpret
  */
-//#define CMD_LEDS_BIT_0_TOGGLE   '0'
-//#define CMD_LEDS_BIT_1_TOGGLE   '1'
-//#define CMD_LEDS_BIT_2_TOGGLE   '2'
-//#define CMD_LEDS_BIT_3_TOGGLE   '3'
-//#define CMD_LEDS_BIT_4_TOGGLE   '4'
-//#define CMD_LEDS_BIT_5_TOGGLE   '5'
-//#define CMD_LEDS_BIT_6_TOGGLE   '6'
-//#define CMD_LEDS_BIT_7_TOGGLE   '7'
-//#define CMD_LEDS_LIGHTSHOW      'S'
 #define CMD_QUIT                'Q'
   
-/* 
- * Bit Masks for LED Toggles 
- */
-//#define BIT_0 0x1
-//#define BIT_1 0x2
-//#define BIT_2 0x4
-//#define BIT_3 0x8
-//#define BIT_4 0x10
-//#define BIT_5 0x20
-//#define BIT_6 0x40
-//#define BIT_7 0x80
-
 /* 
  * TX & RX buffer sizes for all socket sends & receives in our sss app
  */
@@ -191,28 +160,6 @@ typedef struct SSS_SOCKET
  * "SSS" are declared in file "simple_socket_server.c".
  */
 
-/*
- * Handle to our MicroC/OS-II Command Queue for sending commands received 
- * on the TCP-IP socket from the SSSSimpleSocketServerTask to the LEDTask.
- */
-//extern OS_EVENT *SSSLEDCommandQ;
-
-/*
- * Handle to our MicroC/OS-II LED Event Flag.  Each flag corresponds to one of
- * the LEDs on the Nios Development board, D0 - D7. 
- */
-//extern OS_FLAG_GRP *SSSLEDEventFlag;/
-
-/*
- * Handle to our MicroC/OS-II LED Lightshow Semaphore. The semaphore is checked 
- * by the SSSLEDLightshowTask each time it updates 7 segment LED displays, 
- * U8 and U9.  The LEDTask grabs the semaphore away from the lightshow task to
- * toggle the lightshow off, and gives up the semaphore to turn the lightshow
- * back on.  The LEDTask does this in response to the CMD_LEDS_LIGHTSHOW
- * command sent from the SSSSimpleSocketServerTask when user sends the toggle 
- * lightshow command over the TCPIP socket.
- */
-//extern OS_EVENT *SSSLEDLightshowSem;
 
 #endif /* __SIMPLE_SOCKET_SERVER_H__ */
 
