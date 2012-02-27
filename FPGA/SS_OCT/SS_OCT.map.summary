@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Tue Feb 21 16:58:49 2012
+Analysis & Synthesis Status : Successful - Fri Feb 24 14:42:44 2012
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : SS_OCT
 Top-level Entity Name : SS_OCT
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 14,892
+    Combinational ALUTs : 15,053
     Memory ALUTs : 272
     Dedicated logic registers : 17,785
 Total registers : 18153

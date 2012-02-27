@@ -20274,7 +20274,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_readn assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 24));
+  assign p1_flash_tristate_bridge_readn = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_read) | (cpu_instruction_master_granted_ext_flash_s1 & cpu_instruction_master_read))& ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter < 32));
 
   //~flash_tristate_bridge_writen of type write to ~p1_flash_tristate_bridge_writen, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -20287,7 +20287,7 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
 
 
   //~p1_flash_tristate_bridge_writen assignment, which is an e_mux
-  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 6) & (ext_flash_s1_wait_counter < 30));
+  assign p1_flash_tristate_bridge_writen = ~(((cpu_data_master_granted_ext_flash_s1 & cpu_data_master_write)) & ~flash_tristate_bridge_avalon_slave_begins_xfer & (ext_flash_s1_wait_counter >= 8) & (ext_flash_s1_wait_counter < 40));
 
   //flash_tristate_bridge_address of type address to p1_flash_tristate_bridge_address, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -20345,8 +20345,8 @@ module flash_tristate_bridge_avalon_slave_arbitrator (
     end
 
 
-  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 39 :
-    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 45 :
+  assign ext_flash_s1_counter_load_value = ((ext_flash_s1_in_a_read_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 52 :
+    ((ext_flash_s1_in_a_write_cycle & flash_tristate_bridge_avalon_slave_begins_xfer))? 60 :
     (~ext_flash_s1_wait_counter_eq_0)? ext_flash_s1_wait_counter - 1 :
     0;
 

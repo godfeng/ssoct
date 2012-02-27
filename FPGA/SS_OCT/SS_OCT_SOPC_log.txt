@@ -3,26 +3,26 @@ Copyright (c) 1999-2009 Altera Corporation.  All rights reserved.
 
 
 No .sopc_builder configuration file(!)
-# 2012.02.21 10:39:27 (*) mk_custom_sdk starting
-# 2012.02.21 10:39:27 (*) Reading project D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.ptf.
+# 2012.02.24 14:31:29 (*) mk_custom_sdk starting
+# 2012.02.24 14:31:29 (*) Reading project D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.ptf.
 
-# 2012.02.21 10:39:28 (*) Finding all CPUs
-# 2012.02.21 10:39:28 (*) Finding all available components
-# 2012.02.21 10:39:28 (*) Reading D:/Edgar/Documents/ssoct/FPGA/SS_OCT/.sopc_builder/install.ptf
+# 2012.02.24 14:31:30 (*) Finding all CPUs
+# 2012.02.24 14:31:30 (*) Finding all available components
+# 2012.02.24 14:31:30 (*) Reading D:/Edgar/Documents/ssoct/FPGA/SS_OCT/.sopc_builder/install.ptf
 
-# 2012.02.21 10:39:28 (*) Found 67 components
+# 2012.02.24 14:31:30 (*) Found 67 components
 
-# 2012.02.21 10:39:29 (*) Finding all peripherals
+# 2012.02.24 14:31:31 (*) Finding all peripherals
 
-# 2012.02.21 10:39:29 (*) Finding software components
+# 2012.02.24 14:31:31 (*) Finding software components
 
-# 2012.02.21 10:39:29 (*) (Legacy SDK Generation Skipped)
-# 2012.02.21 10:39:29 (*) (All TCL Script Generation Skipped)
-# 2012.02.21 10:39:29 (*) (No Libraries Built)
-# 2012.02.21 10:39:29 (*) (Contents Generation Skipped)
-# 2012.02.21 10:39:29 (*) mk_custom_sdk finishing
+# 2012.02.24 14:31:31 (*) (Legacy SDK Generation Skipped)
+# 2012.02.24 14:31:31 (*) (All TCL Script Generation Skipped)
+# 2012.02.24 14:31:31 (*) (No Libraries Built)
+# 2012.02.24 14:31:31 (*) (Contents Generation Skipped)
+# 2012.02.24 14:31:31 (*) mk_custom_sdk finishing
 
-# 2012.02.21 10:39:29 (*) Starting generation for system: SS_OCT_SOPC.
+# 2012.02.24 14:31:31 (*) Starting generation for system: SS_OCT_SOPC.
 
 .
 .
@@ -32,97 +32,97 @@ No .sopc_builder configuration file(!)
 .
 .
 .
-.....
+..
+...
 .
 ...
 ..
 .
 
-# 2012.02.21 10:39:31 (*) Running Generator Program for ddr2
+# 2012.02.24 14:31:33 (*) Running Generator Program for ddr2
 
-# 2012.02.21 10:39:32 (*) Running Generator Program for onchip_memory
+# 2012.02.24 14:31:34 (*) Running Generator Program for onchip_memory
 
-# 2012.02.21 10:39:35 (*) Running Generator Program for pll
+# 2012.02.24 14:31:38 (*) Running Generator Program for pll
 
-# 2012.02.21 10:39:49 (*) Running Generator Program for cpu
+# 2012.02.24 14:31:50 (*) Running Generator Program for cpu
 
-# 2012.02.21 10:39:51 (*) Starting Nios II generation
-# 2012.02.21 10:39:51 (*)   Checking for plaintext license.
-# 2012.02.21 10:39:52 (*)   Plaintext license not found.
-# 2012.02.21 10:39:52 (*)   Checking for encrypted license (non-evaluation).
-# 2012.02.21 10:39:52 (*)   Encrypted license found.  SOF will not be time-limited.
-# 2012.02.21 10:39:52 (*)   Getting CPU configuration settings
-# 2012.02.21 10:39:52 (*)   Elaborating CPU configuration settings
-# 2012.02.21 10:39:52 (*)   Creating all objects for CPU
+# 2012.02.24 14:31:52 (*) Starting Nios II generation
+# 2012.02.24 14:31:52 (*)   Checking for plaintext license.
+# 2012.02.24 14:31:52 (*)   Plaintext license not found.
+# 2012.02.24 14:31:52 (*)   Checking for encrypted license (non-evaluation).
+# 2012.02.24 14:31:53 (*)   Encrypted license found.  SOF will not be time-limited.
+# 2012.02.24 14:31:53 (*)   Getting CPU configuration settings
+# 2012.02.24 14:31:53 (*)   Elaborating CPU configuration settings
+# 2012.02.24 14:31:53 (*)   Creating all objects for CPU
 
-# 2012.02.21 10:39:52 (*)     Testbench
-# 2012.02.21 10:39:53 (*)     Instruction decoding
-# 2012.02.21 10:39:53 (*)       Instruction fields
-# 2012.02.21 10:39:53 (*)       Instruction decodes
-# 2012.02.21 10:39:54 (*)       Signals for RTL simulation waveforms
-# 2012.02.21 10:39:54 (*)       Instruction controls
-# 2012.02.21 10:39:54 (*)     Pipeline frontend
-# 2012.02.21 10:39:54 (*)     Pipeline backend
-# 2012.02.21 10:39:58 (*)   Generating HDL from CPU objects
-# 2012.02.21 10:40:01 (*)   Creating encrypted HDL
+# 2012.02.24 14:31:53 (*)     Testbench
+# 2012.02.24 14:31:54 (*)     Instruction decoding
+# 2012.02.24 14:31:54 (*)       Instruction fields
+# 2012.02.24 14:31:54 (*)       Instruction decodes
+# 2012.02.24 14:31:55 (*)       Signals for RTL simulation waveforms
+# 2012.02.24 14:31:55 (*)       Instruction controls
+# 2012.02.24 14:31:55 (*)     Pipeline frontend
+# 2012.02.24 14:31:55 (*)     Pipeline backend
+# 2012.02.24 14:31:58 (*)   Generating HDL from CPU objects
+# 2012.02.24 14:32:02 (*)   Creating encrypted HDL
 
-# 2012.02.21 10:40:03 (*) Done Nios II generation
+# 2012.02.24 14:32:04 (*) Done Nios II generation
 
-# 2012.02.21 10:40:03 (*) Running Generator Program for ext_flash
+# 2012.02.24 14:32:04 (*) Running Generator Program for ext_flash
 
-# 2012.02.21 10:40:05 (*) Running Generator Program for sysid
+# 2012.02.24 14:32:05 (*) Running Generator Program for sysid
 
-# 2012.02.21 10:40:06 (*) Running Generator Program for jtag_uart
+# 2012.02.24 14:32:07 (*) Running Generator Program for jtag_uart
 
-# 2012.02.21 10:40:08 (*) Running Generator Program for high_res_timer
+# 2012.02.24 14:32:08 (*) Running Generator Program for high_res_timer
 
-# 2012.02.21 10:40:09 (*) Running Generator Program for sys_timer
+# 2012.02.24 14:32:10 (*) Running Generator Program for sys_timer
 
-# 2012.02.21 10:40:11 (*) Running Generator Program for sgdma_tx
+# 2012.02.24 14:32:11 (*) Running Generator Program for sgdma_tx
 
-# 2012.02.21 10:40:13 (*) Running Generator Program for sgdma_rx
+# 2012.02.24 14:32:14 (*) Running Generator Program for sgdma_rx
 
-# 2012.02.21 10:40:16 (*) Running Generator Program for descriptor_memory
+# 2012.02.24 14:32:16 (*) Running Generator Program for descriptor_memory
 
-# 2012.02.21 10:40:17 (*) Running Generator Program for vol_transfer_done_pio
+# 2012.02.24 14:32:18 (*) Running Generator Program for vol_transfer_done_pio
 
-# 2012.02.21 10:40:19 (*) Running Generator Program for vol_recording_done_pio
+# 2012.02.24 14:32:19 (*) Running Generator Program for vol_recording_done_pio
 
-# 2012.02.21 10:40:20 (*) Running Generator Program for packet_memory
+# 2012.02.24 14:32:21 (*) Running Generator Program for packet_memory
 
-# 2012.02.21 10:40:22 (*) Running Generator Program for SS_OCT_SOPC_clock_0
+# 2012.02.24 14:32:22 (*) Running Generator Program for SS_OCT_SOPC_clock_0
 
-# 2012.02.21 10:40:23 (*) Running Generator Program for SS_OCT_SOPC_clock_1
+# 2012.02.24 14:32:24 (*) Running Generator Program for SS_OCT_SOPC_clock_1
 
-# 2012.02.21 10:40:25 (*) Running Generator Program for SS_OCT_SOPC_burst_0
+# 2012.02.24 14:32:26 (*) Running Generator Program for SS_OCT_SOPC_burst_0
 
-# 2012.02.21 10:40:27 (*) Running Generator Program for clock_crossing_0
+# 2012.02.24 14:32:28 (*) Running Generator Program for clock_crossing_0
 
-# 2012.02.21 10:40:29 (*) Running Generator Program for pipeline_bridge_ddr2
+# 2012.02.24 14:32:29 (*) Running Generator Program for pipeline_bridge_ddr2
 
 .
 
 
-# 2012.02.21 10:40:31 (*) Running Test Generator Program for ddr2
+# 2012.02.24 14:32:32 (*) Running Test Generator Program for ddr2
 
-# 2012.02.21 10:40:31 (*) Making arbitration and system (top) modules.
+# 2012.02.24 14:32:32 (*) Making arbitration and system (top) modules.
 
-# 2012.02.21 10:40:57 (*) Generating Quartus symbol for top level: SS_OCT_SOPC
+# 2012.02.24 14:32:57 (*) Generating Quartus symbol for top level: SS_OCT_SOPC
 
-# 2012.02.21 10:40:57 (*) Generating Symbol D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.bsf
+# 2012.02.24 14:32:57 (*) Symbol D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.bsf already exists, no need to regenerate
+# 2012.02.24 14:32:57 (*) Creating command-line system-generation script: D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC_generation_script
 
-# 2012.02.21 10:40:57 (*) Creating command-line system-generation script: D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC_generation_script
-
-# 2012.02.21 10:40:57 (*) Running setup for HDL simulator: modelsim
+# 2012.02.24 14:32:58 (*) Running setup for HDL simulator: modelsim
 
 
-# 2012.02.21 10:40:58 (*) Completed generation for system: SS_OCT_SOPC.
-# 2012.02.21 10:40:58 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
+# 2012.02.24 14:32:59 (*) Completed generation for system: SS_OCT_SOPC.
+# 2012.02.24 14:32:59 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
   SOPC Builder database : D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.ptf 
   System HDL Model : D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC.v 
   System Generation Script : D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT_SOPC_generation_script 
 
-# 2012.02.21 10:40:58 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
+# 2012.02.24 14:32:59 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
 
 
 Press 'Exit' to exit.
