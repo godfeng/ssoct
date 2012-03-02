@@ -1,20 +1,20 @@
-Analysis & Synthesis Status : Successful - Fri Feb 24 14:42:44 2012
+Analysis & Synthesis Status : Successful - Thu Mar 01 18:51:54 2012
 Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
 Revision Name : SS_OCT
 Top-level Entity Name : SS_OCT
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 15,053
+    Combinational ALUTs : 15,067
     Memory ALUTs : 272
-    Dedicated logic registers : 17,785
-Total registers : 18153
+    Dedicated logic registers : 17,756
+Total registers : 18124
 Total pins : 389
 Total virtual pins : 1
-Total block memory bits : 12,671,760
+Total block memory bits : 11,772,752
 DSP block 18-bit elements : 4
 Total GXB Receiver Channel PCS : 0
 Total GXB Receiver Channel PMA : 0
 Total GXB Transmitter Channel PCS : 0
 Total GXB Transmitter Channel PMA : 0
-Total PLLs : 6
+Total PLLs : 7
 Total DLLs : 1

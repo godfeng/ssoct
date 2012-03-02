@@ -1442,27 +1442,6 @@ set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
 set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING OFF
 set_global_assignment -name OPTIMIZE_POWER_DURING_SYNTHESIS OFF
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
-set_global_assignment -name VERILOG_FILE my_incl.v
-set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
-set_global_assignment -name VHDL_FILE RAMtoDDR2.vhd
-set_global_assignment -name QIP_FILE RAM.qip
-set_global_assignment -name VHDL_FILE TestWrite.vhd
-set_global_assignment -name VHDL_FILE TestRead.vhd
-set_global_assignment -name VERILOG_FILE gen_reset_n.v
-set_global_assignment -name VHDL_FILE PowerOn_RST.vhd
-set_global_assignment -name QIP_FILE FlipFlopT.qip
-set_global_assignment -name VERILOG_FILE pll_125.v
-set_global_assignment -name VERILOG_FILE pll.v
-set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
-set_global_assignment -name VERILOG_FILE LED_glow.v
-set_global_assignment -name VERILOG_FILE FAN_PWM.v
-set_global_assignment -name QIP_FILE sin400k.qip
-set_global_assignment -name SDC_FILE altera_avalon_half_rate_bridge_constraints.sdc
-set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
-set_global_assignment -name QIP_FILE pll_150.qip
-set_global_assignment -name QIP_FILE pll_DCO.qip
-set_global_assignment -name QIP_FILE pll_50.qip
-set_global_assignment -name VERILOG_FILE SS_OCT.v
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
@@ -3285,8 +3264,6 @@ set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs_to_and_from_the_ddr2[
 set_instance_assignment -name DQ_GROUP 9 -from M1_DDR2_dqs_to_and_from_the_ddr2[7] -to M1_DDR2_dm_from_the_ddr2[7]
 set_instance_assignment -name DQSB_DQS_PAIR ON -from M1_DDR2_dqsn_to_and_from_the_ddr2[7] -to M1_DDR2_dqs_to_and_from_the_ddr2[7]
 set_instance_assignment -name T11_DELAY 7 -to M1_DDR2_dqs_to_and_from_the_ddr2
-set_global_assignment -name SDC_FILE SS_OCT.sdc
-set_global_assignment -name SIGNALTAP_FILE SS_OCT_logic_analyzer.stp
 set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/SS_OCT/DE4_DDR2.dpf"
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
@@ -3364,7 +3341,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLE
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
-set_global_assignment -name QIP_FILE SS_OCT_SOPC.qip
 set_global_assignment -name MISC_FILE "D:/Edgar/Documents/ssoct/FPGA/SS_OCT/SS_OCT.dpf"
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to RAMdata[0] -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to RAMdata[100] -section_id auto_signaltap_0
@@ -3916,5 +3892,28 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=928" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=62597" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=11602" -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE SS_OCT.v
+set_global_assignment -name SDC_FILE SS_OCT.sdc
+set_global_assignment -name VERILOG_FILE my_incl.v
+set_global_assignment -name VERILOG_FILE gen_reset_n.v
+set_global_assignment -name VHDL_FILE PowerOn_RST.vhd
+set_global_assignment -name VERILOG_FILE pll.v
+set_global_assignment -name VERILOG_FILE pll_125.v
+set_global_assignment -name VERILOG_FILE EXT_PLL_CTRL.v
+set_global_assignment -name QIP_FILE pll_150.qip
+set_global_assignment -name QIP_FILE pll_ADA_DCO.qip
+set_global_assignment -name VERILOG_FILE sample_addressing_custom.v
+set_global_assignment -name QIP_FILE FlipFlopT.qip
+set_global_assignment -name VHDL_FILE RAMtoDDR2.vhd
+set_global_assignment -name QIP_FILE RAM.qip
+set_global_assignment -name VHDL_FILE TestWrite.vhd
+set_global_assignment -name VHDL_FILE TestRead.vhd
+set_global_assignment -name SDC_FILE altera_avalon_half_rate_bridge_constraints.sdc
+set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
+set_global_assignment -name QIP_FILE SS_OCT_SOPC.qip
+set_global_assignment -name SIGNALTAP_FILE SS_OCT_logic_analyzer.stp
 set_global_assignment -name QIP_FILE mux_input.qip
+set_global_assignment -name QIP_FILE sin400k.qip
+set_global_assignment -name VERILOG_FILE LED_glow.v
+set_global_assignment -name VERILOG_FILE FAN_PWM.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

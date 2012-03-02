@@ -12,5 +12,5 @@ set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/custom_maste
  set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/latency_aware_read_master.v
  set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/burst_read_master.v
  set_global_assignment -name VERILOG_FILE Avalon_MM-Master_Templates/write_master.v
- set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C00000135B0D66322 
+ set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00259010848C00000135D082DEF1 
  

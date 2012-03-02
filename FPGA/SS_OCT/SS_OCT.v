@@ -441,7 +441,7 @@ wire	[25:0]     			flash_address_bus;
 // Receive reset signal from LabView P0.4 to GPIO[4]
 wire						labviewReset;
 
-// Map 50 kHz A-line sweep signal to GPIO[0], connected to LAbView PFI0
+// Map 50 kHz A-line sweep signal to GPIO[0], connected to LabView PFI0
 wire						sweepTrigger;
 
 // 50 kHz A-line trigger enabled by LabView
@@ -489,62 +489,62 @@ wire		[6:0]			stateLED;
 //==============================================================================
 //  External PLL Configuration =================================================
 //==============================================================================
-
-//  Signal declarations
-wire 		[3:0] 			clk1_set_wr, clk2_set_wr, clk3_set_wr;
-wire         				conf_ready;
-wire         				counter_max;
-wire  		[7:0]  			counter_inc;
-reg   		[7:0]  			auto_set_counter;
-reg          				conf_wr;
-
-//  Structural coding
-assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
-assign clk3_set_wr 			= 4'd1; 			//156.25 MHZ 4'd7
-
-assign counter_max 			= &auto_set_counter;
-assign counter_inc 			= auto_set_counter + 1'b1;
-
-always @(posedge clk50MHz or negedge reset_n)
-	if(!reset_n)
-	begin
-		auto_set_counter <= 0;
-		conf_wr <= 0;
-	end 
-	else if (counter_max)
-		conf_wr <= 1;
-	else
-		auto_set_counter <= counter_inc;
-
-
-ext_pll_ctrl ext_pll_ctrl_Inst (
-	.osc_50(clk50MHz), 							//50MHZ
-	.rstn(reset_n),
-
-	// device 1 (HSMA_REFCLK)
-	.clk1_set_wr(clk1_set_wr),
-	.clk1_set_rd(),
-
-	// device 2 (HSMB_REFCLK)
-	.clk2_set_wr(clk2_set_wr),
-	.clk2_set_rd(),
-
-	// device 3 (PLL_CLKIN/SATA_REFCLK)
-	.clk3_set_wr(clk3_set_wr),
-	.clk3_set_rd(),
-
-	// setting trigger
-	.conf_wr(conf_wr), 							// 1T 50MHz 
-	.conf_rd(), 								// 1T 50MHz
-
-	// status 
-	.conf_ready(conf_ready),
-
-	// 2-wire interface 
-	.max_sclk(MAX_I2C_SCLK),
-	.max_sdat(MAX_I2C_SDAT)
-	);
+//
+////  Signal declarations
+//wire 		[3:0] 			clk1_set_wr, clk2_set_wr, clk3_set_wr;
+//wire         				conf_ready;
+//wire         				counter_max;
+//wire  		[7:0]  			counter_inc;
+//reg   		[7:0]  			auto_set_counter;
+//reg          				conf_wr;
+//
+////  Structural coding
+//assign clk1_set_wr 			= 4'd1; 			//Disable 4'd1
+//assign clk2_set_wr 			= 4'd1; 			//Disable 4'd1
+//assign clk3_set_wr 			= 4'd1; 			//156.25 MHZ 4'd7
+//
+//assign counter_max 			= &auto_set_counter;
+//assign counter_inc 			= auto_set_counter + 1'b1;
+//
+//always @(posedge clk50MHz or negedge reset_n)
+//	if(!reset_n)
+//	begin
+//		auto_set_counter <= 0;
+//		conf_wr <= 0;
+//	end 
+//	else if (counter_max)
+//		conf_wr <= 1;
+//	else
+//		auto_set_counter <= counter_inc;
+//
+//
+//ext_pll_ctrl ext_pll_ctrl_Inst (
+//	.osc_50(clk50MHz), 							//50MHZ
+//	.rstn(reset_n),
+//
+//	// device 1 (HSMA_REFCLK)
+//	.clk1_set_wr(clk1_set_wr),
+//	.clk1_set_rd(),
+//
+//	// device 2 (HSMB_REFCLK)
+//	.clk2_set_wr(clk2_set_wr),
+//	.clk2_set_rd(),
+//
+//	// device 3 (PLL_CLKIN/SATA_REFCLK)
+//	.clk3_set_wr(clk3_set_wr),
+//	.clk3_set_rd(),
+//
+//	// setting trigger
+//	.conf_wr(conf_wr), 							// 1T 50MHz 
+//	.conf_rd(), 								// 1T 50MHz
+//
+//	// status 
+//	.conf_ready(conf_ready),
+//
+//	// 2-wire interface 
+//	.max_sclk(MAX_I2C_SCLK),
+//	.max_sdat(MAX_I2C_SDAT)
+//	);
 
 //==============================================================================
 //  End of External PLL Configuration ==========================================
@@ -668,7 +668,11 @@ assign	FPGA_CLK_B_N		= ~clk150MHz;
 assign	clk50MHz			= OSC_50_BANK3;
 
 // Assign ADA_DCO to wire clockVar
-assign	clockVar			=  ADA_DCO;
+//assign	clockVar			=  ADA_DCO;
+
+//==============================================================================
+// Data acquisition into internal RAM
+//==============================================================================
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
@@ -679,6 +683,14 @@ sample_addressing_custom sample_addressing_custom_inst (
 	.acq_done( acq_done ) ,						// output acq_done
 	.dualMSB_write( dualMSB_write ) ,			// output dualMSB_write
 	.dualMSB_read( dualMSB_read )				// output dualMSB_read
+	);
+
+// Mux to choose input from ADC or hard-wired ramp
+mux_input	mux_input_inst (
+	.data0x ( {2'b0, ADA_D} ),
+	.data1x ( {5'b0, write_RAM_address} ),
+	.sel ( SLIDE_SW[3] ),
+	.result ( RAMdata_in )
 	);
 
 // 4096 words (16-bit data bus) RAM
@@ -710,11 +722,40 @@ RAMtoDDR2 RAMtoDDR2_inst
 	.stateLED(stateLED)							// output stateLED (Debug states)
 );
 
+//==============================================================================
+// PLL's
+//==============================================================================
+
 // Ethernet clock PLL
 pll_125 pll_125_ins (
 	.inclk0(clk50MHz),							// Dedicated clock clk50MHz
 	.c0(enet_refclk_125MHz)
 	);
+	
+// External clock to sample the ADC
+pll_150 pll_150_inst
+(
+	.inclk0(clk50MHz) ,							// input  clk50MHz
+	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
+);
+	
+// 50 MHz PLL 
+//pll_50MHz pll_50MHz_inst
+//(
+//	.inclk0( OSC_50_BANK3 ) ,					// input  	OSC_50_BANK3
+//	.c0( clk50MHz ) 							// output	clk50MHz
+//);
+
+// ADA_DCO PLL
+pll_ADA_DCO	pll_ADA_DCO_inst
+(
+	.inclk0 ( ADA_DCO ) ,						// input  	ADA_DCO
+	.c0 ( clockVar )							// output	clockVar
+);
+
+//==============================================================================
+// Reset modules
+//==============================================================================
 
 // Yields a reset signal 20 ms after cpu reset
 PowerOn_RST PowerOn_RST_inst
@@ -730,8 +771,10 @@ gen_reset_n	net_gen_reset_n(
 	.reset_n_in(global_reset_n),
 	.reset_n_out(enet_reset_n)
 	);
-				
+	
+//==============================================================================				
 // SOPC system with master read and write DDR2 handling
+//==============================================================================
 SS_OCT_SOPC SS_OCT_SOPC_inst(
 	// Global signals:
 	.clk_50(clk50MHz),														// input  	clk50MHz
@@ -851,23 +894,6 @@ SS_OCT_SOPC SS_OCT_SOPC_inst(
 // Optional modules
 //==============================================================================
 
-// Mux to choose input from ADC or hard-wired ramp
-
-mux_input	mux_input_inst (
-	.data0x ( {2'b0, ADA_D} ),
-	.data1x ( {5'b0, write_RAM_address} ),
-	.sel ( SLIDE_SW[3] ),
-	.result ( RAMdata_in )
-	);
-
-// External clock to sample the ADC
-pll_150 pll_150_inst
-(
-	.inclk0(clk50MHz) ,							// input  clk50MHz
-	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
-);
-
-
 // Fan Control
 FAN_PWM FAN_PWM_inst (
 	.clk( clk50MHz ) ,							// input  clk50MHz
@@ -881,29 +907,29 @@ LED_glow LED_glow_inst (
 	.clk( clk_div_out_sig[1] ) ,				// input  clk_div_out_sig[1]
 	.LED( LED[7] ) 								// output LED_sig
 	);
-
-// Generate sinus wave in DAC B to test acquisition
-sin400k_st sin400k_st_inst (
-	.clk( clk50MHz ) ,							// input  clk50MHz 50 MHz clock
-	.reset_n( global_reset_n ) ,				// input  global_reset_n
-	.clken( 1'b1 ) ,							// input  1'b1
-	.phi_inc_i( 32'd34359738 ) ,				// input [anglePrec-1:0] @50 MHz -> 
-												// d34359738 for 400 kHz sinus,
-	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine
-	.out_valid() 								// output  N.C.
-	);
-
-// Synchronize DAC B output (sinus wave) with system clock
-always @(negedge global_reset_n or posedge clk50MHz)
-begin
-	if (!global_reset_n) begin
-		o_sine		<= 14'd0;
-	end
-	else begin
-		// Invert sign bit (MSB) to have offset binary
-		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
-	end
-end
+//
+//// Generate sinus wave in DAC B to test acquisition
+//sin400k_st sin400k_st_inst (
+//	.clk( clk50MHz ) ,							// input  clk50MHz 50 MHz clock
+//	.reset_n( global_reset_n ) ,				// input  global_reset_n
+//	.clken( 1'b1 ) ,							// input  1'b1
+//	.phi_inc_i( 32'd34359738 ) ,				// input [anglePrec-1:0] @50 MHz -> 
+//												// d34359738 for 400 kHz sinus,
+//	.fsin_o( raw_sine ) ,						// output [magnitudePrec-1:0] raw_sine
+//	.out_valid() 								// output  N.C.
+//	);
+//
+//// Synchronize DAC B output (sinus wave) with system clock
+//always @(negedge global_reset_n or posedge clk50MHz)
+//begin
+//	if (!global_reset_n) begin
+//		o_sine		<= 14'd0;
+//	end
+//	else begin
+//		// Invert sign bit (MSB) to have offset binary
+//		o_sine		<= {~raw_sine[13],raw_sine[12:0]};
+//	end
+//end
 
 endmodule 										// end of top module SS_OCT
 //==============================================================================
