@@ -729,15 +729,15 @@ RAMtoDDR2 RAMtoDDR2_inst
 // Ethernet clock PLL
 pll_125 pll_125_ins (
 	.inclk0(clk50MHz),							// Dedicated clock clk50MHz
-	.c0(enet_refclk_125MHz)
+	.c0(enet_refclk_125MHz) 					// 
 	);
 	
 // External clock to sample the ADC
-pll_150 pll_150_inst
-(
-	.inclk0(clk50MHz) ,							// input  clk50MHz
-	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
-);
+//pll_150 pll_150_inst
+//(
+//	.inclk0(clk50MHz) ,							// input  clk50MHz
+//	.c0(clk150MHz) 								// output clk150MHz (actually 125 MHz)
+//);
 	
 // 50 MHz PLL 
 //pll_50MHz pll_50MHz_inst
