@@ -20,7 +20,7 @@
 
 //
 //Burst adapter parameters:
-//adapter is mastered by: clock_crossing_0/m1
+//adapter is mastered by: clock_crossing_master_ddr2/m1
 //adapter masters: ddr2/s1
 //asp_debug: 0
 //byteaddr_width: 35

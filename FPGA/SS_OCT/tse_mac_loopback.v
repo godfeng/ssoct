@@ -24,7 +24,7 @@
 // # Loopback module for SOPC system simulation with
 // # Altera Triple Speed Ethernet (TSE) Megacore
 // #
-// # Generated at Thu Mar  1 18:06:46 2012 as a SOPC Builder component
+// # Generated at Mon Mar  5 10:25:49 2012 as a SOPC Builder component
 // #
 // #####################################################################################
 // # This is a module used to provide external loopback on the TSE megacore by supplying

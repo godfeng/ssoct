@@ -29,19 +29,6 @@
          type = "int";
       }
    }
-   element clock_crossing_0
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\SS_OCT}";
-         type = "String";
-      }
-   }
    element clock_crossing_ddr2_cpu
    {
       datum _sortIndex
@@ -52,6 +39,19 @@
       datum megawizard_uipreferences
       {
          value = "{}";
+         type = "String";
+      }
+   }
+   element clock_crossing_master_ddr2
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+      datum megawizard_uipreferences
+      {
+         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\SS_OCT}";
          type = "String";
       }
    }
@@ -109,7 +109,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=D:\\Edgar\\Documents\\ssoct\\FPGA\\DE4_DDR2_new}";
+         value = "{}";
          type = "String";
       }
    }
@@ -254,27 +254,11 @@
          type = "String";
       }
    }
-   element pipeline_bridge_ddr2.s1
+   element ext_flash.s1
    {
       datum baseAddress
       {
-         value = "0";
-         type = "long";
-      }
-   }
-   element clock_crossing_ddr2_cpu.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "long";
-      }
-   }
-   element ddr2.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
+         value = "1140850688";
          type = "long";
       }
    }
@@ -294,6 +278,62 @@
          type = "long";
       }
    }
+   element packet_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209008128";
+         type = "long";
+      }
+   }
+   element ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element vol_transfer_done_pio.s1
+   {
+      datum baseAddress
+      {
+         value = "1209083648";
+         type = "long";
+      }
+   }
+   element pll.s1
+   {
+      datum baseAddress
+      {
+         value = "1209082880";
+         type = "long";
+      }
+   }
+   element descriptor_memory.s1
+   {
+      datum baseAddress
+      {
+         value = "1209079808";
+         type = "long";
+      }
+   }
+   element clock_crossing_master_ddr2.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element clock_crossing_ddr2_cpu.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
    element onchip_memory.s1
    {
       datum baseAddress
@@ -310,51 +350,11 @@
          type = "long";
       }
    }
-   element vol_transfer_done_pio.s1
-   {
-      datum baseAddress
-      {
-         value = "1209083648";
-         type = "long";
-      }
-   }
-   element packet_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209008128";
-         type = "long";
-      }
-   }
-   element ext_flash.s1
-   {
-      datum baseAddress
-      {
-         value = "1140850688";
-         type = "long";
-      }
-   }
-   element clock_crossing_0.s1
+   element pipeline_bridge_ddr2.s1
    {
       datum baseAddress
       {
          value = "0";
-         type = "long";
-      }
-   }
-   element descriptor_memory.s1
-   {
-      datum baseAddress
-      {
-         value = "1209079808";
-         type = "long";
-      }
-   }
-   element pll.s1
-   {
-      datum baseAddress
-      {
-         value = "1209082880";
          type = "long";
       }
    }
@@ -464,8 +464,8 @@
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
  <parameter name="projectName" value="SS_OCT.qpf" />
- <parameter name="systemHash" value="-84944919612" />
- <parameter name="timeStamp" value="1330643110193" />
+ <parameter name="systemHash" value="-85096122128" />
+ <parameter name="timeStamp" value="1330961066358" />
  <module name="clk_50" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -678,7 +678,7 @@
   <parameter name="MEMORY_BASED_FIFO" value="1" />
  </module>
  <module
-   name="clock_crossing_0"
+   name="clock_crossing_master_ddr2"
    kind="altera_avalon_clock_crossing"
    version="9.1"
    enabled="1">
@@ -1240,7 +1240,7 @@
    kind="clock"
    version="9.1"
    start="clk_50.clk"
-   end="clock_crossing_0.clk_s1" />
+   end="clock_crossing_master_ddr2.clk_s1" />
  <connection
    kind="clock"
    version="9.1"
@@ -1255,12 +1255,12 @@
    kind="clock"
    version="9.1"
    start="ddr2.sysclk"
-   end="clock_crossing_0.clk_m1" />
+   end="clock_crossing_master_ddr2.clk_m1" />
  <connection
    kind="avalon"
    version="6.1"
    start="master_write.avalon_master"
-   end="clock_crossing_0.s1">
+   end="clock_crossing_master_ddr2.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
  </connection>
@@ -1268,7 +1268,7 @@
    kind="avalon"
    version="6.1"
    start="master_read.avalon_master"
-   end="clock_crossing_0.s1">
+   end="clock_crossing_master_ddr2.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
  </connection>
@@ -1529,7 +1529,11 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
  </connection>
- <connection kind="avalon" version="6.1" start="clock_crossing_0.m1" end="ddr2.s1">
+ <connection
+   kind="avalon"
+   version="6.1"
+   start="clock_crossing_master_ddr2.m1"
+   end="ddr2.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
  </connection>

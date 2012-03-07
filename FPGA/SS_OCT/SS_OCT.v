@@ -381,7 +381,7 @@ output		          		M2_DDR2_we_n;
 wire 						reset_n;			// reset_n from board
 wire						global_reset_n;		// delayed reset signal
 wire						enet_reset_n;		// reset signal for ethernet
-wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
+//wire						clk156MHz;			// clock from ext_PLL @ 156.25 MHz
 wire						clk50MHz;			// clock from board oscillator bank 3 @ 50 MHz
 wire						clk150MHz;			// clock from internal PLL @ 150 MHz (actually 125 MHz)
 wire						clockVar;			// output of the PLL fed by ADA_DCO
@@ -481,7 +481,7 @@ wire		[7:0]			clk_div_out_sig;
 // sinus wave signal
 wire		[13:0]			raw_sine;
 // output to DAC B
-reg			[13:0]			o_sine;
+//reg			[13:0]			o_sine;
 
 //LED diagnostics from state machine RAMtoDDR2
 wire		[6:0]			stateLED;
@@ -621,7 +621,7 @@ assign	ADB_SPI_CS			= 1'b1;				// disable serial port interface B (1)
 // assign for DAC sinus output
 //==============================================================================
 // sinus wave to DA
-assign	DB					= o_sine;			// Output sinus wave to DAC B
+//assign	DB					= o_sine;			// Output sinus wave to DAC B
 
 //==============================================================================
 // GPIO OUTPUTS
@@ -661,8 +661,11 @@ assign	SEG1_D				= 7'h7F;
 assign	clk156MHz			= PLL_CLKIN_p;
 
 // Assign clk150MHz (actually 125 MHz) to differential outputs to HSMC-B board
-assign	FPGA_CLK_B_P		=  clk150MHz;
-assign	FPGA_CLK_B_N		= ~clk150MHz;
+//assign	FPGA_CLK_B_P		=  clk150MHz;
+//assign	FPGA_CLK_B_N		= ~clk150MHz;
+
+assign	FPGA_CLK_B_P		=  enet_refclk_125MHz; // TEST enet_refclk_125MHz
+assign	FPGA_CLK_B_N		= ~enet_refclk_125MHz; // TEST enet_refclk_125MHz
 
 // Assign OSC_50_BANK3 to clk50MHz
 assign	clk50MHz			= OSC_50_BANK3;
@@ -676,7 +679,7 @@ assign	clk50MHz			= OSC_50_BANK3;
 
 // Synchronization of sampling with sweep trigger
 sample_addressing_custom sample_addressing_custom_inst (
-	.clock( clockVar ) ,						// input  clock_sig (clk150MHz) Original connection: clockVar (ADA_DCO) 
+	.clock( clockVar ) ,						// input  clock_sig (clkVar)
 	.sclr( ~trigger50kHz ) ,					// input  ~trigger50kHz
 	.sample_position( write_RAM_address ) ,		// output [10:0] write_RAM_address
 	.acq_busy( acq_busy ) ,						// output acq_busy
@@ -696,11 +699,11 @@ mux_input	mux_input_inst (
 // 4096 words (16-bit data bus) RAM
 RAM	RAM_inst (
 	.wraddress ({ dualMSB_write, write_RAM_address }),// input [11:0] Sample position (0-1169)
-	.wrclock ( clockVar ),						// input Write clock (ADA_DCO)
+	.wrclock ( clockVar ),						// input Write clock (clockVar)
 	.wren ( acq_busy ),							// input acq_busy
 	.data ( RAMdata_in ),						// input [15:0] 16-bit data (Original connection: {2'b0, ADA_D})
 	.rdaddress({dualMSB_read,read_RAM_address}),// input [7:0] Read address ({dualMSB_read,read_RAM_address}) from NIOS
-	.rdclock ( clk150MHz ),						// input Read clock (clk150MHz) (actually 125 MHz)
+	.rdclock ( enet_refclk_125MHz ),			// input Read clock (clk150MHz) (actually 125 MHz). TEST: enet_refclk_125MHz
 	.q ( RAMdata )								// output [255:0] data read by NIOS
 	);
 
@@ -728,8 +731,8 @@ RAMtoDDR2 RAMtoDDR2_inst
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0(clk50MHz),							// Dedicated clock clk50MHz
-	.c0(enet_refclk_125MHz) 					// 
+	.inclk0( OSC_50_BANK7 ),					// Dedicated clock OSC_50_BANK3 (Use OSC_50_BANK7 to feed top PLL)
+	.c0( enet_refclk_125MHz ) 					// 125 MHz
 	);
 	
 // External clock to sample the ADC
@@ -887,7 +890,7 @@ SS_OCT_SOPC SS_OCT_SOPC_inst(
 	// PIO pin to assert signal when a volume is transfered via TCP/IP
 	.out_port_from_the_vol_transfer_done_pio(volTransferDone) ,				// output  	volTransferDone
 	// PIO pin to receive signal when data recording to DDR2 is done
-	.in_port_to_the_vol_recording_done_pio(volRecordingDone) ,				// input 	volRecordingDone
+	.in_port_to_the_vol_recording_done_pio(volRecordingDone) 				// input 	volRecordingDone
 	);
 
 //==============================================================================

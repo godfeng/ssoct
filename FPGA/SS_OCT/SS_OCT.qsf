@@ -3904,7 +3904,6 @@ set_global_assignment -name VHDL_FILE TestRead.vhd
 set_global_assignment -name SDC_FILE altera_avalon_half_rate_bridge_constraints.sdc
 set_global_assignment -name SDC_FILE ddr2_phy_ddr_timing.sdc
 set_global_assignment -name QIP_FILE SS_OCT_SOPC.qip
-set_global_assignment -name SIGNALTAP_FILE SS_OCT_logic_analyzer.stp
 set_global_assignment -name QIP_FILE mux_input.qip
 set_global_assignment -name QIP_FILE sin400k.qip
 set_global_assignment -name VERILOG_FILE LED_glow.v
@@ -3920,4 +3919,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LE
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=38057" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT trigger_in -to GPIO[6] -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=32664" -section_id auto_signaltap_0
+set_global_assignment -name QIP_FILE pll_125.qip
+set_global_assignment -name QIP_FILE altpllpll.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

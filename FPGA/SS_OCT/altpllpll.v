@@ -295,7 +295,7 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll.ppf TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll.bsf FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll.bsf TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll_inst.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL altpllpll_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf

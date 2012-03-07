@@ -6,15 +6,22 @@
 #**************************************************************
 # Create Clock
 #**************************************************************
-create_clock -name CLK_M1 -period "50 MHZ" [get_ports OSC_50_BANK3]
-create_clock -name CLK_M2 -period "50 MHZ" [get_ports OSC_50_BANK4]
-create_clock -name {ADA_DCO} -period 6.660 -waveform { 0.000 3.330 } [get_ports { ADA_DCO }]
-create_clock -period 6.4 -name CLK156MHZ [get_ports {PLL_CLKIN_p}]
+#create_clock -name CLK_M1 -period "50 MHZ" [get_ports OSC_50_BANK3]
+#create_clock -name CLK_M2 -period "50 MHZ" [get_ports OSC_50_BANK4]
+#create_clock -name {ADA_DCO} -period 6.660 -waveform { 0.000 3.330 } [get_ports { ADA_DCO }]
+#create_clock -period 6.4 -name CLK156MHZ [get_ports {PLL_CLKIN_p}]
+
+create_clock -name CLK_M3 -period "50 MHZ" [get_ports {OSC_50_BANK3}]
+create_clock -name CLK_M7 -period "50 MHZ" [get_ports {OSC_50_BANK7}]
+create_clock -name {ADA_DCO} -period 8.0 -waveform { 0.000 4.000 } [get_ports { ADA_DCO }]
+create_clock -period 8.0 -name CLK_ADC [get_ports {PLL_CLKIN_p}]
+create_clock -period "0.05 MHZ" -name CLK_50KHz [get_ports {GCLKIN}]
 
 #**************************************************************
 # Create Generated Clock
 #**************************************************************
-derive_pll_clocks
+# derive_pll_clocks
+derive_pll_clocks -create_base_clocks
 
 
 
