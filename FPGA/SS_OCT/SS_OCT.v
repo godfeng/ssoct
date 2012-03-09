@@ -731,7 +731,7 @@ RAMtoDDR2 RAMtoDDR2_inst
 
 // Ethernet clock PLL
 pll_125 pll_125_ins (
-	.inclk0( OSC_50_BANK7 ),					// Dedicated clock OSC_50_BANK3 (Use OSC_50_BANK7 to feed top PLL)
+	.inclk0( OSC_50_BANK3 ),					// Dedicated clock OSC_50_BANK3 (Use OSC_50_BANK7 to feed top PLL)
 	.c0( enet_refclk_125MHz ) 					// 125 MHz
 	);
 	
