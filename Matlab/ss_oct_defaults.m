@@ -115,13 +115,16 @@ ssOCTdefaults.galvos.xStartVolt         = -1;
 ssOCTdefaults.galvos.xEndVolt           = 1;
 ssOCTdefaults.galvos.yStartVolt         = -1;
 ssOCTdefaults.galvos.yEndVolt           = 1;
+ssOCTdefaults.galvos.xFOVmm             = 20;
 ssOCTdefaults.galvos.xStartUm           = -100;
 ssOCTdefaults.galvos.xEndUm             = 100;
+ssOCTdefaults.galvos.yFOVmm             = 20;
 ssOCTdefaults.galvos.yStartUm           = -100;
 ssOCTdefaults.galvos.yEndUm             = 100;
 % Number of samples per volume scan (given by LabView)
 ssOCTdefaults.galvos.nSamplesPerVolume  = 1100;
-
+ssOCTdefaults.galvos.scanType.num       = 0;
+ssOCTdefaults.galvos.scanType.description = 'Scan along X';
 
 %===============================================================================
 % OCT axial resolution
