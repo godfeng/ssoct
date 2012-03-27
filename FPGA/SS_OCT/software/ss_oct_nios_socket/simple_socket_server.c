@@ -171,6 +171,7 @@ void sss_exec_command(SSSConn* conn)
     // Local variables
     unsigned short  RAM_address     = 0;
     unsigned short  bytes_sent      = 0;
+    unsigned short  bytes_sent_last = 0;
     unsigned long   iLines          = 0;
     unsigned short  iFrames         = 0;
     unsigned short  internalData    = 0;
@@ -229,7 +230,9 @@ void sss_exec_command(SSSConn* conn)
                 //////////////////////////////////////////////////////////
                 // Acquisition parameters
                 //////////////////////////////////////////////////////////
-                printf("ACQUISITION PARAMETERS\n");
+                #if DEBUG_CODE_0
+                    printf("ACQUISITION PARAMETERS\n");
+                #endif
                 switch (iParameters)
                 {
                     case 0: nLinesPerFrame   = SSSCommand;                  break;
@@ -348,7 +351,7 @@ void sss_exec_command(SSSConn* conn)
             iParameters = 0;
         }
 
-        if(menu == 'C')//mode C
+        if(menu == 'C')//mode C - Continuous acquisition
         {
             #if PRINT_TIME
                 // This is some timer code to help you time the amount of time it 
@@ -515,6 +518,11 @@ void sss_exec_command(SSSConn* conn)
                             } // END of A-line loop
                         // Send a single A-line to the client
                         bytes_sent = send(conn->fd, tx_buf, tx_wr_pos - tx_buf, 0);
+                        #if DEBUG_CODE_TMP
+                            if (bytes_sent != bytes_sent_last && RAM_address != 0)
+                                printf("ERROR! Bytes sent = %d. Bytes sent last iteration = %d\n", bytes_sent, bytes_sent_last);
+                            bytes_sent_last = bytes_sent;
+                        #endif
                         // Wait a little... Should know why...
                         //usleep(500); // 0.6 ms if sys_clk @ 90MHz
                     } // END of volume / B-frame loop
