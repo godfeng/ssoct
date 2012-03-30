@@ -81,6 +81,66 @@ switch lower(map)
             0.286275    0.913725    0.27451;
             0.972549    1           0.0862745;
             1           0.1         0.1];
+    case 'rwbdoppler'
+        % Red on blue, with white background for Doppler imaging
+        mincolor    = [0 0 1]; % blue
+        mediancolor = [1 1 1]; % white   
+        maxcolor    = [1 0 0]; % red      
+
+        ColorMapSize = 129;
+        int1 = zeros(ColorMapSize,3); 
+        int2 = zeros(ColorMapSize,3);
+        for k=1:3
+            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
+            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+        end
+        colormapOut = [int1(1:end-1,:); int2];
+        return
+    case 'bwrdoppler'
+        % Blue on red, with white background for Doppler imaging
+        mincolor    = [1 0 0]; % red
+        mediancolor = [1 1 1]; % white
+        maxcolor    = [0 0 1]; % blue
+        
+        ColorMapSize = 129;
+        int1 = zeros(ColorMapSize,3);
+        int2 = zeros(ColorMapSize,3);
+        for k=1:3
+            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
+            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+        end
+        colormapOut = [int1(1:end-1,:); int2];
+        return
+    case 'robdoppler'
+        % Red on blue, with black background for Doppler imaging
+        mincolor    = [0 0 1]; % blue
+        mediancolor = [0 0 0]; % white   
+        maxcolor    = [1 0 0]; % red      
+
+        ColorMapSize = 129;
+        int1 = zeros(ColorMapSize,3); 
+        int2 = zeros(ColorMapSize,3);
+        for k=1:3
+            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
+            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+        end
+        colormapOut = [int1(1:end-1,:); int2];
+        return
+    case 'bordoppler'
+        % Blue on red, with black background for Doppler imaging
+        mincolor    = [1 0 0]; % red
+        mediancolor = [0 0 0]; % black
+        maxcolor    = [0 0 1]; % blue
+        
+        ColorMapSize = 129;
+        int1 = zeros(ColorMapSize,3);
+        int2 = zeros(ColorMapSize,3);
+        for k=1:3
+            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
+            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+        end
+        colormapOut = [int1(1:end-1,:); int2];
+        return
     otherwise
         % Linear gray colormap
         colormapOut = flipud(colormap(gray(255)));
@@ -100,6 +160,7 @@ for iSegments = 1:nSegments,
         samplesPerSegment(iSegments)+1);
     end
 end
+% colormapOut = uint8(round(colormapOut*255));
 % figure; plot(colormapOut)
 
 % ---------------------------- Spline interpolation ----------------------------

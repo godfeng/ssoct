@@ -27,6 +27,12 @@ global ssOCTdefaults
 % Background signal from the reference arm (sample arm blocked)
 if isfield(ssOCTdefaults,'refArm')
     refArm      = ssOCTdefaults.refArm;
+else
+    % Read binary .DAT file
+    refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
+    refArm = mean(double(squeeze(refArm.Data.rawData(:,:,1))),2);
+    % Update global variable
+    ssOCTdefaults.refArm = refArm;
 end
 
 % Calculate the reference signal as the median A-line of current B-scan
