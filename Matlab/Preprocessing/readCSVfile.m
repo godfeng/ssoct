@@ -111,6 +111,27 @@ if (fid >= 3)
     if strcmp(fileName,'acqParam.csv')
         % Check number of lines read
         switch size(outputCell,1)
+            case 17
+                % sixth version with center of the FOV (17 fields)
+                ssOCTdefaults.nLinesPerFrame            = outputCell{1,2};
+                ssOCTdefaults.nFramesPerVol             = outputCell{2,2};
+                ssOCTdefaults.galvos.xStartVolt         = outputCell{3,2};
+                ssOCTdefaults.galvos.xEndVolt           = outputCell{4,2};
+                ssOCTdefaults.galvos.yStartVolt         = outputCell{5,2};
+                ssOCTdefaults.galvos.yEndVolt           = outputCell{6,2};
+                ssOCTdefaults.folders.dirCurrExp        = outputCell{7,2};
+                ssOCTdefaults.folders.subjectID         = outputCell{8,2};
+                ssOCTdefaults.folders.expID             = outputCell{9,2};
+                ssOCTdefaults.galvos.nSamplesPerVolume  = outputCell{10,2};
+                ssOCTdefaults.pauseTime                 = 1.1 * ...
+                    ssOCTdefaults.galvos.nSamplesPerVolume / 50e3;
+                ssOCTdefaults.expNotes                  = outputCell{11,2};
+                ssOCTdefaults.galvos.xFOVmm             = outputCell{12,2};
+                ssOCTdefaults.galvos.yFOVmm             = outputCell{13,2};
+                ssOCTdefaults.galvos.xCentermm          = outputCell{14,2};
+                ssOCTdefaults.galvos.yCentermm          = outputCell{15,2};
+                ssOCTdefaults.galvos.scanType.num       = outputCell{16,2};
+                ssOCTdefaults.galvos.scanType.description = outputCell{17,2};
             case 15
                 % fifth version with 15 fields
                 ssOCTdefaults.nLinesPerFrame            = outputCell{1,2};
@@ -127,7 +148,7 @@ if (fid >= 3)
                     ssOCTdefaults.galvos.nSamplesPerVolume / 50e3;
                 ssOCTdefaults.expNotes                  = outputCell{11,2};
                 ssOCTdefaults.galvos.xFOVmm             = outputCell{12,2};
-                ssOCTdefaults.galvos.xFOVmm             = outputCell{13,2};
+                ssOCTdefaults.galvos.yFOVmm             = outputCell{13,2};
                 ssOCTdefaults.galvos.scanType.num       = outputCell{14,2};
                 ssOCTdefaults.galvos.scanType.description = outputCell{15,2};
             case 11

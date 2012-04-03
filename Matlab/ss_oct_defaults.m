@@ -116,9 +116,11 @@ ssOCTdefaults.galvos.xEndVolt           = 1;
 ssOCTdefaults.galvos.yStartVolt         = -1;
 ssOCTdefaults.galvos.yEndVolt           = 1;
 ssOCTdefaults.galvos.xFOVmm             = 20;
+ssOCTdefaults.galvos.xCentermm          = 0;
 ssOCTdefaults.galvos.xStartUm           = -100;
 ssOCTdefaults.galvos.xEndUm             = 100;
 ssOCTdefaults.galvos.yFOVmm             = 20;
+ssOCTdefaults.galvos.yCentermm          = 0;
 ssOCTdefaults.galvos.yStartUm           = -100;
 ssOCTdefaults.galvos.yEndUm             = 100;
 % Number of samples per volume scan (given by LabView)
