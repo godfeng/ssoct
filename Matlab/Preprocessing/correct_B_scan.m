@@ -29,7 +29,11 @@ if isfield(ssOCTdefaults,'refArm')
     refArm      = ssOCTdefaults.refArm;
 else
     % Read binary .DAT file
-    refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
+    if exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'), 'file')
+        refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
+    else
+        refArm = load(fullfile(ssOCTdefaults.folders.dirCurrExp,'Reference_Measurements.mat'));
+    end
     refArm = mean(double(squeeze(refArm.Data.rawData(:,:,1))),2);
     % Update global variable
     ssOCTdefaults.refArm = refArm;
