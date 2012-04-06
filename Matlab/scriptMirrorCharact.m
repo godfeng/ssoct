@@ -59,7 +59,7 @@ for iFiles = 1:nFiles,
     % Subtract reference and self-interference terms; apply hann window
     correctBscan(:,:,iFiles) = correct_B_scan(rawBscan(:,:,iFiles),@hann,true);
     % Get reflectance profile from interferogram
-    Bscan(:,:,iFiles) = BmodeScan2struct(squeeze(correctBscan(:,:,iFiles)));
+    Bscan(:,:,iFiles) = abs(BmodeScan2FFT(squeeze(correctBscan(:,:,iFiles))));
     % Average all A-lines from each B-scan
     Alines(:,iFiles) = mean(squeeze(Bscan(:,:,iFiles)),2);
 end

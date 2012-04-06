@@ -117,14 +117,14 @@ tilefigs
 % Linear display
 ssOCTdefaults.GUI.displayLog        = false;
 % B-scan
-struct2D            = BmodeScan2struct(correctedBscan);
-resampledStruct2D   = BmodeScan2struct(resampledCorrectedBscan);
-synthStruct2D       = BmodeScan2struct(synthBscan);
+struct2D            = abs(BmodeScan2FFT(correctedBscan));
+resampledStruct2D   = abs(BmodeScan2FFT(resampledCorrectedBscan));
+synthStruct2D       = abs(BmodeScan2FFT(synthBscan));
 
 %  A-line obtained from average along the rows [nSamplesFFT 1]
-% Aline               = BmodeScan2struct(median(correctedBscan,2));
-% resampledAline      = BmodeScan2struct(median(resampledCorrectedBscan,2));
-% synthAlinefft       = BmodeScan2struct(median(synthBscan,2));
+% Aline               = abs(BmodeScan2FFT(median(correctedBscan,2)));
+% resampledAline      = abs(BmodeScan2FFT(median(resampledCorrectedBscan,2)));
+% synthAlinefft       = abs(BmodeScan2FFT(median(synthBscan,2)));
 
 Aline               = struct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);
 resampledAline      = resampledStruct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);

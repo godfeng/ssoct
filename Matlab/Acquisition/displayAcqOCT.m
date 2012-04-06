@@ -84,7 +84,7 @@ if ssOCTdefaults.GUI.liveDisplay,
     subplot(247)
     % limitX = [-0.1 5];
     limitX = [-0.1 1.2];
-    singleAline = BmodeScan2struct(correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2));    % abs FFT
+    singleAline = abs(BmodeScan2FFT(correctedBscan(:,ssOCTdefaults.nLinesPerFrame/2)));    % abs FFT
     % Take only left part of spectrum
     singleAline = singleAline(ssOCTdefaults.nSamplesFFT/2:-1:1);
     % LPF 
@@ -120,7 +120,7 @@ if ssOCTdefaults.GUI.liveDisplay,
 
     % --------------- Display a B-scan (single frame) ----------------------
     subplot(121)
-    Bscan = BmodeScan2struct(correctedBscan);
+    Bscan = abs(BmodeScan2FFT(correctedBscan));
     % LPF
     Bscan(ssOCTdefaults.nSamplesFFT/2:-1:ssOCTdefaults.nSamplesFFT/2-12+1) = 0;
     if ssOCTdefaults.GUI.displayLog

@@ -1,7 +1,7 @@
-function fftBscan = BmodeScan2struct(Bmodescan)
+function fftBscan = BmodeScan2FFT(Bmodescan)
 % Computes the FFT of a B-mode scan, along the A-lines dimension (columns)
 % SYNTAX:
-% fftBscan = BmodeScan2struct(Bmodescan)
+% fftBscan = BmodeScan2FFT(Bmodescan)
 % INPUTS:
 % Bmodescan     2D raw data (B-scan)
 % OUTPUTS:
