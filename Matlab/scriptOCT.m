@@ -105,9 +105,9 @@ for iFrames=1:55,
     % Get raw data
     rawBscan(:,:,iFrames) = squeeze(A.Data.rawData(:,:,iFrames+5));
     % Subtract reference and self-interference terms; apply hann window
-    rawBscan(:,:,iFrames) = correct_B_scan(rawBscan(:,:,iFrames),@hann,true);
+    rawBscan(:,:,iFrames) = correct_B_scan(rawBscan(:,:,iFrames),@hann,'sub');
     % Get reflectance profile from interferogram
-    Bscan(:,:,iFrames) = abs(BmodeScan2FFT(squeeze(rawBscan(:,:,iFrames))));
+    Bscan(:,:,iFrames) = abs(Bscan2FFT(squeeze(rawBscan(:,:,iFrames))));
 end
 
 %% Make M-mode image

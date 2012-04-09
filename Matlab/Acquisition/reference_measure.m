@@ -79,7 +79,7 @@ end
 
 % ------------------- Display a reference B-scan -------------------------------
 subplot(121)
-Bscan = abs(BmodeScan2FFT(rawBscanRef));    % abs FFT
+Bscan = abs(Bscan2FFT(rawBscanRef));    % abs FFT
 if ssOCTdefaults.GUI.displayLog
     % Display in log scale, single-sided FFT, with z-axis in um
 %     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...

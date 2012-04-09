@@ -1,7 +1,7 @@
-function fftBscan = BmodeScan2FFT(Bmodescan)
+function fftBscan = Bscan2FFT(Bmodescan)
 % Computes the FFT of a B-mode scan, along the A-lines dimension (columns)
 % SYNTAX:
-% fftBscan = BmodeScan2FFT(Bmodescan)
+% fftBscan = Bscan2FFT(Bmodescan)
 % INPUTS:
 % Bmodescan     2D raw data (B-scan)
 % OUTPUTS:
@@ -26,7 +26,7 @@ if ssOCTdefaults.medianRefArm
     refAline = median(real(fftBscan),2) + 1j*median(imag(fftBscan),2);
     refAline = refAline(:,ones([size(Bmodescan,2) 1]));
     
-    % Apply hann function to reference
+    % Apply windowing function to reference
     refAline = refAline .* tmpCorrArray;
 
     % Subtract median reference in complex domain
@@ -38,7 +38,9 @@ else
 % the columns (dimension = 1), with ssOCTdefaults.nSamplesFFT points
 fftBscan = fftshift(fft(double(Bmodescan),ssOCTdefaults.nSamplesFFT,1),1);
 
-% fftBscan = fftshift(fft(double(Bmodescan),[],1),1); % OLD WAY TO DO IT
+% Keep only the single-sided FFT (left half of the spectrum)
+fftBscan = fftBscan(end/2:-1:1,:);
+
 end
 % ==============================================================================
 % [EOF]

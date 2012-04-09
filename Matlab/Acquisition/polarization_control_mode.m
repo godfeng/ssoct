@@ -48,7 +48,7 @@ while(1),
     xlim(1e9*[ssOCTdefaults.axial.minLambda ssOCTdefaults.axial.maxLambda])
     % --------------- Plot the a single A-line (FFT) -----------------------
     subplot(247)
-    Aline = abs(BmodeScan2FFT(rawBscan(:,2)));
+    Aline = abs(Bscan2FFT(rawBscan(:,2)));
     Aline = Aline(ssOCTdefaults.NSAMPLES/2 + 2 : end);
     Aline = Aline ./ max(Aline);
     plot(ssOCTdefaults.NSAMPLES/2 + 2 : ssOCTdefaults.NSAMPLES,Aline,'-k') % FFT
@@ -60,7 +60,7 @@ while(1),
     xlabel('Samples')
     % --------------- Display a B-scan (single frame) ----------------------
     subplot(121)
-    Bscan = abs(BmodeScan2FFT(rawBscan));
+    Bscan = abs(Bscan2FFT(rawBscan));
     % Display in linear scale, single-sided FFT, with z-axis in um
     imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis,...
         Bscan(ssOCTdefaults.NSAMPLES/2+1:end,:))

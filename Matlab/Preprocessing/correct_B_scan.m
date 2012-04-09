@@ -2,7 +2,7 @@ function correctedBscan = correct_B_scan(rawBscan, varargin)
 % Subtracts reference signal from raw B-scan, applies window function and
 % resamples B-scan, depending on flags set in global variable ssOCTdefaults
 % SYNTAX:
-% correctedBscan = correct_B_scan(rawBscan, windowType, subtractBackground)
+% correctedBscan = correct_B_scan(rawBscan, windowType, refCorr)
 % INPUTS:
 % rawBscan          raw B-scan from OCT (set of interferograms)
 % [windowType]      Function handle to the window function to use:
@@ -10,7 +10,8 @@ function correctedBscan = correct_B_scan(rawBscan, varargin)
 %                   @bohmanwin      @flattopwin @gausswin   @hamming
 %                   @hann           @nuttallwin @parzenwin  @rectwin
 %                   @taylorwin      @triang
-% [subtractBackground] if true, subtracts reference signal from raw B-scan
+% [refCorr]         if sub, subtracts reference signal from raw B-scan
+%                   if subNdec, subtracts and deconvolves
 % OUTPUTS:
 % correctedBscan    set of A/lines, already windowed and corrected for
 %                   background signal
@@ -33,16 +34,11 @@ else
         refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
     else
         refArm = load(fullfile(ssOCTdefaults.folders.dirCurrExp,'Reference_Measurements.mat'));
+        refArm = refArm.rawBscanRef;
     end
-    refArm = mean(double(squeeze(refArm.Data.rawData(:,:,1))),2);
+    refArm = mean(double(refArm),2);
     % Update global variable
     ssOCTdefaults.refArm = refArm;
-end
-
-% Calculate the reference signal as the median A-line of current B-scan
-if ssOCTdefaults.medianRefArm,
-%     ssOCTdefaults.refArm    = median(rawBscan,2);
-%     refArm                  = ssOCTdefaults.refArm;
 end
 
 % Self interference signal from the sample arm (reference arm blocked)
@@ -67,22 +63,28 @@ optArgs(1:numVarArgs) = varargin;
 % [optargs{1:numvarargs}] = varargin{:};
 
 % Place optional args in memorable variable names
-[winFunction subtractBackground] = optArgs{:};
+[winFunction refCorr] = optArgs{:};
 
-if subtractBackground
-    % Background signal from the reference arm (sample arm blocked)
-    % refMatrix       = repmat(refArm, [1 ssOCTdefaults.nLinesPerFrame]);
-    % replacement of repmat is 2% faster this way!
-    refMatrix = refArm(:,ones(ssOCTdefaults.nLinesPerFrame, 1));
+% Background signal from the reference arm (sample arm blocked)
+% refMatrix       = repmat(refArm, [1 ssOCTdefaults.nLinesPerFrame]);
+% replacement of repmat is 2% faster this way!
+refMatrix = refArm(:,ones(ssOCTdefaults.nLinesPerFrame, 1));
+
+% Self interference signal from the sample arm (reference arm blocked)
+% sampleMatrix    = repmat(sampleArm, [1 ssOCTdefaults.nLinesPerFrame]);
     
-    % Self interference signal from the sample arm (reference arm blocked)
-    % sampleMatrix    = repmat(sampleArm, [1 ssOCTdefaults.nLinesPerFrame]);
-
-    % Digital subtraction of background signal (reference signal when the sample
-    % arm is blocked). 
-    correctedBscan = (double(rawBscan) - refMatrix);
-else
-    correctedBscan = double(rawBscan);
+switch (refCorr)
+    case 'sub'
+        % Digital subtraction of background signal (reference signal when the
+        % sample arm is blocked).
+        correctedBscan = (double(rawBscan) - refMatrix);
+    case 'subNdec'
+        % Reference signal is subtracted from the raw B-scan, which is then
+        % deconvolved by the same reference signal
+        correctedBscan = (double(rawBscan) - refMatrix) ./ refMatrix;
+    otherwise 
+        % Do nothing
+        correctedBscan = double(rawBscan);
 end
 
 % Resampling in k-space

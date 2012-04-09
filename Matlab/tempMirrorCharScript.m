@@ -37,16 +37,16 @@ ssOCTdefaults.medianRefArm = false;
 win = @myhann;
 % Update reference A-line
 ssOCTdefaults.refArm    = median(rawBscanRef,2);
-correctedBscan          = correct_B_scan(rawBscan,win,true);
+correctedBscan          = correct_B_scan(rawBscan,win,'sub');
 % Resample acquired data
 resampledRawBscan       = resample_B_scan(rawBscan);
 resampledRawBscanRef    = resample_B_scan(rawBscanRef);
 % Update reference A-line
 ssOCTdefaults.refArm    = median(resampledRawBscanRef,2);
-resampledCorrectedBscan = correct_B_scan(resampledRawBscan,win,true);
+resampledCorrectedBscan = correct_B_scan(resampledRawBscan,win,'sub');
 % Update synthetic reference measurement
 ssOCTdefaults.refArm    = dcOffset(ones([ssOCTdefaults.NSAMPLES 1]), 1);
-synthBscan              = correct_B_scan(synthBscan,win,true);
+synthBscan              = correct_B_scan(synthBscan,win,'sub');
 
 
 %% Figures of interferograms
@@ -117,14 +117,14 @@ tilefigs
 % Linear display
 ssOCTdefaults.GUI.displayLog        = false;
 % B-scan
-struct2D            = abs(BmodeScan2FFT(correctedBscan));
-resampledStruct2D   = abs(BmodeScan2FFT(resampledCorrectedBscan));
-synthStruct2D       = abs(BmodeScan2FFT(synthBscan));
+struct2D            = abs(Bscan2FFT(correctedBscan));
+resampledStruct2D   = abs(Bscan2FFT(resampledCorrectedBscan));
+synthStruct2D       = abs(Bscan2FFT(synthBscan));
 
 %  A-line obtained from average along the rows [nSamplesFFT 1]
-% Aline               = abs(BmodeScan2FFT(median(correctedBscan,2)));
-% resampledAline      = abs(BmodeScan2FFT(median(resampledCorrectedBscan,2)));
-% synthAlinefft       = abs(BmodeScan2FFT(median(synthBscan,2)));
+% Aline               = abs(Bscan2FFT(median(correctedBscan,2)));
+% resampledAline      = abs(Bscan2FFT(median(resampledCorrectedBscan,2)));
+% synthAlinefft       = abs(Bscan2FFT(median(synthBscan,2)));
 
 Aline               = struct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);
 resampledAline      = resampledStruct2D(:,ssOCTdefaults.nLinesPerFrame/2 + 1);

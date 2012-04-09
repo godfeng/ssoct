@@ -134,7 +134,7 @@ if save2file
         
         % Display a B-scan (single frame)
         subplot(121)
-        imagesc(abs(BmodeScan2FFT(rawDataCont)));
+        imagesc(abs(Bscan2FFT(rawDataCont)));
         axis image;
         colormap(gray(255));
         title(sprintf('Continuous Transfer. Frame %d',iFrames));
@@ -161,7 +161,7 @@ else
         % Display a B-scan (single frame)
         subplot(121)
         % log scale
-        imagesc(log10(abs(BmodeScan2FFT(rawDataCont))));
+        imagesc(log10(abs(Bscan2FFT(rawDataCont))));
         axis image;
         colormap(gray(255));
         title(sprintf('Continuous Transfer. Frame %d',iFrames));

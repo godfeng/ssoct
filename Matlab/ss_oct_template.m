@@ -6,10 +6,10 @@
 % OUTPUTS:
 % 
 %_______________________________________________________________________________
-% Copyright (C) 2011 LIOM Laboratoire d'Imagerie Optique et Moléculaire
+% Copyright (C) 2012 LIOM Laboratoire d'Imagerie Optique et Moléculaire
 %                    École Polytechnique de Montréal
 % Edgar Guevara
-% 2011/09/15
+% 2012/04/09
 
 % ==============================================================================
 % [EOF]

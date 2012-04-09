@@ -62,7 +62,7 @@ else
     ssOCTdefaults.refArm = mean(resampledRawBscanRef,2);
 end
 % Get structure   
-resampledStruct2D = abs(BmodeScan2FFT(resampledRawBscanRef));
+resampledStruct2D = abs(Bscan2FFT(resampledRawBscanRef));
 
 if showRefScan
     % Reference scan figure
@@ -150,9 +150,9 @@ for iFrames = framesRange,
         resampledRawBscan = rawBscan;
     end
     % Apply windowing function and subtract the reference
-    resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'true');
+    resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'sub');
     % Obtain structural data
-    resampledStruct2D = abs(BmodeScan2FFT(resampledCorrectedBscan));
+    resampledStruct2D = abs(Bscan2FFT(resampledCorrectedBscan));
     % Output
     Bscan = resampledStruct2D;
     
