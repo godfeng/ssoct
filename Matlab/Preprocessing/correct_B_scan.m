@@ -32,9 +32,11 @@ else
     % Read binary .DAT file
     if exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'), 'file')
         refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
+        refArm = refArm.Data.rawData;
     else
         refArm = load(fullfile(ssOCTdefaults.folders.dirCurrExp,'Reference_Measurements.mat'));
         refArm = refArm.rawBscanRef;
+        refArm = mean(double(refArm),2);
     end
     refArm = mean(double(refArm),2);
     % Update global variable
