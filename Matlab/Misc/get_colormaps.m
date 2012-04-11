@@ -3,7 +3,17 @@ function colormapOut = get_colormaps(map)
 % SYNTAX:
 % colormapOut = get_colormaps(map)
 % INPUTS:
-% map           String that describes the colormap to retrieve
+% map           String that describes the colormap to retrieve:
+%               'octgold'
+%               'fdrainbow'
+%               'tdrainbow'
+%               'wob'
+%               'bow'
+%               'flow'
+%               'rwbdoppler'
+%               'bwrdoppler'
+%               'robdoppler'
+%               'bordoppler'
 % OUTPUTS:
 % colormapOut   3 columns matrix, which values are in the range from 0 to 1.
 %_______________________________________________________________________________
@@ -11,6 +21,8 @@ function colormapOut = get_colormaps(map)
 %                    École Polytechnique de Montréal
 % Edgar Guevara
 % 2011/11/08
+
+ColorMapSize = 128;
 
 switch lower(map)
     case 'octgold'
@@ -83,66 +95,62 @@ switch lower(map)
             1           0.1         0.1];
     case 'rwbdoppler'
         % Red on blue, with white background for Doppler imaging
-        mincolor    = [0 0 1]; % blue
-        mediancolor = [1 1 1]; % white   
-        maxcolor    = [1 0 0]; % red      
-
-        ColorMapSize = 129;
+        minColor    = [0 0 1]; % blue
+        medianColor = [1 1 1]; % white   
+        maxColor    = [1 0 0]; % red      
+       
         int1 = zeros(ColorMapSize,3); 
         int2 = zeros(ColorMapSize,3);
         for k=1:3
-            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
-            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+            int1(:,k) = linspace(minColor(k), medianColor(k), ColorMapSize);
+            int2(:,k) = linspace(medianColor(k), maxColor(k), ColorMapSize);
         end
         colormapOut = [int1(1:end-1,:); int2];
         return
     case 'bwrdoppler'
         % Blue on red, with white background for Doppler imaging
-        mincolor    = [1 0 0]; % red
-        mediancolor = [1 1 1]; % white
-        maxcolor    = [0 0 1]; % blue
+        minColor    = [1 0 0]; % red
+        medianColor = [1 1 1]; % white
+        maxColor    = [0 0 1]; % blue
         
-        ColorMapSize = 129;
         int1 = zeros(ColorMapSize,3);
         int2 = zeros(ColorMapSize,3);
         for k=1:3
-            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
-            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+            int1(:,k) = linspace(minColor(k), medianColor(k), ColorMapSize);
+            int2(:,k) = linspace(medianColor(k), maxColor(k), ColorMapSize);
         end
         colormapOut = [int1(1:end-1,:); int2];
         return
     case 'robdoppler'
         % Red on blue, with black background for Doppler imaging
-        mincolor    = [0 0 1]; % blue
-        mediancolor = [0 0 0]; % white   
-        maxcolor    = [1 0 0]; % red      
+        minColor    = [0 0 1]; % blue
+        medianColor = [0 0 0]; % white   
+        maxColor    = [1 0 0]; % red      
 
-        ColorMapSize = 129;
         int1 = zeros(ColorMapSize,3); 
         int2 = zeros(ColorMapSize,3);
         for k=1:3
-            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
-            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+            int1(:,k) = linspace(minColor(k), medianColor(k), ColorMapSize);
+            int2(:,k) = linspace(medianColor(k), maxColor(k), ColorMapSize);
         end
         colormapOut = [int1(1:end-1,:); int2];
         return
     case 'bordoppler'
         % Blue on red, with black background for Doppler imaging
-        mincolor    = [1 0 0]; % red
-        mediancolor = [0 0 0]; % black
-        maxcolor    = [0 0 1]; % blue
+        minColor    = [1 0 0]; % red
+        medianColor = [0 0 0]; % black
+        maxColor    = [0 0 1]; % blue
         
-        ColorMapSize = 129;
         int1 = zeros(ColorMapSize,3);
         int2 = zeros(ColorMapSize,3);
         for k=1:3
-            int1(:,k) = linspace(mincolor(k), mediancolor(k), ColorMapSize);
-            int2(:,k) = linspace(mediancolor(k), maxcolor(k), ColorMapSize);
+            int1(:,k) = linspace(minColor(k), medianColor(k), ColorMapSize);
+            int2(:,k) = linspace(medianColor(k), maxColor(k), ColorMapSize);
         end
         colormapOut = [int1(1:end-1,:); int2];
         return
     otherwise
-        % Linear gray colormap
+        % Inverted linear gray colormap
         colormapOut = flipud(colormap(gray(255)));
         return
 end
@@ -160,6 +168,8 @@ for iSegments = 1:nSegments,
         samplesPerSegment(iSegments)+1);
     end
 end
+
+% --------------- uint8 array to export colormaps to LabView -------------------
 % colormapOut = uint8(round(colormapOut*255));
 % figure; plot(colormapOut)
 
