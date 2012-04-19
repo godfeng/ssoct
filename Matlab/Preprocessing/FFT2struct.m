@@ -47,23 +47,23 @@ frame_struct = abs(fftBscan);
 
 % Calculate noise floor
 
-% noise_floor = mean(...
-%     mean(frame_struct(round((1-mask_prop.noise_lower_fraction)*end):end,:)));
+noise_floor = mean(...
+    mean(frame_struct(round((1-mask_prop.noise_lower_fraction)*end):end,:)));
 
-noise_floor = std(...
-    std(frame_struct(round((1-mask_prop.noise_lower_fraction)*end):end,:)));
+% noise_floor = frame_struct(round((1-mask_prop.noise_lower_fraction)*end):end,:);
+% noise_floor = std(noise_floor(:));
 
 
 
-% The structure value in dB was calculated as twenty time the base-10 logarithm
-% of the ratio of the B-scan amplitude to the standard deviation of the noise
-% floor
-frame_struct = 20*log10(frame_struct / noise_floor);
+% The structure value in dB was calculated as twenty (or ten?) time the base-10
+% logarithm of the ratio of the B-scan amplitude to the standard deviation of
+% the noise floor (or its mean?)
+frame_struct = 10*log10(frame_struct / noise_floor);
 frame_struct(frame_struct<0) = 0;
 
 if isfield(mask_prop,'surface')
     if mask_prop.surface
-        [frame_struct,surface]=find_top_surface(frame_struct);
+        [frame_struct, surface]=find_top_surface(frame_struct);
     end
 end
 
@@ -87,9 +87,9 @@ if mask_prop.enable==1
         end
     end
     
-    frame_mask(frame_mask>0)=1;
+    frame_mask(frame_mask>0) = 1;
     
-    frame_struct=frame_mask.*frame_struct;
+    frame_struct = frame_mask .* frame_struct;
 else
     frame_mask = ones(size(frame_struct));
 end
