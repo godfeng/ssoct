@@ -75,5 +75,94 @@ fprintf('Set Clock Delay = %d [0x%X]\n',setClockDelay,setClockDelay)
 
 %% FOV computation
 
+
+%% Axial resolution vs. source bandwidth
+lambda0_1310        = 1310e-9;
+lambda0_830         = 830e-9;
+minLambda           = 1258e-9;
+maxLambda           = 1361.2e-9;
+delta_lambda        = linspace(10e-9, 1000e-9, 2^16);
+zr_air_1310         = (2/pi)*log(2) .* lambda0_1310^2 ./ delta_lambda;
+zr_air_830          = (2/pi)*log(2) .* lambda0_830^2 ./ delta_lambda;
+dl                  = maxLambda - minLambda;
+zr                  = (2/pi)*log(2) .* lambda0_1310^2 ./ dl;
+
+figure; set(gcf,'color','w')
+loglog(delta_lambda*1e9, zr_air_1310*1e6, ...
+    'Color', 'k', 'LineStyle', '-', 'LineWidth', 3);
+hold on
+loglog(delta_lambda*1e9, zr_air_830*1e6,...
+    'Color', 'k', 'LineStyle', '--', 'LineWidth', 3);
+loglog(dl.*ones([100 1])*1e9, linspace(1e-1,zr*1e6,100), ...
+    'Color', 'r', 'LineStyle', ':', 'LineWidth', 2)
+loglog(linspace(1e-1,dl*1e9,100), zr.*ones([100 1])*1e6,...
+    'Color', 'r', 'LineStyle', ':', 'LineWidth', 2)
+
+
+xlim([1e1 1e3])
+ylim([1e-1 1e2])
+xax = [1e1 1e2 1e3];
+yax = [1e-1 1e0 1e1 1e2];
+set(gca, 'YTick', yax)
+set(gca, 'XTick', xax)
+legend({'\lambda_0 = 1310 nm' '\lambda_0 = 830 nm'})
+xlabel('\Delta\lambda [nm]', 'FontWeight', 'Bold', 'FontSize', 14)
+ylabel('\Deltaz [\mum]', 'FontWeight', 'Bold',  'FontSize', 14)
+set(gca, 'FontWeight', 'Bold', 'FontSize', 14)
+
+% Exporting as png
+export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\axial_res.png', '-png', gcf);
+
+
+%% Source characteristics
+pathName = 'D:\Edgar\Documents\Dropbox\Docs\OCT\Screenshots';
+fileName = 'SourceSpectrum.csv';
+C = importdata(fullfile(pathName,fileName), ',', 2);
+t = C.data(:,1);
+sourceSpectrum = C.data(:,2);
+sweepTrigger = C.data(:,3);
+
+minLambda           = 1258e-9;
+maxLambda           = 1361.2e-9;
+delta = -47;
+deltap = -525;
+s1 = sourceSpectrum(47 - delta:998 + deltap);
+s2 = sourceSpectrum(1048 - delta:1999 + deltap);
+s3 = sourceSpectrum(2049 - delta:3000 + deltap);
+t1 = sweepTrigger(47 - delta:998 + deltap);
+t2 = sweepTrigger(1048 - delta:1999 + deltap);
+t3 = sweepTrigger(2049 - delta:3000 + deltap);
+
+winSize = 25;
+sourceSpectrum = medfilt1(mean([s1 s2 s3],2), winSize);
+% Scale to mW
+% maxPower = 25;
+% sourceSpectrum = sourceSpectrum .* (maxPower) ./ max(sourceSpectrum);
+sourceSpectrum = sourceSpectrum - min(sourceSpectrum);
+sourceSpectrum = sourceSpectrum / max(sourceSpectrum);
+sweepTrigger = mean([t1 t2 t3],2);
+lambda = linspace(minLambda, maxLambda, numel(sourceSpectrum));
+
+% Display
+figure(332); set(gcf,'color','w')
+clf
+% plot(t,sweepTrigger,'r-',t,sourceSpectrum,'k-')
+plot(lambda*1e9, sourceSpectrum,'Color', 'k', 'LineStyle', '-', 'LineWidth', 3)
+xlabel('\lambda [nm]', 'FontWeight', 'Bold', 'FontSize', 14)
+ylabel('Power [a.u.]', 'FontWeight', 'Bold',  'FontSize', 14)
+set(gca, 'FontWeight', 'Bold', 'FontSize', 14)
+xlim([0.99*minLambda 1.01*maxLambda]*1e9)
+ylim([0 1])
+yax = [0 1];
+set(gca, 'YTick', yax)
+% axis tight
+% Exporting as png
+export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\source_spectrum.png', '-png', gcf);
+
+fprintf('Mean %0.2f mW\n',mean(sourceSpectrum))
+
+% Cleanup
+clear s1 s2 s3 t1 t2 t3
+
 % ==============================================================================
 % [EOF]
