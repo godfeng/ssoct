@@ -111,7 +111,7 @@ ylabel('\Deltaz [\mum]', 'FontWeight', 'Bold',  'FontSize', 14)
 set(gca, 'FontWeight', 'Bold', 'FontSize', 14)
 
 % Exporting as png
-export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\axial_res.png', '-png', gcf);
+% export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\axial_res.png', '-png', gcf);
 
 
 %% Source characteristics
@@ -155,14 +155,37 @@ xlim([0.99*minLambda 1.01*maxLambda]*1e9)
 ylim([0 1])
 yax = [0 1];
 set(gca, 'YTick', yax)
-% axis tight
+
 % Exporting as png
-export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\source_spectrum.png', '-png', gcf);
+% export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\source_spectrum.png', '-png', gcf);
 
 fprintf('Mean %0.2f mW\n',mean(sourceSpectrum))
 
 % Cleanup
 clear s1 s2 s3 t1 t2 t3
+
+%% Single backscatterer at different depths
+minLambda           = 1258e-9;
+maxLambda           = 1361.2e-9;
+delta_lambda        = linspace(minLambda, maxLambda, 2^18)';
+% Sinus frequency
+f                   = 10e8;
+s1 = sin(2*pi*f .* delta_lambda);
+f1 = fftshift(fft(s1.*hann(numel(s1))));
+% figure(333); set(gcf,'color','w')
+% plot(2*pi ./ delta_lambda,  s1.*hann(numel(s1)))
+figure(334); set(gcf,'color','w')
+index = 131146:131275;
+indexr = index(end:-1:1);
+subplot(211)
+plot(abs(f1(index)), 'Color', 'k', 'LineStyle', '-', 'LineWidth', 3)
+axis off
+subplot(212)
+plot(abs(f1(indexr)), 'Color', 'k', 'LineStyle', '-', 'LineWidth', 3)
+axis off
+
+% Exporting as png
+export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\delay_backscatter.png', '-png', gcf);
 
 % ==============================================================================
 % [EOF]
