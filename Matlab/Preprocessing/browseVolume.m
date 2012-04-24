@@ -16,10 +16,12 @@ function [rawBscanOut refBscan Bscan hFig] = browseVolume(varargin)
 % Edgar Guevara
 % 2011/11/01
 
+% Show reconstructed frames
+showFrames = false;
 % Show Reference Image
 showRefScan = false;
 % Pause time
-pauseTime = 0.05;
+pauseTime = 0.01;
 
 % Modifies values of global variable
 global ssOCTdefaults
@@ -49,7 +51,25 @@ optArgs(1:numVarArgs) = varargin;
 
 % ---------------------------- Display reference scan --------------------------
 % Load reference values
-load(fullfile(pathName,'Reference_Measurements.mat'));
+% load(fullfile(pathName,'Reference_Measurements.mat'));
+% Background signal from the reference arm (sample arm blocked)
+% if isfield(ssOCTdefaults,'refArm')
+%     refArm      = ssOCTdefaults.refArm;
+% else
+    % Read binary .DAT file
+    if exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'), 'file')
+        rawBscanRef = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
+        rawBscanRef = rawBscanRef.Data.rawData;
+    else
+        rawBscanRef = load(fullfile(ssOCTdefaults.folders.dirCurrExp,'Reference_Measurements.mat'));
+        rawBscanRef = rawBscanRef.rawBscanRef;
+        refArm = mean(double(refArm),2);
+    end
+%     refArm = mean(double(refArm),2);
+    % Update global variable
+%     ssOCTdefaults.refArm = refArm;
+% end
+
 if ssOCTdefaults.resampleData
     % Resample reference B-scan
     resampledRawBscanRef = resample_B_scan(rawBscanRef);
@@ -66,7 +86,7 @@ resampledStruct2D = abs(Bscan2FFT(resampledRawBscanRef));
 
 if showRefScan
     % Reference scan figure
-    hRef = figure; set(gcf,'color','w')
+    hRef = figure; set(gcf,'color','w');
     % Change figure name
     set(hRef,'Name', 'Reference Scan');
     if ssOCTdefaults.GUI.displayLog
@@ -114,14 +134,16 @@ refBscan = rawBscanRef;
 clear refArm sampleArm rawBscanRef resampledRawBscanRef
 
 % ---------------------------- Display volume ----------------------------------
-% Create new figure
-hFig = figure;
-set(hFig,'color','w')
-% Change figure name
-set(hFig,'Name',[ssOCTdefaults.acqParam{8,1} ': '...
-    ssOCTdefaults.acqParam{8,2} '. ' ssOCTdefaults.acqParam{9,1} ': '...
-    ssOCTdefaults.acqParam{9,2} '.'])
-tilefigs
+if showFrames
+    % Create new figure
+    hFig = figure;
+    set(hFig,'color','w')
+    % Change figure name
+    set(hFig,'Name',[ssOCTdefaults.acqParam{8,1} ': '...
+        ssOCTdefaults.acqParam{8,2} '. ' ssOCTdefaults.acqParam{9,1} ': '...
+        ssOCTdefaults.acqParam{9,2} '.'])
+    tilefigs
+end
 % Number of transferred frames
 nFrames = mappedFile.format{2}(3);
 
@@ -135,6 +157,7 @@ end
 
 % Preallocate output
 rawBscanOut = zeros([ssOCTdefaults.NSAMPLES ssOCTdefaults.nLinesPerFrame numel(framesRange)]);
+Bscan = zeros([ssOCTdefaults.nSamplesFFT/2 ssOCTdefaults.nLinesPerFrame numel(framesRange)]);
 
 % Display frames loop
 for iFrames = framesRange,
@@ -152,11 +175,14 @@ for iFrames = framesRange,
     % Apply windowing function and subtract the reference
     resampledCorrectedBscan = correct_B_scan(resampledRawBscan,@hann,'sub');
     % Obtain structural data
-    resampledStruct2D = abs(Bscan2FFT(resampledCorrectedBscan));
+    resampledStruct2D = FFT2struct(Bscan2FFT(resampledCorrectedBscan));
     % Output
-    Bscan = resampledStruct2D;
-    
-    figure(hFig)
+    Bscan(:,:,iFrames) = resampledStruct2D;
+    if showFrames
+        figure(hFig)
+    else
+        hFig = false;
+    end
     if ssOCTdefaults.GUI.displayLog
         % Display in log scale, single-sided FFT (left part of spectrum), with
         % z-axis in um
@@ -175,33 +201,39 @@ for iFrames = framesRange,
             maxColor = max(resampledStruct2D(:));
         end
         
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
-            resampledStruct2D,...
-            [minColor maxColor]);
-        title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
+        if showFrames
+            imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
+                resampledStruct2D,...
+                [minColor maxColor]);
+            title(sprintf('log(R). Frame %d of %d', iFrames, nFrames))
+        end
     else
             if iFrames == framesRange(1),
                 % Scale color to the first frame
                 minColor = min(resampledStruct2D(:));
                 maxColor = max(resampledStruct2D(:));
             end
-        % Display in linear scale, single-sided FFT (left part of spectrum), with
-        % z-axis in um
-        imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
-            resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:),...
-            [minColor maxColor]);
-        title(sprintf('Frame %d of %d', iFrames, nFrames))
+        if showFrames
+            % Display in linear scale, single-sided FFT (left part of spectrum), with
+            % z-axis in um
+            imagesc(1:ssOCTdefaults.nLinesPerFrame, 1e3*ssOCTdefaults.range.zAxis_air,...
+                resampledStruct2D(ssOCTdefaults.NSAMPLES/2:-1:1,:),...
+                [minColor maxColor]);
+            title(sprintf('Frame %d of %d', iFrames, nFrames))
+        end
     end
-    if ssOCTdefaults.GUI.displayColorBar
-        colorbar;
-    else
-        colorbar off;
+    if showFrames
+        if ssOCTdefaults.GUI.displayColorBar
+            colorbar;
+        else
+            colorbar off;
+        end
+        axis tight
+        colormap(ssOCTdefaults.GUI.OCTcolorMap)
+        ylabel('z [mm]')
+        xlabel('A-lines')
+        pause(pauseTime)
     end
-    axis tight
-    colormap(ssOCTdefaults.GUI.OCTcolorMap)
-    ylabel('z [mm]')
-    xlabel('A-lines')
-    pause(pauseTime)
 end
 % ==============================================================================
 % [EOF]
