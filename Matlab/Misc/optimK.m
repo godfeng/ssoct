@@ -1,7 +1,7 @@
 function k = optimK()
 % dbstop if error
 clear global resIter
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','phase.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','phase.mat'))
 
 % Data range
 rge = 215:296;

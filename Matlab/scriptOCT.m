@@ -1,5 +1,5 @@
 %% Preprocess .bin files to .mat +.dat
-cd('D:\Edgar\Documents\FDOCT\EdwardOCT\Reconstruction 2')
+cd('D:\Edgar\FDOCT\EdwardOCT\Reconstruction 2')
 OCT_processor
 
 %% Reconstruction of .dat files to .dop3D .struct3D
@@ -16,7 +16,7 @@ minVal = min(Doppler1.Data.Data(:));
 maxVal = max(Doppler1.Data.Data(:));
 
 %%
-load('D:\Edgar\Documents\FDOCT\EdwardOCT\Reconstruction 2\doppler_color_map.mat')
+load('D:\Edgar\FDOCT\EdwardOCT\Reconstruction 2\doppler_color_map.mat')
 xTicks = recons_info.step(1)*[1:recons_info.size(1)];
 zTicks = recons_info.step(2)*[1:recons_info.size(2)];
 figure;
@@ -91,7 +91,7 @@ xlim([0 100])
 % Load default parameters
 ss_oct_get_defaults
 global ssOCTdefaults
-load ('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\bobineData.mat')
+load ('D:\Edgar\ssoct\Matlab\Acquisition\DATA\bobineData.mat')
 
 % Get filename
 [filename pathname] = uigetfile('*.dat','Choose a file',ssOCTdefaults.folders.dirCurrExp,...

@@ -5,8 +5,8 @@
 % Edgar Guevara
 % 2011/07/20
 %% Preprocess .bin files to .mat +.dat
-cd('D:\Edgar\Documents\FDOCT\Reconstruction 2')
-addpath(genpath('D:\Edgar\Documents\FDOCT\'))
+cd('D:\Edgar\FDOCT\Reconstruction 2')
+addpath(genpath('D:\Edgar\FDOCT\'))
 OCT_processor
 
 %% Reconstruction of .dat files to .dop3D .struct3D
@@ -17,7 +17,7 @@ clear
 map_3D_files
 
 %% 
-load('D:\Edgar\Documents\FDOCT\Reconstruction 2\doppler_color_map.mat')
+load('D:\Edgar\FDOCT\Reconstruction 2\doppler_color_map.mat')
 % Minimum & maximum values to display structureal data
 minVal = min(Structure.Data.Data(:));
 maxVal = max(Structure.Data.Data(:));

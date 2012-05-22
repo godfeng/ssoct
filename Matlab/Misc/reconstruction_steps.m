@@ -1,5 +1,5 @@
 %%
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','phase.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','phase.mat'))
 % load values to new variables
 k0 = data.k;
 Aline = data.Aline;
@@ -29,8 +29,8 @@ Rfft = abs(fftshift(fft(double(ref),NFFT,1),1));
 
 
 %%
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','coupler_50_50.mat'))
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','phase.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','coupler_50_50.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','phase.mat'))
 global ssOCTdefaults
 ss_oct_get_defaults
 clc; close all

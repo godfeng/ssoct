@@ -46,7 +46,7 @@ nAcqSamples = nLinesPerFrame*nFrames;
 rawData = zeros([NSAMPLES nLinesPerFrame nFrames],'int16');
 fprintf('Acquiring %d A-lines, one by one...\n',nAcqSamples)
 % Default DATA folder
-pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+pathname = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\';
 if save2file
     % Default file name
     filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);
@@ -108,7 +108,7 @@ screenSize = [1 40 screenSize(3) screenSize(4)-40];
 set(gcf, 'OuterPosition', screenSize);
 
 % Default DATA folder
-pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+pathname = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\';
 if save2file
     % Default file name
     filename = fullfile(pathname,[datestr(now,'yyyy.mm.dd_HH.MM.SS') '.dat']);

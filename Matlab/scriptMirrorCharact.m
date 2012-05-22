@@ -9,14 +9,14 @@
 
 %% Data loading
 % Add path to Edward's code
-addpath(genpath('D:\Edgar\Documents\FDOCT\'))
+addpath(genpath('D:\Edgar\FDOCT\'))
 
 % Load default parameters
 ss_oct_get_defaults
 global ssOCTdefaults
 
 % Directory
-ssOCTdefaults.folders.dirCurrExp = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Mirror_Characterization';
+ssOCTdefaults.folders.dirCurrExp = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\Mirror_Characterization';
 
 % Get fileName
 [fileName pathName] = uigetfile('*.dat','Choose a file',ssOCTdefaults.folders.dirCurrExp,...

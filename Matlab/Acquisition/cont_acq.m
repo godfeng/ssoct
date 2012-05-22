@@ -63,7 +63,7 @@ pause(0.1)                              % Necessary to give time to NIOS
 pnet(ssOCTdefaults.tcpConn,'write',uint8(67));
 pause(0.1)
 fprintf('Continuous acquisition...Press <Ctrl>+<C> to cancel\n')
-% load('D:\Edgar\Documents\ssoct\Matlab\reference.mat')
+% load('D:\Edgar\ssoct\Matlab\reference.mat')
 
 % ------------------------------ Main Loop -------------------------------------
 if ssOCTdefaults.GUI.save2file

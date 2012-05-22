@@ -13,7 +13,7 @@
 
 %% Reading .CSV file
 fileName = 'TEST.csv';
-pathName = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\';
+pathName = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\';
 % Buffer size for textscan function
 BUFFER_SIZE = 2^16;
 % Number of rows that contain headers
@@ -75,12 +75,12 @@ save(fullfile(pathName,[fileName '.mat']),'t','trigger50','address','ADC','fs')
 
 %% Interpolation starts here
 clear
-load('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\varFreq.mat')
+load('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\varFreq.mat')
 addressVar      = address;              clear address;
 trigger50Var    = trigger50;            clear trigger50;
 ADCVar          = ADC;                  clear ADC;
 tVar            = t;                    clear t;
-load('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\fixedFreq125MHz.mat')
+load('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\fixedFreq125MHz.mat')
 
 %% Trim signals to full periods
 iStart          = 1373;
@@ -116,12 +116,12 @@ ADC             = median(ADC,           2);
 ADCVar          = median(ADCVar,        2);
 address         = median(address,       2);
 addressVar      = median(addressVar,    2);
-save('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\interpData',...
+save('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\interpData',...
     'ADC', 'ADCVar', 'address', 'addressVar', 't', 'tVar', 'trigger50',...
     'trigger50Var', 'fs');
 %% Trim and correct spikes
 clear; clc; close all
-load('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\interpData',...
+load('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\interpData',...
     'address', 'addressVar', 't', 'tVar', 'trigger50', 'trigger50Var', 'fs');
 % Trim averaged data
 iStart          = 2;
@@ -142,7 +142,7 @@ address(1025)   = 1024;
 addressVar(1)   = 0;                    % Must be 0
 
 % Save data
-save('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpace',...
+save('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpace',...
     'address', 'addressVar', 't', 'tVar', 'fs');
 
 %% Load data to construct k-space sampling
@@ -152,7 +152,7 @@ clear global ssOCTdefaults
 ss_oct_get_defaults
 global ssOCTdefaults
 clear
-load('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpace',...
+load('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpace',...
     'address', 'addressVar', 't', 'tVar', 'fs');
 
 % Use a spline function to interpolate at higher rate
@@ -172,7 +172,7 @@ addressVarInterp(2) = mean(addressVarInterp([1 3]));
 % addressVarInterp = decimate(addressVarInterp, nRate);
 plot(addressVarInterp)
 kClockSampling = addressVarInterp;
-save('D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpaceFilt',...
+save('D:\Edgar\ssoct\Matlab\Acquisition\DATA\Interpolation\kSpaceFilt',...
 'kClockSampling');
 
 % first up-sampling the data using an FFT, zero padding and then performing
@@ -190,7 +190,7 @@ clear
 ss_oct_get_defaults
 global ssOCTdefaults
 [rawBscan refBscan Bscan hFig] = browseVolume(6,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_12_Mirror\20_56_41_newTest1128\2011_11_12_20_57_42.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_11_12_Mirror\20_56_41_newTest1128\2011_11_12_20_57_42.dat');
 %% Resampling comparison
 % ssOCTdefaults.NSAMPLES = 1128;
 B = median(squeeze(rawBscan(:,:,6)),2);

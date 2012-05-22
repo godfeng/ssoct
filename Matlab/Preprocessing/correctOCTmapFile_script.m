@@ -1,6 +1,6 @@
 %% Correction script
 % Retreive all *.dat files in all subfolders in a recursive fashion
-[~,fileList] = system('dir D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\Mirror_Characterization\*.dat /s /b');
+[~,fileList] = system('dir D:\Edgar\ssoct\Matlab\Acquisition\DATA\Mirror_Characterization\*.dat /s /b');
 
 %% Convert file list to cell
 [startIndex, endIndex, tokIndex, matchStr, tokenStr, exprNames,splitStr] = regexp(fileList, '\n');

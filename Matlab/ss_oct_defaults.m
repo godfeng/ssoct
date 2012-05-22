@@ -22,13 +22,13 @@ global ssOCTdefaults
 % Directories & file names
 %===============================================================================
 % Installation directory
-ssOCTdefaults.folders.dirUser           = 'D:\Edgar\Documents\ssoct\Matlab\';
+ssOCTdefaults.folders.dirUser           = 'D:\Edgar\ssoct\Matlab\';
 % Data directory
-ssOCTdefaults.folders.dirExp            = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\';
+ssOCTdefaults.folders.dirExp            = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\';
 % Current Experiments folder
 ssOCTdefaults.folders.dirCurrExp        = [];
 % LabView folder
-ssOCTdefaults.folders.dirLabView        = 'D:\Edgar\Documents\ssoct\LabView\';
+ssOCTdefaults.folders.dirLabView        = 'D:\Edgar\ssoct\LabView\';
 % Name of the file containing acquisition parameters
 ssOCTdefaults.folders.acqParamFileName  = 'acqParam.csv';
 % Name of the subject

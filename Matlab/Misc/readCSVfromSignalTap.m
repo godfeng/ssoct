@@ -5,7 +5,7 @@
 % Edgar Guevara
 % 2012/02/21
 filename = 'signal_tap_ramp_ADA_DCO.csv';
-pathname = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2012_02_17_Ramp\';
+pathname = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2012_02_17_Ramp\';
 % Buffer size for textscan function
 BUFFER_SIZE = 2^20;
 % Number of rows that contain headers

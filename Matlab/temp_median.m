@@ -11,15 +11,15 @@ ssOCTdefaults.GUI.displayLog        = true;
 
 %% Get finger data
 [rawBscan refBscan Bscan hFig] = browseVolume(125,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_07_Finger\14_10_36_Test\2011_11_07_14_21_44.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_11_07_Finger\14_10_36_Test\2011_11_07_14_21_44.dat');
 
 %% Or get 2 tubes phantom
 [rawBscan refBscan Bscan hFig] = browseVolume(25,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_07_Phantom\17_47_04_2tubes\2011_11_07_17_48_08.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_11_07_Phantom\17_47_04_2tubes\2011_11_07_17_48_08.dat');
 
 %% Mirror
 [rawBscan refBscan Bscan hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\18_26_54_0000um\2011_10_31_18_29_21.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\18_26_54_0000um\2011_10_31_18_29_21.dat');
 %% Try complex median removal
 % Window function
 tmpCorrArray = hann(ssOCTdefaults.NSAMPLES);

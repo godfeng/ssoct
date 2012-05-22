@@ -1,8 +1,8 @@
 %% Convert TDMS from interleaved to decimated
 % NOTE: Avoid all spaces in the pathname
-fileName='D:\Edgar\Documents\ssoct\LabView\OptoGenStim\Data\2011_12_02_EMG\17_03_51_Test\17_03_51_Test.tdms';
+fileName='D:\Edgar\ssoct\LabView\OptoGenStim\Data\2011_12_02_EMG\17_03_51_Test\17_03_51_Test.tdms';
 % Path to LAbView executable that converts interleaved TDMS to decimated
-TDMS_inter2dec = 'D:\Edgar\Documents\ssoct\LabView\OptoGenStim\TDMS_project\exe\TDMS.exe';
+TDMS_inter2dec = 'D:\Edgar\ssoct\LabView\OptoGenStim\TDMS_project\exe\TDMS.exe';
 % Call LabView executable with full TDMS filename as the command line argument
 system([TDMS_inter2dec ' ' fileName]);
 disp('Conversion from interleaved to decimated data done!')

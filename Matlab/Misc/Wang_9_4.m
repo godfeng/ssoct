@@ -11,7 +11,7 @@
 % Example 9.4
 % Use SI units throughout
 
-pathname = 'D:\Edgar\Documents\ssoct\Matlab\Misc\';
+pathname = 'D:\Edgar\ssoct\Matlab\Misc\';
 cd(pathname)
 lambda0 = 830E-9; % center wavelength of source
 dlambda = 20E-9; % FWHM wavelength bandwidth of source

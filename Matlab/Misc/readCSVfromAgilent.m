@@ -5,7 +5,7 @@
 % Edgar Guevara
 % 2011/05/05
 filename = 'SourceSpectrum.csv';
-pathname = 'D:\Edgar\Documents\OCT\';
+pathname = 'D:\Edgar\OCT\';
 [filename, pathname] = uigetfile({'*.csv', 'Comma Separated Value (*.csv)'},...
     'Pick a .CSV file',fullfile(pathname,filename));
 if isequal(filename,0) || isequal(pathname,0)

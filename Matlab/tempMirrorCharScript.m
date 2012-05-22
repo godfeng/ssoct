@@ -6,7 +6,7 @@ ss_oct_get_defaults
 % Access global variable
 global ssOCTdefaults
 ssOCTdefaults.resampleData = false;
-dirExp = 'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_11_Mirror\17_34_56_interpTest';
+dirExp = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_11_11_Mirror\17_34_56_interpTest';
 mappedFile = readOCTmapFile(fullfile(dirExp,'2011_11_11_17_38_25.dat'));
 load(fullfile(dirExp,'Reference_Measurements.mat'));
 clear refArm sampleArm
@@ -216,7 +216,7 @@ close all
 Fs = 125e6;                             % Sampling frequency = 125 MHz
 % Acquisition noise: obtained with a 75 ohm terminator on the ADC
 [rawBscan refBscan Bscan hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_35_18_darkNoise\2011_10_31_17_44_34.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_35_18_darkNoise\2011_10_31_17_44_34.dat');
 [AlineDark,f] = myFFT(rawBscan, Fs);
 AlineDark = mean(AlineDark,2);
 % Pixel spacing in frequency
@@ -226,7 +226,7 @@ pixSpace = mean(diff(f));
 % Readout noise: electrical noise obtained with both the reference and sample
 % arms blocked
 [rawBscan refBscan Bscan hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_50_26_readoutNoise\2011_10_31_17_51_29.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_50_26_readoutNoise\2011_10_31_17_51_29.dat');
 [AlineReadout,f] = myFFT(rawBscan, Fs);
 AlineReadout = mean(AlineReadout,2);
 
@@ -236,7 +236,7 @@ pixSpace = mean(diff(f));
 
 % Noise floor: Obtained with the sample arm blocked
 [rawBscan refBscan Bscan hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_57_01_referenceLight\2011_10_31_17_57_56.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\17_57_01_referenceLight\2011_10_31_17_57_56.dat');
 [Aline,f] = myFFT(mean(refBscan,2), Fs);
 % Pixel spacing in frequency
 pixSpace = mean(diff(f));
@@ -248,7 +248,7 @@ pixSpace = mean(diff(f));
 
 %% Comparison between 125 and 100 MHz. Mirror close to the surface
 [rawBscan refBscan Bscan hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\18_26_54_0000um\2011_10_31_18_29_21.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_10_31_Mirror\18_26_54_0000um\2011_10_31_18_29_21.dat');
 [Aline,f] = myFFT(rawBscan, Fs);
 Aline = mean(Aline,2);
 % Pixel spacing in frequency
@@ -259,7 +259,7 @@ pixSpace = mean(diff(f));
 % Mirror close to the surface but acquired at 100 MHz
 Fs100 = 100e6;                             % Sampling frequency = 100 MHz
 [rawBscan100 refBscan100 Bscan100 hFig] = browseVolume(1,...
-    'D:\Edgar\Documents\ssoct\Matlab\Acquisition\DATA\2011_11_01_Mirror\13_33_23_acq100MHz\2011_11_01_13_34_21.dat');
+    'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2011_11_01_Mirror\13_33_23_acq100MHz\2011_11_01_13_34_21.dat');
 [Aline100,f100] = myFFT(rawBscan100, Fs100);
 Aline100 = mean(Aline100,2);
 % Pixel spacing in frequency

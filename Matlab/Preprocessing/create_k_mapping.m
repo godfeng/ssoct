@@ -1,8 +1,8 @@
 % Create a mapping function from pixel spacing to k-spacing
 %% Load and prepare data
 clear; close all; clc
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','coupler_50_50.mat'))
-load (fullfile('D:\Edgar\Documents\ssoct\Matlab\Misc','phase.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','coupler_50_50.mat'))
+load (fullfile('D:\Edgar\ssoct\Matlab\Misc','phase.mat'))
 % Reference signal is filtered, because extreme care must be taken when
 % deconvolving by a noisy signal
 [b,a] = butter(16, 0.2, 'low');
