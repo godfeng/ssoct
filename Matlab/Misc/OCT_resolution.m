@@ -25,7 +25,7 @@ rr = (2/pi)*lambda0./NA;                % Transverse (lateral) resolution
 fprintf('Tranverse resolution = %.2f um\n',rr*1e6)
 
 %% Maximum path difference (Field Of View of a FDOCT) (Penetration depth)
-Ns = 1170;                              % Number of samples (Ns_max = 1286)
+Ns = 1128;                              % Number of samples (Ns_max = 1286)
 delta_Z_Nq = lambda0^2 * Ns / (4*delta_lambda*n);
 n_air = 1;                              % Index of refraction of air
 delta_Z_Nq_air = lambda0^2 * Ns / (4*delta_lambda*n_air);
