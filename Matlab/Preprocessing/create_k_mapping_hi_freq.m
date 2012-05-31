@@ -103,7 +103,7 @@ minLambda           = 1258e-9;
 maxLambda           = 1361.2e-9;
 delta_lambda        = maxLambda - minLambda;
 % Index of refraction (air)
-n = 1.38;
+n = 1;
 % FWHM in wavelength% Scan Range of a FDOCT
 delta_Z_Nq = lambda0^2 * NSAMPLES / (4*delta_lambda*n);
 % Axial resolution
@@ -169,7 +169,7 @@ peak_pos_m  = peak_pos  * pixelWidth;
 fprintf('Theoretical FWHM: %.1f um\n',FWHM_um)
 fprintf('Axial resolution: %.1f um\n',1e6*zr)
 figure(6); hold on; plot(peak_pos_m, A_theo_fft(peak_pos), 'ko')
-xlim ([0 2.2e-3])
+xlim ([0 5e-3])
 legend({'Exp. Interpolated' 'Interp. FWHM' 'Exp. Raw'  'Raw FWHM' 'Theoretical' 'Theo FWHM' },'location','northwest')
 
 %% Hilbert transform (phase linearity)
