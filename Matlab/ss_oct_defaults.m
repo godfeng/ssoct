@@ -198,5 +198,10 @@ ssOCTdefaults.range.posZaxis_air        = linspace(ssOCTdefaults.range.delta_Z_N
 % Positive z-axis in m (tissue)
 ssOCTdefaults.range.posZaxis            = linspace(ssOCTdefaults.range.delta_Z_Nq ./...
     ssOCTdefaults.nSamplesFFT,ssOCTdefaults.range.delta_Z_Nq,ssOCTdefaults.nSamplesFFT/2);
+%===============================================================================
+% Dispersion compensation parameters
+%===============================================================================
+ssOCTdefaults.dispersion.compensate     = true;
+ssOCTdefaults.dispersion.a              = [0; 0];
 % ==============================================================================
 % [EOF]

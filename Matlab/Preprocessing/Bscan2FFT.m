@@ -1,5 +1,5 @@
 function fftBscan = Bscan2FFT(Bmodescan)
-% Computes the FFT of a B-mode scan, along the A-lines dimension (columns)
+% Computes the single-sided FFT of a B-mode scan, along the A-lines dimension (columns)
 % SYNTAX:
 % fftBscan = Bscan2FFT(Bmodescan)
 % INPUTS:

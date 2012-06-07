@@ -55,9 +55,8 @@ noise_floor = mean(...
 
 
 
-% The structure value in dB was calculated as twenty (or ten?) time the base-10
-% logarithm of the ratio of the B-scan amplitude to the standard deviation of
-% the noise floor (or its mean?)
+% The structure value in dB was calculated as ten times the base-10 logarithm of
+% the ratio of the B-scan amplitude to the mean of the noise floor 
 frame_struct = 10*log10(frame_struct / noise_floor);
 frame_struct(frame_struct<0) = 0;
 
@@ -67,7 +66,7 @@ if isfield(mask_prop,'surface')
     end
 end
 
-if mask_prop.enable==1
+if mask_prop.enable
 
     frame_mask = int8(frame_struct);
     

@@ -11,8 +11,8 @@ NSAMPLES = 1128;
 fixedSampling = linspace(0,NSAMPLES - 1,NSAMPLES)';
 
 % Resampling (Interpolation/Decimation) along columns (A-lines)
-Aline = interp1(k, Aline, fixedSampling, 'linear');
-ref = interp1(k, ref, fixedSampling, 'linear');
+Aline = interp1(k0, Aline, fixedSampling, 'linear');
+ref = interp1(k0, ref, fixedSampling, 'linear');
 
 % window
 tmpCorrArray = myhann(NSAMPLES);

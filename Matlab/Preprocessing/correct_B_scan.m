@@ -26,9 +26,9 @@ global ssOCTdefaults
 
 % Values taken previously (see reference_measure.m)
 % Background signal from the reference arm (sample arm blocked)
-if isfield(ssOCTdefaults,'refArm')
-    refArm      = ssOCTdefaults.refArm;
-else
+% if isfield(ssOCTdefaults,'refArm')
+%     refArm      = ssOCTdefaults.refArm;
+% else
     % Read binary .DAT file
     if exist(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'), 'file')
         refArm = readOCTmapFile(fullfile(ssOCTdefaults.folders.dirCurrExp,'referenceFrame.dat'));
@@ -41,7 +41,7 @@ else
     refArm = mean(double(refArm),2);
     % Update global variable
     ssOCTdefaults.refArm = refArm;
-end
+% end
 
 % Self interference signal from the sample arm (reference arm blocked)
 % if isfield(ssOCTdefaults,'sampleArm')
@@ -93,6 +93,11 @@ end
 if ssOCTdefaults.resampleData
     % K-clock resampling of a B-scan
     correctedBscan = resample_B_scan(correctedBscan);
+    % Correct first and last row for NaN's
+    correctedBscan(1,:) = correctedBscan(3,:);
+    correctedBscan(2,:) = correctedBscan(3,:);
+    correctedBscan(end,:) = correctedBscan(end-2,:);
+    correctedBscan(end-1,:) = correctedBscan(end-2,:);
 end
 
 % Apply window to the interferogram
