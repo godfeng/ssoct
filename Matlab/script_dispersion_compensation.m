@@ -43,8 +43,7 @@ for iDirs = 1:numel(dirList)
 end
 mirrorPos = str2num(cell2mat(varNames)); %#ok<ST2NM>
 
-%%
-% Structural image
+%% Structural image
 structBscan = abs(fftBscan);
 minVal = min(structBscan(:));
 maxVal = max(structBscan(:));
@@ -54,17 +53,68 @@ for iDirs = 1:numel(dirList)
     title(iDirs); pause(0.25);
 end
 
+
+%% FWHM computing of uncompensated data
+Aline = zeros([ssOCTdefaults.nSamplesFFT/2 numel(dirList)]);
+FWHM = zeros([numel(dirList) 1]);
+peak_pos = zeros([numel(dirList) 1]);
+FWHM_um = zeros([numel(dirList) 1]);
+peak_pos_m = zeros([numel(dirList) 1]);
+for iDirs = 1:numel(dirList),
+    tempBscan = mean(squeeze(fftBscan(:,:,iDirs)),2);
+    Aline(:,iDirs) = abs(tempBscan);
+    [FWHM(iDirs), peak_pos(iDirs), FWHM_um(iDirs), peak_pos_m(iDirs)] = fwhm(Aline(:,iDirs));
+end
+figure(2); plot(1e3*ssOCTdefaults.range.posZaxis_air, Aline(:,1:18));figure(gcf); 
+xlabel('z [mm]'); ylabel('Amplitude'); 
+title('A-lines before dispersion compensation')
+figure(3); plot(1e3*peak_pos_m(1:18,1),FWHM_um(1:18,1),'k.');figure(gcf); 
+xlabel('Peak position [mm]'); ylabel('FWHM [\mum]'); 
+title('FWHM width before dispersion compensation')
+
 %% Dispersion compensation maximization
 
 % frame_before_dispersion=abs(ifft(frame,[],1));
 % figure(1);subplot(2,1,1);imagesc(frame_before_dispersion(50:200,:))
 % title('Frame before dispersion compensation');pause(0.01)
+tic
+BscanDisp = zeros(size(Bscan));
+for iDirs = 1:numel(dirList),
+    frame = squeeze(Bscan(:,:,iDirs));
+    % Get pixels in k-space and linear space from lambda vector
+    wavenumbers = lambda2k(ssOCTdefaults.range.vectorLambda);
+    a = ssOCTdefaults.dispersion.a;
+    if ssOCTdefaults.dispersion.compensate,
+        a = fminsearch(@(a) dispersion_optim(frame,wavenumbers,a), a);
+%         ssOCTdefaults.dispersion.compensate = false;
+        % save last_dispersion_parameter -struct ssOCTdefaults.dispersion
+        ssOCTdefaults.dispersion.a = a;
+    end
+    BscanDisp(:,:,iDirs) = dispersion_comp(frame,wavenumbers,ssOCTdefaults.dispersion.a);
+end
+toc
 
-if ssOCTdefaults.dispersion.compensate,
-    ssOCTdefaults.dispersion.a = fminsearch(@(a) dispersion_optim(frame,wavenumbers,a),dispersion.a);
-    ssOCTdefaults.dispersion.compensate = false;
-    save last_dispersion_parameter -struct ssOCTdefaults.dispersion
+%% Analysis of dispersion-compensated data
+fftBscanDisp = zeros(size(fftBscan));
+for iDirs = 1:numel(dirList),
+    % Bscan in Fourier space 
+    fftBscanDisp(:,:,iDirs) = Bscan2FFT(squeeze(BscanDisp(:,:,iDirs)));
 end
 
-[frame] = dispersion_comp(frame,wavenumbers,dispersion.a);
-
+%% FWHM computing of uncompensated data
+AlineDisp = zeros([ssOCTdefaults.nSamplesFFT/2 numel(dirList)]);
+FWHMDisp = zeros([numel(dirList) 1]);
+peak_posDisp = zeros([numel(dirList) 1]);
+FWHM_umDisp = zeros([numel(dirList) 1]);
+peak_pos_mDisp = zeros([numel(dirList) 1]);
+for iDirs = 1:numel(dirList),
+    tempBscanDisp = mean(squeeze(fftBscanDisp(:,:,iDirs)),2);
+    AlineDisp(:,iDirs) = abs(tempBscanDisp);
+    [FWHMDisp(iDirs), peak_posDisp(iDirs), FWHM_umDisp(iDirs), peak_pos_mDisp(iDirs)] = fwhm(AlineDisp(:,iDirs));
+end
+figure(4); plot(1e3*ssOCTdefaults.range.posZaxis_air, AlineDisp(:,1:18));figure(gcf); 
+xlabel('z [mm]'); ylabel('Amplitude'); 
+title('A-lines after dispersion compensation')
+figure(5); plot(1e3*peak_pos_mDisp(1:24,1),FWHM_umDisp(1:24,1),'k.');figure(gcf); 
+xlabel('Peak position [mm]'); ylabel('FWHM [\mum]'); 
+title('FWHM width after dispersion compensation')

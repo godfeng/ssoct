@@ -24,7 +24,7 @@ global ssOCTdefaults
 pixelWidth = 2*ssOCTdefaults.range.delta_Z_Nq_air ./ (ssOCTdefaults.nSamplesFFT+1);
 
 % Calculate FWHM of given signal
-[FWHM, peak_pos] = calculate_FWHM(signal);
+[FWHM, peak_pos] = compute_FWHM(signal);
 
 % Output in um
 FWHM_um     = FWHM      * pixelWidth * 1e6;
