@@ -123,7 +123,9 @@ sourceSpectrum = C.data(:,2);
 sweepTrigger = C.data(:,3);
 
 minLambda           = 1258e-9;
+minK                = 2*pi/minLambda;
 maxLambda           = 1361.2e-9;
+maxK                = 2*pi/maxLambda;
 delta = -47;
 deltap = -525;
 s1 = sourceSpectrum(47 - delta:998 + deltap);
@@ -141,25 +143,32 @@ sourceSpectrum = medfilt1(mean([s1 s2 s3],2), winSize);
 sourceSpectrum = sourceSpectrum - min(sourceSpectrum);
 sourceSpectrum = sourceSpectrum / max(sourceSpectrum);
 sweepTrigger = mean([t1 t2 t3],2);
+% k = linspace(minK, maxK, numel(sourceSpectrum));
+% lambda = 2*pi./k;
 lambda = linspace(minLambda, maxLambda, numel(sourceSpectrum));
+lambda0 = (maxLambda+minLambda)/2;
 
 % Display
-figure(332); set(gcf,'color','w')
+close all
+figure; set(gcf,'color','w')
 clf
 % plot(t,sweepTrigger,'r-',t,sourceSpectrum,'k-')
 plot(lambda*1e9, sourceSpectrum,'Color', 'k', 'LineStyle', '-', 'LineWidth', 3)
+hold on
+plot(1e9*[lambda0 lambda0], [0 1], 'Color', 'k', 'LineStyle', ':', 'LineWidth', 2)
 xlabel('\lambda [nm]', 'FontWeight', 'Bold', 'FontSize', 14)
 ylabel('Power [a.u.]', 'FontWeight', 'Bold',  'FontSize', 14)
 set(gca, 'FontWeight', 'Bold', 'FontSize', 14)
-xlim([0.99*minLambda 1.01*maxLambda]*1e9)
+xlim([minLambda maxLambda]*1e9)
 ylim([0 1])
 yax = [0 1];
 set(gca, 'YTick', yax)
 
+addpath(genpath('D:\Edgar\ssoct\Matlab'))
 % Exporting as png
-% export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\source_spectrum.png', '-png', gcf);
+export_fig('D:\Edgar\Documents\Dropbox\Docs\OCT\source_spectrum.png', '-png', gcf);
 
-fprintf('Mean %0.2f mW\n',mean(sourceSpectrum))
+% fprintf('Mean %0.2f mW\n',mean(sourceSpectrum))
 
 % Cleanup
 clear s1 s2 s3 t1 t2 t3
