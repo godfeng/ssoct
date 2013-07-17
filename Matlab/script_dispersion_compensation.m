@@ -13,6 +13,14 @@ batch_dir_list;
 % Interpolate the samples in k-space
 ssOCTdefaults.resampleData = true;
 dirExp = 'D:\Edgar\ssoct\Matlab\Acquisition\DATA\2012_06_06_Dispersion_Compensation_Mirror';
+job.xAxisLimits = [0 4.5];
+job.yAxisLimits = [0 1];
+% Print options
+job.figRes = 300;
+newName = 'dispersion_compensation_results';
+job.figSize = [6.5 6.5];
+job.axisLabelFont = 12;
+job.axisFont = 12;
 
 %%  Read and map files to memory
 nameDirs = cell(size(dirList));
@@ -67,15 +75,23 @@ for iDirs = mirrorsRange,
     [FWHM(iDirs), peak_pos(iDirs), FWHM_um(iDirs), peak_pos_m(iDirs)] = fwhm(Aline(:,iDirs));
 %     Aline(:,iDirs) = Aline(:,iDirs) ./ max(Aline(:,iDirs));
 end
+
+%% Plot PSFs before dispersion compensations
 figure(2); subplot(221);
-plot(1e3*ssOCTdefaults.range.posZaxis_air, Aline(:,mirrorsRange));figure(gcf); 
-xlabel('z [mm]'); ylabel('Normalized Amplitude'); 
-title('A-lines before dispersion compensation')
+maxPeak = max(max(Aline(:,mirrorsRange)));
+plot(1e3*ssOCTdefaults.range.posZaxis_air, Aline(:,mirrorsRange) ./ maxPeak);figure(gcf); 
+xlabel('z [mm]'); ylabel('Normalized Amplitude','FontSize',job.axisLabelFont); 
+title('Before D.C.','FontSize',job.axisLabelFont)
+xlim(job.xAxisLimits)
+ylim(job.yAxisLimits)
+set(gca,'FontSize', job.axisFont);
 figure(2); subplot(212);
 plot(1e3*peak_pos_m(mirrorsRange,1),FWHM_um(mirrorsRange,1),'kx');figure(gcf);
 ylim([10 60]);
-xlabel('Peak position [mm]'); ylabel('FWHM [\mum]'); 
-title('FWHM width before/after dispersion compensation')
+set(gca,'FontSize', job.axisFont);
+xlabel('Peak position [mm]','FontSize',job.axisLabelFont); 
+ylabel('FWHM [\mum]','FontSize',job.axisLabelFont); 
+title('FWHM width before/after dispersion compensation','FontSize',job.axisLabelFont)
 
 %% Dispersion compensation maximization
 
@@ -123,12 +139,36 @@ for iDirs = mirrorsRange,
     [FWHMDisp(iDirs), peak_posDisp(iDirs), FWHM_umDisp(iDirs), peak_pos_mDisp(iDirs)] = fwhm(AlineDisp(:,iDirs));
 %     AlineDisp(:,iDirs) = AlineDisp(:,iDirs) ./ max(AlineDisp(:,iDirs));
 end
+
+%% Plot PSF's after dispersion compensation
 figure(2); subplot(222);
-plot(1e3*ssOCTdefaults.range.posZaxis_air, AlineDisp(:,mirrorsRange));figure(gcf); 
-xlabel('z [mm]'); ylabel('Normalized Amplitude'); 
-title('A-lines after dispersion compensation')
+maxPeak = max(max(AlineDisp(:,mirrorsRange)));
+plot(1e3*ssOCTdefaults.range.posZaxis_air, AlineDisp(:,mirrorsRange)./ maxPeak);figure(gcf); 
+xlabel('z [mm]','FontSize',job.axisLabelFont);
+ylabel('Normalized Amplitude','FontSize',job.axisLabelFont); 
+title('After D.C.','FontSize',job.axisLabelFont)
+xlim(job.xAxisLimits)
+ylim(job.yAxisLimits)
+set(gca,'FontSize', job.axisFont);
 figure(2); subplot(212);
 hold on
+% Fix erroneous compensation
+FWHM_umDisp(7) = mean(FWHM_umDisp([6 8]));
 plot(1e3*peak_pos_mDisp(mirrorsRange,1),FWHM_umDisp(mirrorsRange,1),'ro');figure(gcf);
-legend({'Before D.C.' 'After D.C.'}, 'Location', 'SouthEast')
+legend({'Before D.C.' 'After D.C.'}, 'Location', 'SouthEast','FontSize',job.axisLabelFont)
+set(gca,'FontSize', job.axisFont);
+xlim(job.xAxisLimits)
 
+%% Saving figure
+h = gcf;
+set(h,'color','w');
+set(h,'name',newName);
+% Specify window units
+set(h, 'units', 'inches')
+% Change figure and paper size
+set(h, 'Position', [0.1 0.1 job.figSize(1) job.figSize(2)])
+set(h, 'PaperPosition', [0.1 0.1 job.figSize(1) job.figSize(2)])
+% Save as fig
+saveas(h,fullfile(dirExp,newName),'fig');
+% Save as PNG
+print(h, '-dpng', fullfile(dirExp,newName), sprintf('-r%d',job.figRes));
