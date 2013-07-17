@@ -168,7 +168,8 @@ ssOCTdefaults.lateral.NA                = sqrt(1 ./ (1 + (2.*...
 % Transverse (lateral) resolution for different scan lenses [LSM02 LSM03 LSM04]
 ssOCTdefaults.lateral.rr                = (2/pi)*ssOCTdefaults.axial.lambda0 ./ ...
     ssOCTdefaults.lateral.NA;
-
+% focal zone for different scan lenses [LSM02 LSM03 LSM04]
+ssOCTdefaults.lateral.fr                = (pi*ssOCTdefaults.lateral.rr.^2) ./ (2*ssOCTdefaults.axial.lambda0);
 %===============================================================================
 % Maximum path difference (Scan Range of a FDOCT) (Penetration depth)
 %===============================================================================
