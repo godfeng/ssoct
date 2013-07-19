@@ -170,6 +170,7 @@ ssOCTdefaults.lateral.rr                = (2/pi)*ssOCTdefaults.axial.lambda0 ./ 
     ssOCTdefaults.lateral.NA;
 % focal zone for different scan lenses [LSM02 LSM03 LSM04]
 ssOCTdefaults.lateral.fr                = (pi*ssOCTdefaults.lateral.rr.^2) ./ (2*ssOCTdefaults.axial.lambda0);
+
 %===============================================================================
 % Maximum path difference (Scan Range of a FDOCT) (Penetration depth)
 %===============================================================================
@@ -199,6 +200,7 @@ ssOCTdefaults.range.posZaxis_air        = linspace(ssOCTdefaults.range.delta_Z_N
 % Positive z-axis in m (tissue)
 ssOCTdefaults.range.posZaxis            = linspace(ssOCTdefaults.range.delta_Z_Nq ./...
     ssOCTdefaults.nSamplesFFT,ssOCTdefaults.range.delta_Z_Nq,ssOCTdefaults.nSamplesFFT/2);
+
 %===============================================================================
 % Dispersion compensation parameters
 %===============================================================================

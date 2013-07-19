@@ -17,10 +17,12 @@ job.xAxisLimits = [0 4.5];
 job.yAxisLimits = [0 1];
 % Print options
 job.figRes = 300;
-newName = 'dispersion_compensation_results';
+newName = 'OCT_dispersion_compensation';
 job.figSize = [6.5 6.5];
 job.axisLabelFont = 12;
 job.axisFont = 12;
+job.markSize = 10;
+job.LineWidth = 3;
 
 %%  Read and map files to memory
 nameDirs = cell(size(dirList));
@@ -76,22 +78,6 @@ for iDirs = mirrorsRange,
 %     Aline(:,iDirs) = Aline(:,iDirs) ./ max(Aline(:,iDirs));
 end
 
-%% Plot PSFs before dispersion compensations
-figure(2); subplot(221);
-maxPeak = max(max(Aline(:,mirrorsRange)));
-plot(1e3*ssOCTdefaults.range.posZaxis_air, Aline(:,mirrorsRange) ./ maxPeak);figure(gcf); 
-xlabel('z [mm]'); ylabel('Normalized Amplitude','FontSize',job.axisLabelFont); 
-title('Before D.C.','FontSize',job.axisLabelFont)
-xlim(job.xAxisLimits)
-ylim(job.yAxisLimits)
-set(gca,'FontSize', job.axisFont);
-figure(2); subplot(212);
-plot(1e3*peak_pos_m(mirrorsRange,1),FWHM_um(mirrorsRange,1),'kx');figure(gcf);
-ylim([10 60]);
-set(gca,'FontSize', job.axisFont);
-xlabel('Peak position [mm]','FontSize',job.axisLabelFont); 
-ylabel('FWHM [\mum]','FontSize',job.axisLabelFont); 
-title('FWHM width before/after dispersion compensation','FontSize',job.axisLabelFont)
 
 %% Dispersion compensation maximization
 
@@ -140,35 +126,59 @@ for iDirs = mirrorsRange,
 %     AlineDisp(:,iDirs) = AlineDisp(:,iDirs) ./ max(AlineDisp(:,iDirs));
 end
 
+%% Plot PSFs before dispersion compensations
+% Optionally load saved data
+% load('D:\Edgar\ssoct\Matlab\Acquisition\DATA\2012_06_06_Dispersion_Compensation_Mirror\OCT_dispersion_compensation.mat')
+h = figure; set(h,'color','w');
+set(h,'name',newName); subplot(221);
+maxPeak = max(max(Aline(:,mirrorsRange)));
+plot(1e3*ssOCTdefaults.range.posZaxis_air, Aline(:,mirrorsRange) ./ maxPeak);figure(gcf); 
+xlabel('z [mm]'); ylabel('Normalized Amplitude','FontSize',job.axisLabelFont); 
+title('Before D.C.','FontSize',job.axisLabelFont)
+xlim(job.xAxisLimits)
+ylim(job.yAxisLimits)
+set(gca,'FontSize', job.axisFont);
+figure(h); subplot(212);
+plot(1e3*peak_pos_m(mirrorsRange,1),FWHM_um(mirrorsRange,1),'kx',...
+    'MarkerSize',job.markSize,'LineWidth',job.LineWidth);figure(h);
+ylim([10 60]);
+set(gca,'FontSize', job.axisFont);
+xlabel('Peak position [mm]','FontSize',job.axisLabelFont); 
+ylabel('FWHM [\mum]','FontSize',job.axisLabelFont); 
+% title('FWHM width before/after dispersion compensation','FontSize',job.axisLabelFont)
+
 %% Plot PSF's after dispersion compensation
-figure(2); subplot(222);
+figure(h); subplot(222);
 maxPeak = max(max(AlineDisp(:,mirrorsRange)));
-plot(1e3*ssOCTdefaults.range.posZaxis_air, AlineDisp(:,mirrorsRange)./ maxPeak);figure(gcf); 
+plot(1e3*ssOCTdefaults.range.posZaxis_air, AlineDisp(:,mirrorsRange)./ maxPeak);figure(h); 
 xlabel('z [mm]','FontSize',job.axisLabelFont);
 ylabel('Normalized Amplitude','FontSize',job.axisLabelFont); 
 title('After D.C.','FontSize',job.axisLabelFont)
 xlim(job.xAxisLimits)
 ylim(job.yAxisLimits)
 set(gca,'FontSize', job.axisFont);
-figure(2); subplot(212);
+figure(h); subplot(212);
 hold on
 % Fix erroneous compensation
 FWHM_umDisp(7) = mean(FWHM_umDisp([6 8]));
-plot(1e3*peak_pos_mDisp(mirrorsRange,1),FWHM_umDisp(mirrorsRange,1),'ro');figure(gcf);
+plot(1e3*peak_pos_mDisp(mirrorsRange,1),FWHM_umDisp(mirrorsRange,1),'ro',...
+    'MarkerSize',job.markSize,'LineWidth',job.LineWidth);figure(h);
 legend({'Before D.C.' 'After D.C.'}, 'Location', 'SouthEast','FontSize',job.axisLabelFont)
 set(gca,'FontSize', job.axisFont);
 xlim(job.xAxisLimits)
-
-%% Saving figure
-h = gcf;
-set(h,'color','w');
-set(h,'name',newName);
 % Specify window units
 set(h, 'units', 'inches')
 % Change figure and paper size
 set(h, 'Position', [0.1 0.1 job.figSize(1) job.figSize(2)])
 set(h, 'PaperPosition', [0.1 0.1 job.figSize(1) job.figSize(2)])
+
+%% Saving figure and data
+save(fullfile(dirExp,[newName '.mat']),'job','newName','mirrorsRange','Aline','AlineDisp',...
+    'ssOCTdefaults','maxPeak','peak_pos_m','peak_pos_mDisp','FWHM_um','FWHM_umDisp',...
+    'dirExp');
 % Save as fig
 saveas(h,fullfile(dirExp,newName),'fig');
 % Save as PNG
 print(h, '-dpng', fullfile(dirExp,newName), sprintf('-r%d',job.figRes));
+
+% EOF
